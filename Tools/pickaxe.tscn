@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1u5ejg6hestf"]
+
+[ext_resource type="Texture2D" uid="uid://dae4qq5rhx7qx" path="res://Tools/RoughPickaxe.png" id="1_mn4oj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b63s0"]
+radius = 57.0088
+
+[node name="Pickaxe" type="Area2D"]
+
+[node name="RoughPickaxe" type="Sprite2D" parent="."]
+position = Vector2(42, -44)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_mn4oj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(39, -59)
+shape = SubResource("CircleShape2D_b63s0")

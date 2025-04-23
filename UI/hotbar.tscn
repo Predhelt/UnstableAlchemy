@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmno12rqcg6in"]
+
+[ext_resource type="PackedScene" uid="uid://bbvxpluwik7r6" path="res://UI/hotbar_button.tscn" id="1_j8vo5"]
+[ext_resource type="Shortcut" uid="uid://lgqcpcn7dh6v" path="res://UI/Shortcuts/hotbar_1.tres" id="2_kcset"]
+[ext_resource type="Shortcut" path="res://UI/Shortcuts/hotbar_2.tres" id="3_18uj4"]
+[ext_resource type="Shortcut" uid="uid://b47ma8787xjk5" path="res://UI/Shortcuts/hotbar_3.tres" id="4_a2hxo"]
+[ext_resource type="Shortcut" uid="uid://du4gxggmmlkv2" path="res://UI/Shortcuts/hotbar_4.tres" id="5_xqf24"]
+[ext_resource type="Shortcut" uid="uid://bdfvb0i3ygq55" path="res://UI/Shortcuts/hotbar_5.tres" id="6_xvgtj"]
+
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HotbarButton1" parent="HBoxContainer" instance=ExtResource("1_j8vo5")]
+layout_mode = 2
+shortcut = ExtResource("2_kcset")
+text = ""
+
+[node name="HotbarButton2" parent="HBoxContainer" instance=ExtResource("1_j8vo5")]
+layout_mode = 2
+shortcut = ExtResource("3_18uj4")
+text = ""
+
+[node name="HotbarButton3" parent="HBoxContainer" instance=ExtResource("1_j8vo5")]
+layout_mode = 2
+shortcut = ExtResource("4_a2hxo")
+text = ""
+
+[node name="HotbarButton4" parent="HBoxContainer" instance=ExtResource("1_j8vo5")]
+layout_mode = 2
+shortcut = ExtResource("5_xqf24")
+text = ""
+
+[node name="HotbarButton5" parent="HBoxContainer" instance=ExtResource("1_j8vo5")]
+layout_mode = 2
+shortcut = ExtResource("6_xvgtj")
+text = ""

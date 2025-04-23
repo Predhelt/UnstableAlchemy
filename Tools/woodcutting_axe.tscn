@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://o3yqimgiub37"]
+
+[ext_resource type="Texture2D" uid="uid://b2fmrw7wionnr" path="res://Tools/RoughWoodcuttingAxe.png" id="1_c55a8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iymjs"]
+size = Vector2(105.058, 218.184)
+
+[node name="WoodcuttingAxe" type="Area2D"]
+
+[node name="RoughWoodcuttingAxe" type="Sprite2D" parent="."]
+position = Vector2(102, -97)
+texture = ExtResource("1_c55a8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(127, -118)
+rotation = 0.635842
+shape = SubResource("RectangleShape2D_iymjs")
