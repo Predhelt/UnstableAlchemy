@@ -6,5 +6,4 @@
 custom_minimum_size = Vector2(64, 64)
 offset_right = 18.0
 offset_bottom = 31.0
-text = "X"
 script = ExtResource("1_0i3w7")
