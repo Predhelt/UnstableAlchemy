@@ -1,30 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=4 format=3 uid="uid://csw57bxt7nvm2"]
 
-[ext_resource type="Texture2D" uid="uid://qxovv43iksjw" path="res://Characters/Slim_meh.png" id="1_e1t1v"]
 [ext_resource type="Script" path="res://player.gd" id="1_juhlw"]
-[ext_resource type="PackedScene" uid="uid://d1u5ejg6hestf" path="res://Tools/pickaxe.tscn" id="3_r5tsa"]
-[ext_resource type="PackedScene" uid="uid://o3yqimgiub37" path="res://Tools/woodcutting_axe.tscn" id="4_ab8vf"]
+[ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://Characters/Grey-Pawnman_Down.png" id="2_vngk6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_veuov"]
-size = Vector2(46, 44)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7doq1"]
+radius = 2.0
+height = 4.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_juhlw")
 
-[node name="SlimMeh" type="Sprite2D" parent="."]
-position = Vector2(-2, -19)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.19209e-07, -6)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_e1t1v")
+texture = ExtResource("2_vngk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -19)
-shape = SubResource("RectangleShape2D_veuov")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -18)
-
-[node name="Pickaxe" parent="Marker2D" instance=ExtResource("3_r5tsa")]
-scale = Vector2(0.3, 0.3)
-
-[node name="WoodcuttingAxe" parent="Marker2D" instance=ExtResource("4_ab8vf")]
-scale = Vector2(0.3, 0.3)
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_7doq1")

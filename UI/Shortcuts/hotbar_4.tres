@@ -1,9 +1,0 @@
-[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://du4gxggmmlkv2"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_fnlms"]
-device = -1
-keycode = 52
-unicode = 52
-
-[resource]
-events = [SubResource("InputEventKey_fnlms")]

@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-const MS = 200 #move speed value
-var held_tool = "bare"
+const MS = 10 #move speed value
 
 var stats = {
 	"health" : 100.0, # health value
 	"stamina" : 100.0, # stamina value
 	"move speed" : 300.0, # move speed modifier (100 = 1.0*ms)
 	"dexterity" : 100.0, # value of speed when interacting with tools
-	"strength" : 100.0, # 
+	"strength" : 100.0, # how much can be pushed or carried
 	"range" : 100.0, # length of arms
+	"height" : 100.0 # height of character
 }
 
 # Tools have values that determine the quality of the tool.
@@ -21,15 +21,6 @@ var tools = {
 	"butterfly net" : 0, # for catching bugs
 	"fishing rod" : 0, # for fishing
 	"shovel" : 0, # for digging
-}
-
-var hotbar = { # TODO: Determines tool in hotbar slot
-	0 : "bare",
-	1 : "pickaxe",
-	2 : "woodcutting axe",
-	3 : "butterfly net",
-	4 : "fishing rod",
-	5 : "shovel",
 }
 
 
@@ -45,11 +36,3 @@ func _physics_process(delta: float) -> void:
 ##		character.play_idle_animation
 	
 	
-
-
-func set_tool(slot: int) -> void:
-	if hotbar[slot] != held_tool: # If not holding the selected tool, hold it
-		held_tool = hotbar[slot]
-	else: # if already holding the tool, deselect it
-		held_tool = hotbar[0]
-	print(held_tool)

@@ -1,0 +1,6 @@
+Basic plant. Similar to mint.
+Harmless to grab barehanded
+Tool produces same result
+Inspecting shows that it looks like mint
+Walking over it does nothing
+(Calming) Can be rubbed on some other plants to prevent plants from exploding pollen when plucked

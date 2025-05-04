@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1u5ejg6hestf"]
+[gd_scene load_steps=4 format=3 uid="uid://dbjyuv2a7iyv4"]
 
 [ext_resource type="Script" path="res://Tools/Tool.gd" id="1_7ntof"]
 [ext_resource type="Texture2D" uid="uid://dae4qq5rhx7qx" path="res://Tools/RoughPickaxe.png" id="1_mn4oj"]
@@ -11,7 +11,6 @@ collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_7ntof")
 display_name = &"Pickaxe"
-quality = 1
 
 [node name="RoughPickaxe" type="Sprite2D" parent="."]
 position = Vector2(78, -79)
