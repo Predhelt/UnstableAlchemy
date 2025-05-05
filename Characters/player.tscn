@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://csw57bxt7nvm2"]
+
+[ext_resource type="Script" path="res://Characters/player.gd" id="1_juhlw"]
+[ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://Art/UAPrototype/Characters/Grey-Pawnman_Down.png" id="2_vngk6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6e64a"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
+radius = 88.0227
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_juhlw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -54)
+texture = ExtResource("2_vngk6")
+
+[node name="CollisionBody" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6e64a")
+
+[node name="StatusLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_top = -175.0
+offset_right = 65.0
+offset_bottom = -125.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]You are feeling [color=green]fine[/color][/center]"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="StatusLabel"]
+wait_time = 10.0
+one_shot = true
+
+[node name="InteractionComponents" type="Node2D" parent="."]
+
+[node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
+position = Vector2(0, -46)
+shape = SubResource("CircleShape2D_16fu4")
+debug_color = Color(0, 0.650275, 0.102524, 0.42)
+
+[node name="InteractLabel" type="Label" parent="InteractionComponents"]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -132.0
+offset_right = 110.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_exited"]
