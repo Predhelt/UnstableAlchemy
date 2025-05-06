@@ -19,4 +19,5 @@ debug_color = Color(0, 0.65098, 0.101961, 0.419608)
 [node name="ContextMenu" parent="." instance=ExtResource("2_av3l0")]
 visible = false
 
-[connection signal="item_grabbed" from="ContextMenu" to="." method="_on_context_menu_item_grabbed"]
+[connection signal="object_grabbed" from="ContextMenu" to="." method="_on_context_menu_object_grabbed"]
+[connection signal="object_inspected" from="ContextMenu" to="." method="_on_context_menu_object_inspected"]

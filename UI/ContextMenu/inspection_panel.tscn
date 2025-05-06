@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccrubsrhkvb1n"]
+[gd_scene load_steps=2 format=3 uid="uid://ccrubsrhkvb1n"]
 
-[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://Art/UAPrototype/Ingredients/Planted/HerbBasicGreen.png" id="1_13sgv"]
 [ext_resource type="Script" path="res://UI/ContextMenu/inspection_panel.gd" id="1_tln8h"]
 
 [node name="InspectionPanel" type="PopupPanel"]
@@ -19,15 +18,14 @@ offset_bottom = 96.0
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="ItemImage" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+[node name="ObjectImage" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_13sgv")
 
-[node name="ItemName" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="ObjectName" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "name"
+text = "Name"
 
-[node name="ItemDescription" type="Label" parent="VBoxContainer"]
+[node name="ObjectDescription" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Description
 "

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpentj2lgiwnu"]
-
-[ext_resource type="PackedScene" uid="uid://djcyyj8qplplh" path="res://UI/ContextMenu/context_menu.tscn" id="1_lr76u"]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="ContextMenu" parent="." instance=ExtResource("1_lr76u")]

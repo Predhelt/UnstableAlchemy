@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=2 format=3 uid="uid://cxhb6l0h81ebt"]
+
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_n5khf"]
+
+[resource]
+script = ExtResource("1_n5khf")
+status_name = &"Energized"
+status_description = "Boosts movement speed"
+strength = 100.0
+duration = 10.0

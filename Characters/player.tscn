@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=7 format=3 uid="uid://csw57bxt7nvm2"]
 
 [ext_resource type="Script" path="res://Characters/player.gd" id="1_juhlw"]
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_i1yew"]
 [ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://Art/UAPrototype/Characters/Grey-Pawnman_Down.png" id="2_vngk6"]
+[ext_resource type="Resource" uid="uid://cxhb6l0h81ebt" path="res://Game Components/Status Effects/Energized.tres" id="3_jcdft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6e64a"]
 radius = 13.0
@@ -12,6 +14,7 @@ radius = 88.0227
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_juhlw")
+status_effects = Array[ExtResource("2_i1yew")]([ExtResource("3_jcdft")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -54)
@@ -37,7 +40,7 @@ text = "[center]You are feeling [color=green]fine[/color][/center]"
 scroll_active = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Timer" type="Timer" parent="StatusLabel"]
+[node name="TimerStatus" type="Timer" parent="StatusLabel"]
 wait_time = 10.0
 one_shot = true
 

@@ -1,7 +1,8 @@
 extends Control
 
-signal item_grabbed()
-#@onready var item = get_parent().get_parent() # Context menu is child of Interact Area which is child of the object
+signal object_inspected()
+signal object_grabbed()
+#@onready var object = get_parent().get_parent() # Context menu is child of Interact Area which is child of the object
 #@export var buttons : Array[Button]
 
 
@@ -10,16 +11,12 @@ func _ready() -> void:
 	%InspectionPanel.visible = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_button_inspect_pressed() -> void:
+	object_inspected.emit()
 	var inspection_panel = %InspectionPanel
 	inspection_panel.visible = true
 	self.visible = false
 
 
 func _on_button_grab_pressed() -> void:
-	item_grabbed.emit()
+	object_grabbed.emit()
