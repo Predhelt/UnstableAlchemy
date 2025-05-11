@@ -3,18 +3,45 @@ class_name Interactable extends Area2D
 signal object_grabbed()
 signal object_inspected()
 
-@export var interact_label = "none"
-@export var interact_type = "none"
-@export var interact_value = "none"
-var is_menu_open = false
+@export var interact_label := "none"
+@export var interact_type := "none"
+@export var interact_value := "none"
+var is_menu_open := false
+var context_menu_scene = preload("res://UI/ContextMenu/context_menu.tscn")
+var context_menu : ContextMenu
 
 func _ready() -> void:
-	$ContextMenu.visible = false
+	pass
 
+func toggle_context_menu():
+	if not is_menu_open:
+		create_context_menu()
+	else:
+		close_context_menu()
 
-func _on_context_menu_object_inspected() -> void:
+func create_context_menu():
+	# TODO: Make the context menu built specific to the object
+	context_menu = context_menu_scene.instantiate()
+	add_child(context_menu)
+	context_menu.name = interact_value
+	context_menu.create_inspect_button()
+	context_menu.create_grab_button()
+	context_menu.connect("object_inspected", _on_object_inspected)
+	context_menu.connect("object_grabbed", _on_object_grabbed)
+	is_menu_open = true
+
+func close_context_menu():
+	if not context_menu:
+		print("No context menu to close")
+		is_menu_open = false
+		return
+	
+	context_menu.queue_free()
+	is_menu_open = false
+
+func _on_object_inspected() -> void:
 	object_inspected.emit()
+	close_context_menu()
 
-
-func _on_context_menu_object_grabbed() -> void:
+func _on_object_grabbed() -> void:
 	object_grabbed.emit()

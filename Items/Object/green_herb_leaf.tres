@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://b13qs5535aosc"]
+
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_l6bdg"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_qiha4"]
+[ext_resource type="Resource" uid="uid://cxhb6l0h81ebt" path="res://Game Components/Status Effects/Energized.tres" id="2_8hqgb"]
+[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://Art/UAPrototype/Ingredients/Inventory/herb-green-leaf.png" id="2_h743b"]
+
+[resource]
+script = ExtResource("1_qiha4")
+ID = 0
+display_name = "Green Herb Leaf"
+texture = ExtResource("2_h743b")
+max_qty = 20
+qty = 3
+on_consume_effects = Array[ExtResource("1_l6bdg")]([ExtResource("2_8hqgb")])
+on_consume_message = "I feel [color=green]faster[/color]"

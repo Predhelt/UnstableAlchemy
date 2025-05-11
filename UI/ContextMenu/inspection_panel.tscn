@@ -1,31 +1,54 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccrubsrhkvb1n"]
 
-[ext_resource type="Script" path="res://UI/ContextMenu/inspection_panel.gd" id="1_tln8h"]
+[ext_resource type="Script" path="res://UI/ContextMenu/InspectionPanel.gd" id="1_tln8h"]
 
-[node name="InspectionPanel" type="PopupPanel"]
-title = "Item Details"
-initial_position = 1
-size = Vector2i(120, 100)
-visible = true
+[node name="InspectionPanel" type="Control"]
+z_index = 30
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_tln8h")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 116.0
-offset_bottom = 96.0
+offset_right = 196.0
+offset_bottom = 54.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="ObjectImage" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ObjectName" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Name"
+vertical_alignment = 1
 
 [node name="ObjectDescription" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Description
 "

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://beud1y2jkll6r"]
+[gd_scene load_steps=3 format=3 uid="uid://beud1y2jkll6r"]
 
 [ext_resource type="Script" path="res://Game Components/Interactable.gd" id="1_dbi6v"]
-[ext_resource type="PackedScene" uid="uid://djcyyj8qplplh" path="res://UI/ContextMenu/context_menu.tscn" id="2_av3l0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7q33h"]
 radius = 11.0454
@@ -15,9 +14,3 @@ script = ExtResource("1_dbi6v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7q33h")
 debug_color = Color(0, 0.65098, 0.101961, 0.419608)
-
-[node name="ContextMenu" parent="." instance=ExtResource("2_av3l0")]
-visible = false
-
-[connection signal="object_grabbed" from="ContextMenu" to="." method="_on_context_menu_object_grabbed"]
-[connection signal="object_inspected" from="ContextMenu" to="." method="_on_context_menu_object_inspected"]

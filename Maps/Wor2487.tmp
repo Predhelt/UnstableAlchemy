@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=5 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="1_esi71"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_i53v3"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
-[ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/alchemy_activity.tscn" id="2_wqpff"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/green_herb.tscn" id="3_guf6v"]
 
 [node name="WorldTest" type="Node2D"]
@@ -11,16 +10,11 @@ y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Inventory" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("1_i53v3")]
-visible = false
-player = NodePath("../../Player")
-
-[node name="AlchemyActivity" parent="CanvasLayer" instance=ExtResource("2_wqpff")]
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("1_i53v3")]
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_esi71")]
 position = Vector2(112, 123)
-scale = Vector2(1, 1)
 camera_path = "Camera2D"
 
 [node name="RemoteTransformCamera2" type="RemoteTransform2D" parent="Player"]
@@ -28,7 +22,8 @@ position = Vector2(0, -50)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(112, 73)
+position = Vector2(112, 98)
+scale = Vector2(0.5, 0.5)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.5

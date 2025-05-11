@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://djcyyj8qplplh"]
+[gd_scene load_steps=2 format=3 uid="uid://djcyyj8qplplh"]
 
-[ext_resource type="Script" path="res://UI/ContextMenu/context_menu.gd" id="1_ogx0j"]
-[ext_resource type="PackedScene" uid="uid://ccrubsrhkvb1n" path="res://UI/ContextMenu/inspection_panel.tscn" id="2_s4ycd"]
+[ext_resource type="Script" path="res://UI/ContextMenu/ContextMenu.gd" id="1_ogx0j"]
 
 [node name="ContextMenu" type="Control"]
 z_index = 10
@@ -21,41 +20,27 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ButtonInspect" type="Button" parent="MenuContainer"]
-layout_mode = 2
-text = "Inspect"
-
-[node name="InspectionPanel" parent="MenuContainer/ButtonInspect" instance=ExtResource("2_s4ycd")]
-unique_name_in_owner = true
-visible = false
-
-[node name="ButtonGrab" type="Button" parent="MenuContainer"]
-layout_mode = 2
-text = "Grab"
-
 [node name="MenuButtonTools" type="MenuButton" parent="MenuContainer"]
+visible = false
 layout_mode = 2
 text = "Use Tool..."
 
 [node name="ToolContainer" type="VBoxContainer" parent="MenuContainer/MenuButtonTools"]
-visible = false
 layout_mode = 1
 offset_left = 150.0
 offset_right = 281.0
 offset_bottom = 50.0
 
-[node name="ButtonHatchet" type="Button" parent="MenuContainer/MenuButtonTools/ToolContainer"]
+[node name="ButtonMachete" type="Button" parent="MenuContainer/MenuButtonTools/ToolContainer"]
 layout_mode = 2
-text = "Hatchet"
+text = "Machete"
 
 [node name="ButtonTrowel" type="Button" parent="MenuContainer/MenuButtonTools/ToolContainer"]
 layout_mode = 2
 text = "Trowel"
 
 [node name="ButtonCombine" type="Button" parent="MenuContainer"]
+visible = false
 layout_mode = 2
 text = "Combine With...
 "
-
-[connection signal="pressed" from="MenuContainer/ButtonInspect" to="." method="_on_button_inspect_pressed"]
-[connection signal="pressed" from="MenuContainer/ButtonGrab" to="." method="_on_button_grab_pressed"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjw4k1o1djxtg"]
+
+[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://Art/UAPrototype/Ingredients/Planted/HerbBasicGreen.png" id="1_i7iob"]
+[ext_resource type="Script" path="res://Objects/Interactable/green_herb.gd" id="1_n5xjd"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="2_kx41t"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="3_rogtf"]
+[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://Items/Object/green_herb_leaf.tres" id="4_wxm3i"]
+
+[node name="Green_herb" type="Node2D"]
+script = ExtResource("1_n5xjd")
+items = Array[ExtResource("3_rogtf")]([ExtResource("4_wxm3i")])
+on_grab_items = {
+ExtResource("4_wxm3i"): 1
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -26)
+texture = ExtResource("1_i7iob")
+
+[node name="InteractArea" parent="." instance=ExtResource("2_kx41t")]
+interact_label = "Green Herb"
+interact_type = "context_menu"
+interact_value = "GreenHerbCM"
+
+[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
+[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]
