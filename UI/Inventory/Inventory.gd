@@ -77,6 +77,7 @@ func add_stackable_item(item : Item) -> bool:
 		
 		#If the stack is a match
 		items[i].qty += item.qty
+		item.qty = 0
 		set_item_text(i, str(items[i].qty))
 		return true
 	

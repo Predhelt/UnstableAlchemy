@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://13c4ju8k5w21"]
+[gd_scene load_steps=3 format=3 uid="uid://13c4ju8k5w21"]
 
-[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="1_6pg18"]
 [ext_resource type="Script" path="res://Alchemy/alchemy_activity.gd" id="1_yju2k"]
-[ext_resource type="Texture2D" uid="uid://dj1vpla8vhbvf" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-glassware1.png" id="2_02pqr"]
-[ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png" id="3_jo3a2"]
 [ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://Alchemy/cauldron.tscn" id="5_gfvie"]
 
 [node name="AlchemyActivity" type="Control"]
@@ -23,43 +20,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ButtonCauldron" type="TextureButton" parent="Panel"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.3
-anchor_right = 0.95
-anchor_bottom = 0.7
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("3_jo3a2")
-stretch_mode = 5
-
-[node name="ButtonMP" type="TextureButton" parent="Panel"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_right = 0.95
-anchor_bottom = 0.3
-grow_horizontal = 2
-texture_normal = ExtResource("1_6pg18")
-stretch_mode = 5
-
-[node name="ButtonGlassware" type="TextureButton" parent="Panel"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.7
-anchor_right = 0.95
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-texture_normal = ExtResource("2_02pqr")
-stretch_mode = 5
 
 [node name="Cauldron" parent="Panel" instance=ExtResource("5_gfvie")]
 position = Vector2(110.4, 253.2)

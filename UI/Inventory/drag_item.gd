@@ -9,6 +9,7 @@ var inventory_ref : Inventory
 var body_ref : Node2D
 
 func _ready() -> void:
+	global.is_dragging = true
 	pass
 
 func _physics_process(_delta: float) -> void:
@@ -18,7 +19,8 @@ func _physics_process(_delta: float) -> void:
 		if not is_inside_dropable:
 			inventory_ref.add_inventory_item(item)
 		else:
-			print(body_ref.name)
+			body_ref.add_item(item)
+		global.is_dragging = false
 		queue_free()
 
 

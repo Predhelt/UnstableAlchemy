@@ -10,7 +10,7 @@ script = ExtResource("1_qiha4")
 ID = 0
 display_name = "Green Herb Leaf"
 texture = ExtResource("2_h743b")
-max_qty = 20
+max_qty = 32
 qty = 3
 on_consume_effects = Array[ExtResource("1_l6bdg")]([ExtResource("2_8hqgb")])
 on_consume_message = "I feel [color=green]faster[/color]"
