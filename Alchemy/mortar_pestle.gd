@@ -15,16 +15,13 @@ $TextureRect/ItemGrid/Button3] ## Reference to item buttons that represent each 
 @onready var progress_bar := $TextureRect/ProgressBar
 
 var product : Item ## The item produced by the brew
-var is_brewing := false ## State of whether a brew is currently active
-var brew_timer := 0.0 ## Time left in current brew
+var is_using := false ## State of whether a brew is currently active
+var use_timer := 0.0 ## Time left in current brew
 
-# TODO: Completed items should be automatically sent to inventory (with notification) 
-	# or displayed elsewhere
-
-var cauldron_recipes = { ## Recipes for each item that can be produced in the cauldron
-	##Key : [Item IDs], Value: [Product ID, quantity, craft duration]
-	[100] : ["res://Items/Products/speed_potion.tres", 3, 2], ## Green Herb Leaf -> Speed Potion
-	[100, 1] : ["?", 1, 4], ## Green Herb Leaf + Red Berries -> ?
+var mp_recipes = { ## Recipes for each item that can be produced in the mortar & pestle
+	##Key : Item ID, Value: [Product ID, quantity, craft duration]
+	0 : ["res://Items/Products/green_herb_leaf_ground.tres", 1, 2], ## Green Herb Leaf -> Ground Herb Leaf
+	#1 : ["?", 1, 4], ## Red Berries -> ?
 }
 
 
@@ -39,19 +36,19 @@ func _process(delta: float) -> void:
 	else:
 		scale = Vector2(1, 1)
 	
-	if is_brewing:
-		if brew_timer > 0:
-			brew_timer -= delta
+	if is_using:
+		if use_timer > 0:
+			use_timer -= delta
 			progress_bar.value += delta
 		else:
-			print(str(product.qty) + " of item " + product.display_name + " added to inventory from successful brew")
+			print(str(product.qty) + " of item " + product.display_name + " added to inventory from successful M&P")
 			inventory.add_inventory_item(product)
 			progress_bar.visible = false
-			is_brewing = false
+			is_using = false
 
 
 func add_item(item: Item) -> bool:
-	if is_brewing:
+	if is_using:
 		print("Please wait for cauldron to finish brewing")
 		return false
 	if num_items >= MAX_ITEMS:
@@ -75,32 +72,32 @@ func _on_button_confirm_pressed() -> void:
 	if num_items <= 0 or num_items > MAX_ITEMS:
 		print("Wrong number of items, button should be disabled")
 		return
-	brew_items()
+	use_item()
 
-func brew_items():
-	var brew_IDs : Array[int]
+func use_item():
+	# Find first item in queue to start using in the mortar and pestle
+	var use_ID := -1
 	for i in MAX_ITEMS:
 		if items[i]:
-			brew_IDs.append(items[i].ID)
+			use_ID = items[i].ID
 			remove_item(items[i], i)
-			
-	brew_IDs.sort()
+			break
 	
 	var item_results = ["res://Items/Products/failed_potion_red.tres", 1, 2] #ID for failed brew is 999
-	if brew_IDs in cauldron_recipes:
-		item_results = cauldron_recipes[brew_IDs]
+	if use_ID in mp_recipes:
+		item_results = mp_recipes[use_ID]
 	
 	product = load(item_results[0])
 	if not product:
 		return
 	product = product.duplicate()
 	product.qty = item_results[1]
-	brew_timer = item_results[2]
+	use_timer = item_results[2]
 	
 	progress_bar.value = 0
-	progress_bar.max_value = brew_timer
+	progress_bar.max_value = use_timer
 	progress_bar.visible = true
-	is_brewing = true
+	is_using = true
 
 
 func _on_button_1_pressed() -> void:

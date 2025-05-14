@@ -1,7 +1,7 @@
 class_name Interactable extends Area2D
 
-signal object_grabbed()
 signal object_inspected()
+signal object_grabbed(player: Player)
 
 @export var interact_label := "none"
 @export var interact_type := "none"
@@ -13,17 +13,18 @@ var context_menu : ContextMenu
 func _ready() -> void:
 	pass
 
-func toggle_context_menu():
+func toggle_context_menu(player: Player):
 	if not is_menu_open:
-		create_context_menu()
+		create_context_menu(player)
 	else:
 		close_context_menu()
 
-func create_context_menu():
+func create_context_menu(player: Player):
 	# TODO: Make the context menu built specific to the object
 	context_menu = context_menu_scene.instantiate()
 	add_child(context_menu)
 	context_menu.name = interact_value
+	context_menu.player = player
 	context_menu.create_inspect_button()
 	context_menu.create_grab_button()
 	context_menu.connect("object_inspected", _on_object_inspected)
@@ -43,5 +44,5 @@ func _on_object_inspected() -> void:
 	object_inspected.emit()
 	close_context_menu()
 
-func _on_object_grabbed() -> void:
-	object_grabbed.emit()
+func _on_object_grabbed(player: Player) -> void:
+	object_grabbed.emit(player)

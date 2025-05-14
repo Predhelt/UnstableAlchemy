@@ -1,12 +1,17 @@
 extends Control
 
+
+@export var inventory : Inventory
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_toggle_alchemy"):
 		toggle_activity() # Toggles whether the inventory is displayed or not
 	if event.is_action_pressed("ui_cancel"):
 		close_activity()
 		
-	$Panel/Cauldron.inventory = get_parent().find_child("Inventory")
+	$Panel/Cauldron.inventory = inventory
+	$Panel/MortarPestle.inventory = inventory
 
 func toggle_activity() -> void:
 	visible = !visible # Flip visibility of the inventory

@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
 @export var camera_path := "" ## Path from Player Node to the Camera
+@export var status_effect_bar_ref : Control ## Reference to the status effect bar for when an effect occurs
+@export var inventory : Inventory ## Reference to the inventory the player is connected to
 
 var active_status_effects : Array[StatusEffect]
 
@@ -81,7 +83,7 @@ func execute_interaction():
 		var cur_interaction = all_interactions[0]
 		match cur_interaction.interact_type:
 			"print_text" : print(cur_interaction.interact_value)
-			"context_menu" : cur_interaction.toggle_context_menu()
+			"context_menu" : cur_interaction.toggle_context_menu(self)
 
 
 # Status Effect Handler Methods
@@ -116,15 +118,16 @@ func add_status_effect(se: StatusEffect) -> void:
 			stats[se.player_stat] += se.value
 			active_status_effects.remove_at(i)
 			active_status_effects.append(se.duplicate())
+			status_effect_bar_ref.geterate_status(se)
 			return
 	
 	stats[se.player_stat] += se.value
 	
 	active_status_effects.append(se.duplicate())
-	# TODO: Show status effect in UI.
+	status_effect_bar_ref.generate_status(se)
 
-func remove_status_effect(se: StatusEffect):
-	pass # TODO: When the timer is complete for the status, change the stats back, remove the stat from the UI.
+#func remove_status_effect(se: StatusEffect):
+#	pass # TODO: When the timer is complete for the status, change the stats back, remove the stat from the UI.
 
 func update_status_message(message: String):
 	status_message.text = "[center]" + message + "[/center]"

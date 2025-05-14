@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_n5khf")
 ID = 0
-status_name = "Energized"
-status_description = "Boosts movement speed"
-status_icon = ExtResource("2_d3iqx")
+name = "Energized"
+description = "Increases movement speed"
+icon = ExtResource("2_d3iqx")
 player_stat = "move speed"
 value = 300.0
 duration = 10.0

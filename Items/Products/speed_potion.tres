@@ -7,8 +7,9 @@
 
 [resource]
 script = ExtResource("2_jwihm")
-ID = 100
+ID = 500
 display_name = "Speed Potion"
+description = "A potion with a green tint."
 texture = ExtResource("3_a30k5")
 max_qty = 10
 qty = 1

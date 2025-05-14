@@ -26,16 +26,17 @@ clip_contents = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -65.0
-offset_top = -175.0
-offset_right = 65.0
-offset_bottom = -125.0
+offset_left = -125.0
+offset_top = -190.0
+offset_right = 125.0
+offset_bottom = -140.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "[center]I am feeling [color=green]fine[/color][/center]"
 scroll_active = false
+scroll_following = true
 metadata/_edit_use_anchors_ = true
 
 [node name="TimerStatus" type="Timer" parent="StatusLabel"]

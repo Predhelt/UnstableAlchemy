@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://csbfmvobxgp1o"]
+[gd_scene load_steps=6 format=3 uid="uid://y1067fe07wmf"]
 
-[ext_resource type="Script" path="res://Alchemy/cauldron.gd" id="1_2r2ej"]
-[ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png" id="1_ot2yn"]
-[ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="3_6hx4e"]
-[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="4_vsd63"]
+[ext_resource type="Script" path="res://Alchemy/mortar_pestle.gd" id="1_a40nq"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="2_0nnx4"]
+[ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="2_m0hp4"]
+[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="4_88qmb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nbwu"]
 size = Vector2(126, 124)
 
-[node name="Cauldron" type="StaticBody2D" groups=["dropable"]]
-script = ExtResource("1_2r2ej")
-blank_tex = ExtResource("3_6hx4e")
+[node name="MortarPestle" type="StaticBody2D" groups=["dropable"]]
+script = ExtResource("1_a40nq")
+blank_tex = ExtResource("2_m0hp4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0nbwu")
@@ -27,7 +27,7 @@ offset_right = 64.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ot2yn")
+texture = ExtResource("2_0nnx4")
 
 [node name="ItemGrid" type="GridContainer" parent="TextureRect"]
 layout_mode = 1
@@ -49,7 +49,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 disabled = true
-texture_normal = ExtResource("3_6hx4e")
+texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -58,7 +58,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 disabled = true
-texture_normal = ExtResource("3_6hx4e")
+texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -67,7 +67,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 disabled = true
-texture_normal = ExtResource("3_6hx4e")
+texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -76,7 +76,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 disabled = true
-texture_normal = ExtResource("4_vsd63")
+texture_normal = ExtResource("4_88qmb")
 ignore_texture_size = true
 stretch_mode = 5
 

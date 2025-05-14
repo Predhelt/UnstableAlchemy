@@ -4,6 +4,7 @@ signal object_inspected()
 signal object_grabbed()
 
 @onready var menu_container := $MenuContainer
+var player : Player ## Reference of the player that interacted with the object
 
 #@export var buttons : Array[Button]
 
@@ -39,4 +40,4 @@ func _on_button_inspect_pressed() -> void:
 
 
 func _on_button_grab_pressed() -> void:
-	object_grabbed.emit()
+	object_grabbed.emit(player) # Emits that the player has grabbed the object

@@ -6,7 +6,7 @@ class_name Inventory extends ItemList
 
 var drag_item_scene = preload("res://UI/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
 
-var items : Array[Item] # List of the items in the inventory
+var items : Array[Item] # List of theitems in the inventory
 
 func _ready() -> void:
 	#for i in max_item_count: # Populate inventory with empty items
@@ -44,8 +44,7 @@ func add_inventory_item(item : Item) -> bool:
 		items[i] = item
 		set_item_icon(i, item.texture)
 		
-		if item.max_qty > 1:
-			set_item_text(i, str(items[i].qty))
+		set_item_text(i, generate_item_text(items[i]))
 		
 		return true
 	return could_pickup
@@ -68,17 +67,17 @@ func add_stackable_item(item : Item) -> bool:
 		if items[i].qty + item.qty > items[i].max_qty: # Only add until stack is full
 			var amount_to_remove : int = items[i].max_qty - items[i].qty
 			
-			items[i].qty = items[i].max_qty
+			items[i].qty =items[i].max_qty
 			item.qty -= amount_to_remove
 			
 			could_pickup = true
-			set_item_text(i, str(items[i].qty))
-			continue
+			set_item_text(i, generate_item_text(items[i]))
+			return true
 		
 		#If the stack is a match
 		items[i].qty += item.qty
 		item.qty = 0
-		set_item_text(i, str(items[i].qty))
+		set_item_text(i, generate_item_text(items[i]))
 		return true
 	
 	if item_count >= max_item_count:
@@ -86,9 +85,16 @@ func add_stackable_item(item : Item) -> bool:
 		return could_pickup
 	
 	items.append(item.duplicate())
-	add_item(str(item.qty), item.texture)
+	add_item(generate_item_text(item), item.texture)
 	item.qty = 0
 	return true
+
+func generate_item_text(item: Item) -> String:
+	var text := ""
+	if item.max_qty > 1:
+		text += str(item.qty) + " | "
+	text += item.display_name + " | " + item.description
+	return text
 
 
 func remove_inventory_item(index : int) -> void:
@@ -104,22 +110,23 @@ func get_inventory_item(index : int) -> Item:
 	
 	return items[index]
 
+
 func on_inventory_item_clicked(index : int, pos : Vector2, mouse_button_index : int) -> void:
 	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click. TODO: Make right click bring up interaction menu
 		var item = get_inventory_item(index)
 		
 		if item == null:
-			print("No items found")
+			print("Noitems found")
 			return
 		
 		consume_inventory_item(item, index)
 		
-		#print("you dropped " + item.display_name + "items out of " + str(item.qty))
+		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
 		var item = get_inventory_item(index)
 		
 		if item == null:
-			print("No items found")
+			print("Noitems found")
 			return
 		
 		#TODO: make a drag_item based on item pressed
@@ -133,7 +140,7 @@ func drag_inventory_item(item : Item, index : int):
 	var da_item = item.duplicate()
 	da_item.qty = 1
 	item.qty -= 1
-	set_item_text(index, str(item.qty))
+	set_item_text(index, generate_item_text(item))
 	if item.qty < 1:
 		remove_inventory_item(index)
 	drag_item.item = da_item
@@ -148,4 +155,4 @@ func consume_inventory_item(item : Item, index : int):
 		remove_inventory_item(index)
 	else:
 		item.qty -= 1
-		set_item_text(index, str(item.qty))
+		set_item_text(index, generate_item_text(item))
