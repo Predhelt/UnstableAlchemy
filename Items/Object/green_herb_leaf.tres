@@ -13,4 +13,4 @@ texture = ExtResource("2_h743b")
 max_qty = 32
 qty = 3
 on_consume_effects = Array[ExtResource("1_l6bdg")]([])
-on_consume_message = "I feel "
+on_consume_message = "That tastes bitter"

@@ -111,7 +111,7 @@ func get_inventory_item(index : int) -> Item:
 	return items[index]
 
 
-func on_inventory_item_clicked(index : int, pos : Vector2, mouse_button_index : int) -> void:
+func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index : int) -> void:
 	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click. TODO: Make right click bring up interaction menu
 		var item = get_inventory_item(index)
 		

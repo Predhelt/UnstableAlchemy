@@ -18,13 +18,11 @@ var product : Item ## The item produced by the brew
 var is_brewing := false ## State of whether a brew is currently active
 var brew_timer := 0.0 ## Time left in current brew
 
-# TODO: Completed items should be automatically sent to inventory (with notification) 
-	# or displayed elsewhere
-
 var cauldron_recipes = { ## Recipes for each item that can be produced in the cauldron
 	##Key : [Item IDs], Value: [Product ID, quantity, craft duration]
-	[100] : ["res://Items/Products/speed_potion.tres", 3, 2], ## Green Herb Leaf -> Speed Potion
-	[100, 1] : ["?", 1, 4], ## Green Herb Leaf + Red Berries -> ?
+	##Item IDs should be in ascending order
+	[100] : ["res://Items/Products/speed_potion.tres", 3, 2], ## Green Herb Leaf grinds -> Speed Potion
+	[1, 1, 100] : ["res://Items/Products/healing_potion.tres", 1, 4], ## Green Herb Leaf grinds + 2 Red Berries -> ?
 }
 
 
@@ -44,7 +42,7 @@ func _process(delta: float) -> void:
 			brew_timer -= delta
 			progress_bar.value += delta
 		else:
-			print(str(product.qty) + " of item " + product.display_name + " added to inventory from successful brew")
+			print(str(product.qty) + " of item " + product.display_name + " added to inventory from brew")
 			inventory.add_inventory_item(product)
 			progress_bar.visible = false
 			is_brewing = false
@@ -82,7 +80,7 @@ func brew_items():
 	for i in MAX_ITEMS:
 		if items[i]:
 			brew_IDs.append(items[i].ID)
-			remove_item(items[i], i)
+			remove_item(i)
 			
 	brew_IDs.sort()
 	
@@ -105,17 +103,17 @@ func brew_items():
 
 func _on_button_1_pressed() -> void:
 	inventory.add_inventory_item(items[0])
-	remove_item(items[0], 0)
+	remove_item(0)
 
 func _on_button_2_pressed() -> void:
 	inventory.add_inventory_item(items[1])
-	remove_item(items[1], 1)
+	remove_item(1)
 
 func _on_button_3_pressed() -> void:
 	inventory.add_inventory_item(items[2])
-	remove_item(items[2], 2)
+	remove_item(2)
 
-func remove_item(item: Item, index: int):
+func remove_item(index: int):
 	buttons[index].texture_normal = blank_tex
 	buttons[index].disabled = true
 	items[index] = null

@@ -80,7 +80,7 @@ func use_item():
 	for i in MAX_ITEMS:
 		if items[i]:
 			use_ID = items[i].ID
-			remove_item(items[i], i)
+			remove_item(i)
 			break
 	
 	var item_results = ["res://Items/Products/failed_potion_red.tres", 1, 2] #ID for failed brew is 999
@@ -102,17 +102,17 @@ func use_item():
 
 func _on_button_1_pressed() -> void:
 	inventory.add_inventory_item(items[0])
-	remove_item(items[0], 0)
+	remove_item(0)
 
 func _on_button_2_pressed() -> void:
 	inventory.add_inventory_item(items[1])
-	remove_item(items[1], 1)
+	remove_item(1)
 
 func _on_button_3_pressed() -> void:
 	inventory.add_inventory_item(items[2])
-	remove_item(items[2], 2)
+	remove_item(2)
 
-func remove_item(item: Item, index: int):
+func remove_item(index: int):
 	buttons[index].texture_normal = blank_tex
 	buttons[index].disabled = true
 	items[index] = null

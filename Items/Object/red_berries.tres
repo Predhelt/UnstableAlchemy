@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://cmskddd1xsq2"]
+
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_pba4j"]
+[ext_resource type="Resource" uid="uid://cwjj0rtd50jpg" path="res://Game Components/Status Effects/Cleanse.tres" id="2_3lnm7"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="2_lg7nu"]
+[ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://Art/UAPrototype/Ingredients/Inventory/red-berries.png" id="3_xhvny"]
+
+[resource]
+script = ExtResource("2_lg7nu")
+ID = 1
+display_name = "Red Berries"
+description = "Large berries with a bright red skin. The juice is surprisingly gray."
+texture = ExtResource("3_xhvny")
+max_qty = 32
+qty = 6
+on_consume_effects = Array[ExtResource("1_pba4j")]([ExtResource("2_3lnm7")])
+on_consume_message = "I feel normal"

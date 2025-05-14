@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dle8dng5mtld0"]
+
+[ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="1_wgl5b"]
+[ext_resource type="Script" path="res://Objects/pressure_plate.gd" id="1_x57id"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un22d"]
+size = Vector2(108, 106)
+
+[node name="PressurePlate" type="Node2D"]
+z_index = -10
+script = ExtResource("1_x57id")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_wgl5b")
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_un22d")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

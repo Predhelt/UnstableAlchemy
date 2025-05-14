@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 	
 	
 
-# Interaction Methods
+## Interaction Methods ##
 
 func _on_interaction_area_entered(area: Interactable) -> void:
 	all_interactions.insert(0, area)
@@ -86,29 +86,25 @@ func execute_interaction():
 			"context_menu" : cur_interaction.toggle_context_menu(self)
 
 
-# Status Effect Handler Methods
+## Status Effect Handler Methods ##
 
 func update_status_effects(statuses: Array[StatusEffect], message: String):
+	# Adds and/or updates the status effects given
 	for se in statuses:
 		add_status_effect(se)
 	update_status_message(message)
 
-func update_active_status_effect(delta : float) -> void:
-	for i in len(active_status_effects):
-		var se = active_status_effects[i]
-		se.duration -= delta
-		if se.duration <= 0:
-			#update_active_status_effect_icon(se) #TODO: make status effect UI and update
-			stats[se.player_stat] -= se.value
-			active_status_effects.remove_at(i)
-		
-
-#func update_active_status_effect_icon()
-
-
 func add_status_effect(se: StatusEffect) -> void:
-	if se.player_stat not in stats:
-		print("Error: player stat does not exist")
+	if se.player_stat != "":
+		change_stat(se)
+	
+	if se.other != "":
+		var other_effects = se.other.split(" ")
+		for oe in other_effects:
+			match se.other: # Checks for other effects
+				"cleanse" : cleanse_status_effects()
+
+func change_stat(se : StatusEffect):
 	
 	for i in len(active_status_effects):
 		var old_se = active_status_effects[i]
@@ -126,9 +122,24 @@ func add_status_effect(se: StatusEffect) -> void:
 	active_status_effects.append(se.duplicate())
 	status_effect_bar_ref.generate_status(se)
 
-#func remove_status_effect(se: StatusEffect):
-#	pass # TODO: When the timer is complete for the status, change the stats back, remove the stat from the UI.
-
 func update_status_message(message: String):
 	status_message.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
+
+
+func update_active_status_effect(delta : float) -> void:
+	for i in len(active_status_effects):
+		var se = active_status_effects[i]
+		se.duration -= delta
+		if se.duration <= 0:
+			remove_status_effect(i, se)
+
+
+func cleanse_status_effects():
+	for i in len(active_status_effects):
+		remove_status_effect(i, active_status_effects[i])
+
+func remove_status_effect(index : int, se : StatusEffect):
+	stats[se.player_stat] -= se.value
+	active_status_effects.remove_at(index)
+	status_effect_bar_ref.remove_status(se)

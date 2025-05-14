@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_2b1ck")
 ID = 100
-display_name = "Ground up herb leaves"
+display_name = "green herb leaf grinds"
 description = "Green herb leaves that have been ground up"
 texture = ExtResource("3_v8gpt")
 max_qty = 10

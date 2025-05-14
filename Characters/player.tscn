@@ -11,6 +11,7 @@ radius = 88.0227
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
+platform_floor_layers = 4294967292
 script = ExtResource("1_juhlw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -34,7 +35,6 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[center]I am feeling [color=green]fine[/color][/center]"
 scroll_active = false
 scroll_following = true
 metadata/_edit_use_anchors_ = true

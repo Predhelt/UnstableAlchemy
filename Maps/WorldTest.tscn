@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=8 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="1_esi71"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_i53v3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/alchemy_activity.tscn" id="2_wqpff"]
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffectBar.tscn" id="3_br1qy"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/green_herb.tscn" id="3_guf6v"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/red_berry_bush.tscn" id="4_25d8v"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -68,3 +69,15 @@ position = Vector2(51, 65)
 
 [node name="Green_herb2" parent="Objects" instance=ExtResource("3_guf6v")]
 position = Vector2(86, 246)
+
+[node name="RedBerryBush" parent="Objects" instance=ExtResource("4_25d8v")]
+position = Vector2(350, 88)
+
+[node name="RedBerryBush2" parent="Objects" instance=ExtResource("4_25d8v")]
+position = Vector2(438, 186)
+
+[node name="RedBerryBush3" parent="Objects" instance=ExtResource("4_25d8v")]
+position = Vector2(330, 259)
+
+[node name="GreenHerb" parent="Objects" instance=ExtResource("3_guf6v")]
+position = Vector2(507, 68)

@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var object_name := "Green Herb" ## Name of the object
-@export var object_description := "A green herb with medicinal properties. Looks pretty normal." ## Description of the object given to the player
+@export var object_name := "" ## Name of the object
+@export var object_description := "" ## Description of the object given to the player
 @export var items : Array[Item] ## The items that the object contains and their initial quantities
 var item_quantities : Array[int] ## The current quantities of items in the object
 
@@ -56,7 +56,7 @@ func _on_object_grabbed(player: Player) -> void:
 			
 			grabbed_item_names.append(grabbed_item.display_name)
 			grabbed_item_counts.append(cur_qty)
-			player.inventory.add_inventory_item(grabbed_item) # Returns boolean. May be partially added if inventory becomes full
+			player.inventory.add_inventory_item(grabbed_item) # Returns boolean. May fbe partially added if inventory becomes full
 			
 			if grabbed_item.qty > 0: # return any items that couldn't fit in inventory back to the object
 				item_quantities[i] += grabbed_item.qty
