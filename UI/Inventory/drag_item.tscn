@@ -3,13 +3,15 @@
 [ext_resource type="Script" path="res://UI/Inventory/drag_item.gd" id="1_8keow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_euuua"]
-size = Vector2(42, 42)
+size = Vector2(12, 12)
 
 [node name="DragItem" type="Node2D"]
 script = ExtResource("1_8keow")
 
 [node name="DragArea" type="Area2D" parent="."]
 z_index = 30
+collision_layer = 4
+collision_mask = 4
 
 [node name="ItemImage" type="TextureRect" parent="DragArea"]
 anchors_preset = 8
@@ -30,5 +32,5 @@ stretch_mode = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
 shape = SubResource("RectangleShape2D_euuua")
 
-[connection signal="body_entered" from="DragArea" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="DragArea" to="." method="_on_body_exited"]
+[connection signal="area_entered" from="DragArea" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="DragArea" to="." method="_on_area_exited"]

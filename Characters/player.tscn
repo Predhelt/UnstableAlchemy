@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=9 format=3 uid="uid://csw57bxt7nvm2"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_juhlw"]
 [ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://Art/UAPrototype/Characters/Grey-Pawnman_Down.png" id="2_vngk6"]
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="3_ngkeo"]
+[ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/alchemy_activity.tscn" id="4_h13xu"]
+[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffectBar.tscn" id="5_oswit"]
+[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="6_hox3m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6e64a"]
 radius = 13.0
@@ -20,28 +24,6 @@ texture = ExtResource("2_vngk6")
 
 [node name="CollisionBody" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6e64a")
-
-[node name="StatusLabel" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
-clip_contents = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -125.0
-offset_top = -190.0
-offset_right = 125.0
-offset_bottom = -140.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-bbcode_enabled = true
-scroll_active = false
-scroll_following = true
-metadata/_edit_use_anchors_ = true
-
-[node name="TimerStatus" type="Timer" parent="StatusLabel"]
-wait_time = 10.0
-one_shot = true
 
 [node name="InteractionComponents" type="Node2D" parent="."]
 
@@ -75,5 +57,44 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="StatusLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = -190.0
+offset_right = 125.0
+offset_bottom = -140.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerStatus" type="Timer" parent="StatusLabel"]
+wait_time = 10.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_ngkeo")]
+unique_name_in_owner = true
+visible = false
+
+[node name="AlchemyActivity" parent="CanvasLayer" instance=ExtResource("4_h13xu")]
+unique_name_in_owner = true
+visible = false
+
+[node name="StatusEffectBar" parent="CanvasLayer" instance=ExtResource("5_oswit")]
+unique_name_in_owner = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("6_hox3m")]
+
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
+[connection signal="add_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_add_inventory_item"]

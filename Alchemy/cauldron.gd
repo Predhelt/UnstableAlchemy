@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Control
 
 var inventory : Inventory ## Reference to the connected inventory for putting completed brews
 @export var blank_tex : Texture2D ## The blank texture to be displayed on cauldron slots when empty

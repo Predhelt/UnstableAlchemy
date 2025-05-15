@@ -7,7 +7,9 @@ var item_quantities : Array[int] ## The current quantities of items in the objec
 
 # TODO: Conditions for event triggers (e.g. receiveing certain Items) on action
 
-@export var on_grab_items := {} # Key: Item, Value: Amount
+@export var on_grab_items : Array[Item] ## The items to be received upon grabbing (taken out of "items").
+@export var on_grab_amounts : Array[int] ## The amount of items to be recieved upon grabbing (taken out of "items).
+
 @export var on_grab_effects : Array[StatusEffect]
 var context_menu : Control
 var inspection_panel_scene = preload("res://UI/ContextMenu/inspection_panel.tscn")
@@ -36,30 +38,31 @@ func _on_object_grabbed(player: Player) -> void:
 	var grabbed_item_names := []
 	var grabbed_item_counts := []
 	
-	for grab_item in on_grab_items.keys(): # Grabbing each grabbable item
+	for i in len(on_grab_items): # Grabbing each grabbable item
+		var grab_item = on_grab_items[i]
 		var id = grab_item.ID
-		var cur_qty = on_grab_items[grab_item]
-		for i in len(items):
-			if items[i].ID != id or item_quantities[i] <= 0:
+		var grab_qty = on_grab_amounts[i]
+		for j in len(items):
+			if items[j].ID != id or item_quantities[j] <= 0:
 				continue # If not the right item or item is empty
 			
-			var grabbed_item := items[i].duplicate()
-			if item_quantities[i] <= cur_qty: # If the amount in object is <= the amount to grab
-				grabbed_item.qty = item_quantities[i]
-				item_quantities[i] = 0
+			var grabbed_item := items[j].duplicate()
+			if item_quantities[j] <= grab_qty: # If the amount in object is <= the amount to grab
+				grabbed_item.qty = item_quantities[j]
+				item_quantities[j] = 0
 			else:
-				grabbed_item.qty = cur_qty
-				item_quantities[i] -= cur_qty
+				grabbed_item.qty = grab_qty
+				item_quantities[j] -= grab_qty
 			
 			# Initialize the rest of the grabbed item to add to Inventory
 			#grabbed_item.ID = id
 			
 			grabbed_item_names.append(grabbed_item.display_name)
-			grabbed_item_counts.append(cur_qty)
-			player.inventory.add_inventory_item(grabbed_item) # Returns boolean. May fbe partially added if inventory becomes full
+			grabbed_item_counts.append(grab_qty)
+			player.inventory.add_inventory_item(grabbed_item) # Returns boolean. May ffbe partially added if inventory becomes full
 			
 			if grabbed_item.qty > 0: # return any items that couldn't fit in inventory back to the object
-				item_quantities[i] += grabbed_item.qty
+				item_quantities[j] += grabbed_item.qty
 	
 	$InteractArea.close_context_menu()
 	

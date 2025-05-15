@@ -1,34 +1,17 @@
-[gd_scene load_steps=8 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=5 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="1_esi71"]
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_i53v3"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
-[ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/alchemy_activity.tscn" id="2_wqpff"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffectBar.tscn" id="3_br1qy"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/green_herb.tscn" id="3_guf6v"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/red_berry_bush.tscn" id="4_25d8v"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Inventory" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("1_i53v3")]
-visible = false
-player = NodePath("../../Player")
-
-[node name="AlchemyActivity" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("2_wqpff")]
-visible = false
-inventory = NodePath("../Inventory")
-
-[node name="StatusEffectBar" parent="CanvasLayer" instance=ExtResource("3_br1qy")]
-
-[node name="Player" parent="." node_paths=PackedStringArray("status_effect_bar_ref", "inventory") instance=ExtResource("1_esi71")]
+[node name="Player" parent="." instance=ExtResource("1_esi71")]
 position = Vector2(167, 147)
 scale = Vector2(1, 1)
 camera_path = "Camera2D"
-status_effect_bar_ref = NodePath("../CanvasLayer/StatusEffectBar")
-inventory = NodePath("../CanvasLayer/Inventory")
 
 [node name="RemoteTransformCamera2" type="RemoteTransform2D" parent="Player"]
 position = Vector2(0, -50)

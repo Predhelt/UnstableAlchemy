@@ -1,8 +1,10 @@
 class_name Inventory extends ItemList
 
+signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
+
 @export var max_item_count := 24 ## Max number of slots in the inventory
 @export var blank_icon : Texture2D ## Icon to be used when no item is in the slot (50x50)
-@export var player : Player ## The player who the inventory will effect
+var player : Player ## The player who the inventory will effect
 
 var drag_item_scene = preload("res://UI/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
 
@@ -150,9 +152,13 @@ func drag_inventory_item(item : Item, index : int):
 	get_parent().add_child(drag_item)
 
 func consume_inventory_item(item : Item, index : int):
-	player.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	update_status_effects.emit(item.on_consume_effects, item.on_consume_message)
 	if item.qty <= 1:
 		remove_inventory_item(index)
 	else:
 		item.qty -= 1
 		set_item_text(index, generate_item_text(item))
+
+
+func _on_hotbar_add_inventory_item(item: Item) -> void:
+	add_inventory_item(item)

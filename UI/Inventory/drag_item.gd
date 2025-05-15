@@ -6,7 +6,7 @@ var texture : Texture2D :
 	set(tex):
 		$DragArea/ItemImage.texture = tex
 var inventory_ref : Inventory
-var body_ref : Node2D
+var area_ref : Area2D
 
 func _ready() -> void:
 	global.is_dragging = true
@@ -19,17 +19,17 @@ func _physics_process(_delta: float) -> void:
 		if not is_inside_dropable:
 			inventory_ref.add_inventory_item(item)
 		else:
-			body_ref.add_item(item)
+			area_ref.add_item(item)
 		global.is_dragging = false
 		queue_free()
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("dropable"):
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("dropable"):
 		is_inside_dropable = true
-		body_ref = body
+		area_ref = area
 
 
-func _on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("dropable"):
+func _on_area_exited(area: Area2D) -> void:
+	if area.is_in_group("dropable"):
 		is_inside_dropable = false

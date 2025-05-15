@@ -1,8 +1,5 @@
-[gd_scene load_steps=10 format=4 uid="uid://blf5roktgwlk0"]
+[gd_scene load_steps=7 format=4 uid="uid://blf5roktgwlk0"]
 
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_ui655"]
-[ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/alchemy_activity.tscn" id="2_25uvl"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffectBar.tscn" id="3_5ogp4"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="4_fqwm2"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/red_berry_bush.tscn" id="4_g256m"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="5_h3ev3"]
@@ -13,24 +10,10 @@
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Inventory" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("1_ui655")]
-visible = false
-player = NodePath("../../Player")
-
-[node name="AlchemyActivity" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("2_25uvl")]
-visible = false
-inventory = NodePath("../Inventory")
-
-[node name="StatusEffectBar" parent="CanvasLayer" instance=ExtResource("3_5ogp4")]
-
-[node name="Player" parent="." node_paths=PackedStringArray("status_effect_bar_ref", "inventory") instance=ExtResource("4_fqwm2")]
+[node name="Player" parent="." instance=ExtResource("4_fqwm2")]
 position = Vector2(167, 147)
 scale = Vector2(1, 1)
 camera_path = "Camera2D"
-status_effect_bar_ref = NodePath("../CanvasLayer/StatusEffectBar")
-inventory = NodePath("../CanvasLayer/Inventory")
 
 [node name="RemoteTransformCamera2" type="RemoteTransform2D" parent="Player"]
 position = Vector2(0, -50)
@@ -46,6 +29,7 @@ drag_right_margin = 0.5
 drag_bottom_margin = 0.5
 
 [node name="TileMaps" type="Node2D" parent="."]
+visible = false
 
 [node name="Water" type="TileMapLayer" parent="TileMaps"]
 z_index = -50

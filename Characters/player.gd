@@ -1,32 +1,30 @@
 class_name Player extends CharacterBody2D
 
 @export var camera_path := "" ## Path from Player Node to the Camera
-@export var status_effect_bar_ref : Control ## Reference to the status effect bar for when an effect occurs
-@export var inventory : Inventory ## Reference to the inventory the player is connected to
+
+@onready var inventory := %Inventory
 
 var active_status_effects : Array[StatusEffect]
 
-@onready var all_interactions : Array[Area2D]
-@onready var interact_label := %InteractLabel
-@onready var status_message := %StatusLabel
+var all_interactions : Array[Area2D]
 var status_message_timer := 0.0
-#@onready var camera_scale = find_child("RemoteTransformCamera").scale
+
 
 var stats = {
 	"health" : 100.0, ## health value
-	#"stamina" : 100.0, # stamina value
 	"move speed" : 300.0, ## move speed modifier (100 = 1.0*ms)
-	#"dexterity" : 100.0, # value of speed when interacting with tools
 	"strength" : 100.0, ## how much can be pushed or carried
 	#"range" : 100.0, # same as CollisionInteract.radius of arms
-	#"height" : 100.0 # same as scale of character
+	#"size" : 100.0 # same as scale of character
 }
 
 
 func _ready() -> void:
+	inventory.update_status_effects.connect(update_status_effects)
+	%AlchemyActivity.inventory = inventory
+	
 	update_interactions()
-	status_message.text = ""
-
+	%StatusLabel.text = ""
 
 
 func _physics_process(delta: float) -> void:
@@ -39,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	if status_message_timer > 0:
 		status_message_timer -= delta
 		if status_message_timer <= 0:
-			status_message.text = ""
+			%StatusLabel.text = ""
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
@@ -72,11 +70,11 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 
 func update_interactions():
 	if all_interactions:
-		interact_label.text = all_interactions[0].interact_label
+		%InteractLabel.text = all_interactions[0].interact_label
 		#interact_label.scale = camera_scale
 		# TODO: Add outline to the object that will be interacted with
 	else:
-		interact_label.text = ""
+		%InteractLabel.text = ""
 
 func execute_interaction():
 	if all_interactions:
@@ -114,16 +112,16 @@ func change_stat(se : StatusEffect):
 			stats[se.player_stat] += se.value
 			active_status_effects.remove_at(i)
 			active_status_effects.append(se.duplicate())
-			status_effect_bar_ref.geterate_status(se)
+			%StatusEffectBar.geterate_status(se)
 			return
 	
 	stats[se.player_stat] += se.value
 	
 	active_status_effects.append(se.duplicate())
-	status_effect_bar_ref.generate_status(se)
+	%StatusEffectBar.generate_status(se)
 
 func update_status_message(message: String):
-	status_message.text = "[center]" + message + "[/center]"
+	%StatusLabel.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
 
 
@@ -142,4 +140,4 @@ func cleanse_status_effects():
 func remove_status_effect(index : int, se : StatusEffect):
 	stats[se.player_stat] -= se.value
 	active_status_effects.remove_at(index)
-	status_effect_bar_ref.remove_status(se)
+	%StatusEffectBar.remove_status(se)

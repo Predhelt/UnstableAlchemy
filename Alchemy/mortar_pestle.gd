@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Control
 
 var inventory : Inventory ## Reference to the connected inventory for putting completed brews
 @export var blank_tex : Texture2D ## The blank texture to be displayed on cauldron slots when empty
@@ -49,10 +49,10 @@ func _process(delta: float) -> void:
 
 func add_item(item: Item) -> bool:
 	if is_using:
-		print("Please wait for cauldron to finish brewing")
+		print("Please wait for M&P to finish")
 		return false
 	if num_items >= MAX_ITEMS:
-		print("Cauldron already full")
+		print("M&P already full")
 		return false
 
 	for i in MAX_ITEMS:

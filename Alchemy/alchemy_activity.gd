@@ -1,7 +1,7 @@
 extends Control
 
 
-@export var inventory : Inventory
+var inventory : Inventory
 
 
 func _input(event: InputEvent) -> void:

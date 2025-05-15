@@ -11,9 +11,8 @@ script = ExtResource("1_xmuk6")
 object_name = "Red Berry Bush"
 object_description = "A bush with red berries on it."
 items = Array[ExtResource("2_ibbgj")]([ExtResource("3_pamv4")])
-on_grab_items = {
-ExtResource("3_pamv4"): 3
-}
+on_grab_items = Array[ExtResource("2_ibbgj")]([ExtResource("3_pamv4")])
+on_grab_amounts = Array[int]([3])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -26)

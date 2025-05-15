@@ -11,9 +11,8 @@ script = ExtResource("1_n5xjd")
 object_name = "Green Herb"
 object_description = "a plant with green leaves"
 items = Array[ExtResource("3_rogtf")]([ExtResource("4_wxm3i")])
-on_grab_items = {
-ExtResource("4_wxm3i"): 1
-}
+on_grab_items = Array[ExtResource("3_rogtf")]([ExtResource("4_wxm3i")])
+on_grab_amounts = Array[int]([2])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -26)
