@@ -5,7 +5,7 @@ var item : Item
 var texture : Texture2D : 
 	set(tex):
 		$DragArea/ItemImage.texture = tex
-var inventory_ref : Inventory
+var inventory_ref
 var area_ref : Area2D
 
 func _ready() -> void:
@@ -25,11 +25,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("dropable"):
+	if area.is_in_group("droppable"):
 		is_inside_dropable = true
 		area_ref = area
 
 
 func _on_area_exited(area: Area2D) -> void:
-	if area.is_in_group("dropable"):
+	if area.is_in_group("droppable"):
 		is_inside_dropable = false

@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://13c4ju8k5w21"]
 
-[ext_resource type="Script" path="res://Alchemy/alchemy_activity.gd" id="1_yju2k"]
-[ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://Alchemy/mortar_pestle.tscn" id="3_g5xox"]
-[ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://Alchemy/cauldron.tscn" id="5_gfvie"]
+[ext_resource type="Script" path="res://Alchemy/Containers/alchemy_activity.gd" id="1_yju2k"]
+[ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://Alchemy/Containers/mortar_pestle.tscn" id="3_g5xox"]
+[ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://Alchemy/Containers/cauldron.tscn" id="5_gfvie"]
 
 [node name="AlchemyActivity" type="Control"]
 layout_mode = 3
 anchor_left = 0.8
 anchor_top = 0.1
 anchor_right = 1.0
-anchor_bottom = 0.9
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yju2k")
@@ -23,6 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Cauldron" parent="Panel" instance=ExtResource("5_gfvie")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -33,6 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MortarPestle" parent="Panel" instance=ExtResource("3_g5xox")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

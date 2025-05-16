@@ -1,10 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://y1067fe07wmf"]
+[gd_scene load_steps=9 format=3 uid="uid://y1067fe07wmf"]
 
-[ext_resource type="Script" path="res://Alchemy/mortar_pestle.gd" id="1_a40nq"]
+[ext_resource type="Script" path="res://Alchemy/Containers/mortar_pestle.gd" id="1_a40nq"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="2_0nnx4"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="2_m0hp4"]
-[ext_resource type="Script" path="res://Alchemy/mortar_pestle_area.gd" id="2_o6d20"]
+[ext_resource type="Script" path="res://Alchemy/Recipes/MP/MortarPestleRecipe.gd" id="2_m350s"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/MP/green_herb_grounds.tres" id="3_nvpfl"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="4_88qmb"]
+
+[sub_resource type="GDScript" id="GDScript_ailbx"]
+script/source = "extends Area2D
+
+func add_item(item: Item):
+	get_parent().add_item(item)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nbwu"]
 size = Vector2(126, 124)
@@ -13,7 +21,7 @@ size = Vector2(126, 124)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_a40nq")
-blank_tex = ExtResource("2_m0hp4")
+recipes = Array[ExtResource("2_m350s")]([ExtResource("3_nvpfl")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -100,12 +108,12 @@ mouse_filter = 2
 step = 0.001
 show_percentage = false
 
-[node name="MortarPestleArea" type="Area2D" parent="." groups=["dropable"]]
+[node name="MortarPestleArea" type="Area2D" parent="." groups=["droppable"]]
 collision_layer = 4
 collision_mask = 4
 monitoring = false
 priority = 1
-script = ExtResource("2_o6d20")
+script = SubResource("GDScript_ailbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MortarPestleArea"]
 shape = SubResource("RectangleShape2D_0nbwu")

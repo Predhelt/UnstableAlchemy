@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CauldronRecipe" load_steps=3 format=3 uid="uid://dynh2mra6j665"]
+
+[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://Items/Products/Potions/speed_potion.tres" id="1_y7a4k"]
+[ext_resource type="Script" path="res://Alchemy/Recipes/Cauldron/CauldronRecipe.gd" id="2_hpbw8"]
+
+[resource]
+script = ExtResource("2_hpbw8")
+ingredient_ids = Array[int]([100])
+result_item = ExtResource("1_y7a4k")
+result_item_amount = 3
+result_craft_time = 2.0

@@ -59,7 +59,7 @@ func _on_object_grabbed(player: Player) -> void:
 			
 			grabbed_item_names.append(grabbed_item.display_name)
 			grabbed_item_counts.append(grab_qty)
-			player.inventory.add_inventory_item(grabbed_item) # Returns boolean. May ffbe partially added if inventory becomes full
+			player.inventory_ref.add_inventory_item(grabbed_item) # Returns boolean. May ffbe partially added if inventory becomes full
 			
 			if grabbed_item.qty > 0: # return any items that couldn't fit in inventory back to the object
 				item_quantities[j] += grabbed_item.qty

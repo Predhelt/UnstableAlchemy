@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/Hotbar/hotbar_slot.gd" id="1_035un"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="2_h6la4"]
-[ext_resource type="Script" path="res://UI/Hotbar/hotbar_slot_area.gd" id="3_1xsp4"]
+[ext_resource type="Script" path="res://Game Components/droppable_area.gd" id="3_3p8g3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyy6q"]
 size = Vector2(47, 45)
@@ -33,11 +33,11 @@ texture = ExtResource("2_h6la4")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="HotbarSlotArea" type="Area2D" parent="." groups=["dropable"]]
+[node name="HotbarSlotArea" type="Area2D" parent="." groups=["droppable"]]
 collision_layer = 4
 collision_mask = 4
 monitoring = false
-script = ExtResource("3_1xsp4")
+script = ExtResource("3_3p8g3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HotbarSlotArea"]
 position = Vector2(27.5, 27.5)

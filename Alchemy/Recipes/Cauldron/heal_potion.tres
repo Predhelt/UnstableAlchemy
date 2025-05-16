@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CauldronRecipe" load_steps=3 format=3 uid="uid://m1lfwias51m"]
+
+[ext_resource type="Resource" uid="uid://brbos0v1h8lgy" path="res://Items/Products/Potions/healing_potion.tres" id="1_jtb8j"]
+[ext_resource type="Script" path="res://Alchemy/Recipes/Cauldron/CauldronRecipe.gd" id="2_08dby"]
+
+[resource]
+script = ExtResource("2_08dby")
+ingredient_ids = Array[int]([100, 1, 1])
+result_item = ExtResource("1_jtb8j")
+result_item_amount = 2
+result_craft_time = 6.0

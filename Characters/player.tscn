@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_juhlw"]
 [ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://Art/UAPrototype/Characters/Grey-Pawnman_Down.png" id="2_vngk6"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="3_ngkeo"]
-[ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/alchemy_activity.tscn" id="4_h13xu"]
+[ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/Containers/alchemy_activity.tscn" id="4_h13xu"]
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffectBar.tscn" id="5_oswit"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="6_hox3m"]
 
@@ -63,14 +63,15 @@ clip_contents = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -125.0
-offset_top = -190.0
-offset_right = 125.0
+offset_left = -126.0
+offset_top = -170.0
+offset_right = 124.0
 offset_bottom = -140.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
+fit_content = true
 scroll_active = false
 scroll_following = true
 metadata/_edit_use_anchors_ = true
@@ -94,7 +95,11 @@ unique_name_in_owner = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource("6_hox3m")]
+unique_name_in_owner = true
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
+[connection signal="remove_hotbar_item" from="CanvasLayer/Inventory" to="CanvasLayer/Hotbar" method="_on_inventory_remove_hotbar_item"]
+[connection signal="update_status_effects" from="CanvasLayer/Inventory" to="." method="_on_inventory_update_status_effects"]
 [connection signal="add_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_add_inventory_item"]
+[connection signal="consume_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_consume_inventory_item"]

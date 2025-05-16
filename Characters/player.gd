@@ -2,7 +2,8 @@ class_name Player extends CharacterBody2D
 
 @export var camera_path := "" ## Path from Player Node to the Camera
 
-@onready var inventory := %Inventory
+@onready var inventory_ref := %Inventory
+@onready var hotbar_ref := %Hotbar
 
 var active_status_effects : Array[StatusEffect]
 
@@ -20,8 +21,7 @@ var stats = {
 
 
 func _ready() -> void:
-	inventory.update_status_effects.connect(update_status_effects)
-	%AlchemyActivity.inventory = inventory
+	%AlchemyActivity.inventory_ref = inventory_ref
 	
 	update_interactions()
 	%StatusLabel.text = ""
@@ -87,7 +87,7 @@ func execute_interaction():
 ## Status Effect Handler Methods ##
 
 func update_status_effects(statuses: Array[StatusEffect], message: String):
-	# Adds and/or updates the status effects given
+	# Adds and/or updates the given status effects
 	for se in statuses:
 		add_status_effect(se)
 	update_status_message(message)
@@ -141,3 +141,7 @@ func remove_status_effect(index : int, se : StatusEffect):
 	stats[se.player_stat] -= se.value
 	active_status_effects.remove_at(index)
 	%StatusEffectBar.remove_status(se)
+
+
+func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
+	update_status_effects(on_consume_effects, on_consume_message)

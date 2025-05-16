@@ -1,7 +1,6 @@
 extends Control
 
-var inventory : Inventory ## Reference to the connected inventory for putting completed brews
-@export var blank_tex : Texture2D ## The blank texture to be displayed on cauldron slots when empty
+var inventory_ref ## Reference to the connected inventory for putting completed brews
 
 const MAX_ITEMS := 3 ## Max number of items that can be stored in the cauldron
 var items : Array[Item] ## List of items in the cauldron
@@ -15,14 +14,11 @@ $TextureRect/ItemGrid/Button3] ## Reference to item buttons that represent each 
 @onready var progress_bar := $TextureRect/ProgressBar
 
 var product : Item ## The item produced by the brew
-var is_using := false ## State of whether a brew is currently active
-var use_timer := 0.0 ## Time left in current brew
+var is_brewing := false ## State of whether a brew is currently active
+var brew_timer := 0.0 ## Time left in current brew
 
-var mp_recipes = { ## Recipes for each item that can be produced in the mortar & pestle
-	##Key : Item ID, Value: [Product ID, quantity, craft duration]
-	0 : ["res://Items/Products/green_herb_leaf_ground.tres", 1, 2], ## Green Herb Leaf -> Ground Herb Leaf
-	#1 : ["?", 1, 4], ## Red Berries -> ?
-}
+@export var recipes : Array[CauldronRecipe]
+var cauldron_recipes = {} ## Recipes for each item that can be produced in the cauldron
 
 
 func _init() -> void:
@@ -30,29 +26,34 @@ func _init() -> void:
 		buttons.append(null)
 		items.append(null)
 
+func _ready() -> void:
+	for recipe in recipes:
+		cauldron_recipes[recipe.ingredient_ids] = [recipe.result_item, 
+			recipe.result_item_amount, recipe.result_craft_time]
+
 func _process(delta: float) -> void:
 	if global.is_dragging:
 		scale = Vector2(1.1, 1.1) #TODO: Set icon to "open" icon when hovered over while dragging
 	else:
 		scale = Vector2(1, 1)
 	
-	if is_using:
-		if use_timer > 0:
-			use_timer -= delta
+	if is_brewing:
+		if brew_timer > 0:
+			brew_timer -= delta
 			progress_bar.value += delta
 		else:
-			print(str(product.qty) + " of item " + product.display_name + " added to inventory from successful M&P")
-			inventory.add_inventory_item(product)
+			print(str(product.qty) + " of item " + product.display_name + " added to inventory from brew")
+			inventory_ref.add_inventory_item(product)
 			progress_bar.visible = false
-			is_using = false
+			is_brewing = false
 
 
 func add_item(item: Item) -> bool:
-	if is_using:
-		print("Please wait for M&P to finish")
+	if is_brewing:
+		print("Please wait for cauldron to finish brewing")
 		return false
 	if num_items >= MAX_ITEMS:
-		print("M&P already full")
+		print("Cauldron already full")
 		return false
 
 	for i in MAX_ITEMS:
@@ -72,48 +73,48 @@ func _on_button_confirm_pressed() -> void:
 	if num_items <= 0 or num_items > MAX_ITEMS:
 		print("Wrong number of items, button should be disabled")
 		return
-	use_item()
+	brew_items()
 
-func use_item():
-	# Find first item in queue to start using in the mortar and pestle
-	var use_ID := -1
+func brew_items():
+	var brew_IDs : Array[int]
 	for i in MAX_ITEMS:
 		if items[i]:
-			use_ID = items[i].ID
+			brew_IDs.append(items[i].ID)
 			remove_item(i)
-			break
+			
+	brew_IDs.sort()
 	
-	var item_results = ["res://Items/Products/failed_potion_red.tres", 1, 2] #ID for failed brew is 999
-	if use_ID in mp_recipes:
-		item_results = mp_recipes[use_ID]
+	var item_results = [load("res://Items/Products/failed_potion_red.tres"), 1, 2] #ID for failed brew is 999
+	if brew_IDs in cauldron_recipes:
+		item_results = cauldron_recipes[brew_IDs]
 	
-	product = load(item_results[0])
+	product = item_results[0]
 	if not product:
 		return
 	product = product.duplicate()
 	product.qty = item_results[1]
-	use_timer = item_results[2]
+	brew_timer = item_results[2]
 	
 	progress_bar.value = 0
-	progress_bar.max_value = use_timer
+	progress_bar.max_value = brew_timer
 	progress_bar.visible = true
-	is_using = true
+	is_brewing = true
 
 
 func _on_button_1_pressed() -> void:
-	inventory.add_inventory_item(items[0])
+	inventory_ref.add_inventory_item(items[0])
 	remove_item(0)
 
 func _on_button_2_pressed() -> void:
-	inventory.add_inventory_item(items[1])
+	inventory_ref.add_inventory_item(items[1])
 	remove_item(1)
 
 func _on_button_3_pressed() -> void:
-	inventory.add_inventory_item(items[2])
+	inventory_ref.add_inventory_item(items[2])
 	remove_item(2)
 
 func remove_item(index: int):
-	buttons[index].texture_normal = blank_tex
+	buttons[index].texture_normal = global.blank_texture
 	buttons[index].disabled = true
 	items[index] = null
 	num_items -= 1

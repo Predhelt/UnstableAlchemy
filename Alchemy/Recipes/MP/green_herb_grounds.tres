@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MortarPestleRecipe" load_steps=3 format=3 uid="uid://c03phe4ob10nn"]
+
+[ext_resource type="Script" path="res://Alchemy/Recipes/MP/MortarPestleRecipe.gd" id="1_0ybiy"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Grounds/green_herb_leaf_ground.tres" id="1_j62ci"]
+
+[resource]
+script = ExtResource("1_0ybiy")
+ingredient_id = 0
+result_item = ExtResource("1_j62ci")
+result_item_amount = 1
+result_craft_time = 2.0

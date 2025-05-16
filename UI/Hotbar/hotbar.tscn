@@ -39,5 +39,8 @@ layout_mode = 2
 slot_id = 2
 
 [connection signal="add_inventory_item" from="HBoxContainer/HotbarSlot0" to="." method="_on_add_inventory_item"]
+[connection signal="consume_inventory_item" from="HBoxContainer/HotbarSlot0" to="." method="_on_consume_inventory_item"]
 [connection signal="add_inventory_item" from="HBoxContainer/HotbarSlot1" to="." method="_on_add_inventory_item"]
+[connection signal="consume_inventory_item" from="HBoxContainer/HotbarSlot1" to="." method="_on_consume_inventory_item"]
 [connection signal="add_inventory_item" from="HBoxContainer/HotbarSlot2" to="." method="_on_add_inventory_item"]
+[connection signal="consume_inventory_item" from="HBoxContainer/HotbarSlot2" to="." method="_on_consume_inventory_item"]

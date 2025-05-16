@@ -1,7 +1,7 @@
 extends Control
 
 
-var inventory : Inventory
+var inventory_ref
 
 
 func _input(event: InputEvent) -> void:
@@ -10,8 +10,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		close_activity()
 		
-	$Panel/Cauldron.inventory = inventory
-	$Panel/MortarPestle.inventory = inventory
+	%Cauldron.inventory_ref = inventory_ref
+	%MortarPestle.inventory_ref = inventory_ref
 
 func toggle_activity() -> void:
 	visible = !visible # Flip visibility of the inventory
