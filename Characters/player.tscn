@@ -99,7 +99,6 @@ unique_name_in_owner = true
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
-[connection signal="remove_hotbar_item" from="CanvasLayer/Inventory" to="CanvasLayer/Hotbar" method="_on_inventory_remove_hotbar_item"]
 [connection signal="update_status_effects" from="CanvasLayer/Inventory" to="." method="_on_inventory_update_status_effects"]
 [connection signal="add_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_add_inventory_item"]
 [connection signal="consume_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_consume_inventory_item"]

@@ -2,11 +2,11 @@ extends ItemList
 
 ## Sent to the player to update their status effects when an item in inventory is consumed
 signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
-signal remove_hotbar_item(item: Item)
 
 @export var max_item_count := 24 ## Max number of slots in the inventory
 
-var drag_item_scene = preload("res://UI/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
+var drag_item_scene := preload("res://UI/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
+@onready var hotbar_ref := %Hotbar
 
 var items : Array[Item] # List of theitems in the inventory
 
@@ -156,31 +156,49 @@ func consume_inventory_item(item : Item, index : int):
 	else:
 		item.qty -= 1
 		set_item_text(index, generate_item_text(item))
+	
+	# Check item for if it should be removed from the hotbar
+	if hotbar_ref.has_item(item):
+		var has_more_items := false
+		for cur_item in items:
+			if cur_item.ID != item.ID:
+				continue
+			has_more_items = true
+			break
+		
+		if not has_more_items:
+			hotbar_ref.remove_hotbar_item(item)
 
 
 func _on_hotbar_add_inventory_item(item: Item) -> void:
 	add_inventory_item(item)
 
 func consume_hotbar_item(item : Item):
-	var has_more_items = false
-	var is_consumed = false
-	for i in len(items):
-		if items[i].ID != item.ID:
+	var has_more_items := false
+	var is_consumed := false
+	var num_items := len(items)
+	
+	for i in num_items:
+		if num_items <= i: # If item is removed from inventory, will prevent accessing invalid index of inventory
+			break
+		var cur_item = items[i]
+		if cur_item.ID != item.ID:
 			continue
 		if not is_consumed:
-			update_status_effects.emit(items[i].on_consume_effects, items[i].on_consume_message)
+			update_status_effects.emit(cur_item.on_consume_effects, cur_item.on_consume_message)
 			is_consumed = true
-			if items[i].qty <= 1:
+			if cur_item.qty <= 1:
 				remove_inventory_item(i)
+				num_items -= 1
 			else:
-				items[i].qty -= 1
-				set_item_text(i, generate_item_text(items[i]))
+				cur_item.qty -= 1
+				set_item_text(i, generate_item_text(cur_item))
 				has_more_items = true
 		else:
 			has_more_items = true
 	
 	if not has_more_items: # Remove item from hotbar if no more of this item is in inventory
-		remove_hotbar_item.emit(item)
+		hotbar_ref.remove_hotbar_item(item)
 
 func _on_hotbar_consume_inventory_item(item: Item) -> void:
 	consume_hotbar_item(item)
