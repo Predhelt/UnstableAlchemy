@@ -11,7 +11,7 @@
 radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
-radius = 88.0227
+radius = 62.0322
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -33,7 +33,6 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
-position = Vector2(0, -46)
 shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
@@ -75,10 +74,6 @@ fit_content = true
 scroll_active = false
 scroll_following = true
 metadata/_edit_use_anchors_ = true
-
-[node name="TimerStatus" type="Timer" parent="StatusLabel"]
-wait_time = 10.0
-one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

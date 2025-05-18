@@ -15,7 +15,7 @@ var stats = {
 	"health" : 100.0, ## health value
 	"move speed" : 300.0, ## move speed modifier (100 = 1.0*ms)
 	"strength" : 100.0, ## how much can be pushed or carried
-	#"range" : 100.0, # same as CollisionInteract.radius of arms
+	"range" : 100.0, ## same as CollisionInteract.radius of arms
 	#"size" : 100.0 # same as scale of character
 }
 
@@ -42,6 +42,8 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		execute_interaction()
+	if event.is_action_pressed("grab_object"):
+		execute_grab()
 	
 	
 	# TODO: Change animation when character starts/stops walking
@@ -78,10 +80,14 @@ func update_interactions():
 
 func execute_interaction():
 	if all_interactions:
-		var cur_interaction = all_interactions[0]
+		var cur_interaction = all_interactions[0] # Simple approach
 		match cur_interaction.interact_type:
 			"print_text" : print(cur_interaction.interact_value)
 			"context_menu" : cur_interaction.toggle_context_menu(self)
+
+func execute_grab():
+	if all_interactions:
+		all_interactions[0].grab_object(self)
 
 
 ## Status Effect Handler Methods ##

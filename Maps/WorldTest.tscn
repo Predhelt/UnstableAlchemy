@@ -46,6 +46,7 @@ tile_map_data = PackedByteArray("AADS//X/BAADAAIAAADS//v/BAAEAAEAAADS//3/BAABAAI
 tile_set = ExtResource("2_8gh32")
 
 [node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Green_herb" parent="Objects" instance=ExtResource("3_guf6v")]
 position = Vector2(51, 65)

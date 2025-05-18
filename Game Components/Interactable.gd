@@ -20,7 +20,6 @@ func toggle_context_menu(player: Player):
 		close_context_menu()
 
 func create_context_menu(player: Player):
-	# TODO: Make the context menu built specific to the object
 	context_menu = context_menu_scene.instantiate()
 	add_child(context_menu)
 	context_menu.name = interact_value
@@ -33,7 +32,7 @@ func create_context_menu(player: Player):
 
 func close_context_menu():
 	if not context_menu:
-		print("No context menu to close")
+		#print("No context menu to close")
 		is_menu_open = false
 		return
 	
@@ -45,4 +44,7 @@ func _on_object_inspected() -> void:
 	close_context_menu()
 
 func _on_object_grabbed(player: Player) -> void:
+	object_grabbed.emit(player)
+
+func grab_object(player: Player) -> void:
 	object_grabbed.emit(player)
