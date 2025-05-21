@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgkjljcf8lms4"]
 
-[ext_resource type="Script" path="res://UI/status_effect_bar.gd" id="1_b5vqo"]
+[ext_resource type="Script" path="res://UI/StatusEffect/status_effect_bar.gd" id="1_b5vqo"]
 
 [node name="StatusEffectBar" type="Control"]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.01
+anchor_top = 0.99
+anchor_right = 0.01
+anchor_bottom = 0.99
 grow_vertical = 0
 script = ExtResource("1_b5vqo")
 

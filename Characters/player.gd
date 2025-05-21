@@ -7,18 +7,18 @@ class_name Player extends CharacterBody2D
 
 var active_status_effects : Array[StatusEffect]
 
-var all_interactions : Array[Area2D]
+var all_interaction_areas : Array[Area2D]
 var status_message_timer := 0.0
 
-
 var stats = {
-	"health" : 100.0, ## health value
+	#"health" : 100.0, ## health value
 	"move speed" : 300.0, ## move speed modifier (100 = 1.0*ms)
-	"strength" : 100.0, ## how much can be pushed or carried
-	"range" : 100.0, ## same as CollisionInteract.radius of arms
+	#"strength" : 100.0, ## how much can be pushed or carried
+	#"range" : 100.0, ## same as CollisionInteract.radius of arms
 	#"size" : 100.0 # same as scale of character
 }
 
+var selected_tool : String
 
 func _ready() -> void:
 	%AlchemyActivity.inventory_ref = inventory_ref
@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * stats["move speed"] * scale
 	move_and_slide()
 	
-	update_active_status_effect(delta)
+	_update_active_status_effect(delta)
 	
 	if status_message_timer > 0:
 		status_message_timer -= delta
@@ -42,73 +42,75 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		execute_interaction()
-	if event.is_action_pressed("grab_object"):
-		execute_grab()
-	
-	
-	# TODO: Change animation when character starts/stops walking
-##	if velocity.length() > 0.0:
-##		character.play_walk_animation()
-##	else:
-##		character.play_idle_animation
-	
-	
+	if event.is_action_pressed("use_tool"):
+		execute_tool()
+
 
 ## Interaction Methods ##
 
 func _on_interaction_area_entered(area: Interactable) -> void:
-	all_interactions.insert(0, area)
+	all_interaction_areas.insert(0, area)
 	update_interactions()
 	# Outline the object that will be interacted with
-	
+
 
 func _on_interaction_area_exited(area: Interactable) -> void:
 	if area.is_menu_open:
 		area.close_context_menu()
 	
-	all_interactions.erase(area)
+	all_interaction_areas.erase(area)
 	update_interactions()
 
 
 func update_interactions():
-	if all_interactions:
-		%InteractLabel.text = all_interactions[0].interact_label
+	if all_interaction_areas:
+		%InteractLabel.text = all_interaction_areas[0].interact_label
 		#interact_label.scale = camera_scale
 		# TODO: Add outline to the object that will be interacted with
 	else:
 		%InteractLabel.text = ""
 
 func execute_interaction():
-	if all_interactions:
-		var cur_interaction = all_interactions[0] # Simple approach
+	if all_interaction_areas:
+		var cur_interaction = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type:
 			"print_text" : print(cur_interaction.interact_value)
 			"context_menu" : cur_interaction.toggle_context_menu(self)
 
-func execute_grab():
-	if all_interactions:
-		all_interactions[0].grab_object(self)
 
+func _on_tool_updated(tool_name: String) -> void:
+	selected_tool = tool_name
+
+func execute_tool():
+	if all_interaction_areas:
+		match selected_tool:
+			"hand" : all_interaction_areas[0].grab_object(self)
+			"blade" : all_interaction_areas[0].cut_object(self)
+			"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
+
+
+func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
+	update_status_effects(on_consume_effects, on_consume_message)
 
 ## Status Effect Handler Methods ##
 
 func update_status_effects(statuses: Array[StatusEffect], message: String):
 	# Adds and/or updates the given status effects
 	for se in statuses:
-		add_status_effect(se)
+		_add_status_effect(se)
 	update_status_message(message)
 
-func add_status_effect(se: StatusEffect) -> void:
+func _add_status_effect(se: StatusEffect) -> void:
 	if se.player_stat != "":
-		change_stat(se)
+		_change_stat(se)
 	
 	if se.other != "":
 		var other_effects = se.other.split(" ")
 		for oe in other_effects:
 			match se.other: # Checks for other effects
-				"cleanse" : cleanse_status_effects()
+				"cleanse" : _cleanse_status_effects()
 
-func change_stat(se : StatusEffect):
+func _change_stat(se : StatusEffect):
 	
 	for i in len(active_status_effects):
 		var old_se = active_status_effects[i]
@@ -130,24 +132,19 @@ func update_status_message(message: String):
 	%StatusLabel.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
 
-
-func update_active_status_effect(delta : float) -> void:
+func _update_active_status_effect(delta : float) -> void:
 	for i in len(active_status_effects):
 		var se = active_status_effects[i]
 		se.duration -= delta
 		if se.duration <= 0:
-			remove_status_effect(i, se)
+			_remove_status_effect(i, se)
 
-
-func cleanse_status_effects():
-	for i in len(active_status_effects):
-		remove_status_effect(i, active_status_effects[i])
-
-func remove_status_effect(index : int, se : StatusEffect):
+func _remove_status_effect(index : int, se : StatusEffect):
 	stats[se.player_stat] -= se.value
 	active_status_effects.remove_at(index)
 	%StatusEffectBar.remove_status(se)
 
-
-func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
-	update_status_effects(on_consume_effects, on_consume_message)
+## Other status effect functions ##
+func _cleanse_status_effects():
+	for i in len(active_status_effects):
+		_remove_status_effect(i, active_status_effects[i])

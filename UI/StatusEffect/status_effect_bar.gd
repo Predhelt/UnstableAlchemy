@@ -5,8 +5,8 @@ var status_icon_scene = preload("res://UI/StatusEffect/status_icon.tscn")
 
 func generate_status(effect : StatusEffect):
 	
-	for i in container.get_child_count():
-		var se = container.get_child(i)
+	for textureRect in container.get_children():
+		var se = textureRect.effect
 		if se.ID == effect.ID:
 			se.effect = effect # Resets the timer and icon
 			return

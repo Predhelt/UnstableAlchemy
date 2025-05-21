@@ -5,12 +5,11 @@ extends Node2D
 @export var items : Array[Item] ## The items that the object contains and their initial quantities
 var item_quantities : Array[int] ## The current quantities of items in the object
 
-# TODO: Conditions for event triggers (e.g. receiveing certain Items) on action
 
-@export var on_grab_items : Array[Item] ## The items to be received upon grabbing (taken out of "items").
-@export var on_grab_amounts : Array[int] ## The amount of items to be recieved upon grabbing (taken out of "items).
+@export var grab_interaction : InteractionType
+@export var cut_interaction : InteractionType
+@export var combinations : ObjectCombinations
 
-@export var on_grab_effects : Array[StatusEffect]
 var context_menu : Control
 var inspection_panel_scene = preload("res://UI/ContextMenu/inspection_panel.tscn")
 
@@ -30,41 +29,51 @@ func _on_object_inspected() -> void:
 	add_child(inspection_panel)
 	
 
-
-func _on_object_grabbed(player: Player) -> void: 
-	if on_grab_items.is_empty():
-		print("No items to grab!")
-		
-	var grabbed_item_names := []
-	var grabbed_item_counts := []
+func _on_object_grabbed(player: Player) -> void:
+	collect_items(player, grab_interaction)
 	
-	for i in len(on_grab_items): # Grabbing each grabbable item
-		var grab_item = on_grab_items[i]
-		var id = grab_item.ID
-		var grab_qty = on_grab_amounts[i]
+	if grab_interaction.on_interact_status_effects:
+		player.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
+	
+func _on_object_cut(player: Player) -> void:
+	collect_items(player, cut_interaction)
+	if cut_interaction.on_interact_status_effects:
+		player.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
+	
+func collect_items(player: Player, interaction: InteractionType) -> void:
+	if not interaction:
+		print("No interaction")
+		return
+	
+	if interaction.on_interact_items.is_empty():
+		print("No items to get!")
+		
+	var interaction_item_names := []
+	var interaction_item_counts := []
+	
+	for i in len(interaction.on_interact_items): # Getting each interactable item
+		var interact_item = interaction.on_interact_items[i]
+		var id = interact_item.ID
+		var interact_qty = interaction.on_interact_amounts[i]
 		for j in len(items):
 			if items[j].ID != id or item_quantities[j] <= 0:
 				continue # If not the right item or item is empty
 			
-			var grabbed_item := items[j].duplicate()
-			if item_quantities[j] <= grab_qty: # If the amount in object is <= the amount to grab
-				grabbed_item.qty = item_quantities[j]
+			var interaction_item := items[j].duplicate()
+			if item_quantities[j] <= interact_qty: # If the amount in object is <= the amount to interact
+				interaction_item.qty = item_quantities[j]
 				item_quantities[j] = 0
 			else:
-				grabbed_item.qty = grab_qty
-				item_quantities[j] -= grab_qty
+				interaction_item.qty = interact_qty
+				item_quantities[j] -= interact_qty
 			
-			# Initialize the rest of the grabbed item to add to Inventory
-			#grabbed_item.ID = id
 			
-			grabbed_item_names.append(grabbed_item.display_name)
-			grabbed_item_counts.append(grab_qty)
-			player.inventory_ref.add_inventory_item(grabbed_item) # Returns boolean. May ffbe partially added if inventory becomes full
+			interaction_item_names.append(interaction_item.display_name)
+			interaction_item_counts.append(interact_qty)
+			player.inventory_ref.add_inventory_item(interaction_item) # Returns boolean. May ffbe partially added if inventory becomes full
 			
-			if grabbed_item.qty > 0: # return any items that couldn't fit in inventory back to the object
-				item_quantities[j] += grabbed_item.qty
-	
-	$InteractArea.close_context_menu()
+			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
+				item_quantities[j] += interaction_item.qty
 	
 	var sum = 0
 	for item_qty in item_quantities:
@@ -72,9 +81,34 @@ func _on_object_grabbed(player: Player) -> void:
 	if sum <= 0:
 		#print("No items left in object")
 		queue_free()
+
+
+func _on_object_combined(player: Player, item: Item) -> void:
+	if not combinations:
+		return
+	for i in len(combinations.item_ids):
+		if combinations.item_ids[i] == item.ID:
+			player.update_status_message(combinations.combination_messages[i])
+			_mutate_object(combinations.result_object_scenes[i])
+			player._on_interaction_area_exited($InteractArea)
+			player._on_interaction_area_entered($InteractArea)
+
+func _mutate_object(new_object_scene: PackedScene):
+	var obj = new_object_scene.instantiate()
 	
-	# decrease count of item in object,
+	$Sprite2D.texture = obj.find_child("Sprite2D").texture
 	
+	object_name = obj.object_name
+	object_description = obj.object_description
+	items = obj.items
+	item_quantities = obj.item_quantities
+	grab_interaction = obj.grab_interaction
+	cut_interaction = obj.cut_interaction
+	combinations = obj.combinations
 	
-	# remove object from map if no items left in object
+	var obj_ia = obj.find_child("InteractArea")
+	$InteractArea.interact_label = obj_ia.interact_label
+	$InteractArea.interact_type = obj_ia.interact_type
+	$InteractArea.interact_value = obj_ia.interact_value
+	
 	

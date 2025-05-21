@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InteractionType" load_steps=5 format=3 uid="uid://cttul5eubr0vn"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_il52v"]
+[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://Items/Object/green_herb_leaf.tres" id="2_1adaf"]
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_hl00e"]
+[ext_resource type="Script" path="res://Objects/Interactable/InteractionType.gd" id="3_jka0f"]
+
+[resource]
+script = ExtResource("3_jka0f")
+interaction_name = "cut"
+on_interact_items = Array[ExtResource("1_il52v")]([ExtResource("2_1adaf")])
+on_interact_amounts = Array[int]([3])
+on_interact_status_effects = Array[ExtResource("2_hl00e")]([])
+on_interact_other_effects = Array[String]([])

@@ -1,17 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=15 format=3 uid="uid://csw57bxt7nvm2"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_juhlw"]
-[ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://Art/UAPrototype/Characters/Grey-Pawnman_Down.png" id="2_vngk6"]
+[ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://Art/UAPrototype/Characters/herbalist-down.png" id="2_23e54"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="3_ngkeo"]
 [ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/Containers/alchemy_activity.tscn" id="4_h13xu"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffectBar.tscn" id="5_oswit"]
+[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffect/status_effect_bar.tscn" id="5_oswit"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="6_hox3m"]
+[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/ToolWheel/tool_wheel.tscn" id="7_l0u5l"]
+
+[sub_resource type="Animation" id="Animation_cssul"]
+resource_name = "idle_down"
+
+[sub_resource type="Animation" id="Animation_85or5"]
+resource_name = "idle_left"
+
+[sub_resource type="Animation" id="Animation_33o0g"]
+resource_name = "idle_right"
+
+[sub_resource type="Animation" id="Animation_gvkpy"]
+resource_name = "idle_up"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bkg2i"]
+_data = {
+"idle_down": SubResource("Animation_cssul"),
+"idle_left": SubResource("Animation_85or5"),
+"idle_right": SubResource("Animation_33o0g"),
+"idle_up": SubResource("Animation_gvkpy")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6e64a"]
-radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
-radius = 62.0322
+radius = 56.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -19,8 +39,14 @@ platform_floor_layers = 4294967292
 script = ExtResource("1_juhlw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -54)
-texture = ExtResource("2_vngk6")
+position = Vector2(0, -48)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_23e54")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bkg2i")
+}
 
 [node name="CollisionBody" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6e64a")
@@ -45,9 +71,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -110.0
-offset_top = -132.0
+offset_top = -116.0
 offset_right = 110.0
-offset_bottom = -109.0
+offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 4
@@ -62,10 +88,10 @@ clip_contents = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -126.0
-offset_top = -170.0
-offset_right = 124.0
-offset_bottom = -140.0
+offset_left = -124.0
+offset_top = -154.0
+offset_right = 126.0
+offset_bottom = -124.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -92,8 +118,13 @@ metadata/_edit_use_anchors_ = true
 [node name="Hotbar" parent="CanvasLayer" instance=ExtResource("6_hox3m")]
 unique_name_in_owner = true
 
+[node name="ToolWheel" parent="CanvasLayer" instance=ExtResource("7_l0u5l")]
+unique_name_in_owner = true
+
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
 [connection signal="update_status_effects" from="CanvasLayer/Inventory" to="." method="_on_inventory_update_status_effects"]
 [connection signal="add_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_add_inventory_item"]
 [connection signal="consume_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
+[connection signal="set_dropper_item" from="CanvasLayer/ToolWheel" to="CanvasLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
+[connection signal="tool_updated" from="CanvasLayer/ToolWheel" to="." method="_on_tool_updated"]

@@ -18,10 +18,10 @@ func create_inspect_button():
 	if inspect_button:
 		inspect_button.connect("pressed", _on_button_inspect_pressed)
 
-func create_grab_button():
-	var grab_button = create_button("Grab")
-	if grab_button:
-		grab_button.connect("pressed", _on_button_grab_pressed)
+func create_tools_button():
+	var tools_button = create_button("Tools")
+	if tools_button:
+		tools_button.connect("pressed", _on_button_tools_pressed)
 	
 func create_button(label : String) -> Button:
 	var button_name = label + "Button"
@@ -39,5 +39,5 @@ func _on_button_inspect_pressed() -> void:
 	object_inspected.emit()
 
 
-func _on_button_grab_pressed() -> void:
+func _on_button_tools_pressed() -> void:
 	object_grabbed.emit(player) # Emits that the player has grabbed the object

@@ -2,7 +2,6 @@ extends Control
 
 signal add_inventory_item(item: Item)
 signal consume_inventory_item(item: Item)
-signal remove_hotbar_item(item: Item)
 
 @export var slot_id : int
 

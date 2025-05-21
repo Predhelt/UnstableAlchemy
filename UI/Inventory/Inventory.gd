@@ -5,27 +5,36 @@ signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consum
 
 @export var max_item_count := 24 ## Max number of slots in the inventory
 
+var mode := "default"
+
 var drag_item_scene := preload("res://UI/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
 @onready var hotbar_ref := %Hotbar
+@onready var toolwheel_ref := %ToolWheel
 
 var items : Array[Item] # List of theitems in the inventory
 
 func _ready() -> void:		
 	item_clicked.connect(on_inventory_item_clicked)
-	
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_toggle_inventory"):
-		toggle_inventory() # Toggles whether the inventory is displayed or not
+		_toggle_inventory() # Toggles whether the inventory is displayed or not
 	if event.is_action_pressed("ui_cancel"):
-		close_inventory()
+		_close_inventory()
 
-func toggle_inventory() -> void:
-	visible = !visible # Flip visibility of the inventory
+func _toggle_inventory() -> void:
+	if visible:
+		_close_inventory()
+	else:
+		_open_inventory()
 
-func close_inventory() -> void:
+func _close_inventory() -> void:
 	visible = false
+	_set_mode("default")
+
+func _open_inventory() -> void:
+	visible = true
 
 func add_inventory_item(item : Item) -> bool:
 	if item == null or item.qty <= 0: # If invalid item or empty item
@@ -118,7 +127,9 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			print("No items found")
 			return
 		
-		consume_inventory_item(item, index)
+		match mode:
+			"default": consume_inventory_item(item, index)
+			"set_dropper": _set_dropper_item(item)
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
@@ -202,3 +213,20 @@ func consume_hotbar_item(item : Item):
 
 func _on_hotbar_consume_inventory_item(item: Item) -> void:
 	consume_hotbar_item(item)
+
+
+func _on_tool_wheel_set_dropper_item() -> void:
+	_set_mode("set_dropper")
+
+func _set_mode(m: String) -> void:
+	if mode == m:
+		return
+	match m:
+		"default": 
+			mode = m
+		"set_dropper": 
+			_open_inventory()
+			mode = m
+
+func _set_dropper_item(item: Item):
+	toolwheel_ref.dropper_item = item

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=2 format=3 uid="uid://081jaxfsfvmd"]
+
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_2uvlx"]
+
+[resource]
+script = ExtResource("1_2uvlx")
+ID = 1
+name = "Slow"
+description = "Decreases movement speed"
+player_stat = "move speed"
+other = ""
+value = -200.0
+duration = 10.0

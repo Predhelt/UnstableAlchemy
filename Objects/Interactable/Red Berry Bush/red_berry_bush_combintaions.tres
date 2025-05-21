@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ObjectCombinations" load_steps=3 format=3 uid="uid://bvul5uu5q2ts7"]
+
+[ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://Objects/Interactable/Blue Berry Bush/blue_berry_bush.tscn" id="1_hab0s"]
+[ext_resource type="Script" path="res://Objects/Interactable/ObjectCombinations.gd" id="1_ufvrq"]
+
+[resource]
+script = ExtResource("1_ufvrq")
+item_ids = Array[int]([100])
+result_object_scenes = Array[PackedScene]([ExtResource("1_hab0s")])
+combination_messages = Array[String](["The berries turned blue"])
