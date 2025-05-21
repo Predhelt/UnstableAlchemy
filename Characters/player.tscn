@@ -189,7 +189,7 @@ tree_root = SubResource("AnimationNodeStateMachine_5c34o")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
-parameters/Idle/blend_position = Vector2(-0.333912, -0.0638298)
+parameters/Idle/blend_position = Vector2(-0.000867307, 0.99292)
 parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="CollisionBody" type="CollisionShape2D" parent="."]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="1_di7gv"]
 [ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_dmnls"]
-[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Object/red_berries.tres" id="2_e8ar7"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="2_e8ar7"]
 [ext_resource type="Script" path="res://Objects/Interactable/InteractionType.gd" id="3_qmd7f"]
 
 [resource]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="InteractionType" load_steps=6 format=3 uid="uid://dnxq4rwnwread"]
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="1_7g4ns"]
-[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Object/red_berries.tres" id="2_8qptc"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="2_8qptc"]
 [ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_61731"]
 [ext_resource type="Script" path="res://Objects/Interactable/InteractionType.gd" id="3_ymg7g"]
 [ext_resource type="Resource" uid="uid://081jaxfsfvmd" path="res://Game Components/Status Effects/Slow.tres" id="4_u64hp"]

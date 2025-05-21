@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0he75p83wb74"
-path="res://.godot/imported/plant-red-berry.png-070e3aa74ddb5bf892798170c29cfc01.ctex"
+uid="uid://c14l6r05fe0et"
+path="res://.godot/imported/HerbBasicGreen.png-5885b834632eb3544e0545bfdf6465e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UAPrototype/Ingredients/Planted/plant-red-berry.png"
-dest_files=["res://.godot/imported/plant-red-berry.png-070e3aa74ddb5bf892798170c29cfc01.ctex"]
+source_file="res://Art/UAPrototype/Objects/Planted/HerbBasicGreen.png"
+dest_files=["res://.godot/imported/HerbBasicGreen.png-5885b834632eb3544e0545bfdf6465e4.ctex"]
 
 [params]
 

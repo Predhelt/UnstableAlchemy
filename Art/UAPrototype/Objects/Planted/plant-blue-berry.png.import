@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de0du27ruuhaw"
-path="res://.godot/imported/plant-blue-berry.png-9cbb085b28288a8a7aa0a06282a88037.ctex"
+path="res://.godot/imported/plant-blue-berry.png-242fe3aa76f525af6c6c4915815f4d76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UAPrototype/Ingredients/Planted/plant-blue-berry.png"
-dest_files=["res://.godot/imported/plant-blue-berry.png-9cbb085b28288a8a7aa0a06282a88037.ctex"]
+source_file="res://Art/UAPrototype/Objects/Planted/plant-blue-berry.png"
+dest_files=["res://.godot/imported/plant-blue-berry.png-242fe3aa76f525af6c6c4915815f4d76.ctex"]
 
 [params]
 

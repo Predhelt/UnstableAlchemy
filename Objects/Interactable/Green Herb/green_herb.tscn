@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjw4k1o1djxtg"]
 
-[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://Art/UAPrototype/Ingredients/Planted/HerbBasicGreen.png" id="1_i7iob"]
+[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://Art/UAPrototype/Objects/Planted/HerbBasicGreen.png" id="1_i7iob"]
 [ext_resource type="Script" path="res://Objects/Interactable/interactable_plant.gd" id="1_n5xjd"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="2_kx41t"]
 [ext_resource type="Script" path="res://Items/Item.gd" id="3_rogtf"]
-[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://Items/Object/green_herb_leaf.tres" id="4_wxm3i"]
+[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://Items/Gatherable/green_herb_leaf.tres" id="4_wxm3i"]
 [ext_resource type="Resource" uid="uid://citx2ghs88k1o" path="res://Objects/Interactable/Green Herb/green_herb_grab.tres" id="4_y1ikm"]
 [ext_resource type="Resource" uid="uid://cttul5eubr0vn" path="res://Objects/Interactable/Green Herb/green_herb_cut.tres" id="5_ttegn"]
 

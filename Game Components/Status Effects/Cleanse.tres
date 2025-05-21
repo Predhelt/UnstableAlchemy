@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_7b1u1")
-ID = 100
+ID = 200
 name = "Cleanse"
-description = "Removes other status effects"
+description = "Removes temporary status effects"
 player_stat = ""
 other = "cleanse"
 value = 0.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c14l6r05fe0et"
-path="res://.godot/imported/HerbBasicGreen.png-0b9bc914cb95e69ac5c719baa17c5f73.ctex"
+uid="uid://b2piytxgwcmnx"
+path="res://.godot/imported/blue-berries.png-19c9d21ae1a9017c74fbcaccbf736934.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UAPrototype/Ingredients/Planted/HerbBasicGreen.png"
-dest_files=["res://.godot/imported/HerbBasicGreen.png-0b9bc914cb95e69ac5c719baa17c5f73.ctex"]
+source_file="res://Art/UAPrototype/Ingredients/Inventory/blue-berries.png"
+dest_files=["res://.godot/imported/blue-berries.png-19c9d21ae1a9017c74fbcaccbf736934.ctex"]
 
 [params]
 

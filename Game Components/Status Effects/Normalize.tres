@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=2 format=3 uid="uid://dwu8qjqo5t3tr"]
+
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_ryu0r"]
+
+[resource]
+script = ExtResource("1_ryu0r")
+ID = 201
+name = "Normalize"
+description = "Returns permanent stat changes back to normal"
+player_stat = ""
+other = "normalize"
+value = 0.0
+duration = 10.0

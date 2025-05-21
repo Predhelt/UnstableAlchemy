@@ -32,8 +32,9 @@ func _on_object_inspected() -> void:
 func _on_object_grabbed(player: Player) -> void:
 	collect_items(player, grab_interaction)
 	
+	
 	if grab_interaction.on_interact_status_effects:
-		player.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
+		player.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
 func _on_object_cut(player: Player) -> void:
 	collect_items(player, cut_interaction)
@@ -96,12 +97,17 @@ func _on_object_combined(player: Player, item: Item) -> void:
 func _mutate_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
 	
+	#var obj_sprite = obj.find_child("Sprite2D")
 	$Sprite2D.texture = obj.find_child("Sprite2D").texture
 	
 	object_name = obj.object_name
 	object_description = obj.object_description
 	items = obj.items
-	item_quantities = obj.item_quantities
+	
+	item_quantities = []
+	for item in items:
+		item_quantities.append(item.qty)
+	
 	grab_interaction = obj.grab_interaction
 	cut_interaction = obj.cut_interaction
 	combinations = obj.combinations

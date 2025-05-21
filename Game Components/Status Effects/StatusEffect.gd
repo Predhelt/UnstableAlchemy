@@ -7,4 +7,4 @@ class_name StatusEffect extends Resource
 @export var player_stat := "" ## The player's stat to be changed by the status effect
 @export var other := "" ## Other identifiers for effects that are not direct stat changes (separated with spaces)
 @export var value := 0.0 ## Amount to change the player's stat by. use negative value for stat reduction
-@export var duration := 10.0 ## Duration of status effect in seconds
+@export var duration := 10.0 ## Duration of status effect in seconds (-1 means permanent)

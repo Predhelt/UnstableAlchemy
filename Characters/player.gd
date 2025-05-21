@@ -8,6 +8,7 @@ var direction := Vector2.ZERO
 @onready var inventory_ref := %Inventory
 @onready var hotbar_ref := %Hotbar
 
+const default_scale := 0.5
 
 var active_status_effects : Array[StatusEffect]
 
@@ -19,7 +20,6 @@ var stats = {
 	"move speed" : 300.0, ## move speed modifier (100 = 1.0*ms)
 	#"strength" : 100.0, ## how much can be pushed or carried
 	#"range" : 100.0, ## same as CollisionInteract.radius of arms
-	#"size" : 100.0 # same as scale of character
 }
 
 var selected_tool : String
@@ -31,7 +31,7 @@ func _ready() -> void:
 	%StatusLabel.text = ""
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_animation_parameters()
 
 
@@ -56,7 +56,7 @@ func update_animation_parameters():
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
 	
-	#if(direction != Vector2.ZERO):
+	if(direction != Vector2.ZERO):
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Walk/blend_position"] = direction
 
@@ -118,19 +118,31 @@ func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect]
 
 func update_status_effects(statuses: Array[StatusEffect], message: String):
 	# Adds and/or updates the given status effects
+	var is_added = false
 	for se in statuses:
-		_add_status_effect(se)
-	update_status_message(message)
+		if _add_status_effect(se):
+			is_added = true
+	if is_added:
+		update_status_message(message)
 
-func _add_status_effect(se: StatusEffect) -> void:
+func _add_status_effect(se: StatusEffect) -> bool:
+	var is_added = false
 	if se.player_stat != "":
 		_change_stat(se)
+		is_added = true
 	
 	if se.other != "":
 		var other_effects = se.other.split(" ")
 		for oe in other_effects:
 			match se.other: # Checks for other effects
-				"cleanse" : _cleanse_status_effects()
+				"cleanse" : if _cleanse_status_effects():
+					is_added = true
+				"normalize" : if _normalize_status_effects():
+					is_added = true
+				"grow" : if _grow_player(se):
+					is_added = true
+	
+	return is_added
 
 func _change_stat(se : StatusEffect):
 	
@@ -157,16 +169,40 @@ func update_status_message(message: String):
 func _update_active_status_effect(delta : float) -> void:
 	for i in len(active_status_effects):
 		var se = active_status_effects[i]
-		se.duration -= delta
-		if se.duration <= 0:
-			_remove_status_effect(i, se)
+		if se.duration != -1:
+			se.duration -= delta
+			if se.duration <= 0:
+				_remove_status_effect(i, se)
 
 func _remove_status_effect(index : int, se : StatusEffect):
-	stats[se.player_stat] -= se.value
-	active_status_effects.remove_at(index)
-	%StatusEffectBar.remove_status(se)
+	if stats[se.player_stat]:
+		stats[se.player_stat] -= se.value
+		active_status_effects.remove_at(index)
+		%StatusEffectBar.remove_status(se)
+	else:
+		print("invalid stat name")
 
 ## Other status effect functions ##
-func _cleanse_status_effects():
+func _cleanse_status_effects() -> bool:
 	for i in len(active_status_effects):
-		_remove_status_effect(i, active_status_effects[i])
+		if active_status_effects[i].duration != -1:
+			_remove_status_effect(i, active_status_effects[i])
+	return true
+
+func _normalize_status_effects() -> bool:
+	for i in len(active_status_effects):
+		if active_status_effects[i].duration == -1:
+			_remove_status_effect(i, active_status_effects[i])
+	return true
+
+func _grow_player(se: StatusEffect) -> bool:
+	for cur_se in active_status_effects:
+		if cur_se.ID == se.ID:
+			return false
+	
+	scale = Vector2(se.value, se.value)
+	%InteractLabel.scale = Vector2(1/se.value, 1/se.value)
+	%StatusLabel.scale = Vector2(1/se.value, 1/se.value)
+	active_status_effects.append(se.duplicate())
+	%StatusEffectBar.generate_status(se)
+	return true

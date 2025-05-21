@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=6 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="1_esi71"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Green Herb/green_herb.tscn" id="3_guf6v"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush.tscn" id="4_25d8v"]
+[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Yellow Flowers/yellow_flowers.tscn" id="5_r0jcl"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -65,3 +66,12 @@ position = Vector2(330, 259)
 
 [node name="GreenHerb" parent="Objects" instance=ExtResource("3_guf6v")]
 position = Vector2(507, 68)
+
+[node name="YellowFlowers" parent="." instance=ExtResource("5_r0jcl")]
+position = Vector2(157, 314)
+
+[node name="YellowFlowers2" parent="." instance=ExtResource("5_r0jcl")]
+position = Vector2(284, 371)
+
+[node name="YellowFlowers3" parent="." instance=ExtResource("5_r0jcl")]
+position = Vector2(440, 297)
