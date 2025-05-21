@@ -2,8 +2,12 @@ class_name Player extends CharacterBody2D
 
 @export var camera_path := "" ## Path from Player Node to the Camera
 
+@onready var animation_tree := $AnimationTree
+var direction := Vector2.ZERO
+
 @onready var inventory_ref := %Inventory
 @onready var hotbar_ref := %Hotbar
+
 
 var active_status_effects : Array[StatusEffect]
 
@@ -27,8 +31,12 @@ func _ready() -> void:
 	%StatusLabel.text = ""
 
 
+func _process(delta: float) -> void:
+	update_animation_parameters()
+
+
 func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * stats["move speed"] * scale
 	move_and_slide()
 	
@@ -38,7 +46,21 @@ func _physics_process(delta: float) -> void:
 		status_message_timer -= delta
 		if status_message_timer <= 0:
 			%StatusLabel.text = ""
+
+
+func update_animation_parameters():
+	if(velocity == Vector2.ZERO):
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+	else:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
 	
+	#if(direction != Vector2.ZERO):
+		animation_tree["parameters/Idle/blend_position"] = direction
+		animation_tree["parameters/Walk/blend_position"] = direction
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		execute_interaction()
