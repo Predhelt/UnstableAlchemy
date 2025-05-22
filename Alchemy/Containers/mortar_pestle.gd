@@ -1,10 +1,15 @@
 extends Control
 
+signal item_produced(recipe: Recipe) ## Signal sent when the item is completed brewing and added to the inventory
+
 var inventory_ref ## Reference to the connected inventory for putting completed brews
 
 const MAX_ITEMS := 3 ## Max number of items that can be stored in the cauldron
 var items : Array[Item] ## List of items in the cauldron
 var num_items := 0 ## Number of items currently in the cauldron
+
+var failed_craft := preload("res://Items/Products/failed_potion_red.tres")
+var cur_recipe : Recipe
 
 @onready var buttons := [$TextureRect/ItemGrid/Button1,
 $TextureRect/ItemGrid/Button2,
@@ -17,7 +22,7 @@ var product : Item ## The item produced by the craft
 var is_using := false ## State of whether a craft is currently active
 var use_timer := 0.0 ## Time left in current craft
 
-@export var recipes : Array[MortarPestleRecipe]
+@export var recipes : Array[MortarPestleRecipe] #TODO: Use one uniform data type for all recipes or be able to convert recipe types
 var mp_recipes = {} ## Recipes for each item that can be produced in the mortar & pestle
 
 
@@ -44,6 +49,14 @@ func _process(delta: float) -> void:
 		else:
 			print(str(product.qty) + " of item " + product.display_name + " added to inventory from successful M&P")
 			inventory_ref.add_inventory_item(product)
+			
+			#TODO: CREATE RECIPE TO SEND TO THE RECIPE LIST (COPY FOR CAULDRON)
+			var recipe := Recipe.new()
+			recipe.product_item = product
+			recipe.ingredients
+			recipe.tool_used = "m&p"
+			item_produced.emit(recipe)
+			
 			progress_bar.visible = false
 			is_using = false
 
@@ -77,15 +90,15 @@ func _on_button_confirm_pressed() -> void:
 
 func use_item():
 	# Find first item in queue to start using in the mortar and pestle
-	var use_ID := -1
+	var use_item : Item
 	for i in MAX_ITEMS:
 		if items[i]:
-			use_ID = items[i].ID
+			use_item = items[i]
 			remove_item(i)
 			break
 	
-	var item_results = [load("res://Items/Products/failed_potion_red.tres"), 1, 2] #ID for failed brew is 999
-	if use_ID in mp_recipes:
+	var item_results = [failed_craft, 1, 2] #ID for failed craft is 999
+	if use_item in mp_recipes:
 		item_results = mp_recipes[use_ID]
 	
 	product = item_results[0]

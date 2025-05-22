@@ -18,3 +18,7 @@ func toggle_activity() -> void:
 
 func close_activity() -> void:
 	visible = false
+
+
+func _on_item_produced(recipe: Recipe) -> void:
+	%RecipeList.add_recipe(recipe)

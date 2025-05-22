@@ -1,10 +1,14 @@
 extends Control
 
+signal item_produced(item : Item) ## Signal sent when the item is completed brewing and added to the inventory
+
 var inventory_ref ## Reference to the connected inventory for putting completed brews
 
 const MAX_ITEMS := 3 ## Max number of items that can be stored in the cauldron
 var items : Array[Item] ## List of items in the cauldron
 var num_items := 0 ## Number of items currently in the cauldron
+
+var failed_craft := preload("res://Items/Products/failed_potion_red.tres")
 
 @onready var buttons := [$TextureRect/ItemGrid/Button1,
 $TextureRect/ItemGrid/Button2,
@@ -33,7 +37,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if global.is_dragging:
-		scale = Vector2(1.1, 1.1) #TODO: Set icon to "open" icon when hovered over while dragging
+		scale = Vector2(1.1, 1.1)
 	else:
 		scale = Vector2(1, 1)
 	
@@ -41,9 +45,10 @@ func _process(delta: float) -> void:
 		if brew_timer > 0:
 			brew_timer -= delta
 			progress_bar.value += delta
-		else:
+		else: # Brew complete
 			print(str(product.qty) + " of item " + product.display_name + " added to inventory from brew")
 			inventory_ref.add_inventory_item(product)
+			item_produced.emit(product)
 			progress_bar.visible = false
 			is_brewing = false
 
@@ -84,7 +89,7 @@ func brew_items():
 			
 	brew_IDs.sort()
 	
-	var item_results = [load("res://Items/Products/failed_potion_red.tres"), 1, 2] #ID for failed brew is 999
+	var item_results = [failed_craft, 1, 2] #ID for failed brew is 999
 	if brew_IDs in cauldron_recipes:
 		item_results = cauldron_recipes[brew_IDs]
 	
