@@ -6,7 +6,6 @@ signal set_dropper_item()
 var selected_tool := ""
 
 var dropper_icon_full := preload("res://Art/UAPrototype/Tools/dropper-full.png")
-var dropper_icon_empty := preload("res://Art/UAPrototype/Tools/dropper.png")
 var dropper_item : Item:
 	set(item):
 		dropper_item = item
@@ -54,6 +53,7 @@ func _on_slot_3_toggled(toggled_on: bool) -> void:
 	else:
 		dropper_item = null
 		$CurrentTool/AddItemButton.visible = false
+		$CurrentTool/ItemLabel.text = ""
 
 
 func _on_current_tool_pressed() -> void:

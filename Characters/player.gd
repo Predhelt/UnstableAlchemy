@@ -47,8 +47,7 @@ func _physics_process(delta: float) -> void:
 		if status_message_timer <= 0:
 			%StatusLabel.text = ""
 
-
-func update_animation_parameters():
+func update_animation_parameters() -> void:
 	if(velocity == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false
@@ -201,8 +200,7 @@ func _grow_player(se: StatusEffect) -> bool:
 			return false
 	
 	scale = Vector2(se.value, se.value)
-	%InteractLabel.scale = Vector2(1/se.value, 1/se.value)
-	%StatusLabel.scale = Vector2(1/se.value, 1/se.value)
+
 	active_status_effects.append(se.duplicate())
 	%StatusEffectBar.generate_status(se)
 	return true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://blf5roktgwlk0"]
 
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="4_fqwm2"]
+[ext_resource type="PackedScene" uid="uid://ckm6ryyxqhadh" path="res://Characters/player_group.tscn" id="1_xtbpd"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush.tscn" id="4_g256m"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="5_h3ev3"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Green Herb/green_herb.tscn" id="6_f4p00"]
@@ -10,23 +10,8 @@
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("4_fqwm2")]
-position = Vector2(167, 147)
-scale = Vector2(1, 1)
-camera_path = "Camera2D"
-
-[node name="RemoteTransformCamera2" type="RemoteTransform2D" parent="Player"]
-position = Vector2(0, -50)
-remote_path = NodePath("../../Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(167, 97)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.5
-drag_top_margin = 0.5
-drag_right_margin = 0.5
-drag_bottom_margin = 0.5
+[node name="PlayerGroup" parent="." instance=ExtResource("1_xtbpd")]
+position = Vector2(170, 33)
 
 [node name="TileMaps" type="Node2D" parent="."]
 visible = false
