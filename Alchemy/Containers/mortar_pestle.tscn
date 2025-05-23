@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://y1067fe07wmf"]
+[gd_scene load_steps=8 format=3 uid="uid://y1067fe07wmf"]
 
 [ext_resource type="Script" path="res://Alchemy/Containers/mortar_pestle.gd" id="1_a40nq"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="2_0nnx4"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="2_m0hp4"]
-[ext_resource type="Script" path="res://Alchemy/Recipes/MP/MortarPestleRecipe.gd" id="2_m350s"]
-[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/MP/green_herb_grounds.tres" id="3_nvpfl"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_grounds.tres" id="3_nvpfl"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="4_88qmb"]
 
 [sub_resource type="GDScript" id="GDScript_ailbx"]
@@ -21,7 +20,7 @@ size = Vector2(126, 124)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_a40nq")
-recipes = Array[ExtResource("2_m350s")]([ExtResource("3_nvpfl")])
+recipes = [ExtResource("3_nvpfl")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

@@ -22,8 +22,7 @@ var product : Item ## The item produced by the craft
 var is_using := false ## State of whether a craft is currently active
 var use_timer := 0.0 ## Time left in current craft
 
-@export var recipes : Array[MortarPestleRecipe] #TODO: Use one uniform data type for all recipes or be able to convert recipe types
-var mp_recipes = {} ## Recipes for each item that can be produced in the mortar & pestle
+@export var recipes : Array[Recipe]
 
 
 func _init() -> void:
@@ -31,10 +30,6 @@ func _init() -> void:
 		buttons.append(null)
 		items.append(null)
 
-func _ready() -> void:
-	for recipe in recipes:
-		mp_recipes[recipe.ingredient_id] = [recipe.result_item, 
-			recipe.result_item_amount, recipe.result_craft_time]
 
 func _process(delta: float) -> void:
 	if global.is_dragging:
@@ -90,21 +85,21 @@ func _on_button_confirm_pressed() -> void:
 
 func use_item():
 	# Find first item in queue to start using in the mortar and pestle
-	var use_item : Item
+	var item : Item
 	for i in MAX_ITEMS:
 		if items[i]:
-			use_item = items[i]
+			item = items[i]
 			remove_item(i)
 			break
 	
 	var item_results = [failed_craft, 1, 2] #ID for failed craft is 999
-	if use_item in mp_recipes:
-		item_results = mp_recipes[use_ID]
+	for recipe in recipes:
+		if recipe.ingredients[0].ID == item.ID:
+			item_results = [recipe.product_item, recipe.product_item_amount, recipe.product_craft_time]
 	
-	product = item_results[0]
-	if not product:
+	if not item_results[0]:
 		return
-	product = product.duplicate()
+	product = item_results[0].duplicate()
 	product.qty = item_results[1]
 	use_timer = item_results[2]
 	

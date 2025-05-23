@@ -21,8 +21,7 @@ var product : Item ## The item produced by the brew
 var is_brewing := false ## State of whether a brew is currently active
 var brew_timer := 0.0 ## Time left in current brew
 
-@export var recipes : Array[CauldronRecipe]
-var cauldron_recipes = {} ## Recipes for each item that can be produced in the cauldron
+@export var recipes : Array[Recipe]
 
 
 func _init() -> void:
@@ -30,10 +29,6 @@ func _init() -> void:
 		buttons.append(null)
 		items.append(null)
 
-func _ready() -> void:
-	for recipe in recipes:
-		cauldron_recipes[recipe.ingredient_ids] = [recipe.result_item, 
-			recipe.result_item_amount, recipe.result_craft_time]
 
 func _process(delta: float) -> void:
 	if global.is_dragging:
@@ -90,13 +85,18 @@ func brew_items():
 	brew_IDs.sort()
 	
 	var item_results = [failed_craft, 1, 2] #ID for failed brew is 999
-	if brew_IDs in cauldron_recipes:
-		item_results = cauldron_recipes[brew_IDs]
 	
-	product = item_results[0]
-	if not product:
+	for recipe in recipes: # Find matching ingredients list in recipes
+		var ingredient_IDs := []
+		for ingredient in recipe.ingredients:
+			ingredient_IDs.append(ingredient.ID)
+		ingredient_IDs.sort()
+		if ingredient_IDs == brew_IDs:
+			item_results = [recipe.product_item, recipe.product_item_amount, recipe.product_craft_time]
+	
+	if not item_results[0]:
 		return
-	product = product.duplicate()
+	product = item_results[0].duplicate()
 	product.qty = item_results[1]
 	brew_timer = item_results[2]
 	

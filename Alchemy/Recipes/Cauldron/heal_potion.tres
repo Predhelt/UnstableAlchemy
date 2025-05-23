@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="CauldronRecipe" load_steps=3 format=3 uid="uid://m1lfwias51m"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://m1lfwias51m"]
 
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_ausnl"]
 [ext_resource type="Resource" uid="uid://brbos0v1h8lgy" path="res://Items/Products/Potions/healing_potion.tres" id="1_jtb8j"]
-[ext_resource type="Script" path="res://Alchemy/Recipes/Cauldron/CauldronRecipe.gd" id="2_08dby"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="2_urtv5"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Grounds/green_herb_leaf_ground.tres" id="3_pt7pu"]
+[ext_resource type="Script" path="res://Game Components/Recipe.gd" id="5_gh3hi"]
 
 [resource]
-script = ExtResource("2_08dby")
-ingredient_ids = Array[int]([100, 1, 1])
-result_item = ExtResource("1_jtb8j")
-result_item_amount = 2
-result_craft_time = 6.0
+script = ExtResource("5_gh3hi")
+product_item = ExtResource("1_jtb8j")
+ingredients = Array[ExtResource("1_ausnl")]([ExtResource("2_urtv5"), ExtResource("2_urtv5"), ExtResource("3_pt7pu")])
+tool_used = "cauldron"
+product_item_amount = 3
+product_craft_time = 6.0

@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="CauldronRecipe" load_steps=3 format=3 uid="uid://dynh2mra6j665"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=5 format=3 uid="uid://dynh2mra6j665"]
 
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_45bvj"]
 [ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://Items/Products/Potions/speed_potion.tres" id="1_y7a4k"]
-[ext_resource type="Script" path="res://Alchemy/Recipes/Cauldron/CauldronRecipe.gd" id="2_hpbw8"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Grounds/green_herb_leaf_ground.tres" id="2_nvotf"]
+[ext_resource type="Script" path="res://Game Components/Recipe.gd" id="4_njoe0"]
 
 [resource]
-script = ExtResource("2_hpbw8")
-ingredient_ids = Array[int]([100])
-result_item = ExtResource("1_y7a4k")
-result_item_amount = 3
-result_craft_time = 2.0
+script = ExtResource("4_njoe0")
+product_item = ExtResource("1_y7a4k")
+ingredients = Array[ExtResource("1_45bvj")]([ExtResource("2_nvotf")])
+tool_used = "cauldron"
+product_item_amount = 3
+product_craft_time = 2.0
