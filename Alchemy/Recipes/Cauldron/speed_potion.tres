@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://Items/Item.gd" id="1_45bvj"]
 [ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://Items/Products/Potions/speed_potion.tres" id="1_y7a4k"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Grounds/green_herb_leaf_ground.tres" id="2_nvotf"]
-[ext_resource type="Script" path="res://Game Components/Recipe.gd" id="4_njoe0"]
+[ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="4_d21tx"]
 
 [resource]
-script = ExtResource("4_njoe0")
+script = ExtResource("4_d21tx")
+id = 500
 product_item = ExtResource("1_y7a4k")
 ingredients = Array[ExtResource("1_45bvj")]([ExtResource("2_nvotf")])
 tool_used = "cauldron"
-product_item_amount = 3
+product_item_amount = 2
 product_craft_time = 2.0

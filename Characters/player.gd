@@ -17,7 +17,7 @@ var status_message_timer := 0.0
 
 var stats = {
 	#"health" : 100.0, ## health value
-	"move speed" : 300.0, ## move speed modifier (100 = 1.0*ms)
+	"move speed" : 200.0, ## move speed modifier (100 = 1.0*ms)
 	#"strength" : 100.0, ## how much can be pushed or carried
 	#"range" : 100.0, ## same as CollisionInteract.radius of arms
 }
@@ -125,63 +125,75 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 		update_status_message(message)
 
 func _add_status_effect(se: StatusEffect) -> bool:
-	var is_added = false
-	if se.player_stat != "":
-		_change_stat(se)
-		is_added = true
-	
-	if se.other != "":
-		var other_effects = se.other.split(" ")
-		for oe in other_effects:
-			match se.other: # Checks for other effects
-				"cleanse" : if _cleanse_status_effects():
-					is_added = true
-				"normalize" : if _normalize_status_effects():
-					is_added = true
-				"grow" : if _grow_player(se):
-					is_added = true
-	
-	return is_added
+	match se.effect:
+		"change_ms" : if _change_stat(se, "move speed"):
+			return true
+		"cleanse" : if _cleanse_status_effects():
+			return true
+		"normalize" : if _normalize_status_effects():
+			return true
+		"grow" : 
+			for cur_se in active_status_effects:
+				if cur_se.ID == se.ID:
+					return false
+			
+			if _grow_player(se):
+				return true
+	return false
 
-func _change_stat(se : StatusEffect):
-	
-	for i in len(active_status_effects):
-		var old_se = active_status_effects[i]
-		if old_se.ID == se.ID:
-			# Reset the active status effect (New effect overwrites the old effect)
-			stats[old_se.player_stat] -= old_se.value
-			stats[se.player_stat] += se.value
-			active_status_effects.remove_at(i)
-			active_status_effects.append(se.duplicate())
-			%StatusEffectBar.geterate_status(se)
-			return
-	
-	stats[se.player_stat] += se.value
-	
-	active_status_effects.append(se.duplicate())
-	%StatusEffectBar.generate_status(se)
 
 func update_status_message(message: String):
 	%StatusLabel.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
 
 func _update_active_status_effect(delta : float) -> void:
-	for i in len(active_status_effects):
+	for i in range(len(active_status_effects)-1, -1, -1):
 		var se = active_status_effects[i]
 		if se.duration != -1:
 			se.duration -= delta
 			if se.duration <= 0:
 				_remove_status_effect(i, se)
+					
 
-func _remove_status_effect(index : int, se : StatusEffect):
-	if stats[se.player_stat]:
-		stats[se.player_stat] -= se.value
+func _remove_status_effect(index : int, se : StatusEffect) -> bool:
+	var is_removed := false
+	match se.effect:
+		"change_ms" : if _remove_base_stat(se):
+			is_removed = true
+		"grow" :
+			var opposite_effect := se.duplicate()
+			opposite_effect.value = 1/se.value
+			if _grow_player(opposite_effect):
+				is_removed = true
+	
+	if is_removed:
 		active_status_effects.remove_at(index)
 		%StatusEffectBar.remove_status(se)
-	else:
-		print("invalid stat name")
+	return is_removed
 
-## Other status effect functions ##
+## Status effect functions ##
+func _change_base_stat(se: StatusEffect, stat_name : String) -> bool:
+	for i in len(active_status_effects):
+		var old_se = active_status_effects[i]
+		if old_se.ID == se.ID:
+			# Reset the active status effect (New effect overwrites the old effect)
+			stats[stat_name] -= old_se.value
+			stats[stat_name] += se.value
+			active_status_effects.remove_at(i)
+			active_status_effects.append(se.duplicate())
+			%StatusEffectBar.generate_status(se)
+			return true
+	
+	stats[stat_name] += se.value
+	
+	active_status_effects.append(se.duplicate())
+	%StatusEffectBar.generate_status(se)
+	return true
+
+func _remove_base_stat(se) -> bool:
+	#TODO
+	return false
+
 func _cleanse_status_effects() -> bool:
 	for i in len(active_status_effects):
 		if active_status_effects[i].duration != -1:
@@ -195,11 +207,7 @@ func _normalize_status_effects() -> bool:
 	return true
 
 func _grow_player(se: StatusEffect) -> bool:
-	for cur_se in active_status_effects:
-		if cur_se.ID == se.ID:
-			return false
-	
-	scale = Vector2(se.value, se.value)
+	scale *= Vector2(se.value, se.value)
 
 	active_status_effects.append(se.duplicate())
 	%StatusEffectBar.generate_status(se)

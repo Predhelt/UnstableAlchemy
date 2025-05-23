@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc5d3ocd8w0fu"]
+[gd_scene load_steps=5 format=3 uid="uid://dc5d3ocd8w0fu"]
 
-[ext_resource type="Texture2D" uid="uid://cyottad4fs3dy" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-green.png" id="1_6hnor"]
 [ext_resource type="Script" path="res://UI/Recipe List/recipe_list.gd" id="2_2htw0"]
+[ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="2_8kwsn"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="3_2hrkg"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_grounds.tres" id="3_wqwx2"]
 
 [node name="RecipeList" type="Control"]
 layout_mode = 3
@@ -12,68 +13,110 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_2htw0")
+known_recipes = Array[ExtResource("2_8kwsn")]([ExtResource("3_wqwx2")])
 
-[node name="RecipeItems" type="ItemList" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.4
+anchor_right = 0.6
+anchor_bottom = 0.6
+offset_left = -378.5
+offset_top = -198.0
+offset_right = 378.5
+offset_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+
+[node name="WindowName" type="Label" parent="Panel/Panel"]
 unique_name_in_owner = true
-visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Window Name"
+vertical_alignment = 1
+
+[node name="Container" type="Control" parent="Panel"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 42.0
+
+[node name="RecipeItems" type="ItemList" parent="Panel/Container"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-item_count = 1
 max_columns = 3
 same_column_width = true
 fixed_icon_size = Vector2i(64, 64)
-item_0/text = "Speed Potion"
-item_0/icon = ExtResource("1_6hnor")
 
-[node name="ProductDetails" type="VBoxContainer" parent="."]
+[node name="ProductDetails" type="VBoxContainer" parent="Panel/Container"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+visible = false
+layout_mode = 2
+offset_top = 4.0
+offset_right = 900.0
+offset_bottom = 434.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ProductDetails"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Container/ProductDetails"]
 layout_mode = 2
 
-[node name="ProductIcon" type="TextureRect" parent="ProductDetails/HBoxContainer"]
+[node name="ProductIcon" type="TextureRect" parent="Panel/Container/ProductDetails/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_2hrkg")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ProductDetails/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Container/ProductDetails/HBoxContainer"]
 layout_mode = 2
 
-[node name="ProductName" type="Label" parent="ProductDetails/HBoxContainer/VBoxContainer"]
+[node name="ProductName" type="Label" parent="Panel/Container/ProductDetails/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "Product Name"
 
-[node name="ProductDescription" type="Label" parent="ProductDetails"]
+[node name="ProductDescription" type="Label" parent="Panel/Container/ProductDetails"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(900, 280)
+custom_minimum_size = Vector2(900, 200)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Product Description. This is text that should be replaced once it is implemented. This text is to show what a long description would look like. Very long descriptions should not cause any issues."
 autowrap_mode = 3
 text_overrun_behavior = 3
 
-[node name="Label" type="Label" parent="ProductDetails"]
+[node name="Label" type="Label" parent="Panel/Container/ProductDetails"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Recipes"
 
-[node name="ProcedureList" type="GridContainer" parent="ProductDetails"]
+[node name="ProcedureList" type="GridContainer" parent="Panel/Container/ProductDetails"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 2
 
-[connection signal="item_clicked" from="RecipeItems" to="." method="_on_recipe_items_item_clicked"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="item_clicked" from="Panel/Container/RecipeItems" to="." method="_on_recipe_items_item_clicked"]

@@ -3,22 +3,22 @@ extends Control
 var status_icon_scene = preload("res://UI/StatusEffect/status_icon.tscn")
 @onready var container := $HBoxContainer
 
-func generate_status(effect : StatusEffect):
+func generate_status(se : StatusEffect):
 	
 	for textureRect in container.get_children():
-		var se = textureRect.effect
-		if se.ID == effect.ID:
-			se.effect = effect # Resets the timer and icon
+		var tex_se = textureRect.effect
+		if tex_se.ID == se.ID:
+			tex_se.effect = se.effect # Resets the timer and icon
 			return
 	
 	var new_status = status_icon_scene.instantiate()
-	new_status.name = str(effect.ID)
-	new_status.effect = effect
+	new_status.name = str(se.ID)
+	new_status.effect = se
 	container.add_child(new_status)
 
-func remove_status(effect : StatusEffect):
+func remove_status(se : StatusEffect):
 	for si in container.get_children():
-		if si.name == str(effect.ID):
+		if si.name == str(se.ID):
 			si.queue_free()
 			return
-	print("No effect with ID " + str(effect.ID))
+	print("No effect with ID " + str(se.ID))

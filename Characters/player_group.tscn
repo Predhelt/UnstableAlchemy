@@ -6,7 +6,7 @@
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_xpjpn")]
-scale = Vector2(0.7, 0.7)
+camera_path = null
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
@@ -17,7 +17,6 @@ update_rotation = false
 update_scale = false
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-scale = Vector2(0.7, 0.7)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.5

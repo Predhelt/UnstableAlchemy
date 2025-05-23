@@ -34,28 +34,28 @@ tile_set = ExtResource("2_8gh32")
 y_sort_enabled = true
 
 [node name="Green_herb" parent="Objects" instance=ExtResource("3_guf6v")]
-position = Vector2(51, 65)
+position = Vector2(-198, -117)
 
 [node name="Green_herb2" parent="Objects" instance=ExtResource("3_guf6v")]
-position = Vector2(86, 246)
+position = Vector2(-163, 64)
 
 [node name="RedBerryBush" parent="Objects" instance=ExtResource("4_25d8v")]
-position = Vector2(350, 88)
+position = Vector2(101, -94)
 
 [node name="RedBerryBush2" parent="Objects" instance=ExtResource("4_25d8v")]
-position = Vector2(438, 186)
+position = Vector2(189, 4.00002)
 
 [node name="RedBerryBush3" parent="Objects" instance=ExtResource("4_25d8v")]
-position = Vector2(330, 259)
+position = Vector2(81, 77)
 
 [node name="GreenHerb" parent="Objects" instance=ExtResource("3_guf6v")]
-position = Vector2(507, 68)
+position = Vector2(258, -114)
 
 [node name="YellowFlowers" parent="Objects" instance=ExtResource("5_r0jcl")]
-position = Vector2(157, 314)
+position = Vector2(-92, 132)
 
 [node name="YellowFlowers2" parent="Objects" instance=ExtResource("5_r0jcl")]
-position = Vector2(284, 371)
+position = Vector2(35, 189)
 
 [node name="YellowFlowers3" parent="Objects" instance=ExtResource("5_r0jcl")]
-position = Vector2(440, 297)
+position = Vector2(191, 115)

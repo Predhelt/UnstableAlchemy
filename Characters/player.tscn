@@ -168,15 +168,15 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_6e64a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
-radius = 56.0
+radius = 46.0109
 
 [node name="Player" type="CharacterBody2D"]
 platform_floor_layers = 4294967292
 script = ExtResource("1_juhlw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -48)
-scale = Vector2(0.8, 0.8)
+position = Vector2(1, -36)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_23e54")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

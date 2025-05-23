@@ -32,6 +32,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+tool_name = "cauldron"
 
 [node name="MortarPestle" parent="Panel" instance=ExtResource("3_g5xox")]
 unique_name_in_owner = true
@@ -42,3 +43,7 @@ anchor_top = 0.2
 anchor_right = 0.5
 anchor_bottom = 0.2
 grow_horizontal = 2
+tool_name = "m&p"
+
+[connection signal="item_produced" from="Panel/Cauldron" to="." method="_on_item_produced"]
+[connection signal="item_produced" from="Panel/MortarPestle" to="." method="_on_item_produced"]

@@ -1,23 +1,22 @@
 [gd_scene load_steps=3 format=3 uid="uid://cl5hwf03hewkf"]
 
-[ext_resource type="Texture2D" uid="uid://dd5cw46t72adw" path="res://Art/UAPrototype/UI/Status Effects/status_effect-energized.png" id="1_3xvcb"]
+[ext_resource type="Texture2D" uid="uid://bqxrtqfulunhn" path="res://icon.svg" id="1_1o0oa"]
 [ext_resource type="Script" path="res://UI/StatusEffect/status_icon.gd" id="2_tubet"]
 
 [node name="StatusIcon" type="TextureRect"]
-texture = ExtResource("1_3xvcb")
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_1o0oa")
+expand_mode = 3
+stretch_mode = 5
 script = ExtResource("2_tubet")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -50.0
-offset_right = 25.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 step = 0.001
 show_percentage = false

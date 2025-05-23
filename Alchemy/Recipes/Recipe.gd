@@ -1,5 +1,6 @@
 class_name Recipe extends Resource
 
+@export var id : int
 @export var product_item : Item
 @export var ingredients : Array[Item]
 @export var tool_used := ""
