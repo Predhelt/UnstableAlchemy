@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_n5khf")
-ID = 0
+id = 0
 name = "Energized"
 description = "Increases movement speed"
 icon = ExtResource("2_d3iqx")
 effect = "change_ms"
-value = 200.0
+value = 100.0
 duration = 10.0

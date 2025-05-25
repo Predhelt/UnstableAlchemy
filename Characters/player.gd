@@ -133,7 +133,6 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
 		"change_ms" : if _change_base_stat(se, "move speed"):
-			update_status_bar(se, )
 			return true
 		"cleanse" : if _cleanse_status_effects():
 			return true
@@ -159,47 +158,46 @@ func _update_active_status_effect(delta : float) -> void:
 		if se.duration != -1:
 			se.duration -= delta
 			if se.duration <= 0:
-				_remove_status_effect(i, se)
+				if remove_status_effect(se):
+					update_status_bar(se, i, true)
+				
 					
 
-func _remove_status_effect(index : int, se : StatusEffect) -> bool:
+func remove_status_effect(se : StatusEffect) -> bool:
 	var is_removed := false
 	match se.effect:
 		"change_ms" : if _change_base_stat(se, "move speed", true):
 			is_removed = true
-		"grow" :
-			var opposite_effect := se.duplicate()
-			opposite_effect.value = 1/se.value
-			if _grow_player(opposite_effect):
-				is_removed = true
-	
-	if is_removed:
-		update_status_bar(se, index, true)
-	
+		"grow" : if _grow_player(se, true):
+			is_removed = true
 	return is_removed
 
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false):
+	
+	if index > -1:
+		active_status_effects.remove_at(index)
+		%StatusEffectBar.remove_status(se)
+	
 	if is_removing_status:
-		if index > -1:
-			active_status_effects.remove_at(index)
-			%StatusEffectBar.remove_status(se)
 		return
 	
 	active_status_effects.append(se.duplicate())
 	%StatusEffectBar.generate_status(se)
-			
+
 
 ## Status effect functions ##
 func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
 		var old_se = active_status_effects[i]
 		if old_se.id == se.id:
-			if is_removing_status:
-				stats[stat_name] -= active_status_effects[i].value
-				update_status_bar(se, i, true)
-				return true
+				
 			# Reset the active status effect (New effect overwrites the old effect)
 			stats[stat_name] -= old_se.value
+			
+			if is_removing_status:
+				update_status_bar(se, i, true)
+				return true
+			
 			stats[stat_name] += se.value
 			active_status_effects.remove_at(i)
 			update_status_bar(se, i)
@@ -207,23 +205,30 @@ func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status 
 	
 	stats[stat_name] += se.value
 	
-	update_status_bar(se, is_removing_status)
+	update_status_bar(se)
 	return true
 
 func _cleanse_status_effects() -> bool:
 	for i in len(active_status_effects):
 		if active_status_effects[i].duration != -1:
-			_remove_status_effect(i, active_status_effects[i])
+			if remove_status_effect(active_status_effects[i]):
+				update_status_bar(active_status_effects[i], i, true)
+			
 	return true
 
 func _normalize_status_effects() -> bool:
 	for i in len(active_status_effects):
 		if active_status_effects[i].duration == -1:
-			_remove_status_effect(i, active_status_effects[i])
+			if remove_status_effect(active_status_effects[i]):
+				update_status_bar(active_status_effects[i], i, true)
+			
 	return true
 
 func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
-	scale *= Vector2(se.value, se.value)
+	if is_removing_status:
+		scale *= Vector2(1.0/se.value, 1.0/se.value)
+	else:
+		scale *= Vector2(se.value, se.value)
 	
 	reset_label_height()
 	update_status_bar(se, is_removing_status)
