@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://uq3raot8fskq"]
+[gd_scene load_steps=7 format=3 uid="uid://uq3raot8fskq"]
 
 [ext_resource type="Script" path="res://Objects/Interactable/interactable_plant.gd" id="1_rrjub"]
 [ext_resource type="Script" path="res://Items/Item.gd" id="2_e81vk"]
 [ext_resource type="Resource" uid="uid://cmisle6abqkow" path="res://Items/Gatherable/yellow_petals.tres" id="3_alqt8"]
 [ext_resource type="Resource" uid="uid://brxngrgnax25o" path="res://Objects/Interactable/Yellow Flowers/yellow_flowers_grab.tres" id="4_gu6bl"]
-[ext_resource type="PackedScene" uid="uid://oqf4e3pk8s45" path="res://Effects/object_interacted_effect.tscn" id="4_y4sp2"]
-[ext_resource type="PackedScene" uid="uid://bmn6qh6ni2xey" path="res://Effects/items_gained_effect.tscn" id="5_rrq0t"]
 [ext_resource type="Texture2D" uid="uid://b6puigkphrifg" path="res://Art/UAPrototype/Objects/Planted/yellow-flowers.png" id="6_gca1m"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="8_8mo8m"]
 
@@ -15,8 +13,6 @@ script = ExtResource("1_rrjub")
 object_name = "Yellow Flowers"
 object_description = "Flowers with yellow petals"
 items = Array[ExtResource("2_e81vk")]([ExtResource("3_alqt8")])
-interact_effect = ExtResource("4_y4sp2")
-item_gained_effect = ExtResource("5_rrq0t")
 grab_interaction = ExtResource("4_gu6bl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

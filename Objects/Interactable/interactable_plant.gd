@@ -5,8 +5,8 @@ extends Node2D
 @export var items : Array[Item] ## The items that the object contains and their initial quantities
 var item_quantities : Array[int] ## The current quantities of items in the object
 
-@export var interact_effect : PackedScene ## Temporary effect to show during interaction
-@export var item_gained_effect : PackedScene ## Show the amount of items gained when added to inventory
+@export var interact_effect : PackedScene = preload("res://Effects/object_interacted_effect.tscn") ## Temporary effect to show during interaction
+@export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect.tscn") ## Show the amount of items gained when added to inventory
 
 @export var grab_interaction : InteractionType
 @export var cut_interaction : InteractionType
@@ -56,8 +56,6 @@ func collect_items(player: Player, interaction: InteractionType) -> void:
 		print("No items to get!")
 		return
 		
-	var interaction_item_names := []
-	var interaction_item_counts := []
 	var item_gained_effect_instance : Control = item_gained_effect.instantiate()
 	
 	for i in len(interaction.on_interact_items): # Getting each interactable item
@@ -69,16 +67,15 @@ func collect_items(player: Player, interaction: InteractionType) -> void:
 				continue # If not the right item or item is empty
 			
 			var interaction_item := items[j].duplicate()
-			if item_quantities[j] <= interact_qty: # If the amount in object is <= the amount to interact
+			if item_quantities[j] < interact_qty: # The amount to collect is greater than the amount in object
 				interaction_item.qty = item_quantities[j]
+				interact_qty = item_quantities[j]
 				item_quantities[j] = 0
 			else:
 				interaction_item.qty = interact_qty
 				item_quantities[j] -= interact_qty
 			
 			
-			interaction_item_names.append(interaction_item.display_name)
-			interaction_item_counts.append(interact_qty)
 			if player.inventory_ref.add_inventory_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
 				item_gained_effect_instance.item_gained(interaction_item, interact_qty - interaction_item.qty)
 			

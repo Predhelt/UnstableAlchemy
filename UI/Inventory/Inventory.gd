@@ -62,7 +62,7 @@ func add_inventory_item(item : Item) -> bool:
 # Adds item to a stack or multiple stacks in inventory
 func add_stackable_item(item : Item) -> bool:
 	if item.max_qty < 2:
-		return false
+		return false # not stackable
 	
 	var could_pickup : bool = false
 	
@@ -77,10 +77,10 @@ func add_stackable_item(item : Item) -> bool:
 		if items[i].qty + item.qty > items[i].max_qty: # Only add until stack is full
 			var amount_to_remove : int = items[i].max_qty - items[i].qty
 			
-			items[i].qty =items[i].max_qty
+			items[i].qty = items[i].max_qty
 			item.qty -= amount_to_remove
 			
-			could_pickup = true
+			#could_pickup = true
 			%ItemList.set_item_text(i, generate_item_text(items[i]))
 			return true
 		

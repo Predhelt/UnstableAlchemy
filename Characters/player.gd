@@ -174,12 +174,11 @@ func remove_status_effect(se : StatusEffect) -> bool:
 
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false):
 	
-	if index > -1:
-		active_status_effects.remove_at(index)
-		%StatusEffectBar.remove_status(se)
-	
-	if is_removing_status:
-		return
+	if index != -1:
+		if is_removing_status:
+			active_status_effects.remove_at(index)
+			%StatusEffectBar.remove_status(se)
+			return
 	
 	active_status_effects.append(se.duplicate())
 	%StatusEffectBar.generate_status(se)
