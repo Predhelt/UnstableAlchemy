@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_2uvlx")
-ID = 1
+id = 1
 name = "Slow"
 description = "Decreases movement speed"
 effect = "change_ms"

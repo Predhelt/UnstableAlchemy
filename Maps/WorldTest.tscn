@@ -10,6 +10,7 @@
 y_sort_enabled = true
 
 [node name="PlayerGroup" parent="." instance=ExtResource("5_6yubo")]
+position = Vector2(484, 288)
 
 [node name="TileMaps" type="Node2D" parent="."]
 visible = false
@@ -34,28 +35,28 @@ tile_set = ExtResource("2_8gh32")
 y_sort_enabled = true
 
 [node name="Green_herb" parent="Objects" instance=ExtResource("3_guf6v")]
-position = Vector2(-198, -117)
+position = Vector2(282, 162)
 
 [node name="Green_herb2" parent="Objects" instance=ExtResource("3_guf6v")]
-position = Vector2(-163, 64)
+position = Vector2(317, 343)
 
 [node name="RedBerryBush" parent="Objects" instance=ExtResource("4_25d8v")]
-position = Vector2(101, -94)
+position = Vector2(581, 185)
 
 [node name="RedBerryBush2" parent="Objects" instance=ExtResource("4_25d8v")]
-position = Vector2(189, 4.00002)
+position = Vector2(669, 283)
 
 [node name="RedBerryBush3" parent="Objects" instance=ExtResource("4_25d8v")]
-position = Vector2(81, 77)
+position = Vector2(561, 356)
 
 [node name="GreenHerb" parent="Objects" instance=ExtResource("3_guf6v")]
-position = Vector2(258, -114)
+position = Vector2(738, 165)
 
 [node name="YellowFlowers" parent="Objects" instance=ExtResource("5_r0jcl")]
-position = Vector2(-92, 132)
+position = Vector2(388, 411)
 
 [node name="YellowFlowers2" parent="Objects" instance=ExtResource("5_r0jcl")]
-position = Vector2(35, 189)
+position = Vector2(515, 468)
 
 [node name="YellowFlowers3" parent="Objects" instance=ExtResource("5_r0jcl")]
-position = Vector2(191, 115)
+position = Vector2(671, 394)

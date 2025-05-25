@@ -29,6 +29,9 @@ func _input(event: InputEvent) -> void:
 
 func _on_slot_1_toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		if selected_tool == "hand":
+			return
+		
 		selected_tool = "hand"
 		tool_updated.emit("hand")
 		$CurrentTool.icon = $Slot1.icon
@@ -37,6 +40,9 @@ func _on_slot_1_toggled(toggled_on: bool) -> void:
 
 func _on_slot_2_toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		if selected_tool == "blade":
+			return
+		
 		selected_tool = "blade"
 		tool_updated.emit("blade")
 		$CurrentTool.icon = $Slot2.icon
@@ -45,11 +51,15 @@ func _on_slot_2_toggled(toggled_on: bool) -> void:
 
 func _on_slot_3_toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		if selected_tool == "dropper":
+			return
+		
 		selected_tool = "dropper"
 		tool_updated.emit("dropper")
 		$CurrentTool.icon = $Slot3.icon
 		toggle_tool_selection()
 		$CurrentTool/AddItemButton.visible = true
+	
 	else:
 		dropper_item = null
 		$CurrentTool/AddItemButton.visible = false

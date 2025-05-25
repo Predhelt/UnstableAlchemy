@@ -39,6 +39,9 @@ func close_context_menu():
 	context_menu.queue_free()
 	is_menu_open = false
 
+func inspect_object() -> void:
+	object_inspected.emit()
+
 func _on_object_inspected() -> void:
 	object_inspected.emit()
 	close_context_menu()

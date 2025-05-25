@@ -5,10 +5,12 @@ extends Node2D
 @export var items : Array[Item] ## The items that the object contains and their initial quantities
 var item_quantities : Array[int] ## The current quantities of items in the object
 
+@export var interact_effect : PackedScene ## Temporary effect to show during interaction
+@export var item_gained_effect : PackedScene ## Show the amount of items gained when added to inventory
 
 @export var grab_interaction : InteractionType
 @export var cut_interaction : InteractionType
-@export var combinations : ObjectCombinations
+@export var combinations : Array[ObjectCombination]
 
 var context_menu : Control
 var inspection_panel_scene = preload("res://UI/ContextMenu/inspection_panel.tscn")
@@ -20,6 +22,9 @@ func _ready() -> void:
 		item_quantities.append(item.qty)
 
 func _on_object_inspected() -> void:
+	inspect_object()
+	
+func inspect_object():
 	var inspection_panel = find_child("InspectionPanel")
 	if not inspection_panel:
 		inspection_panel = inspection_panel_scene.instantiate()
@@ -31,6 +36,7 @@ func _on_object_inspected() -> void:
 
 func _on_object_grabbed(player: Player) -> void:
 	collect_items(player, grab_interaction)
+	
 	
 	
 	if grab_interaction.on_interact_status_effects:
@@ -48,16 +54,18 @@ func collect_items(player: Player, interaction: InteractionType) -> void:
 	
 	if interaction.on_interact_items.is_empty():
 		print("No items to get!")
+		return
 		
 	var interaction_item_names := []
 	var interaction_item_counts := []
+	var item_gained_effect_instance : Control = item_gained_effect.instantiate()
 	
 	for i in len(interaction.on_interact_items): # Getting each interactable item
 		var interact_item = interaction.on_interact_items[i]
-		var id = interact_item.ID
+		var id = interact_item.id
 		var interact_qty = interaction.on_interact_amounts[i]
 		for j in len(items):
-			if items[j].ID != id or item_quantities[j] <= 0:
+			if items[j].id != id or item_quantities[j] <= 0:
 				continue # If not the right item or item is empty
 			
 			var interaction_item := items[j].duplicate()
@@ -71,30 +79,40 @@ func collect_items(player: Player, interaction: InteractionType) -> void:
 			
 			interaction_item_names.append(interaction_item.display_name)
 			interaction_item_counts.append(interact_qty)
-			player.inventory_ref.add_inventory_item(interaction_item) # Returns boolean. May ffbe partially added if inventory becomes full
+			if player.inventory_ref.add_inventory_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
+				item_gained_effect_instance.item_gained(interaction_item, interact_qty - interaction_item.qty)
 			
 			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
 				item_quantities[j] += interaction_item.qty
+	
+	item_gained_effect_instance.position = position
+	get_parent().add_child(item_gained_effect_instance)
 	
 	var sum = 0
 	for item_qty in item_quantities:
 		sum += item_qty
 	if sum <= 0:
 		#print("No items left in object")
+		emit_effect()
 		queue_free()
+
+func emit_effect():
+	var effect_instance : GPUParticles2D = interact_effect.instantiate()
+	effect_instance.position = position
+	get_parent().add_child(effect_instance)
+	effect_instance.emitting = true
 
 
 func _on_object_combined(player: Player, item: Item) -> void:
-	if not combinations:
-		return
-	for i in len(combinations.item_ids):
-		if combinations.item_ids[i] == item.ID:
-			player.update_status_message(combinations.combination_messages[i])
-			_mutate_object(combinations.result_object_scenes[i])
+	for c in combinations:
+		if c.input_item.id == item.id:
+			player.update_status_message(c.status_message)
+			mutate_object(c.result_object_scene)
 			player._on_interaction_area_exited($InteractArea)
+			emit_effect()
 			player._on_interaction_area_entered($InteractArea)
 
-func _mutate_object(new_object_scene: PackedScene):
+func mutate_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
 	
 	#var obj_sprite = obj.find_child("Sprite2D")

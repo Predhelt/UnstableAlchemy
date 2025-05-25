@@ -15,17 +15,19 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_open_recipe_book"):
-		_toggle_window()
+		toggle_window()
 	if event.is_action_pressed("ui_cancel"):
-		_close_window()
+		close_window()
+	if event.is_action_pressed("ui_toggle_inventory"):
+		close_window()
 
-func _toggle_window() -> void:
+func toggle_window() -> void:
 	if visible:
-		_close_window()
+		close_window()
 	else:
-		_open_window()
+		open_window()
 
-func _close_window() -> void:
+func close_window() -> void:
 	visible = false
 	%ProductDetails.visible = false
 	for child in %ProcedureList.get_children(): # Remove all children
@@ -35,7 +37,7 @@ func _close_window() -> void:
 	
 	
 
-func _open_window() -> void:
+func open_window() -> void:
 	visible = true
 
 
@@ -44,7 +46,7 @@ func add_recipe(recipe: Recipe):
 	for r in known_recipes:
 		if r.id == recipe.id:
 			return # Recipe already in known recipes
-		if r.product_item.ID == recipe.product_item.ID:
+		if r.product_item.id == recipe.product_item.id:
 			is_in_list = true
 	
 	known_recipes.append(recipe)
@@ -60,9 +62,17 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	%ProductIcon.texture = recipe.product_item.texture
 	
 	# Add each procedure to create the associated recipe
+	var num_procedures := 0
 	for r in known_recipes:
-		if r.product_item.ID == recipe.product_item.ID:
-			add_procedure(r)
+		
+		if r.product_item.id != recipe.product_item.id:
+			continue
+		if num_procedures % 2 == 1:
+			var breakline = Label.new()
+			breakline.text = "|"
+			%ProcedureList.add_child(breakline)
+		add_procedure(r)
+		num_procedures += 1
 	
 	%RecipeItems.visible = false
 	%WindowName.text = "Item Details"
@@ -70,7 +80,6 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	
 
 func add_procedure(recipe: Recipe):
-	var cur_procedures_panel = Panel.new()
 	var cur_procedures_container = HBoxContainer.new()
 	var tool_icon = recipe_item_icon.instantiate()
 	match recipe.tool_used:
@@ -97,6 +106,5 @@ func add_procedure(recipe: Recipe):
 			cur_procedures_container.add_child(label_add)
 			num_ingredients -= 1
 	
-	cur_procedures_panel.add_child(cur_procedures_container)
-	%ProcedureList.add_child(cur_procedures_panel)
+	%ProcedureList.add_child(cur_procedures_container)
 	

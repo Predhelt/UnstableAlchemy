@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://ocpfwxtn11ij"]
+[gd_scene load_steps=12 format=3 uid="uid://ocpfwxtn11ij"]
 
 [ext_resource type="Script" path="res://Objects/Interactable/interactable_plant.gd" id="1_xmuk6"]
 [ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://Art/UAPrototype/Objects/Planted/plant-red-berry.png" id="2_brn6a"]
 [ext_resource type="Script" path="res://Items/Item.gd" id="2_ibbgj"]
 [ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="3_pamv4"]
 [ext_resource type="Resource" uid="uid://by3268v3c17ms" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush_grab.tres" id="4_a3leh"]
+[ext_resource type="PackedScene" uid="uid://oqf4e3pk8s45" path="res://Effects/object_interacted_effect.tscn" id="4_ya3pq"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="5_fkhen"]
 [ext_resource type="Resource" uid="uid://dnxq4rwnwread" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush_cut.tres" id="5_qubm4"]
-[ext_resource type="Resource" uid="uid://bvul5uu5q2ts7" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush_combintaions.tres" id="6_hr2m0"]
+[ext_resource type="PackedScene" uid="uid://bmn6qh6ni2xey" path="res://Effects/items_gained_effect.tscn" id="5_r45ih"]
+[ext_resource type="Script" path="res://Objects/Interactable/ObjectCombinations.gd" id="6_dbwfa"]
+[ext_resource type="Resource" uid="uid://bvul5uu5q2ts7" path="res://Objects/Interactable/Red Berry Bush/green_herb_grounds_red_bush_combintaion.tres" id="7_geq8c"]
 
 [node name="RedBerryBush" type="Node2D"]
 scale = Vector2(0.7, 0.7)
@@ -15,9 +18,11 @@ script = ExtResource("1_xmuk6")
 object_name = "Red Berry Bush"
 object_description = "A bush with red berries on it."
 items = Array[ExtResource("2_ibbgj")]([ExtResource("3_pamv4")])
+interact_effect = ExtResource("4_ya3pq")
+item_gained_effect = ExtResource("5_r45ih")
 grab_interaction = ExtResource("4_a3leh")
 cut_interaction = ExtResource("5_qubm4")
-combinations = ExtResource("6_hr2m0")
+combinations = Array[ExtResource("6_dbwfa")]([ExtResource("7_geq8c")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -25)
@@ -25,7 +30,7 @@ texture = ExtResource("2_brn6a")
 
 [node name="InteractArea" parent="." instance=ExtResource("5_fkhen")]
 interact_label = "Red Berry Bush"
-interact_type = "context_menu"
+interact_type = "inspect"
 interact_value = "RedBerryBushCM"
 
 [connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]

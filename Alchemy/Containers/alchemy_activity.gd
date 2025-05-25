@@ -1,24 +1,12 @@
 extends Control
 
 
-var inventory_ref
+func _ready() -> void:
+	#%Cauldron.inventory_ref = get_parent()
+	#%MortarPestle.inventory_ref = get_parent()
 
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_toggle_alchemy"):
-		toggle_activity() # Toggles whether the inventory is displayed or not
-	if event.is_action_pressed("ui_cancel"):
-		close_activity()
-		
-	%Cauldron.inventory_ref = inventory_ref
-	%MortarPestle.inventory_ref = inventory_ref
-
-func toggle_activity() -> void:
+func toggle_window() -> void:
 	visible = !visible # Flip visibility of the inventory
 
-func close_activity() -> void:
+func close_window() -> void:
 	visible = false
-
-
-func _on_item_produced(recipe: Recipe) -> void:
-	%RecipeList.add_recipe(recipe)

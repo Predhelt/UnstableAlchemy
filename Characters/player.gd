@@ -1,14 +1,11 @@
 class_name Player extends CharacterBody2D
 
-@export var camera_path := "" ## Path from Player Node to the Camera
+const LABEL_DEFAULT_Y_POS = -60
 
 @onready var animation_tree := $AnimationTree
-var direction := Vector2.ZERO
-
 @onready var inventory_ref := %Inventory
-@onready var hotbar_ref := %Hotbar
 
-const default_scale := 0.5
+var direction := Vector2.ZERO
 
 var active_status_effects : Array[StatusEffect]
 
@@ -18,15 +15,14 @@ var status_message_timer := 0.0
 var stats = {
 	#"health" : 100.0, ## health value
 	"move speed" : 200.0, ## move speed modifier (100 = 1.0*ms)
-	#"strength" : 100.0, ## how much can be pushed or carried
+	"strength" : 100.0, ## strength used to move certain objects
 	#"range" : 100.0, ## same as CollisionInteract.radius of arms
 }
 
 var selected_tool : String
 
+
 func _ready() -> void:
-	%AlchemyActivity.inventory_ref = inventory_ref
-	
 	update_interactions()
 	%StatusLabel.text = ""
 
@@ -61,7 +57,9 @@ func update_animation_parameters() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	#if event.is_action_pressed("interact"):
+		#execute_interaction()
+	if event.is_action_pressed("inspect_object"):
 		execute_interaction()
 	if event.is_action_pressed("use_tool"):
 		execute_tool()
@@ -91,12 +89,14 @@ func update_interactions():
 	else:
 		%InteractLabel.text = ""
 
+
 func execute_interaction():
 	if all_interaction_areas:
 		var cur_interaction = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type:
 			"print_text" : print(cur_interaction.interact_value)
 			"context_menu" : cur_interaction.toggle_context_menu(self)
+			"inspect" : cur_interaction.inspect_object()
 
 
 func _on_tool_updated(tool_name: String) -> void:
@@ -113,20 +113,27 @@ func execute_tool():
 func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
 	update_status_effects(on_consume_effects, on_consume_message)
 
+
+func reset_label_height():
+	%StatusLabel.position.y = LABEL_DEFAULT_Y_POS * scale[1] - 20
+	%InteractLabel.position.y = LABEL_DEFAULT_Y_POS * scale[1] - 45
+
+
 ## Status Effect Handler Methods ##
 
 func update_status_effects(statuses: Array[StatusEffect], message: String):
 	# Adds and/or updates the given status effects
 	var is_added = false
 	for se in statuses:
-		if _add_status_effect(se):
+		if _apply_status_effect(se):
 			is_added = true
 	if is_added:
 		update_status_message(message)
 
-func _add_status_effect(se: StatusEffect) -> bool:
+func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		"change_ms" : if _change_stat(se, "move speed"):
+		"change_ms" : if _change_base_stat(se, "move speed"):
+			update_status_bar(se, )
 			return true
 		"cleanse" : if _cleanse_status_effects():
 			return true
@@ -134,7 +141,7 @@ func _add_status_effect(se: StatusEffect) -> bool:
 			return true
 		"grow" : 
 			for cur_se in active_status_effects:
-				if cur_se.ID == se.ID:
+				if cur_se.id == se.id:
 					return false
 			
 			if _grow_player(se):
@@ -158,7 +165,7 @@ func _update_active_status_effect(delta : float) -> void:
 func _remove_status_effect(index : int, se : StatusEffect) -> bool:
 	var is_removed := false
 	match se.effect:
-		"change_ms" : if _remove_base_stat(se):
+		"change_ms" : if _change_base_stat(se, "move speed", true):
 			is_removed = true
 		"grow" :
 			var opposite_effect := se.duplicate()
@@ -167,32 +174,41 @@ func _remove_status_effect(index : int, se : StatusEffect) -> bool:
 				is_removed = true
 	
 	if is_removed:
-		active_status_effects.remove_at(index)
-		%StatusEffectBar.remove_status(se)
+		update_status_bar(se, index, true)
+	
 	return is_removed
 
+func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false):
+	if is_removing_status:
+		if index > -1:
+			active_status_effects.remove_at(index)
+			%StatusEffectBar.remove_status(se)
+		return
+	
+	active_status_effects.append(se.duplicate())
+	%StatusEffectBar.generate_status(se)
+			
+
 ## Status effect functions ##
-func _change_base_stat(se: StatusEffect, stat_name : String) -> bool:
+func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
 		var old_se = active_status_effects[i]
-		if old_se.ID == se.ID:
+		if old_se.id == se.id:
+			if is_removing_status:
+				stats[stat_name] -= active_status_effects[i].value
+				update_status_bar(se, i, true)
+				return true
 			# Reset the active status effect (New effect overwrites the old effect)
 			stats[stat_name] -= old_se.value
 			stats[stat_name] += se.value
 			active_status_effects.remove_at(i)
-			active_status_effects.append(se.duplicate())
-			%StatusEffectBar.generate_status(se)
+			update_status_bar(se, i)
 			return true
 	
 	stats[stat_name] += se.value
 	
-	active_status_effects.append(se.duplicate())
-	%StatusEffectBar.generate_status(se)
+	update_status_bar(se, is_removing_status)
 	return true
-
-func _remove_base_stat(se) -> bool:
-	#TODO
-	return false
 
 func _cleanse_status_effects() -> bool:
 	for i in len(active_status_effects):
@@ -206,9 +222,9 @@ func _normalize_status_effects() -> bool:
 			_remove_status_effect(i, active_status_effects[i])
 	return true
 
-func _grow_player(se: StatusEffect) -> bool:
+func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	scale *= Vector2(se.value, se.value)
-
-	active_status_effects.append(se.duplicate())
-	%StatusEffectBar.generate_status(se)
+	
+	reset_label_height()
+	update_status_bar(se, is_removing_status)
 	return true

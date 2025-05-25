@@ -16,7 +16,7 @@ class_name Recipe extends Resource
 		#var min_ingredient : Item = null
 		#var min_index := 0
 		#for j in len(ingredients):
-			#if not min_ingredient or ingredients[j].ID < min_ingredient.ID:
+			#if not min_ingredient or ingredients[j].id < min_ingredient.id:
 				#min_ingredient = ingredients[j]
 				#min_index = j
 		#ordered_ingredients.append(min_ingredient)

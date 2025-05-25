@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_fajt8")
-ID = 999
+id = 999
 display_name = "Failed Brew"
 description = "The result of a brew with improper ingredients."
 texture = ExtResource("3_npmdq")

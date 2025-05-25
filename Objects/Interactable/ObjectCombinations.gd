@@ -1,5 +1,5 @@
-class_name ObjectCombinations extends Resource
+class_name ObjectCombination extends Resource
 
-@export var item_ids : Array[int]
-@export var result_object_scenes : Array[PackedScene]
-@export var combination_messages : Array[String]
+@export var input_item : Item
+@export var result_object_scene : PackedScene
+@export var status_message : String

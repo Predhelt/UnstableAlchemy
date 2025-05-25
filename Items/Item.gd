@@ -1,6 +1,6 @@
 class_name Item extends Resource
 
-@export var ID : int
+@export var id : int
 @export var display_name := ""
 @export var description := ""
 @export var texture : Texture2D

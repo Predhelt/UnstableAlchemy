@@ -1,11 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=33 format=3 uid="uid://csw57bxt7nvm2"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_juhlw"]
 [ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://Art/UAPrototype/Characters/herbalist-down.png" id="2_23e54"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="3_ngkeo"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="3_q5yn3"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="4_eve5b"]
-[ext_resource type="PackedScene" uid="uid://13c4ju8k5w21" path="res://Alchemy/Containers/alchemy_activity.tscn" id="4_h13xu"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="5_n5fht"]
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffect/status_effect_bar.tscn" id="5_oswit"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="6_hox3m"]
@@ -209,10 +208,6 @@ debug_color = Color(0, 0.650275, 0.102524, 0.42)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_ngkeo")]
-unique_name_in_owner = true
-visible = false
-
-[node name="AlchemyActivity" parent="CanvasLayer" instance=ExtResource("4_h13xu")]
 unique_name_in_owner = true
 visible = false
 

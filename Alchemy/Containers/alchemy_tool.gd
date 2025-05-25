@@ -4,7 +4,7 @@ class_name AlchemyTool extends Control
 @export var tool_name := ""
 @export var recipes : Array[Recipe]
 
-signal item_produced(item : Item) ## Signal sent when the item is completed and added to the inventory
+signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item is completed and added to the inventory
 
 var inventory_ref ## Reference to the connected inventory for putting produced items
 
@@ -54,9 +54,8 @@ func _process(delta: float) -> void:
 		else:
 			print(str(product.qty) + " of item " + product.display_name + 
 				" added to inventory from successful use of " + tool_name)
-			inventory_ref.add_inventory_item(product)
 			
-			item_produced.emit(cur_recipe)
+			item_produced.emit(product, cur_recipe)
 			
 			cur_recipe = null
 			progress_bar.visible = false
@@ -87,10 +86,10 @@ func _on_button_confirm_pressed() -> void:
 	if num_items <= 0 or num_items > MAX_ITEMS:
 		print("Wrong number of items, button should be disabled")
 		return
-	use_items()
+	_use_items()
 	
-func use_items():
-	pass # This function should be overrided
+func _use_items():
+	pass # This function should be overridden
 
 func begin_craft(result_recipe: Recipe):
 	if not result_recipe.product_item:

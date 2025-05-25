@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("3_2qjj1")
-ID = 1
+id = 1
 display_name = "Red Berries"
 description = "Large berries with a bright red skin. The inside is surprisingly gray."
 texture = ExtResource("4_e1q5n")

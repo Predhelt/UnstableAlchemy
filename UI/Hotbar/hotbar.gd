@@ -21,7 +21,7 @@ func remove_hotbar_item(item: Item) -> void:
 	for hb_slot in hotbar_slots:
 		if not hb_slot.cur_item:
 			continue
-		if hb_slot.cur_item.ID == item.ID:
+		if hb_slot.cur_item.id == item.id:
 			hb_slot.remove_item()
 
 
@@ -29,7 +29,7 @@ func has_item(item: Item) -> bool:
 	for slot in hotbar_slots:
 		if not slot.cur_item:
 			continue
-		if slot.cur_item.ID == item.ID:
+		if slot.cur_item.id == item.id:
 			return true
 	return false
 

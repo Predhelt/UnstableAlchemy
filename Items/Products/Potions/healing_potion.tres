@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_r7p41")
-ID = 501
+id = 501
 display_name = "Healing Potion"
 description = "A gray potion that provides health recovery (WIP)"
 texture = ExtResource("3_weori")

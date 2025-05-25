@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ryu0r")
-ID = 201
+id = 101
 name = "Normalize"
 description = "Returns permanent stat changes back to normal"
 effect = "normalize"

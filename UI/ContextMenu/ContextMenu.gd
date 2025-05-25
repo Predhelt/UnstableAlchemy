@@ -17,11 +17,6 @@ func create_inspect_button():
 	var inspect_button = create_button("Inspect")
 	if inspect_button:
 		inspect_button.connect("pressed", _on_button_inspect_pressed)
-
-func create_tools_button():
-	var tools_button = create_button("Tools")
-	if tools_button:
-		tools_button.connect("pressed", _on_button_tools_pressed)
 	
 func create_button(label : String) -> Button:
 	var button_name = label + "Button"

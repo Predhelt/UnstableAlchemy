@@ -1,4 +1,4 @@
-extends ItemList
+extends Control
 
 ## Sent to the player to update their status effects when an item in inventory is consumed
 signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
@@ -14,26 +14,28 @@ var drag_item_scene := preload("res://UI/Inventory/drag_item_scene.tscn") # visu
 var items : Array[Item] # List of theitems in the inventory
 
 func _ready() -> void:		
-	item_clicked.connect(on_inventory_item_clicked)
+	%ItemList.item_clicked.connect(on_inventory_item_clicked)
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_toggle_inventory"):
-		_toggle_inventory() # Toggles whether the inventory is displayed or not
+		toggle_window() # Toggles whether the inventory is displayed or not
 	if event.is_action_pressed("ui_cancel"):
-		_close_inventory()
+		close_window()
+	if event.is_action_pressed("ui_open_recipe_book"):
+		close_window()
 
-func _toggle_inventory() -> void:
+func toggle_window() -> void:
 	if visible:
-		_close_inventory()
+		close_window()
 	else:
-		_open_inventory()
+		open_window()
 
-func _close_inventory() -> void:
+func close_window() -> void:
 	visible = false
 	_set_mode("default")
 
-func _open_inventory() -> void:
+func open_window() -> void:
 	visible = true
 
 func add_inventory_item(item : Item) -> bool:
@@ -45,14 +47,14 @@ func add_inventory_item(item : Item) -> bool:
 	if item.qty <= 0: #if item was added to existing stacks
 		return true
 		
-	for i in item_count: 
+	for i in %ItemList.item_count: 
 		if items[i] != null:
 			continue
 		
 		items[i] = item
-		set_item_icon(i, item.texture)
+		%ItemList.set_item_icon(i, item.texture)
 		
-		set_item_text(i, generate_item_text(items[i]))
+		%ItemList.set_item_text(i, generate_item_text(items[i]))
 		
 		return true
 	return could_pickup
@@ -64,12 +66,12 @@ func add_stackable_item(item : Item) -> bool:
 	
 	var could_pickup : bool = false
 	
-	for i in item_count:
+	for i in %ItemList.item_count:
 		if items[i] == null:
 			print("Warning: Null item in Inventory")
 			continue
 		
-		if items[i].ID != item.ID or items[i].qty >= items[i].max_qty:
+		if items[i].id != item.id or items[i].qty >= items[i].max_qty:
 			continue # If not a match or the item stack is full
 		
 		if items[i].qty + item.qty > items[i].max_qty: # Only add until stack is full
@@ -79,21 +81,21 @@ func add_stackable_item(item : Item) -> bool:
 			item.qty -= amount_to_remove
 			
 			could_pickup = true
-			set_item_text(i, generate_item_text(items[i]))
+			%ItemList.set_item_text(i, generate_item_text(items[i]))
 			return true
 		
 		#If the stack is a match
 		items[i].qty += item.qty
 		item.qty = 0
-		set_item_text(i, generate_item_text(items[i]))
+		%ItemList.set_item_text(i, generate_item_text(items[i]))
 		return true
 	
-	if item_count >= max_item_count:
+	if %ItemList.item_count >= max_item_count:
 		print("Inventory is full")
 		return could_pickup
 	
 	items.append(item.duplicate())
-	add_item(generate_item_text(item), item.texture)
+	%ItemList.add_item(generate_item_text(item), item.texture)
 	item.qty = 0
 	return true
 
@@ -106,14 +108,14 @@ func generate_item_text(item: Item) -> String:
 
 
 func remove_inventory_item(index : int) -> void:
-	if index < 0 or index >= item_count:
+	if index < 0 or index >= %ItemList.item_count:
 		return
 	
 	items.remove_at(index)
-	remove_item(index)
+	%ItemList.remove_item(index)
 
 func get_inventory_item(index : int) -> Item:
-	if index < 0 or index >= item_count:
+	if index < 0 or index >= %ItemList.item_count:
 		return null
 	
 	return items[index]
@@ -129,7 +131,7 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 		
 		match mode:
 			"default": consume_inventory_item(item, index)
-			"set_dropper": _set_dropper_item(item)
+			"set_dropper": pass
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
@@ -139,8 +141,9 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			print("No items found")
 			return
 		
-		#TODO: make a drag_item based on item pressed
-		drag_inventory_item(item, index)
+		match mode:
+			"default": drag_inventory_item(item, index)
+			"set_dropper": _set_dropper_item(item)
 		
 		#close_inventory()
 
@@ -150,7 +153,7 @@ func drag_inventory_item(item : Item, index : int):
 	var da_item = item.duplicate()
 	da_item.qty = 1
 	item.qty -= 1
-	set_item_text(index, generate_item_text(item))
+	%ItemList.set_item_text(index, generate_item_text(item))
 	if item.qty < 1:
 		remove_inventory_item(index)
 	drag_item.item = da_item
@@ -166,13 +169,13 @@ func consume_inventory_item(item : Item, index : int):
 		remove_inventory_item(index)
 	else:
 		item.qty -= 1
-		set_item_text(index, generate_item_text(item))
+		%ItemList.set_item_text(index, generate_item_text(item))
 	
 	# Check item for if it should be removed from the hotbar
 	if hotbar_ref.has_item(item):
 		var has_more_items := false
 		for cur_item in items:
-			if cur_item.ID != item.ID:
+			if cur_item.id != item.id:
 				continue
 			has_more_items = true
 			break
@@ -193,7 +196,7 @@ func consume_hotbar_item(item : Item):
 		if num_items <= i: # If item is removed from inventory, will prevent accessing invalid index of inventory
 			break
 		var cur_item = items[i]
-		if cur_item.ID != item.ID:
+		if cur_item.id != item.id:
 			continue
 		if not is_consumed:
 			update_status_effects.emit(cur_item.on_consume_effects, cur_item.on_consume_message)
@@ -203,7 +206,7 @@ func consume_hotbar_item(item : Item):
 				num_items -= 1
 			else:
 				cur_item.qty -= 1
-				set_item_text(i, generate_item_text(cur_item))
+				%ItemList.set_item_text(i, generate_item_text(cur_item))
 				has_more_items = true
 		else:
 			has_more_items = true
@@ -225,8 +228,14 @@ func _set_mode(m: String) -> void:
 		"default": 
 			mode = m
 		"set_dropper": 
-			_open_inventory()
+			open_window()
 			mode = m
 
 func _set_dropper_item(item: Item):
 	toolwheel_ref.dropper_item = item
+	close_window()
+
+
+func _on_item_produced(item: Item, recipe: Recipe) -> void:
+	add_inventory_item(item)
+	%RecipeList.add_recipe(recipe)
