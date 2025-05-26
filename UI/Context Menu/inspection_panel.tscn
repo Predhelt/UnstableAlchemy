@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccrubsrhkvb1n"]
+[gd_scene load_steps=4 format=3 uid="uid://ccrubsrhkvb1n"]
 
-[ext_resource type="Script" path="res://UI/ContextMenu/InspectionPanel.gd" id="1_tln8h"]
+[ext_resource type="Script" path="res://UI/Context Menu/InspectionPanel.gd" id="1_tln8h"]
+[ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://Text/SubtitleLabel.tres" id="2_2hdbo"]
+[ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://Text/DescriptionLabel.tres" id="3_wm1b8"]
 
 [node name="InspectionPanel" type="Control"]
 layout_mode = 3
@@ -31,6 +33,7 @@ grow_vertical = 2
 color = Color(0.12549, 0.12549, 0.12549, 0.411765)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Canvas/Control"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 196.0
@@ -47,6 +50,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Name"
+label_settings = ExtResource("2_2hdbo")
 vertical_alignment = 1
 
 [node name="ObjectDescription" type="Label" parent="Canvas/Control/VBoxContainer"]
@@ -54,3 +58,4 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Description
 "
+label_settings = ExtResource("3_wm1b8")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://b6f5q4hfar4tj"]
+
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_fix0q"]
+[ext_resource type="Resource" uid="uid://cwjj0rtd50jpg" path="res://Game Components/Status Effects/Cleanse.tres" id="2_0wobw"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="2_tfloo"]
+[ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="4_swdyd"]
+
+[resource]
+script = ExtResource("2_tfloo")
+id = 502
+display_name = "Cleanse Potion"
+description = "A gray potion that cleanses all temporary status effects when consumed."
+texture = ExtResource("4_swdyd")
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_fix0q")]([ExtResource("2_0wobw")])
+on_consume_message = "That cleared me up"

@@ -21,6 +21,7 @@ texture = ExtResource("6_gca1m")
 
 [node name="InteractArea" parent="." instance=ExtResource("8_8mo8m")]
 position = Vector2(0, -2.38419e-07)
+scale = Vector2(1.68572, 1)
 interact_label = "Yellow Flowers"
 interact_type = "inspect"
 interact_value = "YellowFlowersCM"

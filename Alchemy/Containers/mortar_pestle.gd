@@ -1,6 +1,9 @@
 extends AlchemyTool
 
 
+func _ready() -> void:
+	set_recipes("M&P")
+
 func _use_items(): # Overrides the _use_items() function in AlchemyTool
 	# Find first item in queue to start using in the mortar and pestle
 	var item : Item = null

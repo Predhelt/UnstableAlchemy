@@ -14,11 +14,11 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_open_recipe_book"):
+	if event.is_action_pressed("recipe_book"):
 		toggle_window()
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
-	if event.is_action_pressed("ui_toggle_inventory"):
+	if event.is_action_pressed("inventory"):
 		close_window()
 
 func toggle_window() -> void:
@@ -28,20 +28,28 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
+	if global.mode != "recipe_list":
+		return
+	
 	visible = false
+	global.mode = "default"
 	%ProductDetails.visible = false
 	for child in %ProcedureList.get_children(): # Remove all children
 		%ProcedureList.remove_child(child)
 	%WindowName.text = "Known Recipes"
 	%RecipeItems.visible = true
-	
-	
+
 
 func open_window() -> void:
-	visible = true
+	if global.mode == "default":
+		global.mode = "recipe_list"
+		visible = true
 
 
 func add_recipe(recipe: Recipe):
+	if not recipe:
+		return
+	
 	var is_in_list := false
 	for r in known_recipes:
 		if r.id == recipe.id:

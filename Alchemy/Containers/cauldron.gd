@@ -1,6 +1,10 @@
 extends AlchemyTool
 
 
+func _ready() -> void:
+	set_recipes("Cauldron")
+
+
 func _use_items(): # Overrides the _use_items() function in AlchemyTool
 	var brew_ids : Array[int] = []
 	for i in MAX_ITEMS:

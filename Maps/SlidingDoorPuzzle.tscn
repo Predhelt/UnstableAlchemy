@@ -14,7 +14,6 @@ y_sort_enabled = true
 position = Vector2(170, 33)
 
 [node name="TileMaps" type="Node2D" parent="."]
-visible = false
 
 [node name="Water" type="TileMapLayer" parent="TileMaps"]
 z_index = -50
@@ -46,11 +45,11 @@ y_sort_enabled = true
 
 [node name="SlidingDoor" parent="PuzzleObjects" instance=ExtResource("7_a54a2")]
 position = Vector2(105, -105)
-close_time = 1.0
+close_time = 1.8
 
 [node name="SlidingDoor2" parent="PuzzleObjects" instance=ExtResource("7_a54a2")]
 position = Vector2(234, -105)
-close_time = 1.0
+close_time = 1.8
 is_opening_left = false
 
 [node name="PressurePlate" parent="PuzzleObjects" node_paths=PackedStringArray("door_refs") instance=ExtResource("8_236vt")]

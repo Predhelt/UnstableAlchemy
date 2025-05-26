@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj81rrhnwo85j"]
+
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="1_00l5q"]
+[ext_resource type="Script" path="res://UI/Options Menu/options_menu.gd" id="1_bw5gs"]
+[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://UI/Options Menu/options_theme.tres" id="3_ldjf7"]
+[ext_resource type="ButtonGroup" uid="uid://bo5q05cajm24g" path="res://UI/Options Menu/options_buttons.tres" id="4_o212l"]
+[ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://Text/DescriptionLabel.tres" id="5_b017p"]
+
+[node name="OptionsMenu" type="Panel"]
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.2
+anchor_right = 0.65
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bw5gs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+text = "Options"
+label_settings = ExtResource("1_00l5q")
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.9
+
+[node name="ButtonReturn" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_ldjf7")
+toggle_mode = true
+button_group = ExtResource("4_o212l")
+text = "Return"
+
+[node name="Button5" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_ldjf7")
+toggle_mode = true
+button_group = ExtResource("4_o212l")
+text = "||||"
+
+[node name="Button4" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_ldjf7")
+toggle_mode = true
+button_group = ExtResource("4_o212l")
+text = "||||"
+
+[node name="ButtonSettings" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_ldjf7")
+toggle_mode = true
+button_group = ExtResource("4_o212l")
+text = "Settings
+"
+
+[node name="ButtonExit" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_ldjf7")
+toggle_mode = true
+button_group = ExtResource("4_o212l")
+text = "Exit"
+
+[node name="Popup" type="Popup" parent="."]
+title = "Confirm Exit"
+size = Vector2i(350, 100)
+
+[node name="Label" type="Label" parent="Popup"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Are you sure you want to exit?"
+label_settings = ExtResource("5_b017p")
+
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_return_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

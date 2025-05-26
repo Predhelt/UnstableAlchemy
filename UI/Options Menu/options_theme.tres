@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://pc5cnebvn7ye"]
+
+[resource]
+default_font_size = 32
+Button/constants/outline_size = 8

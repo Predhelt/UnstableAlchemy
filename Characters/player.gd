@@ -57,12 +57,13 @@ func update_animation_parameters() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("interact"):
-		#execute_interaction()
+	if event.is_action_pressed("interact"):
+		execute_interaction()
 	if event.is_action_pressed("inspect_object"):
 		execute_interaction()
 	if event.is_action_pressed("use_tool"):
 		execute_tool()
+	
 
 
 ## Interaction Methods ##
@@ -97,6 +98,7 @@ func execute_interaction():
 			"print_text" : print(cur_interaction.interact_value)
 			"context_menu" : cur_interaction.toggle_context_menu(self)
 			"inspect" : cur_interaction.inspect_object()
+			"talk" : pass # TODO: talk to NPC
 
 
 func _on_tool_updated(tool_name: String) -> void:
@@ -158,10 +160,8 @@ func _update_active_status_effect(delta : float) -> void:
 		if se.duration != -1:
 			se.duration -= delta
 			if se.duration <= 0:
-				if remove_status_effect(se):
-					update_status_bar(se, i, true)
-				
-					
+				remove_status_effect(se)
+
 
 func remove_status_effect(se : StatusEffect) -> bool:
 	var is_removed := false
@@ -198,7 +198,6 @@ func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status 
 				return true
 			
 			stats[stat_name] += se.value
-			active_status_effects.remove_at(i)
 			update_status_bar(se, i)
 			return true
 	
@@ -210,16 +209,14 @@ func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status 
 func _cleanse_status_effects() -> bool:
 	for i in len(active_status_effects):
 		if active_status_effects[i].duration != -1:
-			if remove_status_effect(active_status_effects[i]):
-				update_status_bar(active_status_effects[i], i, true)
+			remove_status_effect(active_status_effects[i])
 			
 	return true
 
 func _normalize_status_effects() -> bool:
 	for i in len(active_status_effects):
 		if active_status_effects[i].duration == -1:
-			if remove_status_effect(active_status_effects[i]):
-				update_status_bar(active_status_effects[i], i, true)
+			remove_status_effect(active_status_effects[i])
 			
 	return true
 

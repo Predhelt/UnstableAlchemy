@@ -1,11 +1,9 @@
-extends Control
+extends Panel
 
 ## Sent to the player to update their status effects when an item in inventory is consumed
 signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
 
 @export var max_item_count := 24 ## Max number of slots in the inventory
-
-var mode := "default"
 
 var drag_item_scene := preload("res://UI/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
 @onready var hotbar_ref := %Hotbar
@@ -18,11 +16,11 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_toggle_inventory"):
+	if event.is_action_pressed("inventory"):
 		toggle_window() # Toggles whether the inventory is displayed or not
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
-	if event.is_action_pressed("ui_open_recipe_book"):
+	if event.is_action_pressed("recipe_book"):
 		close_window()
 
 func toggle_window() -> void:
@@ -32,11 +30,14 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	visible = false
-	_set_mode("default")
+	if global.mode == "inventory" or global.mode == "dropper":
+		global.mode = "default"
+		visible = false
 
 func open_window() -> void:
-	visible = true
+	if global.mode == "default":
+		global.mode = "inventory"
+		visible = true
 
 func add_inventory_item(item : Item) -> bool:
 	if item == null or item.qty <= 0: # If invalid item or empty item
@@ -129,9 +130,9 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			print("No items found")
 			return
 		
-		match mode:
-			"default": consume_inventory_item(item, index)
-			"set_dropper": pass
+		match global.mode:
+			"inventory": consume_inventory_item(item, index)
+			"dropper": pass
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
@@ -141,9 +142,9 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			print("No items found")
 			return
 		
-		match mode:
-			"default": drag_inventory_item(item, index)
-			"set_dropper": _set_dropper_item(item)
+		match global.mode:
+			"inventory": drag_inventory_item(item, index)
+			"dropper": _set_dropper_item(item)
 		
 		#close_inventory()
 
@@ -219,17 +220,7 @@ func _on_hotbar_consume_inventory_item(item: Item) -> void:
 
 
 func _on_tool_wheel_set_dropper_item() -> void:
-	_set_mode("set_dropper")
-
-func _set_mode(m: String) -> void:
-	if mode == m:
-		return
-	match m:
-		"default": 
-			mode = m
-		"set_dropper": 
-			open_window()
-			mode = m
+	global.mode = "dropper"
 
 func _set_dropper_item(item: Item):
 	toolwheel_ref.dropper_item = item

@@ -9,7 +9,7 @@ signal object_combined(player: Player, item: Item)
 @export var interact_type := "none"
 @export var interact_value := "none"
 var is_menu_open := false
-var context_menu_scene = preload("res://UI/ContextMenu/context_menu.tscn")
+var context_menu_scene = preload("res://UI/Context Menu/context_menu.tscn")
 var context_menu : ContextMenu
 
 func _ready() -> void:

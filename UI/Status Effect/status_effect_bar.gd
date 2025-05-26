@@ -1,10 +1,10 @@
 extends Control
 
-var status_icon_scene = preload("res://UI/StatusEffect/status_icon.tscn")
+var status_icon_scene = preload("res://UI/Status Effect/status_icon.tscn")
 @onready var container := $HBoxContainer
 
 func generate_status(se : StatusEffect):
-	
+	# FIXME: Status not updating properly for cutting down red berries
 	for textureRect in container.get_children():
 		var tex_se = textureRect.effect
 		if tex_se.id == se.id:

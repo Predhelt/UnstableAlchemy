@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bug73xhr5bl3w"]
+
+[ext_resource type="Texture2D" uid="uid://dd5cw46t72adw" path="res://Art/UAPrototype/UI/Status Effects/status_effect-energized.png" id="1_0fcdt"]
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_4bjhv"]
+
+[resource]
+script = ExtResource("1_4bjhv")
+id = 0
+name = "Energized Burst"
+description = "Increases movement speed for a very short time"
+icon = ExtResource("1_0fcdt")
+effect = "change_ms"
+value = 50.0
+duration = 1.0

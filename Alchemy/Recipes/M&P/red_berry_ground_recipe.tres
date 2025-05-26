@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=5 format=3 uid="uid://b3br3g0h4ex3i"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_o4ovi"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="2_2f2dh"]
+[ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="2_4ekgu"]
+[ext_resource type="Resource" uid="uid://dmmqgd2jjfrrp" path="res://Items/Products/Grounds/red_berry_ground.tres" id="3_f6kae"]
+
+[resource]
+script = ExtResource("2_4ekgu")
+id = 1
+product_item = ExtResource("3_f6kae")
+ingredients = Array[ExtResource("1_o4ovi")]([ExtResource("2_2f2dh")])
+tool_used = "m&p"
+product_item_amount = 1
+product_craft_time = 1.0

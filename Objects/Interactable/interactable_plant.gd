@@ -13,7 +13,7 @@ var item_quantities : Array[int] ## The current quantities of items in the objec
 @export var combinations : Array[ObjectCombination]
 
 var context_menu : Control
-var inspection_panel_scene = preload("res://UI/ContextMenu/inspection_panel.tscn")
+var inspection_panel_scene = preload("res://UI/Context Menu/inspection_panel.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,13 +25,18 @@ func _on_object_inspected() -> void:
 	inspect_object()
 	
 func inspect_object():
+	
 	var inspection_panel = find_child("InspectionPanel")
-	if not inspection_panel:
-		inspection_panel = inspection_panel_scene.instantiate()
+	if global.mode == "inspection":
+		return
+	inspection_panel = inspection_panel_scene.instantiate()
+	inspection_panel.name = "InspectionPanel"
 	inspection_panel.object_name = object_name
 	inspection_panel.object_description = object_description
 	inspection_panel.object_image = $Sprite2D.texture
+	inspection_panel.add_to_group("open_window")
 	add_child(inspection_panel)
+	global.mode = "inspection"
 	
 
 func _on_object_grabbed(player: Player) -> void:
@@ -43,18 +48,22 @@ func _on_object_grabbed(player: Player) -> void:
 		player.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
 func _on_object_cut(player: Player) -> void:
-	collect_items(player, cut_interaction)
+	if not collect_items(player, cut_interaction):
+		return
+	
 	if cut_interaction.on_interact_status_effects:
 		player.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
 	
-func collect_items(player: Player, interaction: InteractionType) -> void:
+	check_empty()
+
+func collect_items(player: Player, interaction: InteractionType) -> bool:
 	if not interaction:
 		print("No interaction")
-		return
+		return false
 	
 	if interaction.on_interact_items.is_empty():
 		print("No items to get!")
-		return
+		return false
 		
 	var item_gained_effect_instance : Control = item_gained_effect.instantiate()
 	
@@ -85,6 +94,9 @@ func collect_items(player: Player, interaction: InteractionType) -> void:
 	item_gained_effect_instance.position = position
 	get_parent().add_child(item_gained_effect_instance)
 	
+	return true
+
+func check_empty():
 	var sum = 0
 	for item_qty in item_quantities:
 		sum += item_qty

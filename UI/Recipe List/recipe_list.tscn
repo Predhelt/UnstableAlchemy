@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/Recipe List/recipe_list.gd" id="2_2htw0"]
 [ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="2_8kwsn"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="3_2hrkg"]
-[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_grounds.tres" id="3_wqwx2"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_ground_recipe.tres" id="3_wqwx2"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="4_eo0qk"]
 [ext_resource type="LabelSettings" uid="uid://d03hwvt3eyjax" path="res://Text/TitleLabel.tres" id="5_eyj61"]
 [ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://Text/SubtitleLabel.tres" id="6_xwfla"]
@@ -11,7 +11,7 @@
 [node name="RecipeList" type="Control"]
 layout_mode = 3
 anchor_left = 0.1
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.9
 anchor_bottom = 0.9
 script = ExtResource("2_2htw0")
@@ -39,9 +39,11 @@ layout_mode = 2
 [node name="WindowName" type="Label" parent="Panel/VBoxContainer/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Window Name"

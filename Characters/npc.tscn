@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ysnbvkn4ogwk"]
+
+[ext_resource type="Script" path="res://npc.gd" id="1_4ofvd"]
+[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://Art/UAPrototype/Characters/npc-robe.png" id="2_ldphk"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="3_8728q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ae4go"]
+radius = 17.0
+
+[node name="NPC" type="CharacterBody2D"]
+script = ExtResource("1_4ofvd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -60)
+texture = ExtResource("2_ldphk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ae4go")
+
+[node name="InteractArea" parent="." instance=ExtResource("3_8728q")]
+position = Vector2(0, -2.38419e-07)
+interact_label = "NPC"
+interact_type = "talk"
+interact_value = ""

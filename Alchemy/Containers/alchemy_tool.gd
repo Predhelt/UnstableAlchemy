@@ -1,13 +1,13 @@
 class_name AlchemyTool extends Control
 
 
-@export var tool_name := ""
-@export var recipes : Array[Recipe]
 @export var item_gained_effect := preload("res://Effects/items_gained_effect.tscn")
+var recipes_folder_path := "res://Alchemy/Recipes/"
+var tool_name := ""
+var recipes : Array[Recipe]
+
 
 signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item is completed and added to the inventory
-
-var inventory_ref ## Reference to the connected inventory for putting produced items
 
 const MAX_ITEMS := 3 ## Max number of items that can be stored in the tool
 var items : Array[Item] ## List of items in the tool
@@ -42,6 +42,26 @@ func _init() -> void:
 			recipes.remove_at(i)
 
 
+func set_recipes(folder_name : String):
+	var dir = DirAccess.open(recipes_folder_path + folder_name + "/")
+	if not dir:
+		print("Error: No path")
+		return
+	
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		# TODO: if file is of type .tres:
+		var new_recipe : Recipe = load(recipes_folder_path + folder_name + "/" + file_name)
+		if new_recipe:
+			recipes.append(new_recipe)
+		file_name = dir.get_next()
+	
+	match folder_name:
+		"Cauldron": tool_name = "cauldron"
+		"M&P": tool_name = "m&p"
+
+
 func _process(delta: float) -> void:
 	if global.is_dragging:
 		scale = Vector2(1.1, 1.1)
@@ -59,7 +79,7 @@ func _process(delta: float) -> void:
 			var effect_instance = item_gained_effect.instantiate()
 			
 			effect_instance.add_item(product)
-			#effect_instance.position = position
+			effect_instance.scale = Vector2(1, 1)
 			add_child(effect_instance)
 			
 			item_produced.emit(product, cur_recipe)
@@ -125,13 +145,13 @@ func remove_item(index: int):
 		button_confirm.disabled = true
 
 func _on_button_1_pressed() -> void:
-	inventory_ref.add_inventory_item(items[0])
+	item_produced.emit(items[0], null)
 	remove_item(0)
 
 func _on_button_2_pressed() -> void:
-	inventory_ref.add_inventory_item(items[1])
+	item_produced.emit(items[1], null)
 	remove_item(1)
 
 func _on_button_3_pressed() -> void:
-	inventory_ref.add_inventory_item(items[2])
+	item_produced.emit(items[2], null)
 	remove_item(2)

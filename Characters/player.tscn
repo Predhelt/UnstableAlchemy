@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="3_q5yn3"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="4_eve5b"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="5_n5fht"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/StatusEffect/status_effect_bar.tscn" id="5_oswit"]
+[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/Status Effect/status_effect_bar.tscn" id="5_oswit"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="6_hox3m"]
-[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/ToolWheel/tool_wheel.tscn" id="7_l0u5l"]
+[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/Tool Wheel/tool_wheel.tscn" id="7_l0u5l"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Recipe List/recipe_list.tscn" id="11_gn77h"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
@@ -174,7 +174,7 @@ platform_floor_layers = 4294967292
 script = ExtResource("1_juhlw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -36)
+position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_23e54")
 
@@ -220,6 +220,7 @@ unique_name_in_owner = true
 
 [node name="ToolWheel" parent="CanvasLayer" instance=ExtResource("7_l0u5l")]
 unique_name_in_owner = true
+anchors_preset = 0
 
 [node name="RecipeList" parent="CanvasLayer" instance=ExtResource("11_gn77h")]
 unique_name_in_owner = true

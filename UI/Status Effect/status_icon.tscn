@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cl5hwf03hewkf"]
 
 [ext_resource type="Texture2D" uid="uid://bqxrtqfulunhn" path="res://icon.svg" id="1_1o0oa"]
-[ext_resource type="Script" path="res://UI/StatusEffect/status_icon.gd" id="2_tubet"]
+[ext_resource type="Script" path="res://UI/Status Effect/status_icon.gd" id="2_tubet"]
 
 [node name="StatusIcon" type="TextureRect"]
 offset_right = 100.0
