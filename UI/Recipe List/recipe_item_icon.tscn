@@ -4,6 +4,8 @@
 
 [node name="RecipeItemIcon" type="TextureRect"]
 custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
 texture = ExtResource("1_0yomu")
 expand_mode = 3
 stretch_mode = 5

@@ -2,7 +2,7 @@ extends Control
 
 @export var known_recipes : Array[Recipe]
 
-var recipe_item_icon := preload("res://UI/Recipe List/recipe_item_icon.tscn")
+var recipe_item_icon : PackedScene = preload("res://UI/Recipe List/recipe_item_icon.tscn")
 
 func _ready() -> void:
 	for recipe in known_recipes:
@@ -81,13 +81,18 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 
 func add_procedure(recipe: Recipe):
 	var cur_procedures_container = HBoxContainer.new()
-	var tool_icon = recipe_item_icon.instantiate()
+	var tool_icon : TextureRect = recipe_item_icon.instantiate()
 	match recipe.tool_used:
-		"cauldron": tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
-		"m&p": tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
+		"cauldron": 
+			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
+			tool_icon.tooltip_text = "Ingredients are combined in the Cauldron"
+		"m&p":
+			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
+			tool_icon.tooltip_text = "Ingredients are added to the Mortar and Pestle"
 		"hand": pass
 		"blade": pass
 		"dropper": pass
+	
 	cur_procedures_container.add_child(tool_icon)
 	
 	var label_arrow = Label.new()
@@ -96,8 +101,9 @@ func add_procedure(recipe: Recipe):
 	
 	var num_ingredients := len(recipe.ingredients)
 	for item in recipe.ingredients:
-		var recipe_icon = recipe_item_icon.instantiate()
+		var recipe_icon : TextureRect = recipe_item_icon.instantiate()
 		recipe_icon.texture = item.texture
+		recipe_icon.tooltip_text = item.display_name
 		cur_procedures_container.add_child(recipe_icon)
 		
 		if num_ingredients > 1:
@@ -107,4 +113,5 @@ func add_procedure(recipe: Recipe):
 			num_ingredients -= 1
 	
 	%ProcedureList.add_child(cur_procedures_container)
+	
 	

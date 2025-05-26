@@ -77,7 +77,7 @@ func collect_items(player: Player, interaction: InteractionType) -> void:
 			
 			
 			if player.inventory_ref.add_inventory_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
-				item_gained_effect_instance.item_gained(interaction_item, interact_qty - interaction_item.qty)
+				item_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
 			
 			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
 				item_quantities[j] += interaction_item.qty

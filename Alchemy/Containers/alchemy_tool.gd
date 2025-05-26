@@ -3,6 +3,7 @@ class_name AlchemyTool extends Control
 
 @export var tool_name := ""
 @export var recipes : Array[Recipe]
+@export var item_gained_effect := preload("res://Effects/items_gained_effect.tscn")
 
 signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item is completed and added to the inventory
 
@@ -54,6 +55,12 @@ func _process(delta: float) -> void:
 		else:
 			print(str(product.qty) + " of item " + product.display_name + 
 				" added to inventory from successful use of " + tool_name)
+			
+			var effect_instance = item_gained_effect.instantiate()
+			
+			effect_instance.add_item(product)
+			#effect_instance.position = position
+			add_child(effect_instance)
 			
 			item_produced.emit(product, cur_recipe)
 			
@@ -107,6 +114,16 @@ func begin_craft(result_recipe: Recipe):
 	progress_bar.visible = true
 	is_using = true
 
+
+func remove_item(index: int):
+	buttons[index].texture_normal = global.blank_texture
+	buttons[index].disabled = true
+	items[index] = null
+	num_items -= 1
+	
+	if num_items < 1:
+		button_confirm.disabled = true
+
 func _on_button_1_pressed() -> void:
 	inventory_ref.add_inventory_item(items[0])
 	remove_item(0)
@@ -118,12 +135,3 @@ func _on_button_2_pressed() -> void:
 func _on_button_3_pressed() -> void:
 	inventory_ref.add_inventory_item(items[2])
 	remove_item(2)
-
-func remove_item(index: int):
-	buttons[index].texture_normal = global.blank_texture
-	buttons[index].disabled = true
-	items[index] = null
-	num_items -= 1
-	
-	if num_items < 1:
-		button_confirm.disabled = true
