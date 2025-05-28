@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://Objects/Interactable/Blue Berry Bush/blue_berry_bush.tscn" id="1_hab0s"]
 [ext_resource type="Script" path="res://Objects/Interactable/ObjectCombinations.gd" id="1_ufvrq"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Grounds/green_herb_leaf_ground.tres" id="1_vs2ek"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Ingredients/green_herb_leaf_ground.tres" id="1_vs2ek"]
 
 [resource]
 script = ExtResource("1_ufvrq")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dtbcgtw8wo2j6"]
+
+[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_tdp3x"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="2_xico1"]
+
+[resource]
+script = ExtResource("2_xico1")
+id = 200
+display_name = "Green Paste"
+description = ""
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_tdp3x")]([])
+on_consume_message = ""

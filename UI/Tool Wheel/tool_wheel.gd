@@ -80,4 +80,5 @@ func _close_tool_selection() -> void:
 	$Slot3.visible = false
 
 func _on_add_item_button_pressed() -> void:
+	_close_tool_selection()
 	set_dropper_item.emit()

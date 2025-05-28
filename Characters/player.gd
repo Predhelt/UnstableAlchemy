@@ -1,9 +1,10 @@
 class_name Player extends CharacterBody2D
 
-const LABEL_DEFAULT_Y_POS = -60
+const LABEL_DEFAULT_Y_POS := -60.0
 
-@onready var animation_tree := $AnimationTree
-@onready var inventory_ref := %Inventory
+@onready var animation_tree : AnimationTree = $AnimationTree
+@onready var inventory_ref : Control = %Inventory
+@onready var player_camera_ref : Camera2D = %PlayerCamera
 
 var direction := Vector2.ZERO
 
@@ -29,12 +30,14 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	update_animation_parameters()
+	#TODO: allow the camera to zoom based player scale changes
 
 
 func _physics_process(delta: float) -> void:
-	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * stats["move speed"] * scale
-	move_and_slide()
+	if global.mode == "default":
+		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = direction * stats["move speed"] * scale
+		move_and_slide() # FIXME: movement is a bit jittery
 	
 	_update_active_status_effect(delta)
 	
@@ -131,6 +134,8 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 			is_added = true
 	if is_added:
 		update_status_message(message)
+	else:
+		update_status_message("...")
 
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
@@ -151,6 +156,8 @@ func _apply_status_effect(se: StatusEffect) -> bool:
 
 
 func update_status_message(message: String):
+	if not message:
+		message = "..."
 	%StatusLabel.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
 
@@ -223,8 +230,10 @@ func _normalize_status_effects() -> bool:
 func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	if is_removing_status:
 		scale *= Vector2(1.0/se.value, 1.0/se.value)
+		player_camera_ref.zoom *= Vector2(se.value, se.value)
 	else:
 		scale *= Vector2(se.value, se.value)
+		player_camera_ref.zoom *= Vector2(1.0/se.value, 1.0/se.value)
 	
 	reset_label_height()
 	update_status_bar(se, is_removing_status)

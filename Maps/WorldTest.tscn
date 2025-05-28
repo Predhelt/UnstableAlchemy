@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=9 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Green Herb/green_herb.tscn" id="3_guf6v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Yellow Flowers/yellow_flowers.tscn" id="5_r0jcl"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Options Menu/options_menu.tscn" id="6_wsokp"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Options Menu/settings_menu.tscn" id="7_espd3"]
+[ext_resource type="LabelSettings" uid="uid://cid5a2g1m6gcx" path="res://Text/DebugLabel.tres" id="8_scoou"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -72,3 +73,28 @@ visible = false
 [node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("7_espd3")]
 unique_name_in_owner = true
 visible = false
+
+[node name="DebugPanelWIP" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchor_left = 0.2
+anchor_top = 0.05
+anchor_right = 0.8
+anchor_bottom = 0.3
+
+[node name="Label" type="Label" parent="CanvasLayer/DebugPanelWIP"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1
+2
+3
+4
+5
+"
+label_settings = ExtResource("8_scoou")
+autowrap_mode = 3
+clip_text = true

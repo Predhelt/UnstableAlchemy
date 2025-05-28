@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="1_k131g"]
 [ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://Items/Gatherable/green_herb_leaf.tres" id="2_ibryw"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Grounds/green_herb_leaf_ground.tres" id="3_gw02c"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Ingredients/green_herb_leaf_ground.tres" id="3_gw02c"]
 [ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="4_17gq8"]
 
 [resource]

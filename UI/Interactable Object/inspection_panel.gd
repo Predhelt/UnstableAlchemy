@@ -1,4 +1,4 @@
-class_name InspectionPanel extends Control
+extends Control
 
 var object_name : StringName = "" :
 	set(name):

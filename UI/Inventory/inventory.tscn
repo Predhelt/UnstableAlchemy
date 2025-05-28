@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy5h4xq84fujx"]
+[gd_scene load_steps=6 format=3 uid="uid://cy5h4xq84fujx"]
 
 [ext_resource type="Script" path="res://UI/Inventory/inventory.gd" id="1_hj1xf"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_tx3c8"]
 [ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://Alchemy/Containers/cauldron.tscn" id="3_016ij"]
 [ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://Alchemy/Containers/mortar_pestle.tscn" id="4_0n6gb"]
+[ext_resource type="PackedScene" uid="uid://camniccw7m1md" path="res://Alchemy/Containers/merger.tscn" id="5_r3wkv"]
 
 [node name="Inventory" type="Panel"]
 anchors_preset = -1
@@ -75,7 +76,7 @@ grow_vertical = 2
 [node name="Cauldron" parent="VBoxContainer/Control/AlchemyActivity/Panel" instance=ExtResource("3_016ij")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -93,5 +94,10 @@ anchor_right = 0.5
 anchor_bottom = 0.2
 grow_horizontal = 2
 
+[node name="Merger" parent="VBoxContainer/Control/AlchemyActivity/Panel" instance=ExtResource("5_r3wkv")]
+unique_name_in_owner = true
+layout_mode = 1
+
 [connection signal="item_produced" from="VBoxContainer/Control/AlchemyActivity/Panel/Cauldron" to="." method="_on_item_produced"]
 [connection signal="item_produced" from="VBoxContainer/Control/AlchemyActivity/Panel/MortarPestle" to="." method="_on_item_produced"]
+[connection signal="item_produced" from="VBoxContainer/Control/AlchemyActivity/Panel/Merger" to="." method="_on_item_produced"]

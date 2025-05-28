@@ -7,8 +7,8 @@
 [resource]
 script = ExtResource("2_fajt8")
 id = 999
-display_name = "Failed Brew"
-description = "The result of a brew with improper ingredients."
+display_name = "Failed Craft"
+description = "The result of a craft with improper ingredients."
 texture = ExtResource("3_npmdq")
 max_qty = 10
 qty = 1

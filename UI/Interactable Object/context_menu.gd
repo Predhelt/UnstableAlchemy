@@ -1,4 +1,4 @@
-class_name ContextMenu extends Control
+extends Control
 
 signal object_inspected()
 signal object_grabbed()
@@ -7,7 +7,6 @@ signal object_grabbed()
 var player : Player ## Reference of the player that interacted with the object
 
 #@export var buttons : Array[Button]
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

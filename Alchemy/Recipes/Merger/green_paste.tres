@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://cdk3gxltxa8dr"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_khefp"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Ingredients/green_herb_leaf_ground.tres" id="2_mt0me"]
+[ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="2_ymwt4"]
+[ext_resource type="Resource" uid="uid://dmmqgd2jjfrrp" path="res://Items/Products/Ingredients/red_berry_ground.tres" id="3_cvn4s"]
+[ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://Items/Products/Ingredients/green_paste.tres" id="4_sem6l"]
+
+[resource]
+script = ExtResource("2_ymwt4")
+id = 100
+product_item = ExtResource("4_sem6l")
+ingredients = Array[ExtResource("1_khefp")]([ExtResource("2_mt0me"), ExtResource("3_cvn4s")])
+tool_used = "merger"
+product_item_amount = 2
+product_craft_time = 1.5

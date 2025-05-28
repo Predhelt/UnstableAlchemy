@@ -9,7 +9,8 @@ var drag_item_scene := preload("res://UI/Inventory/drag_item_scene.tscn") # visu
 @onready var hotbar_ref := %Hotbar
 @onready var toolwheel_ref := %ToolWheel
 
-var items : Array[Item] # List of theitems in the inventory
+var items : Array[Item] # List of the items in the inventory
+#var selected_item : Item # Item that is currently selected in the inventory (not dragged)
 
 func _ready() -> void:		
 	%ItemList.item_clicked.connect(on_inventory_item_clicked)
@@ -35,9 +36,14 @@ func close_window() -> void:
 		visible = false
 
 func open_window() -> void:
-	if global.mode == "default":
-		global.mode = "inventory"
-		visible = true
+	match global.mode:
+		"default":
+			global.mode = "inventory"
+			%WindowName.text = "Inventory and Crafting"
+			visible = true
+		"dropper":
+			%WindowName.text = "Select an Item for the Dropper"
+			visible = true
 
 func add_inventory_item(item : Item) -> bool:
 	if item == null or item.qty <= 0: # If invalid item or empty item
@@ -123,7 +129,7 @@ func get_inventory_item(index : int) -> Item:
 
 
 func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index : int) -> void:
-	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click. TODO: Make right click bring up interaction menu
+	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click.
 		var item = get_inventory_item(index)
 		
 		if item == null:
@@ -131,7 +137,7 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			return
 		
 		match global.mode:
-			"inventory": consume_inventory_item(item, index)
+			"inventory": consume_item(item, index)
 			"dropper": pass
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
@@ -143,27 +149,39 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			return
 		
 		match global.mode:
-			"inventory": drag_inventory_item(item, index)
+			"inventory": drag_item(item, index)
 			"dropper": _set_dropper_item(item)
 		
 		#close_inventory()
 
-func drag_inventory_item(item : Item, index : int):
-	var drag_item = drag_item_scene.instantiate()
+func drag_item(item : Item, index : int):
+	var drag_item_instance = drag_item_scene.instantiate()
 		
-	var da_item = item.duplicate()
-	da_item.qty = 1
+	var selected_item = item.duplicate()
+	selected_item.qty = 1
 	item.qty -= 1
 	%ItemList.set_item_text(index, generate_item_text(item))
 	if item.qty < 1:
 		remove_inventory_item(index)
-	drag_item.item = da_item
+	drag_item_instance.item = selected_item
 	
-	drag_item.texture = item.texture
-	drag_item.inventory_ref = self # Keep reference of inventory for drag item for if dropped outside of a draggable area
-	get_parent().add_child(drag_item)
+	drag_item_instance.texture = item.texture
+	drag_item_instance.inventory_ref = self # Keep reference of inventory for drag item for if dropped outside of a draggable area
+	get_parent().add_child(drag_item_instance)
 
-func consume_inventory_item(item : Item, index : int):
+
+#func select_item(item : Item, index : int):
+	#selected_item = item
+	#if not item:
+		#return
+	#global.mode = "inventory item selected"
+	# Determine if context menu is needed or keyboard input can be used on items
+	# Could make it so that instead of opening a context menu, 
+	# it selects/highlights the item and then pressing a different button
+	# or a different item determines the effect (combine, consume, )
+
+
+func consume_item(item : Item, index : int):
 	update_status_effects.emit(item.on_consume_effects, item.on_consume_message)
 	
 	if item.qty <= 1:
@@ -221,6 +239,7 @@ func _on_hotbar_consume_inventory_item(item: Item) -> void:
 
 func _on_tool_wheel_set_dropper_item() -> void:
 	global.mode = "dropper"
+	open_window()
 
 func _set_dropper_item(item: Item):
 	toolwheel_ref.dropper_item = item

@@ -28,8 +28,6 @@ var use_timer := 0.0 ## Time left in current craft
 var cur_recipe : Recipe ## The recipe currently used in production
 
 
-
-
 func _init() -> void:
 	for i in MAX_ITEMS:
 		buttons.append(null)
@@ -60,6 +58,7 @@ func set_recipes(folder_name : String):
 	match folder_name:
 		"Cauldron": tool_name = "cauldron"
 		"M&P": tool_name = "m&p"
+		"Merger": tool_name = "merger"
 
 
 func _process(delta: float) -> void:

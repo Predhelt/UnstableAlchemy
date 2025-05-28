@@ -13,7 +13,7 @@ var item_quantities : Array[int] ## The current quantities of items in the objec
 @export var combinations : Array[ObjectCombination]
 
 var context_menu : Control
-var inspection_panel_scene = preload("res://UI/Context Menu/inspection_panel.tscn")
+var inspection_panel_scene = preload("res://UI/Interactable Object/inspection_panel.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,12 +40,13 @@ func inspect_object():
 	
 
 func _on_object_grabbed(player: Player) -> void:
-	collect_items(player, grab_interaction)
-	
-	
+	if not collect_items(player, grab_interaction):
+		return
 	
 	if grab_interaction.on_interact_status_effects:
 		player.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
+	
+	check_empty()
 	
 func _on_object_cut(player: Player) -> void:
 	if not collect_items(player, cut_interaction):
@@ -113,6 +114,8 @@ func emit_effect():
 
 
 func _on_object_combined(player: Player, item: Item) -> void:
+	if not item:
+		return
 	for c in combinations:
 		if c.input_item.id == item.id:
 			player.update_status_message(c.status_message)
@@ -120,6 +123,8 @@ func _on_object_combined(player: Player, item: Item) -> void:
 			player._on_interaction_area_exited($InteractArea)
 			emit_effect()
 			player._on_interaction_area_entered($InteractArea)
+			return
+	player.update_status_message("...")
 
 func mutate_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
