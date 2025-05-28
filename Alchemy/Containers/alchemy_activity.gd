@@ -2,6 +2,7 @@ extends Control
 
 
 func _ready() -> void:
+	pass
 	#%Cauldron.inventory_ref = get_parent()
 	#%MortarPestle.inventory_ref = get_parent()
 

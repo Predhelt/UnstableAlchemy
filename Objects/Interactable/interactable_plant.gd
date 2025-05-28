@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var object_name := "" ## Name of the object
+@export var object_name := "" ## Name of the object (also the folder name the object is contained in)
 @export var object_description := "" ## Description of the object given to the player
 @export var items : Array[Item] ## The items that the object contains and their initial quantities
 var item_quantities : Array[int] ## The current quantities of items in the object
@@ -8,18 +8,63 @@ var item_quantities : Array[int] ## The current quantities of items in the objec
 @export var interact_effect : PackedScene = preload("res://Effects/object_interacted_effect.tscn") ## Temporary effect to show during interaction
 @export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect.tscn") ## Show the amount of items gained when added to inventory
 
-@export var grab_interaction : InteractionType
-@export var cut_interaction : InteractionType
-@export var combinations : Array[ObjectCombination]
+var grab_interaction : InteractionType
+var cut_interaction : InteractionType
+var combinations : Array[ObjectCombination]
 
 var context_menu : Control
 var inspection_panel_scene = preload("res://UI/Interactable Object/inspection_panel.tscn")
 
 
+func _init() -> void:
+	pass
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for item in items:
 		item_quantities.append(item.qty)
+	
+	init_interactions()
+
+func init_interactions():
+	var cur_folder_path = get_cur_folder_path()
+	var dir = DirAccess.open(cur_folder_path + "/Interactions/")
+	if not dir:
+		print("Error: No path")
+		return
+	
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		var cur_file_name = cur_folder_path + "Interactions/" + file_name
+		if file_name == "grab.tres":
+			grab_interaction = load(cur_file_name)
+		elif file_name == "cut.tres":
+			cut_interaction = load(cur_file_name)
+		else: #Should be a combination type
+			var split = file_name.split(".")
+			if split[-1] != "tres": # If not a resource file, then skip it
+				file_name = dir.get_next()
+				continue
+			
+			var combo = load(cur_file_name)
+			if combo and "result_object_scene" in combo: # Checks if the resource has Combination propery
+				combinations.append(combo)
+		
+		file_name = dir.get_next()
+
+func get_cur_folder_path() -> String:
+	var folder_path := ""
+	var path := scene_file_path.split("/")
+	var path_counter := 1
+	for dir_name in path:
+		if path_counter >= len(path):
+			break
+		
+		folder_path += dir_name + "/"
+		path_counter += 1
+	return folder_path
+
 
 func _on_object_inspected() -> void:
 	inspect_object()
@@ -128,6 +173,7 @@ func _on_object_combined(player: Player, item: Item) -> void:
 
 func mutate_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
+	obj._ready()
 	
 	#var obj_sprite = obj.find_child("Sprite2D")
 	$Sprite2D.texture = obj.find_child("Sprite2D").texture

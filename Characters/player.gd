@@ -30,14 +30,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	update_animation_parameters()
-	#TODO: allow the camera to zoom based player scale changes
 
 
 func _physics_process(delta: float) -> void:
 	if global.mode == "default":
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		velocity = direction * stats["move speed"] * scale
-		move_and_slide() # FIXME: movement is a bit jittery
+		velocity = direction * stats["move speed"] * global.player_scale
+		move_and_slide() # FIXME: movement is a bit jittery (note: Might have to do with grid. smaller objects snap more noticeably)
 	
 	_update_active_status_effect(delta)
 	
@@ -67,7 +66,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use_tool"):
 		execute_tool()
 	
-
+func change_player_scale(mult: Vector2):
+	var group = get_parent()
+	group.scale *= mult
+	global.player_scale = group.scale
 
 ## Interaction Methods ##
 
@@ -88,7 +90,6 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 func update_interactions():
 	if all_interaction_areas:
 		%InteractLabel.text = all_interaction_areas[0].interact_label
-		#interact_label.scale = camera_scale
 		# TODO: Add outline to the object that will be interacted with
 	else:
 		%InteractLabel.text = ""
@@ -118,12 +119,6 @@ func execute_tool():
 func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
 	update_status_effects(on_consume_effects, on_consume_message)
 
-
-func reset_label_height():
-	%StatusLabel.position.y = LABEL_DEFAULT_Y_POS * scale[1] - 20
-	%InteractLabel.position.y = LABEL_DEFAULT_Y_POS * scale[1] - 45
-
-
 ## Status Effect Handler Methods ##
 
 func update_status_effects(statuses: Array[StatusEffect], message: String):
@@ -145,13 +140,8 @@ func _apply_status_effect(se: StatusEffect) -> bool:
 			return true
 		"normalize" : if _normalize_status_effects():
 			return true
-		"grow" : 
-			for cur_se in active_status_effects:
-				if cur_se.id == se.id:
-					return false
-			
-			if _grow_player(se):
-				return true
+		"grow" : if _grow_player(se):
+			return true
 	return false
 
 
@@ -180,12 +170,13 @@ func remove_status_effect(se : StatusEffect) -> bool:
 	return is_removed
 
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false):
-	
 	if index != -1:
 		if is_removing_status:
 			active_status_effects.remove_at(index)
 			%StatusEffectBar.remove_status(se)
 			return
+		
+		#FIXME: not updating active status effect icon
 	
 	active_status_effects.append(se.duplicate())
 	%StatusEffectBar.generate_status(se)
@@ -194,18 +185,17 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 ## Status effect functions ##
 func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
-		var old_se = active_status_effects[i]
-		if old_se.id == se.id:
+		var cur_se = active_status_effects[i]
+		if cur_se.id == se.id:
 				
 			# Reset the active status effect (New effect overwrites the old effect)
-			stats[stat_name] -= old_se.value
+			stats[stat_name] -= cur_se.value
 			
 			if is_removing_status:
 				update_status_bar(se, i, true)
-				return true
-			
-			stats[stat_name] += se.value
-			update_status_bar(se, i)
+			else:
+				stats[stat_name] += se.value
+				update_status_bar(se, i)
 			return true
 	
 	stats[stat_name] += se.value
@@ -227,14 +217,25 @@ func _normalize_status_effects() -> bool:
 			
 	return true
 
-func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
-	if is_removing_status:
-		scale *= Vector2(1.0/se.value, 1.0/se.value)
-		player_camera_ref.zoom *= Vector2(se.value, se.value)
-	else:
-		scale *= Vector2(se.value, se.value)
-		player_camera_ref.zoom *= Vector2(1.0/se.value, 1.0/se.value)
+func _grow_player(se: StatusEffect, is_removing_status := false) -> bool: #FIXME: Player position not updating properly when scaled (Note: Player group position not updating on move, so desync on scale in relation to grop node)
+	for i in len(active_status_effects):
+		var cur_se = active_status_effects[i]
+		if cur_se.id == se.id:
+			if se.value == cur_se.value and not is_removing_status:
+				return false
+			
+			change_player_scale(Vector2(1.0/se.value, 1.0/se.value))
+			player_camera_ref.zoom *= Vector2(se.value, se.value) #FIXME: Make camera position after zoom relative to player
+			if is_removing_status:
+				update_status_bar(se, i, true)
+				return true
+			
+			change_player_scale(Vector2(se.value, se.value))
+			player_camera_ref.zoom *= Vector2(1.0/se.value, 1.0/se.value)
+			update_status_bar(se, i)
+			return true
 	
-	reset_label_height()
-	update_status_bar(se, is_removing_status)
+	change_player_scale(Vector2(se.value, se.value))
+	player_camera_ref.zoom *= Vector2(1.0/se.value, 1.0/se.value)
+	update_status_bar(se)
 	return true

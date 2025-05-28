@@ -3,10 +3,10 @@ class_name Recipe extends Resource
 @export var id : int
 @export var product_item : Item
 @export var ingredients : Array[Item]
-@export var tool_used := ""
+@export_enum("cauldron", "m&p", "merger") var tool_used := ""
 
-@export var product_item_amount := 0
-@export var product_craft_time := 0.0
+@export_range(0, 100) var product_item_amount := 0
+@export_range(0.0, 10.0) var product_craft_time := 0.0
 
 #func _init() -> void:
 	# Order the ingredients from least ID to greatest for consistency

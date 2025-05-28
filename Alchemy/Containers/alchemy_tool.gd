@@ -33,14 +33,14 @@ func _init() -> void:
 		buttons.append(null)
 		items.append(null)
 	
-	for i in len(recipes):
-		if recipes[i].tool_used != tool_name:
-			print(str(recipes[i].product_item) + " cannot be crafted using " + tool_name +
-				", use " + recipes[i].tool_used + " instead")
-			recipes.remove_at(i)
 
 
-func set_recipes(folder_name : String):
+func set_recipes(folder_name : StringName):
+	match folder_name:
+		&"Cauldron": tool_name = "cauldron"
+		&"M&P": tool_name = "m&p"
+		&"Merger": tool_name = "merger"
+	
 	var dir = DirAccess.open(recipes_folder_path + folder_name + "/")
 	if not dir:
 		print("Error: No path")
@@ -49,16 +49,15 @@ func set_recipes(folder_name : String):
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while file_name != "":
-		# TODO: if file is of type .tres:
-		var new_recipe : Recipe = load(recipes_folder_path + folder_name + "/" + file_name)
-		if new_recipe:
-			recipes.append(new_recipe)
+		var split = file_name.split(".")
+		if split[-1] == "tres":
+			var new_recipe : Recipe = load(recipes_folder_path + folder_name + "/" + file_name)
+			if new_recipe:
+				if new_recipe.tool_used != tool_name:
+					print(new_recipe.product_item.display_name + " cannot be crafted using " + tool_name +
+						", use " + new_recipe.tool_used + " instead")
+				recipes.append(new_recipe)
 		file_name = dir.get_next()
-	
-	match folder_name:
-		"Cauldron": tool_name = "cauldron"
-		"M&P": tool_name = "m&p"
-		"Merger": tool_name = "merger"
 
 
 func _process(delta: float) -> void:
@@ -116,6 +115,7 @@ func _on_button_confirm_pressed() -> void:
 	
 func _use_items():
 	pass # This function should be overridden
+	#TODO: Add minigame / qte's for crafting?
 
 func begin_craft(result_recipe: Recipe):
 	if not result_recipe.product_item:

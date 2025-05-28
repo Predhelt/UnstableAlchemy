@@ -2,8 +2,12 @@ extends Control
 
 var item_container : PackedScene = preload("res://Effects/item_gained_container.tscn")
 
+func _ready() -> void:
+	scale = global.player_scale
+	
 func _physics_process(delta: float) -> void:
-	position.y -= delta * 20
+	position.y -= delta * 20 * global.player_scale[1]
+	scale = global.player_scale
 
 func _on_timer_timeout() -> void:
 	queue_free()
