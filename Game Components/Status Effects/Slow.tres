@@ -7,6 +7,6 @@ script = ExtResource("1_2uvlx")
 id = 1
 name = "Slow"
 description = "Decreases movement speed"
-effect = "change_ms"
+effect = "move speed"
 value = -100.0
 duration = 10.0

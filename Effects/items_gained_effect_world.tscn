@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmn6qh6ni2xey"]
 
-[ext_resource type="Script" path="res://Effects/items_gained_effect.gd" id="1_mgi0n"]
+[ext_resource type="Script" path="res://Effects/items_gained_effect_world.gd" id="1_512rp"]
 
 [node name="ItemsGainedEffect" type="Control"]
 z_index = 10
@@ -12,7 +12,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_mgi0n")
+script = ExtResource("1_512rp")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

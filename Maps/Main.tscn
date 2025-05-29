@@ -1,14 +1,77 @@
 [gd_scene load_steps=5 format=4 uid="uid://cin5cwxotvtl8"]
 
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="1_57tix"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_7tc3r"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Green Herb/green_herb.tscn" id="3_6v1de"]
-[ext_resource type="PackedScene" uid="uid://ckm6ryyxqhadh" path="res://Characters/player_group.tscn" id="4_d3d18"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush.tscn" id="4_fkii8"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_57tix")]
+position = Vector2(532, 310)
+
+[node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../PlayerCamera")
+
+[node name="LabelTransform" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../LabelGroup")
+update_rotation = false
+update_scale = false
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(532, 310)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="LabelGroup" type="Node2D" parent="." groups=["player"]]
+position = Vector2(532, 310)
+
+[node name="InteractLabel" type="Label" parent="LabelGroup"]
+unique_name_in_owner = true
+z_index = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -105.0
+offset_right = 110.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 4
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+unique_name_in_owner = true
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = -80.0
+offset_right = 125.0
+offset_bottom = -50.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+bbcode_enabled = true
+text = "[center]status
+"
+fit_content = true
+scroll_active = false
+scroll_following = true
+metadata/_edit_use_anchors_ = true
+
 [node name="TileMaps" type="Node2D" parent="."]
+visible = false
 
 [node name="Water" type="TileMapLayer" parent="TileMaps"]
 z_index = -50
@@ -33,6 +96,3 @@ position = Vector2(350, 88)
 
 [node name="GreenHerb" parent="Objects" instance=ExtResource("3_6v1de")]
 position = Vector2(507, 68)
-
-[node name="PlayerGroup" parent="." instance=ExtResource("4_d3d18")]
-position = Vector2(530, 323)

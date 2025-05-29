@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 const LABEL_DEFAULT_Y_POS := -60.0
+const SIZE_DAMPENER := 0.5 # Value used to reduce the intensity of effects when size is changed
 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var inventory_ref : Control = %Inventory
@@ -14,10 +15,10 @@ var all_interaction_areas : Array[Area2D]
 var status_message_timer := 0.0
 
 var stats = {
-	#"health" : 100.0, ## health value
-	"move speed" : 200.0, ## move speed modifier (100 = 1.0*ms)
-	"strength" : 100.0, ## strength used to move certain objects
-	#"range" : 100.0, ## same as CollisionInteract.radius of arms
+	#&"health" : 100.0, ## health value
+	&"move speed" : 200.0, ## move speed modifier (100 = 1.0*ms)
+	&"strength" : 100.0, ## strength used to move certain objects
+	#&"range" : 100.0, ## same as CollisionInteract.radius of arms
 }
 
 var selected_tool : String
@@ -33,9 +34,9 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if global.mode == "default":
+	if global.mode == &"default":
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		velocity = direction * stats["move speed"] * global.player_scale
+		velocity = direction * stats[&"move speed"] * (Vector2(1.0, 1.0) + (global.player_scale/Vector2(1/SIZE_DAMPENER, 1/SIZE_DAMPENER) - Vector2(SIZE_DAMPENER, SIZE_DAMPENER)))
 		move_and_slide() # FIXME: movement is a bit jittery (note: Might have to do with grid. smaller objects snap more noticeably)
 	
 	_update_active_status_effect(delta)
@@ -67,9 +68,14 @@ func _input(event: InputEvent) -> void:
 		execute_tool()
 	
 func change_player_scale(mult: Vector2):
-	var group = get_parent()
-	group.scale *= mult
-	global.player_scale = group.scale
+	scale *= mult
+	global.player_scale = scale
+	
+	for node in get_tree().get_nodes_in_group("player_elements"):
+		node.scale *= mult
+	
+	player_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
+	
 
 ## Interaction Methods ##
 
@@ -99,10 +105,10 @@ func execute_interaction():
 	if all_interaction_areas:
 		var cur_interaction = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type:
-			"print_text" : print(cur_interaction.interact_value)
-			"context_menu" : cur_interaction.toggle_context_menu(self)
-			"inspect" : cur_interaction.inspect_object()
-			"talk" : pass # TODO: talk to NPC
+			&"print_text" : print(cur_interaction.interact_value)
+			&"context_menu" : cur_interaction.toggle_context_menu(self)
+			&"inspect" : cur_interaction.inspect_object()
+			&"talk" : pass # TODO: talk to NPC
 
 
 func _on_tool_updated(tool_name: String) -> void:
@@ -111,9 +117,9 @@ func _on_tool_updated(tool_name: String) -> void:
 func execute_tool():
 	if all_interaction_areas:
 		match selected_tool:
-			"hand" : all_interaction_areas[0].grab_object(self)
-			"blade" : all_interaction_areas[0].cut_object(self)
-			"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
+			&"hand" : all_interaction_areas[0].grab_object(self)
+			&"blade" : all_interaction_areas[0].cut_object(self)
+			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
 
 
 func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
@@ -134,13 +140,13 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		"change_ms" : if _change_base_stat(se, "move speed"):
+		&"move speed" : if _change_base_stat(se, &"move speed"):
 			return true
-		"cleanse" : if _cleanse_status_effects():
+		&"cleanse" : if _cleanse_status_effects():
 			return true
-		"normalize" : if _normalize_status_effects():
+		&"normalize" : if _normalize_status_effects():
 			return true
-		"grow" : if _grow_player(se):
+		&"grow" : if _grow_player(se):
 			return true
 	return false
 
@@ -163,20 +169,21 @@ func _update_active_status_effect(delta : float) -> void:
 func remove_status_effect(se : StatusEffect) -> bool:
 	var is_removed := false
 	match se.effect:
-		"change_ms" : if _change_base_stat(se, "move speed", true):
+		&"move speed" : if _change_base_stat(se, &"move speed", true):
 			is_removed = true
-		"grow" : if _grow_player(se, true):
+		&"grow" : if _grow_player(se, true):
 			is_removed = true
 	return is_removed
 
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false):
 	if index != -1:
+		active_status_effects.remove_at(index)
 		if is_removing_status:
-			active_status_effects.remove_at(index)
 			%StatusEffectBar.remove_status(se)
 			return
-		
-		#FIXME: not updating active status effect icon
+		active_status_effects.append(se.duplicate())
+		%StatusEffectBar.update_status(se)
+		return
 	
 	active_status_effects.append(se.duplicate())
 	%StatusEffectBar.generate_status(se)
@@ -204,20 +211,20 @@ func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status 
 	return true
 
 func _cleanse_status_effects() -> bool:
-	for i in len(active_status_effects):
+	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration != -1:
 			remove_status_effect(active_status_effects[i])
 			
 	return true
 
 func _normalize_status_effects() -> bool:
-	for i in len(active_status_effects):
+	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration == -1:
 			remove_status_effect(active_status_effects[i])
 			
 	return true
 
-func _grow_player(se: StatusEffect, is_removing_status := false) -> bool: #FIXME: Player position not updating properly when scaled (Note: Player group position not updating on move, so desync on scale in relation to grop node)
+func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]
 		if cur_se.id == se.id:
@@ -225,17 +232,14 @@ func _grow_player(se: StatusEffect, is_removing_status := false) -> bool: #FIXME
 				return false
 			
 			change_player_scale(Vector2(1.0/se.value, 1.0/se.value))
-			player_camera_ref.zoom *= Vector2(se.value, se.value) #FIXME: Make camera position after zoom relative to player
 			if is_removing_status:
 				update_status_bar(se, i, true)
 				return true
 			
 			change_player_scale(Vector2(se.value, se.value))
-			player_camera_ref.zoom *= Vector2(1.0/se.value, 1.0/se.value)
 			update_status_bar(se, i)
 			return true
 	
 	change_player_scale(Vector2(se.value, se.value))
-	player_camera_ref.zoom *= Vector2(1.0/se.value, 1.0/se.value)
 	update_status_bar(se)
 	return true

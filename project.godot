@@ -29,7 +29,6 @@ window/size/always_on_top=true
 [global_group]
 
 droppable="areas that you can drag and drop into"
-open_windows="windows that are open"
 
 [input]
 
@@ -129,6 +128,10 @@ options_menu={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Interactions"
 2d_physics/layer_3="UI Items"
+
+[physics]
+
+common/physics_interpolation=true
 
 [rendering]
 

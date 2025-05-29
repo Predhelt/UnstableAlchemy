@@ -6,7 +6,7 @@ extends Node2D
 var item_quantities : Array[int] ## The current quantities of items in the object
 
 @export var interact_effect : PackedScene = preload("res://Effects/object_interacted_effect.tscn") ## Temporary effect to show during interaction
-@export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect.tscn") ## Show the amount of items gained when added to inventory
+@export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect_world.tscn") ## Show the amount of items gained when added to inventory
 
 var grab_interaction : InteractionType
 var cut_interaction : InteractionType
@@ -72,7 +72,7 @@ func _on_object_inspected() -> void:
 func inspect_object():
 	
 	var inspection_panel = find_child("InspectionPanel")
-	if global.mode == "inspection":
+	if global.mode == &"inspection":
 		return
 	inspection_panel = inspection_panel_scene.instantiate()
 	inspection_panel.name = "InspectionPanel"
@@ -81,7 +81,7 @@ func inspect_object():
 	inspection_panel.object_image = $Sprite2D.texture
 	inspection_panel.add_to_group("open_window")
 	add_child(inspection_panel)
-	global.mode = "inspection"
+	global.mode = &"inspection"
 	
 
 func _on_object_grabbed(player: Player) -> void:

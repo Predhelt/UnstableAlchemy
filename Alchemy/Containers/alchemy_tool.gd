@@ -1,7 +1,7 @@
 class_name AlchemyTool extends Control
 
 
-@export var item_gained_effect := preload("res://Effects/items_gained_effect.tscn")
+@export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
 var recipes_folder_path := "res://Alchemy/Recipes/"
 var tool_name := ""
 var recipes : Array[Recipe]
@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 			var effect_instance = item_gained_effect.instantiate()
 			
 			effect_instance.add_item(product)
-			effect_instance.scale = Vector2(1, 1)
+			effect_instance.scale = Vector2(1.3, 1.3)
 			add_child(effect_instance)
 			
 			item_produced.emit(product, cur_recipe)

@@ -28,11 +28,11 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode != "recipe_list":
+	if global.mode != &"recipe_list":
 		return
 	
 	visible = false
-	global.mode = "default"
+	global.mode = &"default"
 	%ProductDetails.visible = false
 	for child in %ProcedureList.get_children(): # Remove all children
 		%ProcedureList.remove_child(child)
@@ -41,8 +41,8 @@ func close_window() -> void:
 
 
 func open_window() -> void:
-	if global.mode == "default":
-		global.mode = "recipe_list"
+	if global.mode == &"default":
+		global.mode = &"recipe_list"
 		visible = true
 
 
@@ -91,15 +91,15 @@ func add_procedure(recipe: Recipe):
 	var cur_procedures_container = HBoxContainer.new()
 	var tool_icon : TextureRect = recipe_item_icon.instantiate()
 	match recipe.tool_used:
-		"cauldron": 
+		&"cauldron": 
 			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
 			tool_icon.tooltip_text = "Ingredients are combined in the Cauldron"
-		"m&p":
+		&"m&p":
 			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Mortar and Pestle"
-		"hand": pass
-		"blade": pass
-		"dropper": pass
+		&"hand": pass
+		&"blade": pass
+		&"dropper": pass
 	
 	cur_procedures_container.add_child(tool_icon)
 	

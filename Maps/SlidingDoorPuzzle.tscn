@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=4 uid="uid://blf5roktgwlk0"]
 
-[ext_resource type="PackedScene" uid="uid://ckm6ryyxqhadh" path="res://Characters/player_group.tscn" id="1_xtbpd"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush.tscn" id="4_g256m"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="5_h3ev3"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="6_1dymc"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Green Herb/green_herb.tscn" id="6_f4p00"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://Objects/sliding_door.tscn" id="7_a54a2"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://Objects/pressure_plate.tscn" id="8_236vt"]
@@ -10,8 +10,67 @@
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
 
-[node name="PlayerGroup" parent="." instance=ExtResource("1_xtbpd")]
-position = Vector2(170, 33)
+[node name="Player" parent="." groups=["player"] instance=ExtResource("6_1dymc")]
+position = Vector2(169, 270)
+
+[node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../PlayerCamera")
+
+[node name="LabelTransform" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../LabelGroup")
+update_rotation = false
+update_scale = false
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(169, 270)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="LabelGroup" type="Node2D" parent="." groups=["player"]]
+position = Vector2(169, 270)
+
+[node name="InteractLabel" type="Label" parent="LabelGroup"]
+unique_name_in_owner = true
+z_index = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -105.0
+offset_right = 110.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 4
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+unique_name_in_owner = true
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = -80.0
+offset_right = 125.0
+offset_bottom = -50.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+bbcode_enabled = true
+text = "[center]status
+"
+fit_content = true
+scroll_active = false
+scroll_following = true
+metadata/_edit_use_anchors_ = true
 
 [node name="TileMaps" type="Node2D" parent="."]
 

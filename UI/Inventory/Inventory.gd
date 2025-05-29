@@ -31,17 +31,17 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode == "inventory" or global.mode == "dropper":
-		global.mode = "default"
+	if global.mode == &"inventory" or global.mode == &"dropper":
+		global.mode = &"default"
 		visible = false
 
 func open_window() -> void:
 	match global.mode:
-		"default":
-			global.mode = "inventory"
+		&"default":
+			global.mode = &"inventory"
 			%WindowName.text = "Inventory and Crafting"
 			visible = true
-		"dropper":
+		&"dropper":
 			%WindowName.text = "Select an Item for the Dropper"
 			visible = true
 
@@ -137,8 +137,8 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			return
 		
 		match global.mode:
-			"inventory": consume_item(item, index)
-			"dropper": pass
+			&"inventory": consume_item(item, index)
+			&"dropper": pass
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
@@ -149,8 +149,8 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			return
 		
 		match global.mode:
-			"inventory": drag_item(item, index)
-			"dropper": _set_dropper_item(item)
+			&"inventory": drag_item(item, index)
+			&"dropper": _set_dropper_item(item)
 		
 		#close_inventory()
 

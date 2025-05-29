@@ -9,6 +9,6 @@ id = 0
 name = "Energized"
 description = "Increases movement speed"
 icon = ExtResource("2_d3iqx")
-effect = "change_ms"
+effect = "move speed"
 value = 100.0
 duration = 10.0
