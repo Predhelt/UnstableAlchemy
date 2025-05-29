@@ -137,7 +137,7 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			return
 		
 		match global.mode:
-			&"inventory": consume_item(item, index)
+			&"inventory": use_item(item, index)
 			&"dropper": pass
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
@@ -170,16 +170,16 @@ func drag_item(item : Item, index : int):
 	get_parent().add_child(drag_item_instance)
 
 
-#func select_item(item : Item, index : int):
-	#selected_item = item
-	#if not item:
-		#return
-	#global.mode = "inventory item selected"
-	# Determine if context menu is needed or keyboard input can be used on items
-	# Could make it so that instead of opening a context menu, 
-	# it selects/highlights the item and then pressing a different button
-	# or a different item determines the effect (combine, consume, )
+func use_item(item: Item, index : int):
+	var is_potion := item.id >= 500 and item.id < 750 # Potions are ID 500-750. Splash potions are 750+
+	if not is_potion:
+		sample_item(item)
+	else:
+		consume_item(item, index)
 
+#FIXME: Add cooldown when sampling items to prevent spamming
+func sample_item(item):
+	update_status_effects.emit(item.on_consume_effects, item.on_consume_message)
 
 func consume_item(item : Item, index : int):
 	update_status_effects.emit(item.on_consume_effects, item.on_consume_message)
@@ -234,7 +234,7 @@ func consume_hotbar_item(item : Item):
 		hotbar_ref.remove_hotbar_item(item)
 
 func _on_hotbar_consume_inventory_item(item: Item) -> void:
-	consume_hotbar_item(item)
+	consume_hotbar_item(item) #FIXME: Items that are not potions should either be sampled or not allowed on the hotbar
 
 
 func _on_tool_wheel_set_dropper_item() -> void:
