@@ -120,6 +120,7 @@ func add_procedure(recipe: Recipe):
 			cur_procedures_container.add_child(label_add)
 			num_ingredients -= 1
 	
+	#TODO: Add ProcedureInputActions display to each recipe
 	%ProcedureList.add_child(cur_procedures_container)
 	
 	

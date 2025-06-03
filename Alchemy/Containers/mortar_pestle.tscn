@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://y1067fe07wmf"]
+[gd_scene load_steps=8 format=3 uid="uid://y1067fe07wmf"]
 
 [ext_resource type="Script" path="res://Alchemy/Containers/mortar_pestle.gd" id="1_a40nq"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="2_0nnx4"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="2_m0hp4"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="4_88qmb"]
+[ext_resource type="PackedScene" uid="uid://derwmvq5odbl1" path="res://Alchemy/Minigames/MortarPestleMinigame.tscn" id="5_m7tiq"]
 
 [sub_resource type="GDScript" id="GDScript_ailbx"]
 script/source = "extends Area2D
@@ -20,7 +21,8 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_a40nq")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ToolIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,7 +38,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("2_0nnx4")
 
-[node name="ItemGrid" type="GridContainer" parent="TextureRect"]
+[node name="ItemGrid" type="GridContainer" parent="ToolIcon"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -52,7 +54,7 @@ grow_vertical = 2
 mouse_filter = 2
 columns = 2
 
-[node name="Button1" type="TextureButton" parent="TextureRect/ItemGrid"]
+[node name="Button1" type="TextureButton" parent="ToolIcon/ItemGrid"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -61,7 +63,7 @@ texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button2" type="TextureButton" parent="TextureRect/ItemGrid"]
+[node name="Button2" type="TextureButton" parent="ToolIcon/ItemGrid"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -70,7 +72,7 @@ texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button3" type="TextureButton" parent="TextureRect/ItemGrid"]
+[node name="Button3" type="TextureButton" parent="ToolIcon/ItemGrid"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -79,7 +81,7 @@ texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ButtonConfirm" type="TextureButton" parent="TextureRect/ItemGrid"]
+[node name="ButtonConfirm" type="TextureButton" parent="ToolIcon/ItemGrid"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -88,7 +90,7 @@ texture_normal = ExtResource("4_88qmb")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="TextureRect"]
+[node name="ProgressBar" type="ProgressBar" parent="ToolIcon"]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -115,7 +117,15 @@ script = SubResource("GDScript_ailbx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MortarPestleArea"]
 shape = SubResource("RectangleShape2D_0nbwu")
 
-[connection signal="pressed" from="TextureRect/ItemGrid/Button1" to="." method="_on_button_1_pressed"]
-[connection signal="pressed" from="TextureRect/ItemGrid/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="TextureRect/ItemGrid/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="TextureRect/ItemGrid/ButtonConfirm" to="." method="_on_button_confirm_pressed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MortarPestleMinigame" parent="CanvasLayer" instance=ExtResource("5_m7tiq")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="ToolIcon/ItemGrid/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="ToolIcon/ItemGrid/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="ToolIcon/ItemGrid/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="ToolIcon/ItemGrid/ButtonConfirm" to="." method="_on_button_confirm_pressed"]
+[connection signal="item_produced" from="CanvasLayer/MortarPestleMinigame" to="." method="_on_minigame_item_produced"]
+[connection signal="open_inventory" from="CanvasLayer/MortarPestleMinigame" to="." method="_on_open_inventory"]

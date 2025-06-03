@@ -1,0 +1,188 @@
+[gd_scene load_steps=7 format=3 uid="uid://derwmvq5odbl1"]
+
+[ext_resource type="Script" path="res://Alchemy/Minigames/mortar_pestle_minigame.gd" id="1_vo0bl"]
+[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_5yr2d"]
+[ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="2_yjm0x"]
+[ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="4_r2g22"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="5_eoa2f"]
+[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://Art/UAPrototype/Ingredients/Inventory/herb-green-leaf.png" id="6_8mthw"]
+
+[node name="MortarPestleMinigame" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 183.0
+offset_top = 84.0
+offset_right = -183.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vo0bl")
+
+[node name="ButtonGrind" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.29
+anchor_top = 0.3
+anchor_right = 0.29
+anchor_bottom = 0.3
+grow_horizontal = 0
+text = "Grind"
+icon = ExtResource("2_5yr2d")
+icon_alignment = 1
+
+[node name="ButtonCrush" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.31
+anchor_top = 0.3
+anchor_right = 0.31
+anchor_bottom = 0.3
+text = "Crush"
+icon = ExtResource("2_yjm0x")
+icon_alignment = 1
+
+[node name="ProgressSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 10)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -406.0
+offset_top = -56.0
+offset_right = 406.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 10.0
+step = 0.01
+editable = false
+scrollable = false
+tick_count = 12
+
+[node name="ButtonStart" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.05
+anchor_right = 0.3
+anchor_bottom = 0.05
+grow_horizontal = 2
+text = "Start"
+icon = ExtResource("4_r2g22")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.7
+anchor_right = 0.95
+anchor_bottom = 0.85
+offset_left = 0.299999
+offset_top = 2.60001
+offset_right = 0.700012
+offset_bottom = -0.200012
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="TextureRect1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect6" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect7" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect8" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect9" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect10" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_r2g22")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.6
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.6
+
+[node name="ToolIcon" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_eoa2f")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ItemIcon" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_8mthw")
+
+[connection signal="pressed" from="ButtonGrind" to="." method="_on_button_grind_pressed"]
+[connection signal="pressed" from="ButtonCrush" to="." method="_on_button_crush_pressed"]
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]

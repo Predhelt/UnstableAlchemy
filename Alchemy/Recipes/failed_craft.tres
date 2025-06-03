@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=4 format=3 uid="uid://j6051mifqgbe"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=3 format=3 uid="uid://j6051mifqgbe"]
 
-[ext_resource type="Script" path="res://Items/Item.gd" id="1_vuylt"]
 [ext_resource type="Resource" uid="uid://sr3b18bhgn6a" path="res://Items/Products/failed_potion_red.tres" id="2_h746y"]
 [ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="3_udjn2"]
 
@@ -8,7 +7,7 @@
 script = ExtResource("3_udjn2")
 id = 999
 product_item = ExtResource("2_h746y")
-ingredients = Array[ExtResource("1_vuylt")]([])
+ingredients = null
 tool_used = "cauldron, m&p, merger"
 product_item_amount = 1
 product_craft_time = 1.0

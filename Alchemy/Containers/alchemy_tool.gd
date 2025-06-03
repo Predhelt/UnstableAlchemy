@@ -7,7 +7,9 @@ var tool_name := ""
 var recipes : Array[Recipe]
 
 
-signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item is completed and added to the inventory
+signal item_produced(item: Item, recipe : Recipe) ## Sent when the item is completed and added to the inventory
+signal close_inventory() ## Sent when the minigame window is opened, the inventory should be closed
+signal open_inventory() ## Sent when minigame window is closed, the inventory should be opened
 
 const MAX_ITEMS := 3 ## Max number of items that can be stored in the tool
 var items : Array[Item] ## List of items in the tool
@@ -15,12 +17,12 @@ var num_items := 0 ## Number of items currently in the tool
 
 var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") #ID for failed craft is 999
 
-@onready var buttons := [$TextureRect/ItemGrid/Button1,
-$TextureRect/ItemGrid/Button2,
-$TextureRect/ItemGrid/Button3] ## Reference to item buttons that represent each item
+@onready var buttons := [$ToolIcon/ItemGrid/Button1,
+$ToolIcon/ItemGrid/Button2,
+$ToolIcon/ItemGrid/Button3] ## Reference to item buttons that represent each item
 
-@onready var button_confirm := $TextureRect/ItemGrid/ButtonConfirm
-@onready var progress_bar := $TextureRect/ProgressBar
+@onready var button_confirm := $ToolIcon/ItemGrid/ButtonConfirm
+@onready var progress_bar := $ToolIcon/ProgressBar
 
 var product : Item ## The item produced by the tool
 var is_using := false ## State of whether a craft is currently active
@@ -117,6 +119,10 @@ func _use_items():
 	pass # This function should be overridden
 	#TODO: Add minigame / qte's for crafting?
 
+func open_minigame(item: Item):
+	close_inventory.emit()
+	%MortarPestleMinigame.open_window(item) #FIXME: Not generic
+
 func begin_craft(result_recipe: Recipe):
 	if not result_recipe.product_item:
 		print("Error: No product item for recipe!")
@@ -144,13 +150,19 @@ func remove_item(index: int):
 		button_confirm.disabled = true
 
 func _on_button_1_pressed() -> void:
-	item_produced.emit(items[0], null)
+	item_produced.emit(items[0])
 	remove_item(0)
 
 func _on_button_2_pressed() -> void:
-	item_produced.emit(items[1], null)
+	item_produced.emit(items[1])
 	remove_item(1)
 
 func _on_button_3_pressed() -> void:
-	item_produced.emit(items[2], null)
+	item_produced.emit(items[2])
 	remove_item(2)
+
+func _on_minigame_item_produced(item: Item, recipe: Recipe = null) -> void:
+	item_produced.emit(item, recipe)
+
+func _on_open_inventory() -> void:
+	open_inventory.emit()

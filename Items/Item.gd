@@ -8,3 +8,5 @@ class_name Item extends Resource
 @export var qty := 1
 @export var on_consume_effects : Array[StatusEffect]
 @export var on_consume_message := ""
+
+#TODO: Update instances of Item to be relative to scene instead of assuming global instances if necessary

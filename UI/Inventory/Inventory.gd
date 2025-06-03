@@ -246,6 +246,17 @@ func _set_dropper_item(item: Item):
 	close_window()
 
 
-func _on_item_produced(item: Item, recipe: Recipe) -> void:
+func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 	add_inventory_item(item)
-	%RecipeList.add_recipe(recipe)
+	if recipe != null:
+		%RecipeList.add_recipe(recipe)
+
+
+func _on_open_inventory() -> void:
+	global.mode = &"inventory"
+	%WindowName.text = "Inventory and Crafting"
+	visible = true
+
+
+func _on_close_inventory() -> void:
+	visible = false # Mode is set by the object that emitted the signal
