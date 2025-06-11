@@ -117,27 +117,27 @@ func _on_button_confirm_pressed() -> void:
 	
 func _use_items():
 	pass # This function should be overridden
-	#TODO: Add minigame / qte's for crafting?
 
-func open_minigame(item: Item):
+func open_minigame(mg_items: Array[Item]):
 	close_inventory.emit()
-	%MortarPestleMinigame.open_window(item) #FIXME: Not generic
+	%Minigame.open_window(mg_items)
 
-func begin_craft(result_recipe: Recipe):
-	if not result_recipe.product_item:
-		print("Error: No product item for recipe!")
-		return
-	
-	cur_recipe = result_recipe
-	
-	product = result_recipe.product_item.duplicate()
-	product.qty = result_recipe.product_item_amount
-	use_timer = result_recipe.product_craft_time
-	
-	progress_bar.value = 0
-	progress_bar.max_value = use_timer
-	progress_bar.visible = true
-	is_using = true
+
+#func begin_craft(result_recipe: Recipe): ##DEPRECATED
+	#if not result_recipe.product_item:
+		#print("Error: No product item for recipe!")
+		#return
+	#
+	#cur_recipe = result_recipe
+	#
+	#product = result_recipe.product_item.duplicate()
+	#product.qty = result_recipe.product_item_amount
+	#use_timer = result_recipe.product_craft_time
+	#
+	#progress_bar.value = 0
+	#progress_bar.max_value = use_timer
+	#progress_bar.visible = true
+	#is_using = true
 
 
 func remove_item(index: int):

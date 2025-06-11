@@ -10,7 +10,7 @@
 script = ExtResource("2_y0jnm")
 id = 502
 product_item = ExtResource("4_8p32p")
-ingredients = Array[ExtResource("1_0xm64")]([ExtResource("2_h6s2q"), ExtResource("3_ifxva")])
-tool_used = "cauldron"
 product_item_amount = 5
 product_craft_time = 3.0
+ingredients = Array[ExtResource("1_0xm64")]([ExtResource("2_h6s2q"), ExtResource("3_ifxva")])
+tool_used = "cauldron"

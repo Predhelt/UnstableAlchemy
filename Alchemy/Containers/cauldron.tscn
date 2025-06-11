@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://csbfmvobxgp1o"]
+[gd_scene load_steps=8 format=3 uid="uid://csbfmvobxgp1o"]
 
 [ext_resource type="Script" path="res://Alchemy/Containers/cauldron.gd" id="1_2r2ej"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png" id="1_ot2yn"]
 [ext_resource type="Script" path="res://Game Components/droppable_area.gd" id="2_os1jy"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="3_6hx4e"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="4_vsd63"]
+[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://Alchemy/Minigames/CauldronMinigame.tscn" id="6_7bvuf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nbwu"]
 size = Vector2(128, 126)
@@ -110,7 +111,15 @@ script = ExtResource("2_os1jy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CauldronArea"]
 shape = SubResource("RectangleShape2D_0nbwu")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Minigame" parent="CanvasLayer" instance=ExtResource("6_7bvuf")]
+unique_name_in_owner = true
+visible = false
+
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/ButtonConfirm" to="." method="_on_button_confirm_pressed"]
+[connection signal="item_produced" from="CanvasLayer/Minigame" to="." method="_on_minigame_item_produced"]
+[connection signal="open_inventory" from="CanvasLayer/Minigame" to="." method="_on_open_inventory"]

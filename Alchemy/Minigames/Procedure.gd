@@ -1,7 +1,6 @@
 class_name Procedure extends Resource
 
-@export var input_actions : Array[ProcedureInputAction] = [null, null, null, null, null, null, null, null, null, null]
-@export var num_inputs := 10
+@export var input_actions : Array[ProcedureInputAction] = [null, null, null, null, null]
 
 func compare(p: Procedure) -> bool:
 	for i in len(input_actions):

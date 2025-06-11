@@ -119,7 +119,7 @@ shape = SubResource("RectangleShape2D_0nbwu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MortarPestleMinigame" parent="CanvasLayer" instance=ExtResource("5_m7tiq")]
+[node name="Minigame" parent="CanvasLayer" instance=ExtResource("5_m7tiq")]
 unique_name_in_owner = true
 visible = false
 
@@ -127,5 +127,5 @@ visible = false
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/ButtonConfirm" to="." method="_on_button_confirm_pressed"]
-[connection signal="item_produced" from="CanvasLayer/MortarPestleMinigame" to="." method="_on_minigame_item_produced"]
-[connection signal="open_inventory" from="CanvasLayer/MortarPestleMinigame" to="." method="_on_open_inventory"]
+[connection signal="item_produced" from="CanvasLayer/Minigame" to="." method="_on_minigame_item_produced"]
+[connection signal="open_inventory" from="CanvasLayer/Minigame" to="." method="_on_open_inventory"]

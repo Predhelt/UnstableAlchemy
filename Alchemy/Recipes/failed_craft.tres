@@ -7,7 +7,7 @@
 script = ExtResource("3_udjn2")
 id = 999
 product_item = ExtResource("2_h746y")
-ingredients = null
-tool_used = "cauldron, m&p, merger"
 product_item_amount = 1
 product_craft_time = 1.0
+ingredients = null
+tool_used = "cauldron, m&p, merger"
