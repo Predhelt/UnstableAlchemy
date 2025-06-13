@@ -6,7 +6,7 @@ func _input(event: InputEvent) -> void:
 		toggle_menu()
 	if event.is_action_pressed("ui_cancel"):
 		match global.mode:
-			"default" : open_menu()
+			#"default" : open_menu()
 			"options" : close_menu()
 
 func toggle_menu():

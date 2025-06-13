@@ -4,6 +4,7 @@ signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item i
 signal open_inventory()
 
 var minigame_buttons : Array[Button] ## Buttons used during the minigame. Set by inherited class.
+var input_event_actions : Array[String] ## 
 
 
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
@@ -31,10 +32,20 @@ func _input(event: InputEvent) -> void:
 	if global.mode != &"craft_minigame" or not visible:
 		return # No input events should catch on wrong mode
 	if is_crafting:
-		#if event.is_action_pressed("minigame_grind"):
-			#set_input_action("equipment", 0, $ButtonGrind.icon)
-		#elif event.is_action_pressed("minigame_crush"):
-			#set_input_action("equipment", 1, $ButtonCrush.icon)
+		if event.is_action_pressed("minigame_action_1") and not minigame_buttons[0].disabled:
+				if recipes[0].tool_used == "m&p":
+					set_input_action("equipment", 0, minigame_buttons[0].icon)
+				else:
+					set_input_action("item", 0, minigame_buttons[0].icon)
+		elif event.is_action_pressed("minigame_action_2") and not minigame_buttons[1].disabled:
+			if recipes[0].tool_used == "m&p":
+				set_input_action("equipment", 1, minigame_buttons[1].icon)
+			else:
+				set_input_action("item", 1, minigame_buttons[1].icon)
+		elif event.is_action_pressed("minigame_action_3") and not minigame_buttons[2].disabled:
+			set_input_action("item", 2, minigame_buttons[2].icon)
+		elif event.is_action_pressed("minigame_action_4") and not minigame_buttons[3].disabled:
+			set_input_action("equipment", 3, minigame_buttons[3].icon)
 		pass
 	if event.is_action_pressed("ui_cancel"):
 		close_window()

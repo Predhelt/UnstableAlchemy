@@ -3,6 +3,9 @@ extends Control
 @export var known_recipes : Array[Recipe]
 
 var recipe_item_icon : PackedScene = preload("res://UI/Recipe List/recipe_item_icon.tscn")
+var procedure_icon_grind := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
+var procedure_icon_crush := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
+var procedure_icon_bellows := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
 
 func _ready() -> void:
 	for recipe in known_recipes:
@@ -120,9 +123,50 @@ func add_procedure(recipe: Recipe):
 			cur_procedures_container.add_child(label_add)
 			num_ingredients -= 1
 	
-	_add_procedure_input_actions()
+	_add_procedure_input_actions(cur_procedures_container, recipe)
+	#var panel : Panel = Panel.new()
+	#panel.
+	#panel.add_child(cur_procedures_container)
 	%ProcedureList.add_child(cur_procedures_container)
 
 
-func _add_procedure_input_actions():
-	pass #TODO
+func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
+	if not recipe.procedure:
+		return
+	var lbl : Label = Label.new()
+	lbl.text = "Procedure:"
+	container.add_child(lbl)
+	
+	for i in 5: #NOTE: Should be changed if the number of input actions in a sequence is changed
+		# Create new icon for sequence
+		var pia_icon : TextureRect = recipe_item_icon.instantiate()
+		if not recipe.procedure.input_actions[i]:
+			pia_icon.texture = global.blank_texture
+			pia_icon.tooltip_text = "No input"
+			container.add_child(pia_icon)
+			continue
+		if recipe.tool_used == "m&p":
+			match recipe.procedure.input_actions[i].id:
+				0: 
+					pia_icon.texture = procedure_icon_grind
+					pia_icon.tooltip_text = "Grind"
+				1: 
+					pia_icon.texture = procedure_icon_crush
+					pia_icon.tooltip_text = "Crush"
+		else:
+			match recipe.procedure.input_actions[i].id:
+				0: 
+					pia_icon.texture = recipe.ingredients[0].texture
+					pia_icon.tooltip_text = recipe.ingredients[0].display_name
+				1: 
+					pia_icon.texture = recipe.ingredients[1].texture
+					pia_icon.tooltip_text = recipe.ingredients[1].display_name
+				2: 
+					pia_icon.texture = recipe.ingredients[2].texture
+					pia_icon.tooltip_text = recipe.ingredients[2].display_name
+				3: 
+					pia_icon.texture = procedure_icon_bellows
+					pia_icon.tooltip_text = "Bellows"
+		
+		
+		container.add_child(pia_icon)
