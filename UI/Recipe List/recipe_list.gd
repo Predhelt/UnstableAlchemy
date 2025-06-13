@@ -3,6 +3,7 @@ extends Control
 @export var known_recipes : Array[Recipe]
 
 var recipe_item_icon : PackedScene = preload("res://UI/Recipe List/recipe_item_icon.tscn")
+var recipe_procedure_icons : PackedScene = preload("res://UI/Recipe List/recipe_procedure_icons.tscn")
 var procedure_icon_grind := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
 var procedure_icon_crush := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
 var procedure_icon_bellows := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
@@ -137,13 +138,14 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 	lbl.text = "Procedure:"
 	container.add_child(lbl)
 	
+	var procedure_icons := recipe_procedure_icons.instantiate()
+	
 	for i in 5: #NOTE: Should be changed if the number of input actions in a sequence is changed
 		# Create new icon for sequence
-		var pia_icon : TextureRect = recipe_item_icon.instantiate()
+		var pia_icon := procedure_icons.get_child(0).get_child(i)
 		if not recipe.procedure.input_actions[i]:
 			pia_icon.texture = global.blank_texture
 			pia_icon.tooltip_text = "No input"
-			container.add_child(pia_icon)
 			continue
 		if recipe.tool_used == "m&p":
 			match recipe.procedure.input_actions[i].id:
@@ -168,5 +170,4 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 					pia_icon.texture = procedure_icon_bellows
 					pia_icon.tooltip_text = "Bellows"
 		
-		
-		container.add_child(pia_icon)
+	container.add_child(procedure_icons)
