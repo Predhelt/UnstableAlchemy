@@ -4,11 +4,11 @@ signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item i
 signal open_inventory()
 
 var minigame_buttons : Array[Button] ## Buttons used during the minigame. Set by inherited class.
-var input_event_actions : Array[String] ## 
 
 
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
-@onready var tick_value : float = float(%ProgressSlider.max_value)/(%ProgressSlider.tick_count-1) ##The value of each tick
+@onready var slider := %MinigameProgressBar/ProgressSlider
+@onready var tick_value : float = float(slider.max_value)/(slider.tick_count-1) ##The value of each tick
 var recipes : Array[Recipe] ## List of recipes using the associated tool
 
 var cur_craft_ingredients : Array[Item] ## Item used in the recipe
@@ -21,8 +21,8 @@ var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") #
 
 func _process(delta: float) -> void:
 	if is_crafting:
-		if %ProgressSlider.value < %ProgressSlider.max_value:
-			%ProgressSlider.value += delta
+		if slider.value < slider.max_value:
+			slider.value += delta
 		else:
 			is_crafting = false
 			check_results()
@@ -59,7 +59,7 @@ func open_window(items: Array[Item]):
 func close_window():
 	is_crafting = false
 	visible = false
-	$StartupLabel.text = ""
+	%MinigameProgressBar/StartupLabel.text = ""
 	open_inventory.emit() # Mode gets set by inventory
 
 
@@ -71,12 +71,12 @@ func begin_minigame():
 			minigame_buttons[i].disabled = false
 	minigame_buttons[-1].disabled = false
 	
-	$StartupLabel.text = "Ready..."
+	%MinigameProgressBar/StartupLabel.text = "Ready..."
 	$StartupDelay.start()
 
 func _on_startup_delay_timeout() -> void:
-	%ProgressSlider.value = 0
-	$StartupLabel.text = "Start!"
+	slider.value = 0
+	%MinigameProgressBar/StartupLabel.text = "Start!"
 	is_crafting = true
 
 
@@ -129,19 +129,19 @@ func set_input_action(type: String, id: int, icon: Texture2D):
 	input_action.id = id
 	if not cur_craft_procedure.input_actions[nearest_tick]:
 		cur_craft_procedure.input_actions[nearest_tick] = input_action
-		$HBoxContainer.get_children()[nearest_tick].texture = icon
+		%MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children()[nearest_tick].texture = icon
 		
 
 
 func _get_nearest_tick() -> int:
 	var nearest_tick := -1
 	
-	var tick_mod : float = fmod((%ProgressSlider.value + (tick_value / 2.0)), tick_value)
+	var tick_mod : float = fmod((slider.value + (tick_value / 2.0)), tick_value)
 	tick_mod = tick_mod / tick_value
 	var lower_bound := (1-input_window_ratio)/2
 	var upper_bound := input_window_ratio+((1-input_window_ratio)/2)
 	if tick_mod < upper_bound and tick_mod > lower_bound:
-		nearest_tick = int((%ProgressSlider.value + (tick_value / 2.0)) / tick_value) - 1
+		nearest_tick = int((slider.value + (tick_value / 2.0)) / tick_value) - 1
 	else: # Bad input. TODO: Determine if the input for the tick should be locked on bad input.
 		pass
 	

@@ -13,9 +13,9 @@ func open_window(items: Array[Item]):
 	%ButtonStart.disabled = false
 	for button in minigame_buttons:
 		button.disabled = true
-	%ProgressSlider.value = 0
+	%MinigameProgressBar/ProgressSlider.value = 0
 	%ItemIcon.texture = items[0].texture
-	for tb in $HBoxContainer.get_children():
+	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
 		tb.texture = global.blank_texture
 	
 	visible = true

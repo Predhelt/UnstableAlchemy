@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://derwmvq5odbl1"]
+[gd_scene load_steps=8 format=3 uid="uid://derwmvq5odbl1"]
 
 [ext_resource type="Script" path="res://Alchemy/Minigames/mortar_pestle_minigame.gd" id="1_vo0bl"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_5yr2d"]
+[ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://Alchemy/Minigames/MinigameProgressBar.tscn" id="2_70xyk"]
 [ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="2_yjm0x"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="4_r2g22"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="5_eoa2f"]
@@ -21,18 +22,6 @@ script = ExtResource("1_vo0bl")
 
 [node name="StartupDelay" type="Timer" parent="."]
 one_shot = true
-
-[node name="StartupLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.015
-anchor_top = 0.845
-anchor_right = 0.015
-anchor_bottom = 0.845
-offset_left = 0.320003
-offset_top = -33.0
-offset_right = 91.32
-grow_vertical = 0
 
 [node name="ButtonGrind" type="Button" parent="."]
 layout_mode = 1
@@ -63,27 +52,6 @@ text = "Crush"
 icon = ExtResource("2_yjm0x")
 icon_alignment = 1
 
-[node name="ProgressSlider" type="HSlider" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 10)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -406.0
-offset_top = -56.0
-offset_right = 406.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 6.0
-step = 0.01
-editable = false
-scrollable = false
-tick_count = 7
-
 [node name="ButtonStart" type="Button" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
@@ -99,52 +67,6 @@ text = "Start"
 icon = ExtResource("4_r2g22")
 icon_alignment = 1
 expand_icon = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.7
-anchor_right = 0.95
-anchor_bottom = 0.85
-offset_left = 0.299999
-offset_top = 2.60001
-offset_right = 0.700012
-offset_bottom = -0.200012
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 65
-alignment = 1
-
-[node name="TextureRect1" type="TextureRect" parent="HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_r2g22")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_r2g22")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_r2g22")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TextureRect4" type="TextureRect" parent="HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_r2g22")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TextureRect5" type="TextureRect" parent="HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_r2g22")
-expand_mode = 3
-stretch_mode = 5
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -176,6 +98,10 @@ anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_1mow8")
+
+[node name="MinigameProgressBar" parent="." instance=ExtResource("2_70xyk")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [connection signal="timeout" from="StartupDelay" to="." method="_on_startup_delay_timeout"]
 [connection signal="pressed" from="ButtonGrind" to="." method="_on_button_grind_pressed"]

@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg7gcw1ey7rhj"]
+[gd_scene load_steps=2 format=3 uid="uid://cg7gcw1ey7rhj"]
 
-[ext_resource type="Script" path="res://Alchemy/Minigames/minigame_progress_bar.gd" id="1_dytix"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="2_omqdo"]
 
 [node name="MinigameProgressBar" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_dytix")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StartupLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -398.0
+offset_top = -109.0
+offset_right = -397.0
+offset_bottom = -86.0
 
 [node name="ProgressSlider" type="HSlider" parent="."]
 unique_name_in_owner = true

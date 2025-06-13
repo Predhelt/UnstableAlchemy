@@ -23,18 +23,6 @@ script = ExtResource("1_geiyq")
 [node name="StartupDelay" type="Timer" parent="."]
 one_shot = true
 
-[node name="StartupLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.015
-anchor_top = 0.845
-anchor_right = 0.015
-anchor_bottom = 0.845
-offset_left = 0.32
-offset_top = -33.0
-offset_right = 91.32
-grow_vertical = 0
-
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -140,13 +128,6 @@ texture = ExtResource("6_d8kn3")
 [node name="MinigameProgressBar" parent="." instance=ExtResource("7_gm5fx")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
 
 [connection signal="timeout" from="StartupDelay" to="." method="_on_startup_delay_timeout"]
 [connection signal="pressed" from="GridContainer/ButtonItem1" to="." method="_on_button_item_1_pressed"]
