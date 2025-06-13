@@ -20,7 +20,7 @@ func open_window(items: Array[Item]):
 				minigame_buttons[i].icon = items[i].texture
 			else:
 				minigame_buttons[i].icon = global.blank_texture
-	%ProgressSlider.value = 0
+	%MinigameProgressBar.slider.value = 0
 	#TODO: Set button textures (or something) to indicate which items are attached to which buttons
 	#%ItemIcon.texture = items.texture
 	for tb in $HBoxContainer.get_children():
