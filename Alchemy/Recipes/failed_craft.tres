@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=3 format=3 uid="uid://j6051mifqgbe"]
 
 [ext_resource type="Resource" uid="uid://sr3b18bhgn6a" path="res://Items/Products/failed_potion_red.tres" id="2_h746y"]
-[ext_resource type="Script" path="res://Alchemy/Recipes/Recipe.gd" id="3_udjn2"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="3_udjn2"]
 
 [resource]
 script = ExtResource("3_udjn2")

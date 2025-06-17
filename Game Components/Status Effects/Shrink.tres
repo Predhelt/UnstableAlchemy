@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://dpj7rac2ern5w"]
 
 [ext_resource type="Texture2D" uid="uid://bqxrtqfulunhn" path="res://icon.svg" id="1_7x24n"]
-[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_aid1g"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_aid1g"]
 
 [resource]
 script = ExtResource("2_aid1g")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://13c4ju8k5w21"]
 
-[ext_resource type="Script" path="res://Alchemy/Containers/alchemy_activity.gd" id="1_yju2k"]
+[ext_resource type="Script" uid="uid://neg50pfsube1" path="res://Alchemy/Containers/alchemy_activity.gd" id="1_yju2k"]
 [ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://Alchemy/Containers/mortar_pestle.tscn" id="3_g5xox"]
 [ext_resource type="PackedScene" uid="uid://b5tmrqlt57yia" path="res://Effects/items_gained_effect_ui.tscn" id="4_75t56"]
 [ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://Alchemy/Containers/cauldron.tscn" id="5_gfvie"]

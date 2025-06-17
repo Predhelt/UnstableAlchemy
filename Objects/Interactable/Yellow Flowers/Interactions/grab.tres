@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="InteractionType" load_steps=6 format=3 uid="uid://brxngrgnax25o"]
 
-[ext_resource type="Script" path="res://Items/Item.gd" id="1_2uu08"]
-[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_acq63"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="1_2uu08"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="2_acq63"]
 [ext_resource type="Resource" uid="uid://cmisle6abqkow" path="res://Items/Gatherable/yellow_petals.tres" id="2_yujsn"]
-[ext_resource type="Script" path="res://Objects/Interactable/InteractionType.gd" id="3_vtswn"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://Objects/Interactable/InteractionType.gd" id="3_vtswn"]
 [ext_resource type="Resource" uid="uid://bpgnegvcg63o4" path="res://Game Components/Status Effects/Grow.tres" id="4_sm1qc"]
 
 [resource]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dle8dng5mtld0"]
 
 [ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="1_wgl5b"]
-[ext_resource type="Script" path="res://Objects/pressure_plate.gd" id="1_x57id"]
+[ext_resource type="Script" uid="uid://bkjaos0jnpisd" path="res://Objects/pressure_plate.gd" id="1_x57id"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un22d"]
 size = Vector2(108, 106)

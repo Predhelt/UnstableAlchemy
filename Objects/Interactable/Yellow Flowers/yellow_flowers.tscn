@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://uq3raot8fskq"]
 
-[ext_resource type="Script" path="res://Objects/Interactable/interactable_plant.gd" id="1_rrjub"]
-[ext_resource type="Script" path="res://Items/Item.gd" id="2_e81vk"]
+[ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://Objects/Interactable/interactable_plant.gd" id="1_rrjub"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_e81vk"]
 [ext_resource type="Resource" uid="uid://cmisle6abqkow" path="res://Items/Gatherable/yellow_petals.tres" id="3_alqt8"]
 [ext_resource type="Texture2D" uid="uid://b6puigkphrifg" path="res://Art/UAPrototype/Objects/Planted/yellow-flowers.png" id="6_gca1m"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="8_8mo8m"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://derwmvq5odbl1"]
 
-[ext_resource type="Script" path="res://Alchemy/Minigames/mortar_pestle_minigame.gd" id="1_vo0bl"]
+[ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://Alchemy/Minigames/mortar_pestle_minigame.gd" id="1_vo0bl"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_5yr2d"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://Alchemy/Minigames/MinigameProgressBar.tscn" id="2_70xyk"]
 [ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="2_yjm0x"]
@@ -34,9 +34,9 @@ grow_horizontal = 0
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 text = "Grind"
 icon = ExtResource("2_5yr2d")
 icon_alignment = 1

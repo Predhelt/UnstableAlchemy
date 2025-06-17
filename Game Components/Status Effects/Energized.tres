@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://cxhb6l0h81ebt"]
 
-[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_n5khf"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_n5khf"]
 [ext_resource type="Texture2D" uid="uid://dd5cw46t72adw" path="res://Art/UAPrototype/UI/Status Effects/status_effect-energized.png" id="2_d3iqx"]
 
 [resource]

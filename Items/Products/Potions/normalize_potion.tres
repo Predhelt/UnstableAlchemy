@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d2dt3featqr2v"]
 
-[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_obkga"]
-[ext_resource type="Script" path="res://Items/Item.gd" id="2_xmd4o"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_obkga"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_xmd4o"]
 
 [resource]
 script = ExtResource("2_xmd4o")

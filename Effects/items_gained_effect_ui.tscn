@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5tmrqlt57yia"]
 
-[ext_resource type="Script" path="res://Effects/items_gained_effect_ui.gd" id="1_2at3v"]
+[ext_resource type="Script" uid="uid://d2eccbqkferxt" path="res://Effects/items_gained_effect_ui.gd" id="1_2at3v"]
 
 [node name="ItemsGainedEffect" type="Control"]
 z_index = 10

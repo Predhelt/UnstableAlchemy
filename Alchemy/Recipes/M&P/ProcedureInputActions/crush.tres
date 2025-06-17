@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ProcedureInputAction" load_steps=2 format=3 uid="uid://bnx8u3aprp62y"]
 
-[ext_resource type="Script" path="res://Alchemy/Minigames/ProcedureInputAction.gd" id="1_urbn1"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Minigames/ProcedureInputAction.gd" id="1_urbn1"]
 
 [resource]
 script = ExtResource("1_urbn1")

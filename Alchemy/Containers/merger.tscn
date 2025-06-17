@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://camniccw7m1md"]
 
-[ext_resource type="Script" path="res://Alchemy/Containers/merger.gd" id="1_nohpg"]
+[ext_resource type="Script" uid="uid://cs52w7rkn32c8" path="res://Alchemy/Containers/merger.gd" id="1_nohpg"]
 [ext_resource type="Texture2D" uid="uid://dvry72d4fo4md" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-abstract_container-full.png" id="2_qp7v8"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="3_8cpav"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="4_vejrj"]

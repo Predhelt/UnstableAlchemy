@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bpgnegvcg63o4"]
 
-[ext_resource type="Script" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_1wrnr"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_1wrnr"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/UAPrototype/UI/CheckMark.png" id="1_llbuy"]
 
 [resource]

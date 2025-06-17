@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgkjljcf8lms4"]
 
-[ext_resource type="Script" path="res://UI/Status Effect/status_effect_bar.gd" id="1_b5vqo"]
+[ext_resource type="Script" uid="uid://djtpbdvwn1unb" path="res://UI/Status Effect/status_effect_bar.gd" id="1_b5vqo"]
 
 [node name="StatusEffectBar" type="Control"]
 layout_mode = 3
