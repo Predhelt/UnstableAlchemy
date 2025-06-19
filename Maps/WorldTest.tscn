@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=14 format=4 uid="uid://depbbsatmakqx"]
 
+[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/Menu Bar/menu_bar.tscn" id="1_08dj0"]
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_w86px"]
+[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/Status Effect/status_effect_bar.tscn" id="2_08dj0"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
+[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="3_fa6b6"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Green Herb/green_herb.tscn" id="3_guf6v"]
+[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/Tool Wheel/tool_wheel.tscn" id="4_0cmut"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush.tscn" id="4_25d8v"]
+[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Recipe List/recipe_list.tscn" id="5_m5ckj"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Yellow Flowers/yellow_flowers.tscn" id="5_r0jcl"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Options Menu/options_menu.tscn" id="6_wsokp"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Options Menu/settings_menu.tscn" id="7_espd3"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="8_pd4bm"]
-[ext_resource type="LabelSettings" uid="uid://cid5a2g1m6gcx" path="res://Text/DebugLabel.tres" id="8_scoou"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -15,6 +20,28 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
+
+[node name="MenuBar" parent="CanvasLayer" instance=ExtResource("1_08dj0")]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("1_w86px")]
+unique_name_in_owner = true
+visible = false
+
+[node name="StatusEffectBar" parent="CanvasLayer" instance=ExtResource("2_08dj0")]
+unique_name_in_owner = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("3_fa6b6")]
+unique_name_in_owner = true
+
+[node name="ToolWheel" parent="CanvasLayer" instance=ExtResource("4_0cmut")]
+unique_name_in_owner = true
+offset_top = 96.0
+offset_bottom = 300.0
+
+[node name="RecipeList" parent="CanvasLayer" instance=ExtResource("5_m5ckj")]
+unique_name_in_owner = true
+visible = false
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("6_wsokp")]
 unique_name_in_owner = true
@@ -24,32 +51,8 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="DebugPanelWIP" type="Control" parent="CanvasLayer"]
-visible = false
-layout_mode = 3
-anchor_left = 0.2
-anchor_top = 0.05
-anchor_right = 0.8
-anchor_bottom = 0.3
-
-[node name="Label" type="Label" parent="CanvasLayer/DebugPanelWIP"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1
-2
-3
-4
-5
-"
-label_settings = ExtResource("8_scoou")
-autowrap_mode = 3
-clip_text = true
-
 [node name="Player" parent="." instance=ExtResource("8_pd4bm")]
+unique_name_in_owner = true
 position = Vector2(532, 310)
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
@@ -158,3 +161,8 @@ position = Vector2(515, 468)
 
 [node name="YellowFlowers3" parent="Objects" instance=ExtResource("5_r0jcl")]
 position = Vector2(671, 394)
+
+[connection signal="add_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_add_inventory_item"]
+[connection signal="consume_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
+[connection signal="set_dropper_item" from="CanvasLayer/ToolWheel" to="CanvasLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
+[connection signal="tool_updated" from="CanvasLayer/ToolWheel" to="Player" method="_on_tool_updated"]

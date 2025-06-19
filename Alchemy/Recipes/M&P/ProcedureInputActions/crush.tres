@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_urbn1")
 type = "equipment"
-id = 1
+id = 0

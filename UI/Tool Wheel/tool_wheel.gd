@@ -16,6 +16,7 @@ var dropper_item : Item:
 func _ready() -> void:
 	$Slot1.button_pressed = true
 	$CurrentTool/AddItemButton.visible = false
+	tooltip_text = selected_tool
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -33,6 +34,7 @@ func _on_slot_1_toggled(toggled_on: bool) -> void:
 			return
 		
 		selected_tool = "hand"
+		tooltip_text = selected_tool
 		tool_updated.emit("hand")
 		$CurrentTool.icon = $Slot1.icon
 		toggle_tool_selection()
@@ -44,6 +46,7 @@ func _on_slot_2_toggled(toggled_on: bool) -> void:
 			return
 		
 		selected_tool = "blade"
+		tooltip_text = selected_tool
 		tool_updated.emit("blade")
 		$CurrentTool.icon = $Slot2.icon
 		toggle_tool_selection()
@@ -55,6 +58,7 @@ func _on_slot_3_toggled(toggled_on: bool) -> void:
 			return
 		
 		selected_tool = "dropper"
+		tooltip_text = selected_tool
 		tool_updated.emit("dropper")
 		$CurrentTool.icon = $Slot3.icon
 		toggle_tool_selection()

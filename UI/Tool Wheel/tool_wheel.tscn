@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://Art/UAPrototype/Tools/dropper.png" id="3_oqfol"]
 
 [node name="ToolWheel" type="GridContainer"]
-anchors_preset = -1
 offset_left = 18.0
 offset_top = 18.0
+offset_right = 222.0
+offset_bottom = 222.0
 mouse_filter = 2
 columns = 2
 script = ExtResource("1_pfl3v")
@@ -46,6 +47,7 @@ text_overrun_behavior = 3
 [node name="Slot1" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "Hand"
 toggle_mode = true
 button_group = ExtResource("2_xe7og")
 icon = ExtResource("1_ca3uo")
@@ -54,6 +56,7 @@ icon_alignment = 1
 [node name="Slot2" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "Blade"
 toggle_mode = true
 button_group = ExtResource("2_xe7og")
 icon = ExtResource("2_mhpsv")
@@ -62,6 +65,7 @@ icon_alignment = 1
 [node name="Slot3" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+tooltip_text = "Dropper"
 toggle_mode = true
 button_group = ExtResource("2_xe7og")
 icon = ExtResource("3_oqfol")

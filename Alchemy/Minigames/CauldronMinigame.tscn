@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d24ge55seaobg"]
+[gd_scene load_steps=9 format=3 uid="uid://d24ge55seaobg"]
 
 [ext_resource type="Script" uid="uid://dkxemkd2us7vl" path="res://Alchemy/Minigames/cauldron_minigame.gd" id="1_geiyq"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_24nro"]
 [ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="3_1ik8m"]
+[ext_resource type="Texture2D" uid="uid://dgfm8k2jaq5dx" path="res://Art/UAPrototype/UI/Minigame/bellows.png" id="4_dqyf7"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="4_rks5m"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png" id="5_6uy83"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="6_d8kn3"]
@@ -37,12 +38,8 @@ columns = 2
 [node name="ButtonItem1" type="Button" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 text = "Item1"
 icon = ExtResource("2_24nro")
 icon_alignment = 1
@@ -51,7 +48,9 @@ expand_icon = true
 [node name="ButtonItem2" type="Button" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-text = "Item 2"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Item2"
 icon = ExtResource("3_1ik8m")
 icon_alignment = 1
 expand_icon = true
@@ -59,12 +58,8 @@ expand_icon = true
 [node name="ButtonItem3" type="Button" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 text = "Item3"
 icon = ExtResource("2_24nro")
 icon_alignment = 1
@@ -73,8 +68,13 @@ expand_icon = true
 [node name="ButtonBellows" type="Button" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-text = "Bellows"
-icon = ExtResource("3_1ik8m")
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+icon = ExtResource("4_dqyf7")
 icon_alignment = 1
 expand_icon = true
 

@@ -4,9 +4,9 @@ extends Control
 
 var recipe_item_icon : PackedScene = preload("res://UI/Recipe List/recipe_item_icon.tscn")
 var recipe_procedure_icons : PackedScene = preload("res://UI/Recipe List/recipe_procedure_icons.tscn")
-var procedure_icon_grind := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
-var procedure_icon_crush := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
-var procedure_icon_bellows := preload("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
+var procedure_icon_grind := preload("res://Art/UAPrototype/UI/Minigame/grind.png")
+var procedure_icon_crush := preload("res://Art/UAPrototype/UI/Minigame/crush.png")
+var procedure_icon_bellows := preload("res://Art/UAPrototype/UI/Minigame/bellows.png")
 
 func _ready() -> void:
 	for recipe in known_recipes:
@@ -150,11 +150,11 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 		if recipe.tool_used == "m&p":
 			match recipe.procedure.input_actions[i].id:
 				0: 
-					pia_icon.texture = procedure_icon_grind
-					pia_icon.tooltip_text = "Grind"
-				1: 
 					pia_icon.texture = procedure_icon_crush
 					pia_icon.tooltip_text = "Crush"
+				1: 
+					pia_icon.texture = procedure_icon_grind
+					pia_icon.tooltip_text = "Grind"
 		else:
 			match recipe.procedure.input_actions[i].id:
 				0: 
@@ -171,3 +171,7 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 					pia_icon.tooltip_text = "Bellows"
 		
 	container.add_child(procedure_icons)
+
+
+func _on_button_close_pressed() -> void:
+	close_window()

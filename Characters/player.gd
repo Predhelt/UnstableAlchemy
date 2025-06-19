@@ -11,7 +11,7 @@ var direction := Vector2.ZERO
 
 var active_status_effects : Array[StatusEffect]
 
-var all_interaction_areas : Array[Area2D]
+var all_interaction_areas : Array[Interactable]
 var status_message_timer := 0.0
 
 var stats = {
@@ -106,7 +106,7 @@ func execute_interaction():
 		var cur_interaction = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type:
 			&"print_text" : print(cur_interaction.interact_value)
-			&"context_menu" : cur_interaction.toggle_context_menu(self)
+			&"context_menu" : cur_interaction.toggle_context_menu(self) #DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
 			&"talk" : pass # TODO: talk to NPC
 
@@ -121,7 +121,7 @@ func execute_tool():
 			&"blade" : all_interaction_areas[0].cut_object(self)
 			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
 
-
+# DEPRECATED
 func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
 	update_status_effects(on_consume_effects, on_consume_message)
 

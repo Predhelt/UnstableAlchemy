@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://derwmvq5odbl1"]
 
 [ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://Alchemy/Minigames/mortar_pestle_minigame.gd" id="1_vo0bl"]
-[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_5yr2d"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://Alchemy/Minigames/MinigameProgressBar.tscn" id="2_70xyk"]
-[ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="2_yjm0x"]
+[ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://Art/UAPrototype/UI/Minigame/crush.png" id="2_jh7f8"]
+[ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://Art/UAPrototype/UI/Minigame/grind.png" id="3_aqc0h"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="4_r2g22"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="5_eoa2f"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="6_1mow8"]
@@ -23,34 +23,36 @@ script = ExtResource("1_vo0bl")
 [node name="StartupDelay" type="Timer" parent="."]
 one_shot = true
 
-[node name="ButtonGrind" type="Button" parent="."]
+[node name="ButtonCrush" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.23
 anchor_right = 0.42
 anchor_bottom = 0.23
+offset_left = -128.0
+offset_top = 0.439995
+offset_right = -0.279999
+offset_bottom = 128.0
 grow_horizontal = 0
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-text = "Grind"
-icon = ExtResource("2_5yr2d")
+icon = ExtResource("2_jh7f8")
 icon_alignment = 1
+expand_icon = true
 
-[node name="ButtonCrush" type="Button" parent="."]
+[node name="ButtonGrind" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43
 anchor_top = 0.23
 anchor_right = 0.43
 anchor_bottom = 0.23
-text = "Crush"
-icon = ExtResource("2_yjm0x")
+offset_left = 0.380005
+offset_top = 0.439995
+offset_right = 128.0
+offset_bottom = 128.0
+icon = ExtResource("3_aqc0h")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStart" type="Button" parent="."]
 unique_name_in_owner = true
@@ -104,6 +106,6 @@ unique_name_in_owner = true
 layout_mode = 1
 
 [connection signal="timeout" from="StartupDelay" to="." method="_on_startup_delay_timeout"]
-[connection signal="pressed" from="ButtonGrind" to="." method="_on_button_grind_pressed"]
-[connection signal="pressed" from="ButtonCrush" to="." method="_on_button_crush_pressed"]
+[connection signal="pressed" from="ButtonCrush" to="." method="_on_button_grind_pressed"]
+[connection signal="pressed" from="ButtonGrind" to="." method="_on_button_crush_pressed"]
 [connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]

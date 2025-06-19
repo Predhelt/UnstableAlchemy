@@ -1,7 +1,8 @@
 extends Panel
 
-## Sent to the player to update their status effects when an item in inventory is consumed
+## DEPRECATED: Sent to the player to update their status effects when an item in inventory is consumed
 signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
+
 
 @export var max_item_count := 24 ## Max number of slots in the inventory
 
@@ -179,10 +180,10 @@ func use_item(item: Item, index : int):
 
 #FIXME: Add cooldown when sampling items to prevent spamming
 func sample_item(item):
-	update_status_effects.emit(item.on_consume_effects, item.on_consume_message)
+	%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
 
 func consume_item(item : Item, index : int):
-	update_status_effects.emit(item.on_consume_effects, item.on_consume_message)
+	%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
 	
 	if item.qty <= 1:
 		remove_inventory_item(index)
@@ -260,3 +261,6 @@ func _on_open_inventory() -> void:
 
 func _on_close_inventory() -> void:
 	visible = false # Mode is set by the object that emitted the signal
+
+func _on_button_close_pressed() -> void:
+	close_window()

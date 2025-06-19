@@ -1,15 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=28 format=3 uid="uid://csw57bxt7nvm2"]
 
 [ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://Characters/Player.gd" id="1_juhlw"]
 [ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://Art/UAPrototype/Characters/herbalist-down.png" id="2_23e54"]
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="3_ngkeo"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="3_q5yn3"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="4_eve5b"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="5_n5fht"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/Status Effect/status_effect_bar.tscn" id="5_oswit"]
-[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="6_hox3m"]
-[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/Tool Wheel/tool_wheel.tscn" id="7_l0u5l"]
-[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Recipe List/recipe_list.tscn" id="11_gn77h"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001
@@ -180,7 +175,7 @@ texture = ExtResource("2_23e54")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bkg2i")
+&"": SubResource("AnimationLibrary_bkg2i")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -205,31 +200,5 @@ monitorable = false
 shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_ngkeo")]
-unique_name_in_owner = true
-visible = false
-
-[node name="StatusEffectBar" parent="CanvasLayer" instance=ExtResource("5_oswit")]
-unique_name_in_owner = true
-metadata/_edit_use_anchors_ = true
-
-[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("6_hox3m")]
-unique_name_in_owner = true
-
-[node name="ToolWheel" parent="CanvasLayer" instance=ExtResource("7_l0u5l")]
-unique_name_in_owner = true
-anchors_preset = 0
-
-[node name="RecipeList" parent="CanvasLayer" instance=ExtResource("11_gn77h")]
-unique_name_in_owner = true
-visible = false
-
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
-[connection signal="update_status_effects" from="CanvasLayer/Inventory" to="." method="_on_inventory_update_status_effects"]
-[connection signal="add_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_add_inventory_item"]
-[connection signal="consume_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
-[connection signal="set_dropper_item" from="CanvasLayer/ToolWheel" to="CanvasLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
-[connection signal="tool_updated" from="CanvasLayer/ToolWheel" to="." method="_on_tool_updated"]

@@ -20,6 +20,10 @@ var is_crafting := false ## Tracks if the minigame is currently active
 var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") ##ID for failed craft is 999
 
 func _process(delta: float) -> void:
+	for i in len(minigame_buttons): # Set hotkey text for each button
+		minigame_buttons[i].text = ("(" +
+			InputMap.action_get_events("minigame_action_"+str(i+1))[0].as_text().replace(' (Physical)','') + ")")
+	
 	if is_crafting:
 		if slider.value < slider.max_value:
 			slider.value += delta

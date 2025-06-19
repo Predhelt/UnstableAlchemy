@@ -1,8 +1,8 @@
 extends AlchemyMinigame
 #TODO: Make icon for grind and crush buttons
 func _ready() -> void:
-	minigame_buttons.append($ButtonGrind)
 	minigame_buttons.append($ButtonCrush)
+	minigame_buttons.append($ButtonGrind)
 
 
 func open_window(items: Array[Item]):
@@ -26,7 +26,7 @@ func _on_button_start_pressed() -> void:
 	begin_minigame()
 	
 func _on_button_grind_pressed() -> void:
-	set_input_action("equipment", 0, $ButtonGrind.icon)
+	set_input_action("equipment", 0, $ButtonCrush.icon)
 
 func _on_button_crush_pressed() -> void:
-	set_input_action("equipment", 1, $ButtonCrush.icon)
+	set_input_action("equipment", 1, $ButtonGrind.icon)
