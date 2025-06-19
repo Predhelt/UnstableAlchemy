@@ -1,4 +1,4 @@
-extends Control
+extends Panel
 
 @export var known_recipes : Array[Recipe]
 

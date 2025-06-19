@@ -1,31 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc5d3ocd8w0fu"]
+[gd_scene load_steps=6 format=3 uid="uid://dc5d3ocd8w0fu"]
 
 [ext_resource type="Script" uid="uid://df82k6p2pmfec" path="res://UI/Recipe List/recipe_list.gd" id="2_2htw0"]
-[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="2_8kwsn"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="3_2hrkg"]
-[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_ground_recipe.tres" id="3_wqwx2"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="4_eo0qk"]
-[ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="4_t2lfn"]
 [ext_resource type="LabelSettings" uid="uid://d03hwvt3eyjax" path="res://Text/TitleLabel.tres" id="5_eyj61"]
 [ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://Text/SubtitleLabel.tres" id="6_xwfla"]
 
-[node name="RecipeList" type="Control"]
-layout_mode = 3
+[node name="RecipeList" type="Panel"]
+clip_contents = true
+anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.9
 script = ExtResource("2_2htw0")
-known_recipes = Array[ExtResource("2_8kwsn")]([ExtResource("3_wqwx2"), ExtResource("4_t2lfn")])
 
-[node name="Panel" type="Panel" parent="."]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,11 +23,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="WindowName" type="Label" parent="Panel/VBoxContainer/Panel"]
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -52,7 +42,7 @@ label_settings = ExtResource("4_eo0qk")
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ButtonClose" type="Button" parent="Panel/VBoxContainer/Panel"]
+[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 6
@@ -68,11 +58,11 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 
-[node name="Container" type="Control" parent="Panel/VBoxContainer"]
+[node name="Container" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RecipeItems" type="ItemList" parent="Panel/VBoxContainer/Container"]
+[node name="RecipeItems" type="ItemList" parent="VBoxContainer/Container"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -85,7 +75,7 @@ max_columns = 3
 same_column_width = true
 fixed_icon_size = Vector2i(64, 64)
 
-[node name="ProductDetails" type="VBoxContainer" parent="Panel/VBoxContainer/Container"]
+[node name="ProductDetails" type="VBoxContainer" parent="VBoxContainer/Container"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -94,41 +84,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Container/ProductDetails"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Container/ProductDetails"]
 layout_mode = 2
 
-[node name="ProductIcon" type="TextureRect" parent="Panel/VBoxContainer/Container/ProductDetails/HBoxContainer"]
+[node name="ProductIcon" type="TextureRect" parent="VBoxContainer/Container/ProductDetails/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_2hrkg")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ProductName" type="Label" parent="Panel/VBoxContainer/Container/ProductDetails/HBoxContainer"]
+[node name="ProductName" type="Label" parent="VBoxContainer/Container/ProductDetails/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Product Name"
 label_settings = ExtResource("5_eyj61")
 
-[node name="ProductDescription" type="RichTextLabel" parent="Panel/VBoxContainer/Container/ProductDetails"]
+[node name="ProductDescription" type="RichTextLabel" parent="VBoxContainer/Container/ProductDetails"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "[font_size=24]Product Description. This is text that should be replaced once it is implemented. This text is to show what a long description would look like. Very long descriptions should not cause any issues.[/font_size]"
 
-[node name="ProceduresTitle" type="Label" parent="Panel/VBoxContainer/Container/ProductDetails"]
+[node name="ProceduresTitle" type="Label" parent="VBoxContainer/Container/ProductDetails"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Procedures"
 label_settings = ExtResource("6_xwfla")
 
-[node name="ProcedureList" type="GridContainer" parent="Panel/VBoxContainer/Container/ProductDetails"]
+[node name="ProcedureList" type="GridContainer" parent="VBoxContainer/Container/ProductDetails"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 13
 size_flags_vertical = 3
 columns = 3
-
-[connection signal="pressed" from="Panel/VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
-[connection signal="item_clicked" from="Panel/VBoxContainer/Container/RecipeItems" to="." method="_on_recipe_items_item_clicked"]

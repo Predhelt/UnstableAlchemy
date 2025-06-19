@@ -16,21 +16,22 @@ func toggle_window():
 		open_window()
 
 func open_window():
-	if global.mode == &"default": 
+	if global.mode == &"default": # Only open the window when mode is default
 			global.mode = &"options"
 			visible = true
 
 func close_window():
-	if global.mode == &"options":
+	if global.mode == &"options": #Only set the mode to default if in the options menu
 		global.mode = &"default"
-		visible = false
+	visible = false
 
 func _on_button_return_pressed() -> void:
 	close_window()
 
 func _on_button_settings_pressed() -> void:
-	%SettingsMenu.popup()
 	close_window()
+	%SettingsMenu.popup()
+	
 
 func _on_button_exit_pressed() -> void:
 	get_tree().quit()

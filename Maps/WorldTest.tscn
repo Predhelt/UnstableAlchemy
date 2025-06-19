@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=15 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/Menu Bar/menu_bar.tscn" id="1_08dj0"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_w86px"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Options Menu/options_menu.tscn" id="6_wsokp"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Options Menu/settings_menu.tscn" id="7_espd3"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="8_pd4bm"]
+[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Help Menu/help_menu.tscn" id="9_fa6b6"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -22,6 +23,7 @@ metadata/_edit_lock_ = true
 layer = 10
 
 [node name="MenuBar" parent="CanvasLayer" instance=ExtResource("1_08dj0")]
+unique_name_in_owner = true
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource("1_w86px")]
 unique_name_in_owner = true
@@ -48,6 +50,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("7_espd3")]
+unique_name_in_owner = true
+visible = false
+
+[node name="HelpMenu" parent="CanvasLayer" instance=ExtResource("9_fa6b6")]
 unique_name_in_owner = true
 visible = false
 
