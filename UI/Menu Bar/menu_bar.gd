@@ -4,7 +4,7 @@ extends HBoxContainer
 	&"recipe_list" : %RecipeList,
 	&"options" : %OptionsMenu,
 	&"inventory" : %Inventory,
-	#&"help" : %HelpMenu, #TODO: Implement help menu
+	&"help" : %HelpMenu,
 }
 
 #TODO: Add the keyboard shortcut to the tooltip and update it when the keybinds change
@@ -17,41 +17,25 @@ func _ready() -> void:
 	$ButtonOptions.tooltip_text = ("Options (" +
 			InputMap.action_get_events("options_menu")[0].as_text().replace(' (Physical)','') + ")")
 
-func _on_button_inventory_pressed() -> void:
+
+func open_pressed_window(ui : Control):
 	if global.mode == &"default":
-		%Inventory.open_window()
+		ui.open_window()
 	else:
 		var cur_window = mode_windows[global.mode]
 		if cur_window:
 			cur_window.close_window()
-			%Inventory.open_window()
+			ui.open_window()
 
+
+func _on_button_inventory_pressed() -> void:
+	open_pressed_window(%Inventory)
 
 func _on_button_recipes_pressed() -> void:
-	if global.mode == &"default":
-		%RecipeList.open_window()
-	else:
-		var cur_window = mode_windows[global.mode]
-		if cur_window:
-			cur_window.close_window()
-			%RecipeList.open_window()
-
+	open_pressed_window(%RecipeList)
 
 func _on_button_options_pressed() -> void:
-	if global.mode == &"default":
-		%OptionsMenu.open_window()
-	else:
-		var cur_window = mode_windows[global.mode]
-		if cur_window:
-			cur_window.close_window()
-			%OptionsMenu.open_window()
-
+	open_pressed_window(%OptionsMenu)
 
 func _on_button_help_pressed() -> void:
-	if global.mode == &"default":
-		%HelpMenu.open_window()
-	else:
-		var cur_window = mode_windows[global.mode]
-		if cur_window:
-			cur_window.close_window()
-			%HelpMenu.open_window()
+	open_pressed_window(%HelpMenu)

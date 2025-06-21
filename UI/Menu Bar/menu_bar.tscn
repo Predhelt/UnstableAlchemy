@@ -40,6 +40,7 @@ expand_icon = true
 [node name="ButtonHelp" type="Button" parent="."]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+tooltip_text = "Help"
 icon = ExtResource("5_5kim1")
 expand_icon = true
 
