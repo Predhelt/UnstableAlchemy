@@ -30,6 +30,13 @@ func open_page_general():
 func open_page_interactions():
 	%WindowName.text = "Help: Interactions"
 	%PageInteractions.visible = true
+	
+	%PageInteractions/LabelUse.text = ("Press \""+
+		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
+		+"\" to use the currently held tool on a nearby object.")
+	%PageInteractions/LabelInspect.text = ("Press \""+
+		InputMap.action_get_events("inspect_object")[0].as_text().replace(' (Physical)','')
+		+"\" to inspect a nearby object and get a description of it.")
 
 
 func _on_button_close_pressed() -> void:

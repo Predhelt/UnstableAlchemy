@@ -175,3 +175,8 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 
 func _on_button_close_pressed() -> void:
 	close_window()
+
+
+func _on_button_back_pressed() -> void:
+	close_window()
+	open_window()

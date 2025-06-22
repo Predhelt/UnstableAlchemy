@@ -22,10 +22,11 @@ func open_pressed_window(ui : Control):
 	if global.mode == &"default":
 		ui.open_window()
 	else:
-		var cur_window = mode_windows[global.mode]
-		if cur_window:
-			cur_window.close_window()
-			ui.open_window()
+		if global.mode in mode_windows:
+			var cur_window = mode_windows[global.mode]
+			if cur_window:
+				cur_window.close_window()
+				ui.open_window()
 
 
 func _on_button_inventory_pressed() -> void:

@@ -120,7 +120,7 @@ func _use_items():
 
 func open_minigame(mg_items: Array[Item]):
 	close_inventory.emit()
-	#%Minigame.open_window(mg_items) #TODO
+	%Minigame.open_window(mg_items)
 
 
 #func begin_craft(result_recipe: Recipe): ##DEPRECATED
