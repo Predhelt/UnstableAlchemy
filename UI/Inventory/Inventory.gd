@@ -32,7 +32,7 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode == &"menu": #FIXME: Inventory closes when minigame closes due to the same mode
+	if global.mode == &"menu":
 		remove_from_group("menu")
 		print(get_tree().get_nodes_in_group("menu"))
 		if get_tree().get_nodes_in_group("menu").is_empty():
@@ -186,12 +186,16 @@ func use_item(item: Item, index : int):
 	else:
 		consume_item(item, index)
 
-#FIXME: Add cooldown when sampling items to prevent spamming
+
 func sample_item(item):
-	%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the sampling is disabled
+		%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
+		$CooldownInteract.start()
 
 func consume_item(item : Item, index : int):
-	%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the consuming is disabled
+		%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
+		$CooldownInteract.start()
 	
 	if item.qty <= 1:
 		remove_inventory_item(index)
@@ -269,7 +273,9 @@ func _on_open_inventory() -> void:
 
 
 func _on_close_inventory() -> void:
+	remove_from_group("menu")
 	visible = false # Mode is set by the object that emitted the signal
+	
 
 func _on_button_close_pressed() -> void:
 	close_window()

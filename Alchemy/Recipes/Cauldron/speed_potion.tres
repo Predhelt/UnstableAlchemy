@@ -5,13 +5,17 @@
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Ingredients/green_herb_leaf_ground.tres" id="2_x8ccd"]
 [ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Minigames/ProcedureInputAction.gd" id="3_4pmeq"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="4_d21tx"]
-[ext_resource type="Resource" uid="uid://qbt8tq4m3i7d" path="res://Alchemy/Recipes/Cauldron/ProcedureInputActions/item1.tres" id="4_pw4ly"]
 [ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://Alchemy/Recipes/Cauldron/ProcedureInputActions/bellows.tres" id="5_i4udy"]
 [ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_5q3c4"]
 
+[sub_resource type="Resource" id="Resource_iwey1"]
+script = ExtResource("3_4pmeq")
+type = "item"
+id = 100
+
 [sub_resource type="Resource" id="Resource_odu4m"]
 script = ExtResource("6_5q3c4")
-input_actions = Array[ExtResource("3_4pmeq")]([ExtResource("4_pw4ly"), ExtResource("4_pw4ly"), null, ExtResource("5_i4udy"), null])
+input_actions = Array[ExtResource("3_4pmeq")]([SubResource("Resource_iwey1"), SubResource("Resource_iwey1"), null, ExtResource("5_i4udy"), null])
 
 [resource]
 script = ExtResource("4_d21tx")

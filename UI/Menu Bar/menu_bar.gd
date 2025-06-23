@@ -4,7 +4,7 @@ extends HBoxContainer
 	&"options" : %OptionsMenu,
 }
 
-#TODO: Add the keyboard shortcut to the tooltip and update it when the keybinds change
+#TODO: Update the keyboard shortcut when the keybinds change or input device changes
 
 func _ready() -> void:
 	$ButtonInventory.tooltip_text = ("Inventory (" +

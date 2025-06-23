@@ -7,8 +7,8 @@
 [resource]
 script = ExtResource("2_hg52l")
 id = 102
-display_name = "yellow petal grinds"
-description = "the ground up fragments of petals from a yellow flower"
+display_name = "yellow dust"
+description = "the ground up dust of petals from a yellow flower"
 texture = ExtResource("3_dtiug")
 max_qty = 10
 qty = 1

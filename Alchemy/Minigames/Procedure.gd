@@ -7,7 +7,7 @@ func compare(p: Procedure) -> bool:
 		if not input_actions[i]:
 			if not p.input_actions[i]:
 				continue
-			return false
+			return false #mismatch
 		if not input_actions[i].equal(p.input_actions[i]):
 			return false
 	return true

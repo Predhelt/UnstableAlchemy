@@ -38,8 +38,10 @@ unique_name_in_owner = true
 
 [node name="ToolWheel" parent="CanvasLayer" instance=ExtResource("4_0cmut")]
 unique_name_in_owner = true
-offset_top = 96.0
-offset_bottom = 300.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 154.0
+offset_bottom = 154.0
 
 [node name="RecipeList" parent="CanvasLayer" instance=ExtResource("5_m5ckj")]
 unique_name_in_owner = true

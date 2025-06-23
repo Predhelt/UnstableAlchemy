@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcpe4vv1ln1ax"]
+[gd_scene load_steps=11 format=3 uid="uid://bcpe4vv1ln1ax"]
 
 [ext_resource type="Script" uid="uid://cm00ohcxqvc0v" path="res://UI/Help Menu/help_menu.gd" id="1_fsl5b"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="1_qo1vr"]
@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://Art/UAPrototype/Tools/dropper.png" id="4_odxy8"]
 [ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://Art/UAPrototype/Tools/blade.png" id="5_lfsg2"]
 [ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://Art/UAPrototype/Objects/Planted/HerbBasicGreen.png" id="6_odxy8"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="7_w7g1m"]
+[ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png" id="8_q88dc"]
+[ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-abstract_container-half_full.png" id="9_4bw7i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odxy8"]
+bg_color = Color(0.154876, 0.154876, 0.154876, 1)
 
 [node name="HelpMenu" type="Panel"]
 z_index = 2
@@ -16,6 +22,7 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_odxy8")
 script = ExtResource("1_fsl5b")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -103,11 +110,12 @@ text = "Merger
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 0
+current_tab = 1
 tabs_visible = false
 
 [node name="PageGeneral" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/_tab_index = 0
@@ -116,18 +124,25 @@ metadata/_tab_index = 0
 layout_mode = 2
 offset_left = 18.0
 offset_top = 18.0
-offset_right = 777.0
-offset_bottom = 119.0
+offset_right = 794.0
+offset_bottom = 445.0
 text = "Press WASD to move.
+
 Walk near a plant or object to interact with it.
-You can get ingredients or other objects depending on how you interact with objects.
+
+You can get ingredients or other materials depending on how you interact with objects.
+
 With your ingredients, you can craft new materials or potions using the tools in your inventory.
-"
+
+Drag ingredients from your inventory onto a tool to the right to add the ingredient to the tool.
+From there, click on the check mark to open the crafting screen or click on the ingredient to remove it from the tool.
+
+asdf"
 autowrap_mode = 3
+text_overrun_behavior = 4
 
 [node name="PageInteractions" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -252,6 +267,12 @@ offset_top = 13.0
 offset_right = 56.0
 offset_bottom = 36.0
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/TabContainer/PageMP"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_w7g1m")
+
 [node name="PageCauldron" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
 visible = false
@@ -265,6 +286,11 @@ offset_top = 16.0
 offset_right = 58.0
 offset_bottom = 39.0
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/TabContainer/PageCauldron"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_q88dc")
+
 [node name="PageMerger" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
 visible = false
@@ -277,6 +303,11 @@ offset_left = 16.0
 offset_top = 18.0
 offset_right = 56.0
 offset_bottom = 41.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/TabContainer/PageMerger"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_4bw7i")
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonGeneral" to="." method="_on_button_general_pressed"]

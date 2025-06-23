@@ -1,5 +1,6 @@
 class_name AlchemyMinigame extends Panel
 
+
 signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item is completed and added to the inventory
 signal open_inventory()
 
@@ -33,30 +34,30 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if global.mode != &"menu" or not visible:
+	if global.mode != &"minigame" or not visible:
 		return # No input events should catch on wrong mode
 	if is_crafting:
 		if event.is_action_pressed("minigame_action_1") and not minigame_buttons[0].disabled:
 				if recipes[0].tool_used == "m&p":
-					set_input_action("equipment", 0, minigame_buttons[0].icon)
+					set_input_action("equipment", 0, minigame_buttons[0].icon) # Crush
 				else:
-					set_input_action("item", 0, minigame_buttons[0].icon)
+					set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)
 		elif event.is_action_pressed("minigame_action_2") and not minigame_buttons[1].disabled:
 			if recipes[0].tool_used == "m&p":
-				set_input_action("equipment", 1, minigame_buttons[1].icon)
+				set_input_action("equipment", 1, minigame_buttons[1].icon) # Grind
 			else:
-				set_input_action("item", 1, minigame_buttons[1].icon)
+				set_input_action("item", cur_craft_ingredients[1].id, minigame_buttons[1].icon)
 		elif event.is_action_pressed("minigame_action_3") and not minigame_buttons[2].disabled:
-			set_input_action("item", 2, minigame_buttons[2].icon)
+			set_input_action("item", cur_craft_ingredients[2].id, minigame_buttons[2].icon)
 		elif event.is_action_pressed("minigame_action_4") and not minigame_buttons[3].disabled:
-			set_input_action("equipment", 3, minigame_buttons[3].icon)
+			set_input_action("equipment", 0, minigame_buttons[3].icon) # Bellows
 		pass
+	
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
 
 
-func open_window(items: Array[Item]):
-	# Template
+func open_window(items: Array[Item]): ## Template used to determine how the minigame should be set up when the window is opened
 	cur_craft_ingredients = items # Used to remove warning
 
 
@@ -64,33 +65,43 @@ func close_window():
 	is_crafting = false
 	visible = false
 	remove_from_group("menu")
-	%MinigameProgressBar/StartupLabel.text = ""
+	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
+	print(get_tree().get_nodes_in_group("menu"))
+	if get_tree().get_nodes_in_group("menu").is_empty():
+		global.mode = &"default"
+
+
+func previous_window():
+	is_crafting = false
+	visible = false
+	remove_from_group("menu")
+	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	open_inventory.emit() # Mode gets set by inventory
-	
 
 
 func begin_minigame():
-	$ButtonStart.disabled = true
+	%ButtonStart.disabled = true
 	
 	for i in len(cur_craft_ingredients): #NOTE: This works for Mortar and Pestle despite M&P not following this structure since there are only 2 buttons and 1 ingredient.
 		if cur_craft_ingredients[i]:
 			minigame_buttons[i].disabled = false
 	minigame_buttons[-1].disabled = false
 	
-	%MinigameProgressBar/StartupLabel.text = "Ready..."
+	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Ready..."
 	$StartupDelay.start()
 
 func _on_startup_delay_timeout() -> void:
 	slider.value = 0
-	%MinigameProgressBar/StartupLabel.text = "Start!"
+	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Start!"
 	is_crafting = true
 
 
 func check_results():
 	var product_recipe := matching_recipe()
-	var product_item = failed_craft.product_item.duplicate()
+	var product_item : Item = failed_craft.product_item.duplicate()
 	if product_recipe:
 		product_item = product_recipe.product_item.duplicate()
+		product_item.qty = product_recipe.product_item_amount
 	#TODO: Show effect and resulting item. Give option to craft more?
 	var effect_instance = item_gained_effect.instantiate()
 			
@@ -99,28 +110,29 @@ func check_results():
 	%ToolIcon.add_child(effect_instance)
 	
 	item_produced.emit(product_item, product_recipe)
-	close_window()
+	previous_window()
 
 
 func matching_recipe() -> Recipe:
 	for recipe in recipes:
 		if len(recipe.ingredients) < 1 or len(recipe.ingredients) > 3:
 			continue
-		var is_matching_ingredients := true # Checks if ingredients match
-		for ingredient in recipe.ingredients:
-			var is_cur_match := false
-			for cur_ingredient in cur_craft_ingredients:
-				if not cur_ingredient:
-					break
-				if ingredient.id == cur_ingredient.id:
-					is_cur_match = true
-			if not is_cur_match:
-				is_matching_ingredients = false
-				break
-		if not is_matching_ingredients:
-			continue
-		if recipe.procedure.compare(cur_craft_procedure):
-			return recipe
+		#var is_matching_ingredients := true # Checks if ingredients match
+		#for ingredient in recipe.ingredients:
+			#var is_cur_match := false
+			#for cur_ingredient in cur_craft_ingredients:
+				#if not cur_ingredient:
+					#break
+				#if ingredient.id == cur_ingredient.id:
+					#is_cur_match = true
+			#if not is_cur_match:
+				#is_matching_ingredients = false
+				#break
+		#if not is_matching_ingredients:
+			#continue
+		if recipe.procedure:
+			if recipe.procedure.compare(cur_craft_procedure):
+				return recipe
 	return null
 
 
@@ -152,3 +164,11 @@ func _get_nearest_tick() -> int:
 		pass
 	
 	return nearest_tick
+
+
+func _on_button_close_pressed() -> void:
+	close_window()
+
+
+func _on_button_back_pressed() -> void:
+	previous_window()

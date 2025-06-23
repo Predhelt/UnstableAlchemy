@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="1_0yomu"]
 
 [node name="RecipeItemIcon" type="TextureRect"]
-custom_minimum_size = Vector2(64, 64)
-offset_right = 64.0
-offset_bottom = 64.0
+custom_minimum_size = Vector2(48, 48)
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("1_0yomu")
 expand_mode = 3
 stretch_mode = 5

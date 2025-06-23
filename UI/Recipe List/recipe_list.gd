@@ -32,7 +32,7 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode != &"menu":
+	if global.mode != &"menu" or global.mode == &"minigame":
 		return
 	
 	visible = false
@@ -49,10 +49,11 @@ func close_window() -> void:
 
 
 func open_window() -> void:
-	if global.mode == &"default" or global.mode == &"menu":
+	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
 		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
 		add_to_group("menu")
 		print(get_tree().get_nodes_in_group("menu"))
+		%ButtonBack.visible = false
 		visible = true
 
 
@@ -80,16 +81,14 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	%ProductIcon.texture = recipe.product_item.texture
 	
 	# Add each procedure to create the associated recipe
-	var num_procedures := 0
 	for r in known_recipes:
-		
 		if r.product_item.id != recipe.product_item.id:
 			continue
 		add_procedure(r)
-		num_procedures += 1
 	
 	%RecipeItems.visible = false
 	%WindowName.text = "Item Details"
+	%ButtonBack.visible = true
 	%ProductDetails.visible = true
 	
 
@@ -113,38 +112,42 @@ func add_procedure(recipe: Recipe):
 	label_arrow.text = "<-"
 	cur_procedures_container.add_child(label_arrow)
 	
-	var num_ingredients := len(recipe.ingredients)
-	for item in recipe.ingredients:
-		var recipe_icon : TextureRect = recipe_item_icon.instantiate()
-		recipe_icon.texture = item.texture
-		recipe_icon.tooltip_text = item.display_name
-		cur_procedures_container.add_child(recipe_icon)
-		
-		if num_ingredients > 1:
-			var label_add = Label.new()
-			label_add.text = "+"
-			cur_procedures_container.add_child(label_add)
-			num_ingredients -= 1
+	#DEPRECATED: List of ingredients
+	#var num_ingredients := len(recipe.ingredients)
+	#for item in recipe.ingredients:
+		#var recipe_icon : TextureRect = recipe_item_icon.instantiate()
+		#recipe_icon.texture = item.texture
+		#recipe_icon.tooltip_text = item.display_name
+		#cur_procedures_container.add_child(recipe_icon)
+		#
+		#if num_ingredients > 1:
+			#var label_add = Label.new()
+			#label_add.text = "+"
+			#cur_procedures_container.add_child(label_add)
+			#num_ingredients -= 1
 	
 	_add_procedure_input_actions(cur_procedures_container, recipe)
-	#var panel : Panel = Panel.new()
-	#panel.
-	#panel.add_child(cur_procedures_container)
+	
+	var label_qty = Label.new()
+	label_qty.text = "= " + str(recipe.product_item_amount)
+	cur_procedures_container.add_child(label_qty)
+	var product_icon : TextureRect = recipe_item_icon.instantiate()
+	product_icon.texture = recipe.product_item.texture
+	product_icon.tooltip_text = recipe.product_item.display_name
+	cur_procedures_container.add_child(product_icon)
+	
 	%ProcedureList.add_child(cur_procedures_container)
 
 
 func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 	if not recipe.procedure:
 		return
-	var lbl : Label = Label.new()
-	lbl.text = "Procedure:"
-	container.add_child(lbl)
 	
 	var procedure_icons := recipe_procedure_icons.instantiate()
 	
-	for i in 5: #NOTE: Should be changed if the number of input actions in a sequence is changed
+	for i in len(recipe.procedure.input_actions): #NOTE: Might cause issues if the length of the procedure is not 5
 		# Create new icon for sequence
-		var pia_icon := procedure_icons.get_child(0).get_child(i)
+		var pia_icon := procedure_icons.get_child(0).get_child(i) #Icon of procedure index i
 		if not recipe.procedure.input_actions[i]:
 			pia_icon.texture = global.blank_texture
 			pia_icon.tooltip_text = "No input"
@@ -158,19 +161,17 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 					pia_icon.texture = procedure_icon_grind
 					pia_icon.tooltip_text = "Grind"
 		else:
-			match recipe.procedure.input_actions[i].id:
-				0: 
-					pia_icon.texture = recipe.ingredients[0].texture
-					pia_icon.tooltip_text = recipe.ingredients[0].display_name
-				1: 
-					pia_icon.texture = recipe.ingredients[1].texture
-					pia_icon.tooltip_text = recipe.ingredients[1].display_name
-				2: 
-					pia_icon.texture = recipe.ingredients[2].texture
-					pia_icon.tooltip_text = recipe.ingredients[2].display_name
-				3: 
-					pia_icon.texture = procedure_icon_bellows
-					pia_icon.tooltip_text = "Bellows"
+			var cur_ia = recipe.procedure.input_actions[i]
+			if cur_ia.type == "equipment":
+				match cur_ia.id:
+					0:
+						pia_icon.texture = procedure_icon_bellows
+						pia_icon.tooltip_text = "Bellows"
+			elif cur_ia.type == "item":
+				for ingredient in recipe.ingredients:
+					if cur_ia.id == ingredient.id:
+						pia_icon.texture = ingredient.texture
+						pia_icon.tooltip_text = ingredient.display_name
 		
 	container.add_child(procedure_icons)
 

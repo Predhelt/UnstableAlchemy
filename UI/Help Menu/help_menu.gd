@@ -1,7 +1,5 @@
 extends Panel
 
-#TODO: Add functionality for opening different help tabs.
-# Add additional help tabs.
 
 func toggle_window() -> void:
 	if visible:
@@ -10,12 +8,12 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode == &"menu":
-		remove_from_group("menu")
-		print(get_tree().get_nodes_in_group("menu"))
-		if get_tree().get_nodes_in_group("menu").is_empty():
-			global.mode = &"default"
-		visible = false
+	#if global.mode == &"help":
+	remove_from_group("menu")
+	print(get_tree().get_nodes_in_group("menu"))
+	if get_tree().get_nodes_in_group("menu").is_empty():
+		global.mode = &"default"
+	visible = false
 
 func open_window() -> void:
 	if (global.mode == &"default" or global.mode == &"menu") and not visible:

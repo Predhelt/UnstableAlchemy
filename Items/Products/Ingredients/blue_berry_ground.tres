@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_6k3ws")
-id = 103
+id = 104
 display_name = "blue berry grinds"
 description = "A red paste made of ground up blue berries"
 texture = ExtResource("3_wchpl")
