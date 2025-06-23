@@ -10,13 +10,18 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode == &"help":
-		global.mode = &"default"
+	if global.mode == &"menu":
+		remove_from_group("menu")
+		print(get_tree().get_nodes_in_group("menu"))
+		if get_tree().get_nodes_in_group("menu").is_empty():
+			global.mode = &"default"
 		visible = false
 
 func open_window() -> void:
-	if global.mode == &"default":
-		global.mode = &"help"
+	if (global.mode == &"default" or global.mode == &"menu") and not visible:
+		global.mode = &"menu"
+		add_to_group("menu")
+		print(get_tree().get_nodes_in_group("menu"))
 		%WindowName.text = "Help: General"
 		visible = true
 		

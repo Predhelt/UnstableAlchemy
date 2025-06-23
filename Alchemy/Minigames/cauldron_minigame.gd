@@ -27,7 +27,9 @@ func open_window(items: Array[Item]):
 		tb.texture = global.blank_texture
 	
 	visible = true
-	global.mode = &"craft_minigame"
+	#global.mode = &"menu"
+	add_to_group("menu")
+	print(get_tree().get_nodes_in_group("menu"))
 
 
 func _on_button_start_pressed() -> void:

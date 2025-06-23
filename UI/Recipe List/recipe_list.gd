@@ -22,8 +22,8 @@ func _input(event: InputEvent) -> void:
 		toggle_window()
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
-	if event.is_action_pressed("inventory"):
-		close_window()
+	#if event.is_action_pressed("inventory"):
+		#close_window()
 
 func toggle_window() -> void:
 	if visible:
@@ -32,11 +32,15 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode != &"recipe_list":
+	if global.mode != &"menu":
 		return
 	
 	visible = false
-	global.mode = &"default"
+	remove_from_group("menu")
+	print(get_tree().get_nodes_in_group("menu"))
+	if get_tree().get_nodes_in_group("menu").is_empty():
+		global.mode = &"default"
+	
 	%ProductDetails.visible = false
 	for child in %ProcedureList.get_children(): # Remove all children
 		%ProcedureList.remove_child(child)
@@ -45,8 +49,10 @@ func close_window() -> void:
 
 
 func open_window() -> void:
-	if global.mode == &"default":
-		global.mode = &"recipe_list"
+	if global.mode == &"default" or global.mode == &"menu":
+		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
+		add_to_group("menu")
+		print(get_tree().get_nodes_in_group("menu"))
 		visible = true
 
 
@@ -79,10 +85,6 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 		
 		if r.product_item.id != recipe.product_item.id:
 			continue
-		if num_procedures % 2 == 1:
-			var breakline = Label.new()
-			breakline.text = "|"
-			%ProcedureList.add_child(breakline)
 		add_procedure(r)
 		num_procedures += 1
 	

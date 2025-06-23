@@ -1,10 +1,7 @@
 extends HBoxContainer
 
 @onready var mode_windows := {
-	&"recipe_list" : %RecipeList,
 	&"options" : %OptionsMenu,
-	&"inventory" : %Inventory,
-	&"help" : %HelpMenu,
 }
 
 #TODO: Add the keyboard shortcut to the tooltip and update it when the keybinds change
@@ -22,7 +19,9 @@ func open_pressed_window(ui : Control):
 	if global.mode == &"default":
 		ui.open_window()
 	else:
-		if global.mode in mode_windows:
+		if global.mode == &"menu":
+			ui.toggle_window()
+		elif global.mode in mode_windows:
 			var cur_window = mode_windows[global.mode]
 			if cur_window:
 				cur_window.close_window()

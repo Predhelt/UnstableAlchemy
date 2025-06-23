@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	if global.mode == &"default":
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = direction * stats[&"move speed"] * (Vector2(1.0, 1.0) + (global.player_scale/Vector2(1/SIZE_DAMPENER, 1/SIZE_DAMPENER) - Vector2(SIZE_DAMPENER, SIZE_DAMPENER)))
-		move_and_slide() # FIXME: movement is a bit jittery (note: Might have to do with grid. smaller objects snap more noticeably)
+		move_and_slide()
 	
 	_update_active_status_effect(delta)
 	

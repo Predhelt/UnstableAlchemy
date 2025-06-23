@@ -22,8 +22,8 @@ func _input(event: InputEvent) -> void:
 		toggle_window() # Toggles whether the inventory is displayed or not
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
-	if event.is_action_pressed("recipe_book"):
-		close_window()
+	#if event.is_action_pressed("recipe_book"):
+		#close_window()
 
 func toggle_window() -> void:
 	if visible:
@@ -32,19 +32,27 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode == &"inventory" or global.mode == &"dropper":
+	if global.mode == &"menu": #FIXME: Inventory closes when minigame closes due to the same mode
+		remove_from_group("menu")
+		print(get_tree().get_nodes_in_group("menu"))
+		if get_tree().get_nodes_in_group("menu").is_empty():
+			global.mode = &"default"
+		visible = false
+	
+	elif global.mode == &"dropper":
 		global.mode = &"default"
 		visible = false
 
 func open_window() -> void:
-	match global.mode:
-		&"default":
-			global.mode = &"inventory"
-			%WindowName.text = "Inventory and Crafting"
-			visible = true
-		&"dropper":
-			%WindowName.text = "Select an Item for the Dropper"
-			visible = true
+	if global.mode == &"default" or global.mode == &"menu":
+		global.mode = &"menu"
+		add_to_group("menu")
+		print(get_tree().get_nodes_in_group("menu"))
+		%WindowName.text = "Inventory and Crafting"
+		visible = true
+	elif global.mode == &"dropper":
+		%WindowName.text = "Select an Item for the Dropper"
+		visible = true
 
 func add_inventory_item(item : Item) -> bool:
 	if item == null or item.qty <= 0: # If invalid item or empty item
@@ -138,7 +146,7 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			return
 		
 		match global.mode:
-			&"inventory": use_item(item, index)
+			&"menu": use_item(item, index)
 			&"dropper": pass
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
@@ -150,7 +158,7 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 			return
 		
 		match global.mode:
-			&"inventory": drag_item(item, index)
+			&"menu": drag_item(item, index)
 			&"dropper": _set_dropper_item(item)
 		
 		#close_inventory()
@@ -254,7 +262,8 @@ func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 
 
 func _on_open_inventory() -> void:
-	global.mode = &"inventory"
+	global.mode = &"menu"
+	add_to_group("menu")
 	%WindowName.text = "Inventory and Crafting"
 	visible = true
 

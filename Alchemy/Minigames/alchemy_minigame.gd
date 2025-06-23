@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if global.mode != &"craft_minigame" or not visible:
+	if global.mode != &"menu" or not visible:
 		return # No input events should catch on wrong mode
 	if is_crafting:
 		if event.is_action_pressed("minigame_action_1") and not minigame_buttons[0].disabled:
@@ -63,8 +63,10 @@ func open_window(items: Array[Item]):
 func close_window():
 	is_crafting = false
 	visible = false
+	remove_from_group("menu")
 	%MinigameProgressBar/StartupLabel.text = ""
 	open_inventory.emit() # Mode gets set by inventory
+	
 
 
 func begin_minigame():
