@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=4 uid="uid://blf5roktgwlk0"]
 
-[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Red Berry Bush/red_berry_bush.tscn" id="4_g256m"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/Red Berry Bush/red_berry_bush.tscn" id="4_g256m"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="5_h3ev3"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="6_1dymc"]
-[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Green Herb/green_herb.tscn" id="6_f4p00"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/Green Herb/green_herb.tscn" id="6_f4p00"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://Objects/sliding_door.tscn" id="7_a54a2"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://Objects/pressure_plate.tscn" id="8_236vt"]
 

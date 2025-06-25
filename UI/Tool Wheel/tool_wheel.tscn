@@ -8,7 +8,6 @@
 
 [node name="ToolWheel" type="GridContainer"]
 layout_direction = 3
-anchors_preset = -1
 offset_left = 8.0
 offset_top = 8.0
 mouse_filter = 2

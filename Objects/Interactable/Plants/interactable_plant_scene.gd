@@ -1,57 +1,56 @@
 extends Node2D
 
-@export var object_name := "" ## Name of the object (also the folder name the object is contained in)
-@export var object_description := "" ## Description of the object given to the player
-@export var items : Array[Item] ## The items that the object contains and their initial quantities
+
+var display_name := "" ## Name of the object (also the folder name the object is contained in)
+var description := "" ## Description of the object given to the player
+var items : Array[Item] ## The items that the object contains and their initial quantities
+var grab_interaction : InteractionType ## Used when object is grabbed
+var cut_interaction : InteractionType ## Used when the object is cut
+var combinations : Array[ObjectCombination] ## List of different items that can be combined with the object and the result of the combination
+var interact_effect : PackedScene ## Temporary effect to show during interaction
+var item_gained_effect : PackedScene ## Show the amount of items gained when added to inventory
+
 var item_quantities : Array[int] ## The current quantities of items in the object
-
-@export var interact_effect : PackedScene = preload("res://Effects/object_interacted_effect.tscn") ## Temporary effect to show during interaction
-@export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect_world.tscn") ## Show the amount of items gained when added to inventory
-
-var grab_interaction : InteractionType
-var cut_interaction : InteractionType
-var combinations : Array[ObjectCombination]
 
 var context_menu : Control
 var inspection_panel_scene = preload("res://UI/Interactable Object/inspection_panel.tscn")
 
 
-func _init() -> void:
-	pass
-	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	init_resources()
+	
 	for item in items:
 		item_quantities.append(item.qty)
-	
-	init_interactions()
 
-func init_interactions():
+func init_resources():
 	var cur_folder_path = get_cur_folder_path()
-	var dir = DirAccess.open(cur_folder_path + "/Interactions/")
+	var dir = DirAccess.open(cur_folder_path)
 	if not dir:
 		print("Error: No path")
 		return
 	
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
-	while file_name != "":
-		var cur_file_name = cur_folder_path + "Interactions/" + file_name
-		if file_name == "grab.tres":
-			grab_interaction = load(cur_file_name)
-		elif file_name == "cut.tres":
-			cut_interaction = load(cur_file_name)
-		else: #Should be a combination type
-			var split = file_name.split(".")
-			if split[-1] != "tres": # If not a resource file, then skip it
-				file_name = dir.get_next()
-				continue
-			
-			var combo = load(cur_file_name)
-			if combo and "result_object_scene" in combo: # Checks if the resource has Combination propery
-				combinations.append(combo)
-		
-		file_name = dir.get_next()
+	while file_name.split(".")[-1] != "tres" and file_name != "":
+		file_name = dir.get_next() # Should only have 2 files and 1 folder in this directory.
+	var plant_data : InteractablePlant
+	if file_name != "":
+		plant_data = load(cur_folder_path + file_name)
+	else:
+		print("Error: No plant data found in " + cur_folder_path)
+	
+	#Initialize default variables
+	display_name = plant_data.object_name
+	description = plant_data.object_description
+	items = plant_data.items
+	interact_effect = plant_data.interact_effect
+	item_gained_effect = plant_data.item_gained_effect
+	
+	
+	grab_interaction = plant_data.grab_interaction
+	cut_interaction = plant_data.cut_interaction
+	combinations = plant_data.combinations
 
 func get_cur_folder_path() -> String:
 	var folder_path := ""
@@ -76,8 +75,8 @@ func inspect_object():
 		return
 	inspection_panel = inspection_panel_scene.instantiate()
 	inspection_panel.name = "InspectionPanel"
-	inspection_panel.object_name = object_name
-	inspection_panel.object_description = object_description
+	inspection_panel.object_name = display_name
+	inspection_panel.object_description = description
 	inspection_panel.object_image = $Sprite2D.texture
 	inspection_panel.add_to_group("open_window")
 	add_child(inspection_panel)
@@ -178,8 +177,8 @@ func mutate_object(new_object_scene: PackedScene):
 	#var obj_sprite = obj.find_child("Sprite2D")
 	$Sprite2D.texture = obj.find_child("Sprite2D").texture
 	
-	object_name = obj.object_name
-	object_description = obj.object_description
+	display_name = obj.display_name
+	description = obj.description
 	items = obj.items
 	
 	item_quantities = []

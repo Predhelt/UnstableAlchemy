@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="InteractablePlant" load_steps=14 format=3 uid="uid://bqjtjags3tv12"]
+
+[ext_resource type="Script" uid="uid://cjv3jm7ko26fl" path="res://Objects/Interactable/ObjectCombinations.gd" id="1_6wvwr"]
+[ext_resource type="PackedScene" uid="uid://oqf4e3pk8s45" path="res://Effects/object_interacted_effect.tscn" id="1_ih6kt"]
+[ext_resource type="PackedScene" uid="uid://bmn6qh6ni2xey" path="res://Effects/items_gained_effect_world.tscn" id="2_qa378"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="3_wh8lb"]
+[ext_resource type="Script" uid="uid://bwn4mnmcfl732" path="res://Objects/Interactable/Plants/InteractablePlant.gd" id="4_6wvwr"]
+[ext_resource type="Resource" uid="uid://cmisle6abqkow" path="res://Items/Gatherable/yellow_petals.tres" id="4_wh8lb"]
+[ext_resource type="Resource" uid="uid://dtmha6gayo6if" path="res://Items/Gatherable/flower_stem.tres" id="5_6wvwr"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="5_bxmng"]
+[ext_resource type="Resource" uid="uid://dpj7rac2ern5w" path="res://Game Components/Status Effects/Shrink.tres" id="6_51nj8"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://Objects/Interactable/InteractionType.gd" id="7_jfern"]
+[ext_resource type="Resource" uid="uid://bpgnegvcg63o4" path="res://Game Components/Status Effects/Grow.tres" id="8_lm2u2"]
+
+[sub_resource type="Resource" id="Resource_arrc6"]
+script = ExtResource("7_jfern")
+interaction_name = "cut"
+on_interact_items = Array[ExtResource("3_wh8lb")]([ExtResource("4_wh8lb"), ExtResource("5_6wvwr")])
+on_interact_amounts = Array[int]([5, 1])
+on_interact_status_effects = Array[ExtResource("5_bxmng")]([ExtResource("6_51nj8")])
+on_interact_status_message = "Everything feels bigger"
+
+[sub_resource type="Resource" id="Resource_22epy"]
+script = ExtResource("7_jfern")
+interaction_name = "grab"
+on_interact_items = Array[ExtResource("3_wh8lb")]([ExtResource("4_wh8lb")])
+on_interact_amounts = Array[int]([2])
+on_interact_status_effects = Array[ExtResource("5_bxmng")]([ExtResource("8_lm2u2")])
+on_interact_status_message = "Everything looks smaller"
+
+[resource]
+script = ExtResource("4_6wvwr")
+object_name = "Yellow Flowers"
+object_description = "Flowers with yellow petals"
+items = Array[ExtResource("3_wh8lb")]([ExtResource("4_wh8lb"), ExtResource("5_6wvwr")])
+grab_interaction = SubResource("Resource_22epy")
+cut_interaction = SubResource("Resource_arrc6")
+combinations = Array[ExtResource("1_6wvwr")]([])
+interact_effect = ExtResource("1_ih6kt")
+item_gained_effect = ExtResource("2_qa378")
+metadata/_custom_type_script = "uid://bwn4mnmcfl732"

@@ -1,17 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ocpfwxtn11ij"]
+[gd_scene load_steps=4 format=3 uid="uid://ocpfwxtn11ij"]
 
-[ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://Objects/Interactable/interactable_plant.gd" id="1_xmuk6"]
+[ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://Objects/Interactable/Plants/interactable_plant_scene.gd" id="1_xmuk6"]
 [ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://Art/UAPrototype/Objects/Planted/plant-red-berry.png" id="2_brn6a"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_ibbgj"]
-[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="3_pamv4"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="5_fkhen"]
 
 [node name="RedBerryBush" type="Node2D"]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_xmuk6")
-object_name = "Red Berry Bush"
-object_description = "A bush with red berries on it."
-items = Array[ExtResource("2_ibbgj")]([ExtResource("3_pamv4")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -25)
