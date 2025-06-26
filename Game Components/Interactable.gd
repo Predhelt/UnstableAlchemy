@@ -6,7 +6,7 @@ signal object_cut(player: Player)
 signal object_combined(player: Player, item: Item)
 
 @export var interact_label := "none"
-@export var interact_type := "none"
+@export_enum("print_text", "context_menu","inspect", "talk") var interact_type
 @export var interact_value := "none"
 var is_menu_open := false
 var context_menu_scene = preload("res://UI/Interactable Object/context_menu.tscn")

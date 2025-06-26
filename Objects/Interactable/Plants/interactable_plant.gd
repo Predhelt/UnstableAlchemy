@@ -1,14 +1,16 @@
 extends Node2D
 
 
-var display_name := "" ## Name of the object (also the folder name the object is contained in)
-var description := "" ## Description of the object given to the player
-var items : Array[Item] ## The items that the object contains and their initial quantities
-var grab_interaction : InteractionType ## Used when object is grabbed
-var cut_interaction : InteractionType ## Used when the object is cut
-var combinations : Array[ObjectCombination] ## List of different items that can be combined with the object and the result of the combination
-var interact_effect : PackedScene ## Temporary effect to show during interaction
-var item_gained_effect : PackedScene ## Show the amount of items gained when added to inventory
+@export var display_name := "" ## Name of the object (also the folder name the object is contained in)
+@export var description := "" ## Description of the object given to the player
+@export var items : Array[Item] ## The items that the object contains and their initial quantities
+
+@export var grab_interaction : Interaction
+@export var cut_interaction : Interaction
+@export var combinations : Array[ObjectCombination]
+
+@export var interact_effect : PackedScene = preload("res://Effects/object_interacted_effect.tscn") ## Temporary effect to show during interaction
+@export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect_world.tscn") ## Show the amount of items gained when added to inventory
 
 var item_quantities : Array[int] ## The current quantities of items in the object
 
@@ -18,39 +20,11 @@ var inspection_panel_scene = preload("res://UI/Interactable Object/inspection_pa
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	init_resources()
+	#init_resources()
 	
 	for item in items:
 		item_quantities.append(item.qty)
 
-func init_resources():
-	var cur_folder_path = get_cur_folder_path()
-	var dir = DirAccess.open(cur_folder_path)
-	if not dir:
-		print("Error: No path")
-		return
-	
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name.split(".")[-1] != "tres" and file_name != "":
-		file_name = dir.get_next() # Should only have 2 files and 1 folder in this directory.
-	var plant_data : InteractablePlant
-	if file_name != "":
-		plant_data = load(cur_folder_path + file_name)
-	else:
-		print("Error: No plant data found in " + cur_folder_path)
-	
-	#Initialize default variables
-	display_name = plant_data.object_name
-	description = plant_data.object_description
-	items = plant_data.items
-	interact_effect = plant_data.interact_effect
-	item_gained_effect = plant_data.item_gained_effect
-	
-	
-	grab_interaction = plant_data.grab_interaction
-	cut_interaction = plant_data.cut_interaction
-	combinations = plant_data.combinations
 
 func get_cur_folder_path() -> String:
 	var folder_path := ""
@@ -101,7 +75,7 @@ func _on_object_cut(player: Player) -> void:
 	
 	check_empty()
 
-func collect_items(player: Player, interaction: InteractionType) -> bool:
+func collect_items(player: Player, interaction: Interaction) -> bool:
 	if not interaction:
 		print("No interaction")
 		return false

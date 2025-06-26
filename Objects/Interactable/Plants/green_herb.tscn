@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjw4k1o1djxtg"]
+
+[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://Art/UAPrototype/Objects/Planted/HerbBasicGreen.png" id="1_i7iob"]
+[ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://Objects/Interactable/Plants/interactable_plant.gd" id="1_n5xjd"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_hyj50"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="2_kx41t"]
+[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://Items/Gatherable/green_herb_leaf.tres" id="3_l34td"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="4_42k14"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://Objects/Interactable/Interaction.gd" id="5_e71ns"]
+
+[sub_resource type="Resource" id="Resource_4lm15"]
+script = ExtResource("5_e71ns")
+on_interact_items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
+on_interact_amounts = Array[int]([2])
+on_interact_status_effects = Array[ExtResource("4_42k14")]([])
+on_interact_status_message = ""
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_h0poe"]
+script = ExtResource("5_e71ns")
+on_interact_items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
+on_interact_amounts = Array[int]([5])
+on_interact_status_effects = Array[ExtResource("4_42k14")]([])
+on_interact_status_message = ""
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[node name="GreenHerb" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_n5xjd")
+display_name = "Green Herb"
+description = "An herb with green leaves"
+items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
+grab_interaction = SubResource("Resource_4lm15")
+cut_interaction = SubResource("Resource_h0poe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -26)
+texture = ExtResource("1_i7iob")
+
+[node name="InteractArea" parent="." instance=ExtResource("2_kx41t")]
+interact_label = "Green Herb"
+interact_type = 2
+
+[connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
+[connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
+[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
+[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]

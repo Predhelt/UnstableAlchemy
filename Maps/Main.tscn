@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="1_57tix"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_7tc3r"]
-[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/Green Herb/green_herb.tscn" id="3_6v1de"]
-[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/Red Berry Bush/red_berry_bush.tscn" id="4_fkii8"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="3_6v1de"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="4_fkii8"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true

@@ -104,7 +104,7 @@ func update_interactions():
 func execute_interaction():
 	if all_interaction_areas:
 		var cur_interaction = all_interaction_areas[0] # Simple approach
-		match cur_interaction.interact_type:
+		match cur_interaction.interact_type: #NOTE: When a type is added or updated, it also needs to be changed in Interactable
 			&"print_text" : print(cur_interaction.interact_value)
 			&"context_menu" : cur_interaction.toggle_context_menu(self) #DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
