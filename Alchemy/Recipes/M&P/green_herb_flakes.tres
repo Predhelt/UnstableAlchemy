@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://c03phe4ob10nn"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="1_k131g"]
+[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://Items/Gatherable/green_herb_leaf.tres" id="2_ibryw"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Recipes/ProcedureInputAction.gd" id="3_4qjqf"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/M&P Products/green_flakes.tres" id="3_gw02c"]
+[ext_resource type="Resource" uid="uid://bnx8u3aprp62y" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/crush.tres" id="4_0tryp"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="4_17gq8"]
+[ext_resource type="Resource" uid="uid://dvu23hpuws6rd" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/grind.tres" id="5_sn4tq"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_hq0ir"]
+
+[sub_resource type="Resource" id="Resource_kcj7p"]
+script = ExtResource("6_hq0ir")
+input_actions = Array[ExtResource("3_4qjqf")]([ExtResource("4_0tryp"), null, ExtResource("5_sn4tq"), null, ExtResource("5_sn4tq")])
+
+[resource]
+script = ExtResource("4_17gq8")
+id = 0
+product_item = ExtResource("3_gw02c")
+product_item_amount = 1
+product_craft_time = 1.0
+ingredients = Array[ExtResource("1_k131g")]([ExtResource("2_ibryw")])
+tool_used = "m&p"
+procedure = SubResource("Resource_kcj7p")

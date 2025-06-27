@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://brbos0v1h8lgy"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_anca0"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_r7p41"]
+[ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="3_weori"]
+
+[resource]
+script = ExtResource("2_r7p41")
+id = -1
+display_name = "Healing Potion"
+description = "A gray potion that provides health recovery (WIP)"
+texture = ExtResource("3_weori")
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_anca0")]([])
+on_consume_message = "I feel a bit better"

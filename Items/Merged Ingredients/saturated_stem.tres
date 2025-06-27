@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://2u08o5c16xxy"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_m260j"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_emt1r"]
+[ext_resource type="Texture2D" uid="uid://bla8lcdtx1wn7" path="res://Art/UAPrototype/Ingredients/Inventory/flower-stem.png" id="3_emt1r"]
+
+[resource]
+script = ExtResource("2_emt1r")
+id = 203
+display_name = "Saturated Stem"
+description = "The stem of a yellow flower soaked in gray juice"
+texture = ExtResource("3_emt1r")
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_m260j")]([])
+on_consume_message = ""
+metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

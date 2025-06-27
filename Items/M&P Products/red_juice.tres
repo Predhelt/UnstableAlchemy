@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b6ygdugfvt53y"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_uhiao"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_eluaa"]
+[ext_resource type="Texture2D" uid="uid://b5mm0hootfp6a" path="res://Art/UAPrototype/Ingredients/Inventory/red-juice.png" id="3_22ttv"]
+
+[resource]
+script = ExtResource("2_eluaa")
+id = 105
+display_name = "Red Juice"
+description = "Juice extracted from a blue berry"
+texture = ExtResource("3_22ttv")
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_uhiao")]([])
+on_consume_message = ""
+metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

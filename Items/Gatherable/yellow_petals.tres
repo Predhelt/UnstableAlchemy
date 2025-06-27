@@ -6,11 +6,11 @@
 
 [resource]
 script = ExtResource("2_r1d8t")
-id = 4
+id = 2
 display_name = "Yellow Petals"
 description = "The petals of a yellow flower"
 texture = ExtResource("3_y1eef")
-max_qty = 10
+max_qty = 32
 qty = 5
 on_consume_effects = Array[ExtResource("1_gaaga")]([])
 on_consume_message = "That tasted sour"

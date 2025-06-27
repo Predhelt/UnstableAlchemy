@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://vqnn2xq30mxw"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="1_245wb"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="2_4f6ax"]
+[ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Items/Merged Ingredients/saturated_stem.tres" id="2_egs7u"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Recipes/ProcedureInputAction.gd" id="3_gpxcl"]
+[ext_resource type="Resource" uid="uid://dvu23hpuws6rd" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/grind.tres" id="4_wuh2c"]
+[ext_resource type="Resource" uid="uid://bnx8u3aprp62y" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/crush.tres" id="5_4xmgd"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_3qrud"]
+[ext_resource type="Resource" uid="uid://o5euaiahvr3o" path="res://Items/M&P Products/stem_strands.tres" id="7_25hqx"]
+
+[sub_resource type="Resource" id="Resource_fnbhc"]
+script = ExtResource("6_3qrud")
+input_actions = Array[ExtResource("3_gpxcl")]([ExtResource("4_wuh2c"), ExtResource("5_4xmgd"), ExtResource("4_wuh2c"), ExtResource("5_4xmgd"), ExtResource("4_wuh2c")])
+metadata/_custom_type_script = "uid://b2d7pi15oxo04"
+
+[resource]
+script = ExtResource("2_4f6ax")
+id = 4
+product_item = ExtResource("7_25hqx")
+product_item_amount = 5
+product_craft_time = 0.0
+ingredients = Array[ExtResource("1_245wb")]([ExtResource("2_egs7u")])
+tool_used = "m&p"
+procedure = SubResource("Resource_fnbhc")
+metadata/_custom_type_script = "uid://dmsouatunq2be"

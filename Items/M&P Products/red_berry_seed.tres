@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://w7c2gigpa368"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_misqe"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_hsell"]
+[ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://Art/UAPrototype/Ingredients/Inventory/red-berry-seed.png" id="3_nf3ew"]
+
+[resource]
+script = ExtResource("2_hsell")
+id = 102
+display_name = "Red Berry Seed"
+description = "A seed extracted from a red berry"
+texture = ExtResource("3_nf3ew")
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_misqe")]([])
+on_consume_message = ""
+metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

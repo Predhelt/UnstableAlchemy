@@ -1,6 +1,6 @@
 class_name Recipe extends Resource
 
-@export var id : int ## Unique identifier for recipe
+@export var id : int ## Unique identifier for recipe. -1 is unused. 0-99 are M&P. 100-199 are Mergers. 500+ are Potions. 999 is failed craft
 
 # Outputs
 @export var product_item : Item ## The item produced by the recipe
@@ -13,6 +13,7 @@ class_name Recipe extends Resource
 @export var procedure : Procedure ## The procedure to be followed to create the product
 
 
+#DEPRECATED
 #func _init() -> void:
 	# Order the ingredients from least ID to greatest for consistency
 	#var ordered_ingredients : Array[Item]

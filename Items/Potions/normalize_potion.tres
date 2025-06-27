@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://d2dt3featqr2v"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_1bli6"]
+[ext_resource type="Resource" uid="uid://dwu8qjqo5t3tr" path="res://Game Components/Status Effects/Normalize.tres" id="2_kpaqe"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="3_xonyx"]
+[ext_resource type="Texture2D" uid="uid://be0mimtq0pj4r" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-red.png" id="4_0tmna"]
+
+[resource]
+script = ExtResource("3_xonyx")
+id = 502
+display_name = "Normalize Potion"
+description = "Removes permanent status effects"
+texture = ExtResource("4_0tmna")
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_1bli6")]([ExtResource("2_kpaqe")])
+on_consume_message = "I feel normal"

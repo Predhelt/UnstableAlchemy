@@ -6,11 +6,11 @@
 
 [resource]
 script = ExtResource("2_yxobe")
-id = 5
+id = 3
 display_name = "Flower Stem"
 description = "Stem of a yellow flower"
 texture = ExtResource("3_yxobe")
-max_qty = 10
+max_qty = 16
 qty = 1
 on_consume_effects = Array[ExtResource("1_cf48e")]([])
 on_consume_message = ""

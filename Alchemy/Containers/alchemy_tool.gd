@@ -58,7 +58,9 @@ func set_recipes(folder_name : StringName):
 				if new_recipe.tool_used != tool_name:
 					print(new_recipe.product_item.display_name + " cannot be crafted using " + tool_name +
 						", use " + new_recipe.tool_used + " instead")
-				recipes.append(new_recipe)
+					continue
+				elif new_recipe.id >= 0: ## Inactive Recipe is -1, do not include those
+					recipes.append(new_recipe)
 		file_name = dir.get_next()
 
 
@@ -123,21 +125,21 @@ func open_minigame(mg_items: Array[Item]):
 	%Minigame.open_window(mg_items)
 
 
-#func begin_craft(result_recipe: Recipe): ##DEPRECATED
-	#if not result_recipe.product_item:
-		#print("Error: No product item for recipe!")
-		#return
-	#
-	#cur_recipe = result_recipe
-	#
-	#product = result_recipe.product_item.duplicate()
-	#product.qty = result_recipe.product_item_amount
-	#use_timer = result_recipe.product_craft_time
-	#
-	#progress_bar.value = 0
-	#progress_bar.max_value = use_timer
-	#progress_bar.visible = true
-	#is_using = true
+func begin_craft(result_recipe: Recipe): ##NOTE: Deprecate when merger is using minigame
+	if not result_recipe.product_item:
+		print("Error: No product item for recipe!")
+		return
+	
+	cur_recipe = result_recipe
+	
+	product = result_recipe.product_item.duplicate()
+	product.qty = result_recipe.product_item_amount
+	use_timer = result_recipe.product_craft_time
+	
+	progress_bar.value = 0
+	progress_bar.max_value = use_timer
+	progress_bar.visible = true
+	is_using = true
 
 
 func remove_item(index: int):

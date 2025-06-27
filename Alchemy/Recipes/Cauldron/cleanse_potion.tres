@@ -1,16 +1,36 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://csmejokrssatv"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=13 format=3 uid="uid://csmejokrssatv"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="1_rpl2h"]
-[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="2_siuya"]
+[ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://Items/Merged Ingredients/green_paste.tres" id="2_7l2t4"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="2_spc4q"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/Products/Ingredients/green_herb_leaf_ground.tres" id="3_snurn"]
-[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://Items/Products/Potions/cleanse_potion.tres" id="4_wye1e"]
+[ext_resource type="Resource" uid="uid://w7c2gigpa368" path="res://Items/M&P Products/red_berry_seed.tres" id="3_v0qvq"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Recipes/ProcedureInputAction.gd" id="4_7l2t4"]
+[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://Items/Potions/cleanse_potion.tres" id="4_wye1e"]
+[ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://Alchemy/Recipes/Cauldron/ProcedureInputActions/bellows.tres" id="5_uon5v"]
+[ext_resource type="Script" uid="uid://c0cgelhbhui2g" path="res://Alchemy/Recipes/ProcedureInputActionItem.gd" id="5_v0qvq"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_8wcx7"]
+
+[sub_resource type="Resource" id="Resource_qk7te"]
+script = ExtResource("5_v0qvq")
+item = ExtResource("3_v0qvq")
+metadata/_custom_type_script = "uid://c0cgelhbhui2g"
+
+[sub_resource type="Resource" id="Resource_uon5v"]
+script = ExtResource("5_v0qvq")
+item = ExtResource("2_7l2t4")
+metadata/_custom_type_script = "uid://c0cgelhbhui2g"
+
+[sub_resource type="Resource" id="Resource_2m061"]
+script = ExtResource("6_8wcx7")
+input_actions = Array[ExtResource("4_7l2t4")]([SubResource("Resource_qk7te"), null, SubResource("Resource_uon5v"), ExtResource("5_uon5v"), null])
+metadata/_custom_type_script = "uid://b2d7pi15oxo04"
 
 [resource]
 script = ExtResource("2_spc4q")
-id = 503
+id = 501
 product_item = ExtResource("4_wye1e")
-product_item_amount = 1
+product_item_amount = 2
 product_craft_time = 4.0
-ingredients = Array[ExtResource("1_rpl2h")]([ExtResource("2_siuya"), ExtResource("2_siuya"), ExtResource("3_snurn")])
+ingredients = Array[ExtResource("1_rpl2h")]([ExtResource("2_7l2t4"), ExtResource("3_v0qvq")])
 tool_used = "cauldron"
+procedure = SubResource("Resource_2m061")

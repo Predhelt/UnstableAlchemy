@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="5_fkhen"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://Objects/Interactable/Interaction.gd" id="5_vrd4a"]
 [ext_resource type="Script" uid="uid://cjv3jm7ko26fl" path="res://Objects/Interactable/ObjectCombination.gd" id="6_h3imn"]
-[ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://Items/Products/Ingredients/green_paste.tres" id="7_u5f8f"]
+[ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://Items/Merged Ingredients/green_paste.tres" id="7_u5f8f"]
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://Objects/Interactable/Plants/blue_berry_bush.tscn" id="8_momi4"]
 
 [sub_resource type="Resource" id="Resource_odqey"]

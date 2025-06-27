@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://brixxgupiecr2"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_dhjbp"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_126ww"]
+[ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="3_126ww"]
+
+[resource]
+script = ExtResource("2_126ww")
+id = 505
+display_name = ""
+description = ""
+texture = ExtResource("3_126ww")
+max_qty = 10
+qty = 1
+on_consume_effects = Array[ExtResource("1_dhjbp")]([])
+on_consume_message = ""
+metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

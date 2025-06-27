@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://d0jffixwahlrk"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="1_sm6gw"]
+[ext_resource type="Resource" uid="uid://dtmha6gayo6if" path="res://Items/Gatherable/flower_stem.tres" id="2_4e8ay"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="2_bgbo2"]
+[ext_resource type="Resource" uid="uid://dyo76rscy5hss" path="res://Items/M&P Products/gray_juice.tres" id="3_bt3nt"]
+[ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Items/Merged Ingredients/saturated_stem.tres" id="4_lny2t"]
+
+[resource]
+script = ExtResource("2_bgbo2")
+id = 103
+product_item = ExtResource("4_lny2t")
+product_item_amount = 1
+product_craft_time = 2.0
+ingredients = Array[ExtResource("1_sm6gw")]([ExtResource("2_4e8ay"), ExtResource("3_bt3nt")])
+tool_used = "merger"
+metadata/_custom_type_script = "uid://dmsouatunq2be"
