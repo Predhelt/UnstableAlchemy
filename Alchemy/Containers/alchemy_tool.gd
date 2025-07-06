@@ -1,25 +1,45 @@
 class_name AlchemyTool extends Control
 
-
+##
+## Effect that occurs when the craft completes and an item is sent to the inventory.
+## The effect displays when the inventory is opened.
+##
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
+## Folder path used as a starting point to search for the list of related recipes
 var recipes_folder_path := "res://Alchemy/Recipes/"
+## The name of the alchemy tool being used. Values can be cauldron, m&p, and merger.
 var tool_name := ""
+## The list of recipes related to the inherited script's alchemy tool
 var recipes : Array[Recipe]
 
+## Sent when the item is completed and added to the inventory
+signal item_produced(item: Item, recipe : Recipe)
+## Sent when the minigame window is opened, the inventory should be closed
+signal close_inventory()
+## Sent when minigame window is closed, the inventory should be opened
+signal open_inventory()
 
-signal item_produced(item: Item, recipe : Recipe) ## Sent when the item is completed and added to the inventory
-signal close_inventory() ## Sent when the minigame window is opened, the inventory should be closed
-signal open_inventory() ## Sent when minigame window is closed, the inventory should be opened
+## Max number of items that can be stored in the tool
+const MAX_ITEMS := 3
+## List of items in the tool
+var items : Array[Item]
+## Number of items currently in the tool
+var num_items := 0
 
-const MAX_ITEMS := 3 ## Max number of items that can be stored in the tool
-var items : Array[Item] ## List of items in the tool
-var num_items := 0 ## Number of items currently in the tool
+##
+## The recipe information for a failed craft, used when no other recipe is a match after the crafting process.
+## The Item ID for failed craft is 999
+##
+var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres")
 
-var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") #ID for failed craft is 999
-
+##
+## Reference to item buttons that represent each item used in the craft.
+## These items are determined by the items in the corresponding alchemy
+## tool container in the inventory page.
+##
 @onready var buttons := [$ToolIcon/ItemGrid/Button1,
 $ToolIcon/ItemGrid/Button2,
-$ToolIcon/ItemGrid/Button3] ## Reference to item buttons that represent each item
+$ToolIcon/ItemGrid/Button3] 
 
 @onready var button_confirm := $ToolIcon/ItemGrid/ButtonConfirm
 @onready var progress_bar := $ToolIcon/ProgressBar
@@ -36,7 +56,11 @@ func _init() -> void:
 		items.append(null)
 	
 
-
+##
+## Called in inherited function's _ready() procedure. The given folder_name is used
+## to search the file directory for the recipes related to the alchemy tool being used
+## by the child script. Each recipe is then added to the list of recipes
+##
 func set_recipes(folder_name : StringName):
 	match folder_name:
 		&"Cauldron": tool_name = "cauldron"
@@ -90,7 +114,7 @@ func _process(delta: float) -> void:
 			progress_bar.visible = false
 			is_using = false
 
-
+##
 func add_item(item: Item) -> bool:
 	if is_using:
 		print("Please wait for " + tool_name + " to finish")
@@ -108,18 +132,28 @@ func add_item(item: Item) -> bool:
 			num_items += 1
 			return true
 	
-	print("Error: should never happen, if full of items, should have returned earlier")
+	print("Error: should never happen. if full of items, should have returned earlier")
 	return false
 
+##
 func _on_button_confirm_pressed() -> void:
 	if num_items <= 0 or num_items > MAX_ITEMS:
 		print("Wrong number of items, button should be disabled")
 		return
 	_use_items()
-	
+
+##
+## Abstract function that is implemented in inherited class. Called when Confirm button
+## is pressed. This determines how the alchemy tool crafts using the given items.
+## If an alchemy tool has a related minigame, use open_minigame in this function call.
+##
 func _use_items():
 	pass # This function should be overridden
 
+##
+## Called from inherited class. closes the inventory then opens the associated 
+## minigame window using the items from the alchemy tool's container.
+##
 func open_minigame(mg_items: Array[Item]):
 	close_inventory.emit()
 	%Minigame.open_window(mg_items)

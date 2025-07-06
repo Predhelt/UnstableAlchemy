@@ -1,18 +1,23 @@
 extends Node2D
 
-
-@export var display_name := "" ## Name of the object (also the folder name the object is contained in)
-@export var description := "" ## Description of the object given to the player
-@export var items : Array[Item] ## The items that the object contains and their initial quantities
+## Name of the object (also the folder name the object is contained in)
+@export var display_name := ""
+## Description of the object given to the player 
+@export var description := ""
+## The items that the object contains and their initial quantities
+@export var items : Array[Item]
 
 @export var grab_interaction : Interaction
 @export var cut_interaction : Interaction
 @export var combinations : Array[ObjectCombination]
 
-@export var interact_effect : PackedScene = preload("res://Effects/object_interacted_effect.tscn") ## Temporary effect to show during interaction
-@export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect_world.tscn") ## Show the amount of items gained when added to inventory
+## Temporary effect to show during interaction
+@export var interact_effect : PackedScene = preload("res://Effects/object_interacted_effect.tscn")
+## Show the amount of items gained when added to inventory
+@export var item_gained_effect : PackedScene = preload("res://Effects/items_gained_effect_world.tscn")
 
-var item_quantities : Array[int] ## The current quantities of items in the object
+## The current quantities of items in the object
+var item_quantities : Array[int]
 
 var context_menu : Control
 var inspection_panel_scene = preload("res://UI/Interactable Object/inspection_panel.tscn")

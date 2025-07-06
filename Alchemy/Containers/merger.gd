@@ -1,8 +1,10 @@
 extends AlchemyTool
 
+##
 func _ready() -> void:
 	set_recipes(&"Merger")
 
+## 
 func _use_items(): # Overrides the _use_items() function in AlchemyTool
 	var item_ids : Array[int] = []
 	for i in MAX_ITEMS:

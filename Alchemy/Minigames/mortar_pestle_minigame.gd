@@ -33,3 +33,19 @@ func _on_button_grind_pressed() -> void:
 
 func _on_button_crush_pressed() -> void:
 	set_input_action("equipment", 1, %Container/ButtonGrind.icon)
+
+
+func _on_button_up_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_button_down_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_button_left_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_button_right_pressed() -> void:
+	pass # Replace with function body.
