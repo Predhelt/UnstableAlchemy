@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="6_d8kn3"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://Alchemy/Minigames/MinigameProgressBar.tscn" id="7_gm5fx"]
 
-[node name="Minigame" type="Panel"]
+[node name="MinigameCauldron" type="Panel"]
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.15

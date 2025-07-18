@@ -11,7 +11,7 @@
 
 [sub_resource type="Resource" id="Resource_kcj7p"]
 script = ExtResource("6_hq0ir")
-input_actions = Array[ExtResource("3_4qjqf")]([ExtResource("4_0tryp"), null, ExtResource("5_sn4tq"), null, ExtResource("5_sn4tq")])
+input_actions = Array[ExtResource("3_4qjqf")]([ExtResource("4_0tryp"), ExtResource("4_0tryp"), ExtResource("5_sn4tq"), ExtResource("5_sn4tq"), ExtResource("5_sn4tq")])
 
 [resource]
 script = ExtResource("4_17gq8")

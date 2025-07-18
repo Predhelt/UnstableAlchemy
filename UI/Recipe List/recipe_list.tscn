@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc5d3ocd8w0fu"]
+[gd_scene load_steps=11 format=3 uid="uid://dc5d3ocd8w0fu"]
 
 [ext_resource type="Script" uid="uid://df82k6p2pmfec" path="res://UI/Recipe List/recipe_list.gd" id="2_2htw0"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="2_atwlw"]
@@ -7,7 +7,8 @@
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="4_eo0qk"]
 [ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="4_wiklw"]
 [ext_resource type="LabelSettings" uid="uid://d03hwvt3eyjax" path="res://Text/TitleLabel.tres" id="5_eyj61"]
-[ext_resource type="Resource" uid="uid://ch8ask17pesg6" path="res://Alchemy/Recipes/Cauldron/speed_potion2.tres" id="5_gfbru"]
+[ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://Alchemy/Recipes/M&P/gray_juice.tres" id="5_wiklw"]
+[ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="6_u5pve"]
 [ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://Text/SubtitleLabel.tres" id="6_xwfla"]
 
 [node name="RecipeList" type="Panel"]
@@ -18,7 +19,7 @@ anchor_top = 0.1
 anchor_right = 0.98
 anchor_bottom = 0.9
 script = ExtResource("2_2htw0")
-known_recipes = Array[ExtResource("2_atwlw")]([ExtResource("3_gfbru"), ExtResource("4_wiklw"), ExtResource("5_gfbru")])
+known_recipes = Array[ExtResource("2_atwlw")]([ExtResource("3_gfbru"), ExtResource("4_wiklw"), ExtResource("5_wiklw"), ExtResource("6_u5pve")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

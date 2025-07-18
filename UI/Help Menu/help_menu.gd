@@ -41,6 +41,13 @@ func open_page_interactions():
 		InputMap.action_get_events("inspect_object")[0].as_text().replace(' (Physical)','')
 		+"\" to inspect a nearby object and get a description of it.")
 
+func open_page_tools():
+	%WindowName.text = "Help: Tools"
+	%PageTools.visible = true
+	
+	%PageTools/LabelUse.text = ("Press \""+
+		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
+		+"\" to use the currently held tool on a nearby object.")
 
 func _on_button_close_pressed() -> void:
 	close_window()
@@ -52,6 +59,10 @@ func _on_button_general_pressed() -> void:
 
 func _on_button_interactions_pressed() -> void:
 	open_page_interactions()
+
+
+func _on_button_tools_pressed() -> void:
+	open_page_tools()
 
 
 func _on_button_mortar_pestle_pressed() -> void:

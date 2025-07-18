@@ -1,5 +1,7 @@
 class_name AlchemyTool extends Control
 
+## Reference to the minigame scene. Gets set by Inventory since it has proper scope
+var minigame_ref : Control
 ##
 ## Effect that occurs when the craft completes and an item is sent to the inventory.
 ## The effect displays when the inventory is opened.
@@ -16,8 +18,8 @@ var recipes : Array[Recipe]
 signal item_produced(item: Item, recipe : Recipe)
 ## Sent when the minigame window is opened, the inventory should be closed
 signal close_inventory()
-## Sent when minigame window is closed, the inventory should be opened
-signal open_inventory()
+#DEPRECATED## Sent when minigame window is closed, the inventory should be opened
+#signal open_inventory()
 
 ## Max number of items that can be stored in the tool
 const MAX_ITEMS := 3
@@ -156,7 +158,7 @@ func _use_items():
 ##
 func open_minigame(mg_items: Array[Item]):
 	close_inventory.emit()
-	%Minigame.open_window(mg_items)
+	minigame_ref.open_window(mg_items)
 
 
 func begin_craft(result_recipe: Recipe): ##NOTE: Deprecate when merger is using minigame
@@ -197,8 +199,9 @@ func _on_button_3_pressed() -> void:
 	item_produced.emit(items[2])
 	remove_item(2)
 
-func _on_minigame_item_produced(item: Item, recipe: Recipe = null) -> void:
-	item_produced.emit(item, recipe)
+#DEPRECATED:
+#func _on_minigame_item_produced(item: Item, recipe: Recipe = null) -> void:
+	#item_produced.emit(item, recipe)
 
-func _on_open_inventory() -> void:
-	open_inventory.emit()
+#func _on_open_inventory() -> void:
+	#open_inventory.emit()

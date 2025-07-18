@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=17 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/Menu Bar/menu_bar.tscn" id="1_08dj0"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_w86px"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Options Menu/settings_menu.tscn" id="7_espd3"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="8_pd4bm"]
 [ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Help Menu/help_menu.tscn" id="9_fa6b6"]
+[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://Alchemy/Minigames/MortarPestleMinigame.tscn" id="10_m5ckj"]
+[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://Alchemy/Minigames/CauldronMinigame.tscn" id="11_w6c75"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -22,42 +24,56 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="MenuBar" parent="CanvasLayer" instance=ExtResource("1_08dj0")]
-unique_name_in_owner = true
+[node name="MenuLayer" type="CanvasLayer" parent="CanvasLayer"]
 
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("1_w86px")]
+[node name="Inventory" parent="CanvasLayer/MenuLayer" instance=ExtResource("1_w86px")]
 unique_name_in_owner = true
 visible = false
 
-[node name="StatusEffectBar" parent="CanvasLayer" instance=ExtResource("2_08dj0")]
+[node name="RecipeList" parent="CanvasLayer/MenuLayer" instance=ExtResource("5_m5ckj")]
 unique_name_in_owner = true
-metadata/_edit_use_anchors_ = true
+visible = false
 
-[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("3_fa6b6")]
+[node name="OptionsMenu" parent="CanvasLayer/MenuLayer" instance=ExtResource("6_wsokp")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SettingsMenu" parent="CanvasLayer/MenuLayer" instance=ExtResource("7_espd3")]
+unique_name_in_owner = true
+visible = false
+
+[node name="HelpMenu" parent="CanvasLayer/MenuLayer" instance=ExtResource("9_fa6b6")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MinigameLayer" type="CanvasLayer" parent="CanvasLayer"]
+
+[node name="MinigameCauldron" parent="CanvasLayer/MinigameLayer" instance=ExtResource("11_w6c75")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MinigameMP" parent="CanvasLayer/MinigameLayer" instance=ExtResource("10_m5ckj")]
+unique_name_in_owner = true
+visible = false
+
+[node name="HUDLayer" type="CanvasLayer" parent="CanvasLayer"]
+
+[node name="MenuBar" parent="CanvasLayer/HUDLayer" instance=ExtResource("1_08dj0")]
+unique_name_in_owner = true
+offset_bottom = 8.0
+
+[node name="StatusEffectBar" parent="CanvasLayer/HUDLayer" instance=ExtResource("2_08dj0")]
 unique_name_in_owner = true
 
-[node name="ToolWheel" parent="CanvasLayer" instance=ExtResource("4_0cmut")]
+[node name="Hotbar" parent="CanvasLayer/HUDLayer" instance=ExtResource("3_fa6b6")]
+unique_name_in_owner = true
+
+[node name="ToolWheel" parent="CanvasLayer/HUDLayer" instance=ExtResource("4_0cmut")]
 unique_name_in_owner = true
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
-
-[node name="RecipeList" parent="CanvasLayer" instance=ExtResource("5_m5ckj")]
-unique_name_in_owner = true
-visible = false
-
-[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("6_wsokp")]
-unique_name_in_owner = true
-visible = false
-
-[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("7_espd3")]
-unique_name_in_owner = true
-visible = false
-
-[node name="HelpMenu" parent="CanvasLayer" instance=ExtResource("9_fa6b6")]
-unique_name_in_owner = true
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("8_pd4bm")]
 unique_name_in_owner = true
@@ -170,7 +186,11 @@ position = Vector2(515, 468)
 [node name="YellowFlowers3" parent="Objects" instance=ExtResource("5_r0jcl")]
 position = Vector2(671, 394)
 
-[connection signal="add_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_add_inventory_item"]
-[connection signal="consume_inventory_item" from="CanvasLayer/Hotbar" to="CanvasLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
-[connection signal="set_dropper_item" from="CanvasLayer/ToolWheel" to="CanvasLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
-[connection signal="tool_updated" from="CanvasLayer/ToolWheel" to="Player" method="_on_tool_updated"]
+[connection signal="item_produced" from="CanvasLayer/MinigameLayer/MinigameCauldron" to="CanvasLayer/MenuLayer/Inventory" method="_on_item_produced"]
+[connection signal="open_inventory" from="CanvasLayer/MinigameLayer/MinigameCauldron" to="CanvasLayer/MenuLayer/Inventory" method="_on_open_inventory"]
+[connection signal="item_produced" from="CanvasLayer/MinigameLayer/MinigameMP" to="CanvasLayer/MenuLayer/Inventory" method="_on_item_produced"]
+[connection signal="open_inventory" from="CanvasLayer/MinigameLayer/MinigameMP" to="CanvasLayer/MenuLayer/Inventory" method="_on_open_inventory"]
+[connection signal="add_inventory_item" from="CanvasLayer/HUDLayer/Hotbar" to="CanvasLayer/MenuLayer/Inventory" method="_on_hotbar_add_inventory_item"]
+[connection signal="consume_inventory_item" from="CanvasLayer/HUDLayer/Hotbar" to="CanvasLayer/MenuLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
+[connection signal="set_dropper_item" from="CanvasLayer/HUDLayer/ToolWheel" to="CanvasLayer/MenuLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
+[connection signal="tool_updated" from="CanvasLayer/HUDLayer/ToolWheel" to="Player" method="_on_tool_updated"]

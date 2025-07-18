@@ -1,9 +1,8 @@
 extends AlchemyTool
 
-
 func _ready() -> void:
 	set_recipes(&"Cauldron")
-	%Minigame.recipes = recipes
+	#NOTE: Minigame reference and recipes are set in Inventory's _ready function
 
 
 func _use_items(): # Overrides the _use_items() function in AlchemyTool

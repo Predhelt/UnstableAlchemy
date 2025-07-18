@@ -1,11 +1,11 @@
 class_name AlchemyMinigame extends Panel
-
+#TODO: Add comments to functions
 
 signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item is completed and added to the inventory
 signal open_inventory()
 
 var minigame_buttons : Array[Button] ## Buttons used during the minigame. Set by inherited class.
-
+var tool_ref : Control ## Reference to associated inventory tool. Set by Inventory.
 
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
 @onready var slider := %MinigameProgressBar/ProgressSlider
@@ -20,10 +20,11 @@ var is_crafting := false ## Tracks if the minigame is currently active
 @export var input_window_ratio := 0.5 ## The window of acceptable input for each tick. Smaller values means tighter timing
 var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") ##ID for failed craft is 999
 
+
 func _process(delta: float) -> void:
 	for i in len(minigame_buttons): # Set hotkey text for each button
 		minigame_buttons[i].text = ("(" +
-			InputMap.action_get_events("minigame_action_"+str(i+1))[0].as_text().replace(' (Physical)','') + ")")
+			InputMap.action_get_events("minigame_cauldron_action_"+str(i+1))[0].as_text().replace(' (Physical)','') + ")")
 	
 	if is_crafting:
 		if slider.value < slider.max_value:
@@ -33,23 +34,17 @@ func _process(delta: float) -> void:
 			check_results()
 
 
-func _input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void: # Override in M&P
 	if global.mode != &"minigame" or not visible:
 		return # No input events should catch on wrong mode
-	if is_crafting:
-		if event.is_action_pressed("minigame_action_1") and not minigame_buttons[0].disabled:
-				if recipes[0].tool_used == "m&p":
-					set_input_action("equipment", 0, minigame_buttons[0].icon) # Crush
-				else:
-					set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)
-		elif event.is_action_pressed("minigame_action_2") and not minigame_buttons[1].disabled:
-			if recipes[0].tool_used == "m&p":
-				set_input_action("equipment", 1, minigame_buttons[1].icon) # Grind
-			else:
-				set_input_action("item", cur_craft_ingredients[1].id, minigame_buttons[1].icon)
-		elif event.is_action_pressed("minigame_action_3") and not minigame_buttons[2].disabled:
+	if is_crafting and recipes[0].tool_used == "cauldron":
+		if event.is_action_pressed("minigame_cauldron_action_1") and not minigame_buttons[0].disabled:
+			set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)
+		elif event.is_action_pressed("minigame_cauldron_action_2") and not minigame_buttons[1].disabled:
+			set_input_action("item", cur_craft_ingredients[1].id, minigame_buttons[1].icon)
+		elif event.is_action_pressed("minigame_cauldron_action_3") and not minigame_buttons[2].disabled:
 			set_input_action("item", cur_craft_ingredients[2].id, minigame_buttons[2].icon)
-		elif event.is_action_pressed("minigame_action_4") and not minigame_buttons[3].disabled:
+		elif event.is_action_pressed("minigame_cauldron_action_4") and not minigame_buttons[3].disabled:
 			set_input_action("equipment", 0, minigame_buttons[3].icon) # Bellows
 		pass
 	
@@ -107,7 +102,7 @@ func check_results():
 			
 	effect_instance.add_item(product_item)
 	effect_instance.scale = Vector2(1.3, 1.3)
-	%ToolIcon.add_child(effect_instance)
+	tool_ref.add_child(effect_instance)
 	
 	item_produced.emit(product_item, product_recipe)
 	previous_window()

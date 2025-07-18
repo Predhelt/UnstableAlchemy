@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcpe4vv1ln1ax"]
+[gd_scene load_steps=12 format=3 uid="uid://bcpe4vv1ln1ax"]
 
 [ext_resource type="Script" uid="uid://cm00ohcxqvc0v" path="res://UI/Help Menu/help_menu.gd" id="1_fsl5b"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="1_qo1vr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://Art/UAPrototype/Tools/dropper.png" id="4_odxy8"]
 [ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://Art/UAPrototype/Tools/blade.png" id="5_lfsg2"]
 [ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://Art/UAPrototype/Objects/Planted/HerbBasicGreen.png" id="6_odxy8"]
+[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://Art/UAPrototype/Ingredients/Inventory/herb-green-leaf.png" id="7_q88dc"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="7_w7g1m"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png" id="8_q88dc"]
 [ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-abstract_container-half_full.png" id="9_4bw7i"]
@@ -92,6 +93,10 @@ text = "General"
 layout_mode = 2
 text = "Interactions"
 
+[node name="ButtonTools" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Tools"
+
 [node name="ButtonMortarPestle" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
 layout_mode = 2
 text = "Mortar & Pestle
@@ -110,7 +115,7 @@ text = "Merger
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 1
+current_tab = 3
 tabs_visible = false
 
 [node name="PageGeneral" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
@@ -128,7 +133,7 @@ offset_right = 794.0
 offset_bottom = 445.0
 text = "Press WASD to move.
 
-Walk near a plant or object to interact with it.
+Walk near a plant or object to interact with it by pressing \"\".
 
 You can get ingredients or other materials depending on how you interact with objects.
 
@@ -143,6 +148,7 @@ text_overrun_behavior = 4
 
 [node name="PageInteractions" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -162,69 +168,17 @@ offset_left = 105.0
 offset_top = 172.0
 offset_right = 267.0
 offset_bottom = 195.0
-text = "These are your tools:"
+text = "The different tools can be found in the top right
+by clicking on the selected tool icon. It looks like this:"
 
-[node name="Hand" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-position = Vector2(138, 234)
-texture = ExtResource("3_qopdq")
-
-[node name="Dropper" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-position = Vector2(138, 406)
-texture = ExtResource("4_odxy8")
-
-[node name="Blade" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-position = Vector2(138, 315)
-texture = ExtResource("5_lfsg2")
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
 layout_mode = 0
-offset_left = 198.0
-offset_top = 219.0
-offset_right = 240.0
-offset_bottom = 242.0
-text = "Hand"
-
-[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-layout_mode = 0
-offset_left = 194.0
-offset_top = 304.0
-offset_right = 238.0
-offset_bottom = 327.0
-text = "Blade"
-
-[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-layout_mode = 0
-offset_left = 189.0
-offset_top = 391.0
-offset_right = 254.0
-offset_bottom = 414.0
-text = "Dropper"
-
-[node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-layout_mode = 0
-offset_left = 266.0
-offset_top = 219.0
-offset_right = 460.0
-offset_bottom = 242.0
-text = "Grab or touch the object."
-
-[node name="Label7" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-layout_mode = 0
-offset_left = 268.0
-offset_top = 292.0
-offset_right = 588.0
-offset_bottom = 341.0
-text = "Cut the object. Warning: some objects have a defensive response when cut."
-autowrap_mode = 3
-
-[node name="Label8" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
-layout_mode = 0
-offset_left = 266.0
-offset_top = 365.0
-offset_right = 589.0
-offset_bottom = 440.0
-text = "Use the \"+\" icon to add an item from your inventory to the dropper. Then, use to apply the selected item to an object."
-autowrap_mode = 3
+offset_left = 112.0
+offset_top = 235.0
+offset_right = 184.0
+offset_bottom = 307.0
+focus_mode = 0
+icon = ExtResource("3_qopdq")
 
 [node name="LabelInspect" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageInteractions"]
 layout_mode = 0
@@ -254,11 +208,142 @@ offset_right = 385.0
 offset_bottom = 108.0
 text = "a plant with green leaves"
 
-[node name="PageMP" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
+[node name="PageTools" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 metadata/_tab_index = 2
+
+[node name="LabelUse" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 456.0
+offset_bottom = 32.0
+text = "Press \"\" to use the currently held tool on a nearby object"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 39.0
+offset_right = 473.0
+offset_bottom = 88.0
+text = "These are your tools. You can select the tool in the top right
+of the screen:"
+
+[node name="Hand" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+position = Vector2(45, 126)
+texture = ExtResource("3_qopdq")
+
+[node name="Dropper" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+position = Vector2(45, 298)
+texture = ExtResource("4_odxy8")
+
+[node name="Blade" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+position = Vector2(45, 207)
+texture = ExtResource("5_lfsg2")
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 111.0
+offset_right = 147.0
+offset_bottom = 134.0
+text = "Hand"
+
+[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 196.0
+offset_right = 145.0
+offset_bottom = 219.0
+text = "Blade"
+
+[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 283.0
+offset_right = 161.0
+offset_bottom = 306.0
+text = "Dropper"
+
+[node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 86.0
+offset_right = 520.0
+offset_bottom = 161.0
+text = "Grab or touch the object. Gives you items that can be easily plucked with little to no risk."
+autowrap_mode = 3
+
+[node name="Label7" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 172.0
+offset_right = 505.0
+offset_bottom = 247.0
+text = "Cut the object. Some items must be cut off to recieve them. Be careful, some things have a defensive response when cut."
+autowrap_mode = 3
+
+[node name="Label8" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 257.0
+offset_right = 496.0
+offset_bottom = 332.0
+text = "Use the \"+\" icon when selected to add an item from your inventory to the dropper. Then, use the tool to apply the selected item to an object."
+autowrap_mode = 3
+
+[node name="Label12" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 366.0
+offset_right = 517.0
+offset_bottom = 389.0
+text = "For example, grabbing a green herb might give you some leaves:"
+
+[node name="HerbBasicGreen" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+position = Vector2(167, 422)
+texture = ExtResource("6_odxy8")
+
+[node name="Label10" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 414.0
+offset_right = 324.0
+offset_bottom = 437.0
+text = "+2"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 409.0
+offset_right = 145.0
+offset_bottom = 432.0
+text = "->"
+
+[node name="Hand2" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+position = Vector2(60, 424)
+texture = ExtResource("3_qopdq")
+
+[node name="Label9" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 411.0
+offset_right = 247.0
+offset_bottom = 434.0
+text = "="
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/HBoxContainer/TabContainer/PageTools"]
+position = Vector2(259, 426)
+texture = ExtResource("7_q88dc")
+
+[node name="PageMP" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageMP"]
 layout_mode = 0
@@ -277,7 +362,7 @@ texture = ExtResource("7_w7g1m")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageCauldron"]
 layout_mode = 0
@@ -296,7 +381,7 @@ texture = ExtResource("8_q88dc")
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-metadata/_tab_index = 4
+metadata/_tab_index = 5
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageMerger"]
 layout_mode = 0
@@ -314,6 +399,7 @@ texture = ExtResource("9_4bw7i")
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonGeneral" to="." method="_on_button_general_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonInteractions" to="." method="_on_button_interactions_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonTools" to="." method="_on_button_tools_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonMortarPestle" to="." method="_on_button_mortar_pestle_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonCauldron" to="." method="_on_button_cauldron_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonMerger" to="." method="_on_button_merger_pressed"]

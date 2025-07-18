@@ -15,6 +15,12 @@ var items : Array[Item] # List of the items in the inventory
 
 func _ready() -> void:		
 	%ItemList.item_clicked.connect(on_inventory_item_clicked)
+	%Cauldron.minigame_ref = %MinigameCauldron
+	%Cauldron.minigame_ref.recipes = %Cauldron.recipes
+	%MinigameCauldron.tool_ref = %Cauldron
+	%MortarPestle.minigame_ref = %MinigameMP
+	%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
+	%MinigameMP.tool_ref = %MortarPestle
 
 
 func _input(event: InputEvent) -> void:

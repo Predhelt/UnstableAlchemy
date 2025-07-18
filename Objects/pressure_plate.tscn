@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dle8dng5mtld0"]
 
-[ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="1_wgl5b"]
 [ext_resource type="Script" uid="uid://bkjaos0jnpisd" path="res://Objects/pressure_plate.gd" id="1_x57id"]
+[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_qilna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un22d"]
 size = Vector2(108, 106)
@@ -12,7 +12,7 @@ script = ExtResource("1_x57id")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
-texture = ExtResource("1_wgl5b")
+texture = ExtResource("2_qilna")
 
 [node name="Area2D" type="Area2D" parent="."]
 input_pickable = false
