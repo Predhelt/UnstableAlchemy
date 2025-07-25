@@ -112,6 +112,14 @@ func matching_recipe() -> Recipe:
 	for recipe in recipes:
 		if len(recipe.ingredients) != 1:
 			continue
+		## Check if the M&P is using the ingredient in the recipe
+		var is_using_ingredient := false
+		for cur_ing in cur_craft_ingredients:
+			if cur_ing.id == recipe.ingredients[0].id:
+				is_using_ingredient = true
+		if not is_using_ingredient:
+			continue
+		## Check if the procedure matches the recipe's
 		if recipe.procedure:
 			if recipe.procedure.compare(cur_craft_procedure):
 				return recipe
