@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dc5d3ocd8w0fu"]
 
-[ext_resource type="Script" uid="uid://df82k6p2pmfec" path="res://UI/Recipe List/recipe_list.gd" id="2_2htw0"]
+[ext_resource type="Script" uid="uid://df82k6p2pmfec" path="res://UI/Menu/Recipe List/recipe_list.gd" id="2_2htw0"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="2_atwlw"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="3_2hrkg"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_flakes.tres" id="3_gfbru"]

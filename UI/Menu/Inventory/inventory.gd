@@ -6,7 +6,7 @@ signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consum
 
 @export var max_item_count := 24 ## Max number of slots in the inventory
 
-var drag_item_scene := preload("res://UI/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
+var drag_item_scene := preload("res://UI/Menu/Inventory/drag_item_scene.tscn") # visual for item when dragging from inventory
 @onready var hotbar_ref := %Hotbar
 @onready var toolwheel_ref := %ToolWheel
 

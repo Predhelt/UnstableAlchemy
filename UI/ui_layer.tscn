@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://h1v4fc6sbcu6"]
+
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_4qjnp"]
+[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_4k2wc"]
+[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_uf0xt"]
+[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_ssfkr"]
+[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_ux68x"]
+[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_p20c5"]
+[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://UI/Minigame/MortarPestle/MortarPestleMinigame.tscn" id="7_q0po6"]
+[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/HUD/Menu Bar/menu_bar.tscn" id="8_2fvl6"]
+[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/HUD/Status Effect/status_effect_bar.tscn" id="9_afd7k"]
+[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_2sbsn"]
+[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_k7msc"]
+
+[node name="UILayer" type="CanvasLayer"]
+layer = 10
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="MenuLayer" instance=ExtResource("1_4qjnp")]
+unique_name_in_owner = true
+visible = false
+
+[node name="RecipeList" parent="MenuLayer" instance=ExtResource("2_4k2wc")]
+unique_name_in_owner = true
+visible = false
+
+[node name="OptionsMenu" parent="MenuLayer" instance=ExtResource("3_uf0xt")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SettingsMenu" parent="MenuLayer" instance=ExtResource("4_ssfkr")]
+unique_name_in_owner = true
+auto_translate_mode = 1
+visible = false
+
+[node name="HelpMenu" parent="MenuLayer" instance=ExtResource("5_ux68x")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MinigameLayer" type="CanvasLayer" parent="."]
+
+[node name="MinigameCauldron" parent="MinigameLayer" instance=ExtResource("6_p20c5")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MinigameMP" parent="MinigameLayer" instance=ExtResource("7_q0po6")]
+unique_name_in_owner = true
+visible = false
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuBar" parent="HUDLayer" instance=ExtResource("8_2fvl6")]
+unique_name_in_owner = true
+offset_bottom = 8.0
+
+[node name="StatusEffectBar" parent="HUDLayer" instance=ExtResource("9_afd7k")]
+unique_name_in_owner = true
+
+[node name="Hotbar" parent="HUDLayer" instance=ExtResource("10_2sbsn")]
+unique_name_in_owner = true
+
+[node name="ToolWheel" parent="HUDLayer" instance=ExtResource("11_k7msc")]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 154.0
+offset_bottom = 154.0

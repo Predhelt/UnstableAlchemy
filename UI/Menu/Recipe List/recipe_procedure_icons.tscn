@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cq7fjcq4ol8qy"]
 
-[ext_resource type="PackedScene" uid="uid://dnl0g6b6pxenh" path="res://UI/Recipe List/recipe_item_icon.tscn" id="1_4nb40"]
+[ext_resource type="PackedScene" uid="uid://dnl0g6b6pxenh" path="res://UI/Menu/Recipe List/recipe_item_icon.tscn" id="1_4nb40"]
 
 [node name="RecipeProcedureIcons" type="Panel"]
 custom_minimum_size = Vector2(252, 48)

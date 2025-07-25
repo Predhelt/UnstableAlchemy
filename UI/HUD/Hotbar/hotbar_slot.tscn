@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://76pe5cfluv8j"]
 
-[ext_resource type="Script" uid="uid://5b8fcu113c8m" path="res://UI/Hotbar/hotbar_slot.gd" id="1_035un"]
+[ext_resource type="Script" uid="uid://5b8fcu113c8m" path="res://UI/HUD/Hotbar/hotbar_slot.gd" id="1_035un"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="2_h6la4"]
 [ext_resource type="Script" uid="uid://dcclh8ukddg0n" path="res://Game Components/droppable_area.gd" id="3_3p8g3"]
 

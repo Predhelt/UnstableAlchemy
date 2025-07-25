@@ -116,7 +116,7 @@ func _on_tool_updated(tool_name: String) -> void:
 
 func execute_tool():
 	if all_interaction_areas:
-		match selected_tool:
+		match selected_tool: #NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
 			&"hand" : all_interaction_areas[0].grab_object(self)
 			&"blade" : all_interaction_areas[0].cut_object(self)
 			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)

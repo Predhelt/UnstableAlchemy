@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://d24ge55seaobg"]
 
-[ext_resource type="Script" uid="uid://dkxemkd2us7vl" path="res://Alchemy/Minigames/cauldron_minigame.gd" id="1_geiyq"]
+[ext_resource type="Script" uid="uid://dkxemkd2us7vl" path="res://UI/Minigame/Cauldron/cauldron_minigame.gd" id="1_geiyq"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_24nro"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_u2uge"]
 [ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://Art/UAPrototype/Objects/object-pressure-plate-red.png" id="3_1ik8m"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="4_rks5m"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png" id="5_6uy83"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="6_d8kn3"]
-[ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://Alchemy/Minigames/MinigameProgressBar.tscn" id="7_gm5fx"]
+[ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://UI/Minigame/MinigameProgressBar.tscn" id="7_gm5fx"]
 
 [node name="MinigameCauldron" type="Panel"]
 anchors_preset = -1

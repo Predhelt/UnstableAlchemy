@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://di1bo8f31ki7b"]
 
 [ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://Art/UAPrototype/Ingredients/Inventory/herb-green-leaf.png" id="1_6kstx"]
-[ext_resource type="Script" uid="uid://dwudayf7x150a" path="res://UI/Menu Bar/menu_bar.gd" id="1_w6cvk"]
+[ext_resource type="Script" uid="uid://dwudayf7x150a" path="res://UI/HUD/Menu Bar/menu_bar.gd" id="1_w6cvk"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="2_w6cvk"]
 [ext_resource type="Texture2D" uid="uid://bxorswmnihx7c" path="res://Art/UAPrototype/UI/gear.png" id="4_w6cvk"]
 [ext_resource type="Texture2D" uid="uid://saa6dltakqms" path="res://Art/UAPrototype/UI/question.png" id="5_5kim1"]

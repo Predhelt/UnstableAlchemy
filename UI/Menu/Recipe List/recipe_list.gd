@@ -2,8 +2,8 @@ extends Panel
 
 @export var known_recipes : Array[Recipe]
 
-var recipe_item_icon : PackedScene = preload("res://UI/Recipe List/recipe_item_icon.tscn")
-var recipe_procedure_icons : PackedScene = preload("res://UI/Recipe List/recipe_procedure_icons.tscn")
+var recipe_item_icon : PackedScene = preload("res://UI/Menu/Recipe List/recipe_item_icon.tscn")
+var recipe_procedure_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_procedure_icons.tscn")
 var procedure_icon_grind := preload("res://Art/UAPrototype/UI/Minigame/grind.png")
 var procedure_icon_crush := preload("res://Art/UAPrototype/UI/Minigame/crush.png")
 var procedure_icon_bellows := preload("res://Art/UAPrototype/UI/Minigame/bellows.png")

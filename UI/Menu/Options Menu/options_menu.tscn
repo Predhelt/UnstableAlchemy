@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bj81rrhnwo85j"]
 
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="1_00l5q"]
-[ext_resource type="Script" uid="uid://do35anfokx1j4" path="res://UI/Options Menu/options_menu.gd" id="1_bw5gs"]
-[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://UI/Options Menu/options_theme.tres" id="3_ldjf7"]
-[ext_resource type="ButtonGroup" uid="uid://bo5q05cajm24g" path="res://UI/Options Menu/options_buttons.tres" id="4_o212l"]
+[ext_resource type="Script" uid="uid://do35anfokx1j4" path="res://UI/Menu/Options Menu/options_menu.gd" id="1_bw5gs"]
+[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://UI/Menu/Options Menu/options_theme.tres" id="3_ldjf7"]
+[ext_resource type="ButtonGroup" uid="uid://bo5q05cajm24g" path="res://UI/Menu/Options Menu/options_buttons.tres" id="4_o212l"]
 [ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://Text/DescriptionLabel.tres" id="5_b017p"]
 
 [node name="OptionsMenu" type="Panel"]

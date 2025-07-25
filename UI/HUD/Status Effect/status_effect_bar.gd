@@ -1,6 +1,6 @@
 extends Control
 
-var status_icon_scene = preload("res://UI/Status Effect/StatusIcon.tscn")
+var status_icon_scene = preload("res://UI/HUD/Status Effect/StatusIcon.tscn")
 @onready var container := $HBoxContainer
 
 func generate_status(se : StatusEffect):

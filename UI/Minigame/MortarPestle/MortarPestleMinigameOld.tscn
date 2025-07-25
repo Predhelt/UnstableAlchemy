@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwmnuacpgn38h"]
+[gd_scene load_steps=9 format=3 uid="uid://derwmvq5odbl1"]
 
-[ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://Alchemy/Minigames/mortar_pestle_minigame.gd" id="1_vo0bl"]
-[ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://Alchemy/Minigames/MinigameProgressBar.tscn" id="2_70xyk"]
+[ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://UI/Minigame/MortarPestle/mortar_pestle_minigame.gd" id="1_vo0bl"]
+[ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://UI/Minigame/MinigameProgressBar.tscn" id="2_70xyk"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_aqc0h"]
+[ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://Art/UAPrototype/UI/Minigame/crush.png" id="2_jh7f8"]
+[ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://Art/UAPrototype/UI/Minigame/grind.png" id="3_aqc0h"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="4_r2g22"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="5_eoa2f"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="6_1mow8"]
 
-[node name="MinigameMP" type="Panel"]
+[node name="Minigame" type="Panel"]
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.15
@@ -61,7 +63,6 @@ offset_right = -4.0
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_mode = 0
 text = "X"
 
 [node name="ButtonBack" type="Button" parent="VBoxContainer/Panel"]
@@ -78,13 +79,41 @@ offset_right = -42.0
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_mode = 0
 text = "<-"
 
 [node name="Container" type="Control" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="ButtonCrush" type="Button" parent="VBoxContainer/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.22
+anchor_right = 0.42
+anchor_bottom = 0.22
+offset_left = -128.0
+offset_right = -0.279999
+offset_bottom = 128.0
+grow_horizontal = 0
+icon = ExtResource("2_jh7f8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ButtonGrind" type="Button" parent="VBoxContainer/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.22
+anchor_right = 0.43
+anchor_bottom = 0.22
+offset_left = 0.380005
+offset_right = 128.0
+offset_bottom = 128.0
+icon = ExtResource("3_aqc0h")
+icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStart" type="Button" parent="VBoxContainer/Container"]
 unique_name_in_owner = true
@@ -97,20 +126,19 @@ anchor_right = 0.18
 anchor_bottom = 0.37
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 0
 text = "Start"
 icon = ExtResource("4_r2g22")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Tool" type="Control" parent="VBoxContainer/Container"]
+[node name="Control" type="Control" parent="VBoxContainer/Container"]
 layout_mode = 1
 anchor_left = 0.65
 anchor_top = 0.1
 anchor_right = 0.95
 anchor_bottom = 0.6
 
-[node name="ToolIcon" type="TextureRect" parent="VBoxContainer/Container/Tool"]
+[node name="ToolIcon" type="TextureRect" parent="VBoxContainer/Container/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,7 +151,7 @@ texture = ExtResource("5_eoa2f")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ItemIcon" type="TextureRect" parent="VBoxContainer/Container/Tool"]
+[node name="ItemIcon" type="TextureRect" parent="VBoxContainer/Container/Control"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
@@ -140,106 +168,9 @@ texture = ExtResource("6_1mow8")
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="ActionButtons" type="Control" parent="VBoxContainer/Container"]
-layout_mode = 1
-anchor_left = 0.25
-anchor_top = 0.1
-anchor_right = 0.65
-anchor_bottom = 0.65
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(132, 111.6)
-
-[node name="ButtonUp" type="Button" parent="VBoxContainer/Container/ActionButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -97.0
-offset_right = 32.0
-offset_bottom = -33.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 32)
-tooltip_text = "Up (up arrow)"
-focus_mode = 0
-theme_override_font_sizes/font_size = 36
-text = "^"
-icon_alignment = 1
-
-[node name="ButtonDown" type="Button" parent="VBoxContainer/Container/ActionButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = 33.0
-offset_right = 32.0
-offset_bottom = 97.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 32)
-tooltip_text = "Down (down arrow)"
-focus_mode = 0
-theme_override_font_sizes/font_size = 36
-text = "v"
-
-[node name="ButtonLeft" type="Button" parent="VBoxContainer/Container/ActionButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -32.0
-offset_right = -33.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 32)
-tooltip_text = "Left (left arrow)"
-focus_mode = 0
-theme_override_font_sizes/font_size = 36
-text = "<"
-
-[node name="ButtonRight" type="Button" parent="VBoxContainer/Container/ActionButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 33.0
-offset_top = -32.0
-offset_right = 97.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 32)
-tooltip_text = "Right (right arrow)"
-focus_mode = 0
-theme_override_font_sizes/font_size = 36
-text = ">"
-
 [connection signal="timeout" from="StartupDelay" to="." method="_on_startup_delay_timeout"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/Container/ButtonCrush" to="." method="_on_button_grind_pressed"]
+[connection signal="pressed" from="VBoxContainer/Container/ButtonGrind" to="." method="_on_button_crush_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ButtonStart" to="." method="_on_button_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonUp" to="." method="_on_button_up_pressed"]
-[connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonDown" to="." method="_on_button_down_pressed"]
-[connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonLeft" to="." method="_on_button_left_pressed"]
-[connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonRight" to="." method="_on_button_right_pressed"]

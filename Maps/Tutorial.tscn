@@ -1,16 +1,16 @@
 [gd_scene load_steps=20 format=4 uid="uid://mt03glkxr0eu"]
 
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Inventory/inventory.tscn" id="1_54j8a"]
-[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Recipe List/recipe_list.tscn" id="2_7gs13"]
-[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Options Menu/options_menu.tscn" id="3_5du1n"]
-[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Options Menu/settings_menu.tscn" id="4_bahkr"]
-[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Help Menu/help_menu.tscn" id="5_cghif"]
-[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://Alchemy/Minigames/CauldronMinigame.tscn" id="6_pyevf"]
-[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://Alchemy/Minigames/MortarPestleMinigame.tscn" id="7_134n1"]
-[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/Menu Bar/menu_bar.tscn" id="8_lqoxa"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/Status Effect/status_effect_bar.tscn" id="9_6jqwd"]
-[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/Hotbar/hotbar.tscn" id="10_leql3"]
-[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/Tool Wheel/tool_wheel.tscn" id="11_383ki"]
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_54j8a"]
+[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_7gs13"]
+[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_5du1n"]
+[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_bahkr"]
+[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_cghif"]
+[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_pyevf"]
+[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://UI/Minigame/MortarPestle/MortarPestleMinigame.tscn" id="7_134n1"]
+[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/HUD/Menu Bar/menu_bar.tscn" id="8_lqoxa"]
+[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/HUD/Status Effect/status_effect_bar.tscn" id="9_6jqwd"]
+[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_leql3"]
+[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_383ki"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="12_8nhtu"]
 [ext_resource type="Script" uid="uid://cducp2brh5wus" path="res://Text/tutorial_messages.gd" id="12_134n1"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="13_fsx7q"]
@@ -74,6 +74,7 @@ visible = false
 
 [node name="ToolWheel" parent="CanvasLayer/HUDLayer" instance=ExtResource("11_383ki")]
 unique_name_in_owner = true
+z_index = -1
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
@@ -134,10 +135,11 @@ offset_bottom = 344.0
 text = "Grab or cut the berry bush then
 use your known recipes to craft a 
 potion,
-then use it to complete the puzzle.
+then use the potion to complete the puzzle.
 
 If you are stuck, use the Help menu
 (\"?\" in the top left)"
+autowrap_mode = 3
 
 [node name="Label6" type="Label" parent="TutorialMessages"]
 layout_mode = 0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx7cj5bebv67b"]
 
-[ext_resource type="PackedScene" uid="uid://76pe5cfluv8j" path="res://UI/Hotbar/hotbar_slot.tscn" id="1_e73bl"]
-[ext_resource type="Script" uid="uid://dbs3whanxbk2m" path="res://UI/Hotbar/hotbar.gd" id="1_o6b42"]
+[ext_resource type="PackedScene" uid="uid://76pe5cfluv8j" path="res://UI/HUD/Hotbar/hotbar_slot.tscn" id="1_e73bl"]
+[ext_resource type="Script" uid="uid://dbs3whanxbk2m" path="res://UI/HUD/Hotbar/hotbar.gd" id="1_o6b42"]
 
 [node name="Hotbar" type="Control"]
 layout_mode = 3
