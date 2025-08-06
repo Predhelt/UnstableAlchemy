@@ -6,9 +6,7 @@ extends Node2D
 @export var description := ""
 ## The recipe(s) that the item contains
 @export var recipes : Array[Recipe]
-
-@export var grab_interaction : Interaction
-@export var cut_interaction : Interaction
+## The combinations that can be made with the object using the dropper tool
 @export var combinations : Array[ObjectCombination]
 
 ## Temporary effect to show during interaction
@@ -50,72 +48,17 @@ func inspect_object():
 	global.mode = &"inspection"
 	
 
-func _on_object_grabbed(player: Player) -> void:
-	if not collect_items(player, grab_interaction):
-		return
-	
-	if grab_interaction.on_interact_status_effects:
-		player.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
-	
-	check_empty()
-	
-func _on_object_cut(player: Player) -> void:
-	if not collect_items(player, cut_interaction):
-		return
-	
-	if cut_interaction.on_interact_status_effects:
-		player.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
-	
-	check_empty()
-
-func collect_items(player: Player, interaction: Interaction) -> bool:
-	if not interaction:
-		print("No interaction")
-		return false
-	
-	if interaction.on_interact_items.is_empty():
-		print("No items to get!")
-		return false
-		
+func _on_recipe_read(player: Player) -> void:
 	var item_gained_effect_instance : Control = item_gained_effect.instantiate()
 	
-	for i in len(interaction.on_interact_items): # Getting each interactable item
-		var interact_item = interaction.on_interact_items[i]
-		var id = interact_item.id
-		var interact_qty = interaction.on_interact_amounts[i]
-		for j in len(items):
-			if items[j].id != id or item_quantities[j] <= 0:
-				continue # If not the right item or item is empty
-			
-			var interaction_item := items[j].duplicate()
-			if item_quantities[j] < interact_qty: # The amount to collect is greater than the amount in object
-				interaction_item.qty = item_quantities[j]
-				interact_qty = item_quantities[j]
-				item_quantities[j] = 0
-			else:
-				interaction_item.qty = interact_qty
-				item_quantities[j] -= interact_qty
-			
-			
-			if player.inventory_ref.add_inventory_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
-				item_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
-			
-			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
-				item_quantities[j] += interaction_item.qty
+	# TODO:
+	# Add recipe to recipe list (if not already in recipe)
+	# remove item from world
+	# if new recipe, show effect. If not, say already learned
 	
-	item_gained_effect_instance.position = position
+	
+	
 	get_parent().add_child(item_gained_effect_instance)
-	
-	return true
-
-func check_empty():
-	var sum = 0
-	for item_qty in item_quantities:
-		sum += item_qty
-	if sum <= 0:
-		#print("No items left in object")
-		emit_effect()
-		queue_free()
 
 func emit_effect():
 	var effect_instance : GPUParticles2D = interact_effect.instantiate()
@@ -146,14 +89,13 @@ func mutate_object(new_object_scene: PackedScene):
 	
 	display_name = obj.display_name
 	description = obj.description
-	items = obj.items
+	recipes = obj.recipes
+	#items = obj.items
 	
-	item_quantities = []
-	for item in items:
-		item_quantities.append(item.qty)
+	#item_quantities = []
+	#for item in items:
+		#item_quantities.append(item.qty)
 	
-	grab_interaction = obj.grab_interaction
-	cut_interaction = obj.cut_interaction
 	combinations = obj.combinations
 	
 	var obj_ia = obj.find_child("InteractArea")

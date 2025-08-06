@@ -10,10 +10,10 @@ var drag_item_scene := preload("res://UI/Menu/Inventory/drag_item_scene.tscn") #
 @onready var hotbar_ref := %Hotbar
 @onready var toolwheel_ref := %ToolWheel
 
-var items : Array[Item] # List of the items in the inventory
+@export var items : Array[Item] # List of the items in the inventory
 #var selected_item : Item # Item that is currently selected in the inventory (not dragged)
 
-func _ready() -> void:		
+func _ready() -> void:
 	%ItemList.item_clicked.connect(on_inventory_item_clicked)
 	%Cauldron.minigame_ref = %MinigameCauldron
 	%Cauldron.minigame_ref.recipes = %Cauldron.recipes
@@ -21,6 +21,10 @@ func _ready() -> void:
 	%MortarPestle.minigame_ref = %MinigameMP
 	%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
 	%MinigameMP.tool_ref = %MortarPestle
+	
+	for i in len(items):
+		if items[i]:
+			%ItemList.add_item(generate_item_text(items[i]), items[i].texture)
 
 
 func _input(event: InputEvent) -> void:
@@ -266,7 +270,8 @@ func _set_dropper_item(item: Item):
 
 
 func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
-	add_inventory_item(item)
+	if item:
+		add_inventory_item(item)
 	if recipe != null:
 		%RecipeList.add_recipe(recipe)
 

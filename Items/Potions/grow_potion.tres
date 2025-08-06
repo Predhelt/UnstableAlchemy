@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Potion" load_steps=3 format=3 uid="uid://bnb8ijfkomhw"]
+[gd_resource type="Resource" script_class="Potion" load_steps=5 format=3 uid="uid://bnb8ijfkomhw"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_j8fst"]
+[ext_resource type="Resource" uid="uid://bpgnegvcg63o4" path="res://Game Components/Status Effects/Grow.tres" id="2_44pn3"]
 [ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://Items/Potion.gd" id="2_j8fst"]
+[ext_resource type="Texture2D" uid="uid://be0mimtq0pj4r" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-red.png" id="4_uowgh"]
 
 [resource]
 script = ExtResource("2_j8fst")
 id = 503
-display_name = ""
+display_name = "Potion of Growth"
 description = ""
+texture = ExtResource("4_uowgh")
 max_qty = 10
-qty = 1
-on_consume_effects = Array[ExtResource("1_j8fst")]([])
+qty = 5
+on_consume_effects = Array[ExtResource("1_j8fst")]([ExtResource("2_44pn3")])
 on_consume_message = ""
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

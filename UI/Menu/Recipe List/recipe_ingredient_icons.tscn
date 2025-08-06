@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dsxukygiu3bf5"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 184.0
+offset_bottom = 36.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Needs:"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+expand_mode = 3
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+expand_mode = 3
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+expand_mode = 3

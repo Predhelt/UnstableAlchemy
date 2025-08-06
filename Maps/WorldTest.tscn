@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=18 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_m5ckj"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/HUD/Status Effect/status_effect_bar.tscn" id="9_d4dvr"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_cliws"]
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_tvxi8"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="17_w6c75"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -78,7 +79,7 @@ offset_bottom = 154.0
 
 [node name="Player" parent="." instance=ExtResource("8_pd4bm")]
 unique_name_in_owner = true
-position = Vector2(532, 310)
+position = Vector2(529, 298)
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
@@ -90,11 +91,11 @@ update_scale = false
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(532, 310)
+position = Vector2(529, 298)
 position_smoothing_enabled = true
 
 [node name="LabelGroup" type="Node2D" parent="." groups=["player_elements"]]
-position = Vector2(532, 310)
+position = Vector2(529, 298)
 
 [node name="InteractLabel" type="Label" parent="LabelGroup"]
 unique_name_in_owner = true
@@ -186,6 +187,9 @@ position = Vector2(515, 468)
 
 [node name="YellowFlowers3" parent="Objects" instance=ExtResource("5_r0jcl")]
 position = Vector2(671, 394)
+
+[node name="RecipeItem" parent="." instance=ExtResource("17_w6c75")]
+position = Vector2(440, 263)
 
 [connection signal="item_produced" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_item_produced"]
 [connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_open_inventory"]

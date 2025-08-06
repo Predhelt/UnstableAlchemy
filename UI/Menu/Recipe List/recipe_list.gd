@@ -3,6 +3,7 @@ extends Panel
 @export var known_recipes : Array[Recipe]
 
 var recipe_item_icon : PackedScene = preload("res://UI/Menu/Recipe List/recipe_item_icon.tscn")
+var recipe_ingredient_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_ingredient_icons.tscn")
 var recipe_procedure_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_procedure_icons.tscn")
 var procedure_icon_grind := preload("res://Art/UAPrototype/UI/Minigame/grind.png")
 var procedure_icon_crush := preload("res://Art/UAPrototype/UI/Minigame/crush.png")
@@ -84,6 +85,8 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	for r in known_recipes:
 		if r.product_item.id != recipe.product_item.id:
 			continue
+		if not recipe.tool_used == &"cauldron":
+			add_ingredients(r)
 		add_procedure(r)
 	
 	%RecipeItems.visible = false
@@ -91,6 +94,28 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	%ButtonBack.visible = true
 	%ProductDetails.visible = true
 	
+
+func add_ingredients(recipe: Recipe):
+	var ingredient_display : Control = recipe_ingredient_icons.instantiate()
+	var num_ingredients = len(recipe.ingredients)
+	
+	if num_ingredients > 3:
+		print("Error: more than 3 ingredients")
+	
+	ingredient_display.get_child(1).texture = recipe.ingredients[0].texture
+	ingredient_display.get_child(1).tooltip_text = recipe.ingredients[0].display_name
+	
+	if num_ingredients > 1:
+		ingredient_display.get_child(2).text = ","
+		ingredient_display.get_child(3).texture = recipe.ingredients[1].texture
+		ingredient_display.get_child(3).tooltip_text = recipe.ingredients[1].display_name
+	
+	if num_ingredients > 2:
+		ingredient_display.get_child(4)
+		ingredient_display.get_child(5).texture = recipe.ingredients[2].texture
+		ingredient_display.get_child(5).tooltip_text = recipe.ingredients[2].display_name
+		
+	%ProcedureList.add_child(ingredient_display)
 
 func add_procedure(recipe: Recipe):
 	var cur_procedures_container = HBoxContainer.new()
@@ -102,9 +127,14 @@ func add_procedure(recipe: Recipe):
 		&"m&p":
 			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Mortar and Pestle"
+		&"merger":
+			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-abstract_container-half_full.png")
+			tool_icon.tooltip_text = "Ingredients are added to the Merger"
 		&"hand": pass
 		&"blade": pass
 		&"dropper": pass
+	
+	
 	
 	cur_procedures_container.add_child(tool_icon)
 	
@@ -112,19 +142,7 @@ func add_procedure(recipe: Recipe):
 	label_arrow.text = "<-"
 	cur_procedures_container.add_child(label_arrow)
 	
-	#DEPRECATED: List of ingredients
-	#var num_ingredients := len(recipe.ingredients)
-	#for item in recipe.ingredients:
-		#var recipe_icon : TextureRect = recipe_item_icon.instantiate()
-		#recipe_icon.texture = item.texture
-		#recipe_icon.tooltip_text = item.display_name
-		#cur_procedures_container.add_child(recipe_icon)
-		#
-		#if num_ingredients > 1:
-			#var label_add = Label.new()
-			#label_add.text = "+"
-			#cur_procedures_container.add_child(label_add)
-			#num_ingredients -= 1
+	
 	
 	_add_procedure_input_actions(cur_procedures_container, recipe)
 	

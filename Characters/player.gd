@@ -18,6 +18,7 @@ var stats = {
 	#&"health" : 100.0, ## health value
 	&"move speed" : 200.0, ## move speed modifier (100 = 1.0*ms)
 	&"strength" : 100.0, ## strength used to move certain objects
+	&"mass" : 100.0, ## determines interactions with environments based on weight
 	#&"range" : 100.0, ## same as CollisionInteract.radius of arms
 }
 
