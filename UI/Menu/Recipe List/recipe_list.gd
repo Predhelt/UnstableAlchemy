@@ -85,7 +85,7 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	for r in known_recipes:
 		if r.product_item.id != recipe.product_item.id:
 			continue
-		if not recipe.tool_used == &"cauldron":
+		if  recipe.tool_used == &"m&p":
 			add_ingredients(r)
 		add_procedure(r)
 	
@@ -134,15 +134,26 @@ func add_procedure(recipe: Recipe):
 		&"blade": pass
 		&"dropper": pass
 	
-	
-	
 	cur_procedures_container.add_child(tool_icon)
 	
 	var label_arrow = Label.new()
 	label_arrow.text = "<-"
 	cur_procedures_container.add_child(label_arrow)
 	
-	
+	if  recipe.tool_used == &"merger":
+		var ingredient_icon : TextureRect = recipe_item_icon.instantiate()
+		ingredient_icon.texture = recipe.ingredients[0].texture
+		ingredient_icon.tooltip_text = recipe.ingredients[0].display_name
+		cur_procedures_container.add_child(ingredient_icon)
+		
+		var label_plus = Label.new()
+		label_plus.text = "+"
+		cur_procedures_container.add_child(label_plus)
+		
+		ingredient_icon = recipe_item_icon.instantiate()
+		ingredient_icon.texture = recipe.ingredients[1].texture
+		ingredient_icon.tooltip_text = recipe.ingredients[1].display_name
+		cur_procedures_container.add_child(ingredient_icon)
 	
 	_add_procedure_input_actions(cur_procedures_container, recipe)
 	
