@@ -21,12 +21,15 @@ var stats = {
 	&"mass" : 100.0, ## determines interactions with environments based on weight
 	#&"range" : 100.0, ## same as CollisionInteract.radius of arms
 }
-@export var known_recipes : Array[Recipe]
+@export var known_recipes : Array[Recipe] ## Recipes that are known by the player
+var new_recipes: Array[Recipe] ## Recipes that have not been viewed yet
 
 var selected_tool : String
 
 
 func _ready() -> void:
+	for recipe in known_recipes:
+		new_recipes.append(recipe)
 	update_interactions()
 	%StatusLabel.text = ""
 
@@ -85,6 +88,7 @@ func learn_recipe(r: Recipe) -> bool:
 	if r in known_recipes:
 		return false
 	known_recipes.append(r)
+	new_recipes.append(r)
 	return true
 
 

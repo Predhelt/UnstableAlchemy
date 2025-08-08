@@ -59,28 +59,15 @@ func open_window() -> void:
 		%WindowName.text = "Known Recipes"
 		
 		for recipe in player.known_recipes:
-			%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
+			var display_text := ""
+			if recipe in player.new_recipes:
+				display_text += "(New)"r
+			display_text += recipe.product_item.display_name
+			%RecipeItems.add_item(display_text, recipe.product_item.texture)
 		%RecipeItems.visible = true
 	
 		%ButtonBack.visible = false
 		visible = true
-
-#DEPRECATED: Player hanles the known recipes
-#func add_recipe(recipe: Recipe):
-	#if not recipe:
-		#return
-	#
-	#var is_in_list := false
-	#for r in player.known_recipes:
-		#if r.id == recipe.id:
-			#return # Recipe already in known recipes
-		#if r.product_item.id == recipe.product_item.id:
-			#is_in_list = true
-	#
-	#known_recipes.append(recipe)
-	#
-	#if not is_in_list:
-		#%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
 
 
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
@@ -88,6 +75,9 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	%ProductName.text = recipe.product_item.display_name
 	%ProductDescription.text = recipe.product_item.description
 	%ProductIcon.texture = recipe.product_item.texture
+	
+	if recipe in player.new_recipes:
+		player.new_recipes.erase(recipe)
 	
 	# Add each procedure to create the associated recipe
 	for r in player.known_recipes:

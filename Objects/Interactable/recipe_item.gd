@@ -74,8 +74,6 @@ func read_recipes(player: Player) -> void:
 		else:
 			player.update_status_message("No new recipes")
 	
-	#TODO: Add some way to indicate which recipes are new to the player
-	
 	# remove item from world
 	self.queue_free()
 
