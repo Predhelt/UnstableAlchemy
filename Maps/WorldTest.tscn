@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=22 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_m5ckj"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
@@ -16,7 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/HUD/Status Effect/status_effect_bar.tscn" id="9_d4dvr"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_cliws"]
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_tvxi8"]
+[ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="14_b8puf"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="17_w6c75"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="18_843r2"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_flakes.tres" id="20_ilw7q"]
+[ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="21_ood0e"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true
@@ -80,6 +84,7 @@ offset_bottom = 154.0
 [node name="Player" parent="." instance=ExtResource("8_pd4bm")]
 unique_name_in_owner = true
 position = Vector2(529, 298)
+known_recipes = Array[ExtResource("18_843r2")]([ExtResource("14_b8puf")])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
@@ -190,6 +195,8 @@ position = Vector2(671, 394)
 
 [node name="RecipeItem" parent="." instance=ExtResource("17_w6c75")]
 position = Vector2(440, 263)
+display_name = "Starter Recipes"
+recipes = Array[ExtResource("18_843r2")]([ExtResource("20_ilw7q"), ExtResource("21_ood0e")])
 
 [connection signal="item_produced" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_item_produced"]
 [connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_open_inventory"]

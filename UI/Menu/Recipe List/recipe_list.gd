@@ -1,6 +1,7 @@
 extends Panel
 
-@export var known_recipes : Array[Recipe]
+#@export var known_recipes : Array[Recipe]
+@onready var player : Player = %Player
 
 var recipe_item_icon : PackedScene = preload("res://UI/Menu/Recipe List/recipe_item_icon.tscn")
 var recipe_ingredient_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_ingredient_icons.tscn")
@@ -10,9 +11,9 @@ var procedure_icon_crush := preload("res://Art/UAPrototype/UI/Minigame/crush.png
 var procedure_icon_bellows := preload("res://Art/UAPrototype/UI/Minigame/bellows.png")
 
 func _ready() -> void:
-	for recipe in known_recipes:
-		%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
-	%RecipeItems.visible = true
+	#for recipe in known_recipes:
+		#%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
+	#%RecipeItems.visible = true
 	
 	%WindowName.text = "Known Recipes"
 	%ProductDetails.visible = false
@@ -42,11 +43,8 @@ func close_window() -> void:
 	if get_tree().get_nodes_in_group("menu").is_empty():
 		global.mode = &"default"
 	
-	%ProductDetails.visible = false
-	for child in %ProcedureList.get_children(): # Remove all children
-		%ProcedureList.remove_child(child)
-	%WindowName.text = "Known Recipes"
-	%RecipeItems.visible = true
+	for recipe in player.known_recipes:
+		%RecipeItems.clear()
 
 
 func open_window() -> void:
@@ -54,35 +52,45 @@ func open_window() -> void:
 		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
 		add_to_group("menu")
 		print(get_tree().get_nodes_in_group("menu"))
+		
+		%ProductDetails.visible = false
+		for child in %ProcedureList.get_children(): # Remove all children
+			%ProcedureList.remove_child(child)
+		%WindowName.text = "Known Recipes"
+		
+		for recipe in player.known_recipes:
+			%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
+		%RecipeItems.visible = true
+	
 		%ButtonBack.visible = false
 		visible = true
 
-
-func add_recipe(recipe: Recipe):
-	if not recipe:
-		return
-	
-	var is_in_list := false
-	for r in known_recipes:
-		if r.id == recipe.id:
-			return # Recipe already in known recipes
-		if r.product_item.id == recipe.product_item.id:
-			is_in_list = true
-	
-	known_recipes.append(recipe)
-	
-	if not is_in_list:	
-		%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
+#DEPRECATED: Player hanles the known recipes
+#func add_recipe(recipe: Recipe):
+	#if not recipe:
+		#return
+	#
+	#var is_in_list := false
+	#for r in player.known_recipes:
+		#if r.id == recipe.id:
+			#return # Recipe already in known recipes
+		#if r.product_item.id == recipe.product_item.id:
+			#is_in_list = true
+	#
+	#known_recipes.append(recipe)
+	#
+	#if not is_in_list:
+		#%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
 
 
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
-	var recipe := known_recipes[index]
+	var recipe := player.known_recipes[index]
 	%ProductName.text = recipe.product_item.display_name
 	%ProductDescription.text = recipe.product_item.description
 	%ProductIcon.texture = recipe.product_item.texture
 	
 	# Add each procedure to create the associated recipe
-	for r in known_recipes:
+	for r in player.known_recipes:
 		if r.product_item.id != recipe.product_item.id:
 			continue
 		if  recipe.tool_used == &"m&p":

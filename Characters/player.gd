@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
-const LABEL_DEFAULT_Y_POS := -60.0
-const SIZE_DAMPENER := 0.5 # Value used to reduce the intensity of effects when size is changed
+const LABEL_DEFAULT_Y_POS := -60.0 ## Determines the Y offset of the labels above the player
+const SIZE_DAMPENER := 0.5 ## Value used to reduce the intensity of effects when size is changed
 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var inventory_ref : Control = %Inventory
@@ -21,6 +21,7 @@ var stats = {
 	&"mass" : 100.0, ## determines interactions with environments based on weight
 	#&"range" : 100.0, ## same as CollisionInteract.radius of arms
 }
+@export var known_recipes : Array[Recipe]
 
 var selected_tool : String
 
@@ -76,7 +77,16 @@ func change_player_scale(mult: Vector2):
 		node.scale *= mult
 	
 	player_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
-	
+
+
+## Adds the given recipe to the list of known recipes. Returns false if the recipe is already learned
+## or true if the recipe is successfully added to the list of known recipes.
+func learn_recipe(r: Recipe) -> bool:
+	if r in known_recipes:
+		return false
+	known_recipes.append(r)
+	return true
+
 
 ## Interaction Methods ##
 
@@ -122,9 +132,10 @@ func execute_tool():
 			&"blade" : all_interaction_areas[0].cut_object(self)
 			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
 
-# DEPRECATED
+## DEPRECATED
 func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
 	update_status_effects(on_consume_effects, on_consume_message)
+##
 
 ## Status Effect Handler Methods ##
 

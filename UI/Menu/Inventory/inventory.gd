@@ -273,7 +273,7 @@ func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
 	if recipe != null:
-		%RecipeList.add_recipe(recipe)
+		%Player.learn_recipe(recipe)
 
 
 func _on_open_inventory() -> void:

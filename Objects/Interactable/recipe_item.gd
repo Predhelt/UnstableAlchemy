@@ -17,6 +17,10 @@ extends Node2D
 var inspection_panel_scene = preload("res://UI/Interactable Object/inspection_panel.tscn")
 
 
+func _ready() -> void:
+	$InteractArea.interact_label = display_name
+
+
 func get_cur_folder_path() -> String:
 	var folder_path := ""
 	var path := scene_file_path.split("/")
@@ -29,6 +33,12 @@ func get_cur_folder_path() -> String:
 		path_counter += 1
 	return folder_path
 
+
+func _on_object_cut(player: Player):
+	read_recipes(player)
+
+func _on_object_grabbed(player: Player):
+	read_recipes(player)
 
 func _on_object_inspected() -> void:
 	inspect_object()
@@ -48,17 +58,26 @@ func inspect_object():
 	global.mode = &"inspection"
 	
 
-func _on_recipe_read(player: Player) -> void:
-	var item_gained_effect_instance : Control = item_gained_effect.instantiate()
-	
-	# TODO:
+func read_recipes(player: Player) -> void:
 	# Add recipe to recipe list (if not already in recipe)
+	if not recipes:
+		player.update_status_message("No recipes!")
+	
+	else: 
+		var has_new_recipe := false
+		for recipe in recipes:
+			if player.learn_recipe(recipe):
+				has_new_recipe = true
+		
+		if has_new_recipe:
+			player.update_status_message("Recipe(s) learned")
+		else:
+			player.update_status_message("No new recipes")
+	
+	#TODO: Add some way to indicate which recipes are new to the player
+	
 	# remove item from world
-	# if new recipe, show effect. If not, say already learned
-	
-	
-	
-	get_parent().add_child(item_gained_effect_instance)
+	self.queue_free()
 
 func emit_effect():
 	var effect_instance : GPUParticles2D = interact_effect.instantiate()
