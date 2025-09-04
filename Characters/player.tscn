@@ -160,6 +160,7 @@ states/Walk/position = Vector2(625, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qyell"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_v1316"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cyhdb")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6e64a"]
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
 radius = 46.0109

@@ -61,7 +61,7 @@ func open_window() -> void:
 		for recipe in player.known_recipes:
 			var display_text := ""
 			if recipe in player.new_recipes:
-				display_text += "(New)"r
+				display_text += "*New*"
 			display_text += recipe.product_item.display_name
 			%RecipeItems.add_item(display_text, recipe.product_item.texture)
 		%RecipeItems.visible = true

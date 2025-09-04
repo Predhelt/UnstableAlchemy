@@ -25,6 +25,7 @@ func open_pressed_window(ui : Control):
 			var cur_window = mode_windows[global.mode]
 			if cur_window:
 				cur_window.close_window()
+			if cur_window != ui:
 				ui.open_window()
 
 
