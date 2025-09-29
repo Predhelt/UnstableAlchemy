@@ -9,10 +9,9 @@
 script = ExtResource("2_j8fst")
 id = 503
 display_name = "Potion of Growth"
-description = ""
+description = "Increases size"
 texture = ExtResource("4_uowgh")
-max_qty = 10
 qty = 5
 on_consume_effects = Array[ExtResource("1_j8fst")]([ExtResource("2_44pn3")])
-on_consume_message = ""
+on_consume_message = "Everything looks smaller"
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

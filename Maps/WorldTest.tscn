@@ -1,12 +1,16 @@
-[gd_scene load_steps=22 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=26 format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_m5ckj"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_cliws"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_w6c75"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_40e85"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="3_guf6v"]
+[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://Items/Potions/grow_potion.tres" id="3_tvxi8"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="4_25d8v"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_b8puf"]
+[ext_resource type="Resource" uid="uid://db62qwoxlu4p8" path="res://Items/Potions/shrink_potion.tres" id="4_xi586"]
+[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://Items/Potions/normalize_potion.tres" id="5_8uqdk"]
 [ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_843r2"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="5_r0jcl"]
 [ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_ilw7q"]
@@ -34,6 +38,7 @@ layer = 10
 [node name="Inventory" parent="UILayer/MenuLayer" instance=ExtResource("1_m5ckj")]
 unique_name_in_owner = true
 visible = false
+items = Array[ExtResource("2_cliws")]([ExtResource("3_tvxi8"), ExtResource("4_xi586"), ExtResource("5_8uqdk")])
 
 [node name="RecipeList" parent="UILayer/MenuLayer" instance=ExtResource("2_w6c75")]
 unique_name_in_owner = true
