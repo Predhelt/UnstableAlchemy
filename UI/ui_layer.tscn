@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://h1v4fc6sbcu6"]
+[gd_scene load_steps=13 format=3 uid="uid://h1v4fc6sbcu6"]
 
+[ext_resource type="Script" uid="uid://8p2w7vm2vpqr" path="res://UI/ui_layer.gd" id="1_4k2wc"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_4qjnp"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_4k2wc"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_uf0xt"]
@@ -14,6 +15,7 @@
 
 [node name="UILayer" type="CanvasLayer"]
 layer = 10
+script = ExtResource("1_4k2wc")
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 
@@ -66,3 +68,12 @@ offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
+
+[connection signal="item_produced" from="MinigameLayer/MinigameCauldron" to="MenuLayer/Inventory" method="_on_item_produced"]
+[connection signal="open_inventory" from="MinigameLayer/MinigameCauldron" to="MenuLayer/Inventory" method="_on_open_inventory"]
+[connection signal="item_produced" from="MinigameLayer/MinigameMP" to="MenuLayer/Inventory" method="_on_item_produced"]
+[connection signal="open_inventory" from="MinigameLayer/MinigameMP" to="MenuLayer/Inventory" method="_on_open_inventory"]
+[connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/Inventory" method="_on_hotbar_add_inventory_item"]
+[connection signal="consume_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
+[connection signal="set_dropper_item" from="HUDLayer/ToolWheel" to="MenuLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
+[connection signal="tool_updated" from="HUDLayer/ToolWheel" to="." method="_on_tool_wheel_tool_updated"]

@@ -8,28 +8,30 @@
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("1_57tix")]
+[node name="PlayerGroup" type="Node2D" parent="."]
+
+[node name="Player" parent="PlayerGroup" groups=["player"] instance=ExtResource("1_57tix")]
 position = Vector2(532, 310)
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
+[node name="CameraTransform" type="RemoteTransform2D" parent="PlayerGroup/Player"]
 remote_path = NodePath("../../PlayerCamera")
 
-[node name="LabelTransform" type="RemoteTransform2D" parent="Player"]
+[node name="LabelTransform" type="RemoteTransform2D" parent="PlayerGroup/Player"]
 remote_path = NodePath("../../LabelGroup")
 update_rotation = false
 update_scale = false
 
-[node name="PlayerCamera" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="PlayerGroup"]
 unique_name_in_owner = true
 position = Vector2(532, 310)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="LabelGroup" type="Node2D" parent="." groups=["player"]]
+[node name="LabelGroup" type="Node2D" parent="PlayerGroup" groups=["player"]]
 position = Vector2(532, 310)
 
-[node name="InteractLabel" type="Label" parent="LabelGroup"]
+[node name="InteractLabel" type="Label" parent="PlayerGroup/LabelGroup"]
 unique_name_in_owner = true
 z_index = 1
 anchors_preset = 7
@@ -49,7 +51,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+[node name="StatusLabel" type="RichTextLabel" parent="PlayerGroup/LabelGroup"]
 unique_name_in_owner = true
 clip_contents = false
 anchors_preset = 5
@@ -96,3 +98,11 @@ position = Vector2(350, 88)
 
 [node name="GreenHerb" parent="Objects" instance=ExtResource("3_6v1de")]
 position = Vector2(507, 68)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 169.0
+offset_right = 479.2016
+offset_bottom = 267.5907
+theme_override_font_sizes/font_size = 30
+text = "Outdated"

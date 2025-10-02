@@ -1,25 +1,11 @@
-[gd_scene load_steps=26 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene load_steps=12 format=4 uid="uid://depbbsatmakqx"]
 
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_m5ckj"]
+[ext_resource type="PackedScene" uid="uid://h1v4fc6sbcu6" path="res://UI/ui_layer.tscn" id="1_xex24"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_8gh32"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_cliws"]
-[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_w6c75"]
-[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_40e85"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="3_guf6v"]
-[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://Items/Potions/grow_potion.tres" id="3_tvxi8"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="4_25d8v"]
-[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_b8puf"]
-[ext_resource type="Resource" uid="uid://db62qwoxlu4p8" path="res://Items/Potions/shrink_potion.tres" id="4_xi586"]
-[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://Items/Potions/normalize_potion.tres" id="5_8uqdk"]
-[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_843r2"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="5_r0jcl"]
-[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_ilw7q"]
-[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://UI/Minigame/MortarPestle/MortarPestleMinigame.tscn" id="7_ood0e"]
-[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/HUD/Menu Bar/menu_bar.tscn" id="8_iaiod"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="8_pd4bm"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/HUD/Status Effect/status_effect_bar.tscn" id="9_d4dvr"]
-[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_cliws"]
-[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_tvxi8"]
 [ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="14_b8puf"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="17_w6c75"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="18_843r2"]
@@ -30,61 +16,7 @@
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="UILayer" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="MenuLayer" type="CanvasLayer" parent="UILayer"]
-
-[node name="Inventory" parent="UILayer/MenuLayer" instance=ExtResource("1_m5ckj")]
-unique_name_in_owner = true
-visible = false
-items = Array[ExtResource("2_cliws")]([ExtResource("3_tvxi8"), ExtResource("4_xi586"), ExtResource("5_8uqdk")])
-
-[node name="RecipeList" parent="UILayer/MenuLayer" instance=ExtResource("2_w6c75")]
-unique_name_in_owner = true
-visible = false
-
-[node name="OptionsMenu" parent="UILayer/MenuLayer" instance=ExtResource("3_40e85")]
-unique_name_in_owner = true
-visible = false
-
-[node name="SettingsMenu" parent="UILayer/MenuLayer" instance=ExtResource("4_b8puf")]
-unique_name_in_owner = true
-auto_translate_mode = 1
-visible = false
-
-[node name="HelpMenu" parent="UILayer/MenuLayer" instance=ExtResource("5_843r2")]
-unique_name_in_owner = true
-visible = false
-
-[node name="MinigameLayer" type="CanvasLayer" parent="UILayer"]
-
-[node name="MinigameCauldron" parent="UILayer/MinigameLayer" instance=ExtResource("6_ilw7q")]
-unique_name_in_owner = true
-visible = false
-
-[node name="MinigameMP" parent="UILayer/MinigameLayer" instance=ExtResource("7_ood0e")]
-unique_name_in_owner = true
-visible = false
-
-[node name="HUDLayer" type="CanvasLayer" parent="UILayer"]
-
-[node name="MenuBar" parent="UILayer/HUDLayer" instance=ExtResource("8_iaiod")]
-unique_name_in_owner = true
-offset_bottom = 8.0
-
-[node name="StatusEffectBar" parent="UILayer/HUDLayer" instance=ExtResource("9_d4dvr")]
-unique_name_in_owner = true
-
-[node name="Hotbar" parent="UILayer/HUDLayer" instance=ExtResource("10_cliws")]
-unique_name_in_owner = true
-
-[node name="ToolWheel" parent="UILayer/HUDLayer" instance=ExtResource("11_tvxi8")]
-unique_name_in_owner = true
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 154.0
-offset_bottom = 154.0
+[node name="UILayer" parent="." instance=ExtResource("1_xex24")]
 
 [node name="Player" parent="." instance=ExtResource("8_pd4bm")]
 unique_name_in_owner = true
@@ -203,11 +135,4 @@ position = Vector2(440, 263)
 display_name = "Starter Recipes"
 recipes = Array[ExtResource("18_843r2")]([ExtResource("20_ilw7q"), ExtResource("21_ood0e")])
 
-[connection signal="item_produced" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_item_produced"]
-[connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_open_inventory"]
-[connection signal="item_produced" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/Inventory" method="_on_item_produced"]
-[connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/Inventory" method="_on_open_inventory"]
-[connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/Inventory" method="_on_hotbar_add_inventory_item"]
-[connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
-[connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
-[connection signal="tool_updated" from="UILayer/HUDLayer/ToolWheel" to="Player" method="_on_tool_updated"]
+[connection signal="tool_updated" from="UILayer" to="Player" method="_on_tool_updated"]
