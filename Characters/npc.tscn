@@ -22,5 +22,7 @@ shape = SubResource("CircleShape2D_ae4go")
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(3.280001, 3.280001)
 interact_label = "NPC"
-interact_type = "talk"
+interact_type = 3
 interact_value = ""
+
+[connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]

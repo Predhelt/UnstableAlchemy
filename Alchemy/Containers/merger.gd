@@ -17,7 +17,7 @@ func _use_items(): # Overrides the _use_items() function in AlchemyTool
 	
 	item_ids.sort()
 	
-	var result_recipe = failed_craft
+	var result_recipe = FAILED_CRAFT
 	
 	for recipe in recipes: # Find matching ingredients list in recipes
 		var ingredient_ids : Array[int] = []

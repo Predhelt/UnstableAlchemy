@@ -4,6 +4,7 @@ signal object_inspected()
 signal object_grabbed(player: Player)
 signal object_cut(player: Player)
 signal object_combined(player: Player, item: Item)
+signal npc_talk()
 
 @export var interact_label := "none"
 @export_enum("print_text", "context_menu","inspect", "talk") var interact_type
@@ -54,3 +55,6 @@ func cut_object(player: Player) -> void:
 
 func combine_object(player: Player, item: Item) -> void:
 	object_combined.emit(player, item)
+
+func talk() -> void:
+	npc_talk.emit()

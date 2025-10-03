@@ -123,7 +123,7 @@ func execute_interaction():
 			&"print_text" : print(cur_interaction.interact_value)
 			&"context_menu" : cur_interaction.toggle_context_menu(self) #DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
-			&"talk" : pass # TODO: talk to NPC
+			&"talk" : cur_interaction.talk()
 
 
 func _on_tool_updated(tool_name: String) -> void:

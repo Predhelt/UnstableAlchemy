@@ -32,7 +32,7 @@ var num_items := 0
 ## The recipe information for a failed craft, used when no other recipe is a match after the crafting process.
 ## The Item ID for failed craft is 999
 ##
-var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres")
+const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres")
 
 ##
 ## Reference to item buttons that represent each item used in the craft.

@@ -17,7 +17,7 @@ func _use_items(): # Overrides the _use_items() function in AlchemyTool
 	#if not item:
 		#return
 	
-	#var result_recipe := failed_craft
+	#var result_recipe := FAILED_CRAFT
 	#for recipe in recipes:
 		#if recipe.ingredients[0].id == item.id:
 			#result_recipe = recipe

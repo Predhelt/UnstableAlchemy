@@ -18,7 +18,7 @@ var is_crafting := false ## Tracks if the minigame is currently active
 
 #TODO: Determine if craft difficulty could be set dynamically
 @export var input_window_ratio := 0.5 ## The window of acceptable input for each tick. Smaller values means tighter timing
-var failed_craft : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") ##ID for failed craft is 999
+const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") ##ID for failed craft is 999
 
 
 func _process(delta: float) -> void:
@@ -93,7 +93,7 @@ func _on_startup_delay_timeout() -> void:
 
 func check_results():
 	var product_recipe := matching_recipe()
-	var product_item : Item = failed_craft.product_item.duplicate()
+	var product_item : Item = FAILED_CRAFT.product_item.duplicate()
 	if product_recipe:
 		product_item = product_recipe.product_item.duplicate()
 		product_item.qty = product_recipe.product_item_amount
