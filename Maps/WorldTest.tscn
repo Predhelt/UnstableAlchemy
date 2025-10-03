@@ -130,7 +130,7 @@ position = Vector2(515, 468)
 [node name="YellowFlowers3" parent="Objects" instance=ExtResource("5_r0jcl")]
 position = Vector2(671, 394)
 
-[node name="RecipeItem" parent="." instance=ExtResource("17_w6c75")]
+[node name="RecipeItem" parent="Objects" instance=ExtResource("17_w6c75")]
 position = Vector2(440, 263)
 display_name = "Starter Recipes"
 recipes = Array[ExtResource("18_843r2")]([ExtResource("20_ilw7q"), ExtResource("21_ood0e")])

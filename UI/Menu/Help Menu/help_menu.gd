@@ -1,6 +1,12 @@
 extends Panel
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		match global.mode:
+			#&"default" : open_window()
+			&"menu" : close_window()
+
 func toggle_window() -> void:
 	if visible:
 		close_window()
