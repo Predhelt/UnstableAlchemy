@@ -36,7 +36,6 @@ script = ExtResource("2_huko4")
 id = 502
 product_item = ExtResource("7_663px")
 product_item_amount = 2
-product_craft_time = 0.0
 ingredients = Array[ExtResource("1_ww7h2")]([ExtResource("2_mrtvp"), ExtResource("3_5bvrs"), ExtResource("4_m7doa")])
 tool_used = "cauldron"
 procedure = SubResource("Resource_1pcsn")

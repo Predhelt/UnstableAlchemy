@@ -19,7 +19,6 @@ script = ExtResource("2_t86e8")
 id = 1
 product_item = ExtResource("7_q223s")
 product_item_amount = 1
-product_craft_time = 0.0
 ingredients = Array[ExtResource("1_m507l")]([ExtResource("2_7ny24")])
 tool_used = "m&p"
 procedure = SubResource("Resource_vkorl")
