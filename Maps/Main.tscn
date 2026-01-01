@@ -24,6 +24,7 @@ update_scale = false
 [node name="PlayerCamera" type="Camera2D" parent="PlayerGroup"]
 unique_name_in_owner = true
 position = Vector2(532, 310)
+process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

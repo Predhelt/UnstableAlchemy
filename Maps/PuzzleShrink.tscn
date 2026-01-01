@@ -90,6 +90,7 @@ update_scale = false
 [node name="PlayerCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(532, 310)
+process_callback = 0
 position_smoothing_enabled = true
 
 [node name="LabelGroup" type="Node2D" parent="." groups=["player_elements"]]
