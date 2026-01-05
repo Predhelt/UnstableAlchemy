@@ -6,6 +6,7 @@ class_name NPC extends CharacterBody2D
 # Other (scared, runs off / opens a passageway / etc.)
 
 #TODO: consider different types of conversations and how to easily swap between them (consider export)
+# Also, any dialogue window should prevent other menus from opening.
 
 
 func open_dialogue(message : String) -> void:
