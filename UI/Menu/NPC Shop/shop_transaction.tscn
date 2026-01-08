@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddbxap4oi32g6"]
+
+[ext_resource type="PackedScene" uid="uid://dksr1flt2gjap" path="res://UI/Menu/NPC Shop/shop_item.tscn" id="1_kfrsd"]
+
+[node name="ShopTradeOffer" type="Panel"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShopItem" parent="HBoxContainer" instance=ExtResource("1_kfrsd")]
+layout_mode = 2

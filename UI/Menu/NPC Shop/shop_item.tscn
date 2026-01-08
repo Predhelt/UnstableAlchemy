@@ -1,16 +1,33 @@
-[gd_scene format=3 uid="uid://ddbxap4oi32g6"]
+[gd_scene load_steps=2 format=3 uid="uid://dksr1flt2gjap"]
 
-[node name="ShopItem" type="Panel"]
-anchors_preset = 15
+[ext_resource type="Texture2D" uid="uid://clun0l8tflfr1" path="res://Art/UAPrototype/Ingredients/Inventory/yellow-petals.png" id="1_a5g2s"]
+
+[node name="ShopItem" type="TextureRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+tooltip_text = "ItemName"
+texture = ExtResource("1_a5g2s")
+stretch_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_right = 30.0
+grow_vertical = 0
+
+[node name="ItemCount" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
-layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "XX"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 1
