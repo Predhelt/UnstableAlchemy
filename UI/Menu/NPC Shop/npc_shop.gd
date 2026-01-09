@@ -1,12 +1,12 @@
 extends Panel
 
-#@export var known_recipes : Array[Recipe]
+@onready var player : Player = %Player
 
-@export var transactions : Array[Transaction]
+var shop_transaction_scene = preload("res://UI/Menu/NPC Shop/shop_transaction.tscn")
 
+@export var transactions : Array[Transaction] ##List of shop transactions available to the player
 
 func _ready() -> void:
-	
 	%WindowName.text = "Shop"
 
 
@@ -30,6 +30,7 @@ func close_window() -> void:
 	if get_tree().get_nodes_in_group("menu").is_empty():
 		global.mode = &"default"
 	
+	%ShopTransactions.queue_free()
 
 
 func open_window() -> void:
@@ -38,17 +39,25 @@ func open_window() -> void:
 		add_to_group("menu")
 		print(get_tree().get_nodes_in_group("menu"))
 		
-		for transaction in transactions:
-			pass #TODO: convert exported transactions into display items
-			#var display_text := ""
-			#
-			#display_text += transaction.display_name
-			#%ShopItems.add_transaction(display_text, transaction.texture)
-		%ShopItems.visible = true
+		add_shop_transactions() # Populate the shop transactions
+		
+		%ShopTransactions.visible = true
 	
 		%ButtonBack.visible = false
 		visible = true
 
+func add_shop_transactions() -> void:
+	for transaction in transactions: #NOTE: Transactions are assigned by parent NPC
+		#TODO: convert exported transactions into display items
+		#Add items to a transaction, then add each transaction to the shop.
+		
+		var cur_transaction_scene = shop_transaction_scene.instantiate()
+		for itembi in range(transaction.items_buying_amount):
+			cur_transaction_scene.add_shop_item(transaction.items_buying[itembi], true)
+		for itemsi in range(transaction.items_selling_amount):
+			cur_transaction_scene.add_shop_item(transaction.items_selling[itemsi], false)
+			
+		%ShopTransactions.add_child(cur_transaction_scene)
 
 func _on_button_close_pressed() -> void:
 	close_window()

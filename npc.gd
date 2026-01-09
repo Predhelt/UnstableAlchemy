@@ -8,6 +8,7 @@ class_name NPC extends CharacterBody2D
 #TODO: consider different types of conversations and how to easily swap between them (consider export)
 # Also, any dialogue window should prevent other menus from opening.
 
+@export var transactions : Array[Transaction]
 
 func open_dialogue(message : String) -> void:
 	pass
@@ -16,6 +17,13 @@ func open_dialogue(message : String) -> void:
 func close_dialogue() -> void:
 	pass
 	# window.resetandclose()
+
+func open_shop() -> void:
+	if transactions.size():
+		$NPCShop.transactions = transactions
+
+func _on_interact_area_npc_open_shop() -> void:
+	open_shop()
 
 func _on_interact_area_npc_talk() -> void:
 	pass
