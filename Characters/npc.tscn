@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ysnbvkn4ogwk"]
+[gd_scene load_steps=5 format=3 uid="uid://ysnbvkn4ogwk"]
 
 [ext_resource type="Script" uid="uid://cmarx5wmfetow" path="res://npc.gd" id="1_4ofvd"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://Art/UAPrototype/Characters/npc-robe.png" id="2_ldphk"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="3_8728q"]
-[ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://UI/Menu/NPC Shop/npc_shop.tscn" id="4_y6vxo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ae4go"]
 radius = 14.0
@@ -26,6 +25,5 @@ interact_label = "NPC"
 interact_type = 3
 interact_value = ""
 
-[node name="NPCShop" parent="." instance=ExtResource("4_y6vxo")]
-
+[connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
 [connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]

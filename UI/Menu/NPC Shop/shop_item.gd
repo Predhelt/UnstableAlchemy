@@ -1,4 +1,4 @@
 extends TextureRect
 
 func set_count(c) -> void:
-	%ItemCount.text = c
+	%ItemCount.text = str(c)

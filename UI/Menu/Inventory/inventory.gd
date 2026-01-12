@@ -133,12 +133,59 @@ func generate_item_text(item: Item) -> String:
 	return text
 
 
-func remove_inventory_item(index : int) -> void:
+func remove_inventory_item_slot(index : int) -> void:
 	if index < 0 or index >= %ItemList.item_count:
 		return
 	
 	items.remove_at(index)
 	%ItemList.remove_item(index)
+
+func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool) -> bool: ## Returns false if not enough items are found for each item in the inventory
+	#TODO: break down into helper funcions?
+	#Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
+	var inventory_item_indices : Array[int]
+	var inventory_item_ids : Array[int]
+	
+	if not isRemovingStacks:
+		for i in range(items_removing.size()):
+			var temp_qty : int = qtys[i]
+			for j in range(items.size()-1, -1, -1): #Descending order, to remove the later elements first
+				if items_removing[i].id == items[j].id:
+					inventory_item_indices.append(j)
+					inventory_item_ids.append(items_removing[i].id)
+					if temp_qty <= items[j].qty:
+						temp_qty = 0
+						break
+					else:
+						temp_qty -= items[j].qty
+			if temp_qty >= 0:
+				return false
+	
+		#Phase 2: remove items from inventory
+		var isRemoved : bool = false
+		var cur_item_index = 0
+		var cur_qty = qtys[0]
+		for i in range(inventory_item_indices.size()-1, -1, -1): #Descending order because the size will change if an item is removed from the inventory item list
+			if cur_qty < items[inventory_item_indices[i]].qty:
+				items[inventory_item_indices[i]].qty -= cur_qty
+			else:
+				remove_inventory_item_slot(inventory_item_indices[i])
+			
+			cur_item_index += 1
+			cur_qty = qtys[cur_item_index]
+		
+		
+		return isRemoved
+	
+	#If removing all instances of items:
+	for i in range(items.size()-1,0): #Descending so that decreasing array size does not cause out of bound error
+		if i >= items.size(): #index can be greater than size if multiple items are removed from list
+			continue
+		for item_removing in items_removing:
+			if items[i].id == item_removing.id:
+				remove_inventory_item_slot(i)
+	
+	return true
 
 func get_inventory_item(index : int) -> Item:
 	if index < 0 or index >= %ItemList.item_count:
@@ -181,7 +228,7 @@ func drag_item(item : Item, index : int):
 	item.qty -= 1
 	%ItemList.set_item_text(index, generate_item_text(item))
 	if item.qty < 1:
-		remove_inventory_item(index)
+		remove_inventory_item_slot(index)
 	drag_item_instance.item = selected_item
 	
 	drag_item_instance.texture = item.texture
@@ -208,7 +255,7 @@ func consume_item(item : Item, index : int):
 		$CooldownInteract.start()
 	
 	if item.qty <= 1:
-		remove_inventory_item(index)
+		remove_inventory_item_slot(index)
 	else:
 		item.qty -= 1
 		%ItemList.set_item_text(index, generate_item_text(item))
@@ -244,7 +291,7 @@ func consume_hotbar_item(item : Item):
 			update_status_effects.emit(cur_item.on_consume_effects, cur_item.on_consume_message)
 			is_consumed = true
 			if cur_item.qty <= 1:
-				remove_inventory_item(i)
+				remove_inventory_item_slot(i)
 				num_items -= 1
 			else:
 				cur_item.qty -= 1

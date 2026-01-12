@@ -1,6 +1,7 @@
+#This node allows an npc to trade items with the player.
 extends Panel
 
-@onready var player : Player = %Player
+var player : Player ##Reference to player. Set by parent NPC
 
 var shop_transaction_scene = preload("res://UI/Menu/NPC Shop/shop_transaction.tscn")
 
@@ -30,34 +31,35 @@ func close_window() -> void:
 	if get_tree().get_nodes_in_group("menu").is_empty():
 		global.mode = &"default"
 	
-	%ShopTransactions.queue_free()
 
 
-func open_window() -> void:
+func open_window(isReopening : bool = false) -> void:
 	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
 		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
 		add_to_group("menu")
 		print(get_tree().get_nodes_in_group("menu"))
 		
-		add_shop_transactions() # Populate the shop transactions
+		if not isReopening:
+			add_shop_transactions() # Populate the shop transactions
 		
-		%ShopTransactions.visible = true
+		#%ShopTransactions.visible = true
 	
 		%ButtonBack.visible = false
 		visible = true
 
 func add_shop_transactions() -> void:
-	for transaction in transactions: #NOTE: Transactions are assigned by parent NPC
+	for transaction in transactions: #NOTE: Transactions are assigned in parent NPC
 		#TODO: convert exported transactions into display items
 		#Add items to a transaction, then add each transaction to the shop.
 		
 		var cur_transaction_scene = shop_transaction_scene.instantiate()
-		for itembi in range(transaction.items_buying_amount):
-			cur_transaction_scene.add_shop_item(transaction.items_buying[itembi], true)
-		for itemsi in range(transaction.items_selling_amount):
-			cur_transaction_scene.add_shop_item(transaction.items_selling[itemsi], false)
+		cur_transaction_scene.connect("attempt_transaction", _on_transaction_attempt) # Connect child signal for when the transaction is pressed to attempt the associated transaction
+		cur_transaction_scene.set_transaction(transaction)
 			
 		%ShopTransactions.add_child(cur_transaction_scene)
+
+func clear_transactions() -> void:
+	%ShopTransactions.clear_transactions()
 
 func _on_button_close_pressed() -> void:
 	close_window()
@@ -66,3 +68,22 @@ func _on_button_close_pressed() -> void:
 func _on_button_back_pressed() -> void:
 	close_window()
 	open_window()
+	
+func _on_transaction_attempt(id : int) -> void:
+	var cur_transaction : Transaction = null
+	for t in transactions:
+		if t.id == id:
+			cur_transaction = t
+			break
+	
+	if not cur_transaction:
+		print("no transaction found with id " + str(id))
+		return
+	
+	#var player_inventory_ref 
+	
+	
+	#for item_buying in cur_transaction.items_buying:
+		
+		#if item_buying.id in player.inventory_ref and:
+			#item_buying.

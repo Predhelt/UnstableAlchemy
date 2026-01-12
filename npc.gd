@@ -8,10 +8,15 @@ class_name NPC extends CharacterBody2D
 #TODO: consider different types of conversations and how to easily swap between them (consider export)
 # Also, any dialogue window should prevent other menus from opening.
 
-@export var transactions : Array[Transaction]
+@export var transactions : Array[Transaction] ##List of transactions for the NPC shop
+@export_enum("talk", "shop") var interaction_type : String = "talk" ##The type of interaction that occurs upon interacting with the NPC
+
+func _ready() -> void:
+	$InteractArea.interact_type = interaction_type
+	%NPCShop.player = %Player
 
 func open_dialogue(message : String) -> void:
-	pass
+	print(message) ##TODO: Implement open_dialogue
 	# window.open
 
 func close_dialogue() -> void:
@@ -19,15 +24,23 @@ func close_dialogue() -> void:
 	# window.resetandclose()
 
 func open_shop() -> void:
+	print("opening window")
+	
 	if transactions.size():
-		$NPCShop.transactions = transactions
+		if %NPCShop.transactions == transactions:
+			%NPCShop.open_window(true)
+		else:
+			if %NPCShop.transactions.size():
+				%NPCShop.clear_transactions()
+			%NPCShop.transactions = transactions
+			%NPCShop.open_window()
 
-func _on_interact_area_npc_open_shop() -> void:
-	open_shop()
 
 func _on_interact_area_npc_talk() -> void:
-	pass
-	#open_dialogue("How can I help you?")
+	open_dialogue("How can I help you?")
+
+func _on_interact_area_npc_shop() -> void:
+	open_shop()
 
 func _on_interact_area_grab():
 	pass

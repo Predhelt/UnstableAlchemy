@@ -67,8 +67,6 @@ func update_animation_parameters() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		execute_interaction()
-	if event.is_action_pressed("inspect_object"):
-		execute_interaction()
 	if event.is_action_pressed("use_tool"):
 		execute_tool()
 	
@@ -124,6 +122,7 @@ func execute_interaction():
 			&"context_menu" : cur_interaction.toggle_context_menu(self) #DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
 			&"talk" : cur_interaction.talk()
+			&"shop" : cur_interaction.shop()
 
 
 func _on_tool_updated(tool_name: String) -> void:
