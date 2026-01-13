@@ -143,33 +143,24 @@ func remove_inventory_item_slot(index : int) -> void:
 func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool) -> bool: ## Returns false if not enough items are found for each item in the inventory
 	#TODO: break down into helper funcions?
 	#Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
-	var inventory_item_indices : Array[int]
-	var inventory_item_ids : Array[int]
+	var inventory_item_infos : Dictionary = {} ## Key : index, Value : id of items in inventory
 	
 	if not isRemovingStacks:
-		for i in range(items_removing.size()):
-			var temp_qty : int = qtys[i]
-			for j in range(items.size()-1, -1, -1): #Descending order, to remove the later elements first
-				if items_removing[i].id == items[j].id:
-					inventory_item_indices.append(j)
-					inventory_item_ids.append(items_removing[i].id)
-					if temp_qty <= items[j].qty:
-						temp_qty = 0
-						break
-					else:
-						temp_qty -= items[j].qty
-			if temp_qty >= 0:
-				return false
+		
+		inventory_item_infos = has_inventory_items(items_removing, qtys)
+	
+		if inventory_item_infos == {}:
+			return false
 	
 		#Phase 2: remove items from inventory
 		var isRemoved : bool = false
 		var cur_item_index = 0
 		var cur_qty = qtys[0]
-		for i in range(inventory_item_indices.size()-1, -1, -1): #Descending order because the size will change if an item is removed from the inventory item list
-			if cur_qty < items[inventory_item_indices[i]].qty:
-				items[inventory_item_indices[i]].qty -= cur_qty
+		for index in inventory_item_infos.keys(): #TEST:Descending order because the size will change if an item is removed from the inventory item list
+			if cur_qty < items[index].qty:
+				items[index].qty -= cur_qty
 			else:
-				remove_inventory_item_slot(inventory_item_indices[i])
+				remove_inventory_item_slot(index)
 			
 			cur_item_index += 1
 			cur_qty = qtys[cur_item_index]
@@ -186,6 +177,25 @@ func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isR
 				remove_inventory_item_slot(i)
 	
 	return true
+
+##Checks if the inventory has all items and their appropriate amounts. Returns a dictionary where Keys are indices and Values are ids of the items in inventory
+func has_inventory_items(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
+	var found_items : Dictionary ## Key : index, Value : id of items in inventory
+	
+	for i in range(items_checking.size()):
+		var temp_qty : int = qtys[i]
+		for j in range(items.size()-1, -1, -1): #Descending order, to remove the later elements first
+			if items_checking[i].id == items[j].id:
+				found_items[j] = items_checking[i].id
+				if temp_qty <= items[j].qty:
+					temp_qty = 0
+					break
+				else:
+					temp_qty -= items[j].qty
+		if temp_qty > 0:
+			return {}
+	
+	return found_items
 
 func get_inventory_item(index : int) -> Item:
 	if index < 0 or index >= %ItemList.item_count:

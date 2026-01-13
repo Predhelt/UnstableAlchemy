@@ -26,14 +26,11 @@ func close_dialogue() -> void:
 func open_shop() -> void:
 	print("opening window")
 	
-	if transactions.size():
-		if %NPCShop.transactions == transactions:
-			%NPCShop.open_window(true)
-		else:
-			if %NPCShop.transactions.size():
-				%NPCShop.clear_transactions()
-			%NPCShop.transactions = transactions
-			%NPCShop.open_window()
+	if transactions.size(): #If the npc has shop transactions
+		if %NPCShop.transactions.size(): #If the shop already has populated the transaction UI
+			%NPCShop.clear_transactions()
+		%NPCShop.transactions = transactions
+		%NPCShop.open_window()
 
 
 func _on_interact_area_npc_talk() -> void:

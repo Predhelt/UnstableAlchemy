@@ -1,7 +1,7 @@
 #This node allows an npc to trade items with the player.
 extends Panel
 
-var player : Player ##Reference to player. Set by parent NPC
+@onready var player : Player = %Player ##Reference to player
 
 var shop_transaction_scene = preload("res://UI/Menu/NPC Shop/shop_transaction.tscn")
 
@@ -33,14 +33,13 @@ func close_window() -> void:
 	
 
 
-func open_window(isReopening : bool = false) -> void:
+func open_window() -> void:
 	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
 		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
 		add_to_group("menu")
 		print(get_tree().get_nodes_in_group("menu"))
 		
-		if not isReopening:
-			add_shop_transactions() # Populate the shop transactions
+		add_shop_transactions() # Populate the shop transactions
 		
 		#%ShopTransactions.visible = true
 	
@@ -55,11 +54,15 @@ func add_shop_transactions() -> void:
 		var cur_transaction_scene = shop_transaction_scene.instantiate()
 		cur_transaction_scene.connect("attempt_transaction", _on_transaction_attempt) # Connect child signal for when the transaction is pressed to attempt the associated transaction
 		cur_transaction_scene.set_transaction(transaction)
+		
+		if player.inventory_ref.has_inventory_items(transaction.items_buying, transaction.items_buying_amount) == {}:
+			cur_transaction_scene.disabled = true
 			
 		%ShopTransactions.add_child(cur_transaction_scene)
 
 func clear_transactions() -> void:
-	%ShopTransactions.clear_transactions()
+	for t in %ShopTransactions.get_children():
+		t.queue_free()
 
 func _on_button_close_pressed() -> void:
 	close_window()

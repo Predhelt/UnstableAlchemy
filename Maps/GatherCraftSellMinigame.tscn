@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=35 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_wlq1s"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_2o0j7"]
@@ -28,6 +28,9 @@
 [ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="20_blh7c"]
 [ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Items/Merged Ingredients/saturated_stem.tres" id="21_bfu87"]
 [ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="21_x22rh"]
+[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://Items/Potions/cleanse_potion.tres" id="23_bfu87"]
+[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://Items/Potions/speed_potion.tres" id="24_86het"]
+[ext_resource type="Resource" uid="uid://7we1na1p6l36" path="res://Items/M&P Products/blue_berry_seed.tres" id="25_lj88t"]
 
 [sub_resource type="Resource" id="Resource_86het"]
 script = ExtResource("17_0d8md")
@@ -35,6 +38,20 @@ items_selling = Array[ExtResource("18_ie10l")]([ExtResource("21_bfu87")])
 items_selling_amount = Array[int]([1])
 items_buying = Array[ExtResource("18_ie10l")]([ExtResource("19_44jw4"), ExtResource("20_blh7c")])
 items_buying_amount = Array[int]([2, 3])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[sub_resource type="Resource" id="Resource_l5n5r"]
+script = ExtResource("17_0d8md")
+items_selling = Array[ExtResource("18_ie10l")]([ExtResource("23_bfu87")])
+items_selling_amount = Array[int]([1])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[sub_resource type="Resource" id="Resource_gqfas"]
+script = ExtResource("17_0d8md")
+items_selling = Array[ExtResource("18_ie10l")]([ExtResource("25_lj88t")])
+items_selling_amount = Array[int]([2])
+items_buying = Array[ExtResource("18_ie10l")]([ExtResource("24_86het")])
+items_buying_amount = Array[int]([1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
 [node name="WorldTest" type="Node2D"]
@@ -56,7 +73,7 @@ visible = false
 
 [node name="NPCShop" parent="UILayer/MenuLayer" instance=ExtResource("3_ie10l")]
 unique_name_in_owner = true
-transactions = Array[ExtResource("17_0d8md")]([])
+visible = false
 
 [node name="OptionsMenu" parent="UILayer/MenuLayer" instance=ExtResource("3_sqmy7")]
 unique_name_in_owner = true
@@ -185,7 +202,7 @@ tile_set = ExtResource("15_gqfas")
 [node name="NPC" parent="." instance=ExtResource("16_2o0j7")]
 y_sort_enabled = true
 position = Vector2(863, 382)
-transactions = Array[ExtResource("17_0d8md")]([SubResource("Resource_86het")])
+transactions = Array[ExtResource("17_0d8md")]([SubResource("Resource_86het"), SubResource("Resource_l5n5r"), SubResource("Resource_gqfas")])
 interaction_type = "shop"
 
 [node name="Objects" type="Node2D" parent="."]
