@@ -5,7 +5,7 @@ var item : Item
 var texture : Texture2D : 
 	set(tex):
 		$DragArea/ItemImage.texture = tex
-var inventory_ref
+var inventory_ref : Inventory
 var area_ref : Area2D
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-extends Panel
+class_name Inventory extends Panel
 
 ## DEPRECATED: Sent to the player to update their status effects when an item in inventory is consumed
 signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
@@ -133,15 +133,14 @@ func generate_item_text(item: Item) -> String:
 	return text
 
 
-func remove_inventory_item_slot(index : int) -> void:
+func remove_inventory_slot(index : int) -> void:
 	if index < 0 or index >= %ItemList.item_count:
 		return
 	
 	items.remove_at(index)
 	%ItemList.remove_item(index)
 
-func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool) -> bool: ## Returns false if not enough items are found for each item in the inventory
-	#TODO: break down into helper funcions?
+func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
 	#Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
 	var inventory_item_infos : Dictionary = {} ## Key : index, Value : id of items in inventory
 	
@@ -153,29 +152,46 @@ func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isR
 			return false
 	
 		#Phase 2: remove items from inventory
-		var isRemoved : bool = false
-		var cur_item_index = 0
-		var cur_qty = qtys[0]
-		for index in inventory_item_infos.keys(): #TEST:Descending order because the size will change if an item is removed from the inventory item list
-			if cur_qty < items[index].qty:
-				items[index].qty -= cur_qty
-			else:
-				remove_inventory_item_slot(index)
-			
-			cur_item_index += 1
-			cur_qty = qtys[cur_item_index]
+		var inventory_indices : Array = inventory_item_infos.keys()
+		inventory_indices.sort()
+		inventory_indices.reverse() #Descending order because the size will change if an item is removed from the inventory item list
 		
+		for inventory_index in inventory_indices:
+			for cur_item_index in range(items_removing.size()):
+				var cur_item = items_removing[cur_item_index]
+				# Find matching IDs
+				if inventory_item_infos[inventory_index] == cur_item.id:
+					var cur_qty = qtys[cur_item_index]
+					if cur_qty < 0:
+						print("error, trying to remove negative quantity of" + cur_item.display_name)
+					if cur_qty == 0: # Nothing to remove, skip to next index.
+						break
+					# Remove item qty from index in inventory
+					var inventory_item = items[inventory_index]
+					if cur_qty < inventory_item.qty:
+						inventory_item.qty -= cur_qty # Only remove some if amount is less than the stack
+						qtys[cur_item_index] = 0
+						break
+					else:
+						remove_inventory_slot(inventory_index)
+						qtys[cur_item_index] -= inventory_item.qty
 		
-		return isRemoved
+		#Confirm that all requested items have been removed from inventory
+		var sum : int = 0
+		for qty in qtys:
+			sum += qty
+		if sum > 0:
+			return false
+		else:
+			return true
 	
-	#If removing all instances of items:
-	for i in range(items.size()-1,0): #Descending so that decreasing array size does not cause out of bound error
-		if i >= items.size(): #index can be greater than size if multiple items are removed from list
+	# If removing all instances of items:
+	for i in range(items.size()-1,0): # Descending so that decreasing array size does not cause out of bound error
+		if i >= items.size(): # Index can be greater than size if multiple items are removed from list
 			continue
 		for item_removing in items_removing:
 			if items[i].id == item_removing.id:
-				remove_inventory_item_slot(i)
-	
+				remove_inventory_slot(i)
 	return true
 
 ##Checks if the inventory has all items and their appropriate amounts. Returns a dictionary where Keys are indices and Values are ids of the items in inventory
@@ -238,7 +254,7 @@ func drag_item(item : Item, index : int):
 	item.qty -= 1
 	%ItemList.set_item_text(index, generate_item_text(item))
 	if item.qty < 1:
-		remove_inventory_item_slot(index)
+		remove_inventory_slot(index)
 	drag_item_instance.item = selected_item
 	
 	drag_item_instance.texture = item.texture
@@ -265,7 +281,7 @@ func consume_item(item : Item, index : int):
 		$CooldownInteract.start()
 	
 	if item.qty <= 1:
-		remove_inventory_item_slot(index)
+		remove_inventory_slot(index)
 	else:
 		item.qty -= 1
 		%ItemList.set_item_text(index, generate_item_text(item))
@@ -301,7 +317,7 @@ func consume_hotbar_item(item : Item):
 			update_status_effects.emit(cur_item.on_consume_effects, cur_item.on_consume_message)
 			is_consumed = true
 			if cur_item.qty <= 1:
-				remove_inventory_item_slot(i)
+				remove_inventory_slot(i)
 				num_items -= 1
 			else:
 				cur_item.qty -= 1

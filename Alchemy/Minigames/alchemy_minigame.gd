@@ -17,7 +17,7 @@ var cur_craft_procedure : Procedure ## List of input actions of the current craf
 var is_crafting := false ## Tracks if the minigame is currently active
 
 #TODO: Determine if craft difficulty could be set dynamically
-@export var input_window_ratio := 0.5 ## The window of acceptable input for each tick. Smaller values means tighter timing
+@export var input_window_ratio := 0.5 ## The window of acceptable input for each tick. Smaller values means tighter timing / harder difficulty
 const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") ##ID for failed craft is 999
 
 
@@ -51,11 +51,11 @@ func _input(event: InputEvent) -> void: # Override in M&P
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
 
-
-func open_window(items: Array[Item]): ## Template used to determine how the minigame should be set up when the window is opened
+## Template used to determine how the minigame should be set up when the window is opened
+func open_window(items: Array[Item]):
 	cur_craft_ingredients = items # Used to remove warning
 
-
+## Closes the minigame window and ensures that the menu group is updated
 func close_window():
 	is_crafting = false
 	visible = false
@@ -65,7 +65,7 @@ func close_window():
 	if get_tree().get_nodes_in_group("menu").is_empty():
 		global.mode = &"default"
 
-
+## Closes the current window and returns to the previous window
 func previous_window():
 	is_crafting = false
 	visible = false
@@ -73,7 +73,7 @@ func previous_window():
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	open_inventory.emit() # Mode gets set by inventory
 
-
+## Initiates the start of an alchemy minigame
 func begin_minigame():
 	%ButtonStart.disabled = true
 	

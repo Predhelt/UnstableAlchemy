@@ -1,6 +1,6 @@
 class_name Transaction extends Resource
 
-@export var id : int #Local id of trade offer for given merchant
+var id : int # Local id of trade offer for given merchant
 
 @export var items_selling : Array[Item]
 @export_range(0,99) var items_selling_amount : Array[int]

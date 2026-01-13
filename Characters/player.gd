@@ -4,7 +4,7 @@ const LABEL_DEFAULT_Y_POS := -60.0 ## Determines the Y offset of the labels abov
 const SIZE_DAMPENER := 0.5 ## Value used to reduce the intensity of effects when size is changed
 
 @onready var animation_tree : AnimationTree = $AnimationTree
-@onready var inventory_ref : Control = %Inventory
+@onready var inventory_ref : Inventory = %Inventory
 @onready var player_camera_ref : Camera2D = %PlayerCamera
 
 var direction := Vector2.ZERO
@@ -73,6 +73,7 @@ func _input(event: InputEvent) -> void:
 func change_player_scale(mult: Vector2):
 	scale *= mult
 	global.player_scale = scale
+	stats[&"mass"] *= mult
 	
 	for node in get_tree().get_nodes_in_group("player_elements"):
 		node.scale *= mult
@@ -109,7 +110,7 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 func update_interactions():
 	if all_interaction_areas:
 		%InteractLabel.text = all_interaction_areas[0].interact_label
-		# TODO: Add outline to the object that will be interacted with
+		# TODO: Add outline to the object that will be interacted with and position the label above the object instead of the player.
 	else:
 		%InteractLabel.text = ""
 
@@ -117,9 +118,9 @@ func update_interactions():
 func execute_interaction():
 	if all_interaction_areas:
 		var cur_interaction = all_interaction_areas[0] # Simple approach
-		match cur_interaction.interact_type: #NOTE: When a type is added or updated, it also needs to be changed in Interactable
+		match cur_interaction.interact_type: # NOTE: When a type is added or updated, it also needs to be changed in Interactable
 			&"print_text" : print(cur_interaction.interact_value)
-			&"context_menu" : cur_interaction.toggle_context_menu(self) #DEPRECATED
+			&"context_menu" : cur_interaction.toggle_context_menu(self) # DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
 			&"talk" : cur_interaction.talk()
 			&"shop" : cur_interaction.shop()
@@ -130,7 +131,7 @@ func _on_tool_updated(tool_name: String) -> void:
 
 func execute_tool():
 	if all_interaction_areas:
-		match selected_tool: #NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
+		match selected_tool: # NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
 			&"hand" : all_interaction_areas[0].grab_object(self)
 			&"blade" : all_interaction_areas[0].cut_object(self)
 			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)

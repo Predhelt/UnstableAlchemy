@@ -29,5 +29,5 @@ func _use_items(): # Overrides the _use_items() function in AlchemyTool
 	
 	begin_craft(result_recipe)
 	
-	#TODO: Make merger minigame
+	#TODO: Make merger minigame?
 	#open_minigame(items)
