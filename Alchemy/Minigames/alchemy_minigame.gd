@@ -97,7 +97,7 @@ func check_results():
 	if product_recipe:
 		product_item = product_recipe.product_item.duplicate()
 		product_item.qty = product_recipe.product_item_amount
-	#TODO: Show effect and resulting item. Give option to craft more?
+	#TODO: Give option to craft more?
 	var effect_instance = item_gained_effect.instantiate()
 			
 	effect_instance.add_item(product_item)

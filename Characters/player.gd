@@ -110,7 +110,7 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 func update_interactions():
 	if all_interaction_areas:
 		%InteractLabel.text = all_interaction_areas[0].interact_label
-		# TODO: Add outline to the object that will be interacted with and position the label above the object instead of the player.
+		# TODO: Add outline to the object that will be interacted with.
 	else:
 		%InteractLabel.text = ""
 

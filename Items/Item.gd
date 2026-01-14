@@ -20,5 +20,3 @@ class_name Item extends Resource
 @export var on_consume_effects : Array[StatusEffect] 
 ## The message that the player emits when the item is consumed, relating to the effects of the item.
 @export var on_consume_message := "" 
-
-#TODO: Research if item instances should be relative or global
