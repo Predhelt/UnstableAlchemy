@@ -5,7 +5,7 @@ extends Panel
 
 var shop_transaction_scene := preload("res://UI/Menu/NPC Shop/shop_transaction.tscn")
 
-@export var transactions : Array[Transaction] ##List of shop transactions available to the player
+var transactions : Array[Transaction] ##List of shop transactions available to the player
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
 
 func _ready() -> void:
@@ -41,8 +41,9 @@ func open_window() -> void:
 		print(get_tree().get_nodes_in_group("menu"))
 		
 		add_shop_transactions() # Populate the shop transactions
-	
-		%ButtonBack.visible = false
+		
+		#TODO: Shop opens from Dialogue, enable back button and configure to go back to Dialogue.
+		%ButtonBack.visible = false 
 		visible = true
 		player.inventory_ref.open_window()
 

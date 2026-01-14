@@ -25,7 +25,7 @@ interact_label = "NPC"
 interact_type = 3
 interact_value = ""
 
-[node name="Label" type="Label" parent="."]
+[node name="Message" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
 anchors_preset = 7
 anchor_left = 0.5

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhvfevmm005fp"]
+[gd_scene load_steps=3 format=3 uid="uid://dhvfevmm005fp"]
 
+[ext_resource type="Script" uid="uid://di7udn24lejc1" path="res://UI/Menu/NPC Dialogue/npc_dialogue.gd" id="1_iho3e"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_buk1c"]
 
 [node name="NPCDialogue" type="Panel"]
@@ -9,6 +10,7 @@ anchor_left = 0.61
 anchor_top = 0.1
 anchor_right = 0.98
 anchor_bottom = 0.9
+script = ExtResource("1_iho3e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -130,3 +132,4 @@ text = "Trade"
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/Container/DialogueBox/VBoxContainer/TradeButton" to="." method="_on_trade_button_pressed"]

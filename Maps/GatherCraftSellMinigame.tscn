@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=36 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_wlq1s"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_2o0j7"]
 [ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://UI/Menu/NPC Shop/npc_shop.tscn" id="3_ie10l"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_sqmy7"]
+[ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://UI/Menu/NPC Dialogue/npc_dialogue.tscn" id="4_86het"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_88txk"]
 [ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_2gpsm"]
 [ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_dhs73"]
@@ -72,6 +73,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="NPCShop" parent="UILayer/MenuLayer" instance=ExtResource("3_ie10l")]
+unique_name_in_owner = true
+visible = false
+
+[node name="NPCDialogue" parent="UILayer/MenuLayer" instance=ExtResource("4_86het")]
 unique_name_in_owner = true
 visible = false
 
@@ -202,6 +207,7 @@ tile_set = ExtResource("15_gqfas")
 [node name="NPC" parent="." instance=ExtResource("16_2o0j7")]
 y_sort_enabled = true
 position = Vector2(863, 382)
+npc_name = "Brindan"
 transactions = Array[ExtResource("17_0d8md")]([SubResource("Resource_86het"), SubResource("Resource_l5n5r"), SubResource("Resource_gqfas")])
 interaction_type = "shop"
 

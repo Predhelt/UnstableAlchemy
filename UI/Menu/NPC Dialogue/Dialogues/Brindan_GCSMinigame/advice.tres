@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=4 format=3 uid="uid://g1ubpti5q1xd"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://UI/Menu/NPC Dialogue/Choice.gd" id="1_02erx"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://UI/Menu/NPC Dialogue/Dialogue.gd" id="2_nnrbc"]
+
+[sub_resource type="Resource" id="Resource_6rgy3"]
+script = ExtResource("1_02erx")
+player_response = "\"Okay, thanks\""
+next_dialogue = &"hello"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("2_nnrbc")
+text = "Sure! To start, you can try equipping your blade and cutting some of those yellow flowers. Then you could sell a couple of the stems to me with some berries and I can perform the saturation if you don't want to attempt it yourself. There is a recipe book lying around that should tell you how to make the saturated stem. You'll need it for a speed potion."
+choices = Array[ExtResource("1_02erx")]([SubResource("Resource_6rgy3")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"
