@@ -9,15 +9,18 @@ class_name NPC extends CharacterBody2D
 # Also, any dialogue window should prevent other menus from opening.
 
 @export var npc_name : String
-@export var transactions : Array[Transaction] ##List of transactions for the NPC shop
 @export_enum("talk", "shop") var interaction_type : String = "talk" ##The type of interaction that occurs upon interacting with the NPC
+@export var dialogue_tree : DialogueTree
+@export var transactions : Array[Transaction] ##List of transactions for the NPC shop
+
 
 func _ready() -> void:
 	$InteractArea.interact_type = interaction_type
+	$InteractArea.interact_label = npc_name
 	%NPCShop.player = %Player
 
 func open_dialogue() -> void:
-	%NPCDialog.open_window(self) ##TODO: Implement open_dialogue
+	%NPCDialogue.open_window(self) ##TODO: Implement open_dialogue
 	# window.open
 
 func close_dialogue() -> void:

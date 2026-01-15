@@ -92,6 +92,7 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+bbcode_enabled = true
 text = "Sample dialogue.
 With multiple lines.
 
@@ -116,7 +117,9 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 0
 theme_override_constants/v_separation = 10
+allow_search = false
 item_count = 5
 item_0/text = "Option 1"
 item_1/text = "Option 2"
@@ -132,4 +135,5 @@ text = "Trade"
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="item_selected" from="VBoxContainer/Container/DialogueBox/VBoxContainer/DialogueOptions" to="." method="_on_dialogue_options_item_selected"]
 [connection signal="pressed" from="VBoxContainer/Container/DialogueBox/VBoxContainer/TradeButton" to="." method="_on_trade_button_pressed"]

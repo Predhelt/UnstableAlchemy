@@ -30,8 +30,8 @@
 [ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="20_blh7c"]
 [ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Items/Merged Ingredients/saturated_stem.tres" id="21_bfu87"]
 [ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="21_x22rh"]
+[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://Items/Potions/cleanse_potion.tres" id="23_bfu87"]
 [ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://Items/Potions/speed_potion.tres" id="24_86het"]
-[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://Items/Potions/normalize_potion.tres" id="25_l5n5r"]
 [ext_resource type="Resource" uid="uid://7we1na1p6l36" path="res://Items/M&P Products/blue_berry_seed.tres" id="25_lj88t"]
 
 [sub_resource type="Resource" id="Resource_86het"]
@@ -44,7 +44,7 @@ metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
 [sub_resource type="Resource" id="Resource_l5n5r"]
 script = ExtResource("17_0d8md")
-items_selling = Array[ExtResource("18_ie10l")]([ExtResource("25_l5n5r")])
+items_selling = Array[ExtResource("18_ie10l")]([ExtResource("23_bfu87")])
 items_selling_amount = Array[int]([1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 

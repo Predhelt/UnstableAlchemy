@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=4 format=3 uid="uid://kqsbgsx4b3xh"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://UI/Menu/NPC Dialogue/Choice.gd" id="1_2egeh"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://UI/Menu/NPC Dialogue/Dialogue.gd" id="2_klung"]
+
+[sub_resource type="Resource" id="Resource_1iaux"]
+script = ExtResource("1_2egeh")
+player_response = "\"Can you give me some advice?\""
+next_dialogue_name = &"advice"
+happenings = Array[String](["res://UI/Menu/NPC Dialogue/NPCs/Brindan_GCSMinigame/Happenings/finished_greeting.gd"])
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("2_klung")
+dialogue_name = &"hello"
+text = "Hello, My name is Brindan. I am known as a senior botanist.
+I can sell you some alchemy supplies or give you some advice. I also have some normalizing potions available for free that can help you go back to normal if you change somehow."
+choices = Array[ExtResource("1_2egeh")]([SubResource("Resource_1iaux")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"
