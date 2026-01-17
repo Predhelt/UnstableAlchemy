@@ -1,19 +1,29 @@
 class_name Player extends CharacterBody2D
 
-const LABEL_DEFAULT_Y_POS := -60.0 ## Determines the Y offset of the labels above the player
-const SIZE_DAMPENER := 0.5 ## Value used to reduce the intensity of effects when size is changed
+## Determines the Y offset of the labels above the player
+const LABEL_DEFAULT_Y_POS := -60.0
+## Value used to reduce the intensity of effects when size is changed
+const SIZE_DAMPENER := 0.5
 
+## The tree determing how different animations connect and transition between each other #FIXME: UNUSED
 @onready var animation_tree : AnimationTree = $AnimationTree
+## Reference to the inventory UI
 @onready var inventory_ref : Inventory = %Inventory
+## Reference to the camera that is being used to follow the player and display the game screen.
 @onready var player_camera_ref : Camera2D = %PlayerCamera
 
+## The direction in 2D space that the character is moving
 var direction := Vector2.ZERO
 
+## The list of status effects that are currently active on the player
 var active_status_effects : Array[StatusEffect]
 
+## The list of interaction areas that overlap with the player's reach
 var all_interaction_areas : Array[Interactable]
+## The time left before the status message disappears
 var status_message_timer := 0.0
 
+## The player's stats that determine interactions with the environment
 var stats = {
 	#&"health" : 100.0, ## health value
 	&"move speed" : 200.0, ## move speed modifier (100 = 1.0*ms)
@@ -21,23 +31,25 @@ var stats = {
 	&"mass" : 100.0, ## determines interactions with environments based on weight
 	#&"range" : 100.0, ## same as CollisionInteract.radius of arms
 }
-@export var known_recipes : Array[Recipe] ## Recipes that are known by the player
-var new_recipes: Array[Recipe] ## Recipes that have not been viewed yet
-
+## List of recipes known by the player
+@export var known_recipes : Array[Recipe]
+## Recipes that have not been viewed yet in the recipe page
+var new_recipes: Array[Recipe]
+## The currently selected tool that the player is holding
 var selected_tool : String
 
-
+## Set up default UI properties when the player is ready
 func _ready() -> void:
 	for recipe in known_recipes:
 		new_recipes.append(recipe)
 	update_interactions()
 	%StatusLabel.text = ""
 
-
+## Every time the player updates, upade the player animations
 func _process(_delta: float) -> void:
 	update_animation_parameters()
 
-
+## Update player position and messages every frame
 func _physics_process(delta: float) -> void:
 	if global.mode == &"default":
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -50,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		status_message_timer -= delta
 		if status_message_timer <= 0:
 			%StatusLabel.text = ""
-
+## TODO: Change animations when certain criteria are met
 func update_animation_parameters() -> void:
 	if(velocity == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
@@ -63,13 +75,13 @@ func update_animation_parameters() -> void:
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Walk/blend_position"] = direction
 
-
+## Handles input action events
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		execute_interaction()
 	if event.is_action_pressed("use_tool"):
 		execute_tool()
-	
+## Changes the scale of the player, including size and mass based on the multiplier provided
 func change_player_scale(mult: Vector2):
 	scale *= mult
 	global.player_scale = scale
@@ -106,7 +118,8 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 	all_interaction_areas.erase(area)
 	update_interactions()
 
-
+## Checks if there are any overlapping interaction areas with the player and
+## Shows information for an overlapping interaction
 func update_interactions():
 	if all_interaction_areas:
 		%InteractLabel.text = all_interaction_areas[0].interact_label
@@ -206,6 +219,7 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 
 
 ## Status effect functions ##
+
 func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]
@@ -244,6 +258,7 @@ func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]
 		if cur_se.id == se.id:
+			# Check if the status effect is already active
 			if se.value == cur_se.value and not is_removing_status:
 				return false
 			

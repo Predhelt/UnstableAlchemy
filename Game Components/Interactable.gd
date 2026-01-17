@@ -8,7 +8,7 @@ signal npc_talk()
 signal npc_shop()
 
 @export var interact_label := "none"
-@export_enum("print_text", "context_menu", "inspect", "talk", "shop") var interact_type
+@export_enum("none", "print_text", "context_menu", "inspect", "talk", "shop") var interact_type
 @export var interact_value := "none"
 var is_menu_open := false
 var context_menu_scene = preload("res://UI/Interactable Object/context_menu.tscn")

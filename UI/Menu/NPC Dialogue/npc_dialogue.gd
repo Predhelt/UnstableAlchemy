@@ -1,19 +1,24 @@
 extends Panel
 
+## Reference to the npc that is determining the dialogue and interactions
 var npc_ref : NPC
+## The currend dialogue that is being used
 var cur_dialogue : Dialogue
 
+## Configures when relevant hotkeys are pressed
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
 
-func toggle_window() -> void:
-	if visible:
-		close_window()
-	else:
-		pass
+
+#func toggle_window() -> void:
+	#if visible:
+		#close_window()
+	#else:
+		#pass
 		#open_window()
 
+## Removes the dialogue window from the menu category and hides the window.
 func close_window() -> void:
 	if global.mode != &"menu" or global.mode == &"minigame":
 		return
@@ -69,7 +74,10 @@ func find_dialogue(dialogue_name : String) -> Dialogue:
 	return null
 
 ## Opens the next page of dialogue based on the choice made by the player.
+## If no window name, then close the dialogue.
 func next_dialogue(choice : Choice) -> void:
+	if choice.next_dialogue_name == "":
+		close_window()
 	set_dialogue(find_dialogue(choice.next_dialogue_name))
 
 ## set the value for the default dialogue page in the default dialogue tree.
@@ -98,12 +106,14 @@ func open_shop() -> void:
 	close_window()
 	npc_ref.open_shop()
 
-
+## Called when a dialogue option is pressed on the NPC Dialogue window.
+## Executes functions that the choice may cause, then opens the next dialogue window, if any.
 func _on_dialogue_options_item_selected(index: int) -> void:
 	var choice : Choice = cur_dialogue.choices[index]
 	execute_happenings(choice.happenings)
 	
 	next_dialogue(choice)
 
+## Called when the button to start trading is pressed
 func _on_trade_button_pressed() -> void:
 	open_shop()

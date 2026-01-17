@@ -8,38 +8,47 @@ class_name NPC extends CharacterBody2D
 #TODO: consider different types of conversations and how to easily swap between them (consider export)
 # Also, any dialogue window should prevent other menus from opening.
 
+## Name of the NPC to be dislpayed. Used by the player and dialogue window to show who this NPC is.
 @export var npc_name : String
-@export_enum("talk", "shop") var interaction_type : String = "talk" ##The type of interaction that occurs upon interacting with the NPC
+## The type of interaction that occurs upon interacting with the NPC
+@export_enum("none", "talk", "shop") var interaction_type : String = "talk" 
+## Stores the list of dialogues that the NPC uses, as well as the default dialogue window that displays when talked to.
 @export var dialogue_tree : DialogueTree
-@export var transactions : Array[Transaction] ##List of transactions for the NPC shop
+## List of transactions for the NPC shop
+@export var transactions : Array[Transaction]
 
+## The time left before the status message disappears
+var status_message_timer := 0.0
 
+## Set references to variables
 func _ready() -> void:
 	$InteractArea.interact_type = interaction_type
 	$InteractArea.interact_label = npc_name
 	%NPCShop.player = %Player
 
+## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
 func open_dialogue() -> void:
-	%NPCDialogue.open_window(self) ##TODO: Implement open_dialogue
-	# window.open
+	%NPCDialogue.open_window(self)
 
-func close_dialogue() -> void:
-	pass
+#func close_dialogue() -> void:
+	#pass
 	# window.resetandclose()
 
+## Opens the NPC shop window after configuring the transactions on the page
 func open_shop() -> void:
-	print("opening window")
-	
-	if transactions.size(): #If the npc has shop transactions
-		if %NPCShop.transactions.size(): #If the shop already has populated the transaction UI
+	if transactions.size(): ## If the npc has shop transactions
+		if %NPCShop.transactions.size(): ## If the shop already has populated the transaction UI
 			%NPCShop.clear_transactions()
 		%NPCShop.transactions = transactions
 		%NPCShop.open_window()
 
-
+## Called when the player interacts with the NPC when the interaction type is "talk".
+## Initiates setting up the npc dialogue window.
 func _on_interact_area_npc_talk() -> void:
 	open_dialogue()
 
+## Called when the player interacts with the NPC when the interaction type is "shop".
+## Initiates setting up the npc shop window.
 func _on_interact_area_npc_shop() -> void:
 	open_shop()
 
