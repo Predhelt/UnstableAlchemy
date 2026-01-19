@@ -82,6 +82,7 @@ func _input(event: InputEvent) -> void:
 		execute_interaction()
 	if event.is_action_pressed("use_tool"):
 		execute_tool()
+
 ## Changes the scale of the player, including size and mass based on the multiplier provided
 func change_player_scale(mult: Vector2):
 	scale *= mult
@@ -226,6 +227,7 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 
 
 ## Status effect functions ##
+
 ## Changes the value of a baseline stat in the sta variable, such as mass or move speed.
 func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):

@@ -213,6 +213,7 @@ position = Vector2(863, 382)
 npc_name = "Brindan"
 dialogue_tree = ExtResource("19_lj88t")
 transactions = Array[ExtResource("17_0d8md")]([SubResource("Resource_86het"), SubResource("Resource_l5n5r"), SubResource("Resource_gqfas")])
+passive_messages = Array[String](["Hey", "Where are we, anyways?"])
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true

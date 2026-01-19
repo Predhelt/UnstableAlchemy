@@ -15,9 +15,13 @@ class_name NPC extends CharacterBody2D
 @export var dialogue_tree : DialogueTree
 ## List of transactions for the NPC shop
 @export var transactions : Array[Transaction]
+## List of messages that are displayed above the character
+@export var passive_messages : Array[String]
+## The time left before the message disappears
+var message_timer := 0.0
+## The time since the last message ended
+var last_message_delta := 0.0
 
-## The time left before the status message disappears
-var status_message_timer := 0.0
 
 ## Set references to variables
 func _ready() -> void:
@@ -25,13 +29,22 @@ func _ready() -> void:
 	$InteractArea.interact_label = npc_name
 	%NPCShop.player = %Player
 
+
+func _process(delta: float) -> void:
+	if message_timer > 0:
+		message_timer -= delta
+		if message_timer <= 0:
+			$Message.text = ""
+	else:
+		last_message_delta += delta
+	## Checks if enough time has passed since the last message to say another message
+	if last_message_delta > 15:
+		last_message_delta = 0.0
+		say_random_message()
+
 ## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
 func open_dialogue() -> void:
 	%NPCDialogue.open_window(self)
-
-#func close_dialogue() -> void:
-	#pass
-	# window.resetandclose()
 
 ## Opens the NPC shop window after configuring the transactions on the page
 func open_shop() -> void:
@@ -40,6 +53,20 @@ func open_shop() -> void:
 			%NPCShop.clear_transactions()
 		%NPCShop.transactions = transactions
 		%NPCShop.open_window()
+
+## Displays a random passive message over the head of the NPC
+func say_random_message():
+	update_message(passive_messages.pick_random())
+
+## Changes the text of the status message and resets the timer for how long the message appears.
+func update_message(message: String):
+	if not message:
+		return
+	$Message.text = message
+	message_timer = 5.0
+
+## 
+
 
 ## Called when the player interacts with the NPC when the interaction type is "talk".
 ## Initiates setting up the npc dialogue window.
