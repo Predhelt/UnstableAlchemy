@@ -2,11 +2,10 @@ class_name NPC extends CharacterBody2D
 
 #TODO: Types of interactions with NPCs:
 # Flavor text / Hint message : does not lock you into a conversation
-# Conversation text
 # Other (scared, runs off / opens a passageway / etc.)
 
 #TODO: consider different types of conversations and how to easily swap between them (consider export)
-# Also, any dialogue window should prevent other menus from opening.
+# Also, any dialogue window should prevent other menus from opening. (ex: the Recipe Menu)
 
 ## Name of the NPC to be dislpayed. Used by the player and dialogue window to show who this NPC is.
 @export var npc_name : String
@@ -51,12 +50,3 @@ func _on_interact_area_npc_talk() -> void:
 ## Initiates setting up the npc shop window.
 func _on_interact_area_npc_shop() -> void:
 	open_shop()
-
-func _on_interact_area_grab():
-	pass
-
-func _on_interact_area_cut():
-	pass
-
-func _on_interact_area_dropper():
-	pass

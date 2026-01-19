@@ -105,12 +105,13 @@ func learn_recipe(r: Recipe) -> bool:
 
 ## Interaction Methods ##
 
+## Triggers when an object's interaction area enters the interaction proximity of the player.
 func _on_interaction_area_entered(area: Interactable) -> void:
 	all_interaction_areas.insert(0, area)
 	update_interactions()
 	# Outline the object that will be interacted with
 
-
+## Triggers when an object's interaction area leaves the interaction proximity of the player
 func _on_interaction_area_exited(area: Interactable) -> void:
 	if area.is_menu_open:
 		area.close_context_menu()
@@ -127,7 +128,7 @@ func update_interactions():
 	else:
 		%InteractLabel.text = ""
 
-
+## Executes functions on the selected interaction area given the current interaction type
 func execute_interaction():
 	if all_interaction_areas:
 		var cur_interaction = all_interaction_areas[0] # Simple approach
@@ -138,10 +139,11 @@ func execute_interaction():
 			&"talk" : cur_interaction.talk()
 			&"shop" : cur_interaction.shop()
 
-
+## Triggers when the tool type is changed. Sets selected_tool as the tool type that was changed.
 func _on_tool_updated(tool_name: String) -> void:
 	selected_tool = tool_name
 
+## Executes functions on the selected interaction area given the current tool selected.
 func execute_tool():
 	if all_interaction_areas:
 		match selected_tool: # NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
@@ -149,13 +151,15 @@ func execute_tool():
 			&"blade" : all_interaction_areas[0].cut_object(self)
 			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
 
-## DEPRECATED
+### DEPRECATED
 func _on_inventory_update_status_effects(on_consume_effects: Array[StatusEffect], on_consume_message: String) -> void:
 	update_status_effects(on_consume_effects, on_consume_message)
-##
+###
 
 ## Status Effect Handler Methods ##
 
+## Goes through the list of statuses given and adds or updates the active status effects.
+## Then, the status message is set above the player if any statuses were successfully added.
 func update_status_effects(statuses: Array[StatusEffect], message: String):
 	# Adds and/or updates the given status effects
 	var is_added = false
@@ -167,6 +171,7 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 	else:
 		update_status_message("...")
 
+## Helper function that applies the effects of the status effect to the player based on the effect name.
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
 		&"move speed" : if _change_base_stat(se, &"move speed"):
@@ -179,13 +184,14 @@ func _apply_status_effect(se: StatusEffect) -> bool:
 			return true
 	return false
 
-
+## Changes the text of the status message and resets the timer for how long the message appears.
 func update_status_message(message: String):
 	if not message:
 		message = "..."
 	%StatusLabel.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
 
+## Updates the duration of an active status effect based on the amount of time that has passed.
 func _update_active_status_effect(delta : float) -> void:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		var se = active_status_effects[i]
@@ -194,16 +200,16 @@ func _update_active_status_effect(delta : float) -> void:
 			if se.duration <= 0:
 				remove_status_effect(se)
 
-
+## Removes a given status effect and reverts the changes to the character.
+## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
-	var is_removed := false
 	match se.effect:
-		&"move speed" : if _change_base_stat(se, &"move speed", true):
-			is_removed = true
-		&"grow" : if _grow_player(se, true):
-			is_removed = true
-	return is_removed
+		&"move speed" : return _change_base_stat(se, &"move speed", true)
+		&"grow" : return _grow_player(se, true)
+	return false
 
+## Updates the images and progress bars on the status bar UI of the given status effect.
+## If is_removing_status is true, the status effect will be removed from the status bar.
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false):
 	if index != -1:
 		active_status_effects.remove_at(index)
@@ -219,7 +225,7 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 
 
 ## Status effect functions ##
-
+## Changes the value of a baseline stat in the sta variable, such as mass or move speed.
 func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]
@@ -240,6 +246,7 @@ func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status 
 	update_status_bar(se)
 	return true
 
+## Removes all status effects that have a limited duration
 func _cleanse_status_effects() -> bool:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration != -1:
@@ -247,6 +254,7 @@ func _cleanse_status_effects() -> bool:
 			
 	return true
 
+## Removes all status effects that last indefinitely.
 func _normalize_status_effects() -> bool:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration == -1:
@@ -254,6 +262,7 @@ func _normalize_status_effects() -> bool:
 			
 	return true
 
+## Increases the size of the player, which also changes other attributes of the character relative to size.
 func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]

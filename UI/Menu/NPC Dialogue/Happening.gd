@@ -1,5 +1,6 @@
 @abstract class_name Happening extends Node
 
+## Reference to the npc's Dialogue Tree
 var ref_npc_dialogue
 
 ## Sets the reference to the NPCDialogue scene for proper function context

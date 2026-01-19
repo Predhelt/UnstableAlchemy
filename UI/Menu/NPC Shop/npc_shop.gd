@@ -1,27 +1,30 @@
-#This node allows an npc to trade items with the player.
+## This node allows an npc to trade items with the player.
 extends Panel
-
-@onready var player : Player = %Player ##Reference to player
-
+## Reference to player
+@onready var player : Player = %Player
+## Scene that sets up the transaction UI for the shop.
 var shop_transaction_scene := preload("res://UI/Menu/NPC Shop/shop_transaction.tscn")
-
-var transactions : Array[Transaction] ##List of shop transactions available to the player
+## List of shop transactions available to the player.
+var transactions : Array[Transaction]
+## Visual effect that occurs when an item is gained in the shop from a transaction.
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
-
+## Initializes the shop window.
 func _ready() -> void:
 	%WindowName.text = "Shop"
 
-
+## Handles input action events.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		close_window()
 
+## Toggles the visibility of the window.
 func toggle_window() -> void:
 	if visible:
 		close_window()
 	else:
 		open_window()
 
+## Closes the NPC Shop UI window and removes it from the window group.
 func close_window() -> void:
 	if global.mode != &"menu" or global.mode == &"minigame":
 		return
@@ -33,24 +36,25 @@ func close_window() -> void:
 		global.mode = &"default"
 	
 
-
+## Opens the NPC Shop UI window and adds it to the window group.
 func open_window() -> void:
 	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
-		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
+		global.mode = &"menu" ## Shares mode with inventory, minigame, and help menu
 		add_to_group("menu")
 		print(get_tree().get_nodes_in_group("menu"))
 		
 		add_shop_transactions() # Populate the shop transactions
 		
-		#TODO: Shop opens from Dialogue, enable back button and configure to go back to Dialogue.
+		#TODO: If shop opens from Dialogue, enable back button and configure to go back to Dialogue.
 		%ButtonBack.visible = false 
 		visible = true
 		player.inventory_ref.open_window()
 
+## Adds the stored list of transactions to the shop UI.
 func add_shop_transactions() -> void:
 	var cur_transaction_id := 0
 	for transaction in transactions: #NOTE: Transactions are assigned in interacted NPC
-		#Add items UI to a transaction UI, then add each transaction UI to the shop UI.
+		## Add items UI to a transaction UI, then add each transaction UI to the shop UI.
 		transaction.id = cur_transaction_id
 		var cur_transaction_scene : Button = shop_transaction_scene.instantiate()
 		cur_transaction_scene.name = str(transaction.id)
@@ -64,18 +68,22 @@ func add_shop_transactions() -> void:
 		%ShopTransactions.add_child(cur_transaction_scene)
 		cur_transaction_id += 1
 
+## Clears the list of transactions from the shop.
 func clear_transactions() -> void:
 	for t in %ShopTransactions.get_children():
 		t.queue_free()
 
+## Triggers when the close button is pressed on the shop window. Closes the shop UI.
 func _on_button_close_pressed() -> void:
 	close_window()
 
-
+## TODO: Triggers when the back button is pressed on the shop window. Opens the previous window.
 func _on_button_back_pressed() -> void:
 	close_window()
 	open_window()
-	
+
+## Triggers when a transaction is pressed at the given id. Removes the requested items from
+## the player's inventory and adds the offered items to the player's inventory.
 func _on_transaction_attempt(id : int) -> void:
 	var cur_transaction : Transaction = null
 	for t in transactions:
@@ -87,12 +95,12 @@ func _on_transaction_attempt(id : int) -> void:
 		print("no transaction found with id " + str(id))
 		return
 	
-	# Remove items from inventory
+	## Remove items from inventory
 	var cur_items_buying = cur_transaction.items_buying.duplicate() # "remove_inventory_items" changes properties of the transaction. This prevents overwriting transaction quantities.
 	var cur_items_buying_amount = cur_transaction.items_buying_amount.duplicate()
 	if (cur_items_buying.is_empty() or
 		player.inventory_ref.remove_inventory_items(cur_items_buying, cur_items_buying_amount)):
-		# Add items to inventory from merchant
+		## Add items to inventory from merchant
 		var effect_instance := item_gained_effect.instantiate()
 		for i in range(cur_transaction.items_selling.size()):
 			var cur_item : Item = cur_transaction.items_selling[i].duplicate()
@@ -103,7 +111,7 @@ func _on_transaction_attempt(id : int) -> void:
 			
 		effect_instance.scale = Vector2(1.3, 1.3)
 		self.add_child(effect_instance)
-		# Check if player has enough items for another transaction (disable if not enough items)
+		## Check if player has enough items for another transaction (disable if not enough items)
 		if(player.inventory_ref.has_inventory_items(cur_transaction.items_buying, cur_transaction.items_buying_amount) == {}
 				and not cur_transaction.items_buying.is_empty()):
 			var cur_transaction_scene : Button = %ShopTransactions.get_child(id) # Transaction ID = scene index due to how the window is opened.

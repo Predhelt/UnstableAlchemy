@@ -80,7 +80,7 @@ func next_dialogue(choice : Choice) -> void:
 		close_window()
 	set_dialogue(find_dialogue(choice.next_dialogue_name))
 
-## set the value for the default dialogue page in the default dialogue tree.
+## Set the value for the default dialogue page in the default dialogue tree.
 func set_default_dialogue(dialogue_name : String) -> void:
 	var dialogue : Dialogue = find_dialogue(dialogue_name)
 	if not dialogue:
@@ -88,15 +88,15 @@ func set_default_dialogue(dialogue_name : String) -> void:
 		return
 	npc_ref.dialogue_tree.default_dialogue = dialogue
 
-## Executes the each Happening, which 
+## Executes the each Happening, which is a custom script based on the dialogue choice made.
 func execute_happenings(h_paths : Array[String]) -> bool:
-	for h_path : String in h_paths: # For each file path,
-		var h_script : Node = load(h_path).new() # generate the script
+	for h_path : String in h_paths: ## For each file path,
+		var h_script : Node = load(h_path).new() ## generate the script
 		if not h_script:
 			print("Error: "+h_path+"Not a valid file path")
 			return false
-		h_script.set_npc_dialogue_ref(self) # Set the context for the script
-		h_script.execute_functions() # Execute any functions associated with the script
+		h_script.set_npc_dialogue_ref(self) ## Set the context for the script
+		h_script.execute_functions() ## Execute any functions associated with the script
 		h_script.queue_free()
 	return true
 
