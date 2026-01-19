@@ -1,3 +1,4 @@
+## The playable character
 class_name Player extends CharacterBody2D
 
 ## Determines the Y offset of the labels above the player
