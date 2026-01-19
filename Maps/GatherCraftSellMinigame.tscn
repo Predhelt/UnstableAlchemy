@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="18_6y0gm"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="18_ie10l"]
 [ext_resource type="Resource" uid="uid://dtmha6gayo6if" path="res://Items/Gatherable/flower_stem.tres" id="19_44jw4"]
-[ext_resource type="Resource" uid="uid://dsr80xapfhdae" path="res://UI/Menu/NPC Dialogue/NPCs/Brindan_GCSMinigame/dt_brindan_gcsm.tres" id="19_lj88t"]
+[ext_resource type="Resource" uid="uid://dsr80xapfhdae" path="res://NPCs/Brindan_GCSMinigame/dt_brindan_gcsm.tres" id="19_lj88t"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="19_myx5p"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_flakes.tres" id="20_0ehhb"]
 [ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="20_blh7c"]
@@ -64,6 +64,20 @@ metadata/_edit_lock_ = true
 layer = 10
 
 [node name="MenuLayer" type="CanvasLayer" parent="UILayer"]
+layer = 3
+
+[node name="SettingsMenu" parent="UILayer/MenuLayer" instance=ExtResource("4_88txk")]
+unique_name_in_owner = true
+auto_translate_mode = 1
+visible = false
+
+[node name="OptionsMenu" parent="UILayer/MenuLayer" instance=ExtResource("3_sqmy7")]
+unique_name_in_owner = true
+visible = false
+
+[node name="HelpMenu" parent="UILayer/MenuLayer" instance=ExtResource("5_2gpsm")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Inventory" parent="UILayer/MenuLayer" instance=ExtResource("1_wlq1s")]
 unique_name_in_owner = true
@@ -81,20 +95,8 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="OptionsMenu" parent="UILayer/MenuLayer" instance=ExtResource("3_sqmy7")]
-unique_name_in_owner = true
-visible = false
-
-[node name="SettingsMenu" parent="UILayer/MenuLayer" instance=ExtResource("4_88txk")]
-unique_name_in_owner = true
-auto_translate_mode = 1
-visible = false
-
-[node name="HelpMenu" parent="UILayer/MenuLayer" instance=ExtResource("5_2gpsm")]
-unique_name_in_owner = true
-visible = false
-
 [node name="MinigameLayer" type="CanvasLayer" parent="UILayer"]
+layer = 2
 
 [node name="MinigameCauldron" parent="UILayer/MinigameLayer" instance=ExtResource("6_dhs73")]
 unique_name_in_owner = true

@@ -34,12 +34,13 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		toggle_window() ## Toggles whether the inventory is displayed or not
-	if event.is_action_pressed("ui_cancel"):
-		close_window()
+	#DEPRECATED: Handled in global script
+	#if event.is_action_pressed("ui_cancel"):
+		#close_window()
 	#if event.is_action_pressed("recipe_book"):
 		#close_window()
 
-## Toggles the visibility of the window. If it is close, it will opena and vice versa.
+## Toggles the visibility of the window. If it is close, it will open and vice versa.
 func toggle_window() -> void:
 	if visible:
 		close_window()
@@ -49,27 +50,38 @@ func toggle_window() -> void:
 ## Closes the window and removes it from the active window group.
 func close_window() -> void:
 	if global.mode == &"menu":
-		remove_from_group("menu")
-		print(get_tree().get_nodes_in_group("menu"))
-		if get_tree().get_nodes_in_group("menu").is_empty():
+		#remove_from_group("menu")
+		#print(get_tree().get_nodes_in_group("menu"))
+		#if get_tree().get_nodes_in_group("menu").is_empty():
+		global.left_window = null
+		if not global.right_window and not global.center_window:
 			global.mode = &"default"
 		visible = false
 	
 	elif global.mode == &"dropper":
-		global.mode = &"default"
+		global.left_window = null
+		global.mode = &"default" ## There should be no other UI windows open
 		visible = false
 
 ## Opens the window and adds it to the active window group.
-func open_window() -> void:
-	if global.mode == &"default" or global.mode == &"menu":
+func open_window() -> bool:
+	if global.left_window or global.center_window or visible:
+		return false ## Do not open, there is already a window open in the area.
+	if global.mode == &"default":
 		global.mode = &"menu"
-		add_to_group("menu")
-		print(get_tree().get_nodes_in_group("menu"))
+	if global.mode == &"menu":
+		#add_to_group("menu")
+		#print(get_tree().get_nodes_in_group("menu"))
+		global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
 		visible = true
+		return true
 	elif global.mode == &"dropper":
+		global.left_window = self
 		%WindowName.text = "Select an Item for the Dropper"
 		visible = true
+		return true
+	return false
 
 ## Adds an item to the inventory.
 func add_inventory_item(item : Item) -> bool:
@@ -371,14 +383,16 @@ func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 ## Adds the inventory to the window group and updates the window title.
 func _on_open_inventory() -> void:
 	global.mode = &"menu"
-	add_to_group("menu")
+	#add_to_group("menu")
+	global.left_window = self
 	%WindowName.text = "Inventory and Crafting"
 	visible = true
 
-## Triggers when the inventory window is closed.
+## Triggers to close the inventory window.
 ## Removes the inventory from the window group and hides the window.
 func _on_close_inventory() -> void:
-	remove_from_group("menu")
+	#remove_from_group("menu")
+	global.left_window = null
 	visible = false # Mode is set by the object that emitted the signal
 
 ## Triggers when the button used to close the window is pressed, which closes the window.

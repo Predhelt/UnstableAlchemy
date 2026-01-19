@@ -1,35 +1,47 @@
 extends Panel
 
+## Handles input action events.
+#func _input(event: InputEvent) -> void:
+	#DEPRECATED: Handled in global script
+	#if event.is_action_pressed("ui_cancel"):
+		#match global.mode:
+			##&"default" : open_window()
+			#&"menu" : close_window()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		match global.mode:
-			#&"default" : open_window()
-			&"menu" : close_window()
-
+## Changes the window from opened to closed and vice versa.
 func toggle_window() -> void:
 	if visible:
 		close_window()
 	else:
 		open_window()
 
+## Hides the window after removing it from the appropriate group.
 func close_window() -> void:
 	#if global.mode == &"help":
-	remove_from_group("menu")
-	print(get_tree().get_nodes_in_group("menu"))
-	if get_tree().get_nodes_in_group("menu").is_empty():
+	#remove_from_group("menu")
+	#print(get_tree().get_nodes_in_group("menu"))
+	#if get_tree().get_nodes_in_group("menu").is_empty():
+	global.center_window = null
+	if not global.right_window and not global.left_window:
 		global.mode = &"default"
 	visible = false
 
-func open_window() -> void:
-	if (global.mode == &"default" or global.mode == &"menu") and not visible:
+func open_window() -> bool:
+	if global.center_window or visible:
+		print("Inventory could not be open, " + global.center_window.name + " window already open")
+		return false ## Do not open, there is already a window open in the area.
+	if global.mode == &"default":
 		global.mode = &"menu"
-		add_to_group("menu")
-		print(get_tree().get_nodes_in_group("menu"))
+	if global.mode == &"menu":
+		#add_to_group("menu")
+		#print(get_tree().get_nodes_in_group("menu"))
+		global.center_window = self
 		%WindowName.text = "Help: General"
 		visible = true
 		
 		open_page_general()
+		return true
+	return false
 
 
 func open_page_general():

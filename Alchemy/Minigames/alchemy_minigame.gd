@@ -1,28 +1,38 @@
 class_name AlchemyMinigame extends Panel
-#TODO: Add comments to functions
-
-signal item_produced(item: Item, recipe : Recipe) ## Signal sent when the item is completed and added to the inventory
+#TODO: Add documentation
+## Signal sent when the item is completed and added to the inventory.
+signal item_produced(item: Item, recipe : Recipe)
+## Sends signal to open the inventory window.
 signal open_inventory()
-
-var minigame_buttons : Array[Button] ## Buttons used during the minigame. Set by inherited class.
-var tool_ref : Control ## Reference to associated inventory tool. Set by Inventory.
-
+## Buttons used during the minigame. Set by inherited class.
+var minigame_buttons : Array[Button]
+## Reference to associated inventory tool. Set by Inventory.
+var tool_ref : Control
+## Visual effect that occurs when an item is added to the inventory.
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
+## UI Slider that displays the progress of the minigame.
 @onready var slider := %MinigameProgressBar/ProgressSlider
-@onready var tick_value : float = float(slider.max_value)/(slider.tick_count-1) ##The value of each tick
-var recipes : Array[Recipe] ## List of recipes using the associated tool
+##The value of each tick
+@onready var tick_value : float = float(slider.max_value)/(slider.tick_count-1)
+## List of recipes using the associated tool
+var recipes : Array[Recipe]
+## Item used in the recipe
+var cur_craft_ingredients : Array[Item]
+## List of input actions of the current craft attempt
+var cur_craft_procedure : Procedure 
+## Tracks if the minigame is currently active
+var is_crafting := false 
 
-var cur_craft_ingredients : Array[Item] ## Item used in the recipe
-var cur_craft_procedure : Procedure ## List of input actions of the current craft attempt
-var is_crafting := false ## Tracks if the minigame is currently active
-
-#TODO: Determine if craft difficulty could be set dynamically
-@export var input_window_ratio := 0.5 ## The window of acceptable input for each tick. Smaller values means tighter timing / harder difficulty
-const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") ##ID for failed craft is 999
+#TODO: Determine if craft difficulty could be set dynamically by the player / circumstance
+## The window of acceptable input for each tick.
+## Smaller values means tighter timing / harder difficulty
+@export var input_window_ratio := 0.5
+## Recipe that represents the craft item when a craft attempt fails.
+const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") #NOTE: ID for failed craft is 999
 
 
 func _process(delta: float) -> void:
-	for i in len(minigame_buttons): # Set hotkey text for each button
+	for i in len(minigame_buttons): ## Set hotkey text for each button
 		minigame_buttons[i].text = ("(" +
 			InputMap.action_get_events("minigame_cauldron_action_"+str(i+1))[0].as_text().replace(' (Physical)','') + ")")
 	
@@ -36,7 +46,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void: # Override in M&P
 	if global.mode != &"minigame" or not visible:
-		return # No input events should catch on wrong mode
+		return ## No input events should catch on wrong mode
 	if is_crafting and recipes[0].tool_used == "cauldron":
 		if event.is_action_pressed("minigame_cauldron_action_1") and not minigame_buttons[0].disabled:
 			set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)
@@ -47,9 +57,9 @@ func _input(event: InputEvent) -> void: # Override in M&P
 		elif event.is_action_pressed("minigame_cauldron_action_4") and not minigame_buttons[3].disabled:
 			set_input_action("equipment", 0, minigame_buttons[3].icon) # Bellows
 		pass
-	
-	if event.is_action_pressed("ui_cancel"):
-		close_window()
+	#DEPRECATED: Handled in global script
+	#if event.is_action_pressed("ui_cancel"):
+		#close_window()
 
 ## Template used to determine how the minigame should be set up when the window is opened
 func open_window(items: Array[Item]):
@@ -59,17 +69,20 @@ func open_window(items: Array[Item]):
 func close_window():
 	is_crafting = false
 	visible = false
-	remove_from_group("menu")
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
-	print(get_tree().get_nodes_in_group("menu"))
-	if get_tree().get_nodes_in_group("menu").is_empty():
+	#remove_from_group("menu")
+	#print(get_tree().get_nodes_in_group("menu"))
+	#if get_tree().get_nodes_in_group("menu").is_empty():
+	global.left_window = null ## This window shows up in the center of the screen
+	if not global.center_window and not global.right_window:
 		global.mode = &"default"
 
 ## Closes the current window and returns to the previous window
 func previous_window():
 	is_crafting = false
 	visible = false
-	remove_from_group("menu")
+	#remove_from_group("menu")
+	global.left_window = null
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	open_inventory.emit() # Mode gets set by inventory
 

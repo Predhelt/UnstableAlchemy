@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcwfgisnvhr3s"]
 
 [ext_resource type="Script" uid="uid://birfxx8f7k7lf" path="res://UI/Menu/NPC Shop/npc_shop.gd" id="1_fogeq"]
-[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_lkond"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_lkond"]
 
 [node name="NPCShop" type="Panel"]
 clip_contents = true

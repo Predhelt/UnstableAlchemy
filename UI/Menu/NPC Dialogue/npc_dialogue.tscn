@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhvfevmm005fp"]
 
 [ext_resource type="Script" uid="uid://di7udn24lejc1" path="res://UI/Menu/NPC Dialogue/npc_dialogue.gd" id="1_iho3e"]
-[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_buk1c"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_buk1c"]
 
 [node name="NPCDialogue" type="Panel"]
 clip_contents = true

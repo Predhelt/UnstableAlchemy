@@ -161,7 +161,7 @@ func open_minigame(mg_items: Array[Item]):
 	minigame_ref.open_window(mg_items)
 
 
-func begin_craft(result_recipe: Recipe): ##NOTE: Deprecate when merger is using minigame
+func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using minigame
 	if not result_recipe.product_item:
 		print("Error: No product item for recipe!")
 		return

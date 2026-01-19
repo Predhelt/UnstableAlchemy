@@ -6,9 +6,10 @@ var npc_ref : NPC
 var cur_dialogue : Dialogue
 
 ## Configures when relevant hotkeys are pressed
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		close_window()
+#func _input(event: InputEvent) -> void:
+	#DEPRECATED: Handled in global script
+	#if event.is_action_pressed("ui_cancel"):
+		#close_window()
 
 
 #func toggle_window() -> void:
@@ -24,29 +25,35 @@ func close_window() -> void:
 		return
 	
 	visible = false
-	remove_from_group("menu")
-	print(get_tree().get_nodes_in_group("menu"))
-	if get_tree().get_nodes_in_group("menu").is_empty():
+	#remove_from_group("menu")
+	#print(get_tree().get_nodes_in_group("menu"))
+	#if get_tree().get_nodes_in_group("menu").is_empty():
+	global.right_window = null
+	if not global.left_window and not global.center_window:
 		global.mode = &"default"
 
-## Opens window using reference to the NPC that opened the window to get the proper Dialogue and shop information
-func open_window(npc : NPC) -> void:
+## Opens window using reference to the NPC that opened the window 
+## to get the proper Dialogue and shop information
+func open_window(npc : NPC) -> bool:
 	if not npc:
 		print("Error, no npc found.")
-		return
-	
-	npc_ref = npc
-	%WindowName.text = npc_ref.npc_name
-	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
-		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
-		add_to_group("menu")
-		print(get_tree().get_nodes_in_group("menu"))
-		
+		return false
+	if global.right_window or global.center_window or visible:
+		return false
+	if global.mode == &"default" or global.mode == &"minigame":
+		global.mode = &"menu"
+	if global.mode == &"menu":
+		#add_to_group("menu")
+		#print(get_tree().get_nodes_in_group("menu"))
+		global.right_window = self
+		npc_ref = npc
+		%WindowName.text = npc_ref.npc_name
 		set_dialogue(npc_ref.dialogue_tree.default_dialogue)
-		
 		
 		%ButtonBack.visible = false
 		visible = true
+		return true
+	return false
 
 ## Set up the dialogue page
 func set_dialogue(dialogue : Dialogue) -> void:
@@ -89,7 +96,7 @@ func set_default_dialogue(dialogue_name : String) -> void:
 	npc_ref.dialogue_tree.default_dialogue = dialogue
 
 ## Executes the each Happening, which is a custom script based on the dialogue choice made.
-func execute_happenings(h_paths : Array[String]) -> bool:
+func execute_happenings(h_paths : Array[String]) -> bool: #NOTE: Choices point to file paths which can cause happenings to return null if file path changes.
 	for h_path : String in h_paths: ## For each file path,
 		var h_script : Node = load(h_path).new() ## generate the script
 		if not h_script:

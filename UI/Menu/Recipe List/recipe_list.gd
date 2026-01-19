@@ -22,8 +22,9 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("recipe_book"):
 		toggle_window()
-	if event.is_action_pressed("ui_cancel"):
-		close_window()
+	#DEPRECATED: Handled in global script
+	#if event.is_action_pressed("ui_cancel"):
+		#close_window()
 	#if event.is_action_pressed("inventory"):
 		#close_window()
 
@@ -34,24 +35,28 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode != &"menu" or global.mode == &"minigame":
+	if global.mode != &"menu" and global.mode != &"minigame":
 		return
 	
 	visible = false
-	remove_from_group("menu")
-	print(get_tree().get_nodes_in_group("menu"))
-	if get_tree().get_nodes_in_group("menu").is_empty():
+	#remove_from_group("menu")
+	#print(get_tree().get_nodes_in_group("menu"))
+	#if get_tree().get_nodes_in_group("menu").is_empty():
+	global.right_window = null
+	if not global.left_window and not global.center_window:
 		global.mode = &"default"
 	
 	for recipe in player.known_recipes:
 		%RecipeItems.clear()
 
 
-func open_window() -> void:
+func open_window() -> bool:
+	if global.right_window or global.center_window:
+		return false
 	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
 		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
-		add_to_group("menu")
-		print(get_tree().get_nodes_in_group("menu"))
+		#add_to_group("menu")
+		#print(get_tree().get_nodes_in_group("menu"))
 		
 		%ProductDetails.visible = false
 		for child in %ProcedureList.get_children(): # Remove all children
@@ -67,7 +72,10 @@ func open_window() -> void:
 		%RecipeItems.visible = true
 	
 		%ButtonBack.visible = false
+		global.right_window = self
 		visible = true
+		return true
+	return false
 
 
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:

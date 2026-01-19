@@ -38,8 +38,9 @@ func _input(event: InputEvent) -> void: # Override in M&P
 			select_button(%ButtonRight)
 		return # No more input events if minigame is active
 	
-	if event.is_action_pressed("ui_cancel"):
-		close_window()
+	#DEPRECATED: Handled in global script
+	#if event.is_action_pressed("ui_cancel"):
+		#close_window()
 
 ## Feedback effects on the associated button when a minigame action occurs
 func select_button(button: Button):
@@ -141,10 +142,11 @@ func open_window(items: Array[Item]):
 		tb.texture = global.blank_texture
 	
 	%WindowName.text = "Mortar and Pestle"
+	global.left_window = self
 	visible = true
 	global.mode = &"minigame"
-	add_to_group("menu")
-	print(get_tree().get_nodes_in_group("menu"))
+	#add_to_group("menu")
+	#print(get_tree().get_nodes_in_group("menu"))
 
 
 func _on_button_start_pressed() -> void:

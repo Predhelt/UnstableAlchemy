@@ -13,9 +13,10 @@ func _ready() -> void:
 	%WindowName.text = "Shop"
 
 ## Handles input action events.
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		close_window()
+#func _input(event: InputEvent) -> void:
+	#DEPRECATED: Handled in global script
+	#if event.is_action_pressed("ui_cancel"):
+		#close_window()
 
 ## Toggles the visibility of the window.
 func toggle_window() -> void:
@@ -30,25 +31,32 @@ func close_window() -> void:
 		return
 	
 	visible = false
-	remove_from_group("menu")
-	print(get_tree().get_nodes_in_group("menu"))
-	if get_tree().get_nodes_in_group("menu").is_empty():
+	#remove_from_group("menu")
+	#print(get_tree().get_nodes_in_group("menu"))
+	#if get_tree().get_nodes_in_group("menu").is_empty():
+	global.right_window = null
+	if not global.left_window and not global.center_window:
 		global.mode = &"default"
 	
 
 ## Opens the NPC Shop UI window and adds it to the window group.
-func open_window() -> void:
-	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
+func open_window() -> bool:
+	if global.right_window or global.center_window:
+		return false
+	if global.mode == &"default" or global.mode == &"minigame":
 		global.mode = &"menu" ## Shares mode with inventory, minigame, and help menu
-		add_to_group("menu")
-		print(get_tree().get_nodes_in_group("menu"))
-		
+	if global.mode == &"menu":
+		#add_to_group("menu")
+		#print(get_tree().get_nodes_in_group("menu"))
+		global.right_window = self
 		add_shop_transactions() # Populate the shop transactions
 		
 		#TODO: If shop opens from Dialogue, enable back button and configure to go back to Dialogue.
+		player.inventory_ref.open_window()
 		%ButtonBack.visible = false 
 		visible = true
-		player.inventory_ref.open_window()
+		return true
+	return false
 
 ## Adds the stored list of transactions to the shop UI.
 func add_shop_transactions() -> void:

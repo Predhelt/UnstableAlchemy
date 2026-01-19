@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://UI/Menu/Inventory/Inventory.gd" id="1_hj1xf"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="2_jf8xj"]
-[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_tx3c8"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_tx3c8"]
 [ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://Alchemy/Containers/cauldron.tscn" id="3_016ij"]
 [ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://Items/Potions/grow_potion.tres" id="3_stbo6"]
 [ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://Alchemy/Containers/mortar_pestle.tscn" id="4_0n6gb"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6hoi1tayrkpi" path="res://Effects/item_gained_container.gd" id="1_5h6dl"]
 [ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://Art/UAPrototype/Ingredients/Inventory/herb-green-leaf.png" id="1_274cj"]
-[ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://Text/DescriptionLabel.tres" id="2_l7xkv"]
+[ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://Art/Text/DescriptionLabel.tres" id="2_l7xkv"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
 script = ExtResource("1_5h6dl")

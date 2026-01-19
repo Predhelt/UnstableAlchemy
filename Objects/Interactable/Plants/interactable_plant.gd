@@ -47,6 +47,7 @@ func get_cur_folder_path() -> String:
 func _on_object_inspected() -> void:
 	inspect_object()
 	
+#DEPRECATED: No way to inspect object and open inspection panel
 func inspect_object():
 	
 	var inspection_panel = find_child("InspectionPanel")

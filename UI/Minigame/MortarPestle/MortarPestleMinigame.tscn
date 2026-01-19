@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://UI/Minigame/MortarPestle/mortar_pestle_minigame.gd" id="1_vo0bl"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://UI/Minigame/MinigameProgressBar.tscn" id="2_70xyk"]
-[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Text/WindowLabel.tres" id="2_aqc0h"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_aqc0h"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="4_r2g22"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="5_eoa2f"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="6_1mow8"]

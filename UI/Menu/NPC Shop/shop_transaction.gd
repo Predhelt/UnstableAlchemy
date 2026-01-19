@@ -17,7 +17,7 @@ func set_transaction(transaction : Transaction):
 	
 	if transaction.items_buying_amount.size() == 0:
 		var no_item_scene : Label = Label.new()
-		no_item_scene.text = "None"
+		no_item_scene.text = "Nothing"
 		%BuyingContainer.add_child(no_item_scene)
 	else:
 		## index of item the merchant is buying in the transaction

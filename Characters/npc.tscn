@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ysnbvkn4ogwk"]
 
-[ext_resource type="Script" uid="uid://cmarx5wmfetow" path="res://npc.gd" id="1_4ofvd"]
+[ext_resource type="Script" uid="uid://cmarx5wmfetow" path="res://Characters/npc.gd" id="1_4ofvd"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://Art/UAPrototype/Characters/npc-robe.png" id="2_ldphk"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="3_8728q"]
 
