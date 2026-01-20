@@ -39,9 +39,6 @@ func close_window() -> void:
 		return
 	
 	visible = false
-	#remove_from_group("menu")
-	#print(get_tree().get_nodes_in_group("menu"))
-	#if get_tree().get_nodes_in_group("menu").is_empty():
 	global.right_window = null
 	if not global.left_window and not global.center_window:
 		global.mode = &"default"
@@ -55,8 +52,6 @@ func open_window() -> bool:
 		return false
 	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
 		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
-		#add_to_group("menu")
-		#print(get_tree().get_nodes_in_group("menu"))
 		
 		%ProductDetails.visible = false
 		for child in %ProcedureList.get_children(): # Remove all children
@@ -87,7 +82,7 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	if recipe in player.new_recipes:
 		player.new_recipes.erase(recipe)
 	
-	# Add each procedure to create the associated recipe
+	## Add each procedure to create the associated recipe
 	for r in player.known_recipes:
 		if r.product_item.id != recipe.product_item.id:
 			continue
@@ -181,7 +176,7 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 	var procedure_icons := recipe_procedure_icons.instantiate()
 	
 	for i in len(recipe.procedure.input_actions): #NOTE: Might cause issues if the length of the procedure is not 5
-		# Create new icon for sequence
+		## Create new icon for sequence
 		var pia_icon := procedure_icons.get_child(0).get_child(i) #Icon of procedure index i
 		if not recipe.procedure.input_actions[i]:
 			pia_icon.texture = global.blank_texture

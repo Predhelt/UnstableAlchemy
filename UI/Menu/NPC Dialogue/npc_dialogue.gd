@@ -7,17 +7,8 @@ var cur_dialogue : Dialogue
 
 ## Configures when relevant hotkeys are pressed
 #func _input(event: InputEvent) -> void:
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#close_window()
-
-
-#func toggle_window() -> void:
-	#if visible:
-		#close_window()
-	#else:
-		#pass
-		#open_window()
+	#TODO: Use hotkeys to select dialogue choices or open shop
+	
 
 ## Removes the dialogue window from the menu category and hides the window.
 func close_window() -> void:
@@ -25,16 +16,13 @@ func close_window() -> void:
 		return
 	
 	visible = false
-	#remove_from_group("menu")
-	#print(get_tree().get_nodes_in_group("menu"))
-	#if get_tree().get_nodes_in_group("menu").is_empty():
 	global.right_window = null
 	if not global.left_window and not global.center_window:
 		global.mode = &"default"
 
 ## Opens window using reference to the NPC that opened the window 
 ## to get the proper Dialogue and shop information
-func open_window(npc : NPC) -> bool:
+func open_window_as_npc(npc : NPC) -> bool:
 	if not npc:
 		print("Error, no npc found.")
 		return false
@@ -43,12 +31,26 @@ func open_window(npc : NPC) -> bool:
 	if global.mode == &"default" or global.mode == &"minigame":
 		global.mode = &"menu"
 	if global.mode == &"menu":
-		#add_to_group("menu")
-		#print(get_tree().get_nodes_in_group("menu"))
 		global.right_window = self
 		npc_ref = npc
 		%WindowName.text = npc_ref.npc_name
 		set_dialogue(npc_ref.dialogue_tree.default_dialogue)
+		
+		%ButtonBack.visible = false
+		visible = true
+		return true
+	return false
+
+
+## Opens the window, assumes that the relevant npc was already set
+## and the page was previously loaded.
+func open_window() -> bool:
+	if global.right_window or global.center_window or visible:
+		return false
+	if global.mode == &"default" or global.mode == &"minigame":
+		global.mode = &"menu"
+	if global.mode == &"menu":
+		global.right_window = self
 		
 		%ButtonBack.visible = false
 		visible = true
@@ -111,7 +113,7 @@ func execute_happenings(h_paths : Array[String]) -> bool: #NOTE: Choices point t
 ## Uses transaction information from the NPC to set up the shop window.
 func open_shop() -> void:
 	close_window()
-	npc_ref.open_shop()
+	npc_ref.open_shop_from_dialogue()
 
 ## Called when a dialogue option is pressed on the NPC Dialogue window.
 ## Executes functions that the choice may cause, then opens the next dialogue window, if any.
@@ -124,3 +126,7 @@ func _on_dialogue_options_item_selected(index: int) -> void:
 ## Called when the button to start trading is pressed
 func _on_trade_button_pressed() -> void:
 	open_shop()
+
+
+func _on_button_close_pressed() -> void:
+	close_window()

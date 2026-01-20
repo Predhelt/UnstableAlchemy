@@ -70,9 +70,6 @@ func close_window():
 	is_crafting = false
 	visible = false
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
-	#remove_from_group("menu")
-	#print(get_tree().get_nodes_in_group("menu"))
-	#if get_tree().get_nodes_in_group("menu").is_empty():
 	global.left_window = null ## This window shows up in the center of the screen
 	if not global.center_window and not global.right_window:
 		global.mode = &"default"
@@ -81,7 +78,6 @@ func close_window():
 func previous_window():
 	is_crafting = false
 	visible = false
-	#remove_from_group("menu")
 	global.left_window = null
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	open_inventory.emit() # Mode gets set by inventory

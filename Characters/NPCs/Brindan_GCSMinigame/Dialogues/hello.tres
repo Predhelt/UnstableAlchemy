@@ -7,7 +7,7 @@
 script = ExtResource("1_2egeh")
 player_response = "\"Can you give me some advice?\""
 next_dialogue_name = &"advice"
-happenings = Array[String](["res://NPCs/Brindan_GCSMinigame/Happenings/finished_greeting.gd"])
+happenings = Array[String](["res://Characters/NPCs/Brindan_GCSMinigame/Happenings/finished_greeting.gd"])
 metadata/_custom_type_script = "uid://dh4lmouiihra8"
 
 [resource]

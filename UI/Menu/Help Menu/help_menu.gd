@@ -17,10 +17,6 @@ func toggle_window() -> void:
 
 ## Hides the window after removing it from the appropriate group.
 func close_window() -> void:
-	#if global.mode == &"help":
-	#remove_from_group("menu")
-	#print(get_tree().get_nodes_in_group("menu"))
-	#if get_tree().get_nodes_in_group("menu").is_empty():
 	global.center_window = null
 	if not global.right_window and not global.left_window:
 		global.mode = &"default"
@@ -33,8 +29,6 @@ func open_window() -> bool:
 	if global.mode == &"default":
 		global.mode = &"menu"
 	if global.mode == &"menu":
-		#add_to_group("menu")
-		#print(get_tree().get_nodes_in_group("menu"))
 		global.center_window = self
 		%WindowName.text = "Help: General"
 		visible = true

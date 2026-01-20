@@ -8,15 +8,16 @@ var shop_transaction_scene := preload("res://UI/Menu/NPC Shop/shop_transaction.t
 var transactions : Array[Transaction]
 ## Visual effect that occurs when an item is gained in the shop from a transaction.
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
+## Keeps track of the previous window for if the back button is pressed.
+var last_window_ref : Control
+
 ## Initializes the shop window.
 func _ready() -> void:
 	%WindowName.text = "Shop"
 
 ## Handles input action events.
 #func _input(event: InputEvent) -> void:
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#close_window()
+	#TODO: allow input actions to select shop items.
 
 ## Toggles the visibility of the window.
 func toggle_window() -> void:
@@ -31,9 +32,6 @@ func close_window() -> void:
 		return
 	
 	visible = false
-	#remove_from_group("menu")
-	#print(get_tree().get_nodes_in_group("menu"))
-	#if get_tree().get_nodes_in_group("menu").is_empty():
 	global.right_window = null
 	if not global.left_window and not global.center_window:
 		global.mode = &"default"
@@ -46,8 +44,6 @@ func open_window() -> bool:
 	if global.mode == &"default" or global.mode == &"minigame":
 		global.mode = &"menu" ## Shares mode with inventory, minigame, and help menu
 	if global.mode == &"menu":
-		#add_to_group("menu")
-		#print(get_tree().get_nodes_in_group("menu"))
 		global.right_window = self
 		add_shop_transactions() # Populate the shop transactions
 		
@@ -57,6 +53,11 @@ func open_window() -> bool:
 		visible = true
 		return true
 	return false
+
+## Allows back button to be toggled on remotely with reference to the given window.
+func show_back_button(window : Control) -> void:
+	last_window_ref = window
+	%ButtonBack.visible = true
 
 ## Adds the stored list of transactions to the shop UI.
 func add_shop_transactions() -> void:
@@ -85,10 +86,11 @@ func clear_transactions() -> void:
 func _on_button_close_pressed() -> void:
 	close_window()
 
-## TODO: Triggers when the back button is pressed on the shop window. Opens the previous window.
+## Triggers when the back button is pressed on the shop window. Opens the previous window.
+## Currently, only the dialogue window can be the previous window so similar structure assumed.
 func _on_button_back_pressed() -> void:
 	close_window()
-	open_window()
+	last_window_ref.open_window()
 
 ## Triggers when a transaction is pressed at the given id. Removes the requested items from
 ## the player's inventory and adds the offered items to the player's inventory.

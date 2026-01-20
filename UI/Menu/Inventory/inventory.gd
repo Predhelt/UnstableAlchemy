@@ -50,9 +50,6 @@ func toggle_window() -> void:
 ## Closes the window and removes it from the active window group.
 func close_window() -> void:
 	if global.mode == &"menu":
-		#remove_from_group("menu")
-		#print(get_tree().get_nodes_in_group("menu"))
-		#if get_tree().get_nodes_in_group("menu").is_empty():
 		global.left_window = null
 		if not global.right_window and not global.center_window:
 			global.mode = &"default"
@@ -70,8 +67,6 @@ func open_window() -> bool:
 	if global.mode == &"default":
 		global.mode = &"menu"
 	if global.mode == &"menu":
-		#add_to_group("menu")
-		#print(get_tree().get_nodes_in_group("menu"))
 		global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
 		visible = true
@@ -383,7 +378,6 @@ func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 ## Adds the inventory to the window group and updates the window title.
 func _on_open_inventory() -> void:
 	global.mode = &"menu"
-	#add_to_group("menu")
 	global.left_window = self
 	%WindowName.text = "Inventory and Crafting"
 	visible = true
@@ -391,7 +385,6 @@ func _on_open_inventory() -> void:
 ## Triggers to close the inventory window.
 ## Removes the inventory from the window group and hides the window.
 func _on_close_inventory() -> void:
-	#remove_from_group("menu")
 	global.left_window = null
 	visible = false # Mode is set by the object that emitted the signal
 

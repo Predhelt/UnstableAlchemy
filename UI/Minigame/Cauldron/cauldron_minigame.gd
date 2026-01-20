@@ -30,8 +30,6 @@ func open_window(items: Array[Item]):
 	global.left_window = self
 	visible = true
 	global.mode = &"minigame"
-	#add_to_group("menu")
-	#print(get_tree().get_nodes_in_group("menu"))
 
 
 func _on_button_start_pressed() -> void:

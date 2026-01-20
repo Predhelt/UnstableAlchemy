@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 
 ## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
 func open_dialogue() -> void:
-	%NPCDialogue.open_window(self)
+	%NPCDialogue.open_window_as_npc(self)
 
 ## Opens the NPC shop window after configuring the transactions on the page
 func open_shop() -> void:
@@ -53,6 +53,11 @@ func open_shop() -> void:
 			%NPCShop.clear_transactions()
 		%NPCShop.transactions = transactions
 		%NPCShop.open_window()
+
+## Does additional logic if the shop was opened from the dialogue menu
+func open_shop_from_dialogue():
+	open_shop()
+	%NPCShop.show_back_button(%NPCDialogue)
 
 ## Displays a random passive message over the head of the NPC
 func say_random_message():

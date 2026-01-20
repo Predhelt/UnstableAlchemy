@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="DialogueTree" load_steps=6 format=3 uid="uid://dsr80xapfhdae"]
 
-[ext_resource type="Resource" uid="uid://kqsbgsx4b3xh" path="res://NPCs/Brindan_GCSMinigame/Dialogues/hello.tres" id="1_n3avq"]
+[ext_resource type="Resource" uid="uid://kqsbgsx4b3xh" path="res://Characters/NPCs/Brindan_GCSMinigame/Dialogues/hello.tres" id="1_n3avq"]
 [ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://UI/Menu/NPC Dialogue/Dialogue.gd" id="2_bqost"]
-[ext_resource type="Resource" uid="uid://g1ubpti5q1xd" path="res://NPCs/Brindan_GCSMinigame/Dialogues/advice.tres" id="3_4js7f"]
-[ext_resource type="Resource" uid="uid://bjy53iyb5qxxw" path="res://NPCs/Brindan_GCSMinigame/Dialogues/re-greet.tres" id="4_c3txo"]
+[ext_resource type="Resource" uid="uid://g1ubpti5q1xd" path="res://Characters/NPCs/Brindan_GCSMinigame/Dialogues/advice.tres" id="3_4js7f"]
+[ext_resource type="Resource" uid="uid://bjy53iyb5qxxw" path="res://Characters/NPCs/Brindan_GCSMinigame/Dialogues/re-greet.tres" id="4_c3txo"]
 [ext_resource type="Script" uid="uid://dqbrnbumypeqw" path="res://UI/Menu/NPC Dialogue/DialogueTree.gd" id="5_830pl"]
 
 [resource]
