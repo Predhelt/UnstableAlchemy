@@ -14,6 +14,9 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 script = ExtResource("2_klung")
 dialogue_name = &"hello"
 text = "Hello, My name is Brindan. I am known as a senior botanist.
-I can sell you some alchemy supplies or give you some advice. I also have some normalizing potions available for free that can help you go back to normal if you change somehow."
+
+It looks like we are stuck and we need to move that boulder near the top to get out.
+
+I can trade you some alchemy supplies or give you some advice. I also have some normalizing potions available for free that can help you go back to normal if you change somehow."
 choices = Array[ExtResource("1_2egeh")]([SubResource("Resource_1iaux")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

@@ -28,7 +28,8 @@ window/size/always_on_top=true
 
 [global_group]
 
-droppable="areas that you can drag and drop into"
+Pushable=""
+Droppable="areas that you can drag and drop into"
 
 [input]
 
@@ -167,6 +168,7 @@ minigame_m&p_right={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Interactions"
 2d_physics/layer_3="UI Items"
+2d_physics/layer_4="Rigid Bodies"
 
 [physics]
 

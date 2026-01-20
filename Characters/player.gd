@@ -286,3 +286,21 @@ func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	change_player_scale(Vector2(se.value, se.value))
 	update_status_bar(se)
 	return true
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Pushable"):
+		if _is_strong_enough(body):
+			body.collision_layer = 1
+			body.collision_mask = 1
+
+## Checks to see if the player is strong enough to move the given object.
+func _is_strong_enough(body) -> bool:
+	#TODO: Check the mass of the object and compare to the player's mass & strength
+	return false
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Pushable"):
+		#FIXME: losing collision with player after the changes
+		body.collision_layer = 4 ## 4 is the Rigid Body layer
+		body.collision_mask = 4

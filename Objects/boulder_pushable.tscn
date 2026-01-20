@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://b1r70jwafbyrr"]
+[gd_scene load_steps=4 format=3 uid="uid://b1r70jwafbyrr"]
 
-[node name="BoulderPushable" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://vet5yvxugey6" path="res://Art/UAPrototype/Objects/boulder.png" id="1_5rt6y"]
+[ext_resource type="Script" uid="uid://bikcon8k7t4xg" path="res://Objects/boulder_pushable.gd" id="1_eugqi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rt6y"]
+radius = 32.0
+
+[node name="BoulderPushable" type="RigidBody2D" groups=["Pushable"]]
+collision_layer = 8
+collision_mask = 8
+mass = 150.0
+gravity_scale = 0.0
+inertia = 150.0
+linear_damp = 10.0
+script = ExtResource("1_eugqi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5rt6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5rt6y")

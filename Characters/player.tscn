@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=29 format=3 uid="uid://csw57bxt7nvm2"]
 
 [ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://Characters/Player.gd" id="1_juhlw"]
 [ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://Art/UAPrototype/Characters/herbalist-down.png" id="2_23e54"]
@@ -165,7 +165,11 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
 radius = 46.0109
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l48on"]
+radius = 25.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 9
 platform_floor_layers = 4294967292
 script = ExtResource("1_juhlw")
 
@@ -201,5 +205,15 @@ monitorable = false
 shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l48on")
+debug_color = Color(0.63045853, 0.5299365, 0, 0.41960785)
+
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
