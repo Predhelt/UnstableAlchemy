@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="13_lj88t"]
 [ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="14_l5n5r"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="15_gqfas"]
-[ext_resource type="PackedScene" uid="uid://ysnbvkn4ogwk" path="res://Characters/npc.tscn" id="16_2o0j7"]
+[ext_resource type="PackedScene" uid="uid://ysnbvkn4ogwk" path="res://Characters/NPCs/npc.tscn" id="16_2o0j7"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="16_4vv8i"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/Merchant/Transaction.gd" id="17_0d8md"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="17_1cenb"]
