@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=30 format=3 uid="uid://csw57bxt7nvm2"]
 
-[ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://Characters/Player.gd" id="1_juhlw"]
+[ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://Characters/Player/Player.gd" id="1_juhlw"]
 [ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://Art/UAPrototype/Characters/herbalist-down.png" id="2_23e54"]
+[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://Characters/Player/player_attributes.tres" id="2_osktb"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="3_q5yn3"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="4_eve5b"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="5_n5fht"]
@@ -165,13 +166,14 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
 radius = 46.0109
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l48on"]
-radius = 25.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_5slg2"]
+radius = 15.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 9
-platform_floor_layers = 4294967292
+collision_mask = 25
+motion_mode = 1
 script = ExtResource("1_juhlw")
+attributes = ExtResource("2_osktb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -36)
@@ -200,20 +202,23 @@ shape = SubResource("CircleShape2D_6e64a")
 collision_layer = 0
 collision_mask = 2
 monitorable = false
+linear_damp_space_override = 1
+linear_damp = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
 shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
+[node name="RigidArea2D" type="Area2D" parent="."]
+scale = Vector2(0.87999994, 0.8799999)
+collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_l48on")
-debug_color = Color(0.63045853, 0.5299365, 0, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D"]
+shape = SubResource("CircleShape2D_5slg2")
+debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
+[connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]

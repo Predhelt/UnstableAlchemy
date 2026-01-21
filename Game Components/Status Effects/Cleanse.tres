@@ -8,5 +8,4 @@ id = 100
 name = "Cleanse"
 description = "Removes temporary status effects"
 effect = "cleanse"
-value = 0.0
-duration = 10.0
+duration = 0.0

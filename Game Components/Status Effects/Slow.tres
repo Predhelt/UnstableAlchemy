@@ -9,4 +9,4 @@ name = "Slow"
 description = "Decreases movement speed"
 effect = "move speed"
 value = -100.0
-duration = 10.0
+duration = 20.0

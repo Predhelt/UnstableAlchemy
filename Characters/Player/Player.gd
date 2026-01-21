@@ -16,6 +16,9 @@ const SIZE_DAMPENER := 0.5
 ## The direction in 2D space that the character is moving
 var direction := Vector2.ZERO
 
+## List of rigid bodies the player is pushing
+var pushing_bodies : Array[RigidBody2D]
+
 ## The list of status effects that are currently active on the player
 var active_status_effects : Array[StatusEffect]
 
@@ -25,13 +28,7 @@ var all_interaction_areas : Array[Interactable]
 var status_message_timer := 0.0
 
 ## The player's stats that determine interactions with the environment
-var stats = {
-	#&"health" : 100.0, ## health value
-	&"move speed" : 200.0, ## move speed modifier (100 = 1.0*ms)
-	&"strength" : 100.0, ## strength used to move certain objects
-	&"mass" : 100.0, ## determines interactions with environments based on weight
-	#&"range" : 100.0, ## same as CollisionInteract.radius of arms
-}
+@export var attributes : Attributes
 ## List of recipes known by the player
 @export var known_recipes : Array[Recipe]
 ## Recipes that have not been viewed yet in the recipe page
@@ -54,8 +51,13 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if global.mode == &"default":
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		velocity = direction * stats[&"move speed"] * (Vector2(1.0, 1.0) + (global.player_scale/Vector2(1/SIZE_DAMPENER, 1/SIZE_DAMPENER) - Vector2(SIZE_DAMPENER, SIZE_DAMPENER)))
+		velocity = direction * attributes.move_speed * (Vector2(2.0, 2.0) + 
+			(global.player_scale/Vector2(1/SIZE_DAMPENER, 1/SIZE_DAMPENER) - 
+				Vector2(SIZE_DAMPENER, SIZE_DAMPENER)))
 		move_and_slide()
+	
+	for rb in pushing_bodies:
+		_push_body(rb)
 	
 	_update_active_status_effect(delta)
 	
@@ -87,7 +89,9 @@ func _input(event: InputEvent) -> void:
 func change_player_scale(mult: Vector2):
 	scale *= mult
 	global.player_scale = scale
-	stats[&"mass"] *= mult
+	## Multiply the current mass by the area of the vector (change in x by change in y)
+	attributes.mass *= mult[0] * mult[1]
+	attributes.strength *= mult[0] * mult[1]
 	
 	for node in get_tree().get_nodes_in_group("player_elements"):
 		node.scale *= mult
@@ -176,7 +180,11 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 ## Helper function that applies the effects of the status effect to the player based on the effect name.
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		&"move speed" : if _change_base_stat(se, &"move speed"):
+		&"move speed" :
+			attributes.move_speed = _change_attribute(se, attributes.move_speed)
+			return true
+		&"strength" :
+			attributes.strength = _change_attribute(se, attributes.strength)
 			return true
 		&"cleanse" : if _cleanse_status_effects():
 			return true
@@ -206,7 +214,7 @@ func _update_active_status_effect(delta : float) -> void:
 ## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
 	match se.effect:
-		&"move speed" : return _change_base_stat(se, &"move speed", true)
+		&"move speed" : return _change_attribute(se, attributes.move_speed, true)
 		&"grow" : return _grow_player(se, true)
 	return false
 
@@ -228,26 +236,27 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 
 ## Status effect functions ##
 
-## Changes the value of a baseline stat in the sta variable, such as mass or move speed.
-func _change_base_stat(se: StatusEffect, stat_name : String, is_removing_status := false) -> bool:
+## Adds/subtracts the value of the status effect from the value of an attribute.
+## Returns the value after the change from the status effect.
+func _change_attribute(se: StatusEffect, _attribute_val: float, is_removing_status := false) -> float:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]
 		if cur_se.id == se.id:
 				
-			# Reset the active status effect (New effect overwrites the old effect)
-			stats[stat_name] -= cur_se.value
+			## Reset the active status effect (New effect overwrites the old effect)
+			_attribute_val -= cur_se.value
 			
 			if is_removing_status:
 				update_status_bar(se, i, true)
 			else:
-				stats[stat_name] += se.value
+				_attribute_val += se.value
 				update_status_bar(se, i)
-			return true
+			return _attribute_val
 	
-	stats[stat_name] += se.value
+	_attribute_val += se.value
 	
 	update_status_bar(se)
-	return true
+	return _attribute_val
 
 ## Removes all status effects that have a limited duration
 func _cleanse_status_effects() -> bool:
@@ -288,19 +297,26 @@ func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	return true
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_rigid_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Pushable"):
-		if _is_strong_enough(body):
-			body.collision_layer = 1
-			body.collision_mask = 1
+		if attributes.strength >= body.mass:
+			pushing_bodies.append(body)
 
-## Checks to see if the player is strong enough to move the given object.
-func _is_strong_enough(body) -> bool:
-	#TODO: Check the mass of the object and compare to the player's mass & strength
-	return false
+## Check the mass of the object and compare to the player's strength
+## to determine if the player is strong enough to move the body.
+func _push_body(body: PhysicsBody2D) -> bool:
+	if attributes.strength <= body.mass:
+		return false
+	## Calculate force based on the strength of the character vs the mass of the body.
+	var mult : float
+	mult = (attributes.strength - body.mass) / 50
+	if mult > 1:
+		mult = 1
+		
+	body.linear_velocity = velocity * mult
+	return true
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Pushable"):
-		#FIXME: losing collision with player after the changes
-		body.collision_layer = 4 ## 4 is the Rigid Body layer
-		body.collision_mask = 4
+func _on_rigid_area_2d_body_exited(body: Node2D) -> void:
+	var i := pushing_bodies.find(body)
+	if i != -1:
+		pushing_bodies.remove_at(i)

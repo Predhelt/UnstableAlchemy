@@ -8,5 +8,4 @@ id = 101
 name = "Normalize"
 description = "Returns permanent stat changes back to normal"
 effect = "normalize"
-value = 0.0
-duration = 10.0
+duration = 0.0

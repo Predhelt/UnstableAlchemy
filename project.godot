@@ -168,7 +168,8 @@ minigame_m&p_right={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Interactions"
 2d_physics/layer_3="UI Items"
-2d_physics/layer_4="Rigid Bodies"
+2d_physics/layer_4="Rigid Body"
+2d_physics/layer_5="Wall"
 
 [physics]
 

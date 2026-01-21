@@ -8,11 +8,12 @@
 radius = 14.0
 
 [node name="NPC" type="CharacterBody2D"]
-collision_layer = 9
+collision_mask = 25
+motion_mode = 1
 script = ExtResource("1_4ofvd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -38)
+position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_ldphk")
 

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/HUD/Status Effect/status_effect_bar.tscn" id="9_2x4j3"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_0b1sm"]
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_o1xmt"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="12_v7gh5"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="12_v7gh5"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="13_s7iws"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="14_hfpvx"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="15_n07rm"]

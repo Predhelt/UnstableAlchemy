@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="3_guf6v"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="4_25d8v"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="5_r0jcl"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/player.tscn" id="8_pd4bm"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="8_pd4bm"]
 [ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://Alchemy/Recipes/M&P/gray_juice.tres" id="12_w86px"]
 [ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="14_b8puf"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="17_w6c75"]

@@ -9,6 +9,8 @@ class_name NPC extends CharacterBody2D
 
 ## Name of the NPC to be dislpayed. Used by the player and dialogue window to show who this NPC is.
 @export var npc_name : String
+## List of attributes that influence how the character interacts with the environment.
+@export var attributes : Attributes
 ## The type of interaction that occurs upon interacting with the NPC
 @export_enum("none", "talk", "shop") var interaction_type : String = "talk" 
 ## Stores the list of dialogues that the NPC uses, as well as the default dialogue window that displays when talked to.
@@ -23,11 +25,16 @@ var message_timer := 0.0
 var last_message_delta := 0.0
 
 
+## Keeps track of if the path was already cleared
+var is_path_cleared := false
+
+
 ## Set references to variables
 func _ready() -> void:
 	$InteractArea.interact_type = interaction_type
 	$InteractArea.interact_label = npc_name
 	%NPCShop.player = %Player
+	self.get_parent().connect("pathway_cleared", _on_pathway_cleared)
 
 
 func _process(delta: float) -> void:
@@ -70,8 +77,11 @@ func update_message(message: String):
 	$Message.text = message
 	message_timer = 5.0
 
-## 
-
+## Triggers when the pathway out of the GCSM area is cleared. Marks the completion of the world.
+func _on_pathway_cleared():
+	if not is_path_cleared:
+		update_message("Thank you for clearing the path!")
+		is_path_cleared = true
 
 ## Called when the player interacts with the NPC when the interaction type is "talk".
 ## Initiates setting up the npc dialogue window.
