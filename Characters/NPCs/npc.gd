@@ -5,7 +5,6 @@ class_name NPC extends CharacterBody2D
 # Other (scared, runs off / opens a passageway / etc.)
 
 #TODO: consider different types of conversations and how to easily swap between them (consider export)
-# Also, any dialogue window should prevent other menus from opening. (ex: the Recipe Menu)
 
 ## Name of the NPC to be dislpayed. Used by the player and dialogue window to show who this NPC is.
 @export var npc_name : String
@@ -25,8 +24,7 @@ var message_timer := 0.0
 var last_message_delta := 0.0
 
 
-## Keeps track of if the path was already cleared
-var is_path_cleared := false
+
 
 
 ## Set references to variables
@@ -34,7 +32,6 @@ func _ready() -> void:
 	$InteractArea.interact_type = interaction_type
 	$InteractArea.interact_label = npc_name
 	%NPCShop.player = %Player
-	self.get_parent().connect("pathway_cleared", _on_pathway_cleared)
 
 
 func _process(delta: float) -> void:
@@ -77,11 +74,7 @@ func update_message(message: String):
 	$Message.text = message
 	message_timer = 5.0
 
-## Triggers when the pathway out of the GCSM area is cleared. Marks the completion of the world.
-func _on_pathway_cleared():
-	if not is_path_cleared:
-		update_message("Thank you for clearing the path!")
-		is_path_cleared = true
+
 
 ## Called when the player interacts with the NPC when the interaction type is "talk".
 ## Initiates setting up the npc dialogue window.

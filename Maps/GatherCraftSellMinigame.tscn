@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=40 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="Script" uid="uid://c4lfgutfuwoof" path="res://Maps/gather_craft_sell_minigame.gd" id="1_4vv8i"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_wlq1s"]
@@ -26,42 +26,23 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="18_6y0gm"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="18_ie10l"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="18_l5n5r"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://Characters/Attributes.gd" id="19_1cenb"]
-[ext_resource type="Resource" uid="uid://dtmha6gayo6if" path="res://Items/Gatherable/flower_stem.tres" id="19_44jw4"]
 [ext_resource type="Resource" uid="uid://dsr80xapfhdae" path="res://Characters/NPCs/Brindan_GCSMinigame/dt_brindan_gcsm.tres" id="19_lj88t"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="19_myx5p"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_flakes.tres" id="20_0ehhb"]
-[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="20_blh7c"]
-[ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Items/Merged Ingredients/saturated_stem.tres" id="21_bfu87"]
 [ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="21_x22rh"]
-[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://Items/Potions/speed_potion.tres" id="24_86het"]
-[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://Items/Potions/normalize_potion.tres" id="25_l5n5r"]
+[ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://Characters/NPCs/Brindan_GCSMinigame/att_brindan_gcsm.tres" id="23_6y0gm"]
+[ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.gd" id="23_blh7c"]
 [ext_resource type="Resource" uid="uid://7we1na1p6l36" path="res://Items/M&P Products/blue_berry_seed.tres" id="25_lj88t"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="27_1cenb"]
+[ext_resource type="Resource" uid="uid://kvhv0o2fyg74" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_saturated_stem.tres" id="28_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://Objects/boulder_pushable.tscn" id="29_gqfas"]
+[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://Items/Potions/grow_potion.tres" id="29_myx5p"]
 
-[sub_resource type="Resource" id="Resource_6y0gm"]
-script = ExtResource("19_1cenb")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_86het"]
-script = ExtResource("17_0d8md")
-items_selling = Array[ExtResource("18_ie10l")]([ExtResource("21_bfu87")])
-items_selling_amount = Array[int]([1])
-items_buying = Array[ExtResource("18_ie10l")]([ExtResource("19_44jw4"), ExtResource("20_blh7c")])
-items_buying_amount = Array[int]([2, 3])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
-
-[sub_resource type="Resource" id="Resource_l5n5r"]
-script = ExtResource("17_0d8md")
-items_selling = Array[ExtResource("18_ie10l")]([ExtResource("25_l5n5r")])
-items_selling_amount = Array[int]([1])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
-
-[sub_resource type="Resource" id="Resource_gqfas"]
+[sub_resource type="Resource" id="Resource_0ehhb"]
 script = ExtResource("17_0d8md")
 items_selling = Array[ExtResource("18_ie10l")]([ExtResource("25_lj88t")])
-items_selling_amount = Array[int]([2])
-items_buying = Array[ExtResource("18_ie10l")]([ExtResource("24_86het")])
+items_selling_amount = Array[int]([1])
+items_buying = Array[ExtResource("18_ie10l")]([ExtResource("29_myx5p")])
 items_buying_amount = Array[int]([1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
@@ -229,10 +210,11 @@ tile_set = ExtResource("18_l5n5r")
 [node name="NPCBrindan" parent="." instance=ExtResource("16_2o0j7")]
 unique_name_in_owner = true
 position = Vector2(863, 382)
+script = ExtResource("23_blh7c")
 npc_name = "Brindan"
-attributes = SubResource("Resource_6y0gm")
+attributes = ExtResource("23_6y0gm")
 dialogue_tree = ExtResource("19_lj88t")
-transactions = Array[ExtResource("17_0d8md")]([SubResource("Resource_86het"), SubResource("Resource_l5n5r"), SubResource("Resource_gqfas")])
+transactions = Array[ExtResource("17_0d8md")]([ExtResource("27_1cenb"), ExtResource("28_6y0gm"), SubResource("Resource_0ehhb")])
 passive_messages = Array[String](["Hey", "Where are we, anyways?"])
 
 [node name="Objects" type="Node2D" parent="."]
