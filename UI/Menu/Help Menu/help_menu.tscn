@@ -25,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_odxy8")
 script = ExtResource("1_fsl5b")
+window_mode = "menu"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

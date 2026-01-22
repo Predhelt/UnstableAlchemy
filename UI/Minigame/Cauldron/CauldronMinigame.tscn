@@ -19,6 +19,7 @@ anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_geiyq")
+window_mode = "minigame"
 
 [node name="StartupDelay" type="Timer" parent="."]
 one_shot = true
@@ -131,12 +132,12 @@ expand_icon = true
 [node name="ButtonBellows" type="Button" parent="VBoxContainer/Container/GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 icon = ExtResource("4_dqyf7")
 icon_alignment = 1
 expand_icon = true

@@ -128,16 +128,14 @@ func matching_recipe() -> Recipe:
 			print("Error: No procedure for recipe ID " + str(recipe.id))
 	return
 
-func open_window(items: Array[Item]):
-	# Reset the window before opening
-	
-	cur_craft_ingredients = items
+func open_window():
+	## Reset the window before opening
 	cur_craft_procedure = Procedure.new()
 	%ButtonStart.disabled = false
 	for button in minigame_buttons:
 		button.disabled = true
 	%MinigameProgressBar/ProgressSlider.value = 0
-	%ItemIcon.texture = items[0].texture
+	%ItemIcon.texture = cur_craft_ingredients[0].texture
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
 		tb.texture = global.blank_texture
 	

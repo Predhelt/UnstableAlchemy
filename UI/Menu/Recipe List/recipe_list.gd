@@ -1,7 +1,7 @@
 ## Displays the list of recipes available to the character.
 ## When a recipe is clicked on, opens a detailed display of the description,
 ## ingredients, and procedure of the recipe.
-extends Panel
+extends UIWindow
 
 #@export var known_recipes : Array[Recipe]
 ## The currently referenced character.
@@ -15,6 +15,7 @@ var procedure_icon_crush := preload("res://Art/UAPrototype/UI/Minigame/crush.png
 var procedure_icon_bellows := preload("res://Art/UAPrototype/UI/Minigame/bellows.png")
 
 func _ready() -> void:
+	window_mode = &"menu"
 	%WindowName.text = "Known Recipes"
 	%ProductDetails.visible = false
 
@@ -30,7 +31,7 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode != &"menu" and global.mode != &"minigame":
+	if global.mode != window_mode and global.mode != &"minigame":
 		return
 	
 	visible = false
@@ -46,7 +47,7 @@ func open_window() -> bool:
 	if global.right_window or global.center_window:
 		return false
 	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
-		global.mode = &"menu" # Shares mode with inventory, minigame, and help menu
+		global.mode = window_mode # Shares mode with inventory, minigame, and help menu
 		
 		%ProductDetails.visible = false
 		for child in %ProcedureList.get_children(): # Remove all children

@@ -1,6 +1,6 @@
-## Logic and UI for the alchemy minigames.
-class_name AlchemyMinigame extends Panel
-
+## Logic and UI for the alchemy minigames. Used for Cauldron and Morter & Pestle.
+## Most functionality is used in the Cauldron with some overlap.
+class_name AlchemyMinigame extends UIWindow
 #TODO: Add documentation to functions
 ## Signal sent when the item is completed and added to the inventory.
 signal item_produced(item: Item, recipe : Recipe)
@@ -32,6 +32,8 @@ var is_crafting := false
 ## Recipe that represents the craft item when a craft attempt fails.
 const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres") #NOTE: ID for failed craft is 999
 
+func _init() -> void:
+	window_mode = &"minigame"
 
 func _process(delta: float) -> void:
 	for i in len(minigame_buttons): ## Set hotkey text for each button
@@ -45,27 +47,17 @@ func _process(delta: float) -> void:
 			is_crafting = false
 			check_results()
 
+## Template: Sets how action keys should be handled in the relevant minigame.
+func _input(_event: InputEvent) -> void:
+	pass
 
-func _input(event: InputEvent) -> void: # Override in M&P
-	if global.mode != &"minigame" or not visible:
-		return ## No input events should catch on wrong mode
-	if is_crafting and recipes[0].tool_used == "cauldron":
-		if event.is_action_pressed("minigame_cauldron_action_1") and not minigame_buttons[0].disabled:
-			set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)
-		elif event.is_action_pressed("minigame_cauldron_action_2") and not minigame_buttons[1].disabled:
-			set_input_action("item", cur_craft_ingredients[1].id, minigame_buttons[1].icon)
-		elif event.is_action_pressed("minigame_cauldron_action_3") and not minigame_buttons[2].disabled:
-			set_input_action("item", cur_craft_ingredients[2].id, minigame_buttons[2].icon)
-		elif event.is_action_pressed("minigame_cauldron_action_4") and not minigame_buttons[3].disabled:
-			set_input_action("equipment", 0, minigame_buttons[3].icon) # Bellows
-		pass
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#close_window()
+## Template: Used to determine how the minigame should be set up when the window is opened
+func open_window():
+	pass
 
-## Template used to determine how the minigame should be set up when the window is opened
-func open_window(items: Array[Item]):
-	cur_craft_ingredients = items # Used to remove warning
+func init_ingredients(ingredients : Array[Item]) -> void:
+	for i in range(3):
+		cur_craft_ingredients.append(ingredients[i])c
 
 ## Closes the minigame window and ensures that the menu group is updated
 func close_window():
@@ -75,14 +67,25 @@ func close_window():
 	global.left_window = null ## This window shows up in the center of the screen
 	if not global.center_window and not global.right_window:
 		global.mode = &"default"
+	elif global.center_window:
+		global.mode = global.center_window.window_mode
+	elif global.right_window:
+		global.mode = global.right_window.window_mode
 
-## Closes the current window and returns to the previous window
+## Closes the current window and returns to the inventory menu.
 func previous_window():
 	is_crafting = false
 	visible = false
-	global.left_window = null
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
-	open_inventory.emit() # Mode gets set by inventory
+	global.left_window = null
+	if not global.center_window and not global.right_window:
+		global.mode = &"default"
+	elif global.center_window:
+		global.mode = global.center_window.window_mode
+	elif global.right_window:
+		global.mode = global.right_window.window_mode
+	
+	open_inventory.emit()
 
 ## Initiates the start of an alchemy minigame
 func begin_minigame():
@@ -123,19 +126,6 @@ func matching_recipe() -> Recipe:
 	for recipe in recipes:
 		if len(recipe.ingredients) < 1 or len(recipe.ingredients) > 3:
 			continue
-		#var is_matching_ingredients := true # Checks if ingredients match
-		#for ingredient in recipe.ingredients:
-			#var is_cur_match := false
-			#for cur_ingredient in cur_craft_ingredients:
-				#if not cur_ingredient:
-					#break
-				#if ingredient.id == cur_ingredient.id:
-					#is_cur_match = true
-			#if not is_cur_match:
-				#is_matching_ingredients = false
-				#break
-		#if not is_matching_ingredients:
-			#continue
 		if recipe.procedure:
 			if recipe.procedure.compare(cur_craft_procedure):
 				return recipe
@@ -172,10 +162,16 @@ func _get_nearest_tick() -> int:
 	
 	return nearest_tick
 
-
+## Closes the current minigame window, returning the crafting ingredients
+## back to the inventory.
 func _on_button_close_pressed() -> void:
+	#for item in cur_craft_ingredients: #FIXME: Currently, items are not removed in the first place to be added back to the inventory.
+		#item_produced.emit(item, null)
 	close_window()
 
-
+## Closes the current minigame window, returning the crafting ingredients
+## back to the inventory before opening the 
 func _on_button_back_pressed() -> void:
+	#for item in cur_craft_ingredients: #FIXME: Currently, items are not removed in the first place to be added back to the inventory.
+		#item_produced.emit(item, null)
 	previous_window()

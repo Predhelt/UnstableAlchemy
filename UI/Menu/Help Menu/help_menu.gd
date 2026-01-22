@@ -1,12 +1,8 @@
-extends Panel
+extends UIWindow
 
 ## Handles input action events.
 #func _input(event: InputEvent) -> void:
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#match global.mode:
-			##&"default" : open_window()
-			#&"menu" : close_window()
+	
 
 ## Changes the window from opened to closed and vice versa.
 func toggle_window() -> void:
@@ -27,8 +23,8 @@ func open_window() -> bool:
 		print("Inventory could not be open, " + global.center_window.name + " window already open")
 		return false ## Do not open, there is already a window open in the area.
 	if global.mode == &"default":
-		global.mode = &"menu"
-	if global.mode == &"menu":
+		global.mode = window_mode
+	if global.mode == window_mode:
 		global.center_window = self
 		%WindowName.text = "Help: General"
 		visible = true

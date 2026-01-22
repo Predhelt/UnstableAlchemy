@@ -1,4 +1,4 @@
-extends Panel
+extends UIWindow
 
 ## Reference to the npc that is determining the dialogue and interactions
 var npc_ref : NPC
@@ -8,11 +8,13 @@ var cur_dialogue : Dialogue
 ## Configures when relevant hotkeys are pressed
 #func _input(event: InputEvent) -> void:
 	#TODO: Use hotkeys to select dialogue choices or open shop
-	
+
+func _init() -> void:
+	window_mode = &"menu"
 
 ## Removes the dialogue window from the menu category and hides the window.
 func close_window() -> void:
-	if global.mode != &"menu" or global.mode == &"minigame":
+	if global.mode != window_mode or global.mode == &"minigame":
 		return
 	
 	visible = false
@@ -29,8 +31,8 @@ func open_window_as_npc(npc : NPC) -> bool:
 	if global.right_window or global.center_window or visible:
 		return false
 	if global.mode == &"default" or global.mode == &"minigame":
-		global.mode = &"menu"
-	if global.mode == &"menu":
+		global.mode = window_mode
+	if global.mode == window_mode:
 		global.right_window = self
 		npc_ref = npc
 		%WindowName.text = npc_ref.npc_name
@@ -48,8 +50,8 @@ func open_window() -> bool:
 	if global.right_window or global.center_window or visible:
 		return false
 	if global.mode == &"default" or global.mode == &"minigame":
-		global.mode = &"menu"
-	if global.mode == &"menu":
+		global.mode = window_mode
+	if global.mode == window_mode:
 		global.right_window = self
 		
 		%ButtonBack.visible = false

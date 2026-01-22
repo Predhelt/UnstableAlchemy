@@ -2,22 +2,11 @@ extends AlchemyTool
 
 func _ready() -> void:
 	set_recipes(&"M&P")
-	#NOTE: Minigame reference and recipes are set in Inventory's _ready functiona
 
+## Find first item in queue to start using in the mortar and pestle,
+## Then open the M&P minigame page using the relevant item.
 func _use_items(): # Overrides the _use_items() function in AlchemyTool
-	# Find first item in queue to start using in the mortar and pestle
-	#var item : Item = null
 	for i in MAX_ITEMS:
 		if items[i]:
 			open_minigame([items[i]]) # Does not remove craft item for testing
-			#item = items[i]
-			#remove_item(i)
-			break
-	
-	#if not item:
-		#return
-	
-	#var result_recipe := FAILED_CRAFT
-	#for recipe in recipes:
-		#if recipe.ingredients[0].id == item.id:
-			#result_recipe = recipe
+			return

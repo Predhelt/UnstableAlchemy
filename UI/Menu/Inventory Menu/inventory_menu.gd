@@ -1,4 +1,4 @@
-extends Panel
+extends UIWindow
 
 # DEPRECATED: Sent to the player to update their status effects when an item in inventory is consumed
 signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
@@ -18,6 +18,7 @@ var drag_item_scene := preload("res://UI/Menu/Inventory Menu/drag_item_scene.tsc
 
 ## Sets references, initializes variables in references, and connects signals
 func _ready() -> void:
+	window_mode = &"menu"
 	%ItemList.item_clicked.connect(on_inventory_item_clicked)
 	%Cauldron.minigame_ref = %MinigameCauldron
 	%Cauldron.minigame_ref.recipes = %Cauldron.recipes
@@ -30,11 +31,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		toggle_window() ## Toggles whether the inventory is displayed or not
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#close_window()
-	#if event.is_action_pressed("recipe_book"):
-		#close_window()
 
 ## Toggles the visibility of the window. If it is close, it will open and vice versa.
 func toggle_window() -> void:
@@ -45,7 +41,7 @@ func toggle_window() -> void:
 
 ## Closes the window and removes it from the active window group.
 func close_window() -> void:
-	if global.mode == &"menu":
+	if global.mode == window_mode:
 		global.left_window = null
 		if not global.right_window and not global.center_window:
 			global.mode = &"default"
@@ -56,8 +52,10 @@ func close_window() -> void:
 		global.mode = &"default" ## There should be no other UI windows open
 		visible = false
 	
+	elif global.mode == &"minigame": ## Minigame in progress, do not change groups.
+		visible = false
+	
 	return_alchemy_items()
-	%ItemList.clear()
 
 ## Goes through each slot in the alchemy tools in the inventory and
 ## returns the items back to the inventory.
@@ -79,22 +77,25 @@ func open_window() -> bool:
 		print("ERROR: No character reference to display inventory")
 		return false ## Cannot configure inventory menu without an inventory reference.
 	if global.mode == &"default":
-		global.mode = &"menu"
-	if global.mode == &"menu":
-		configure_menu()
+		global.mode = window_mode
+	if global.mode == window_mode:
+		update_window()
 		global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
 		visible = true
 		return true
 	elif global.mode == &"dropper":
-		configure_menu()
+		update_window()
 		global.left_window = self
 		%WindowName.text = "Select an Item for the Dropper"
 		visible = true
 		return true
 	return false
 
-func configure_menu():
+## Clear the inventory item list, then re-initialize the item list with the items
+## in the currently referenced character's inventory.
+func update_window():
+	%ItemList.clear()
 	var items := character_ref.inventory.items
 	
 	for i in items.size():
@@ -103,17 +104,11 @@ func configure_menu():
 		if items[i]:
 			%ItemList.add_item(generate_item_text(items[i]), items[i].texture)
 
-## Clear the inventory item list and re-configure it.
-func update_menu():
-	%ItemList.clear()
-	configure_menu()
-	
-
 ## Adds an item to the character's inventory, then updates the menu.
 func add_inventory_item(item : Item) -> bool:
 	if not item or not character_ref.inventory.add_item(item):
 		return false
-	update_menu()
+	update_window()
 	return true
 
 ## Sets the text of the item as displayed in the Inventory UI.
@@ -137,7 +132,7 @@ func remove_inventory_slot(index : int) -> void:
 func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
 	if not character_ref.inventory.remove_inventory_items(items_removing, qtys, isRemovingStacks):
 		return false
-	update_menu()
+	update_window()
 	return true
 
 ## Determines what to do when the item is clicked on.
@@ -278,16 +273,12 @@ func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 ## Triggers when the inventory window is opened.
 ## Adds the inventory to the window group and updates the window title.
 func _on_open_inventory() -> void:
-	global.mode = &"menu"
-	global.left_window = self
-	%WindowName.text = "Inventory and Crafting"
-	visible = true
+	open_window()
 
 ## Triggers to close the inventory window.
 ## Removes the inventory from the window group and hides the window.
 func _on_close_inventory() -> void:
-	global.left_window = null
-	visible = false # Mode is set by the object that emitted the signal
+	close_window()
 
 ## Triggers when the button used to close the window is pressed, which closes the window.
 func _on_button_close_pressed() -> void:

@@ -4,6 +4,7 @@ var is_dragging := false
 ## Keeps reference of the blank texture that is used when another texture is not available.
 var blank_texture := preload("res://Art/UAPrototype/UI/blank_item.png")
 ## Keeps track of the state that the game is in to determine what types of actions are allowed.
+## Modes are: "default", "menu", "minigame", "dropper", "inspection"(unused), "settings", "options"
 var mode := &"default"
 ## Tracks the current absolute size and mass of the player.
 var player_scale := Vector2(1.0, 1.0)

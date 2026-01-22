@@ -16,6 +16,7 @@ anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3n8ow")
+window_mode = "menu"
 
 [node name="CooldownInteract" type="Timer" parent="."]
 one_shot = true

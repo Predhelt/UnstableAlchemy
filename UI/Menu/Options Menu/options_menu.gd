@@ -1,8 +1,11 @@
-extends Panel
+extends UIWindow
 
 ## Keeps track of what the mode was before the window was opened to revert it back
 ## after the window closes.
 var prev_mode : StringName
+
+func _init() -> void:
+	window_mode = &"options"
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("options_menu"):
@@ -21,11 +24,11 @@ func toggle_window():
 
 func open_window():
 	prev_mode = global.mode
-	global.mode = &"options"
+	global.mode = window_mode
 	visible = true
 
 func close_window():
-	if global.mode == &"options":
+	if global.mode == window_mode:
 		global.mode = prev_mode
 		prev_mode = ""
 		visible = false
