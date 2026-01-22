@@ -1,5 +1,7 @@
+## Logic and UI for the alchemy minigames.
 class_name AlchemyMinigame extends Panel
-#TODO: Add documentation
+
+#TODO: Add documentation to functions
 ## Signal sent when the item is completed and added to the inventory.
 signal item_produced(item: Item, recipe : Recipe)
 ## Sends signal to open the inventory window.
@@ -152,9 +154,10 @@ func set_input_action(type: String, id: int, icon: Texture2D):
 	if not cur_craft_procedure.input_actions[nearest_tick]:
 		cur_craft_procedure.input_actions[nearest_tick] = input_action
 		%MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children()[nearest_tick].texture = icon
-		
 
-
+## Used by the cauldron to determine the segment on the progress bar that the
+## progress is closest to, if any. Modifying the input_window_ratio changes
+## how close the progress bar needs to be from a tick.
 func _get_nearest_tick() -> int:
 	var nearest_tick := -1
 	

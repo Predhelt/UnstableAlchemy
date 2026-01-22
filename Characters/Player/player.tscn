@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://csw57bxt7nvm2"]
+[gd_scene load_steps=31 format=3 uid="uid://csw57bxt7nvm2"]
 
-[ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://Characters/Player/Player.gd" id="1_juhlw"]
+[ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://Characters/Player/Player.gd" id="1_xf5fp"]
+[ext_resource type="Resource" uid="uid://c4voe1xwewivt" path="res://Characters/Player/player_inventory.tres" id="2_7vev3"]
 [ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://Art/UAPrototype/Characters/herbalist-down.png" id="2_23e54"]
-[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://Characters/Player/player_attributes.tres" id="2_osktb"]
+[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://Characters/Player/player_attributes.tres" id="3_klx3t"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="3_q5yn3"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="4_eve5b"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="5_n5fht"]
@@ -91,51 +92,51 @@ _data = {
 &"idle_up": SubResource("Animation_gvkpy")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vcvvj"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhbql"]
 animation = &"idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ylwo3"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c1yix"]
 animation = &"idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnhck"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_juol3"]
 animation = &"idle_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mgl5l"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_haalw"]
 animation = &"idle_right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_u1cla"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_vcvvj")
+blend_point_0/node = SubResource("AnimationNodeAnimation_mhbql")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_ylwo3")
+blend_point_1/node = SubResource("AnimationNodeAnimation_c1yix")
 blend_point_1/pos = Vector2(0, 1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_lnhck")
+blend_point_2/node = SubResource("AnimationNodeAnimation_juol3")
 blend_point_2/pos = Vector2(0, -1.1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_mgl5l")
+blend_point_3/node = SubResource("AnimationNodeAnimation_haalw")
 blend_point_3/pos = Vector2(1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4xroh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fhyg"]
 animation = &"idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ftdm5"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3xcj"]
 animation = &"idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gn07m"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6k4ps"]
 animation = &"idle_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ew28"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w5d48"]
 animation = &"idle_right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_q7fje"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_4xroh")
+blend_point_0/node = SubResource("AnimationNodeAnimation_0fhyg")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_ftdm5")
+blend_point_1/node = SubResource("AnimationNodeAnimation_u3xcj")
 blend_point_1/pos = Vector2(0, 1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_gn07m")
+blend_point_2/node = SubResource("AnimationNodeAnimation_6k4ps")
 blend_point_2/pos = Vector2(0, -1.1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_4ew28")
+blend_point_3/node = SubResource("AnimationNodeAnimation_w5d48")
 blend_point_3/pos = Vector2(1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
@@ -172,8 +173,9 @@ radius = 15.0
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 25
 motion_mode = 1
-script = ExtResource("1_juhlw")
-attributes = ExtResource("2_osktb")
+script = ExtResource("1_xf5fp")
+inventory = ExtResource("2_7vev3")
+attributes = ExtResource("3_klx3t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -36)

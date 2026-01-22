@@ -115,6 +115,7 @@ script = SubResource("GDScript_18djl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MergerArea"]
 shape = SubResource("RectangleShape2D_p613h")
+debug_color = Color(0.5137255, 0.41960785, 1, 0.41960785)
 
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button2" to="." method="_on_button_2_pressed"]

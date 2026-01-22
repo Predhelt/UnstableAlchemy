@@ -3,17 +3,17 @@ class_name Interactable extends Area2D
 ## Sends signal to the parent object when the object is inspected
 signal object_inspected()
 ## Sends signal to the parent object when the object is grabbed
-signal object_grabbed(player: Player)
+signal object_grabbed(character: Character)
 ## Sends signal to the parent object when the object is cut
-signal object_cut(player: Player)
+signal object_cut(character: Character)
 ## Sends signal to the parent object when the object is combined
-signal object_combined(player: Player, item: Item)
+signal object_combined(character: Character, item: Item)
 ## Sends signal to the parent object when the npc_talk interaction is received
 signal npc_talk()
 ## Sends signal to the parent object when the npc_shop interaction is received
 signal npc_shop()
 
-## The name of the object that is represented by the interactable and shown by the player.
+## The name of the object that is represented by the interactable and shown by the character.
 @export var interact_label := "none"
 ## The type of interaction of the interactable that determines which signal is sent to the object.
 @export_enum("none", "print_text", "context_menu", "inspect", "talk", "shop") var interact_type
@@ -29,18 +29,18 @@ var context_menu : Control
 ## Context Menu ##
 
 ## Changes the visibility of the context menu UI.
-func toggle_context_menu(player: Player):
+func toggle_context_menu(character: Character):
 	if not is_menu_open:
-		create_context_menu(player)
+		create_context_menu(character)
 	else:
 		close_context_menu()
 
 ## Initializes and displays the context menu UI.
-func create_context_menu(player: Player):
+func create_context_menu(character: Character):
 	context_menu = context_menu_scene.instantiate()
 	add_child(context_menu)
 	context_menu.name = interact_value
-	context_menu.player = player
+	context_menu.character = character
 	context_menu.create_inspect_button()
 	context_menu.connect("object_inspected", _on_object_inspected)
 	is_menu_open = true
@@ -67,16 +67,16 @@ func _on_object_inspected() -> void:
 	close_context_menu()
 
 ## Emits signal to object that it was grabbed.
-func grab_object(player: Player) -> void:
-	object_grabbed.emit(player)
+func grab_object(character: Character) -> void:
+	object_grabbed.emit(character)
 
 ## Emits signal to object that it was cut.
-func cut_object(player: Player) -> void:
-	object_cut.emit(player)
+func cut_object(character: Character) -> void:
+	object_cut.emit(character)
 
 ## Emits signal to object that it was combined with an item.
-func combine_object(player: Player, item: Item) -> void:
-	object_combined.emit(player, item)
+func combine_object(character: Character, item: Item) -> void:
+	object_combined.emit(character, item)
 
 ## Emits signal to object to start talking.
 func talk() -> void:

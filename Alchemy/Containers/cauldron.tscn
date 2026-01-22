@@ -109,6 +109,7 @@ script = ExtResource("2_os1jy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CauldronArea"]
 shape = SubResource("RectangleShape2D_0nbwu")
+debug_color = Color(0.51558965, 0.4210301, 1, 0.41960785)
 
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button2" to="." method="_on_button_2_pressed"]

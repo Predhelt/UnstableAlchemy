@@ -2,7 +2,7 @@ extends Node2D
 
 ## Name of the object (also the folder name the object is contained in)
 @export var display_name := ""
-## Description of the object given to the player 
+## Description of the object given to the character 
 @export var description := ""
 ## The items that the object contains and their initial quantities
 @export var items : Array[Item]
@@ -63,25 +63,25 @@ func inspect_object():
 	global.mode = &"inspection"
 	
 
-func _on_object_grabbed(player: Player) -> void:
-	if not collect_items(player, grab_interaction):
+func _on_object_grabbed(character: Character) -> void:
+	if not collect_items(character, grab_interaction):
 		return
 	
 	if grab_interaction.on_interact_status_effects:
-		player.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
+		character.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
 	check_empty()
 	
-func _on_object_cut(player: Player) -> void:
-	if not collect_items(player, cut_interaction):
+func _on_object_cut(character: Character) -> void:
+	if not collect_items(character, cut_interaction):
 		return
 	
 	if cut_interaction.on_interact_status_effects:
-		player.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
+		character.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
 	
 	check_empty()
 
-func collect_items(player: Player, interaction: Interaction) -> bool:
+func collect_items(character: Character, interaction: Interaction) -> bool:
 	if not interaction:
 		print("No interaction")
 		return false
@@ -110,7 +110,7 @@ func collect_items(player: Player, interaction: Interaction) -> bool:
 				item_quantities[j] -= interact_qty
 			
 			
-			if player.inventory_ref.add_inventory_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
+			if character.inventory.add_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
 				item_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
 			
 			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
@@ -137,18 +137,18 @@ func emit_effect():
 	effect_instance.emitting = true
 
 
-func _on_object_combined(player: Player, item: Item) -> void:
+func _on_object_combined(character: Character, item: Item) -> void:
 	if not item:
 		return
 	for c in combinations:
 		if c.input_item.id == item.id:
-			player.update_status_message(c.status_message)
+			character.update_status_message(c.status_message)
 			mutate_object(c.result_object_scene)
-			player._on_interaction_area_exited($InteractArea)
+			character._on_interaction_area_exited($InteractArea)
 			emit_effect()
-			player._on_interaction_area_entered($InteractArea)
+			character._on_interaction_area_entered($InteractArea)
 			return
-	player.update_status_message("...")
+	character.update_status_message("...")
 
 func mutate_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()

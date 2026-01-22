@@ -1,9 +1,8 @@
+## List of inventory items in the character's inventory.
 class_name Inventory extends Resource
 
-### DEPRECATED: Sent to the character to update their status effects when an item in inventory is consumed
-#signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
-
-## Max number of slots in the inventory
+## Max number of slots in the inventory. Should not be changed as
+## the inventory UI does not dynamically update its size based on this count.
 @export var max_item_count := 24 
 ### visual for item when dragging from inventory
 #var drag_item_scene := preload("res://UI/Menu/Inventory/drag_item_scene.tscn") 
@@ -79,7 +78,7 @@ class_name Inventory extends Resource
 	#return false
 
 ## Adds an item to the inventory.
-func add_inventory_item(item : Item) -> bool:
+func add_item(item : Item) -> bool:
 	if item == null or item.qty <= 0: ## If invalid item or empty item
 		return false
 	
@@ -141,13 +140,13 @@ func add_stackable_item(item : Item) -> bool:
 
 ## Removes the list of inventory items from the inventory.
 ## If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
-func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
+func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
 	## Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
 	var inventory_item_infos : Dictionary = {} ## Key : index, Value : id of items in inventory
 	
 	if not isRemovingStacks:
 		
-		inventory_item_infos = has_inventory_items(items_removing, qtys)
+		inventory_item_infos = has_items(items_removing, qtys)
 	
 		if inventory_item_infos == {}:
 			return false
@@ -199,7 +198,7 @@ func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isR
 
 ## Checks if the inventory has all items and their appropriate amounts.
 ## Returns a dictionary where Keys are indices and Values are ids of the items in inventory.
-func has_inventory_items(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
+func has_items(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
 	var found_items : Dictionary ## Key : index, Value : id of items in inventory
 	
 	for i in range(items_checking.size()):

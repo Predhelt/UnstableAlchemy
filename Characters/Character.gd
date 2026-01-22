@@ -7,9 +7,7 @@ const SIZE_DAMPENER := 0.5
 
 ## The tree determing how different animations connect and transition between each other #FIXME: UNUSED
 @onready var animation_tree : AnimationTree = $AnimationTree
-## Reference to the inventory UI.
-#TODO: Change Inventory so that every character can have a separate inventory.
-# Then make it so that character inventory is used to populate the inventory UI.
+## Reference to the inventory resource of the character(s).
 @export var inventory : Inventory
 ## Reference to the camera that is being used to follow the character and display the game screen.
 @export var character_camera_ref : Camera2D
@@ -35,7 +33,7 @@ var status_message_timer := 0.0
 ## Recipes that have not been viewed yet in the recipe page
 var new_recipes: Array[Recipe]
 ## The currently selected tool that the character is holding
-var selected_tool : String
+var selected_tool : StringName = &"hand"
 
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
@@ -145,7 +143,7 @@ func execute_interaction():
 		var cur_interaction = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type: # NOTE: When a type is added or updated, it also needs to be changed in Interactable
 			&"print_text" : print(cur_interaction.interact_value)
-			&"context_menu" : cur_interaction.toggle_context_menu(self) # DEPRECATED
+			#&"context_menu" : cur_interaction.toggle_context_menu(self) # DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
 			&"talk" : cur_interaction.talk()
 			&"shop" : cur_interaction.shop()

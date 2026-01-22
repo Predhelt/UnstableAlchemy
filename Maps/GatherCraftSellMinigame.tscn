@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=38 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="Script" uid="uid://c4lfgutfuwoof" path="res://Maps/gather_craft_sell_minigame.gd" id="1_4vv8i"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_wlq1s"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_2gpsm"]
 [ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_dhs73"]
 [ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://UI/Minigame/MortarPestle/MortarPestleMinigame.tscn" id="7_0d8md"]
-[ext_resource type="Resource" uid="uid://dmmjiexaj27y4" path="res://Items/Potions/strength_potion.tres" id="7_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/HUD/Menu Bar/menu_bar.tscn" id="8_ie10l"]
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://UI/HUD/Status Effect/status_effect_bar.tscn" id="9_44jw4"]
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_blh7c"]
@@ -71,10 +70,9 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="Inventory" parent="UILayer/MenuLayer" instance=ExtResource("1_wlq1s")]
+[node name="InventoryMenu" parent="UILayer/MenuLayer" instance=ExtResource("1_wlq1s")]
 unique_name_in_owner = true
 visible = false
-items = Array[ExtResource("18_ie10l")]([ExtResource("7_6y0gm")])
 
 [node name="RecipeList" parent="UILayer/MenuLayer" instance=ExtResource("2_2o0j7")]
 unique_name_in_owner = true
@@ -266,13 +264,13 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_myx5p")
 debug_color = Color(0.5629536, 0.55898833, 3.85046e-07, 0.41960785)
 
-[connection signal="item_produced" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_item_produced"]
-[connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/Inventory" method="_on_open_inventory"]
-[connection signal="item_produced" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/Inventory" method="_on_item_produced"]
-[connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/Inventory" method="_on_open_inventory"]
-[connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/Inventory" method="_on_hotbar_add_inventory_item"]
-[connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/Inventory" method="_on_hotbar_consume_inventory_item"]
-[connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/Inventory" method="_on_tool_wheel_set_dropper_item"]
+[connection signal="item_produced" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/InventoryMenu" method="_on_item_produced"]
+[connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameCauldron" to="UILayer/MenuLayer/InventoryMenu" method="_on_open_inventory"]
+[connection signal="item_produced" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/InventoryMenu" method="_on_item_produced"]
+[connection signal="open_inventory" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/InventoryMenu" method="_on_open_inventory"]
+[connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
+[connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_consume_inventory_item"]
+[connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
 [connection signal="tool_updated" from="UILayer/HUDLayer/ToolWheel" to="Player" method="_on_tool_updated"]
 [connection signal="body_entered" from="BlockageArea2D" to="." method="_on_blockage_area_2d_body_entered"]
 [connection signal="body_exited" from="BlockageArea2D" to="." method="_on_blockage_area_2d_body_exited"]

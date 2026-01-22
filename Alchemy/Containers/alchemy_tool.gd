@@ -1,6 +1,6 @@
 class_name AlchemyTool extends Control
 
-## Reference to the minigame scene. Gets set by Inventory since it has proper scope
+## Reference to the minigame scene. Gets set by inventory menu since it has proper scope
 var minigame_ref : Control
 ##
 ## Effect that occurs when the craft completes and an item is sent to the inventory.
@@ -116,7 +116,7 @@ func _process(delta: float) -> void:
 			progress_bar.visible = false
 			is_using = false
 
-##
+## Adds an item to the alchemy tool in the inventory.
 func add_item(item: Item) -> bool:
 	if is_using:
 		print("Please wait for " + tool_name + " to finish")
@@ -166,6 +166,9 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 		print("Error: No product item for recipe!")
 		return
 	
+	item_produced.emit(items[1])
+	remove_item(1)
+	
 	cur_recipe = result_recipe
 	
 	product = result_recipe.product_item.duplicate()
@@ -178,7 +181,9 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 	is_using = true
 
 
-func remove_item(index: int):
+func remove_item(index: int) -> void:
+	if not items[index]:
+		return
 	buttons[index].texture_normal = global.blank_texture
 	buttons[index].disabled = true
 	items[index] = null

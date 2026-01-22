@@ -1,8 +1,12 @@
+## Displays the list of recipes available to the character.
+## When a recipe is clicked on, opens a detailed display of the description,
+## ingredients, and procedure of the recipe.
 extends Panel
 
 #@export var known_recipes : Array[Recipe]
-@onready var player : Player = %Player
-
+## The currently referenced character.
+@onready var character : Character = %Player
+## Icons to be preloaded for use in display
 var recipe_item_icon : PackedScene = preload("res://UI/Menu/Recipe List/recipe_item_icon.tscn")
 var recipe_ingredient_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_ingredient_icons.tscn")
 var recipe_procedure_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_procedure_icons.tscn")
@@ -11,10 +15,6 @@ var procedure_icon_crush := preload("res://Art/UAPrototype/UI/Minigame/crush.png
 var procedure_icon_bellows := preload("res://Art/UAPrototype/UI/Minigame/bellows.png")
 
 func _ready() -> void:
-	#for recipe in known_recipes:
-		#%RecipeItems.add_item(recipe.product_item.display_name, recipe.product_item.texture)
-	#%RecipeItems.visible = true
-	
 	%WindowName.text = "Known Recipes"
 	%ProductDetails.visible = false
 
@@ -22,11 +22,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("recipe_book"):
 		toggle_window()
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#close_window()
-	#if event.is_action_pressed("inventory"):
-		#close_window()
 
 func toggle_window() -> void:
 	if visible:
@@ -43,7 +38,7 @@ func close_window() -> void:
 	if not global.left_window and not global.center_window:
 		global.mode = &"default"
 	
-	for recipe in player.known_recipes:
+	for recipe in character.known_recipes:
 		%RecipeItems.clear()
 
 
@@ -58,9 +53,9 @@ func open_window() -> bool:
 			%ProcedureList.remove_child(child)
 		%WindowName.text = "Known Recipes"
 		
-		for recipe in player.known_recipes:
+		for recipe in character.known_recipes:
 			var display_text := ""
-			if recipe in player.new_recipes:
+			if recipe in character.new_recipes:
 				display_text += "*New*"
 			display_text += recipe.product_item.display_name
 			%RecipeItems.add_item(display_text, recipe.product_item.texture)
@@ -74,16 +69,16 @@ func open_window() -> bool:
 
 
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
-	var recipe := player.known_recipes[index]
+	var recipe := character.known_recipes[index]
 	%ProductName.text = recipe.product_item.display_name
 	%ProductDescription.text = recipe.product_item.description
 	%ProductIcon.texture = recipe.product_item.texture
 	
-	if recipe in player.new_recipes:
-		player.new_recipes.erase(recipe)
+	if recipe in character.new_recipes:
+		character.new_recipes.erase(recipe)
 	
 	## Add each procedure to create the associated recipe
-	for r in player.known_recipes:
+	for r in character.known_recipes:
 		if r.product_item.id != recipe.product_item.id:
 			continue
 		if  recipe.tool_used == &"m&p":
