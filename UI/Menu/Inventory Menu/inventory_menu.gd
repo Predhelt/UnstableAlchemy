@@ -1,19 +1,19 @@
-class_name Inventory extends Panel
+extends Panel
 
 ### DEPRECATED: Sent to the player to update their status effects when an item in inventory is consumed
 signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
 
 ## Max number of slots in the inventory
 @export var max_item_count := 24 
+## reference to the currently used inventory
+var character_ref : Character
 ## visual for item when dragging from inventory
-var drag_item_scene := preload("res://UI/Menu/Inventory/drag_item_scene.tscn") 
+var drag_item_scene := preload("res://UI/Menu/Inventory Menu/drag_item_scene.tscn") 
 ## Reference to the Hotbar UI
 @onready var hotbar_ref := %Hotbar
 ## Reference to the Tool Wheel UI
 @onready var toolwheel_ref := %ToolWheel
-## List of items in the inventory
-@export var items : Array[Item]
-## Item that is currently selected in the inventory (not dragged)
+## (UNUSED)Item that is currently selected in the inventory (not dragged)
 #var selected_item : Item 
 
 ## Sets references, initializes variables in references, and connects signals
@@ -25,10 +25,6 @@ func _ready() -> void:
 	%MortarPestle.minigame_ref = %MinigameMP
 	%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
 	%MinigameMP.tool_ref = %MortarPestle
-	
-	for i in len(items):
-		if items[i]:
-			%ItemList.add_item(generate_item_text(items[i]), items[i].texture)
 
 ## Controls functions executed when input actions are pressed
 func _input(event: InputEvent) -> void:
@@ -61,9 +57,13 @@ func close_window() -> void:
 		visible = false
 
 ## Opens the window and adds it to the active window group.
+## Inventory reference should be set before the window is opened.
 func open_window() -> bool:
 	if global.left_window or global.center_window or visible:
 		return false ## Do not open, there is already a window open in the area.
+	if not character_ref:
+		print("ERROR: No character reference to display inventory")
+		return false ## Cannot configure inventory menu without an inventory reference.
 	if global.mode == &"default":
 		global.mode = &"menu"
 	if global.mode == &"menu":
@@ -78,67 +78,86 @@ func open_window() -> bool:
 		return true
 	return false
 
-## Adds an item to the inventory.
-func add_inventory_item(item : Item) -> bool:
-	if item == null or item.qty <= 0: # If invalid item or empty item
-		return false
+#func _set_inventory(inventory: Inventory):
+	#character_ref.inventory = inventory
+
+func configure_character_inventory(character : Character):
+	character_ref = character
+	var items := character_ref.inventory.items
 	
-	var could_pickup : bool = add_stackable_item(item) # add to any existing stacks
-	
-	if item.qty <= 0: #if item was added to existing stacks
-		return true
-		
-	for i in %ItemList.item_count: 
+	for i in len(items):
 		if items[i] != null:
 			continue
-		
-		items[i] = item
-		%ItemList.set_item_icon(i, item.texture)
-		
-		%ItemList.set_item_text(i, generate_item_text(items[i]))
-		
-		return true
-	return could_pickup
+		if items[i]:
+			%ItemList.add_item(generate_item_text(items[i]), items[i].texture)
+
+## Clear the inventory item list and re-configure it.
+func update_inventory():
+	%ItemList.clear()
+	configure_character_inventory(character_ref)
+	
+
+## Adds an item to the inventory.
+#func add_inventory_item(item : Item) -> bool:
+	#if item == null or item.qty <= 0: # If invalid item or empty item
+		#return false
+	
+	#var could_pickup : bool = add_stackable_item(item) # add to any existing stacks
+	#
+	#if item.qty <= 0: #if item was added to existing stacks
+		#return true
+		#
+	#for i in %ItemList.item_count: 
+		#if items[i] != null:
+			#continue
+		#
+		#items[i] = item
+		#%ItemList.set_item_icon(i, item.texture)
+		#
+		#%ItemList.set_item_text(i, generate_item_text(items[i]))
+		#
+		#return true
+	#return could_pickup
 
 # Adds item to a stack/slot or multiple stacks in inventory
-func add_stackable_item(item : Item) -> bool:
-	if item.max_qty < 2:
-		return false # not stackable
-	
-	var could_pickup : bool = false
-	
-	for i in %ItemList.item_count:
-		if items[i] == null:
-			print("Warning: Null item in Inventory")
-			continue
-		
-		if items[i].id != item.id or items[i].qty >= items[i].max_qty:
-			continue # If not a match or the item stack is full
-		
-		if items[i].qty + item.qty > items[i].max_qty: # Only add until stack is full
-			var amount_to_remove : int = items[i].max_qty - items[i].qty
-			
-			items[i].qty = items[i].max_qty
-			item.qty -= amount_to_remove
-			
-			#could_pickup = true
-			%ItemList.set_item_text(i, generate_item_text(items[i]))
-			return true
-		
-		#If the stack is a match
-		items[i].qty += item.qty
-		item.qty = 0
-		%ItemList.set_item_text(i, generate_item_text(items[i]))
-		return true
-	
-	if %ItemList.item_count >= max_item_count:
-		print("Inventory is full")
-		return could_pickup
-	
-	items.append(item.duplicate())
-	%ItemList.add_item(generate_item_text(item), item.texture)
-	item.qty = 0
-	return true
+#func add_stackable_item(item : Item) -> bool:
+	#if item.max_qty < 2:
+		#return false # not stackable
+	#
+	#var could_pickup : bool = false
+	#
+	#for i in %ItemList.item_count:
+		#if items[i] == null:
+			#print("Warning: Null item in Inventory")
+			#continue
+		#
+		#if items[i].id != item.id or items[i].qty >= items[i].max_qty:
+			#continue # If not a match or the item stack is full
+		#
+		#if items[i].qty + item.qty > items[i].max_qty: # Only add until stack is full
+			#var amount_to_remove : int = items[i].max_qty - items[i].qty
+			#
+			#items[i].qty = items[i].max_qty
+			#item.qty -= amount_to_remove
+			#
+			##could_pickup = true
+			#%ItemList.set_item_text(i, generate_item_text(items[i]))
+			#return true
+		#
+		##If the stack is a match
+		#items[i].qty += item.qty
+		#item.qty = 0
+		#%ItemList.set_item_text(i, generate_item_text(items[i]))
+		#return true
+	#
+	#if %ItemList.item_count >= max_item_count:
+		#print("Inventory is full")
+		#return could_pickup
+	#
+	#items.append(item.duplicate())
+	#%ItemList.add_item(generate_item_text(item), item.texture)
+	#item.qty = 0
+	#return true
 
 ## Sets the text of the item as displayed in the Inventory UI.
 func generate_item_text(item: Item) -> String:
@@ -153,96 +172,96 @@ func remove_inventory_slot(index : int) -> void:
 	if index < 0 or index >= %ItemList.item_count:
 		return
 	
-	items.remove_at(index)
+	character_ref.inventory.items.remove_at(index)
 	%ItemList.remove_item(index)
 
-## Removes the list of inventory items from the inventory.
-## If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
-func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
-	## Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
-	var inventory_item_infos : Dictionary = {} ## Key : index, Value : id of items in inventory
-	
-	if not isRemovingStacks:
-		
-		inventory_item_infos = has_inventory_items(items_removing, qtys)
-	
-		if inventory_item_infos == {}:
-			return false
-	
-		## Phase 2: remove items from inventory
-		var inventory_indices : Array = inventory_item_infos.keys()
-		inventory_indices.sort()
-		inventory_indices.reverse() ## Descending order because the size will change if an item is removed from the inventory item list
-		
-		for inventory_index in inventory_indices:
-			for cur_item_index in range(items_removing.size()):
-				var cur_item = items_removing[cur_item_index]
-				## Find matching IDs
-				if inventory_item_infos[inventory_index] == cur_item.id:
-					var cur_qty = qtys[cur_item_index]
-					if cur_qty < 0:
-						print("error, trying to remove negative quantity of" + cur_item.display_name)
-					if cur_qty == 0: ## Nothing to remove, skip to next index.
-						break
-					## Remove item qty from index in inventory
-					var inventory_item = items[inventory_index]
-					if cur_qty < inventory_item.qty:
-						inventory_item.qty -= cur_qty ## Only remove some if amount is less than the stack
-						qtys[cur_item_index] = 0
-						break
-					else:
-						remove_inventory_slot(inventory_index)
-						qtys[cur_item_index] -= inventory_item.qty
-		
-		## Confirm that all requested items have been removed from inventory
-		var sum : int = 0
-		for qty in qtys:
-			sum += qty
-		if sum > 0:
-			return false
-		else:
-			return true
-	
-	##  If removing all instances of items:
-	for i in range(items.size()-1,0): # Descending so that decreasing array size does not cause out of bound error
-		if i >= items.size(): # Index can be greater than size if multiple items are removed from list
-			continue
-		for item_removing in items_removing:
-			if items[i].id == item_removing.id:
-				remove_inventory_slot(i)
-	return true
-
-## Checks if the inventory has all items and their appropriate amounts.
-## Returns a dictionary where Keys are indices and Values are ids of the items in inventory.
-func has_inventory_items(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
-	var found_items : Dictionary ## Key : index, Value : id of items in inventory
-	
-	for i in range(items_checking.size()):
-		var temp_qty : int = qtys[i]
-		for j in range(items.size()-1, -1, -1): # Descending order, to remove the later elements first.
-			if items_checking[i].id == items[j].id:
-				found_items[j] = items_checking[i].id
-				if temp_qty <= items[j].qty:
-					temp_qty = 0
-					break
-				else:
-					temp_qty -= items[j].qty
-		if temp_qty > 0:
-			return {}
-	
-	return found_items
-
-## Gets the list of items at the current index in the list of items in the inventory.
-func get_inventory_item(index : int) -> Item:
-	if index < 0 or index >= %ItemList.item_count:
-		return null
-	
-	return items[index]
+### Removes the list of inventory items from the inventory.
+### If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
+#func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
+	### Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
+	#var inventory_item_infos : Dictionary = {} ## Key : index, Value : id of items in inventory
+	#
+	#if not isRemovingStacks:
+		#
+		#inventory_item_infos = has_inventory_items(items_removing, qtys)
+	#
+		#if inventory_item_infos == {}:
+			#return false
+	#
+		### Phase 2: remove items from inventory
+		#var inventory_indices : Array = inventory_item_infos.keys()
+		#inventory_indices.sort()
+		#inventory_indices.reverse() ## Descending order because the size will change if an item is removed from the inventory item list
+		#
+		#for inventory_index in inventory_indices:
+			#for cur_item_index in range(items_removing.size()):
+				#var cur_item = items_removing[cur_item_index]
+				### Find matching IDs
+				#if inventory_item_infos[inventory_index] == cur_item.id:
+					#var cur_qty = qtys[cur_item_index]
+					#if cur_qty < 0:
+						#print("error, trying to remove negative quantity of" + cur_item.display_name)
+					#if cur_qty == 0: ## Nothing to remove, skip to next index.
+						#break
+					### Remove item qty from index in inventory
+					#var inventory_item = items[inventory_index]
+					#if cur_qty < inventory_item.qty:
+						#inventory_item.qty -= cur_qty ## Only remove some if amount is less than the stack
+						#qtys[cur_item_index] = 0
+						#break
+					#else:
+						#remove_inventory_slot(inventory_index)
+						#qtys[cur_item_index] -= inventory_item.qty
+		#
+		### Confirm that all requested items have been removed from inventory
+		#var sum : int = 0
+		#for qty in qtys:
+			#sum += qty
+		#if sum > 0:
+			#return false
+		#else:
+			#return true
+	#
+	###  If removing all instances of items:
+	#for i in range(items.size()-1,0): # Descending so that decreasing array size does not cause out of bound error
+		#if i >= items.size(): # Index can be greater than size if multiple items are removed from list
+			#continue
+		#for item_removing in items_removing:
+			#if items[i].id == item_removing.id:
+				#remove_inventory_slot(i)
+	#return true
+#
+### Checks if the inventory has all items and their appropriate amounts.
+### Returns a dictionary where Keys are indices and Values are ids of the items in inventory.
+#func has_inventory_items(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
+	#var found_items : Dictionary ## Key : index, Value : id of items in inventory
+	#
+	#for i in range(items_checking.size()):
+		#var temp_qty : int = qtys[i]
+		#for j in range(items.size()-1, -1, -1): # Descending order, to remove the later elements first.
+			#if items_checking[i].id == items[j].id:
+				#found_items[j] = items_checking[i].id
+				#if temp_qty <= items[j].qty:
+					#temp_qty = 0
+					#break
+				#else:
+					#temp_qty -= items[j].qty
+		#if temp_qty > 0:
+			#return {}
+	#
+	#return found_items
+#
+### Gets the list of items at the current index in the list of items in the inventory.
+#func get_inventory_item(index : int) -> Item:
+	#if index < 0 or index >= %ItemList.item_count:
+		#return null
+	#
+	#return items[index]
 
 ## Determines what to do when the item is clicked on.
 func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index : int) -> void:
 	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click.
-		var item = get_inventory_item(index)
+		var item = character_ref.inventory.get_inventory_item(index)
 		
 		if item == null:
 			print("No items found")
@@ -254,7 +273,7 @@ func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index :
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
-		var item = get_inventory_item(index)
+		var item = character_ref.inventory.get_inventory_item(index)
 		
 		if item == null:
 			print("No items found")
@@ -279,7 +298,7 @@ func drag_item(item : Item, index : int):
 	drag_item_instance.item = selected_item
 	
 	drag_item_instance.texture = item.texture
-	drag_item_instance.inventory_ref = self # Keep reference of inventory for drag item for if dropped outside of a draggable area
+	drag_item_instance.inventory_ref = character_ref.inventory # Keep reference of inventory for drag item for if dropped outside of a draggable area
 	get_parent().add_child(drag_item_instance)
 
 ## Determines how to use the item in the inventory.
@@ -311,7 +330,7 @@ func consume_item(item : Item, index : int):
 	## Check item for if it should be removed from the hotbar
 	if hotbar_ref.has_item(item):
 		var has_more_items := false
-		for cur_item in items:
+		for cur_item in character_ref.inventory.items:
 			if cur_item.id != item.id:
 				continue
 			has_more_items = true
@@ -320,20 +339,20 @@ func consume_item(item : Item, index : int):
 		if not has_more_items:
 			hotbar_ref.remove_hotbar_item(item)
 
-## 
+## Adds item from the hotbar to the inventory.
 func _on_hotbar_add_inventory_item(item: Item) -> void:
-	add_inventory_item(item)
+	character_ref.inventory.add_inventory_item(item)
 
 ## Uses the item on the hotbar and removes it from the inventory.
 func consume_hotbar_item(item : Item):
 	var has_more_items := false
 	var is_consumed := false
-	var num_items := len(items)
+	var num_items := len(character_ref.inventory.items)
 	
 	for i in num_items:
 		if num_items <= i: # If item is removed from inventory, will prevent accessing invalid index of inventory
 			break
-		var cur_item = items[i]
+		var cur_item = character_ref.inventory.items[i]
 		if cur_item.id != item.id:
 			continue
 		if not is_consumed:

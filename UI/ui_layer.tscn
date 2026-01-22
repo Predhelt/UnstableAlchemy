@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://h1v4fc6sbcu6"]
 
 [ext_resource type="Script" uid="uid://8p2w7vm2vpqr" path="res://UI/ui_layer.gd" id="1_4k2wc"]
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_4qjnp"]
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_4qjnp"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_4k2wc"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_uf0xt"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_ssfkr"]

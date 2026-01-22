@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dogoatlnbl82p"]
 
-[ext_resource type="Script" uid="uid://6lsqy6nlitm5" path="res://UI/Menu/Inventory/drag_item.gd" id="1_8keow"]
+[ext_resource type="Script" uid="uid://6lsqy6nlitm5" path="res://UI/Menu/Inventory Menu/drag_item.gd" id="1_8keow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_euuua"]
 size = Vector2(12, 12)

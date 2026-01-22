@@ -1,7 +1,7 @@
-[gd_scene load_steps=40 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=39 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="Script" uid="uid://c4lfgutfuwoof" path="res://Maps/gather_craft_sell_minigame.gd" id="1_4vv8i"]
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_wlq1s"]
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_wlq1s"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_2o0j7"]
 [ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://UI/Menu/NPC Shop/npc_shop.tscn" id="3_ie10l"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_sqmy7"]
@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="19_myx5p"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_flakes.tres" id="20_0ehhb"]
 [ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="21_x22rh"]
-[ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://Characters/NPCs/Brindan_GCSMinigame/att_brindan_gcsm.tres" id="23_6y0gm"]
 [ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.gd" id="23_blh7c"]
 [ext_resource type="Resource" uid="uid://7we1na1p6l36" path="res://Items/M&P Products/blue_berry_seed.tres" id="25_lj88t"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="27_1cenb"]
@@ -119,9 +118,10 @@ offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
 
-[node name="Player" parent="." instance=ExtResource("12_86het")]
+[node name="Player" parent="." node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("12_86het")]
 unique_name_in_owner = true
 position = Vector2(529, 298)
+character_camera_ref = NodePath("../PlayerCamera")
 known_recipes = Array[ExtResource("13_lj88t")]([ExtResource("14_l5n5r")])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
@@ -212,7 +212,6 @@ unique_name_in_owner = true
 position = Vector2(863, 382)
 script = ExtResource("23_blh7c")
 npc_name = "Brindan"
-attributes = ExtResource("23_6y0gm")
 dialogue_tree = ExtResource("19_lj88t")
 transactions = Array[ExtResource("17_0d8md")]([ExtResource("27_1cenb"), ExtResource("28_6y0gm"), SubResource("Resource_0ehhb")])
 passive_messages = Array[String](["Hey", "Where are we, anyways?"])

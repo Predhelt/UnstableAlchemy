@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://dtluleyswgahn"]
 
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory/inventory.tscn" id="1_6p13e"]
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_6p13e"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_mvedh"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_bteij"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_kq1vj"]

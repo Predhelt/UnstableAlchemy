@@ -1,4 +1,4 @@
-class_name NPC extends CharacterBody2D
+class_name NPC extends Character
 
 #TODO: Types of interactions with NPCs:
 # Flavor text / Hint message : does not lock you into a conversation
@@ -8,8 +8,6 @@ class_name NPC extends CharacterBody2D
 
 ## Name of the NPC to be dislpayed. Used by the player and dialogue window to show who this NPC is.
 @export var npc_name : String
-## List of attributes that influence how the character interacts with the environment.
-@export var attributes : Attributes
 ## The type of interaction that occurs upon interacting with the NPC
 @export_enum("none", "talk", "shop") var interaction_type : String = "talk" 
 ## Stores the list of dialogues that the NPC uses, as well as the default dialogue window that displays when talked to.
