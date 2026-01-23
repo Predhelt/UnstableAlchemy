@@ -27,12 +27,15 @@ func _input(event: InputEvent) -> void:
 	if is_crafting and recipes[0].tool_used == "cauldron":
 		if event.is_action_pressed("minigame_cauldron_action_1") and not minigame_buttons[0].disabled:
 			set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)
+			minigame_buttons[0].disabled = true ## Item is now used in craft, disable button.
 		elif event.is_action_pressed("minigame_cauldron_action_2") and not minigame_buttons[1].disabled:
 			set_input_action("item", cur_craft_ingredients[1].id, minigame_buttons[1].icon)
+			minigame_buttons[1].disabled = true ## Item is now used in craft, disable button.
 		elif event.is_action_pressed("minigame_cauldron_action_3") and not minigame_buttons[2].disabled:
 			set_input_action("item", cur_craft_ingredients[2].id, minigame_buttons[2].icon)
+			minigame_buttons[2].disabled = true ## Item is now used in craft, disable button.
 		elif event.is_action_pressed("minigame_cauldron_action_4") and not minigame_buttons[3].disabled:
-			set_input_action("equipment", 0, minigame_buttons[3].icon) # Bellows
+			set_input_action("equipment", 0, minigame_buttons[3].icon) ## Bellows input
 		return
 
 ## Opens the cauldron minigame window. Assumes that the cur_craft_ingredients was already set.
@@ -60,6 +63,9 @@ func open_window():
 
 ## Checks to see if the input is near a tick on the progress bar. If so,
 ## sets the nearest tick image and information equal to the given information.
+## type is the type of input action that is being set. For instance, "item" or "equipment".
+## id is the id of the item being used, if any.
+## icon is the image of the item / tool being used in the input.
 func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	var nearest_tick = _get_nearest_tick()
 	
@@ -74,6 +80,7 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	if not cur_craft_procedure.input_actions[nearest_tick]:
 		cur_craft_procedure.input_actions[nearest_tick] = input_action
 		%MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children()[nearest_tick].texture = icon
+	
 
 ## Used by the cauldron to determine the segment on the progress bar that the
 ## progress is closest to, if any. Modifying the input_window_ratio changes
