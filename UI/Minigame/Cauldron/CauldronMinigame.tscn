@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d24ge55seaobg"]
+[gd_scene load_steps=11 format=3 uid="uid://d24ge55seaobg"]
 
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://Art/UADefaultTheme.tres" id="1_cupdn"]
 [ext_resource type="Script" uid="uid://dkxemkd2us7vl" path="res://UI/Minigame/Cauldron/cauldron_minigame.gd" id="1_geiyq"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://Art/UAPrototype/Objects/object-pressure-plate-green.png" id="2_24nro"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_u2uge"]
@@ -18,8 +19,8 @@ anchor_right = 0.6
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_cupdn")
 script = ExtResource("1_geiyq")
-window_mode = "minigame"
 
 [node name="StartupDelay" type="Timer" parent="."]
 one_shot = true

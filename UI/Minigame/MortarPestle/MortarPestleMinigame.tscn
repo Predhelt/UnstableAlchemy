@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwmnuacpgn38h"]
+[gd_scene load_steps=8 format=3 uid="uid://bwmnuacpgn38h"]
 
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://Art/UADefaultTheme.tres" id="1_85brq"]
 [ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://UI/Minigame/MortarPestle/mortar_pestle_minigame.gd" id="1_vo0bl"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://UI/Minigame/MinigameProgressBar.tscn" id="2_70xyk"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_aqc0h"]
@@ -15,6 +16,7 @@ anchor_right = 0.6
 anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_85brq")
 script = ExtResource("1_vo0bl")
 
 [node name="StartupDelay" type="Timer" parent="."]

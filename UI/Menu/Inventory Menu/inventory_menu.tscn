@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy5h4xq84fujx"]
+[gd_scene load_steps=7 format=3 uid="uid://cy5h4xq84fujx"]
 
 [ext_resource type="Script" uid="uid://cfe3j5o7dsabu" path="res://UI/Menu/Inventory Menu/inventory_menu.gd" id="1_3n8ow"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://Art/UADefaultTheme.tres" id="1_gie0h"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_tx3c8"]
 [ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://Alchemy/Containers/cauldron.tscn" id="3_016ij"]
 [ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://Alchemy/Containers/mortar_pestle.tscn" id="4_0n6gb"]
@@ -15,6 +16,7 @@ anchor_right = 0.6
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_gie0h")
 script = ExtResource("1_3n8ow")
 
 [node name="CooldownInteract" type="Timer" parent="."]

@@ -1,13 +1,15 @@
-[gd_scene load_steps=38 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=40 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="Script" uid="uid://c4lfgutfuwoof" path="res://Maps/gather_craft_sell_minigame.gd" id="1_4vv8i"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_wlq1s"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_2o0j7"]
 [ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://UI/Menu/NPC Shop/npc_shop.tscn" id="3_ie10l"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="3_sqmy7"]
+[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://UI/Menu/Options Menu/options_theme.tres" id="4_1cenb"]
 [ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://UI/Menu/NPC Dialogue/npc_dialogue.tscn" id="4_86het"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_88txk"]
 [ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_2gpsm"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://Art/UADefaultTheme.tres" id="6_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_dhs73"]
 [ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://UI/Minigame/MortarPestle/MortarPestleMinigame.tscn" id="7_0d8md"]
 [ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/HUD/Menu Bar/menu_bar.tscn" id="8_ie10l"]
@@ -16,12 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_bfu87"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="12_86het"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="13_lj88t"]
-[ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="14_l5n5r"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="15_gqfas"]
 [ext_resource type="PackedScene" uid="uid://ysnbvkn4ogwk" path="res://Characters/NPCs/npc.tscn" id="16_2o0j7"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="16_4vv8i"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/Merchant/Transaction.gd" id="17_0d8md"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="17_1cenb"]
+[ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://Alchemy/Recipes/M&P/gray_juice.tres" id="17_gqfas"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="18_6y0gm"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="18_ie10l"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="18_l5n5r"]
@@ -65,26 +67,32 @@ visible = false
 [node name="OptionsMenu" parent="UILayer/MenuLayer" instance=ExtResource("3_sqmy7")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("4_1cenb")
 
 [node name="HelpMenu" parent="UILayer/MenuLayer" instance=ExtResource("5_2gpsm")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("6_6y0gm")
 
 [node name="InventoryMenu" parent="UILayer/MenuLayer" instance=ExtResource("1_wlq1s")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("6_6y0gm")
 
 [node name="RecipeList" parent="UILayer/MenuLayer" instance=ExtResource("2_2o0j7")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("6_6y0gm")
 
 [node name="NPCShop" parent="UILayer/MenuLayer" instance=ExtResource("3_ie10l")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("6_6y0gm")
 
 [node name="NPCDialogue" parent="UILayer/MenuLayer" instance=ExtResource("4_86het")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("6_6y0gm")
 
 [node name="MinigameLayer" type="CanvasLayer" parent="UILayer"]
 layer = 2
@@ -92,10 +100,12 @@ layer = 2
 [node name="MinigameCauldron" parent="UILayer/MinigameLayer" instance=ExtResource("6_dhs73")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("6_6y0gm")
 
 [node name="MinigameMP" parent="UILayer/MinigameLayer" instance=ExtResource("7_0d8md")]
 unique_name_in_owner = true
 visible = false
+theme = ExtResource("6_6y0gm")
 
 [node name="HUDLayer" type="CanvasLayer" parent="UILayer"]
 
@@ -120,7 +130,7 @@ offset_bottom = 154.0
 unique_name_in_owner = true
 position = Vector2(529, 298)
 character_camera_ref = NodePath("../PlayerCamera")
-known_recipes = Array[ExtResource("13_lj88t")]([ExtResource("14_l5n5r")])
+known_recipes = Array[ExtResource("13_lj88t")]([ExtResource("17_gqfas")])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")

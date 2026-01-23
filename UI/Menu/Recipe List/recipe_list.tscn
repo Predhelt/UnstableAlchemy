@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc5d3ocd8w0fu"]
+[gd_scene load_steps=7 format=3 uid="uid://dc5d3ocd8w0fu"]
 
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://Art/UADefaultTheme.tres" id="1_vxomh"]
 [ext_resource type="Script" uid="uid://df82k6p2pmfec" path="res://UI/Menu/Recipe List/recipe_list.gd" id="2_2htw0"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://Art/UAPrototype/Alchemy/Potions/potion-standard-grey.png" id="3_2hrkg"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="4_eo0qk"]
@@ -13,8 +14,8 @@ anchor_left = 0.61
 anchor_top = 0.1
 anchor_right = 0.98
 anchor_bottom = 0.9
+theme = ExtResource("1_vxomh")
 script = ExtResource("2_2htw0")
-window_mode = "menu"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
