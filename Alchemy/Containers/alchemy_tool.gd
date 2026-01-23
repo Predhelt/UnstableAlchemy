@@ -3,6 +3,9 @@
 class_name AlchemyTool extends UIWindow
 ## Sent when the item is completed and added to the inventory
 signal item_produced(item: Item, recipe : Recipe)
+## Sends signal to the inventory to remove items when a craft minigame is completed
+## and the ingredient items are consumed.
+signal item_removed(item: Item)
 ## Sent when the minigame window is opened, the inventory should be closed
 signal close_inventory()
 
@@ -85,13 +88,15 @@ func set_recipes(folder_name : StringName):
 					recipes.append(new_recipe)
 		file_name = dir.get_next()
 
-## 
+
 func _process(delta: float) -> void:
 	if global.is_dragging:
 		scale = Vector2(1.1, 1.1)
 	else:
 		scale = Vector2(1, 1)
-	
+	## Used by alchemy tools that do not have alchemy minigame windows. Handles
+	## the progress bar and timer to represent the time it takes to craft the product.
+	## When the timer is completed, produces the item.
 	if is_using:
 		if use_timer > 0:
 			use_timer -= delta
@@ -141,7 +146,6 @@ func open_minigame(mg_items: Array[Item]):
 	minigame_ref.open_window()
 
 ## For alchemy tools that do not have a separate minigame window.
-## Takes the first 
 func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using minigame
 	if not result_recipe.product_item:
 		print("Error: No product item for recipe!")
@@ -150,6 +154,9 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 	#TODO: determine how the items being merged should be handled by inventory and tool.
 	#item_produced.emit(items[1])
 	#remove_item(1)
+	for i in range(items.size()):
+		if items[i]:
+			remove_item(i)
 	
 	cur_recipe = result_recipe
 	
@@ -188,17 +195,20 @@ func _on_button_confirm_pressed() -> void:
 		return
 	_use_items()
 
-## Removes item from the first slot in the alchemy tool when it is pressed on.
+## Removes item from the first slot in the alchemy tool when it is pressed on
+## and puts the item back in the inventory.
 func _on_button_1_pressed() -> void:
 	item_produced.emit(items[0])
 	remove_item(0)
 
-## Removes item from the second slot in the alchemy tool when it is pressed on.
+## Removes item from the second slot in the alchemy tool when it is pressed on
+## and puts the item back in the inventory.
 func _on_button_2_pressed() -> void:
 	item_produced.emit(items[1])
 	remove_item(1)
 
-## Removes item from the third slot in the alchemy tool when it is pressed on.
+## Removes item from the third slot in the alchemy tool when it is pressed on
+## and puts the item back in the inventory.
 func _on_button_3_pressed() -> void:
 	item_produced.emit(items[2])
 	remove_item(2)

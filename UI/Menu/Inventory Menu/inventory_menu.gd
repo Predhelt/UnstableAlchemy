@@ -26,6 +26,13 @@ func _ready() -> void:
 	%MortarPestle.minigame_ref = %MinigameMP
 	%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
 	%MinigameMP.tool_ref = %MortarPestle
+	
+	## Signal connections for minigame windows.
+	## The naming convention is assumed to be the same across maps.
+	%MinigameCauldron.item_produced.connect(_on_item_produced)
+	%MinigameMP.item_produced.connect(_on_item_produced)
+	%MinigameCauldron.item_removed.connect(_on_item_removed)
+	%MinigameMP.item_removed.connect(_on_item_removed)
 
 ## Controls functions executed when input actions are pressed
 func _input(event: InputEvent) -> void:
@@ -59,7 +66,7 @@ func close_window() -> void:
 
 ## Goes through each slot in the alchemy tools in the inventory and
 ## returns the items back to the inventory.
-func return_alchemy_items():
+func return_alchemy_items() -> void:
 	for i in range(3):
 		character_ref.inventory.add_item(%Cauldron.items[i])
 		%Cauldron.remove_item(i)
@@ -130,7 +137,7 @@ func remove_inventory_slot(index : int) -> void:
 ### Removes the list of inventory items from the inventory.
 ### If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
 func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
-	if not character_ref.inventory.remove_inventory_items(items_removing, qtys, isRemovingStacks):
+	if not character_ref.inventory.remove_items(items_removing, qtys, isRemovingStacks):
 		return false
 	update_window()
 	return true
@@ -263,12 +270,16 @@ func _set_dropper_item(item: Item):
 	toolwheel_ref.dropper_item = item
 	close_window()
 
-## Treggers when a crafting minigame is completed and an item is added to the inventory.
+## Triggers when a crafting minigame is completed and an item is added to the inventory.
 func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
 	if recipe != null:
 		%Player.learn_recipe(recipe)
+
+func _on_item_removed(item: Item) -> void:
+	if item:
+		remove_inventory_items([item], [1])
 
 ## Triggers when the inventory window is opened.
 ## Adds the inventory to the window group and updates the window title.

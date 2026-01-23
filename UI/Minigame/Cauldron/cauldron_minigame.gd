@@ -6,7 +6,22 @@ func _ready() -> void:
 	minigame_buttons.append(%Container/GridContainer/ButtonItem3)
 	minigame_buttons.append(%Container/GridContainer/ButtonBellows)
 
-func _input(event: InputEvent) -> void: # Override in M&P
+## Sets minigame input displays, updates minigame timers,
+## checks to see if the crafting is complete.
+func _process(delta: float) -> void:
+	for i in len(minigame_buttons): ## Set hotkey text for each button
+		minigame_buttons[i].text = ("(" +
+			InputMap.action_get_events("minigame_cauldron_action_"+str(i+1))[0].as_text().replace(
+				' (Physical)','') + ")")	
+	if is_crafting:
+		if slider.value < slider.max_value:
+			slider.value += delta
+		else:
+			is_crafting = false
+			check_results()
+
+
+func _input(event: InputEvent) -> void:
 	if global.mode != &"minigame" or not visible:
 		return ## No input events should catch on wrong mode
 	if is_crafting and recipes[0].tool_used == "cauldron":
@@ -42,6 +57,40 @@ func open_window():
 	global.left_window = self
 	visible = true
 	global.mode = window_mode
+
+## Checks to see if the input is near a tick on the progress bar. If so,
+## sets the nearest tick image and information equal to the given information.
+func set_input_action(type: String, id: int, icon: Texture2D) -> void:
+	var nearest_tick = _get_nearest_tick()
+	
+	if nearest_tick < 0:
+		return
+	#TODO: Figure out how to handle multiple of the same object being used.
+	# Idea: disable button and hotkey after the item is added as an input action
+	# to prevent using the same item multiple times (not bellows).
+	var input_action := ProcedureInputAction.new()
+	input_action.type = type
+	input_action.id = id
+	if not cur_craft_procedure.input_actions[nearest_tick]:
+		cur_craft_procedure.input_actions[nearest_tick] = input_action
+		%MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children()[nearest_tick].texture = icon
+
+## Used by the cauldron to determine the segment on the progress bar that the
+## progress is closest to, if any. Modifying the input_window_ratio changes
+## how close the progress bar needs to be from a tick.
+func _get_nearest_tick() -> int:
+	var nearest_tick := -1
+	
+	var tick_mod : float = fmod((slider.value + (tick_value / 2.0)), tick_value)
+	tick_mod = tick_mod / tick_value
+	var lower_bound := (1-input_window_ratio)/2
+	var upper_bound := input_window_ratio+((1-input_window_ratio)/2)
+	if tick_mod < upper_bound and tick_mod > lower_bound:
+		nearest_tick = int((slider.value + (tick_value / 2.0)) / tick_value) - 1
+	else: # Bad input. TODO: Determine if the input for the tick should be locked on bad input.
+		pass
+	
+	return nearest_tick
 
 
 func _on_button_start_pressed() -> void:

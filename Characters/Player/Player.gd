@@ -76,9 +76,11 @@ func _physics_process(delta: float) -> void:
 ## Handles input action events
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		execute_interaction()
+		if global.mode == &"default": ## Only execute interaction in appropriate mode
+			execute_interaction()
 	if event.is_action_pressed("use_tool"):
-		execute_tool()
+		if global.mode == &"default": ## Only execute tool in appropriate mode
+			execute_tool()
 
 ## Changes the scale of the player, including size and mass based on the multiplier provided
 #func change_player_scale(mult: Vector2):

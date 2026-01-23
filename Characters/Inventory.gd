@@ -4,78 +4,8 @@ class_name Inventory extends Resource
 ## Max number of slots in the inventory. Should not be changed as
 ## the inventory UI does not dynamically update its size based on this count.
 @export var max_item_count := 24 
-### visual for item when dragging from inventory
-#var drag_item_scene := preload("res://UI/Menu/Inventory/drag_item_scene.tscn") 
-### Reference to the Hotbar UI
-#@onready var hotbar_ref := %Hotbar
-### Reference to the Tool Wheel UI
-#@onready var toolwheel_ref := %ToolWheel
 ## List of items in the inventory
 @export var items : Array[Item]
-## Item that is currently selected in the inventory (not dragged)
-#var selected_item : Item 
-
-## Sets references, initializes variables in references, and connects signals
-#func _ready() -> void:
-	#%ItemList.item_clicked.connect(on_inventory_item_clicked)
-	#%Cauldron.minigame_ref = %MinigameCauldron
-	#%Cauldron.minigame_ref.recipes = %Cauldron.recipes
-	#%MinigameCauldron.tool_ref = %Cauldron
-	#%MortarPestle.minigame_ref = %MinigameMP
-	#%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
-	#%MinigameMP.tool_ref = %MortarPestle
-	
-	#for i in len(items):
-		#if items[i]:
-			#%ItemList.add_item(generate_item_text(items[i]), items[i].texture)
-
-## Controls functions executed when input actions are pressed
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("inventory"):
-		#toggle_window() ## Toggles whether the inventory is displayed or not
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#close_window()
-	#if event.is_action_pressed("recipe_book"):
-		#close_window()
-
-## Toggles the visibility of the window. If it is close, it will open and vice versa.
-#func toggle_window() -> void:
-	#if visible:
-		#close_window()
-	#else:
-		#open_window()
-
-## Closes the window and removes it from the active window group.
-#func close_window() -> void:
-	#if global.mode == &"menu":
-		#global.left_window = null
-		#if not global.right_window and not global.center_window:
-			#global.mode = &"default"
-		#visible = false
-	
-	#elif global.mode == &"dropper":
-		#global.left_window = null
-		#global.mode = &"default" ## There should be no other UI windows open
-		#visible = false
-#
-### Opens the window and adds it to the active window group.
-#func open_window() -> bool:
-	#if global.left_window or global.center_window or visible:
-		#return false ## Do not open, there is already a window open in the area.
-	#if global.mode == &"default":
-		#global.mode = &"menu"
-	#if global.mode == &"menu":
-		#global.left_window = self
-		#%WindowName.text = "Inventory and Crafting"
-		#visible = true
-		#return true
-	#elif global.mode == &"dropper":
-		#global.left_window = self
-		#%WindowName.text = "Select an Item for the Dropper"
-		#visible = true
-		#return true
-	#return false
 
 ## Adds an item to the inventory.
 func add_item(item : Item) -> bool:
@@ -129,14 +59,6 @@ func add_stackable_item(item : Item) -> bool:
 	items.append(item.duplicate())
 	item.qty = 0
 	return true
-
-## Removes the slot/stack of the inventory item at the given index in the inventory.
-#func remove_inventory_slot(index : int) -> void:
-	#if index < 0 or index >= %ItemList.item_count:
-		#return
-	#
-	#items.remove_at(index)
-	#%ItemList.remove_item(index)
 
 ## Removes the list of inventory items from the inventory.
 ## If isRemoveingStacks is true, removes any stack that contains any item in the array of items.

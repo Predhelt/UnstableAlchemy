@@ -1,16 +1,16 @@
+## Minigame window for Mortar and Pestle
 extends AlchemyMinigame
-
-var crush_icon := preload("res://Art/UAPrototype/UI/Minigame/crush.png") ## Icon for the Crush action using the mortar and pestle
-var grind_icon := preload("res://Art/UAPrototype/UI/Minigame/grind.png") ## Icon for the Grind action using the mortar and pestle
-
-var combo_buffer : Array[StringName] ## Values are &"up", &"down", &"left", &"right"
-var cur_motion_index := 0 ## Current index in the minigame 
-
+## Icon for the Crush action using the mortar and pestle.
+var crush_icon := preload("res://Art/UAPrototype/UI/Minigame/crush.png")
+## Icon for the Grind action using the mortar and pestle.
+var grind_icon := preload("res://Art/UAPrototype/UI/Minigame/grind.png")
+## Tracks the user inputs relevant to the current minigame craft attempt.
+## Values are &"up", &"down", &"left", &"right".
+var combo_buffer : Array[StringName]
+## Current index in the minigame .
+var cur_motion_index := 0
+## Tracks the last button pressed by the user.
 var last_pressed_button : Button
-
-## Overrides inherited function to prevent improper minigame functionality
-func _process(_delta: float) -> void:
-	pass
 
 
 func _ready() -> void:
@@ -37,10 +37,6 @@ func _input(event: InputEvent) -> void: # Override in M&P
 			update_combo_input(&"right")
 			select_button(%ButtonRight)
 		return # No more input events if minigame is active
-	
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#close_window()
 
 ## Feedback effects on the associated button when a minigame action occurs
 func select_button(button: Button):
@@ -52,7 +48,8 @@ func select_button(button: Button):
 	button.scale *= 0.8
 	last_pressed_button = button
 
-
+## Disables the start button and sets the UI to reflect the start of the minigame,
+## allowing for user inputs to be tracked for the craft attempt.
 func begin_minigame():
 	%ButtonStart.disabled = true
 	cur_motion_index = 0
@@ -64,15 +61,12 @@ func begin_minigame():
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Start!"
 	is_crafting = true
 
-##
 ## Add the given action input to the buffer of inputs, then check to see if the sequence of
 ## inputs match a valid combination. If so, add the equipment action to the current procedure and
 ## clear the action input buffer then check to see if the procedure is completed. If so,
 ## check the list of recipes to see if the procedure on the given item matches a known recipe.
-##
 func update_combo_input(action: StringName):
 	combo_buffer.append(action)
-	
 	
 	if len(combo_buffer) < 4:
 		return
@@ -94,10 +88,8 @@ func update_combo_input(action: StringName):
 		is_crafting = false
 		check_results()
 
-##
 ## Overrides inherited function. Once a valid input configuration is recognized,
 ## this function is called to set the associated input action in the minigame to the current index.
-##
 func set_input_action(type: String, id: int, icon: Texture2D):
 	var input_action := ProcedureInputAction.new()
 	input_action.type = type
@@ -147,14 +139,6 @@ func open_window():
 
 func _on_button_start_pressed() -> void:
 	begin_minigame()
-
-## DEPRECATED
-func _on_button_grind_pressed() -> void:
-	set_input_action("equipment", 0, %Container/ButtonCrush.icon)
-
-## DEPRECATED
-func _on_button_crush_pressed() -> void:
-	set_input_action("equipment", 1, %Container/ButtonGrind.icon)
 
 
 func _on_button_up_pressed() -> void:

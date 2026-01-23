@@ -16,7 +16,6 @@ anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3n8ow")
-window_mode = "menu"
 
 [node name="CooldownInteract" type="Timer" parent="."]
 one_shot = true
@@ -127,7 +126,10 @@ anchor_bottom = 0.8
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="close_inventory" from="VBoxContainer/Control/AlchemyActivity/Panel/Cauldron" to="." method="_on_close_inventory"]
 [connection signal="item_produced" from="VBoxContainer/Control/AlchemyActivity/Panel/Cauldron" to="." method="_on_item_produced"]
+[connection signal="item_removed" from="VBoxContainer/Control/AlchemyActivity/Panel/Cauldron" to="." method="_on_item_removed"]
 [connection signal="close_inventory" from="VBoxContainer/Control/AlchemyActivity/Panel/MortarPestle" to="." method="_on_close_inventory"]
 [connection signal="item_produced" from="VBoxContainer/Control/AlchemyActivity/Panel/MortarPestle" to="." method="_on_item_produced"]
+[connection signal="item_removed" from="VBoxContainer/Control/AlchemyActivity/Panel/MortarPestle" to="." method="_on_item_removed"]
 [connection signal="close_inventory" from="VBoxContainer/Control/AlchemyActivity/Panel/Merger" to="." method="_on_close_inventory"]
 [connection signal="item_produced" from="VBoxContainer/Control/AlchemyActivity/Panel/Merger" to="." method="_on_item_produced"]
+[connection signal="item_removed" from="VBoxContainer/Control/AlchemyActivity/Panel/Merger" to="." method="_on_item_removed"]
