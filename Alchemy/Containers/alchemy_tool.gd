@@ -5,7 +5,7 @@ class_name AlchemyTool extends UIWindow
 signal item_produced(item: Item, recipe : Recipe)
 ## Sends signal to the inventory to remove items when a craft minigame is completed
 ## and the ingredient items are consumed.
-signal item_removed(item: Item)
+#signal item_removed(item: Item)
 ## Sent when the minigame window is opened, the inventory should be closed
 signal close_inventory()
 

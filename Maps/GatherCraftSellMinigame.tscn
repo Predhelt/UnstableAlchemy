@@ -264,8 +264,6 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_myx5p")
 debug_color = Color(0.5629536, 0.55898833, 3.85046e-07, 0.41960785)
 
-[connection signal="item_produced" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/InventoryMenu" method="_on_item_produced"]
-[connection signal="item_removed" from="UILayer/MinigameLayer/MinigameMP" to="UILayer/MenuLayer/InventoryMenu" method="_on_item_removed"]
 [connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_consume_inventory_item"]
 [connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]

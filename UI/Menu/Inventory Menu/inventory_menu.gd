@@ -29,6 +29,8 @@ func _ready() -> void:
 	
 	## Signal connections for minigame windows.
 	## The naming convention is assumed to be the same across maps.
+	%MinigameCauldron.open_inventory.connect(_on_open_inventory)
+	%MinigameMP.open_inventory.connect(_on_open_inventory)
 	%MinigameCauldron.item_produced.connect(_on_item_produced)
 	%MinigameMP.item_produced.connect(_on_item_produced)
 	%MinigameCauldron.item_removed.connect(_on_item_removed)

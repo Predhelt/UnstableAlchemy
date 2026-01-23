@@ -52,7 +52,7 @@ func _input(_event: InputEvent) -> void:
 
 ## Sets the ingredient values.
 func init_ingredients(ingredients : Array[Item]) -> void:
-	for i in range(3):
+	for i in range(ingredients.size()):
 		cur_craft_ingredients.append(ingredients[i])
 
 ## Closes the minigame window and ensures that the menu group is updated
