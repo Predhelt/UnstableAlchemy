@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://Objects/sliding_door.tscn" id="18_134n1"]
 [ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="18_sfbts"]
 [ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://Alchemy/Recipes/M&P/gray_juice.tres" id="19_ld1pd"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="21_8p4i5"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/Recipe Books/recipe_item.tscn" id="21_8p4i5"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="21_47nph"]
 
 [node name="Tutorial" type="Node2D"]
@@ -228,6 +228,9 @@ position = Vector2(737, 317)
 display_name = "Recipes"
 description = "Contains recipes for Saturated Stem and Gray Juice"
 recipes = Array[ExtResource("16_8p4i5")]([ExtResource("18_sfbts"), ExtResource("19_ld1pd")])
+combinations = null
+interact_effect = null
+item_gained_effect = null
 
 [node name="GreenHerb" parent="Objects" instance=ExtResource("14_bahkr")]
 position = Vector2(341, 315)

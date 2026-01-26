@@ -1,7 +1,7 @@
 extends UIWindow
 
 # DEPRECATED: Sent to the player to update their status effects when an item in inventory is consumed
-signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
+#signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
 
 ## Max number of slots in the inventory
 @export var max_item_count := 24 
@@ -242,7 +242,11 @@ func consume_hotbar_item(item : Item):
 		if cur_item.id != item.id:
 			continue
 		if not is_consumed:
-			update_status_effects.emit(cur_item.on_consume_effects, cur_item.on_consume_message)
+			if is_class("Book"):
+				for recipe in item.recipes:
+					character_ref.learn_recipe(recipe)
+			
+			character_ref.update_status_effects(cur_item.on_consume_effects, cur_item.on_consume_message)
 			is_consumed = true
 			if cur_item.qty <= 1:
 				remove_inventory_slot(i)

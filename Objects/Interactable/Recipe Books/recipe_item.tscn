@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://jq2f52igbal7"]
 
-[ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://Objects/Interactable/recipe_item.gd" id="1_emsgg"]
+[ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://Objects/Interactable/Recipe Books/recipe_item.gd" id="1_emsgg"]
 [ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://Art/UAPrototype/Objects/book.png" id="2_emsgg"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="7_s4f4p"]
 

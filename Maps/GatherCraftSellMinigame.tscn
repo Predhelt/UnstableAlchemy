@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=35 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_wlq1s"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_2o0j7"]
@@ -15,27 +15,23 @@
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="10_blh7c"]
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="11_bfu87"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="12_86het"]
-[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="13_lj88t"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="15_gqfas"]
 [ext_resource type="PackedScene" uid="uid://ysnbvkn4ogwk" path="res://Characters/NPCs/npc.tscn" id="16_2o0j7"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="16_4vv8i"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/Merchant/Transaction.gd" id="17_0d8md"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="17_1cenb"]
-[ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://Alchemy/Recipes/M&P/gray_juice.tres" id="17_gqfas"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="18_6y0gm"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="18_ie10l"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="18_l5n5r"]
 [ext_resource type="Resource" uid="uid://dsr80xapfhdae" path="res://Characters/NPCs/Brindan_GCSMinigame/dt_brindan_gcsm.tres" id="19_lj88t"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/recipe_item.tscn" id="19_myx5p"]
-[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://Alchemy/Recipes/M&P/green_herb_flakes.tres" id="20_0ehhb"]
-[ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://Alchemy/Recipes/Merger/saturated_stem.tres" id="21_x22rh"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/Recipe Books/recipe_item.tscn" id="19_myx5p"]
 [ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.gd" id="23_blh7c"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/M&P Products/green_flakes.tres" id="25_4vv8i"]
 [ext_resource type="Resource" uid="uid://w7c2gigpa368" path="res://Items/M&P Products/red_berry_seed.tres" id="26_1cenb"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="27_1cenb"]
 [ext_resource type="Resource" uid="uid://kvhv0o2fyg74" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_saturated_stem.tres" id="28_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://Objects/boulder_pushable.tscn" id="29_gqfas"]
-[ext_resource type="Resource" uid="uid://dvvyw1xoajrh5" path="res://Alchemy/Recipes/M&P/red_berry_seed.tres" id="35_1cenb"]
+[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://Items/Recipe Books/strength_potion_book.tres" id="31_lj88t"]
 [ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://Objects/blockage_area.tscn" id="36_4vv8i"]
 
 [sub_resource type="Resource" id="Resource_0ehhb"]
@@ -195,7 +191,8 @@ position = Vector2(671, 394)
 [node name="RecipeItem" parent="Objects" instance=ExtResource("19_myx5p")]
 position = Vector2(440, 263)
 display_name = "Recipes"
-recipes = Array[ExtResource("13_lj88t")]([ExtResource("20_0ehhb"), ExtResource("21_x22rh"), ExtResource("17_gqfas"), ExtResource("35_1cenb")])
+description = "Book full of recipes. It's not clear what recipes are in the book from here."
+book_info = ExtResource("31_lj88t")
 
 [node name="PuzzleNodes" type="Node2D" parent="."]
 y_sort_enabled = true

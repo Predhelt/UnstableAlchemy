@@ -2,10 +2,10 @@ extends Node2D
 
 ## Name of the object (also the folder name the object is contained in)
 @export var display_name := ""
-## Description of the object given to the player 
+## Description of the object given to the character 
 @export var description := ""
-## The recipe(s) that the item contains
-@export var recipes : Array[Recipe]
+## The book's information, containing the recipes.
+@export var book_info : Book
 ## The combinations that can be made with the object using the dropper tool
 @export var combinations : Array[ObjectCombination]
 
@@ -34,11 +34,11 @@ func get_cur_folder_path() -> String:
 	return folder_path
 
 
-func _on_object_cut(player: Player):
-	read_recipes(player)
+func _on_object_cut(character: Character):
+	pickup_book(character)
 
-func _on_object_grabbed(player: Player):
-	read_recipes(player)
+func _on_object_grabbed(character: Character):
+	pickup_book(character)
 
 func _on_object_inspected() -> void:
 	inspect_object()
@@ -58,24 +58,35 @@ func inspect_object():
 	global.mode = &"inspection"
 	
 
-func read_recipes(player: Player) -> void:
-	# Add recipe to recipe list (if not already in recipe)
-	if not recipes:
-		player.update_status_message("No recipes!")
+func pickup_book(character : Character) -> void:
+	if not character.inventory.add_item(book_info):
+		print("Error, item not added to inventory")
+		return
 	
-	else: 
-		var has_new_recipe := false
-		for recipe in recipes:
-			if player.learn_recipe(recipe):
-				has_new_recipe = true
-		
-		if has_new_recipe:
-			player.update_status_message("Recipe(s) learned")
-		else:
-			player.update_status_message("No new recipes")
+	var item_gained_effect_instance : Control = item_gained_effect.instantiate()
+	item_gained_effect_instance.add_item(book_info, 1)
+	item_gained_effect_instance.position = position
+	get_parent().add_child(item_gained_effect_instance)
 	
-	# remove item from world
+	## remove item from world
 	self.queue_free()
+	
+	## Add recipe to recipe list (if not already in recipe)
+	#if not recipes:
+		#character.update_status_message("No recipes!")
+	#
+	#else: 
+		#var has_new_recipe := false
+		#for recipe in recipes:
+			#if character.learn_recipe(recipe):
+				#has_new_recipe = true
+		#
+		#if has_new_recipe:
+			#character.update_status_message("Recipe(s) learned")
+		#else:
+			#character.update_status_message("No new recipes")
+	#
+	
 
 func emit_effect():
 	var effect_instance : GPUParticles2D = interact_effect.instantiate()
@@ -84,18 +95,18 @@ func emit_effect():
 	effect_instance.emitting = true
 
 
-func _on_object_combined(player: Player, item: Item) -> void:
+func _on_object_combined(character: Character, item: Item) -> void:
 	if not item:
 		return
 	for c in combinations:
 		if c.input_item.id == item.id:
-			player.update_status_message(c.status_message)
+			character.update_status_message(c.status_message)
 			mutate_object(c.result_object_scene)
-			player._on_interaction_area_exited($InteractArea)
+			character._on_interaction_area_exited($InteractArea)
 			emit_effect()
-			player._on_interaction_area_entered($InteractArea)
+			character._on_interaction_area_entered($InteractArea)
 			return
-	player.update_status_message("...")
+	character.update_status_message("...")
 
 func mutate_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
@@ -106,7 +117,7 @@ func mutate_object(new_object_scene: PackedScene):
 	
 	display_name = obj.display_name
 	description = obj.description
-	recipes = obj.recipes
+	book_info = obj.book_info
 	#items = obj.items
 	
 	#item_quantities = []

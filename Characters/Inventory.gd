@@ -12,16 +12,22 @@ func add_item(item : Item) -> bool:
 	if item == null or item.qty <= 0: ## If invalid item or empty item
 		return false
 	
-	var could_pickup : bool = add_stackable_item(item) ## add to any existing stacks
+	var could_pickup : bool = add_stackable_item(item) ## Add to any existing stacks
 	
-	if item.qty <= 0: ## if item was added to existing stacks
+	if item.qty <= 0: ## If item was added to existing stacks
 		return true
-		
-	for cur_item in items: 
-		if cur_item != null:
-			continue
-		cur_item = item
+	
+	if items.size() < max_item_count:
+		items.append(item)
 		return true
+	
+	#DEPRECATED: array no longer initialized with null values
+	#for cur_item in items: 
+		#if cur_item != null: ## Find empty spot in items
+			#continue
+		#cur_item = item
+		#return true
+	
 	return could_pickup
 
 ## Adds item to a stack/slot or multiple stacks in inventory

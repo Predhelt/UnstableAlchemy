@@ -47,7 +47,7 @@ func get_cur_folder_path() -> String:
 func _on_object_inspected() -> void:
 	inspect_object()
 	
-#DEPRECATED: No way to inspect object and open inspection panel
+#FIXME: Inspect not getting called properly.
 func inspect_object():
 	
 	var inspection_panel = find_child("InspectionPanel")
@@ -173,5 +173,3 @@ func mutate_object(new_object_scene: PackedScene):
 	$InteractArea.interact_label = obj_ia.interact_label
 	$InteractArea.interact_type = obj_ia.interact_type
 	$InteractArea.interact_value = obj_ia.interact_value
-	
-	

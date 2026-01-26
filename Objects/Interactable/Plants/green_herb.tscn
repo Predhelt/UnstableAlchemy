@@ -12,16 +12,12 @@
 script = ExtResource("5_e71ns")
 on_interact_items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
 on_interact_amounts = Array[int]([2])
-on_interact_status_effects = Array[ExtResource("4_42k14")]([])
-on_interact_status_message = ""
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_h0poe"]
 script = ExtResource("5_e71ns")
 on_interact_items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
 on_interact_amounts = Array[int]([5])
-on_interact_status_effects = Array[ExtResource("4_42k14")]([])
-on_interact_status_message = ""
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="GreenHerb" type="Node2D"]
