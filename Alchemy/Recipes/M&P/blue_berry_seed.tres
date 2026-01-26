@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://c26d1xhaienu3" path="res://Items/Gatherable/blue_berries.tres" id="2_mlpch"]
 [ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Recipes/ProcedureInputAction.gd" id="3_mlpch"]
 [ext_resource type="Resource" uid="uid://dvu23hpuws6rd" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/grind.tres" id="4_y714b"]
-[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="5_g75qx"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Procedure.gd" id="5_g75qx"]
 [ext_resource type="Resource" uid="uid://7we1na1p6l36" path="res://Items/M&P Products/blue_berry_seed.tres" id="6_bbyfk"]
 
 [sub_resource type="Resource" id="Resource_003eq"]
@@ -18,7 +18,6 @@ script = ExtResource("2_30vwv")
 id = 6
 product_item = ExtResource("6_bbyfk")
 product_item_amount = 2
-product_craft_time = 0.0
 ingredients = Array[ExtResource("1_udj6h")]([ExtResource("2_mlpch")])
 tool_used = "m&p"
 procedure = SubResource("Resource_003eq")

@@ -18,6 +18,7 @@ func _ready() -> void:
 	minigame_buttons.append(%ButtonDown)
 	minigame_buttons.append(%ButtonLeft)
 	minigame_buttons.append(%ButtonRight)
+	
 
 
 func _input(event: InputEvent) -> void: # Override in M&P
@@ -130,6 +131,9 @@ func open_window():
 	%ItemIcon.texture = cur_craft_ingredients[0].texture
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
 		tb.texture = global.blank_texture
+	
+	slider.max_value = 5
+	slider.tick_count = 6
 	
 	%WindowName.text = "Mortar and Pestle"
 	global.left_window = self

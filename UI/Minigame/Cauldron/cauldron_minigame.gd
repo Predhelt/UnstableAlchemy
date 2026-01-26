@@ -56,6 +56,9 @@ func open_window():
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
 		tb.texture = global.blank_texture
 	
+	slider.max_value = 6
+	slider.tick_count = 7
+	
 	%WindowName.text = "Cauldron"
 	global.left_window = self
 	visible = true

@@ -124,7 +124,7 @@ func _on_transaction_attempt(id : int) -> void:
 			effect_instance.add_item(cur_item) #NOTE: This assumes that the item is successfully added
 			player.inventory.add_item(cur_item)
 			
-		inventory_menu.update_menu()
+		inventory_menu.update_window()
 		effect_instance.scale = Vector2(1.3, 1.3)
 		self.add_child(effect_instance)
 		## Check if player has enough items for another transaction (disable if not enough items)

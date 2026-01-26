@@ -164,7 +164,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
-radius = 13.0
+radius = 14.0
 
 [node name="NPC" type="CharacterBody2D" groups=["Persist"]]
 collision_mask = 25

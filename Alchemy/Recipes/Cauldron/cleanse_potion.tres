@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://Items/Potions/cleanse_potion.tres" id="4_wye1e"]
 [ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://Alchemy/Recipes/Cauldron/ProcedureInputActions/bellows.tres" id="5_uon5v"]
 [ext_resource type="Script" uid="uid://c0cgelhbhui2g" path="res://Alchemy/Recipes/ProcedureInputActionItem.gd" id="5_v0qvq"]
-[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_8wcx7"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Procedure.gd" id="6_8wcx7"]
 
 [sub_resource type="Resource" id="Resource_qk7te"]
 script = ExtResource("5_v0qvq")

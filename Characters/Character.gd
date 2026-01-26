@@ -181,7 +181,7 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 	else:
 		update_status_message("...")
 
-## Helper function that applies the effects of the status effect to the player based on the effect name.
+## Helper function that applies the status effect to the player based on the effect name.
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
 		&"move speed" :
@@ -189,6 +189,7 @@ func _apply_status_effect(se: StatusEffect) -> bool:
 			return true
 		&"strength" :
 			attributes.strength = _change_attribute(se, attributes.strength)
+			#print(attributes.strength)
 			return true
 		&"cleanse" : if _cleanse_status_effects():
 			return true
@@ -242,25 +243,25 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 
 ## Adds/subtracts the value of the status effect from the value of an attribute.
 ## Returns the value after the change from the status effect.
-func _change_attribute(se: StatusEffect, _attribute_val: float, is_removing_status := false) -> float:
+func _change_attribute(se: StatusEffect, attribute_val: float, is_removing_status := false) -> float:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]
 		if cur_se.id == se.id:
 				
 			## Reset the active status effect (New effect overwrites the old effect)
-			_attribute_val -= cur_se.value
+			attribute_val -= cur_se.value
 			
 			if is_removing_status:
 				update_status_bar(se, i, true)
 			else:
-				_attribute_val += se.value
+				attribute_val += se.value
 				update_status_bar(se, i)
-			return _attribute_val
+			return attribute_val
 	
-	_attribute_val += se.value
+	attribute_val += se.value
 	
 	update_status_bar(se)
-	return _attribute_val
+	return attribute_val
 
 ## Removes all status effects that have a limited duration
 func _cleanse_status_effects() -> bool:

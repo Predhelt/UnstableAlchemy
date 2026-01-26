@@ -71,11 +71,11 @@ text = "X"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="TabButtons" type="Control" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TabButtons"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,29 +83,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonGeneral" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+[node name="ButtonGeneral" type="Button" parent="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer"]
 layout_mode = 2
 text = "General"
 
-[node name="ButtonInteractions" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+[node name="ButtonInteractions" type="Button" parent="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer"]
 layout_mode = 2
 text = "Interactions"
 
-[node name="ButtonTools" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+[node name="ButtonTools" type="Button" parent="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer"]
 layout_mode = 2
 text = "Tools"
 
-[node name="ButtonMortarPestle" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+[node name="ButtonMortarPestle" type="Button" parent="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer"]
 layout_mode = 2
 text = "Mortar & Pestle
 "
 
-[node name="ButtonCauldron" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+[node name="ButtonCauldron" type="Button" parent="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer"]
 layout_mode = 2
 text = "Cauldron
 "
 
-[node name="ButtonMerger" type="Button" parent="VBoxContainer/HBoxContainer/Control/VBoxContainer"]
+[node name="ButtonMerger" type="Button" parent="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer"]
 layout_mode = 2
 text = "Merger
 "
@@ -113,36 +113,46 @@ text = "Merger
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 5
+current_tab = 0
 tabs_visible = false
 
-[node name="PageGeneral" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
+[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="Label11" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageGeneral"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 794.0
-offset_bottom = 445.0
-text = "Press WASD to move.
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TabContainer/PageGeneral"]
+layout_mode = 2
+theme_override_constants/separation = 32
 
-Walk near a plant or object to interact with it by pressing \"\".
+[node name="LabelMovement" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageGeneral/VBoxContainer"]
+layout_mode = 2
+text = "Press WASD to move."
 
-You can get ingredients or other materials depending on how you interact with objects.
+[node name="Label11" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageGeneral/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+text = "You can get ingredients or other materials depending on how you interact with objects.
 
 With your ingredients, you can craft new materials or potions using the tools in your inventory.
 
 Drag ingredients from your inventory onto a tool to the right to add the ingredient to the tool.
-From there, click on the check mark to open the crafting screen or click on the ingredient to remove it from the tool.
-
-asdf"
+Then, click on the check mark to open the crafting screen. Or click on the ingredient to remove it from the tool."
 autowrap_mode = 3
 text_overrun_behavior = 4
+
+[node name="LabelToolUse" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageGeneral/VBoxContainer"]
+layout_mode = 2
+text = "Walk near a plant or object and use a tool on it by pressing \"\"."
+
+[node name="LabelInteraction" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageGeneral/VBoxContainer"]
+layout_mode = 2
+text = "You can talk to other characters by pressing \"\""
 
 [node name="PageInteractions" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
@@ -388,6 +398,7 @@ texture = ExtResource("8_q88dc")
 
 [node name="PageMerger" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 5
 
@@ -407,9 +418,9 @@ offset_bottom = 40.0
 texture = ExtResource("9_4bw7i")
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonGeneral" to="." method="_on_button_general_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonInteractions" to="." method="_on_button_interactions_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonTools" to="." method="_on_button_tools_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonMortarPestle" to="." method="_on_button_mortar_pestle_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonCauldron" to="." method="_on_button_cauldron_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/VBoxContainer/ButtonMerger" to="." method="_on_button_merger_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer/ButtonGeneral" to="." method="_on_button_general_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer/ButtonInteractions" to="." method="_on_button_interactions_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer/ButtonTools" to="." method="_on_button_tools_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer/ButtonMortarPestle" to="." method="_on_button_mortar_pestle_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer/ButtonCauldron" to="." method="_on_button_cauldron_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TabButtons/VBoxContainer/ButtonMerger" to="." method="_on_button_merger_pressed"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Book" load_steps=6 format=3 uid="uid://tgm0gfnlbmh8"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Components/Status Effects/StatusEffect.gd" id="1_2n56e"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="2_fy87t"]
+[ext_resource type="Script" uid="uid://dvfx56s3nb8gd" path="res://Items/Recipe Books/Book.gd" id="3_0xvql"]
+[ext_resource type="Resource" uid="uid://dq4dwbhvd818i" path="res://Alchemy/Recipes/Cauldron/strength_potion.tres" id="3_jcsp3"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://Art/UAPrototype/Objects/book.png" id="5_arntg"]
+
+[resource]
+script = ExtResource("3_0xvql")
+recipes = Array[ExtResource("2_fy87t")]([ExtResource("3_jcsp3")])
+id = 1001
+display_name = "Strength Potion Recipe"
+description = "A book that contains a recipe for the strength potion"
+texture = ExtResource("5_arntg")
+max_qty = 1
+metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

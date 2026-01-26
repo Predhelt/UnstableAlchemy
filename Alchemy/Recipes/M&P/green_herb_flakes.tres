@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://bnx8u3aprp62y" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/crush.tres" id="4_0tryp"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="4_17gq8"]
 [ext_resource type="Resource" uid="uid://dvu23hpuws6rd" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/grind.tres" id="5_sn4tq"]
-[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_hq0ir"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Procedure.gd" id="6_hq0ir"]
 
 [sub_resource type="Resource" id="Resource_kcj7p"]
 script = ExtResource("6_hq0ir")

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Recipes/ProcedureInputAction.gd" id="3_7ny24"]
 [ext_resource type="Resource" uid="uid://bnx8u3aprp62y" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/crush.tres" id="4_f51na"]
 [ext_resource type="Resource" uid="uid://dvu23hpuws6rd" path="res://Alchemy/Recipes/M&P/ProcedureInputActions/grind.tres" id="5_x1df8"]
-[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_58cao"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Procedure.gd" id="6_58cao"]
 [ext_resource type="Resource" uid="uid://dyo76rscy5hss" path="res://Items/M&P Products/gray_juice.tres" id="7_q223s"]
 
 [sub_resource type="Resource" id="Resource_vkorl"]

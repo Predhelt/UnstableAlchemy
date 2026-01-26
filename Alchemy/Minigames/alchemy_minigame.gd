@@ -59,6 +59,7 @@ func init_ingredients(ingredients : Array[Item]) -> void:
 func close_window():
 	is_crafting = false
 	visible = false
+	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	global.left_window = null ## This window shows up in the center of the screen
 	if not global.center_window and not global.right_window:
@@ -72,6 +73,7 @@ func close_window():
 func previous_window():
 	is_crafting = false
 	visible = false
+	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	global.left_window = null
 	if not global.center_window and not global.right_window:

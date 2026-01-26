@@ -10,7 +10,7 @@ func _ready() -> void:
 	%NPCShop.player = %Player
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
-	self.get_parent().connect("pathway_cleared", _on_pathway_cleared)
+	#%BlockageArea.connect("pathway_cleared", _on_pathway_cleared)
 	
 
 ## Triggers when the pathway out of the GCSM area is cleared. Marks the completion of the world.

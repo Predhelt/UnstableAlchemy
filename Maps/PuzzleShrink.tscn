@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dtluleyswgahn"]
+[gd_scene load_steps=17 format=4 uid="uid://dma0hkmfoyior"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_6p13e"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_mvedh"]
@@ -82,63 +82,13 @@ position = Vector2(532, 310)
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
 
-[node name="LabelTransform" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../LabelGroup")
-update_rotation = false
-update_scale = false
-
 [node name="PlayerCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(532, 310)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="LabelGroup" type="Node2D" parent="." groups=["player_elements"]]
-position = Vector2(532, 310)
-
-[node name="InteractLabel" type="Label" parent="LabelGroup"]
-unique_name_in_owner = true
-z_index = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -105.0
-offset_right = 110.0
-offset_bottom = -82.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/outline_size = 4
-text = "Interact"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
-unique_name_in_owner = true
-clip_contents = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -125.0
-offset_top = -80.0
-offset_right = 125.0
-offset_bottom = -50.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_constants/outline_size = 3
-bbcode_enabled = true
-text = "[center]status
-"
-fit_content = true
-scroll_active = false
-scroll_following = true
-metadata/_edit_use_anchors_ = true
-
 [node name="TileMaps" type="Node2D" parent="."]
-visible = false
 
 [node name="Water" type="TileMapLayer" parent="TileMaps"]
 z_index = -50

@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://cex2jhtmhby6a" path="res://Items/Merged Ingredients/orange_paste.tres" id="3_5bvrs"]
 [ext_resource type="Resource" uid="uid://7we1na1p6l36" path="res://Items/M&P Products/blue_berry_seed.tres" id="4_m7doa"]
 [ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Alchemy/Recipes/ProcedureInputAction.gd" id="5_m7doa"]
-[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Minigames/Procedure.gd" id="6_bj422"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Alchemy/Procedure.gd" id="6_bj422"]
 [ext_resource type="Script" uid="uid://c0cgelhbhui2g" path="res://Alchemy/Recipes/ProcedureInputActionItem.gd" id="6_juvf4"]
 [ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://Items/Potions/normalize_potion.tres" id="7_663px"]
 [ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://Alchemy/Recipes/Cauldron/ProcedureInputActions/bellows.tres" id="7_bj422"]
@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://b2d7pi15oxo04"
 
 [resource]
 script = ExtResource("2_huko4")
-id = 502
+id = 503
 product_item = ExtResource("7_663px")
 product_item_amount = 2
 ingredients = Array[ExtResource("1_ww7h2")]([ExtResource("2_mrtvp"), ExtResource("3_5bvrs"), ExtResource("4_m7doa")])

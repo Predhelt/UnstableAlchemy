@@ -36,11 +36,17 @@ func open_window() -> bool:
 
 func open_page_general():
 	%WindowName.text = "Help: General"
+	%PageGeneral/VBoxContainer/LabelToolUse.text = ("Walk near a plant or object "+
+	"and use a tool on it by pressing \"" +
+		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
+		+ "\".")
+	%PageGeneral/VBoxContainer/LabelInteraction.text = ("You can talk to other characters by pressing \"" +
+		InputMap.action_get_events("interact")[0].as_text().replace(' (Physical)','')
+		+ "\".")
 	%PageGeneral.visible = true
 
 func open_page_interactions():
 	%WindowName.text = "Help: Interactions"
-	%PageInteractions.visible = true
 	
 	%PageInteractions/LabelUse.text = ("Press \""+
 		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
@@ -49,6 +55,10 @@ func open_page_interactions():
 		%PageInteractions/LabelInspect.text = ("Press \""+
 			InputMap.action_get_events("inspect_object")[0].as_text().replace(' (Physical)','')
 			+"\" to inspect a nearby object and get a description of it.")
+	else:
+		%PageInteractions/LabelInspect.text = "(Inspection not currently possible)"
+	
+	%PageInteractions.visible = true
 
 func open_page_tools():
 	%WindowName.text = "Help: Tools"

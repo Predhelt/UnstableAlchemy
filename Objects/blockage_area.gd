@@ -4,7 +4,8 @@ var blockage_bodies : Array[RigidBody2D]
 var is_pathway_blocked := true
 signal pathway_cleared()
 
-func _on_blockage_area_2d_body_exited(body: Node2D) -> void:
+
+func _on_body_exited(body: Node2D) -> void:
 	if is_pathway_blocked == false:
 		return
 	
@@ -15,9 +16,9 @@ func _on_blockage_area_2d_body_exited(body: Node2D) -> void:
 		if blockage_bodies.is_empty():
 			is_pathway_blocked = false
 			pathway_cleared.emit()
-	
 
-func _on_blockage_area_2d_body_entered(body: Node2D) -> void:
+
+func _on_body_entered(body: Node2D) -> void:
 	if is_pathway_blocked == false:
 		is_pathway_blocked = true
 	
