@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ysnbvkn4ogwk"]
+[gd_scene load_steps=29 format=3 uid="uid://ysnbvkn4ogwk"]
 
 [ext_resource type="Script" uid="uid://cmarx5wmfetow" path="res://Characters/NPCs/npc.gd" id="1_4ofvd"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="3_8728q"]
@@ -161,9 +161,12 @@ states/Walk/position = Vector2(625, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qyell"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_v1316"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cyhdb")]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ae4go"]
-radius = 14.0
+radius = 13.0
 
-[node name="NPC" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
+radius = 13.0
+
+[node name="NPC" type="CharacterBody2D" groups=["Persist"]]
 collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_4ofvd")
@@ -189,6 +192,50 @@ parameters/Walk/blend_position = Vector2(0, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ae4go")
 
+[node name="LabelGroup" type="Node2D" parent="."]
+
+[node name="InteractLabel" type="Label" parent="LabelGroup"]
+unique_name_in_owner = true
+z_index = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -105.0
+offset_right = 110.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 4
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+unique_name_in_owner = true
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = -80.0
+offset_right = 125.0
+offset_bottom = -50.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+bbcode_enabled = true
+text = "status
+"
+fit_content = true
+scroll_active = false
+scroll_following = true
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="InteractArea" parent="." instance=ExtResource("3_8728q")]
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(3.280001, 3.280001)
@@ -196,21 +243,16 @@ interact_label = "NPC"
 interact_type = 3
 interact_value = ""
 
-[node name="Message" type="Label" parent="."]
-custom_minimum_size = Vector2(150, 0)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -90.5
-offset_top = -104.0
-offset_right = 90.5
-offset_bottom = -81.0
-grow_horizontal = 2
-grow_vertical = 0
-horizontal_alignment = 1
-autowrap_mode = 3
+[node name="RigidArea2D" type="Area2D" parent="."]
+position = Vector2(0, -2.38419e-07)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D"]
+shape = SubResource("CircleShape2D_a0pup")
+debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
 [connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]
+[connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
+[connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]

@@ -29,6 +29,7 @@ window/size/viewport_height=640
 
 Pushable=""
 Droppable="areas that you can drag and drop into"
+Persist="Persistent Scenes between loads"
 
 [input]
 

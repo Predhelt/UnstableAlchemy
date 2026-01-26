@@ -166,9 +166,9 @@ radius = 13.0
 radius = 46.0109
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5slg2"]
-radius = 15.0
+radius = 13.0
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" groups=["Persist"]]
 collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_d1l3k")
@@ -194,6 +194,50 @@ parameters/Walk/blend_position = Vector2(0, 0)
 [node name="CollisionBody" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6e64a")
 
+[node name="LabelGroup" type="Node2D" parent="."]
+
+[node name="InteractLabel" type="Label" parent="LabelGroup"]
+unique_name_in_owner = true
+z_index = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -105.0
+offset_right = 110.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 4
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+unique_name_in_owner = true
+clip_contents = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = -80.0
+offset_right = 125.0
+offset_bottom = -50.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+bbcode_enabled = true
+text = "status
+"
+fit_content = true
+scroll_active = false
+scroll_following = true
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="InteractionComponents" type="Node2D" parent="."]
 
 [node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
@@ -208,7 +252,6 @@ shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
 [node name="RigidArea2D" type="Area2D" parent="."]
-scale = Vector2(0.87999994, 0.8799999)
 collision_layer = 0
 collision_mask = 8
 

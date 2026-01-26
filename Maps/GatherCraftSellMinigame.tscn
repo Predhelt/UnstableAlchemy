@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=39 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="Script" uid="uid://c4lfgutfuwoof" path="res://Maps/gather_craft_sell_minigame.gd" id="1_4vv8i"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_wlq1s"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://UI/Menu/NPC Dialogue/npc_dialogue.tscn" id="4_86het"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="4_88txk"]
 [ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://UI/Menu/Help Menu/help_menu.tscn" id="5_2gpsm"]
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://Art/UADefaultTheme.tres" id="6_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://UI/Minigame/Cauldron/CauldronMinigame.tscn" id="6_dhs73"]
 [ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://UI/Minigame/MortarPestle/MortarPestleMinigame.tscn" id="7_0d8md"]
 [ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://UI/HUD/Menu Bar/menu_bar.tscn" id="8_ie10l"]
@@ -72,27 +71,22 @@ theme = ExtResource("4_1cenb")
 [node name="HelpMenu" parent="UILayer/MenuLayer" instance=ExtResource("5_2gpsm")]
 unique_name_in_owner = true
 visible = false
-theme = ExtResource("6_6y0gm")
 
 [node name="InventoryMenu" parent="UILayer/MenuLayer" instance=ExtResource("1_wlq1s")]
 unique_name_in_owner = true
 visible = false
-theme = ExtResource("6_6y0gm")
 
 [node name="RecipeList" parent="UILayer/MenuLayer" instance=ExtResource("2_2o0j7")]
 unique_name_in_owner = true
 visible = false
-theme = ExtResource("6_6y0gm")
 
 [node name="NPCShop" parent="UILayer/MenuLayer" instance=ExtResource("3_ie10l")]
 unique_name_in_owner = true
 visible = false
-theme = ExtResource("6_6y0gm")
 
 [node name="NPCDialogue" parent="UILayer/MenuLayer" instance=ExtResource("4_86het")]
 unique_name_in_owner = true
 visible = false
-theme = ExtResource("6_6y0gm")
 
 [node name="MinigameLayer" type="CanvasLayer" parent="UILayer"]
 layer = 2
@@ -100,12 +94,10 @@ layer = 2
 [node name="MinigameCauldron" parent="UILayer/MinigameLayer" instance=ExtResource("6_dhs73")]
 unique_name_in_owner = true
 visible = false
-theme = ExtResource("6_6y0gm")
 
 [node name="MinigameMP" parent="UILayer/MinigameLayer" instance=ExtResource("7_0d8md")]
 unique_name_in_owner = true
 visible = false
-theme = ExtResource("6_6y0gm")
 
 [node name="HUDLayer" type="CanvasLayer" parent="UILayer"]
 
@@ -135,60 +127,11 @@ known_recipes = Array[ExtResource("13_lj88t")]([ExtResource("17_gqfas")])
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
 
-[node name="LabelTransform" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../LabelGroup")
-update_rotation = false
-update_scale = false
-
 [node name="PlayerCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(529, 298)
 process_callback = 0
 position_smoothing_enabled = true
-
-[node name="LabelGroup" type="Node2D" parent="." groups=["player_elements"]]
-position = Vector2(529, 298)
-
-[node name="InteractLabel" type="Label" parent="LabelGroup"]
-unique_name_in_owner = true
-z_index = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -105.0
-offset_right = 110.0
-offset_bottom = -82.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/outline_size = 4
-text = "Interact"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
-unique_name_in_owner = true
-clip_contents = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -125.0
-offset_top = -80.0
-offset_right = 125.0
-offset_bottom = -50.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_constants/outline_size = 3
-bbcode_enabled = true
-text = "[center]status
-"
-fit_content = true
-scroll_active = false
-scroll_following = true
-metadata/_edit_use_anchors_ = true
 
 [node name="TileMaps" type="Node2D" parent="."]
 

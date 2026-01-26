@@ -5,7 +5,7 @@ const LABEL_DEFAULT_Y_POS := -60.0
 ## Value used to reduce the intensity of effects when size is changed
 const SIZE_DAMPENER := 0.5
 
-## The tree determing how different animations connect and transition between each other #FIXME: UNUSED
+## The tree determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
 ## Reference to the inventory resource of the character(s).
 @export var inventory : Inventory
@@ -39,8 +39,8 @@ var selected_tool : StringName = &"hand"
 func _ready() -> void:
 	for recipe in known_recipes:
 		new_recipes.append(recipe)
-	update_interactions()
 	%StatusLabel.text = ""
+	%InteractLabel.text = ""
 
 ## Every time the character updates, upade the character animations
 func _process(_delta: float) -> void:
@@ -64,9 +64,9 @@ func _physics_process(delta: float) -> void:
 func _move_character(vector : Vector2) -> void:
 	if global.mode == &"default":
 		direction = vector
-		velocity = 2 * direction * attributes.move_speed * (Vector2(1.0, 1.0) + 
+		velocity = direction * attributes.move_speed * (Vector2(1.0, 1.0) + 
 			(scale/Vector2(1/SIZE_DAMPENER, 1/SIZE_DAMPENER) - 
-				Vector2(SIZE_DAMPENER, SIZE_DAMPENER)))
+				Vector2(SIZE_DAMPENER, SIZE_DAMPENER))) * 2 # base speed too slow, doubles it.
 		move_and_slide()
 
 ## TODO: Change animations when certain criteria are met
@@ -82,12 +82,21 @@ func update_animation_parameters() -> void:
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Walk/blend_position"] = direction
 
-## Handles input action events if player
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("interact"):
-		#execute_interaction()
-	#if event.is_action_pressed("use_tool"):
-		#execute_tool()
+## Sets up and returns a dictionary that represents the persistent information
+## of the character to be saved to file.
+func save() -> Dictionary:
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
+		"pos_y" : position.y,
+		"attributes" : attributes,
+		"inventory" : inventory,
+		"known_recipes" : known_recipes,
+		"active_status_effects" : active_status_effects,
+		"selected_tool" : selected_tool
+	}
+	return save_dict
 
 ## Changes the scale of the character, including size and mass based on the multiplier provided
 func change_character_scale(mult: Vector2):
@@ -95,9 +104,6 @@ func change_character_scale(mult: Vector2):
 	## Multiply the current mass by the area of the vector (change in x by change in y)
 	attributes.mass *= mult[0] * mult[1]
 	attributes.strength *= mult[0] * mult[1]
-	
-	for node in get_tree().get_nodes_in_group("player_elements"):
-		node.scale *= mult
 	
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
 
