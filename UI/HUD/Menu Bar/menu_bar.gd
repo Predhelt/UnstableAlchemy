@@ -30,7 +30,7 @@ func open_pressed_window(ui : Control):
 
 
 func _on_button_inventory_pressed() -> void:
-	open_pressed_window(%Inventory)
+	open_pressed_window(%InventoryMenu)
 
 func _on_button_recipes_pressed() -> void:
 	open_pressed_window(%RecipeList)

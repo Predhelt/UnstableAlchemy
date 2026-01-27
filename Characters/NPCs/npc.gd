@@ -30,16 +30,17 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if message_timer > 0:
-		message_timer -= delta
-		if message_timer <= 0:
-			%StatusLabel.text = ""
-	else:
-		last_message_delta += delta
-	## Checks if enough time has passed since the last message to say another message
-	if last_message_delta > 15:
-		last_message_delta = 0.0
-		say_random_message()
+	if global.mode == &"default":
+		if message_timer > 0:
+			message_timer -= delta
+			if message_timer <= 0:
+				%StatusLabel.text = ""
+		else:
+			last_message_delta += delta
+		## Checks if enough time has passed since the last message to say another message
+		if last_message_delta > 15:
+			last_message_delta = 0.0
+			say_random_message()
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the npc to be saved to file. Overrides the Character save function.

@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	
 	_update_active_status_effect(delta)
 	
-	if status_message_timer > 0:
+	if status_message_timer > 0 and global.mode == &"default":
 		status_message_timer -= delta
 		if status_message_timer <= 0:
 			%StatusLabel.text = ""

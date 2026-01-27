@@ -1,9 +1,7 @@
+## Menu that represents the inventory of a character.
 extends UIWindow
 
-# DEPRECATED: Sent to the player to update their status effects when an item in inventory is consumed
-#signal update_status_effects(on_consume_effects : Array[StatusEffect], on_consume_message : String)
-
-## Max number of slots in the inventory
+## Max number of slots in the inventory.
 @export var max_item_count := 24 
 ## Reference to the currently used inventory. Sets the default referenced character as Player.
 @onready var character_ref : Character = %Player
@@ -66,17 +64,6 @@ func close_window() -> void:
 	
 	return_alchemy_items()
 
-## Goes through each slot in the alchemy tools in the inventory and
-## returns the items back to the inventory.
-func return_alchemy_items() -> void:
-	for i in range(3):
-		character_ref.inventory.add_item(%Cauldron.items[i])
-		%Cauldron.remove_item(i)
-		character_ref.inventory.add_item(%MortarPestle.items[i])
-		%MortarPestle.remove_item(i)
-		character_ref.inventory.add_item(%Merger.items[i])
-		%Merger.remove_item(i)
-
 ## Opens the window and adds it to the active window group.
 ## Inventory reference should be set before the window is opened.
 func open_window() -> bool:
@@ -112,6 +99,17 @@ func update_window():
 			continue
 		if items[i]:
 			%ItemList.add_item(generate_item_text(items[i]), items[i].texture)
+
+## Goes through each slot in the alchemy tools in the inventory and
+## returns the items back to the inventory.
+func return_alchemy_items() -> void:
+	for i in range(3):
+		character_ref.inventory.add_item(%Cauldron.items[i])
+		%Cauldron.remove_item(i)
+		character_ref.inventory.add_item(%MortarPestle.items[i])
+		%MortarPestle.remove_item(i)
+		character_ref.inventory.add_item(%Merger.items[i])
+		%Merger.remove_item(i)
 
 ## Adds an item to the character's inventory, then updates the menu.
 func add_inventory_item(item : Item) -> bool:
@@ -199,17 +197,20 @@ func use_item(item: Item, index : int):
 ## Uses the given item without reducing the count of the item.
 func sample_item(item):
 	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the sampling is disabled
-		%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
+		character_ref.update_status_effects(item.on_consume_effects, item.on_consume_message)
 		$CooldownInteract.start()
 
 ## Uses the given item and reduces its count in the inventory.
 func consume_item(item : Item, index : int):
 	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the consuming is disabled
+		character_ref.update_status_effects(item.on_consume_effects, item.on_consume_message)
+		
 		if item.type == "Book": ## If item is a book
 			for recipe in item.recipes:
-				%Player.learn_recipe(recipe)
+				character_ref.learn_recipe(recipe)
+			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
+				character_ref.update_status_message(item.on_consume_message)
 		
-		%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
 		$CooldownInteract.start()
 	
 	
@@ -250,11 +251,14 @@ func consume_hotbar_item(item : Item):
 		if cur_item.id != item.id:
 			continue
 		if not is_consumed:
+			character_ref.update_status_effects(cur_item.on_consume_effects, cur_item.on_consume_message)
+			
 			if item.type == "Book":
 				for recipe in item.recipes:
 					character_ref.learn_recipe(recipe)
+				if not item.on_consume_effects: ## If there were no effects, display book message anyways.
+					character_ref.update_status_message(item.on_consume_message)
 			
-			character_ref.update_status_effects(cur_item.on_consume_effects, cur_item.on_consume_message)
 			is_consumed = true
 			if cur_item.qty <= 1:
 				remove_inventory_slot(i)
@@ -289,7 +293,7 @@ func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
 	if recipe != null:
-		%Player.learn_recipe(recipe)
+		character_ref.learn_recipe(recipe)
 
 func _on_item_removed(item: Item) -> void:
 	if item:

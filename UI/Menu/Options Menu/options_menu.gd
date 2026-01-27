@@ -10,11 +10,6 @@ func _init() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("options_menu"):
 		toggle_window()
-	#DEPRECATED: Handled in global script
-	#if event.is_action_pressed("ui_cancel"):
-		#match global.mode:
-			##&"default" : open_window()
-			#&"options" : close_window()
 
 func toggle_window():
 	if visible:
@@ -23,13 +18,16 @@ func toggle_window():
 		open_window()
 
 func open_window():
-	prev_mode = global.mode
-	global.mode = window_mode
-	visible = true
+	if not global.center_window:
+		prev_mode = global.mode
+		global.mode = window_mode
+		global.center_window = self
+		visible = true
 
 func close_window():
 	if global.mode == window_mode:
 		global.mode = prev_mode
+		global.center_window = null
 		prev_mode = ""
 		visible = false
 

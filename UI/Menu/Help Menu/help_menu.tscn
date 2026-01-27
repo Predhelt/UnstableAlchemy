@@ -154,6 +154,10 @@ text = "Walk near a plant or object and use a tool on it by pressing \"\"."
 layout_mode = 2
 text = "You can talk to other characters by pressing \"\""
 
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TabContainer/PageGeneral/VBoxContainer"]
+layout_mode = 2
+text = "Hover the mouse over an item the player has to get information about it"
+
 [node name="PageInteractions" type="Control" parent="VBoxContainer/HBoxContainer/TabContainer"]
 unique_name_in_owner = true
 visible = false

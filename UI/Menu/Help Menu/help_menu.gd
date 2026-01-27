@@ -1,8 +1,6 @@
 extends UIWindow
 
-## Handles input action events.
-#func _input(event: InputEvent) -> void:
-	
+var prev_mode : StringName
 
 ## Changes the window from opened to closed and vice versa.
 func toggle_window() -> void:
@@ -13,25 +11,25 @@ func toggle_window() -> void:
 
 ## Hides the window after removing it from the appropriate group.
 func close_window() -> void:
-	global.center_window = null
-	if not global.right_window and not global.left_window:
-		global.mode = &"default"
-	visible = false
+	if global.mode == window_mode:
+		global.mode = prev_mode
+		global.center_window = null
+		prev_mode = ""
+		visible = false
 
 func open_window() -> bool:
 	if global.center_window or visible:
 		print("Inventory could not be open, " + global.center_window.name + " window already open")
 		return false ## Do not open, there is already a window open in the area.
-	if global.mode == &"default":
-		global.mode = window_mode
-	if global.mode == window_mode:
-		global.center_window = self
-		%WindowName.text = "Help: General"
-		visible = true
-		
-		open_page_general()
-		return true
-	return false
+	
+	prev_mode = global.mode
+	global.mode = window_mode
+	global.center_window = self
+	%WindowName.text = "Help: General"
+	visible = true
+	#FIXME: Menus in background can prevent tab buttons from being pressed
+	open_page_general()
+	return true
 
 
 func open_page_general():

@@ -11,9 +11,9 @@
 z_index = 50
 anchors_preset = -1
 anchor_left = 0.35
-anchor_top = 0.2
+anchor_top = 0.15
 anchor_right = 0.65
-anchor_bottom = 0.8
+anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_24o10")
@@ -55,6 +55,7 @@ anchor_left = 0.1
 anchor_top = 0.05
 anchor_right = 0.9
 anchor_bottom = 0.9
+theme_override_constants/separation = 8
 
 [node name="ButtonReturn" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
 unique_name_in_owner = true
@@ -64,26 +65,38 @@ toggle_mode = true
 button_group = ExtResource("4_o212l")
 text = "Return"
 
-[node name="Button5" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+[node name="ButtonSave" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ldjf7")
+disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "||||"
+text = "Save"
 
-[node name="Button4" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+[node name="ButtonLoad" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ldjf7")
+disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "||||"
+text = "Load"
+
+[node name="ButtonLevel" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_ldjf7")
+disabled = true
+toggle_mode = true
+button_group = ExtResource("4_o212l")
+text = "Level Select"
 
 [node name="ButtonSettings" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ldjf7")
+disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
 text = "Settings
