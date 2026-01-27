@@ -9,6 +9,8 @@ func _ready() -> void:
 ## Sets minigame input displays, updates minigame timers,
 ## checks to see if the crafting is complete.
 func _process(delta: float) -> void:
+	if global.mode != &"minigame":
+		return ## Do not continue minigame if another mode has priority.
 	for i in len(minigame_buttons): ## Set hotkey text for each button
 		minigame_buttons[i].text = ("(" +
 			InputMap.action_get_events("minigame_cauldron_action_"+str(i+1))[0].as_text().replace(
@@ -74,9 +76,7 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	
 	if nearest_tick < 0:
 		return
-	#TODO: Figure out how to handle multiple of the same object being used.
-	# Idea: disable button and hotkey after the item is added as an input action
-	# to prevent using the same item multiple times (not bellows).
+
 	var input_action := ProcedureInputAction.new()
 	input_action.type = type
 	input_action.id = id

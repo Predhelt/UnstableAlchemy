@@ -6,6 +6,9 @@ extends UIWindow
 #@export var known_recipes : Array[Recipe]
 ## The currently referenced character.
 @onready var character : Character = %Player
+## List of product IDs in the recipe list.
+## Prevents the same item appearing multiple times in the recipe list.
+var product_ids : Array[int]
 ## Icons to be preloaded for use in display
 var recipe_item_icon : PackedScene = preload("res://UI/Menu/Recipe List/recipe_item_icon.tscn")
 var recipe_ingredient_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_ingredient_icons.tscn")
@@ -39,8 +42,8 @@ func close_window() -> void:
 	if not global.left_window and not global.center_window:
 		global.mode = &"default"
 	
-	for recipe in character.known_recipes:
-		%RecipeItems.clear()
+	%RecipeItems.clear()
+	product_ids.clear()
 
 
 func open_window() -> bool:
@@ -56,10 +59,14 @@ func open_window() -> bool:
 		
 		for recipe in character.known_recipes:
 			var display_text := ""
+			## If a recipe already exists for the item, do not add another recipe item.
+			if recipe.product_item.id in product_ids:
+				continue
 			if recipe in character.new_recipes:
 				display_text += "*New*"
 			display_text += recipe.product_item.display_name
 			%RecipeItems.add_item(display_text, recipe.product_item.texture)
+			product_ids.append(recipe.product_item.id)
 		%RecipeItems.visible = true
 	
 		%ButtonBack.visible = false
