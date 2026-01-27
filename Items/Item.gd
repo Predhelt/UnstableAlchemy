@@ -1,5 +1,7 @@
 class_name Item extends Resource
 
+## The type that the item is. By default, the type is "Item"
+var type : String = "Item"
 ##
 ## IDs for unique items. -1 is unused. 0-99 are raw ingredients.
 ## 100-199 are simple produced ingredients. 200-299 are complex ingredients

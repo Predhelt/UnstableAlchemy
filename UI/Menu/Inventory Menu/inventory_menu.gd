@@ -189,11 +189,12 @@ func drag_item(item : Item, index : int):
 
 ## Determines how to use the item in the inventory.
 func use_item(item: Item, index : int):
-	var is_potion := item.id >= 500 and item.id < 750 # Potions are ID 500-750. Splash potions are 750+
-	if not is_potion:
-		sample_item(item)
-	else:
+	## Potions are ID 500-750. Splash potions are 750+. Recipe books are 1000+.
+	
+	if item.type == "Potion" or item.type == "Book":
 		consume_item(item, index)
+	else:
+		sample_item(item)
 
 ## Uses the given item without reducing the count of the item.
 func sample_item(item):
@@ -204,8 +205,14 @@ func sample_item(item):
 ## Uses the given item and reduces its count in the inventory.
 func consume_item(item : Item, index : int):
 	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the consuming is disabled
+		if item.type == "Book": ## If item is a book
+			for recipe in item.recipes:
+				%Player.learn_recipe(recipe)
+		
 		%Player.update_status_effects(item.on_consume_effects, item.on_consume_message)
 		$CooldownInteract.start()
+	
+	
 	
 	if item.qty <= 1:
 		remove_inventory_slot(index)
@@ -236,13 +243,14 @@ func consume_hotbar_item(item : Item):
 	var num_items := len(character_ref.inventory.items)
 	
 	for i in num_items:
-		if num_items <= i: # If item is removed from inventory, will prevent accessing invalid index of inventory
+		## If item is removed from inventory, prevents accessing invalid index of inventory
+		if num_items <= i: 
 			break
 		var cur_item = character_ref.inventory.items[i]
 		if cur_item.id != item.id:
 			continue
 		if not is_consumed:
-			if is_class("Book"):
+			if item.type == "Book":
 				for recipe in item.recipes:
 					character_ref.learn_recipe(recipe)
 			
