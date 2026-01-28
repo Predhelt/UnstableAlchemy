@@ -11,6 +11,7 @@ extends UIWindow
 var product_ids : Array[int]
 ## Icons to be preloaded for use in display
 var recipe_item_icon : PackedScene = preload("res://UI/Menu/Recipe List/recipe_item_icon.tscn")
+var recipe_tool_icon : PackedScene = preload("res://UI/Menu/Recipe List/recipe_tool_icon.tscn")
 var recipe_ingredient_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_ingredient_icons.tscn")
 var recipe_procedure_icons : PackedScene = preload("res://UI/Menu/Recipe List/recipe_procedure_icons.tscn")
 var procedure_icon_grind := preload("res://Art/UAPrototype/UI/Minigame/grind.png")
@@ -58,10 +59,10 @@ func open_window() -> bool:
 		%WindowName.text = "Known Recipes"
 		
 		for recipe in character.known_recipes:
-			var display_text := ""
 			## If a recipe already exists for the item, do not add another recipe item.
-			if recipe.product_item.id in product_ids:
+			if not recipe or recipe.product_item.id in product_ids:
 				continue
+			var display_text := ""
 			if recipe in character.new_recipes:
 				display_text += "*New*"
 			display_text += recipe.product_item.display_name
@@ -75,9 +76,10 @@ func open_window() -> bool:
 		return true
 	return false
 
-
-func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
-	var recipe := character.known_recipes[index]
+## Takes one recipe that produces a certain product item, then finds any other recipes
+## that produce the same item. Displays the product item inventory and different procedures
+## used to produce the given item.
+func open_recipe_page(recipe : Recipe):
 	%ProductName.text = recipe.product_item.display_name
 	%ProductDescription.text = recipe.product_item.description
 	%ProductIcon.texture = recipe.product_item.texture
@@ -85,7 +87,7 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 	if recipe in character.new_recipes:
 		character.new_recipes.erase(recipe)
 	
-	## Add each procedure to create the associated recipe
+	## Add each procedure to create the associated product item
 	for r in character.known_recipes:
 		if r.product_item.id != recipe.product_item.id:
 			continue
@@ -123,7 +125,7 @@ func add_ingredients(recipe: Recipe):
 
 func add_procedure(recipe: Recipe):
 	var cur_procedures_container = HBoxContainer.new()
-	var tool_icon : TextureRect = recipe_item_icon.instantiate()
+	var tool_icon : TextureRect = recipe_tool_icon.instantiate()
 	match recipe.tool_used:
 		&"cauldron": 
 			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
@@ -145,9 +147,10 @@ func add_procedure(recipe: Recipe):
 	cur_procedures_container.add_child(label_arrow)
 	
 	if  recipe.tool_used == &"merger":
-		var ingredient_icon : TextureRect = recipe_item_icon.instantiate()
-		ingredient_icon.texture = recipe.ingredients[0].texture
+		var ingredient_icon : Button = recipe_item_icon.instantiate()
+		ingredient_icon.icon = recipe.ingredients[0].texture
 		ingredient_icon.tooltip_text = recipe.ingredients[0].display_name
+		_link_ingredient_button_to_recipe(ingredient_icon, recipe.ingredients[0])
 		cur_procedures_container.add_child(ingredient_icon)
 		
 		var label_plus = Label.new()
@@ -155,8 +158,9 @@ func add_procedure(recipe: Recipe):
 		cur_procedures_container.add_child(label_plus)
 		
 		ingredient_icon = recipe_item_icon.instantiate()
-		ingredient_icon.texture = recipe.ingredients[1].texture
+		ingredient_icon.icon = recipe.ingredients[1].texture
 		ingredient_icon.tooltip_text = recipe.ingredients[1].display_name
+		_link_ingredient_button_to_recipe(ingredient_icon, recipe.ingredients[1])
 		cur_procedures_container.add_child(ingredient_icon)
 	
 	_add_procedure_input_actions(cur_procedures_container, recipe)
@@ -164,8 +168,8 @@ func add_procedure(recipe: Recipe):
 	var label_qty = Label.new()
 	label_qty.text = "= " + str(recipe.product_item_amount)
 	cur_procedures_container.add_child(label_qty)
-	var product_icon : TextureRect = recipe_item_icon.instantiate()
-	product_icon.texture = recipe.product_item.texture
+	var product_icon : Button = recipe_item_icon.instantiate()
+	product_icon.icon = recipe.product_item.texture
 	product_icon.tooltip_text = recipe.product_item.display_name
 	cur_procedures_container.add_child(product_icon)
 	
@@ -180,33 +184,62 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 	
 	for i in len(recipe.procedure.input_actions): #NOTE: Might cause issues if the length of the procedure is not 5
 		## Create new icon for sequence
-		var pia_icon := procedure_icons.get_child(0).get_child(i) #Icon of procedure index i
+		var pia_icon : Button = procedure_icons.get_child(0).get_child(i) 
+		#Icon of procedure index i
 		if not recipe.procedure.input_actions[i]:
-			pia_icon.texture = global.blank_texture
+			pia_icon.icon = global.blank_texture
 			pia_icon.tooltip_text = "No input"
 			continue
 		if recipe.tool_used == "m&p":
 			match recipe.procedure.input_actions[i].id:
 				0: 
-					pia_icon.texture = procedure_icon_crush
+					pia_icon.icon = procedure_icon_crush
 					pia_icon.tooltip_text = "Crush"
 				1: 
-					pia_icon.texture = procedure_icon_grind
+					pia_icon.icon = procedure_icon_grind
 					pia_icon.tooltip_text = "Grind"
 		else:
 			var cur_ia = recipe.procedure.input_actions[i]
 			if cur_ia.type == "equipment":
 				match cur_ia.id:
 					0:
-						pia_icon.texture = procedure_icon_bellows
+						pia_icon.icon = procedure_icon_bellows
 						pia_icon.tooltip_text = "Bellows"
 			elif cur_ia.type == "item":
 				for ingredient in recipe.ingredients:
 					if cur_ia.id == ingredient.id:
-						pia_icon.texture = ingredient.texture
+						pia_icon.icon = ingredient.texture
 						pia_icon.tooltip_text = ingredient.display_name
+						
+						_link_ingredient_button_to_recipe(pia_icon, ingredient)
 		
 	container.add_child(procedure_icons)
+
+## Uses the button icon reference and ingredient item as input.
+## If ingredient is also a known recipe, make it so that when the icon is pressed,
+## it links to the ingredient's recipe page.
+func _link_ingredient_button_to_recipe(button : Button, item : Item) -> bool:
+	## Check to see if the ingredient is a product of a known recipe.
+	for r in character.known_recipes:
+		if r and item.id == r.product_item.id:
+			## Connect the button press action to opening the item's recipe page.
+			## This assumes that the recipe item button has a custom 
+			## ingredient_pressed signal that emits a recipe.
+			button.connect("ingredient_pressed", _on_ingredient_button_pressed)
+			button.recipe = r
+			return true
+	return false
+
+## When an ingredient button in a recipe page is pressed, opens that ingredient's recipe page.
+## Inefficient, but closes and reopens the recipe menu for the given ingredient.
+func _on_ingredient_button_pressed(recipe : Recipe):
+	close_window()
+	open_window()
+	open_recipe_page(recipe)
+
+
+func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	open_recipe_page(character.known_recipes[index])
 
 
 func _on_button_close_pressed() -> void:

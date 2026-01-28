@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkqs8bymlk354"]
 
-[ext_resource type="Script" uid="uid://nfaon5fja8pq" path="res://Objects/sliding_door.gd" id="1_b6o5m"]
+[ext_resource type="Script" uid="uid://nfaon5fja8pq" path="res://Objects/Triggers/sliding_door.gd" id="1_b6o5m"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://Art/UAPrototype/Objects/object-gray.png" id="2_xwrac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m66gg"]

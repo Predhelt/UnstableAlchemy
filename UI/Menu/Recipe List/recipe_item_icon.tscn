@@ -1,11 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://dnl0g6b6pxenh"]
 
-[ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://Art/UAPrototype/UI/blank_item.png" id="1_0yomu"]
+[ext_resource type="Script" uid="uid://c2ckspxppif7k" path="res://UI/Menu/Recipe List/recipe_item_icon.gd" id="1_hescc"]
 
-[node name="RecipeItemIcon" type="TextureRect"]
+[node name="RecipeItemIcon" type="Button"]
 custom_minimum_size = Vector2(48, 48)
-offset_right = 32.0
-offset_bottom = 32.0
-texture = ExtResource("1_0yomu")
-expand_mode = 3
-stretch_mode = 5
+offset_right = 48.0
+offset_bottom = 48.0
+focus_mode = 0
+expand_icon = true
+script = ExtResource("1_hescc")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

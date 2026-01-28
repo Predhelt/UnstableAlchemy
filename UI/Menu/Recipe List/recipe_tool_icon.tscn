@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c8fqkcrcxvjwa"]
+
+[node name="RecipeItemIcon" type="TextureRect"]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
+expand_mode = 1
+stretch_mode = 5

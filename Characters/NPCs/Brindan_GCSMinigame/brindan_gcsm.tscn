@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="6_57mob"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="6_pt5j0"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/M&P Products/green_flakes.tres" id="8_0j3cm"]
-[ext_resource type="Resource" uid="uid://8kxkmrq7twpk" path="res://Items/Recipe Books/red_berry_seed_book.tres" id="8_w12x1"]
+[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://Items/Recipe Books/strength_potion_partial_book.tres" id="8_w12x1"]
 [ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://Characters/NPCs/Brindan_GCSMinigame/att_brindan_gcsm.tres" id="9_w12x1"]
 
 [sub_resource type="Resource" id="Resource_fa7q6"]
