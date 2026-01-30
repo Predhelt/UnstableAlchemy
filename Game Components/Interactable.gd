@@ -9,7 +9,7 @@ signal object_cut(character: Character)
 ## Sends signal to the parent object when the object is combined
 signal object_combined(character: Character, item: Item)
 ## Sends signal to the parent object when the npc_talk interaction is received
-signal npc_talk()
+signal npc_talk(character: Character)
 ## Sends signal to the parent object when the npc_shop interaction is received
 signal npc_shop()
 
@@ -79,8 +79,8 @@ func combine_object(character: Character, item: Item) -> void:
 	object_combined.emit(character, item)
 
 ## Emits signal to object to start talking.
-func talk() -> void:
-	npc_talk.emit()
+func talk(character: Character) -> void:
+	npc_talk.emit(character)
 
 ## Emits signal to object to start shopping.
 func shop() -> void:

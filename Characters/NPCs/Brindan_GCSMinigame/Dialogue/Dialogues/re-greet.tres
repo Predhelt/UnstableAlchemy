@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Dialogue" load_steps=5 format=3 uid="uid://bjy53iyb5qxxw"]
 
-[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/NPCs/Choice.gd" id="1_wrx6n"]
-[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://Characters/NPCs/DialogueCondition.gd" id="2_4r8l4"]
-[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://Characters/NPCs/Dialogue.gd" id="3_ndn6q"]
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/Dialogue/Choice.gd" id="1_wrx6n"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://Characters/Dialogue/DialogueCondition.gd" id="2_4r8l4"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://Characters/Dialogue/Dialogue.gd" id="3_ndn6q"]
 
 [sub_resource type="Resource" id="Resource_tlhw8"]
 script = ExtResource("1_wrx6n")
@@ -15,8 +15,8 @@ script = ExtResource("3_ndn6q")
 dialogue_name = &"re-greet"
 text = "Oh, hello again. Did you figure out the Saturated Stem recipe yet?
 
-You can get the gray juice by crushing up some red berries. I believe the order was crush-crush-grind-grind-grind.
+You can get the gray juice by crushing up some red berries. I can't remember the procedure, but we are in some old ruins that might have some
 
 That should help you break up the berries without losing too much of the essence you need for the saturation process."
-choices = Array[ExtResource("1_wrx6n")]([SubResource("Resource_tlhw8")])
+choices = Array[ExtResource("1_wrx6n")]([SubResource("Resource_tlhw8"), null])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

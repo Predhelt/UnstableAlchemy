@@ -67,7 +67,7 @@ func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingSta
 	
 	if not isRemovingStacks:
 		
-		inventory_item_infos = has_items(items_removing, qtys)
+		inventory_item_infos = get_item_indices(items_removing, qtys)
 	
 		if inventory_item_infos == {}:
 			return false
@@ -117,9 +117,46 @@ func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingSta
 				items.remove_at(i)
 	return true
 
+## Returns whether the inventory contains any amount of the requested item.
+func has_item(item_id : int) -> bool:
+	for item in items:
+		if item.id == item_id:
+			return true
+	return false
+
+## Returns whether the inventory contains the appropriate amount of each item.
+func has_item_amounts(items_checking : Array[Item], qtys : Array[int]) -> bool:
+	if items_checking.size() != qtys.size():
+		print("ERROR: Items and quantities arrays should have the name size")
+		return false
+	
+	for i in range(items_checking.size()):
+		var temp_qty : int = qtys[i]
+		for j in range(items.size()):
+			if items_checking[i].id == items[j].id:
+				if temp_qty <= items[j].qty:
+					temp_qty = 0
+					break
+				else:
+					temp_qty -= items[j].qty
+		if temp_qty > 0: ## If not enough of the item was found:
+			return false
+	return true
+
+## Returns the index of the first intance of the item. Returns -1 if no item found.
+func get_item_index(item_id : int) -> int:
+	for i in range(items.size()):
+		if items[i].id == item_id:
+			return i
+	return -1
+
 ## Checks if the inventory has all items and their appropriate amounts.
-## Returns a dictionary where Keys are indices and Values are ids of the items in inventory.
-func has_items(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
+## Returns a dictionary of Keys: indices and Values: IDs of the items in inventory.
+func get_item_indices(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
+	if items_checking.size() != qtys.size():
+		print("ERROR: Items and quantities arrays should have the name size")
+		return {}
+	
 	var found_items : Dictionary ## Key : index, Value : id of items in inventory
 	
 	for i in range(items_checking.size()):

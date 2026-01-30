@@ -9,8 +9,8 @@ func _ready() -> void:
 ## Sets minigame input displays, updates minigame timers,
 ## checks to see if the crafting is complete.
 func _process(delta: float) -> void:
-	if global.mode != &"minigame":
-		return ## Do not continue minigame if another mode has priority.
+	#if global.mode != &"minigame": #FIXME: on wrong mode, so disabling check
+		#return ## Do not continue minigame if another mode has priority.
 	for i in len(minigame_buttons): ## Set hotkey text for each button
 		minigame_buttons[i].text = ("(" +
 			InputMap.action_get_events("minigame_cauldron_action_"+str(i+1))[0].as_text().replace(

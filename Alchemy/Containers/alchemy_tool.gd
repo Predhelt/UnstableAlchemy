@@ -87,6 +87,7 @@ func set_recipes(folder_name : StringName):
 				elif new_recipe.id >= 0: ## Inactive Recipe is -1, do not include those
 					recipes.append(new_recipe)
 		file_name = dir.get_next()
+	dir.list_dir_end()
 
 
 func _process(delta: float) -> void:

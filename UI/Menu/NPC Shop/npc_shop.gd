@@ -75,7 +75,7 @@ func add_shop_transactions() -> void:
 		cur_transaction_scene.connect("attempt_transaction", _on_transaction_attempt) # Connect child signal for when the transaction is pressed to attempt the associated transaction
 		cur_transaction_scene.set_transaction(transaction)
 		
-		if(player.inventory.has_items(transaction.items_buying, transaction.items_buying_amount) == {}
+		if(not player.inventory.has_item_amounts(transaction.items_buying, transaction.items_buying_amount)
 				and not transaction.items_buying.is_empty()): # If requesting any items (not giving away items)
 			cur_transaction_scene.disabled = true
 			
@@ -128,7 +128,7 @@ func _on_transaction_attempt(id : int) -> void:
 		effect_instance.scale = Vector2(1.3, 1.3)
 		self.add_child(effect_instance)
 		## Check if player has enough items for another transaction (disable if not enough items)
-		if(player.inventory.has_items(cur_transaction.items_buying, cur_transaction.items_buying_amount) == {}
+		if(not player.inventory.has_item_amounts(cur_transaction.items_buying, cur_transaction.items_buying_amount)
 				and not cur_transaction.items_buying.is_empty()):
 			var cur_transaction_scene : Button = %ShopTransactions.get_child(id) # Transaction ID = scene index due to how the window is opened.
 			if not cur_transaction_scene:

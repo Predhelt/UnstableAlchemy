@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://bc3yvmk6jt0xd"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/Dialogue/Choice.gd" id="1_hge21"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://Characters/Dialogue/Dialogue.gd" id="2_6r1d5"]
+
+[resource]
+script = ExtResource("2_6r1d5")
+dialogue_name = &"strong_player_unsolved"
+text = "You can try giving that boulder up top a push so we can get out of here. If the potion wears off, you'll probably need another one. "
+choices = Array[ExtResource("1_hge21")]([null])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

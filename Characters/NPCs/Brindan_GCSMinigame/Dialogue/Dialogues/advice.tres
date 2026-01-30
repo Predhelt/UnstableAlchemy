@@ -1,18 +1,19 @@
 [gd_resource type="Resource" script_class="Dialogue" load_steps=5 format=3 uid="uid://g1ubpti5q1xd"]
 
-[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/NPCs/Choice.gd" id="1_c6u3m"]
-[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://Characters/NPCs/DialogueCondition.gd" id="2_megrr"]
-[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://Characters/NPCs/Dialogue.gd" id="3_yd3o2"]
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/Dialogue/Choice.gd" id="1_ahwgl"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://Characters/Dialogue/DialogueCondition.gd" id="2_jlnyn"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://Characters/Dialogue/Dialogue.gd" id="3_vcitj"]
 
 [sub_resource type="Resource" id="Resource_6rgy3"]
-script = ExtResource("1_c6u3m")
+script = ExtResource("1_ahwgl")
 player_response = "\"Okay, thanks\""
-next_dialogue_name = &"hello"
+next_dialogue_name = &"greet"
+dialogue_effects = Array[String](["finished greeting"])
 metadata/_custom_type_script = "uid://dh4lmouiihra8"
 
 [resource]
-script = ExtResource("3_yd3o2")
+script = ExtResource("3_vcitj")
 dialogue_name = &"advice"
-text = "Sure! To start, you can try equipping your blade and cutting some of those yellow flowers. Then you could sell a couple of the stems to me with some berries and I can perform the saturation if you don't want to attempt it yourself. There is a recipe book lying around that should tell you how to make the saturated stem. You'll need it for a speed potion."
-choices = Array[ExtResource("1_c6u3m")]([SubResource("Resource_6rgy3")])
+text = "Sure! To start, you can try equipping your blade and cutting some of those yellow flowers. Then you could sell a couple of the stems to me with some berries and I can perform the saturation if you don't want to attempt it yourself. The book I am selling should have the recipe for it in there, as well as how to make a strength potion."
+choices = Array[ExtResource("1_ahwgl")]([SubResource("Resource_6rgy3")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

@@ -40,7 +40,7 @@ func open_window_as_npc(npc : NPC, player : Player) -> bool:
 		npc_ref = npc
 		player_ref = player
 		%WindowName.text = npc_ref.npc_name
-		set_dialogue(npc_ref.dialogue_tree.default_dialogue)
+		set_dialogue(npc_ref.get_initial_dialogue_name(player_ref))
 		
 		%ButtonBack.visible = false
 		visible = true
@@ -48,7 +48,7 @@ func open_window_as_npc(npc : NPC, player : Player) -> bool:
 	return false
 
 
-## Opens the window, assumes that the relevant npc was already set
+## Opens the window, assumes that the relevant npc and player were already set
 ## and the page was previously loaded.
 func open_window() -> bool:
 	if global.right_window or global.center_window or visible:
@@ -64,50 +64,19 @@ func open_window() -> bool:
 	return false
 
 ## Set up the dialogue page
-func set_dialogue(dialogue : Dialogue) -> void:
-	cur_dialogue = dialogue
-	_set_text(dialogue.text)
-	_add_dialogue_choices(dialogue.choices)
-
-
-## Sets the dialogue text
-func _set_text(text : String) -> void:
-	%DialogueLabel.text = text
-
-## Adds items to DialogueOptions for the player to select as a response to what is said in the DialogueBox.
-## Returns whether the options were successfully added or not
-func _add_dialogue_choices(choices : Array[Choice]) -> void:
-	%DialogueOptions.clear()
-	for choice in choices:
-		## Only show dialogue choices that have met the required conditions.
-		if _are_dialogue_conditions_met(choice.dialogue_conditions):
-			%DialogueOptions.add_item(choice.player_response)
-
-## Goes through the list of dialogue conditions to see if they are all met.
-func _are_dialogue_conditions_met(conditions : Array[DialogueCondition]) -> bool:
-	if not conditions:
-		return true
-	for condition in conditions:
-		match condition.type:
-			"player_att_gte":
-				if not player_ref.attributes.get_attribute(condition.descriptor) >= condition.value:
-					return false
-			"player_att_lte":
-				if not player_ref.attributes.get_attribute(condition.descriptor) <= condition.value:
-					return false
-			"player_status_is_active": print("ERROR: Not yet implemented")
-				#return false
-			"player_known_recipe": ## Finds a recipe ID matching the given value
-				for recipe in player_ref.known_recipes:
-					if condition.value == recipe.id:
-						return false
-			"event_trigger": print("ERROR: Not yet implemented")
-				#return false
-	return true
+func set_dialogue(dialogue_name : String) -> void:
+	#FIXME: Need to replicate a bug that prevented current dialogue from being properly set
+	cur_dialogue = find_dialogue(dialogue_name)
+	if not cur_dialogue:
+		print("ERROR: No matching dialogue \""+dialogue_name+"\" found in dialogue tree")
+		return
+	
+	_set_text(cur_dialogue.text)
+	_add_dialogue_choices(cur_dialogue.choices)
 
 ## Finds the dialogue in the tree given the name of the dialogue
 func find_dialogue(dialogue_name : String) -> Dialogue:
-	for dialogue : Dialogue in npc_ref.dialogue_tree.dialogues:
+	for dialogue : Dialogue in npc_ref.dialogues:
 		if dialogue.dialogue_name == dialogue_name:
 			return dialogue
 	return null
@@ -117,27 +86,17 @@ func find_dialogue(dialogue_name : String) -> Dialogue:
 func next_dialogue(choice : Choice) -> void:
 	if choice.next_dialogue_name == "":
 		close_window()
-	set_dialogue(find_dialogue(choice.next_dialogue_name))
+	set_dialogue(choice.next_dialogue_name)
 
-## Set the value for the default dialogue page in the default dialogue tree.
-func set_default_dialogue(dialogue_name : String) -> void:
-	var dialogue : Dialogue = find_dialogue(dialogue_name)
-	if not dialogue:
-		print("ERROR: No dialogue with name "+dialogue_name+" found")
-		return
-	npc_ref.dialogue_tree.default_dialogue = dialogue
-
-## Executes the each dialogue effect, which is a custom script based on the dialogue choice made.
-func execute_dialogue_effects(h_paths : Array[String]) -> bool: #NOTE: Choices point to file paths which can return null if file path changes.
-	for h_path : String in h_paths: ## For each file path,
-		var h_script : Node = load(h_path).new() ## generate the script
-		if not h_script:
-			print("Error: "+h_path+"Not a valid file path")
-			return false
-		h_script.set_npc_dialogue_ref(self) ## Set the context for the script
-		h_script.execute_functions() ## Execute any functions associated with the script
-		h_script.queue_free()
-	return true
+## Executes each dialogue effect based on the given strings.
+func execute_dialogue_effects(dialogue_effects : Array[StringName]) -> void: #NOTE: Choices point to file paths which can return null if file path changes.
+	for effect in dialogue_effects: ## For each file path,
+		## List of potential effect names that are valid
+		match effect:
+			&"finished greeting":
+				npc_ref.finished_greeting() #NOTE: This is not a built-in function for NPC and must be manually declared in child.
+				continue
+		print("No Dialogue Effect with name " + effect)
 
 ## Opens the shop window and closes the current dialogue window.
 ## Uses transaction information from the NPC to set up the shop window.
@@ -145,9 +104,56 @@ func open_shop() -> void:
 	close_window()
 	npc_ref.open_shop_from_dialogue()
 
+#DEPRECATED: No longer using a default dialogue field or DialogueTree typed.
+## Set the value for the default dialogue page in the default dialogue tree.
+#func set_default_dialogue(dialogue_name : String) -> void:
+	#var dialogue : Dialogue = find_dialogue(dialogue_name)
+	#if not dialogue:
+		#print("ERROR: No dialogue with name "+dialogue_name+" found")
+		#return
+	#npc_ref.dialogue_tree.default_dialogue = dialogue
+
+## Goes through the list of dialogue conditions to see if they are all met.
+func _are_conditions_met(conditions : Array[DialogueCondition]) -> bool:
+	if not conditions:
+		return true
+	for condition in conditions:
+		match condition.type:
+			"player_att_gte":
+				if not player_ref.get_attribute(condition.descriptor) >= condition.value:
+					return false
+			"player_att_lte":
+				if not player_ref.get_attribute(condition.descriptor) <= condition.value:
+					return false
+			"player_status_is_active": print("ERROR: Not yet implemented")
+				#return false
+			"player_known_recipe": ## Finds a recipe ID matching the given value
+				if player_ref.knows_recipe_id(condition.value):
+					return false
+			"event_trigger": print("ERROR: Not yet implemented")
+				#return false
+	return true
+
+## Sets the dialogue text
+func _set_text(text : String) -> void:
+	%DialogueLabel.text = text
+
+## Adds items to DialogueOptions for the player to select as a response to what is said in the DialogueBox.
+## Returns whether the options were successfully added or not
+func _add_dialogue_choices(choices : Array[Choice]) -> void:
+	%DialogueOptions.clear()
+	
+	for choice in choices:
+		## Only show dialogue choices that have met the required conditions.
+		if choice and _are_conditions_met(choice.conditions):
+			%DialogueOptions.add_item(choice.player_response)
+
 ## Called when a dialogue option is pressed on the NPC Dialogue window.
 ## Executes functions that the choice may cause, then opens the next dialogue window, if any.
 func _on_dialogue_options_item_selected(index: int) -> void:
+	if not cur_dialogue:
+		print("ERROR: No current dialogue set")
+		return
 	var choice : Choice = cur_dialogue.choices[index]
 	execute_dialogue_effects(choice.dialogue_effects)
 	

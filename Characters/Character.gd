@@ -98,15 +98,10 @@ func save() -> Dictionary:
 	}
 	return save_dict
 
-## Changes the scale of the character, including size and mass based on the multiplier provided
-func change_character_scale(mult: Vector2):
-	scale *= mult
-	## Multiply the current mass by the area of the vector (change in x by change in y)
-	attributes.mass *= mult[0] * mult[1]
-	attributes.strength *= mult[0] * mult[1]
-	
-	character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
-
+## Used to call the get_attribute function of Attributes
+## without needing to access the attributes variable.
+func get_attribute(att_name : String) -> float:
+	return attributes.get_attribute(att_name)
 
 ## Adds the given recipe to the list of known recipes. Returns false if the recipe is already learned
 ## or true if the recipe is successfully added to the list of known recipes.
@@ -117,6 +112,19 @@ func learn_recipe(r: Recipe) -> bool:
 	new_recipes.append(r)
 	return true
 
+## Returns whether or not the character knows a recipe with the given item as the product.
+func knows_recipe(item: Item) -> bool:
+	for r in known_recipes:
+		if r.product_item.id == item.id:
+			return true
+	return false
+
+## Returns whether or not the character knows a recipe with the given item id as the product.
+func knows_recipe_id(item_id: int) -> bool:
+	for r in known_recipes:
+		if r.product_item.id == item_id:
+			return true
+	return false
 
 ## Interaction Methods ##
 
@@ -151,7 +159,7 @@ func execute_interaction():
 			&"print_text" : print(cur_interaction.interact_value)
 			#&"context_menu" : cur_interaction.toggle_context_menu(self) # DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
-			&"talk" : cur_interaction.talk()
+			&"talk" : cur_interaction.talk(self)
 			&"shop" : cur_interaction.shop()
 
 ## Triggers when the tool type is changed. Sets selected_tool as the tool type that was changed.
@@ -301,7 +309,16 @@ func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 	update_status_bar(se)
 	return true
 
+## Changes the scale of the character, including size and mass based on the multiplier provided
+func change_character_scale(mult: Vector2):
+	scale *= mult
+	## Multiply the current mass by the area of the vector (change in x by change in y)
+	attributes.mass *= mult[0] * mult[1]
+	attributes.strength *= mult[0] * mult[1]
+	
+	character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
 
+## Checks the rigid body that is near the character to see if it is pushable.
 func _on_rigid_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Pushable"):
 		if attributes.strength >= body.mass:
