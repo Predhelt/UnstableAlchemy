@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Choice" load_steps=4 format=3 uid="uid://cajxh64gqbxf3"]
+
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://Characters/NPCs/DialogueCondition.gd" id="1_mydyv"]
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/NPCs/Choice.gd" id="2_in5cr"]
+
+[sub_resource type="Resource" id="Resource_mydyv"]
+script = ExtResource("1_mydyv")
+type = "player_att_gte"
+descriptor = "strength"
+value = 151
+metadata/_custom_type_script = "uid://bq526lawjvyos"
+
+[resource]
+script = ExtResource("2_in5cr")
+dialogue_conditions = Array[ExtResource("1_mydyv")]([SubResource("Resource_mydyv")])
+metadata/_custom_type_script = "uid://dh4lmouiihra8"

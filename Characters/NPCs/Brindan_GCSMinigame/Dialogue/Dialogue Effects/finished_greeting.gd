@@ -1,4 +1,4 @@
-extends Happening
+extends DialogueEffect
 
 ## When the player has confirmed that they have read the greeting, set the default dialogue
 ## so that the NPC recognized that they are not greeting the player for the first time.

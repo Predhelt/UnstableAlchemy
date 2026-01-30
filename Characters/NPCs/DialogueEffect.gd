@@ -1,4 +1,5 @@
-@abstract class_name Happening extends Node
+## An effect that choosing the dialogue option causes
+@abstract class_name DialogueEffect extends Node
 
 ## Reference to the npc's Dialogue Tree
 var ref_npc_dialogue

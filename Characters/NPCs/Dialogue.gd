@@ -2,9 +2,6 @@ class_name Dialogue extends Resource
 
 ## Internal name of the dialogue
 @export var dialogue_name : StringName
-## The conditions that need to be met in order for the dialogue to be displayed.
-## A DialogueCondition contains the type of condition and value related to each condition.
-@export var conditions : Array[DialogueCondition]
 ## Text to be displayed in the dialogue box
 @export_multiline var text : String
 ## Mood of the NPC during the dialogue

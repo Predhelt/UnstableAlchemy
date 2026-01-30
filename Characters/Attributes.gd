@@ -9,3 +9,12 @@ class_name Attributes extends Resource
 @export var mass := 100.0
 ## Same as CollisionInteract.radius of arms
 #@export var range := 100.0
+
+## Returns the value of an attribute given the name of the attribute as a String:
+## move speed, strength, mass
+func get_attribute(att_name : String) -> float:
+	match att_name:
+		"move speed" : return move_speed
+		"strength" : return strength
+		"mass" : return mass
+	return -1

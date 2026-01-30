@@ -65,7 +65,7 @@ func save() -> Dictionary:
 
 ## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
 func open_dialogue() -> void:
-	%NPCDialogue.open_window_as_npc(self)
+	%NPCDialogue.open_window_as_npc(self, )
 
 ## Opens the NPC shop window after configuring the transactions on the page
 func open_shop() -> void:

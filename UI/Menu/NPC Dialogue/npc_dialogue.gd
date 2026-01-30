@@ -2,6 +2,8 @@ extends UIWindow
 
 ## Reference to the npc that is determining the dialogue and interactions
 var npc_ref : NPC
+## Reference to the player that is talking to the npc
+var player_ref : Player
 ## The currend dialogue that is being used
 var cur_dialogue : Dialogue
 
@@ -22,9 +24,10 @@ func close_window() -> void:
 	if not global.left_window and not global.center_window:
 		global.mode = &"default"
 
-## Opens window using reference to the NPC that opened the window 
-## to get the proper Dialogue and shop information
-func open_window_as_npc(npc : NPC) -> bool:
+## Opens window using reference to the NPC that opened the window.
+## and the player that is talking to the Character
+## to get the proper Dialogue and shop information.
+func open_window_as_npc(npc : NPC, player : Player) -> bool:
 	if not npc:
 		print("Error, no npc found.")
 		return false
@@ -35,6 +38,7 @@ func open_window_as_npc(npc : NPC) -> bool:
 	if global.mode == window_mode:
 		global.right_window = self
 		npc_ref = npc
+		player_ref = player
 		%WindowName.text = npc_ref.npc_name
 		set_dialogue(npc_ref.dialogue_tree.default_dialogue)
 		
@@ -75,7 +79,31 @@ func _set_text(text : String) -> void:
 func _add_dialogue_choices(choices : Array[Choice]) -> void:
 	%DialogueOptions.clear()
 	for choice in choices:
-		%DialogueOptions.add_item(choice.player_response)
+		## Only show dialogue choices that have met the required conditions.
+		if _are_dialogue_conditions_met(choice.dialogue_conditions):
+			%DialogueOptions.add_item(choice.player_response)
+
+## Goes through the list of dialogue conditions to see if they are all met.
+func _are_dialogue_conditions_met(conditions : Array[DialogueCondition]) -> bool:
+	if not conditions:
+		return true
+	for condition in conditions:
+		match condition.type:
+			"player_att_gte":
+				if not player_ref.attributes.get_attribute(condition.descriptor) >= condition.value:
+					return false
+			"player_att_lte":
+				if not player_ref.attributes.get_attribute(condition.descriptor) <= condition.value:
+					return false
+			"player_status_is_active": print("ERROR: Not yet implemented")
+				#return false
+			"player_known_recipe": ## Finds a recipe ID matching the given value
+				for recipe in player_ref.known_recipes:
+					if condition.value == recipe.id:
+						return false
+			"event_trigger": print("ERROR: Not yet implemented")
+				#return false
+	return true
 
 ## Finds the dialogue in the tree given the name of the dialogue
 func find_dialogue(dialogue_name : String) -> Dialogue:
@@ -99,8 +127,8 @@ func set_default_dialogue(dialogue_name : String) -> void:
 		return
 	npc_ref.dialogue_tree.default_dialogue = dialogue
 
-## Executes the each Happening, which is a custom script based on the dialogue choice made.
-func execute_happenings(h_paths : Array[String]) -> bool: #NOTE: Choices point to file paths which can cause happenings to return null if file path changes.
+## Executes the each dialogue effect, which is a custom script based on the dialogue choice made.
+func execute_dialogue_effects(h_paths : Array[String]) -> bool: #NOTE: Choices point to file paths which can return null if file path changes.
 	for h_path : String in h_paths: ## For each file path,
 		var h_script : Node = load(h_path).new() ## generate the script
 		if not h_script:
@@ -121,7 +149,7 @@ func open_shop() -> void:
 ## Executes functions that the choice may cause, then opens the next dialogue window, if any.
 func _on_dialogue_options_item_selected(index: int) -> void:
 	var choice : Choice = cur_dialogue.choices[index]
-	execute_happenings(choice.happenings)
+	execute_dialogue_effects(choice.dialogue_effects)
 	
 	next_dialogue(choice)
 
