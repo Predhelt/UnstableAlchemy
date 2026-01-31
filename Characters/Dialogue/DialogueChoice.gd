@@ -1,4 +1,4 @@
-class_name Choice extends Resource
+class_name DialogueChoice extends Resource
 ## A choice that the player can make during a particular page of dialogue
 ## and the events that happen when the choice is made
 

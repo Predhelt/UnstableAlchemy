@@ -83,7 +83,7 @@ func find_dialogue(dialogue_name : String) -> Dialogue:
 
 ## Opens the next page of dialogue based on the choice made by the player.
 ## If no window name, then close the dialogue.
-func next_dialogue(choice : Choice) -> void:
+func next_dialogue(choice : DialogueChoice) -> void:
 	if choice.next_dialogue_name == "":
 		close_window()
 	set_dialogue(choice.next_dialogue_name)
@@ -140,7 +140,7 @@ func _set_text(text : String) -> void:
 
 ## Adds items to DialogueOptions for the player to select as a response to what is said in the DialogueBox.
 ## Returns whether the options were successfully added or not
-func _add_dialogue_choices(choices : Array[Choice]) -> void:
+func _add_dialogue_choices(choices : Array[DialogueChoice]) -> void:
 	%DialogueOptions.clear()
 	
 	for choice in choices:
@@ -154,7 +154,7 @@ func _on_dialogue_options_item_selected(index: int) -> void:
 	if not cur_dialogue:
 		print("ERROR: No current dialogue set")
 		return
-	var choice : Choice = cur_dialogue.choices[index]
+	var choice : DialogueChoice = cur_dialogue.choices[index]
 	execute_dialogue_effects(choice.dialogue_effects)
 	
 	next_dialogue(choice)

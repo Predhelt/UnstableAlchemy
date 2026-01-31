@@ -7,7 +7,7 @@ class_name Dialogue extends Resource
 ## Mood of the NPC during the dialogue
 #@export_enum("happy","mad","sad","neutral") var mood : StringName
 ## Dialogue choices for the Player and the associated responses
-@export var choices : Array[Choice]
+@export var choices : Array[DialogueChoice]
 ## Keeps track of if each choice has already been selected by the player
 #@export var were_chosen : Array[bool] #TODO
 

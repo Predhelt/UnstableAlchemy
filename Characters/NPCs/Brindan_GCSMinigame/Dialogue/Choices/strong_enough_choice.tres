@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://Characters/Dialogue/DialogueCondition.gd" id="1_in5cr"]
 [ext_resource type="Resource" uid="uid://dy3vt5dpsaj8e" path="res://Characters/NPCs/Brindan_GCSMinigame/Dialogue/Conditions/player_is_strong.tres" id="2_kfd7i"]
-[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/Dialogue/Choice.gd" id="3_kfd7i"]
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/Dialogue/DialogueChoice.gd" id="3_kfd7i"]
 
 [resource]
 script = ExtResource("3_kfd7i")
