@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://co733h0r4vxsd"]
+[gd_scene load_steps=39 format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://UI/Menu/Inventory Menu/inventory_menu.tscn" id="1_wlq1s"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://UI/Menu/Recipe List/recipe_list.tscn" id="2_2o0j7"]
@@ -18,12 +18,16 @@
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="15_gqfas"]
 [ext_resource type="PackedScene" uid="uid://5ru7ywrgkfd3" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.tscn" id="16_2gpsm"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="16_4vv8i"]
-[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="16_bfu87"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="17_1cenb"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/Merchant/Transaction.gd" id="17_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="18_6y0gm"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="18_l5n5r"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="18_myx5p"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="19_0ehhb"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/Recipe Books/recipe_item.tscn" id="19_myx5p"]
-[ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://Alchemy/Recipes/Cauldron/speed_potion.tres" id="20_gqfas"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/M&P Products/green_flakes.tres" id="20_x22rh"]
+[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://Items/Recipe Books/strength_potion_partial_book.tres" id="21_h3ic2"]
+[ext_resource type="Resource" uid="uid://kvhv0o2fyg74" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_saturated_stem.tres" id="22_pmh4i"]
 [ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://Items/Recipe Books/green_flakes_book.tres" id="23_2gpsm"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://Objects/boulder_pushable.tscn" id="29_gqfas"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="31_bfu87"]
@@ -33,6 +37,14 @@
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://Art/UAPrototype/UI/Minigame/crush.png" id="35_4vv8i"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://Objects/Triggers/display_area_trigger.tscn" id="36_1cenb"]
 [ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://Objects/Triggers/blockage_area.tscn" id="36_4vv8i"]
+
+[sub_resource type="Resource" id="Resource_fa7q6"]
+script = ExtResource("17_6y0gm")
+items_selling = Array[ExtResource("19_0ehhb")]([ExtResource("21_h3ic2")])
+items_selling_amount = Array[int]([1])
+items_buying = Array[ExtResource("19_0ehhb")]([ExtResource("20_x22rh")])
+items_buying_amount = Array[int]([2])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
 [node name="WorldGCSM" type="Node2D"]
 y_sort_enabled = true
@@ -108,7 +120,6 @@ offset_bottom = 154.0
 unique_name_in_owner = true
 position = Vector2(529, 298)
 character_camera_ref = NodePath("../PlayerCamera")
-known_recipes = Array[ExtResource("16_bfu87")]([ExtResource("20_gqfas")])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
@@ -122,6 +133,7 @@ position_smoothing_enabled = true
 [node name="NPCBrindan" parent="." instance=ExtResource("16_2gpsm")]
 unique_name_in_owner = true
 position = Vector2(808, 265)
+transactions = Array[ExtResource("17_6y0gm")]([ExtResource("18_myx5p"), SubResource("Resource_fa7q6"), ExtResource("22_pmh4i")])
 
 [node name="TileMaps" type="Node2D" parent="."]
 

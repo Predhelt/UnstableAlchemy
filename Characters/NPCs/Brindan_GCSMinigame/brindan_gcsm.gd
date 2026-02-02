@@ -21,7 +21,7 @@ func get_initial_dialogue_name(speakee : Character) -> String:
 		return "thanks"
 	if speakee.get_attribute("strength") >= 150:
 		return "player_is_strong"
-	if speakee.inventory.has_item(506): # Strength Potion ID
+	if speakee.inventory.has_item_id(506): # Strength Potion ID
 		return "player_has_strength_potion"
 	if speakee.knows_recipe_id(506): # Strength Potion ID
 		return "player_knows_strength_potion"

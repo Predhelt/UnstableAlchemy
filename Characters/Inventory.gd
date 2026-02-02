@@ -118,7 +118,14 @@ func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingSta
 	return true
 
 ## Returns whether the inventory contains any amount of the requested item.
-func has_item(item_id : int) -> bool:
+func has_item(item : Item) -> bool:
+	for i in items:
+		if i.id == item.id:
+			return true
+	return false
+
+## Returns whether the inventory contains any amount of the requested item with given ID.
+func has_item_id(item_id : int) -> bool:
 	for item in items:
 		if item.id == item_id:
 			return true

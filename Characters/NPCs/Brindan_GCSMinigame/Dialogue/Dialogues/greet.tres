@@ -8,14 +8,15 @@
 script = ExtResource("1_0womp")
 player_response = "\"Can you give me some advice?\""
 next_dialogue_name = &"advice"
+dialogue_effects = Array[StringName]([&"finished greeting"])
 metadata/_custom_type_script = "uid://dh4lmouiihra8"
 
 [resource]
 script = ExtResource("2_naugo")
 dialogue_name = &"greet"
-text = "Hello, My name is Brindan. I am known as a senior botanist.
+text = "Hey, My name is Brindan. I am known as a senior botanist.
 
-It looks like we are stuck and we need to move that boulder near the top to get out.
+I messed up my ankle trying to get out of the way of the falling rocks. It looks like we are stuck and we need to move that boulder up top to get out.
 
 I can trade you some alchemy supplies or give you some advice. I also have some normalizing potions available for free that can help you go back to normal if you change somehow."
 choices = Array[ExtResource("1_0womp")]([SubResource("Resource_1iaux")])

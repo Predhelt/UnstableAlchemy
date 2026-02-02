@@ -86,6 +86,7 @@ func find_dialogue(dialogue_name : String) -> Dialogue:
 func next_dialogue(choice : DialogueChoice) -> void:
 	if choice.next_dialogue_name == "":
 		close_window()
+		return
 	set_dialogue(choice.next_dialogue_name)
 
 ## Executes each dialogue effect based on the given strings.

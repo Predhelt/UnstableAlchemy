@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://c60qtsm15fecx"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://Characters/Dialogue/DialogueChoice.gd" id="1_p1ekh"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://Characters/Dialogue/DialogueCondition.gd" id="2_6i3pp"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://Characters/Dialogue/Dialogue.gd" id="2_bid11"]
+
+[sub_resource type="Resource" id="Resource_bid11"]
+script = ExtResource("1_p1ekh")
+player_response = "Saturated Stem?"
+next_dialogue_name = &"saturated_stem"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_uu35e"]
+script = ExtResource("1_p1ekh")
+player_response = "Gray Juice?"
+next_dialogue_name = &"gray_juice"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_08qyi"]
+script = ExtResource("1_p1ekh")
+player_response = "That's fine. Don't push yourself."
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("2_bid11")
+dialogue_name = &"player_knows_strength_potion"
+text = "Now that you know the recipe, you just need to gather the necessary ingredients. The herbalists here might have left some of their notes around. Sorry I can't help you look."
+choices = Array[ExtResource("1_p1ekh")]([SubResource("Resource_bid11"), SubResource("Resource_uu35e"), SubResource("Resource_08qyi")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"
