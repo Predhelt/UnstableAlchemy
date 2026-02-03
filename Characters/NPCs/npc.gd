@@ -103,16 +103,13 @@ func open_shop_from_dialogue():
 	%NPCShop.show_back_button(%NPCDialogue)
 
 ## Adds transaction to npc's shop. #TODO: IDs cannot retrieve item icon from id. Function unusuable.
-## items_buying is an array of item IDs,
+## items_buying is an array of items,
 ## items_buying_amount is an array of item quantities,
-## items_selling is an array of item IDs,
+## items_selling is an array of items,
 ## items_selling_amount is an array of item quantities.
-func add_shop_transaction(items_buying : Array[int], items_buying_amount : Array[int],
-		items_selling : Array[int], items_selling_amount : Array[int]):
+func add_shop_transaction(items_buying : Array[Item], items_buying_amount : Array[int],
+		items_selling : Array[Item], items_selling_amount : Array[int]):
 	var new_transaction = Transaction.new()
-	#for i in range(items_selling.size()):
-		#var new_item = Item.new()
-		#new_item.id = ?
 	new_transaction.items_buying = items_buying
 	new_transaction.items_buying_amount =  items_buying_amount
 	new_transaction.items_selling =  items_selling
