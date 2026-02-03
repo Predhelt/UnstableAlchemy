@@ -8,7 +8,7 @@
 script = ExtResource("1_0womp")
 player_response = "\"Can you give me some advice?\""
 next_dialogue_name = &"advice"
-dialogue_effects = Array[StringName]([&"finished greeting"])
+dialogue_effects = Array[String](["finished_greeting"])
 metadata/_custom_type_script = "uid://dh4lmouiihra8"
 
 [resource]

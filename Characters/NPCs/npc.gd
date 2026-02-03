@@ -102,6 +102,31 @@ func open_shop_from_dialogue():
 	open_shop()
 	%NPCShop.show_back_button(%NPCDialogue)
 
+## Adds transaction to npc's shop. #TODO: IDs cannot retrieve item icon from id. Function unusuable.
+## items_buying is an array of item IDs,
+## items_buying_amount is an array of item quantities,
+## items_selling is an array of item IDs,
+## items_selling_amount is an array of item quantities.
+func add_shop_transaction(items_buying : Array[int], items_buying_amount : Array[int],
+		items_selling : Array[int], items_selling_amount : Array[int]):
+	var new_transaction = Transaction.new()
+	#for i in range(items_selling.size()):
+		#var new_item = Item.new()
+		#new_item.id = ?
+	new_transaction.items_buying = items_buying
+	new_transaction.items_buying_amount =  items_buying_amount
+	new_transaction.items_selling =  items_selling
+	new_transaction.items_selling_amount =  items_selling_amount
+	new_transaction.id = transactions.size()
+	transactions.append(new_transaction) #NOTE: This method means that if transactions need to be removed, 
+	# it is not guaranteed to be the same ID depending on the order of events.
+
+## Removes the shop transaction of the NPC at the given index.
+func remove_shop_transaction(id : int):
+	for i in range(transactions.size()):
+		if transactions[i].id == id:
+			transactions.remove_at(i)
+
 ## Displays a random passive message over the head of the NPC
 func say_random_message():
 	update_message(passive_messages.pick_random())

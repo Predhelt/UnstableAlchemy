@@ -10,4 +10,4 @@ class_name DialogueChoice extends Resource
 @export var next_dialogue_name : StringName #NOTE: The dialogue is a StringName because directly referencing the Dialogue resource can give a recursion error.
 ## A list of the names of effects that occur when the choice is picked:
 ## "finished greeting": notifies the NPC that it has finished greeting the player.
-@export var dialogue_effects : Array[StringName]
+@export var dialogue_effects : Array[String]

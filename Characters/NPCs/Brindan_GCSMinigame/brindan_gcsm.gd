@@ -4,6 +4,9 @@ extends NPC
 var is_path_cleared := false
 ## Keeps track of if the player has already greeted Brindan
 var has_greeted := false
+## Tracks if the saturated stem transaction has been added
+var has_added_saturated_stem := false
+
 
 
 ## Overrides the _ready function from NPC
@@ -18,12 +21,24 @@ func _ready() -> void:
 func get_initial_dialogue_name(speakee : Character) -> String:
 	## Order of statements matters
 	if is_path_cleared:
+		if not has_added_saturated_stem:
+			#add_shop_transaction([203], [1], [1,3], [5,2])
+			has_added_saturated_stem = true
 		return "thanks"
 	if speakee.get_attribute("strength") >= 150:
+		if not has_added_saturated_stem:
+			#add_shop_transaction([203], [1], [1,3], [5,2])
+			has_added_saturated_stem = true
 		return "player_is_strong"
 	if speakee.inventory.has_item_id(506): # Strength Potion ID
+		if not has_added_saturated_stem:
+			#add_shop_transaction([203], [1], [1,3], [5,2])
+			has_added_saturated_stem = true
 		return "player_has_strength_potion"
 	if speakee.knows_recipe_id(506): # Strength Potion ID
+		if not has_added_saturated_stem:
+			#add_shop_transaction([203], [1], [1,3], [5,2])
+			has_added_saturated_stem = true
 		return "player_knows_strength_potion"
 	if has_greeted:
 		return "re-greet"

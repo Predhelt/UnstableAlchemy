@@ -90,11 +90,11 @@ func next_dialogue(choice : DialogueChoice) -> void:
 	set_dialogue(choice.next_dialogue_name)
 
 ## Executes each dialogue effect based on the given strings.
-func execute_dialogue_effects(dialogue_effects : Array[StringName]) -> void: #NOTE: Choices point to file paths which can return null if file path changes.
+func execute_dialogue_effects(dialogue_effects : Array[String]) -> void: #NOTE: Choices point to file paths which can return null if file path changes.
 	for effect in dialogue_effects: ## For each file path,
 		## List of potential effect names that are valid
 		match effect:
-			&"finished greeting":
+			"finished_greeting":
 				npc_ref.finished_greeting() #NOTE: This is not a built-in function for NPC and must be manually declared in child.
 				continue
 		print("No Dialogue Effect with name " + effect)
