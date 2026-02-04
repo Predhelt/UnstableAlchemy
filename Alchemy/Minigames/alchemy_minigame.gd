@@ -2,15 +2,20 @@
 ## Most functionality is used in the Cauldron with some overlap.
 class_name AlchemyMinigame extends UIWindow
 
-## Signal connections are made in the inventory script
 
-## Signal sent when the item is completed and added to the inventory.
-signal item_produced(item: Item, recipe : Recipe)
-## Sends signal to the inventory to remove items when a craft minigame is completed
-## and the ingredient items are consumed.
-signal item_removed(item: Item)
-## Sends signal to open the inventory window.
-signal open_inventory()
+
+### Signal connections are made in the inventory script
+#
+### Signal sent when the item is completed and added to the inventory.
+#signal item_produced(item: Item, recipe : Recipe)
+### Sends signal to the inventory to remove items when a craft minigame is completed
+### and the ingredient items are consumed.
+#signal item_removed(item: Item)
+### Sends signal to open the inventory window.
+#signal open_inventory()
+
+## Reference to the current inventory that the minigame is using
+var inventory_menu_ref
 ## Buttons used during the minigame. Set by inherited class.
 var minigame_buttons : Array[Button]
 ## Reference to associated inventory tool. Set by Inventory.
@@ -28,7 +33,9 @@ var cur_craft_ingredients : Array[Item]
 ## List of input actions of the current craft attempt
 var cur_craft_procedure : Procedure 
 ## Tracks if the minigame is currently active
-var is_crafting := false 
+var is_crafting := false
+## Tracks the last item made to allow repeated crafts.
+var last_item_produced : Item
 
 #TODO: Determine if craft difficulty could be set dynamically by the player / circumstance
 ## The window of acceptable input for each tick.
@@ -83,7 +90,7 @@ func previous_window():
 	elif global.right_window:
 		global.mode = global.right_window.window_mode
 	
-	open_inventory.emit()
+	inventory_menu_ref.open_window()
 
 ## Initiates the start of an alchemy minigame.
 func begin_minigame():
@@ -113,17 +120,19 @@ func check_results():
 	if product_recipe:
 		product_item = product_recipe.product_item.duplicate()
 		product_item.qty = product_recipe.product_item_amount
-	#TODO: Give option to craft more?
+
 	var effect_instance = item_gained_effect.instantiate()
 			
 	effect_instance.add_item(product_item)
 	effect_instance.scale = Vector2(1.3, 1.3)
 	tool_ref.add_child(effect_instance)
 	
-	for item in cur_craft_ingredients:
-		item_removed.emit(item)
-	item_produced.emit(product_item, product_recipe)
-	previous_window() #FIXME: Not going from crafting menu to inventory sometimes
+	for item : Item in cur_craft_ingredients:
+		if item:
+			inventory_menu_ref.remove_inventory_item(item, 1)
+	inventory_menu_ref.add_produced_item(product_item, product_recipe)
+	last_item_produced = product_item
+	
 
 ## Goes through the list of recipes and returns a recipe that
 ## matches the current procedure, if any.

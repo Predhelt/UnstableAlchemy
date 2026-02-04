@@ -1,13 +1,15 @@
 ## Template class for alchemy tools to use to control how items are added to 
 ## their inventory tool and how the associated minigame functions
 class_name AlchemyTool extends UIWindow
-## Sent when the item is completed and added to the inventory
-signal item_produced(item: Item, recipe : Recipe)
-## Sends signal to the inventory to remove items when a craft minigame is completed
-## and the ingredient items are consumed.
-#signal item_removed(item: Item)
-## Sent when the minigame window is opened, the inventory should be closed
-signal close_inventory()
+
+### Sent when the item is completed and added to the inventory
+#signal item_produced(item: Item, recipe : Recipe)
+### Sends signal to the inventory to remove items when a craft minigame is completed
+### and the ingredient items are consumed.
+##signal item_removed(item: Item)
+### Sent when the minigame window is opened, the inventory should be closed
+#signal close_inventory()
+
 
 ## Max number of items that can be stored in the tool
 const MAX_ITEMS := 3
@@ -19,6 +21,8 @@ const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres")
 @export var item_gained_effect := preload("res://Effects/items_gained_effect_ui.tscn")
 ## Reference to the minigame scene. Gets set by inventory menu since it has proper scope
 var minigame_ref : Control
+## Reference to the inventory that the tool is using items from. Set by inventory menu.
+var inventory_menu_ref
 ## Folder path used as a starting point to search for the list of related recipes
 var recipes_folder_path := "res://Alchemy/Recipes/"
 ## The name of the alchemy tool being used. Values can be cauldron, m&p, and merger.
@@ -112,7 +116,7 @@ func _process(delta: float) -> void:
 			effect_instance.scale = Vector2(1.3, 1.3)
 			add_child(effect_instance)
 			
-			item_produced.emit(product, cur_recipe)
+			inventory_menu_ref.add_produced_item(product, cur_recipe)
 			
 			cur_recipe = null
 			progress_bar.visible = false
@@ -143,7 +147,8 @@ func add_item(item: Item) -> bool:
 ## minigame window using the items from the alchemy tool's container.
 func open_minigame(mg_items: Array[Item]):
 	minigame_ref.init_ingredients(mg_items)
-	close_inventory.emit()
+	minigame_ref.inventory_menu_ref = inventory_menu_ref
+	inventory_menu_ref.close_window()
 	minigame_ref.open_window()
 
 ## For alchemy tools that do not have a separate minigame window.
@@ -152,9 +157,6 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 		print("Error: No product item for recipe!")
 		return
 	
-	#TODO: determine how the items being merged should be handled by inventory and tool.
-	#item_produced.emit(items[1])
-	#remove_item(1)
 	for i in range(items.size()):
 		if items[i]:
 			remove_item(i)
@@ -199,17 +201,17 @@ func _on_button_confirm_pressed() -> void:
 ## Removes item from the first slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_1_pressed() -> void:
-	item_produced.emit(items[0])
+	inventory_menu_ref.add_produced_item(items[0])
 	remove_item(0)
 
 ## Removes item from the second slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_2_pressed() -> void:
-	item_produced.emit(items[1])
+	inventory_menu_ref.add_produced_item(items[1])
 	remove_item(1)
 
 ## Removes item from the third slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_3_pressed() -> void:
-	item_produced.emit(items[2])
+	inventory_menu_ref.add_produced_item(items[2])
 	remove_item(2)

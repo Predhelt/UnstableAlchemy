@@ -9,12 +9,13 @@ class_name Inventory extends Resource
 
 ## Adds an item to the inventory.
 func add_item(item : Item) -> bool:
-	if item == null or item.qty <= 0: ## If invalid item or empty item
+	## If invalid item or empty item
+	if item == null or item.qty <= 0:
 		return false
-	
-	var could_pickup : bool = add_stackable_item(item) ## Add to any existing stacks
-	
-	if item.qty <= 0: ## If item was added to existing stacks
+	## Add to any existing stacks
+	var could_pickup : bool = add_stackable_item(item)
+	## If item was added to existing stacks
+	if item.qty <= 0:
 		return true
 	
 	if items.size() < max_item_count:
@@ -61,7 +62,8 @@ func add_stackable_item(item : Item) -> bool:
 
 ## Removes the list of inventory items from the inventory.
 ## If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
-func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
+## Returns false if not enough items are found for each item in the inventory
+func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool:
 	## Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
 	var inventory_item_infos : Dictionary = {} ## Key : index, Value : id of items in inventory
 	

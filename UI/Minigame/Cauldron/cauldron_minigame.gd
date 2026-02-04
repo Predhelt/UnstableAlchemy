@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 		else:
 			is_crafting = false
 			check_results()
+			previous_window()
 
 
 func _input(event: InputEvent) -> void:

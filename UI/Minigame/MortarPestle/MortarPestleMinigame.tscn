@@ -105,6 +105,17 @@ icon = ExtResource("4_r2g22")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ButtonAgain" type="Button" parent="VBoxContainer/Container"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 218.0
+offset_right = 193.0
+offset_bottom = 268.0
+text = "Make Another"
+
 [node name="Tool" type="Control" parent="VBoxContainer/Container"]
 layout_mode = 1
 anchor_left = 0.65
@@ -242,6 +253,7 @@ text = ">"
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Container/ButtonAgain" to="." method="_on_button_again_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonUp" to="." method="_on_button_up_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonDown" to="." method="_on_button_down_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonLeft" to="." method="_on_button_left_pressed"]

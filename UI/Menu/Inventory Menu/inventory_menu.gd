@@ -20,19 +20,15 @@ func _ready() -> void:
 	%ItemList.item_clicked.connect(on_inventory_item_clicked)
 	%Cauldron.minigame_ref = %MinigameCauldron
 	%Cauldron.minigame_ref.recipes = %Cauldron.recipes
+	%Cauldron.inventory_menu_ref = self
 	%MinigameCauldron.tool_ref = %Cauldron
 	%MortarPestle.minigame_ref = %MinigameMP
 	%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
+	%MortarPestle.inventory_menu_ref = self
 	%MinigameMP.tool_ref = %MortarPestle
+	%Merger.inventory_menu_ref = self
 	
-	## Signal connections for minigame windows.
-	## The naming convention is assumed to be the same across maps.
-	%MinigameCauldron.open_inventory.connect(_on_open_inventory)
-	%MinigameMP.open_inventory.connect(_on_open_inventory)
-	%MinigameCauldron.item_produced.connect(_on_item_produced)
-	%MinigameMP.item_produced.connect(_on_item_produced)
-	%MinigameCauldron.item_removed.connect(_on_item_removed)
-	%MinigameMP.item_removed.connect(_on_item_removed)
+	
 
 ## Controls functions executed when input actions are pressed
 func _input(event: InputEvent) -> void:
@@ -118,6 +114,22 @@ func add_inventory_item(item : Item) -> bool:
 	update_window()
 	return true
 
+## Adds an item that was produced through crafting to the inventory
+## And add the recipe to the recipe book, if not already.
+func add_produced_item(item : Item, recipe : Recipe = null) -> void:
+	if item:
+		add_inventory_item(item)
+	if recipe != null:
+		character_ref.learn_recipe(recipe)
+
+## Finds the first index of a given item in the inventory. returns -1 if not found.
+func find_item(item : Item) -> int:
+	var inventory_items := character_ref.inventory.items
+	for i in range(inventory_items.size()):
+		if inventory_items[i].id == item.id:
+			return i
+	return -1
+
 ## Sets the text of the item as displayed in the Inventory UI.
 func generate_item_text(item: Item) -> String:
 	var text := ""
@@ -134,10 +146,18 @@ func remove_inventory_slot(index : int) -> void:
 	character_ref.inventory.items.remove_at(index)
 	%ItemList.remove_item(index)
 
-### Removes the list of inventory items from the inventory.
-### If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
+## Removes the list of inventory items from the inventory.
+## If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
 func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
 	if not character_ref.inventory.remove_items(items_removing, qtys, isRemovingStacks):
+		return false
+	update_window()
+	return true
+
+## Removes the given quantity of the item from the inventory.
+## If isRemovingStacks is true, removes any stack that contains the item in the inventory.
+func remove_inventory_item(item_removing : Item, qty : int, isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
+	if not character_ref.inventory.remove_items([item_removing], [qty], isRemovingStacks):
 		return false
 	update_window()
 	return true
@@ -286,27 +306,6 @@ func _on_tool_wheel_set_dropper_item() -> void:
 ## Sets the dropper item in the tool wheel.
 func _set_dropper_item(item: Item):
 	toolwheel_ref.dropper_item = item
-	close_window()
-
-## Triggers when a crafting minigame is completed and an item is added to the inventory.
-func _on_item_produced(item: Item, recipe: Recipe = null) -> void:
-	if item:
-		add_inventory_item(item)
-	if recipe != null:
-		character_ref.learn_recipe(recipe)
-
-func _on_item_removed(item: Item) -> void:
-	if item:
-		remove_inventory_items([item], [1])
-
-## Triggers when the inventory window is opened.
-## Adds the inventory to the window group and updates the window title.
-func _on_open_inventory() -> void:
-	open_window()
-
-## Triggers to close the inventory window.
-## Removes the inventory from the window group and hides the window.
-func _on_close_inventory() -> void:
 	close_window()
 
 ## Triggers when the button used to close the window is pressed, which closes the window.
