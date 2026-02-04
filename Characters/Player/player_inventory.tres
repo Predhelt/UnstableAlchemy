@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://c4voe1xwewivt"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://c4voe1xwewivt"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="1_hxlld"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://Characters/Inventory.gd" id="2_48wm2"]
-[ext_resource type="Resource" uid="uid://dmmjiexaj27y4" path="res://Items/Potions/strength_potion.tres" id="2_876eg"]
 
 [resource]
 script = ExtResource("2_48wm2")
-items = Array[ExtResource("1_hxlld")]([ExtResource("2_876eg")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"

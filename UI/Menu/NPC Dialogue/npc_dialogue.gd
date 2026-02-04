@@ -16,7 +16,7 @@ func _init() -> void:
 
 ## Removes the dialogue window from the menu category and hides the window.
 func close_window() -> void:
-	if global.mode != window_mode or global.mode == &"minigame":
+	if global.mode != window_mode:
 		return
 	
 	visible = false
@@ -33,7 +33,7 @@ func open_window_as_npc(npc : NPC, player : Player) -> bool:
 		return false
 	if global.right_window or global.center_window or visible:
 		return false
-	if global.mode == &"default" or global.mode == &"minigame":
+	if global.mode == &"default":
 		global.mode = window_mode
 	if global.mode == window_mode:
 		global.right_window = self
@@ -53,7 +53,7 @@ func open_window_as_npc(npc : NPC, player : Player) -> bool:
 func open_window() -> bool:
 	if global.right_window or global.center_window or visible:
 		return false
-	if global.mode == &"default" or global.mode == &"minigame":
+	if global.mode == &"default":
 		global.mode = window_mode
 	if global.mode == window_mode:
 		global.right_window = self

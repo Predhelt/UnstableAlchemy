@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void: # Override in M&P
-	if global.mode != &"minigame" or not visible:
+	if global.mode != window_mode or not visible:
 		return # No input events should catch on wrong mode
 	if is_crafting and recipes[0].tool_used == "m&p":
 		if event.is_action_pressed("minigame_m&p_up") and not minigame_buttons[0].disabled:
@@ -138,7 +138,7 @@ func open_window():
 	%WindowName.text = "Mortar and Pestle"
 	global.left_window = self
 	visible = true
-	global.mode = &"minigame"
+	global.mode = &"menu"
 
 
 func _on_button_start_pressed() -> void:

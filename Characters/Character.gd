@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	#for rb in pushing_bodies:
 		#_push_body(rb)
 	
-	_update_active_status_effect(delta)
+	_update_active_status_effects(delta)
 	
 	if status_message_timer > 0 and global.mode == &"default":
 		status_message_timer -= delta
@@ -193,10 +193,10 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
 		&"move speed" :
-			attributes.move_speed = _change_attribute(se, attributes.move_speed)
+			attributes.move_speed = _calc_attribute_change(se, attributes.move_speed)
 			return true
 		&"strength" :
-			attributes.strength = _change_attribute(se, attributes.strength)
+			attributes.strength = _calc_attribute_change(se, attributes.strength)
 			#print(attributes.strength)
 			return true
 		&"cleanse" : if _cleanse_status_effects():
@@ -215,7 +215,7 @@ func update_status_message(message: String):
 	status_message_timer = 5.0
 
 ## Updates the duration of an active status effect based on the amount of time that has passed.
-func _update_active_status_effect(delta : float) -> void:
+func _update_active_status_effects(delta : float) -> void:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		var se = active_status_effects[i]
 		if se.duration != -1:
@@ -227,8 +227,13 @@ func _update_active_status_effect(delta : float) -> void:
 ## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
 	match se.effect:
-		&"move speed" : return _change_attribute(se, attributes.move_speed, true)
+		&"move speed" : 
+			attributes.move_speed = _calc_attribute_change(se, attributes.move_speed, true)
+			return true
 		&"grow" : return _grow_player(se, true)
+		&"strength" : 
+			attributes.strength = _calc_attribute_change(se, attributes.strength, true)
+			return true
 	return false
 
 ## Updates the images and progress bars on the status bar UI of the given status effect.
@@ -249,9 +254,9 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 
 ## Status effect functions ##
 
-## Adds/subtracts the value of the status effect from the value of an attribute.
+## Adds/subtracts the value of the given status effect from the value of an attribute.
 ## Returns the value after the change from the status effect.
-func _change_attribute(se: StatusEffect, attribute_val: float, is_removing_status := false) -> float:
+func _calc_attribute_change(se: StatusEffect, attribute_val: float, is_removing_status := false) -> float:
 	for i in len(active_status_effects):
 		var cur_se = active_status_effects[i]
 		if cur_se.id == se.id:
@@ -267,7 +272,6 @@ func _change_attribute(se: StatusEffect, attribute_val: float, is_removing_statu
 			return attribute_val
 	
 	attribute_val += se.value
-	
 	update_status_bar(se)
 	return attribute_val
 

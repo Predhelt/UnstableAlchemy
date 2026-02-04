@@ -9,7 +9,7 @@ func _ready() -> void:
 ## Sets minigame input displays, updates minigame timers,
 ## checks to see if the crafting is complete.
 func _process(delta: float) -> void:
-	#if global.mode != &"minigame": #FIXME: on wrong mode, so disabling check
+	#if global.mode != window_mode: #FIXME: on wrong mode, so disabling check
 		#return ## Do not continue minigame if another mode has priority.
 	for i in len(minigame_buttons): ## Set hotkey text for each button
 		minigame_buttons[i].text = ("(" +
@@ -24,8 +24,8 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if global.mode != &"minigame" or not visible:
-		return ## No input events should catch on wrong mode
+	if global.mode != window_mode or not visible:
+		return ## No input events should catch on wrong mode or not visible
 	if is_crafting and recipes[0].tool_used == "cauldron":
 		if event.is_action_pressed("minigame_cauldron_action_1") and not minigame_buttons[0].disabled:
 			set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)

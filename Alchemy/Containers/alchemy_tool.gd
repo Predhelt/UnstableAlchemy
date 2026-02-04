@@ -53,7 +53,7 @@ var cur_recipe : Recipe
 ## Makes the size of the buttons and items arrays to be
 ## the max number of items the tool can hold.
 func _init() -> void:
-	window_mode = &"minigame"
+	window_mode = &"menu"
 	for i in MAX_ITEMS:
 		buttons.append(null)
 		items.append(null)

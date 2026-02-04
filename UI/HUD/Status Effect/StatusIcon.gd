@@ -4,6 +4,8 @@ var has_duration : bool
 var effect : StatusEffect
 
 func _process(delta: float) -> void:
+	if global.mode != &"default":
+		return
 	if has_duration and $ProgressBar.value < $ProgressBar.max_value:
 		$ProgressBar.value += delta
 

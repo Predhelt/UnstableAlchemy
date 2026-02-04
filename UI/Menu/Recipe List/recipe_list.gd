@@ -35,7 +35,7 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode != window_mode and global.mode != &"minigame":
+	if global.mode != window_mode:
 		return
 	
 	visible = false
@@ -50,7 +50,7 @@ func close_window() -> void:
 func open_window() -> bool:
 	if global.right_window or global.center_window:
 		return false
-	if global.mode == &"default" or global.mode == &"menu" or global.mode == &"minigame":
+	if global.mode == &"default" or global.mode == &"menu":
 		global.mode = window_mode # Shares mode with inventory, minigame, and help menu
 		
 		%ProductDetails.visible = false

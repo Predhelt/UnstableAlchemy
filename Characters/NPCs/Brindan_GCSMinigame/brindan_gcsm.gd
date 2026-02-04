@@ -27,24 +27,25 @@ func get_initial_dialogue_name(speakee : Character) -> String:
 	if is_path_cleared:
 		if not has_added_saturated_stem:
 			add_shop_transaction([red_berries_ref, flower_stem_ref], [5,2],
-			[saturated_stem_ref], [1])
+				[saturated_stem_ref], [1])
 			has_added_saturated_stem = true
 		return "thanks"
 	if speakee.get_attribute("strength") >= 150:
 		if not has_added_saturated_stem:
 			add_shop_transaction([red_berries_ref, flower_stem_ref], [5,2],
-			[saturated_stem_ref], [1])
+				[saturated_stem_ref], [1])
 			has_added_saturated_stem = true
 		return "player_is_strong"
 	if speakee.inventory.has_item_id(506): # Strength Potion ID
 		if not has_added_saturated_stem:
 			add_shop_transaction([red_berries_ref, flower_stem_ref], [5,2],
-			[saturated_stem_ref], [1])
+				[saturated_stem_ref], [1])
 			has_added_saturated_stem = true
 		return "player_has_strength_potion"
 	if speakee.knows_recipe_id(506): # Strength Potion ID
 		if not has_added_saturated_stem:
-			#add_shop_transaction([203], [1], [1,3], [5,2])
+			add_shop_transaction([red_berries_ref, flower_stem_ref], [5,2],
+				[saturated_stem_ref], [1])
 			has_added_saturated_stem = true
 		return "player_knows_strength_potion"
 	if has_greeted:

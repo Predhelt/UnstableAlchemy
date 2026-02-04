@@ -33,7 +33,7 @@ func toggle_window() -> void:
 
 ## Closes the NPC Shop UI window and removes it from the window group.
 func close_window() -> void:
-	if global.mode != window_mode or global.mode == &"minigame":
+	if global.mode != window_mode:
 		return
 	
 	visible = false
@@ -46,7 +46,7 @@ func close_window() -> void:
 func open_window() -> bool:
 	if global.right_window or global.center_window:
 		return false
-	if global.mode == &"default" or global.mode == &"minigame":
+	if global.mode == &"default":
 		global.mode = window_mode ## Shares mode with inventory, minigame, and help menu
 	if global.mode == window_mode:
 		global.right_window = self

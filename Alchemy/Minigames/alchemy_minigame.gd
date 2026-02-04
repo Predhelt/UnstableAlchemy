@@ -39,7 +39,7 @@ const FAILED_CRAFT : Recipe = preload("res://Alchemy/Recipes/failed_craft.tres")
 
 ## Sets the window mode
 func _init() -> void:
-	window_mode = &"minigame"
+	window_mode = &"menu"
 
 ## Template: Sets how action keys should be handled in the relevant minigame.
 func _input(_event: InputEvent) -> void:

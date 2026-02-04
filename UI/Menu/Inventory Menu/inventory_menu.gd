@@ -59,7 +59,7 @@ func close_window() -> void:
 		global.mode = &"default" ## There should be no other UI windows open
 		visible = false
 	
-	elif global.mode == &"minigame": ## Minigame in progress, do not change groups.
+	elif global.mode == &"menu": ## Minigame in progress, do not change groups.
 		visible = false
 	
 	return_alchemy_items()
