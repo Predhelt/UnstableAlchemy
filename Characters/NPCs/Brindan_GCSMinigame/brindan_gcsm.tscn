@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.gd" id="1_aqsvn"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://Art/UAPrototype/Characters/npc-robe.png" id="2_dc0wm"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="3_3ykmy"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/Merchant/Transaction.gd" id="3_w12x1"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="3_w12x1"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="4_de2tt"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="4_m0qsu"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="5_2t8jr"]

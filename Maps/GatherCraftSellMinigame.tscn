@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://5ru7ywrgkfd3" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.tscn" id="16_2gpsm"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="16_4vv8i"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="17_1cenb"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/Merchant/Transaction.gd" id="17_6y0gm"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="17_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="18_6y0gm"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="18_l5n5r"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="18_myx5p"]
@@ -276,10 +276,10 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="PuzzleDescription" type="Label" parent="."]
-offset_left = -317.0
-offset_top = -552.0
-offset_right = 396.0
-offset_bottom = -269.0
+offset_left = -680.0
+offset_top = -573.0
+offset_right = 33.0
+offset_bottom = -290.0
 text = "Requires knowledge of 6 recipes in order to complete:
 Strength Potion from merchant, traded for green 
 herb grinds, which a book is found on the ground.
