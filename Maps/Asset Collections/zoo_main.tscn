@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2035enlttehf"]
+
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://Objects/Collisions/boulder_pushable.tscn" id="1_8mkxd"]
+[ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://Objects/Collisions/wall_small_hole.tscn" id="2_y2io7"]
+
+[node name="ZooMain" type="Node2D"]
+
+[node name="CollisionObjects" type="Node2D" parent="."]
+
+[node name="BoulderPushable" parent="CollisionObjects" instance=ExtResource("1_8mkxd")]
+position = Vector2(60, 170)
+
+[node name="StaticBody2D" parent="CollisionObjects" instance=ExtResource("2_y2io7")]
+position = Vector2(200, 169)
+
+[node name="Label" type="Label" parent="CollisionObjects"]
+offset_left = 66.0
+offset_top = 24.0
+offset_right = 194.0
+offset_bottom = 47.0
+text = "Collision Objects"
+
+[node name="Label2" type="Label" parent="CollisionObjects"]
+offset_left = 28.0
+offset_top = 219.0
+offset_right = 269.0
+offset_bottom = 268.0
+text = "Standard object size is 64x64px
+Collision height is 12px
+center of object is in the middle of the collision"

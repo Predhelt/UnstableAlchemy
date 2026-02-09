@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://xtdamteo67ra"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://xtdamteo67ra"]
 
 [ext_resource type="Texture2D" uid="uid://ct8gkcn1hdmef" path="res://Art/UAPrototype/Tilesets/tileset_rock_wall_forest.png" id="1_t6aiv"]
 [ext_resource type="Texture2D" uid="uid://dxyi8svdc8pj2" path="res://Level/TileSets/BasicTilemapx64.png" id="2_u00sl"]
+[ext_resource type="Texture2D" uid="uid://c553j02280uo5" path="res://Art/UAPrototype/Tilesets/tileset_grass.png" id="3_6uj1f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u00sl"]
 resource_name = "Rock Wall Forest"
@@ -202,6 +203,22 @@ texture_region_size = Vector2i(64, 64)
 2:1/0 = 0
 3:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2v663"]
+resource_name = "Grass"
+texture = ExtResource("3_6uj1f")
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/modulate = Color(0.5609549, 0.5609549, 0.5609549, 1)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 16
@@ -211,3 +228,4 @@ terrain_set_0/terrain_0/name = "Rock"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_u00sl")
 sources/1 = SubResource("TileSetAtlasSource_6uj1f")
+sources/2 = SubResource("TileSetAtlasSource_2v663")

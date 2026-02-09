@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://vet5yvxugey6" path="res://Art/UAPrototype/Objects/boulder.png" id="1_5rt6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eugqi"]
-size = Vector2(52, 14)
+size = Vector2(52, 12)
 
 [node name="BoulderPushable" type="RigidBody2D" groups=["Pushable"]]
 collision_layer = 8
@@ -18,5 +18,4 @@ position = Vector2(0, -26)
 texture = ExtResource("1_5rt6y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_eugqi")
