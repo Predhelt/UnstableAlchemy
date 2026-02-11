@@ -169,7 +169,7 @@ radius = 46.0109
 radius = 14.0
 
 [node name="Character" type="CharacterBody2D" groups=["Persist"]]
-collision_mask = 25
+collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_d1l3k")
 
@@ -251,15 +251,15 @@ linear_damp = 5.0
 shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
-[node name="RigidArea2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 40
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_5slg2")
 debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
-[connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
-[connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

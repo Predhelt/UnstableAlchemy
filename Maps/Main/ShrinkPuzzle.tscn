@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dmjjqutxwcjj7"]
+[gd_scene load_steps=31 format=4 uid="uid://dmjjqutxwcjj7"]
 
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="1_54jqo"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="2_ycwbx"]
@@ -15,13 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://UI/HUD/Hotbar/hotbar.tscn" id="13_iyl4o"]
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://UI/HUD/Tool Wheel/tool_wheel.tscn" id="14_goh7i"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="15_nxfda"]
-[ext_resource type="PackedScene" uid="uid://5ru7ywrgkfd3" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.tscn" id="16_4aq1o"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="17_rcmm6"]
-[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="18_2yiux"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="19_yujse"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/M&P Products/green_flakes.tres" id="20_xloix"]
-[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://Items/Recipe Books/strength_potion_partial_book.tres" id="21_qxo2e"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Alchemy/Recipes/Recipe.gd" id="16_6k6km"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="22_h38vc"]
+[ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://Objects/Collisions/wall_small_hole.tscn" id="23_3xxaq"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="23_tlflv"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="24_tyirt"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="25_j48rv"]
@@ -34,14 +30,6 @@
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://Art/UAPrototype/UI/Minigame/grind.png" id="34_rpdf4"]
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://Art/UAPrototype/UI/Minigame/crush.png" id="35_e17fn"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="36_2xve4"]
-
-[sub_resource type="Resource" id="Resource_fa7q6"]
-script = ExtResource("17_rcmm6")
-items_selling = Array[ExtResource("19_yujse")]([ExtResource("21_qxo2e")])
-items_selling_amount = Array[int]([1])
-items_buying = Array[ExtResource("19_yujse")]([ExtResource("20_xloix")])
-items_buying_amount = Array[int]([2])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
 [node name="WorldGCSM" type="Node2D"]
 y_sort_enabled = true
@@ -117,6 +105,7 @@ offset_bottom = 154.0
 unique_name_in_owner = true
 position = Vector2(529, 298)
 character_camera_ref = NodePath("../PlayerCamera")
+known_recipes = Array[ExtResource("16_6k6km")]([])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../PlayerCamera")
@@ -126,12 +115,6 @@ unique_name_in_owner = true
 position = Vector2(529, 298)
 process_callback = 0
 position_smoothing_enabled = true
-
-[node name="NPCBrindan" parent="." instance=ExtResource("16_4aq1o")]
-unique_name_in_owner = true
-position = Vector2(675, 146)
-transactions = Array[ExtResource("17_rcmm6")]([ExtResource("18_2yiux"), SubResource("Resource_fa7q6")])
-passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
 [node name="TileMaps" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -154,7 +137,7 @@ tile_set = ExtResource("23_tlflv")
 metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps"]
-tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAADAAAAAAAEAAIAAAAEAAAAAAAEAAIAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAIAAAAKAAAAAAAGAAIAAAALAAAAAAAEAAIAAAAMAAAAAAAEAAIAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAFAAAAAAAPAAEAAAAFAAEAAAAPAAIAAAAFAAEAAAAPAAMAAAADAAEAAAAPAAQAAAAFAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAFAAEAAAAPAAcAAAADAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAADAAEAAAAPAAoAAAAFAAIAAAAOAAoAAAAEAAAAAAANAAoAAAAEAAIAAAAMAAoAAAAEAAIAAAALAAoAAAAEAAAAAAAKAAoAAAAEAAIAAAAJAAoAAAAEAAIAAAAIAAoAAAAEAAAAAAAHAAoAAAAEAAIAAAAGAAoAAAAEAAAAAAAFAAoAAAAEAAAAAAAEAAoAAAAEAAIAAAADAAoAAAAEAAAAAAACAAoAAAADAAIAAAACAAkAAAAFAAEAAAACAAgAAAAFAAEAAAACAAcAAAAFAAEAAAACAAYAAAADAAEAAAACAAUAAAAFAAEAAAACAAQAAAAFAAEAAAACAAMAAAAFAAEAAAACAAIAAAAFAAEAAAACAAEAAAAFAAEAAAAIAAAAAAAHAAIAAAAHAAAAAAAEAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAADAAAAAAAEAAIAAAAEAAAAAAAEAAIAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAIAAAAKAAAAAAAEAAAAAAALAAAAAAAEAAIAAAAMAAAAAAAEAAIAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAFAAAAAAAPAAEAAAAFAAEAAAAPAAIAAAAFAAEAAAAPAAMAAAADAAEAAAAPAAQAAAAFAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAFAAEAAAAPAAcAAAADAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAADAAEAAAAPAAoAAAAFAAIAAAAOAAoAAAAEAAAAAAANAAoAAAAEAAIAAAAMAAoAAAAEAAIAAAALAAoAAAAEAAAAAAAKAAoAAAAEAAIAAAAJAAoAAAAEAAIAAAAIAAoAAAAEAAAAAAAHAAoAAAAEAAIAAAAGAAoAAAAEAAAAAAAFAAoAAAAEAAAAAAAEAAoAAAAEAAIAAAADAAoAAAAEAAAAAAACAAoAAAADAAIAAAACAAkAAAAFAAEAAAACAAgAAAAFAAEAAAACAAcAAAAFAAEAAAACAAYAAAADAAEAAAACAAUAAAAFAAEAAAACAAQAAAAFAAEAAAACAAMAAAAFAAEAAAACAAIAAAAFAAEAAAACAAEAAAAFAAEAAAAIAAAAAAAEAAAAAAAHAAAAAAAEAAAAAAA=")
 tile_set = ExtResource("23_tlflv")
 metadata/_edit_lock_ = true
 
@@ -196,6 +179,11 @@ book_info = ExtResource("28_edplm")
 
 [node name="PuzzleNodes" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="WallSmallHole" parent="PuzzleNodes" instance=ExtResource("23_3xxaq")]
+position = Vector2(608, 58)
+gap_size = 50.0
+metadata/_edit_lock_ = true
 
 [node name="DisplayArea" parent="." node_paths=PackedStringArray("display_scene") instance=ExtResource("31_eetuy")]
 position = Vector2(928, 608)

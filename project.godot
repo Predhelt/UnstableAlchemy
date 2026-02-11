@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Unstable Alchemist (Pseudo Jam)"
 config/tags=PackedStringArray("deadline", "git")
-run/main_scene="uid://co733h0r4vxsd"
+run/main_scene="uid://dmjjqutxwcjj7"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -30,6 +30,7 @@ window/size/viewport_height=640
 Pushable=""
 Droppable="areas that you can drag and drop into"
 Persist="Persistent Scenes between loads"
+Crawlspace=""
 
 [input]
 

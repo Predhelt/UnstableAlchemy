@@ -17,6 +17,8 @@ var direction := Vector2.ZERO
 
 ## List of rigid bodies the character is pushing
 var pushing_bodies : Array[RigidBody2D]
+## List of crawlspace bodies that the character is occupying.
+var crawlspace_bodies : Array[StaticBody2D]
 
 ## The list of status effects that are currently active on the character
 var active_status_effects : Array[StatusEffect]
@@ -46,12 +48,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	update_animation_parameters()
 
-## Update character position and messages every frame
+## Update character position and messages every frame.
+## NOTE: Player overrides this method.
 func _physics_process(delta: float) -> void:
 	#_move_character(Vector2(0,0))
-	#
-	#for rb in pushing_bodies:
-		#_push_body(rb)
+	
+	for rb in pushing_bodies:
+		_push_body(rb)
 	
 	_update_active_status_effects(delta)
 	
@@ -319,14 +322,34 @@ func change_character_scale(mult: Vector2):
 	## Multiply the current mass by the area of the vector (change in x by change in y)
 	attributes.mass *= mult[0] * mult[1]
 	attributes.strength *= mult[0] * mult[1]
+	attributes.size *= mult[0] # NOTE: This assume that x and y are the same.
 	
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
 
 ## Checks the rigid body that is near the character to see if it is pushable.
-func _on_rigid_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Pushable"):
 		if attributes.strength >= body.mass:
 			pushing_bodies.append(body)
+	if body.is_in_group("Crawlspace"):
+		if attributes.size <= body.gap_size:
+			print(str(attributes.size) + " <= " + str(body.gap_size))
+			if crawlspace_bodies.is_empty():
+				## Remove collision from crawlspaces nearby
+				set_collision_mask_value(6, false)
+			crawlspace_bodies.append(body)
+
+## Checks if the body is in an existing list of overlapping bodies to remove it.
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	var i := pushing_bodies.find(body)
+	if i != -1:
+		pushing_bodies.remove_at(i)
+		return
+	i = crawlspace_bodies.find(body)
+	if i != -1:
+		crawlspace_bodies.remove_at(i)
+		if crawlspace_bodies.is_empty():
+			set_collision_mask_value(6, true)
 
 ## Check the mass of the object and compare to the player's strength
 ## to determine if the player is strong enough to move the body.
@@ -341,8 +364,3 @@ func _push_body(body: PhysicsBody2D) -> bool:
 		
 	body.linear_velocity = velocity * mult
 	return true
-
-func _on_rigid_area_2d_body_exited(body: Node2D) -> void:
-	var i := pushing_bodies.find(body)
-	if i != -1:
-		pushing_bodies.remove_at(i)

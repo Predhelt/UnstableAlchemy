@@ -7,6 +7,8 @@ class_name Attributes extends Resource
 @export var strength := 100.0
 ## Determines interactions with environment objects and triggers
 @export var mass := 100.0
+## Represents the size of the character, scaling width and height proportionally.
+@export var size := 100.0
 ## Same as CollisionInteract.radius of arms
 #@export var range := 100.0
 
