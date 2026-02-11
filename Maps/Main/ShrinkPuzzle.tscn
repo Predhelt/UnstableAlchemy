@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dmjjqutxwcjj7"]
+[gd_scene load_steps=32 format=4 uid="uid://dmjjqutxwcjj7"]
 
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://UI/Menu/Options Menu/settings_menu.tscn" id="1_54jqo"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://UI/Menu/Options Menu/options_menu.tscn" id="2_ycwbx"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/Recipe Books/recipe_item.tscn" id="27_kas4f"]
 [ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://Items/Recipe Books/green_flakes_book.tres" id="28_edplm"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://Objects/Triggers/display_area_trigger.tscn" id="31_eetuy"]
+[ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://Characters/NPCs/Shelly_ShrinkPuzzle/shelly_sp.tscn" id="31_jil72"]
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://Art/UAPrototype/Ingredients/Inventory/red-berries.png" id="32_dmy5v"]
 [ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://Art/UAPrototype/Ingredients/Inventory/red-berry-seed.png" id="33_sx3xs"]
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://Art/UAPrototype/UI/Minigame/grind.png" id="34_rpdf4"]
@@ -257,6 +258,10 @@ offset_right = 33.0
 offset_bottom = -290.0
 text = "Requires knowledge of _ recipes in order to complete:
 Shrink Potion: "
+
+[node name="NPCShelly" parent="." instance=ExtResource("31_jil72")]
+position = Vector2(695, 192)
+passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 
 [connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_consume_inventory_item"]

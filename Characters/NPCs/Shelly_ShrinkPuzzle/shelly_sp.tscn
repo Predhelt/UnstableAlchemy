@@ -1,26 +1,14 @@
-[gd_scene load_steps=37 format=3 uid="uid://5ru7ywrgkfd3"]
+[gd_scene load_steps=32 format=3 uid="uid://dhxsk1ptro6nc"]
 
-[ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.gd" id="1_aqsvn"]
-[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://Art/UAPrototype/Characters/npc-robe.png" id="2_dc0wm"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="3_3ykmy"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="3_w12x1"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="4_de2tt"]
-[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_speed_potion.tres" id="4_m0qsu"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="5_2t8jr"]
-[ext_resource type="Resource" uid="uid://kvhv0o2fyg74" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_saturated_stem.tres" id="5_m570q"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="6_57mob"]
-[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="6_pt5j0"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/M&P Products/green_flakes.tres" id="8_0j3cm"]
-[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://Items/Recipe Books/strength_potion_partial_book.tres" id="8_w12x1"]
-[ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://Characters/NPCs/Brindan_GCSMinigame/att_brindan_gcsm.tres" id="9_w12x1"]
-
-[sub_resource type="Resource" id="Resource_fa7q6"]
-script = ExtResource("3_w12x1")
-items_selling = Array[ExtResource("6_57mob")]([ExtResource("8_w12x1")])
-items_selling_amount = Array[int]([1])
-items_buying = Array[ExtResource("6_57mob")]([ExtResource("8_0j3cm")])
-items_buying_amount = Array[int]([2])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
+[ext_resource type="Script" uid="uid://dj7aeg2o8aue6" path="res://Characters/NPCs/Shelly_ShrinkPuzzle/shelly_sp.gd" id="1_4c3un"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="2_6lgfa"]
+[ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://Characters/NPCs/Shelly_ShrinkPuzzle/Transactions/tx_free_normalize_potion.tres" id="3_wbeav"]
+[ext_resource type="Resource" uid="uid://dhsdwxh2mrnyp" path="res://Characters/NPCs/Shelly_ShrinkPuzzle/att_shelly_shrink.tres" id="4_nerho"]
+[ext_resource type="Texture2D" uid="uid://ct22o35nepr0w" path="res://Art/UAPrototype/Characters/character-robe2.png" id="5_4c3un"]
+[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="6_tfnci"]
+[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="7_jwohs"]
+[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="8_xv50t"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="9_61xhi"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001
@@ -34,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_dc0wm")]
+"values": [ExtResource("5_4c3un")]
 }
 
 [sub_resource type="Animation" id="Animation_cssul"]
@@ -49,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_dc0wm")]
+"values": [ExtResource("5_4c3un")]
 }
 
 [sub_resource type="Animation" id="Animation_85or5"]
@@ -64,7 +52,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_3ykmy")]
+"values": [ExtResource("6_tfnci")]
 }
 
 [sub_resource type="Animation" id="Animation_33o0g"]
@@ -79,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_de2tt")]
+"values": [ExtResource("7_jwohs")]
 }
 
 [sub_resource type="Animation" id="Animation_gvkpy"]
@@ -94,7 +82,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_2t8jr")]
+"values": [ExtResource("8_xv50t")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bkg2i"]
@@ -181,19 +169,20 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
 radius = 14.0
 
-[node name="NPCBrindan" type="CharacterBody2D" groups=["Persist"]]
-collision_mask = 25
+[node name="NPCShelly" type="CharacterBody2D" groups=["Persist"]]
+collision_mask = 57
 motion_mode = 1
-script = ExtResource("1_aqsvn")
-npc_name = "Brindan"
-transactions = Array[ExtResource("3_w12x1")]([ExtResource("4_m0qsu"), ExtResource("5_m570q"), SubResource("Resource_fa7q6")])
+script = ExtResource("1_4c3un")
+npc_name = "Shelly"
+interaction_type = "shop"
+transactions = Array[ExtResource("2_6lgfa")]([ExtResource("3_wbeav")])
 passive_messages = Array[String](["Hey", "Where are we, anyways?"])
-attributes = ExtResource("9_w12x1")
+attributes = ExtResource("4_nerho")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_dc0wm")
+texture = ExtResource("5_4c3un")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -255,7 +244,7 @@ scroll_following = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="InteractArea" parent="." instance=ExtResource("6_pt5j0")]
+[node name="InteractArea" parent="." instance=ExtResource("9_61xhi")]
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(3.280001, 3.280001)
 interact_label = "NPC"
@@ -265,7 +254,7 @@ interact_value = ""
 [node name="RigidArea2D" type="Area2D" parent="."]
 position = Vector2(0, -2.38419e-07)
 collision_layer = 0
-collision_mask = 8
+collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D"]
 shape = SubResource("CircleShape2D_a0pup")

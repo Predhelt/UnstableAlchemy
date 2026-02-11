@@ -18,6 +18,6 @@ text = "Hey, My name is Brindan. I am known as a senior botanist.
 
 I messed up my ankle trying to get out of the way of the falling rocks. It looks like we are stuck and we need to move that boulder up top to get out.
 
-I can trade you some alchemy supplies or give you some advice. I also have some normalizing potions available for free that can help you go back to normal if you change somehow."
+I can trade you some alchemy supplies or give you some advice. I also have some speed potions available to help you get around quicker."
 choices = Array[ExtResource("1_0womp")]([SubResource("Resource_1iaux")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

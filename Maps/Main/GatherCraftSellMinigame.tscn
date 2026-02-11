@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="17_6y0gm"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Objects/Interactable/Plants/yellow_flowers.tscn" id="18_6y0gm"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level/TileSets/tileset_UA.tres" id="18_l5n5r"]
-[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_normalize_potion.tres" id="18_myx5p"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_speed_potion.tres" id="18_myx5p"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="19_0ehhb"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Objects/Interactable/Recipe Books/recipe_item.tscn" id="19_myx5p"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Items/M&P Products/green_flakes.tres" id="20_x22rh"]
@@ -132,6 +132,7 @@ position_smoothing_enabled = true
 [node name="NPCBrindan" parent="." instance=ExtResource("16_2gpsm")]
 unique_name_in_owner = true
 position = Vector2(675, 146)
+collision_mask = 57
 transactions = Array[ExtResource("17_6y0gm")]([ExtResource("18_myx5p"), SubResource("Resource_fa7q6")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
