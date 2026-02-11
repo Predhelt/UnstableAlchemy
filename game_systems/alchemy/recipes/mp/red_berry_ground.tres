@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=5 format=3 uid="uid://b3br3g0h4ex3i"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_o4ovi"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://game_systems/items/gatherable/red_berries.tres" id="2_2f2dh"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_4ekgu"]
+[ext_resource type="Resource" uid="uid://dmmqgd2jjfrrp" path="res://game_systems/items/mp_products/red_berry_ground.tres" id="3_xk5tt"]
+
+[resource]
+script = ExtResource("2_4ekgu")
+id = -1
+product_item = ExtResource("3_xk5tt")
+product_item_amount = 1
+product_craft_time = 1.0
+ingredients = Array[ExtResource("1_o4ovi")]([ExtResource("2_2f2dh")])
+tool_used = "Mortar & Pestle"

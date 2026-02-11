@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://c2x25af4nf2b4"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_ctrta"]
+[ext_resource type="Texture2D" uid="uid://cr0muadltxmeb" path="res://art/pack/ui/status_effects/strength.png" id="1_jmmwj"]
+
+[resource]
+script = ExtResource("1_ctrta")
+id = 4
+name = "Strengthen"
+description = "Allows easier manipulation of heavier objects."
+icon = ExtResource("1_jmmwj")
+effect = "strength"
+value = 100.0
+metadata/_custom_type_script = "uid://odkkljfrjpee"

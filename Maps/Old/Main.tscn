@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=4 uid="uid://cin5cwxotvtl8"]
 
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="1_57tix"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level Components/TileSets/tileset_GA.tres" id="2_7tc3r"]
-[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Level Components/Objects/Interactable/Plants/green_herb.tscn" id="3_6v1de"]
-[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Level Components/Objects/Interactable/Plants/red_berry_bush.tscn" id="4_fkii8"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="1_57tix"]
+[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="2_7tc3r"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="3_6v1de"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="4_fkii8"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true

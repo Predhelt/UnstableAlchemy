@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://c4voe1xwewivt"]
 
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Game Systems/Items/Item.gd" id="1_hxlld"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://Characters/Inventory.gd" id="2_48wm2"]
-[ext_resource type="Resource" uid="uid://db62qwoxlu4p8" path="res://Game Systems/Items/Potions/shrink_potion.tres" id="2_876eg"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_hxlld"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="2_48wm2"]
+[ext_resource type="Resource" uid="uid://db62qwoxlu4p8" path="res://game_systems/items/potions/shrink_potion.tres" id="2_876eg"]
 
 [resource]
 script = ExtResource("2_48wm2")

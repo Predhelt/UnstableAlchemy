@@ -2,7 +2,7 @@ extends Node2D
 ## Tracks if an item is being dragged by the mouse / cursor.
 var is_dragging := false
 ## Keeps reference of the blank texture that is used when another texture is not available.
-var blank_texture := preload("res://Art/Packs/UAPrototype/UI/blank_item.png")
+var blank_texture := preload("res://art/pack/ui/blank_item.png")
 ## Keeps track of the state that the game is in to determine what types of actions are allowed.
 ## Modes are: "default", "menu", "minigame", "dropper", "inspection"(unused), "settings", "options"
 var mode := &"default"

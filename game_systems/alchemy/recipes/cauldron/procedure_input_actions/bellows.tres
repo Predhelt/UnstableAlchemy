@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ProcedureInputActionEquipment" load_steps=2 format=3 uid="uid://b2x174wylo173"]
+
+[ext_resource type="Script" uid="uid://b7t0cj5cldnxr" path="res://game_systems/alchemy/recipes/pia_equipment.gd" id="1_82fju"]
+
+[resource]
+script = ExtResource("1_82fju")
+action_id = 0

@@ -22,7 +22,7 @@ signal npc_shop()
 ## Keeps track of if the context menu is open.
 var is_menu_open := false
 ## The scene for creating instances of the context menu
-var context_menu_scene = preload("res://Level Components/UI/Context Menu/context_menu.tscn")
+var context_menu_scene = preload("res://level_components/ui/context_menu/context_menu.tscn")
 ## The current context menu that is being displayed.
 var context_menu : Control
 

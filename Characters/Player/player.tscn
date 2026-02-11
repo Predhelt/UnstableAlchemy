@@ -1,12 +1,12 @@
 [gd_scene load_steps=31 format=3 uid="uid://csw57bxt7nvm2"]
 
-[ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://Characters/Player/Player.gd" id="1_xf5fp"]
-[ext_resource type="Resource" uid="uid://c4voe1xwewivt" path="res://Characters/Player/player_inventory.tres" id="2_7vev3"]
-[ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://Art/Packs/UAPrototype/Characters/herbalist-down.png" id="2_23e54"]
-[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://Characters/Player/player_attributes.tres" id="3_klx3t"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/Packs/UAPrototype/Characters/herbalist-left.png" id="3_q5yn3"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/Packs/UAPrototype/Characters/herbalist-right.png" id="4_eve5b"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/Packs/UAPrototype/Characters/herbalist-up.png" id="5_n5fht"]
+[ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://characters/player/player.gd" id="1_xf5fp"]
+[ext_resource type="Resource" uid="uid://c4voe1xwewivt" path="res://characters/player/player_inventory.tres" id="2_7vev3"]
+[ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://art/pack/characters/herbalist-down.png" id="2_23e54"]
+[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://characters/player/player_attributes.tres" id="3_klx3t"]
+[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist-left.png" id="3_q5yn3"]
+[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist-right.png" id="4_eve5b"]
+[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist-up.png" id="5_n5fht"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b13qs5535aosc"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_l6bdg"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_qiha4"]
+[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://art/pack/ingredients/inventory/herb-green-leaf.png" id="2_h743b"]
+
+[resource]
+script = ExtResource("1_qiha4")
+id = 0
+display_name = "Green Herb Leaf"
+description = "A leaf of a green herb. It is mundane in its current state."
+texture = ExtResource("2_h743b")
+max_qty = 32
+qty = 6
+on_consume_effects = Array[ExtResource("1_l6bdg")]([])
+on_consume_message = "That tastes bitter"

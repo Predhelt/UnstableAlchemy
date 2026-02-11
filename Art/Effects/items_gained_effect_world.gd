@@ -1,6 +1,6 @@
 extends Control
 
-var item_container : PackedScene = preload("res://Art/Effects/item_gained_container.tscn")
+var item_container : PackedScene = preload("res://art/effects/item_gained_container.tscn")
 
 func _ready() -> void:
 	scale = global.player_scale

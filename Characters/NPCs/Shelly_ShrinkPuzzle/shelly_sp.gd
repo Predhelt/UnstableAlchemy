@@ -7,9 +7,9 @@ var has_greeted := false
 ## Tracks if the saturated stem transaction has been added
 var has_added_saturated_stem := false
 
-var saturated_stem_ref := preload("res://Game Systems/Items/Merged Ingredients/saturated_stem.tres")
-var red_berries_ref := preload("res://Game Systems/Items/Gatherable/red_berries.tres")
-var flower_stem_ref := preload("res://Game Systems/Items/Gatherable/flower_stem.tres")
+var saturated_stem_ref := preload("res://game_systems/items/merged_ingredients/saturated_stem.tres")
+var red_berries_ref := preload("res://game_systems/items/gatherable/red_berries.tres")
+var flower_stem_ref := preload("res://game_systems/items/gatherable/flower_stem.tres")
 
 
 

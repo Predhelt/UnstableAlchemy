@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://dg8a30l0ydhnc"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_7yjxi"]
+[ext_resource type="Resource" uid="uid://b6ygdugfvt53y" path="res://game_systems/items/mp_products/red_juice.tres" id="2_7h72x"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_t2bwf"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="3_gupyc"]
+[ext_resource type="Resource" uid="uid://cex2jhtmhby6a" path="res://game_systems/items/merged_ingredients/orange_paste.tres" id="4_s1crp"]
+
+[resource]
+script = ExtResource("2_t2bwf")
+id = 102
+product_item = ExtResource("4_s1crp")
+product_item_amount = 2
+product_craft_time = 1.5
+ingredients = Array[ExtResource("1_7yjxi")]([ExtResource("2_7h72x"), ExtResource("3_gupyc")])
+tool_used = "merger"
+metadata/_custom_type_script = "uid://dmsouatunq2be"

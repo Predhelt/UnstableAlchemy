@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://m1lfwias51m"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_ausnl"]
+[ext_resource type="Resource" uid="uid://brbos0v1h8lgy" path="res://game_systems/items/potions/healing_potion.tres" id="1_jtb8j"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://game_systems/items/gatherable/red_berries.tres" id="2_urtv5"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="3_ct1c4"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="5_fofc6"]
+
+[resource]
+script = ExtResource("5_fofc6")
+id = -1
+product_item = ExtResource("1_jtb8j")
+product_item_amount = 3
+product_craft_time = 6.0
+ingredients = Array[ExtResource("1_ausnl")]([ExtResource("2_urtv5"), ExtResource("2_urtv5"), ExtResource("3_ct1c4")])
+tool_used = "cauldron"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Choice" load_steps=4 format=3 uid="uid://cajxh64gqbxf3"]
+
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://characters/npcs/dialogue_condition.gd" id="1_in5cr"]
+[ext_resource type="Resource" uid="uid://dy3vt5dpsaj8e" path="res://characters/npcs/brindan_gcsm/dialogue/conditions/player_is_strong.tres" id="2_kfd7i"]
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/npcs/dialogue_choice.gd" id="3_kfd7i"]
+
+[resource]
+script = ExtResource("3_kfd7i")
+conditions = Array[ExtResource("1_in5cr")]([ExtResource("2_kfd7i")])
+player_response = "Now that I'm strong..."
+next_dialogue_name = &"strong_player"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"

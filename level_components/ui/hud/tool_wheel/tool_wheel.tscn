@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds5yiq3dhtl87"]
+
+[ext_resource type="Texture2D" uid="uid://baysd77wlv4ma" path="res://art/pack/tools/hand.png" id="1_ca3uo"]
+[ext_resource type="Script" uid="uid://be67ygi1synun" path="res://level_components/ui/hud/tool_wheel/tool_wheel.gd" id="1_pfl3v"]
+[ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://art/pack/tools/blade.png" id="2_mhpsv"]
+[ext_resource type="ButtonGroup" uid="uid://bkc0bljvgsssy" path="res://level_components/ui/hud/tool_wheel/tool_wheel_group.tres" id="2_xe7og"]
+[ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="3_oqfol"]
+
+[node name="ToolWheel" type="GridContainer"]
+layout_direction = 3
+offset_left = 8.0
+offset_top = 8.0
+mouse_filter = 2
+columns = 2
+script = ExtResource("1_pfl3v")
+
+[node name="CurrentTool" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon_alignment = 1
+
+[node name="AddItemButton" type="Button" parent="CurrentTool"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 24
+text = "+"
+
+[node name="ItemLabel" type="Label" parent="CurrentTool"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -23.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Slot1" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Hand"
+toggle_mode = true
+button_group = ExtResource("2_xe7og")
+icon = ExtResource("1_ca3uo")
+icon_alignment = 1
+
+[node name="Slot2" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Blade"
+toggle_mode = true
+button_group = ExtResource("2_xe7og")
+icon = ExtResource("2_mhpsv")
+icon_alignment = 1
+
+[node name="Slot3" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Dropper"
+toggle_mode = true
+button_group = ExtResource("2_xe7og")
+icon = ExtResource("3_oqfol")
+icon_alignment = 1
+
+[connection signal="pressed" from="CurrentTool" to="." method="_on_current_tool_pressed"]
+[connection signal="pressed" from="CurrentTool/AddItemButton" to="." method="_on_add_item_button_pressed"]
+[connection signal="toggled" from="Slot1" to="." method="_on_slot_1_toggled"]
+[connection signal="toggled" from="Slot2" to="." method="_on_slot_2_toggled"]
+[connection signal="toggled" from="Slot3" to="." method="_on_slot_3_toggled"]

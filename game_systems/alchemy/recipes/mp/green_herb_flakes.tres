@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://c03phe4ob10nn"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_h0ppu"]
+[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://game_systems/items/gatherable/green_herb_leaf.tres" id="2_uoo4b"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://game_systems/alchemy/recipes/procedure_input_action.gd" id="3_gr8wq"]
+[ext_resource type="Resource" uid="uid://bnx8u3aprp62y" path="res://game_systems/alchemy/recipes/mp/procedure_input_actions/crush.tres" id="4_laqqw"]
+[ext_resource type="Resource" uid="uid://dvu23hpuws6rd" path="res://game_systems/alchemy/recipes/mp/procedure_input_actions/grind.tres" id="5_yor57"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://game_systems/alchemy/procedure.gd" id="6_qm3sh"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="7_hfec7"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="8_a4nw8"]
+
+[sub_resource type="Resource" id="Resource_kcj7p"]
+script = ExtResource("6_qm3sh")
+input_actions = Array[ExtResource("3_gr8wq")]([ExtResource("4_laqqw"), ExtResource("4_laqqw"), ExtResource("5_yor57"), ExtResource("5_yor57"), ExtResource("5_yor57")])
+
+[resource]
+script = ExtResource("8_a4nw8")
+product_item = ExtResource("7_hfec7")
+product_item_amount = 1
+product_craft_time = 1.0
+ingredients = Array[ExtResource("1_h0ppu")]([ExtResource("2_uoo4b")])
+tool_used = "Mortar & Pestle"
+procedure = SubResource("Resource_kcj7p")

@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bisxgmfkmgl4k"]
-
-[ext_resource type="PackedScene" uid="uid://dogoatlnbl82p" path="res://Level Components/UI/Windows/Inventory/drag_item.tscn" id="1_fttf8"]
-
-[node name="DragItem" instance=ExtResource("1_fttf8")]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg7gcw1ey7rhj"]
+
+[ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object-gray.png" id="2_omqdo"]
+
+[node name="MinigameProgressBar" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ProgressSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(650, 10)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 6.0
+step = 0.01
+editable = false
+scrollable = false
+tick_count = 7
+
+[node name="ProcedureIcons" type="HBoxContainer" parent="ProgressSlider"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -95.0
+offset_right = 300.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 38
+alignment = 1
+
+[node name="TextureRect1" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+layout_mode = 2
+texture = ExtResource("2_omqdo")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+layout_mode = 2
+texture = ExtResource("2_omqdo")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+layout_mode = 2
+texture = ExtResource("2_omqdo")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+layout_mode = 2
+texture = ExtResource("2_omqdo")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+layout_mode = 2
+texture = ExtResource("2_omqdo")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="StartupLabel" type="Label" parent="ProgressSlider"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -60.0
+offset_right = 1.0
+offset_bottom = -37.0

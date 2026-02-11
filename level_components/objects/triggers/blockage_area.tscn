@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5xttykhpc45r"]
+
+[ext_resource type="Script" uid="uid://c4lfgutfuwoof" path="res://level_components/objects/triggers/blockage_area.gd" id="1_u2hc7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myx5p"]
+
+[node name="BlockageArea" type="Area2D"]
+rotation = -3.1415925
+scale = Vector2(5.20559, 7.786306)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_u2hc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_myx5p")
+debug_color = Color(0.5629536, 0.55898833, 3.85046e-07, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
