@@ -1,10 +1,10 @@
 [gd_scene load_steps=29 format=3 uid="uid://c6crxd1b2iewf"]
 
 [ext_resource type="Script" uid="uid://cyetv8imlnycm" path="res://Characters/Character.gd" id="1_d1l3k"]
-[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://Art/UAPrototype/Characters/npc-robe.png" id="2_2esnv"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="4_vinhn"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="5_vrmnt"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="6_5qg1d"]
+[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://Art/Packs/UAPrototype/Characters/npc-robe.png" id="2_2esnv"]
+[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/Packs/UAPrototype/Characters/herbalist-left.png" id="4_vinhn"]
+[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/Packs/UAPrototype/Characters/herbalist-right.png" id="5_vrmnt"]
+[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/Packs/UAPrototype/Characters/herbalist-up.png" id="6_5qg1d"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001

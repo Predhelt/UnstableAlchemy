@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Transaction" load_steps=6 format=3 uid="uid://kvhv0o2fyg74"]
 
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Items/Item.gd" id="1_oeme7"]
-[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Items/Gatherable/red_berries.tres" id="2_1ugs0"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Game Systems/Items/Item.gd" id="1_oeme7"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Game Systems/Items/Gatherable/red_berries.tres" id="2_1ugs0"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="2_i0qjf"]
-[ext_resource type="Resource" uid="uid://dtmha6gayo6if" path="res://Items/Gatherable/flower_stem.tres" id="3_5n73u"]
-[ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Items/Merged Ingredients/saturated_stem.tres" id="4_qrxf8"]
+[ext_resource type="Resource" uid="uid://dtmha6gayo6if" path="res://Game Systems/Items/Gatherable/flower_stem.tres" id="3_5n73u"]
+[ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Game Systems/Items/Merged Ingredients/saturated_stem.tres" id="4_qrxf8"]
 
 [resource]
 script = ExtResource("2_i0qjf")

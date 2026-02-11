@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://c26d1xhaienu3"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Systems/Status Effects/StatusEffect.gd" id="1_i3888"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Game Systems/Items/Item.gd" id="2_a7hvv"]
+[ext_resource type="Resource" uid="uid://dwu8qjqo5t3tr" path="res://Game Systems/Status Effects/Normalize.tres" id="2_uxkh5"]
+[ext_resource type="Texture2D" uid="uid://b2piytxgwcmnx" path="res://Art/Packs/UAPrototype/Ingredients/Inventory/blue-berries.png" id="3_q5ci8"]
+
+[resource]
+script = ExtResource("2_a7hvv")
+id = 4
+display_name = "Blue Berries"
+description = "Berries from a blue berry bush. The inside is red."
+texture = ExtResource("3_q5ci8")
+max_qty = 32
+qty = 6
+on_consume_effects = Array[ExtResource("1_i3888")]([ExtResource("2_uxkh5")])
+on_consume_message = "I feel.. normal?"

@@ -1,0 +1,141 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhvfevmm005fp"]
+
+[ext_resource type="Script" uid="uid://di7udn24lejc1" path="res://Level Components/UI/Windows/NPC Dialogue/npc_dialogue.gd" id="1_iho3e"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://Art/UADefaultTheme.tres" id="1_j7ds4"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://Art/Text/WindowLabel.tres" id="2_buk1c"]
+
+[node name="NPCDialogue" type="Panel"]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.61
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.9
+theme = ExtResource("1_j7ds4")
+script = ExtResource("1_iho3e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Window Name"
+label_settings = ExtResource("2_buk1c")
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -16.0
+offset_right = -4.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "X"
+
+[node name="ButtonBack" type="Button" parent="VBoxContainer/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.0
+offset_right = -42.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "<-"
+
+[node name="Container" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogueBox" type="VBoxContainer" parent="VBoxContainer/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.01
+anchor_right = 0.98
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="DialogueLabel" type="RichTextLabel" parent="VBoxContainer/Container/DialogueBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Sample dialogue.
+With multiple lines.
+
+Spacing.
+
+
+and enough text to cause it to scroll.
+1
+2
+3
+4
+like this."
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Container/DialogueBox"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Container/DialogueBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogueOptions" type="ItemList" parent="VBoxContainer/Container/DialogueBox/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_constants/v_separation = 10
+allow_search = false
+item_count = 5
+item_0/text = "Option 1"
+item_1/text = "Option 2"
+item_2/text = "Option 3"
+item_3/text = "Option 4"
+item_4/text = "Option 5"
+
+[node name="TradeButton" type="Button" parent="VBoxContainer/Container/DialogueBox/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Trade"
+
+[connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="item_selected" from="VBoxContainer/Container/DialogueBox/VBoxContainer/DialogueOptions" to="." method="_on_dialogue_options_item_selected"]
+[connection signal="pressed" from="VBoxContainer/Container/DialogueBox/VBoxContainer/TradeButton" to="." method="_on_trade_button_pressed"]

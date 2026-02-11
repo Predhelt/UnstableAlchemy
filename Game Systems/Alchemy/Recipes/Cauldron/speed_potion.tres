@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=13 format=3 uid="uid://dynh2mra6j665"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Game Systems/Items/Item.gd" id="1_45bvj"]
+[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://Game Systems/Items/Potions/speed_potion.tres" id="1_y7a4k"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Game Systems/Items/M&P Products/green_flakes.tres" id="2_x8ccd"]
+[ext_resource type="Resource" uid="uid://2u08o5c16xxy" path="res://Game Systems/Items/Merged Ingredients/saturated_stem.tres" id="3_km33r"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Game Systems/Alchemy/Recipes/Recipe.gd" id="4_d21tx"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Game Systems/Alchemy/Recipes/ProcedureInputAction.gd" id="4_i4udy"]
+[ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://Game Systems/Alchemy/Recipes/Cauldron/ProcedureInputActions/bellows.tres" id="5_i4udy"]
+[ext_resource type="Script" uid="uid://c0cgelhbhui2g" path="res://Game Systems/Alchemy/Recipes/ProcedureInputActionItem.gd" id="5_if4q0"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Game Systems/Alchemy/Procedure.gd" id="6_5q3c4"]
+
+[sub_resource type="Resource" id="Resource_km33r"]
+script = ExtResource("5_if4q0")
+item = ExtResource("3_km33r")
+metadata/_custom_type_script = "uid://c0cgelhbhui2g"
+
+[sub_resource type="Resource" id="Resource_p5i8f"]
+script = ExtResource("5_if4q0")
+item = ExtResource("2_x8ccd")
+metadata/_custom_type_script = "uid://c0cgelhbhui2g"
+
+[sub_resource type="Resource" id="Resource_odu4m"]
+script = ExtResource("6_5q3c4")
+input_actions = Array[ExtResource("4_i4udy")]([SubResource("Resource_km33r"), SubResource("Resource_p5i8f"), null, ExtResource("5_i4udy"), null])
+
+[resource]
+script = ExtResource("4_d21tx")
+id = 500
+product_item = ExtResource("1_y7a4k")
+product_item_amount = 2
+product_craft_time = 2.0
+ingredients = Array[ExtResource("1_45bvj")]([ExtResource("2_x8ccd"), ExtResource("3_km33r")])
+tool_used = "cauldron"
+procedure = SubResource("Resource_odu4m")

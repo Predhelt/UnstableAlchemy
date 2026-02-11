@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="2_6lgfa"]
 [ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://Characters/NPCs/Shelly_ShrinkPuzzle/Transactions/tx_free_normalize_potion.tres" id="3_wbeav"]
 [ext_resource type="Resource" uid="uid://dhsdwxh2mrnyp" path="res://Characters/NPCs/Shelly_ShrinkPuzzle/att_shelly_shrink.tres" id="4_nerho"]
-[ext_resource type="Texture2D" uid="uid://ct22o35nepr0w" path="res://Art/UAPrototype/Characters/character-robe2.png" id="5_4c3un"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/UAPrototype/Characters/herbalist-left.png" id="6_tfnci"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/UAPrototype/Characters/herbalist-right.png" id="7_jwohs"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/UAPrototype/Characters/herbalist-up.png" id="8_xv50t"]
-[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Game Components/interact_area.tscn" id="9_61xhi"]
+[ext_resource type="Texture2D" uid="uid://ct22o35nepr0w" path="res://Art/Packs/UAPrototype/Characters/character-robe2.png" id="5_4c3un"]
+[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://Art/Packs/UAPrototype/Characters/herbalist-left.png" id="6_tfnci"]
+[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://Art/Packs/UAPrototype/Characters/herbalist-right.png" id="7_jwohs"]
+[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://Art/Packs/UAPrototype/Characters/herbalist-up.png" id="8_xv50t"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Characters/interact_area.tscn" id="9_61xhi"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001

@@ -1,0 +1,58 @@
+[gd_scene load_steps=14 format=3 uid="uid://ocpfwxtn11ij"]
+
+[ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://Level Components/Objects/Interactable/Plants/interactable_plant.gd" id="1_xmuk6"]
+[ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://Art/Packs/UAPrototype/Objects/Planted/plant-red-berry.png" id="2_brn6a"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Game Systems/Items/Item.gd" id="2_xvjhr"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Game Systems/Items/Gatherable/red_berries.tres" id="3_4mvhq"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Systems/Status Effects/StatusEffect.gd" id="4_egyba"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://Characters/interact_area.tscn" id="5_fkhen"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://Level Components/Objects/Interactable/Interaction.gd" id="5_vrd4a"]
+[ext_resource type="Script" uid="uid://cjv3jm7ko26fl" path="res://Level Components/Objects/Interactable/ObjectCombination.gd" id="6_h3imn"]
+[ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://Game Systems/Items/Merged Ingredients/green_paste.tres" id="7_u5f8f"]
+[ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://Level Components/Objects/Interactable/Plants/blue_berry_bush.tscn" id="8_momi4"]
+
+[sub_resource type="Resource" id="Resource_odqey"]
+script = ExtResource("5_vrd4a")
+on_interact_items = Array[ExtResource("2_xvjhr")]([ExtResource("3_4mvhq")])
+on_interact_amounts = Array[int]([2])
+on_interact_status_effects = Array[ExtResource("4_egyba")]([])
+on_interact_status_message = ""
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_pf15v"]
+script = ExtResource("5_vrd4a")
+on_interact_items = Array[ExtResource("2_xvjhr")]([ExtResource("3_4mvhq")])
+on_interact_amounts = Array[int]([5])
+on_interact_status_effects = Array[ExtResource("4_egyba")]([])
+on_interact_status_message = ""
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_06ehc"]
+script = ExtResource("6_h3imn")
+input_item = ExtResource("7_u5f8f")
+result_object_scene = ExtResource("8_momi4")
+status_message = "The berries turned blue"
+metadata/_custom_type_script = "uid://cjv3jm7ko26fl"
+
+[node name="RedBerryBush" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_xmuk6")
+display_name = "Red Berry Bush"
+description = "A bush full of red berries"
+items = Array[ExtResource("2_xvjhr")]([ExtResource("3_4mvhq")])
+grab_interaction = SubResource("Resource_odqey")
+cut_interaction = SubResource("Resource_pf15v")
+combinations = Array[ExtResource("6_h3imn")]([SubResource("Resource_06ehc")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("2_brn6a")
+
+[node name="InteractArea" parent="." instance=ExtResource("5_fkhen")]
+interact_label = "Red Berry Bush"
+interact_type = 2
+
+[connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
+[connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
+[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
+[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]

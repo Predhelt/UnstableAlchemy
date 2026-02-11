@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=4 uid="uid://blf5roktgwlk0"]
 
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="1_7e48g"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level/TileSets/tileset_GA.tres" id="2_ialjj"]
-[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Objects/Interactable/Plants/green_herb.tscn" id="3_mpcm7"]
-[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Objects/Interactable/Plants/red_berry_bush.tscn" id="4_3emha"]
-[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://Objects/Triggers/sliding_door.tscn" id="5_3fojn"]
-[ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://Objects/Triggers/pressure_plate.tscn" id="6_dq5ib"]
+[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level Components/TileSets/tileset_GA.tres" id="2_ialjj"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Level Components/Objects/Interactable/Plants/green_herb.tscn" id="3_mpcm7"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Level Components/Objects/Interactable/Plants/red_berry_bush.tscn" id="4_3emha"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://Level Components/Objects/Triggers/sliding_door.tscn" id="5_3fojn"]
+[ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://Level Components/Objects/Triggers/pressure_plate.tscn" id="6_dq5ib"]
 
 [node name="WorldTest" type="Node2D"]
 y_sort_enabled = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2035enlttehf"]
 
-[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://Objects/Collisions/boulder_pushable.tscn" id="1_8mkxd"]
-[ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://Objects/Collisions/wall_small_hole.tscn" id="2_y2io7"]
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://Level Components/Objects/Collisions/boulder_pushable.tscn" id="1_8mkxd"]
+[ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://Level Components/Objects/Collisions/wall_small_hole.tscn" id="2_y2io7"]
 
 [node name="ZooMain" type="Node2D"]
 

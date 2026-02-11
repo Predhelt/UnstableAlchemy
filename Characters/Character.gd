@@ -43,6 +43,9 @@ func _ready() -> void:
 		new_recipes.append(recipe)
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
+	
+	## Initialize character size based on attributes
+	
 
 ## Every time the character updates, upade the character animations
 func _process(_delta: float) -> void:
@@ -303,18 +306,33 @@ func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 			if se.value == cur_se.value and not is_removing_status:
 				return false
 			
-			change_character_scale(Vector2(1.0/se.value, 1.0/se.value))
+			attributes.size *= 1.0/se.value
+			
 			if is_removing_status:
+				set_character_size(attributes.size)
 				update_status_bar(se, i, true)
 				return true
 			
-			change_character_scale(Vector2(se.value, se.value))
+			attributes.size *= se.value
+			
+			set_character_size(attributes.size)
 			update_status_bar(se, i)
 			return true
 	
-	change_character_scale(Vector2(se.value, se.value))
+	attributes.size *= se.value
+	set_character_size(attributes.size)
 	update_status_bar(se)
 	return true
+
+## Sets the size of the character, including mass and strength.
+## 100 is the default size, which should represent the scale times 100
+func set_character_size(size: float):
+	var diff_ratio := size/(scale[0]*100.0)
+	scale = Vector2(size/100,size/100)
+	## Multiply the current mass by the area of the vector (change in x by change in y)
+	attributes.mass *= diff_ratio * diff_ratio
+	attributes.strength *= diff_ratio * diff_ratio
+	character_camera_ref.zoom *= Vector2(1.0, 1.0)/diff_ratio
 
 ## Changes the scale of the character, including size and mass based on the multiplier provided
 func change_character_scale(mult: Vector2):
@@ -323,7 +341,6 @@ func change_character_scale(mult: Vector2):
 	attributes.mass *= mult[0] * mult[1]
 	attributes.strength *= mult[0] * mult[1]
 	attributes.size *= mult[0] # NOTE: This assume that x and y are the same.
-	
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
 
 ## Checks the rigid body that is near the character to see if it is pushable.
@@ -333,9 +350,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			pushing_bodies.append(body)
 	if body.is_in_group("Crawlspace"):
 		if attributes.size <= body.gap_size:
-			print(str(attributes.size) + " <= " + str(body.gap_size))
 			if crawlspace_bodies.is_empty():
 				## Remove collision from crawlspaces nearby
+				## NOTE: Assumes that all nearby crawlspaces have the same gap size.
 				set_collision_mask_value(6, false)
 			crawlspace_bodies.append(body)
 

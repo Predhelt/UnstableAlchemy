@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bpgnegvcg63o4"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://Game Systems/Status Effects/StatusEffect.gd" id="1_1wrnr"]
+[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://Art/Packs/UAPrototype/UI/CheckMark.png" id="1_llbuy"]
+
+[resource]
+script = ExtResource("1_1wrnr")
+id = 3
+name = "Grow"
+description = "Makes you big"
+icon = ExtResource("1_llbuy")
+effect = "grow"
+value = 3.0
+duration = -1.0

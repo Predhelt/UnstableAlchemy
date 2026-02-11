@@ -1,0 +1,297 @@
+[gd_scene load_steps=39 format=4 uid="uid://co733h0r4vxsd"]
+
+[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://Level Components/UI/Windows/Options/settings_menu.tscn" id="1_4bewu"]
+[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://Level Components/UI/Windows/Options/options_menu.tscn" id="2_be2f8"]
+[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://Level Components/UI/Windows/Options/options_theme.tres" id="3_f7hmi"]
+[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://Level Components/UI/Windows/Help Menu/help_menu.tscn" id="4_b1816"]
+[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://Level Components/UI/Windows/Inventory/inventory_menu.tscn" id="5_maddl"]
+[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://Level Components/UI/Windows/Recipe List/recipe_list.tscn" id="6_al4av"]
+[ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://Level Components/UI/Windows/NPC Shop/npc_shop.tscn" id="7_c5haa"]
+[ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://Level Components/UI/Windows/NPC Dialogue/npc_dialogue.tscn" id="8_7nqsl"]
+[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://Level Components/UI/Windows/Alchemy Minigame/Cauldron/CauldronMinigame.tscn" id="9_86nw4"]
+[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://Level Components/UI/Windows/Alchemy Minigame/MortarPestle/MortarPestleMinigame.tscn" id="10_x3o2r"]
+[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://Level Components/UI/HUD/Menu Bar/menu_bar.tscn" id="11_kr0bh"]
+[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://Level Components/UI/HUD/Status Effect/status_effect_bar.tscn" id="12_wugj2"]
+[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://Level Components/UI/HUD/Hotbar/hotbar.tscn" id="13_h5ms7"]
+[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://Level Components/UI/HUD/Tool Wheel/tool_wheel.tscn" id="14_rjhdw"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://Characters/Player/player.tscn" id="15_sya8q"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Game Systems/Alchemy/Recipes/Recipe.gd" id="16_ttwnw"]
+[ext_resource type="PackedScene" uid="uid://5ru7ywrgkfd3" path="res://Characters/NPCs/Brindan_GCSMinigame/brindan_gcsm.tscn" id="17_1nnry"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://Characters/NPCs/Transaction.gd" id="18_4hf3g"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://Characters/NPCs/Brindan_GCSMinigame/Transactions/tx_free_speed_potion.tres" id="19_ig1iw"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Game Systems/Items/Item.gd" id="20_4ui22"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://Game Systems/Items/M&P Products/green_flakes.tres" id="21_o5art"]
+[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://Game Systems/Items/Recipe Books/strength_potion_partial_book.tres" id="22_rq0vg"]
+[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://Level Components/TileSets/tileset_GA.tres" id="23_o647k"]
+[ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://Level Components/TileSets/tileset_UA.tres" id="24_o8dlv"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://Level Components/Objects/Interactable/Plants/green_herb.tscn" id="25_5v467"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://Level Components/Objects/Interactable/Plants/red_berry_bush.tscn" id="26_i2u1n"]
+[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://Level Components/Objects/Interactable/Plants/yellow_flowers.tscn" id="27_8agl7"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://Level Components/Objects/Interactable/Recipe Books/recipe_item.tscn" id="28_w02xq"]
+[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://Game Systems/Items/Recipe Books/green_flakes_book.tres" id="29_8euhq"]
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://Level Components/Objects/Collisions/boulder_pushable.tscn" id="30_bdten"]
+[ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://Level Components/Objects/Triggers/blockage_area.tscn" id="31_kupq0"]
+[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://Level Components/Objects/Triggers/display_area_trigger.tscn" id="32_r4br7"]
+[ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://Art/Packs/UAPrototype/Ingredients/Inventory/red-berries.png" id="33_g5t50"]
+[ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://Art/Packs/UAPrototype/Ingredients/Inventory/red-berry-seed.png" id="34_bh6vr"]
+[ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://Art/Packs/UAPrototype/UI/Minigame/grind.png" id="35_ceo5f"]
+[ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://Art/Packs/UAPrototype/UI/Minigame/crush.png" id="36_mmyj0"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://Art/Packs/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png" id="37_u0bod"]
+
+[sub_resource type="Resource" id="Resource_fa7q6"]
+script = ExtResource("18_4hf3g")
+items_selling = Array[ExtResource("20_4ui22")]([ExtResource("22_rq0vg")])
+items_selling_amount = Array[int]([1])
+items_buying = Array[ExtResource("20_4ui22")]([ExtResource("21_o5art")])
+items_buying_amount = Array[int]([2])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[node name="WorldGCSM" type="Node2D"]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="MenuLayer" type="CanvasLayer" parent="UILayer"]
+layer = 3
+
+[node name="SettingsMenu" parent="UILayer/MenuLayer" instance=ExtResource("1_4bewu")]
+unique_name_in_owner = true
+auto_translate_mode = 1
+visible = false
+
+[node name="OptionsMenu" parent="UILayer/MenuLayer" instance=ExtResource("2_be2f8")]
+unique_name_in_owner = true
+visible = false
+theme = ExtResource("3_f7hmi")
+
+[node name="HelpMenu" parent="UILayer/MenuLayer" instance=ExtResource("4_b1816")]
+unique_name_in_owner = true
+visible = false
+
+[node name="InventoryMenu" parent="UILayer/MenuLayer" instance=ExtResource("5_maddl")]
+unique_name_in_owner = true
+visible = false
+
+[node name="RecipeList" parent="UILayer/MenuLayer" instance=ExtResource("6_al4av")]
+unique_name_in_owner = true
+visible = false
+
+[node name="NPCShop" parent="UILayer/MenuLayer" instance=ExtResource("7_c5haa")]
+unique_name_in_owner = true
+visible = false
+
+[node name="NPCDialogue" parent="UILayer/MenuLayer" instance=ExtResource("8_7nqsl")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MinigameLayer" type="CanvasLayer" parent="UILayer"]
+layer = 2
+
+[node name="MinigameCauldron" parent="UILayer/MinigameLayer" instance=ExtResource("9_86nw4")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MinigameMP" parent="UILayer/MinigameLayer" instance=ExtResource("10_x3o2r")]
+unique_name_in_owner = true
+visible = false
+
+[node name="HUDLayer" type="CanvasLayer" parent="UILayer"]
+
+[node name="MenuBar" parent="UILayer/HUDLayer" instance=ExtResource("11_kr0bh")]
+unique_name_in_owner = true
+offset_bottom = 8.0
+
+[node name="StatusEffectBar" parent="UILayer/HUDLayer" instance=ExtResource("12_wugj2")]
+unique_name_in_owner = true
+
+[node name="Hotbar" parent="UILayer/HUDLayer" instance=ExtResource("13_h5ms7")]
+unique_name_in_owner = true
+
+[node name="ToolWheel" parent="UILayer/HUDLayer" instance=ExtResource("14_rjhdw")]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 154.0
+offset_bottom = 154.0
+
+[node name="Player" parent="." node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_sya8q")]
+unique_name_in_owner = true
+position = Vector2(529, 298)
+character_camera_ref = NodePath("../PlayerCamera")
+known_recipes = Array[ExtResource("16_ttwnw")]([])
+
+[node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../PlayerCamera")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(529, 298)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="NPCBrindan" parent="." instance=ExtResource("17_1nnry")]
+unique_name_in_owner = true
+position = Vector2(675, 146)
+collision_mask = 57
+transactions = Array[ExtResource("18_4hf3g")]([ExtResource("19_ig1iw"), SubResource("Resource_fa7q6")])
+passive_messages = Array[String](["Hey", "That could've gone worse.."])
+
+[node name="TileMaps" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TileMapLayer" parent="TileMaps"]
+z_index = -50
+scale = Vector2(2, 2)
+tile_set = ExtResource("23_o647k")
+
+[node name="Ground" type="TileMapLayer" parent="TileMaps"]
+z_index = -20
+tile_map_data = PackedByteArray("AAAOAAEAAgAAAAAAAQAOAAIAAgAAAAAAAQAOAAMAAgAAAAAAAQAOAAQAAgAAAAAAAQAOAAUAAgAAAAAAAQAOAAYAAgAAAAAAAQAOAAcAAgAAAAAAAQAOAAgAAgAAAAAAAQAOAAkAAgAAAAAAAQANAAkAAgAAAAAAAQAMAAkAAgAAAAAAAQALAAkAAgAAAAAAAQAKAAkAAgAAAAAAAQAJAAkAAgAAAAAAAQAIAAkAAgAAAAAAAQAHAAkAAgAAAAAAAQAGAAkAAgAAAAAAAQAFAAkAAgAAAAAAAQAEAAkAAgAAAAAAAQADAAkAAgAAAAAAAQADAAgAAgAAAAAAAQADAAcAAgAAAAAAAQADAAYAAgAAAAAAAQADAAUAAgAAAAAAAQADAAQAAgAAAAAAAQADAAMAAgAAAAAAAQADAAIAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQAJAAEAAgAAAAAAAQAKAAEAAgAAAAAAAQALAAEAAgAAAAAAAQAMAAEAAgAAAAAAAQANAAEAAgAAAAAAAQANAAIAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQANAAYAAgAAAAAAAQANAAcAAgAAAAAAAQANAAgAAgAAAAAAAQAMAAgAAgAAAAAAAQALAAgAAgAAAAAAAQAKAAgAAgAAAAAAAQAJAAgAAgAAAAAAAQAIAAgAAgAAAAAAAQAHAAgAAgAAAAAAAQAGAAgAAgAAAAAAAQAFAAgAAgAAAAAAAQAEAAgAAgAAAAAAAQAEAAcAAgAAAAAAAQAEAAYAAgAAAAAAAQAEAAUAAgAAAAAAAQAEAAQAAgAAAAAAAQAEAAMAAgAAAAAAAQAEAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAIAAIAAgAAAAAAAQAJAAIAAgAAAAAAAQAKAAIAAgAAAAAAAQALAAIAAgAAAAAAAQAMAAIAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQAMAAYAAgAAAAAAAQALAAYAAgAAAAAAAQALAAcAAgAAAAAAAQAKAAcAAgAAAAAAAQAJAAcAAgAAAAAAAQAIAAcAAgAAAAAAAQAHAAcAAgAAAAAAAQAGAAcAAgAAAAAAAQAFAAcAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAMAAgAAAAAAAQAGAAMAAgAAAAAAAQAHAAMAAgAAAAAAAQAIAAMAAgAAAAAAAQAJAAMAAgAAAAAAAQAKAAMAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQAMAAcAAgAAAAAAAQALAAUAAgAAAAAAAQAKAAUAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAYAAgAAAAAAAQAJAAYAAgAAAAAAAQAJAAUAAgAAAAAAAQAJAAQAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAYAAgAAAAAAAQAIAAUAAgAAAAAAAQAHAAYAAgAAAAAAAQAHAAUAAgAAAAAAAQAHAAQAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAGAAYAAgAAAAAAAQAFAAYAAgAAAAAAAQAFAAUAAgAAAAAAAQAJAAAAAgAAAAAAAQAJAP//AgAAAAAAAAAJAP7/AgAAAAAAAAAIAP7/AgAAAAAAAAAIAP3/AgAAAAAAAAAIAPz/AgAAAAAAAAAJAPz/AgAAAAAAAAAKAPz/AgAAAAAAAAAKAP3/AgAAAAAAAAAKAP7/AgAAAAAAAAAJAP3/AgAAAAAAAAAHAPv/AgAAAAAAAAAIAPv/AgAAAAAAAAAJAPv/AgAAAAAAAAAKAPv/AgAAAAAAAAALAPv/AgAAAAAAAAALAPz/AgAAAAAAAAALAP3/AgAAAAAAAAALAP7/AgAAAAAAAAAHAP7/AgAAAAAAAAAHAP3/AgAAAAAAAAAHAPz/AgAAAAAAAAAFAPr/AgAAAAAAAAAFAPv/AgAAAAAAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAFAP7/AgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgAAAAAAAQAGAPr/AgAAAAAAAAAGAPv/AgAAAAAAAAAGAPz/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAQAHAPr/AgAAAAAAAAAHAP//AgAAAAAAAAAHAAAAAgAAAAAAAQAIAPr/AgAAAAAAAAAIAP//AgAAAAAAAAAIAAAAAgAAAAAAAQAJAPr/AgAAAAAAAAAKAPr/AgAAAAAAAAAKAP//AgAAAAAAAAAKAAAAAgAAAAAAAQALAPr/AgAAAAAAAAALAP//AgAAAAAAAAALAAAAAgAAAAAAAQAMAPr/AgAAAAAAAAAMAPv/AgAAAAAAAAAMAPz/AgAAAAAAAAAMAP3/AgAAAAAAAAAMAP7/AgAAAAAAAAAMAP//AgAAAAAAAAAMAAAAAgAAAAAAAQANAPr/AgAAAAAAAAANAPv/AgAAAAAAAAANAPz/AgAAAAAAAAANAP3/AgAAAAAAAAANAP7/AgAAAAAAAAANAP//AgAAAAAAAAANAAAAAgAAAAAAAQACAAAAAgAAAAAAAQACAAEAAgAAAAAAAQACAAIAAgAAAAAAAQACAAMAAgAAAAAAAQACAAQAAgAAAAAAAQACAAUAAgAAAAAAAQACAAYAAgAAAAAAAQACAAcAAgAAAAAAAQACAAgAAgAAAAAAAQACAAkAAgAAAAAAAQACAAoAAgAAAAAAAQADAAAAAgAAAAAAAQADAAoAAgAAAAAAAQAEAAAAAgAAAAAAAQAEAAoAAgAAAAAAAQAFAAoAAgAAAAAAAQAGAAoAAgAAAAAAAQAHAAoAAgAAAAAAAQAIAAoAAgAAAAAAAQAJAAoAAgAAAAAAAQAKAAoAAgAAAAAAAQALAAoAAgAAAAAAAQAMAAoAAgAAAAAAAQAPAAAAAgAAAAAAAQAPAAEAAgAAAAAAAQAPAAIAAgAAAAAAAQAPAAMAAgAAAAAAAQAPAAQAAgAAAAAAAQAPAAUAAgAAAAAAAQAPAAYAAgAAAAAAAQAPAAcAAgAAAAAAAQAPAAgAAgAAAAAAAQAPAAkAAgAAAAAAAQAPAAoAAgAAAAAAAQANAAoAAgAAAAAAAQAOAAoAAgAAAAAAAQAOAAAAAgAAAAAAAQA=")
+tile_set = ExtResource("24_o8dlv")
+metadata/_edit_lock_ = true
+
+[node name="Top" type="TileMapLayer" parent="TileMaps"]
+z_index = -10
+tile_map_data = PackedByteArray("AAAFAPv/AgADAAAAAAAHAPv/AgABAAAAAAAIAP7/AgAHAAAAAAAIAP//AgAGAAAAAAAJAPr/AgADAAAAAAAKAP3/AgAEAAAAAAAKAP7/AgAEAAAAAAAMAPv/AgACAAAAAAANAPr/AgAGAAAAAAANAP//AgAGAAAAAAADAAIAAgAFAAAAAAADAAkAAgAGAAAAAAAFAAYAAgACAAAAAAAHAAgAAgADAAAAAAAIAAcAAgAGAAAAAAALAAcAAgAFAAAAAAAMAAIAAgACAAAAAAAMAAQAAgACAAAAAAAMAAgAAgAEAAAAAAAOAAIAAgADAAAAAAAGAAIAAgACAAAAAAAIAAIAAgAEAAAAAAAOAAgAAQACAAAAAAANAAgAAQACAAAAAAANAAkAAQACAAAAAAAOAAkAAQADAAAAAAA=")
+tile_set = ExtResource("24_o8dlv")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="TileMapLayer" parent="TileMaps"]
+tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAADAAAAAAAEAAIAAAAEAAAAAAAEAAIAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAIAAAAKAAAAAAAGAAIAAAALAAAAAAAEAAIAAAAMAAAAAAAEAAIAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAFAAAAAAAPAAEAAAAFAAEAAAAPAAIAAAAFAAEAAAAPAAMAAAADAAEAAAAPAAQAAAAFAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAFAAEAAAAPAAcAAAADAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAADAAEAAAAPAAoAAAAFAAIAAAAOAAoAAAAEAAAAAAANAAoAAAAEAAIAAAAMAAoAAAAEAAIAAAALAAoAAAAEAAAAAAAKAAoAAAAEAAIAAAAJAAoAAAAEAAIAAAAIAAoAAAAEAAAAAAAHAAoAAAAEAAIAAAAGAAoAAAAEAAAAAAAFAAoAAAAEAAAAAAAEAAoAAAAEAAIAAAADAAoAAAAEAAAAAAACAAoAAAADAAIAAAACAAkAAAAFAAEAAAACAAgAAAAFAAEAAAACAAcAAAAFAAEAAAACAAYAAAADAAEAAAACAAUAAAAFAAEAAAACAAQAAAAFAAEAAAACAAMAAAAFAAEAAAACAAIAAAAFAAEAAAACAAEAAAAFAAEAAAAIAAAAAAAHAAIAAAAHAAAAAAAEAAAAAAA=")
+tile_set = ExtResource("24_o8dlv")
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="GreenHerb" parent="Objects" instance=ExtResource("25_5v467")]
+position = Vector2(365, 227)
+
+[node name="Green_herb" parent="Objects" instance=ExtResource("25_5v467")]
+position = Vector2(274, 184)
+
+[node name="Green_herb2" parent="Objects" instance=ExtResource("25_5v467")]
+position = Vector2(293, 280)
+
+[node name="RedBerryBush" parent="Objects" instance=ExtResource("26_i2u1n")]
+position = Vector2(624, 248)
+
+[node name="RedBerryBush2" parent="Objects" instance=ExtResource("26_i2u1n")]
+position = Vector2(720, 272)
+
+[node name="RedBerryBush3" parent="Objects" instance=ExtResource("26_i2u1n")]
+position = Vector2(644, 345)
+
+[node name="YellowFlowers" parent="Objects" instance=ExtResource("27_8agl7")]
+position = Vector2(384, 484)
+
+[node name="YellowFlowers2" parent="Objects" instance=ExtResource("27_8agl7")]
+position = Vector2(550, 536.00006)
+
+[node name="YellowFlowers3" parent="Objects" instance=ExtResource("27_8agl7")]
+position = Vector2(677, 463.00003)
+
+[node name="RecipeItem" parent="Objects" instance=ExtResource("28_w02xq")]
+position = Vector2(361, 134)
+display_name = "\"Green Herbs - An Introduction\""
+description = "Book with a recipe. It's not clear what recipes are in the book from here."
+book_info = ExtResource("29_8euhq")
+
+[node name="PuzzleNodes" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="BoulderPushable" parent="PuzzleNodes" instance=ExtResource("30_bdten")]
+position = Vector2(608, 58)
+
+[node name="BlockageArea" parent="PuzzleNodes" instance=ExtResource("31_kupq0")]
+position = Vector2(607, 32.000004)
+
+[node name="DisplayArea" parent="." node_paths=PackedStringArray("display_scene") instance=ExtResource("32_r4br7")]
+position = Vector2(928, 608)
+display_scene = NodePath("../CraftHint")
+
+[node name="CraftHint" type="Node2D" parent="."]
+
+[node name="Label2" type="Label" parent="CraftHint"]
+editor_description = "Displaying the recipe hints on the right side of the screen allows them to be visible while the player is attempting to craft."
+offset_left = 1195.0
+offset_top = 540.0
+offset_right = 1435.0
+offset_bottom = 563.0
+theme_override_constants/outline_size = 5
+text = "You see something on the wall:"
+
+[node name="TextureRect" type="TextureRect" parent="CraftHint"]
+offset_left = 1286.0
+offset_top = 713.0
+offset_right = 1336.0
+offset_bottom = 763.0
+texture = ExtResource("33_g5t50")
+
+[node name="TextureRect2" type="TextureRect" parent="CraftHint"]
+offset_left = 1280.0
+offset_top = 832.0
+offset_right = 1344.0
+offset_bottom = 896.0
+texture = ExtResource("34_bh6vr")
+
+[node name="Ground2" type="TileMapLayer" parent="CraftHint"]
+z_index = -20
+tile_map_data = PackedByteArray("AAAUAAsAAQAAAAEAAAAVAAsAAQAAAAEAAAAWAAsAAQAAAAEAAAAWAAwAAQADAAAAAAAVAA0AAQAAAAEAAAASAAwAAQADAAAAAAATAAwAAQADAAAAAAAUAAwAAQABAAAAAAAVAAwAAQADAAAAAAAWAA0AAQAAAAEAAAASAA0AAQAAAAEAAAATAA0AAQAAAAEAAAAUAA0AAQAAAAEAAAATAAsAAQAAAAEAAAASAAsAAQAAAAEAAAASAAoAAQAAAAEAAAAVAAoAAQABAAAAAAAWAAoAAQAAAAEAAAATAAoAAQADAAAAAAAUAAoAAQAAAAEAAAAXAAoAAQACAAAAAAAXAAsAAQACAAAAAAAXAAwAAQACAAAAAAAXAA0AAQACAAAAAAAXAA4AAQACAAAAAAAWAA4AAQACAAAAAAAVAA4AAQACAAAAAAAUAA4AAQACAAAAAAATAA4AAQACAAAAAAASAA4AAQACAAAAAAARAA4AAQACAAAAAAARAA0AAQACAAAAAAARAAwAAQACAAAAAAARAAsAAQACAAAAAAARAAoAAQACAAAAAAARAAkAAQACAAAAAAASAAkAAQACAAAAAAATAAkAAQACAAAAAAAUAAkAAQACAAAAAAAVAAkAAQACAAAAAAAWAAkAAQACAAAAAAAXAAkAAQACAAAAAAA=")
+tile_set = ExtResource("24_o8dlv")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect3" type="TextureRect" parent="CraftHint"]
+offset_left = 1216.0
+offset_top = 640.0
+offset_right = 1280.0
+offset_bottom = 704.0
+texture = ExtResource("35_ceo5f")
+
+[node name="TextureRect4" type="TextureRect" parent="CraftHint"]
+offset_left = 1344.0
+offset_top = 640.0
+offset_right = 1408.0
+offset_bottom = 704.0
+texture = ExtResource("36_mmyj0")
+
+[node name="TextureRect5" type="TextureRect" parent="CraftHint"]
+offset_left = 1280.0
+offset_top = 640.0
+offset_right = 1344.0
+offset_bottom = 704.0
+texture = ExtResource("37_u0bod")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LabelCongratulations" type="Label" parent="."]
+offset_left = 540.0
+offset_top = -354.0
+offset_right = 669.0
+offset_bottom = -331.0
+text = "Congratulations!"
+
+[node name="PuzzleDescription" type="Label" parent="."]
+offset_left = -680.0
+offset_top = -573.0
+offset_right = 33.0
+offset_bottom = -290.0
+text = "Requires knowledge of 6 recipes in order to complete:
+Strength Potion from merchant, traded for green 
+herb grinds, which a book is found on the ground.
+Strength potion requires:
+Yellow Dust, which is part of merchant's book.
+Red Berry Seed, which is learned from a hint on the wall,
+Saturated Stem, which is part of merchant's book. Crafting requires knowledge of:
+Gray Juice, Obtained by description from NPC
+and knowledge on how to cut flowers.
+
+order: Herb Grinds -> Str book + Red Seed + Juice -> Craft Str Pot -> move boulder -> win"
+
+[connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
+[connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_consume_inventory_item"]
+[connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
+[connection signal="tool_updated" from="UILayer/HUDLayer/ToolWheel" to="Player" method="_on_tool_updated"]
+[connection signal="pathway_cleared" from="PuzzleNodes/BlockageArea" to="NPCBrindan" method="_on_pathway_cleared"]

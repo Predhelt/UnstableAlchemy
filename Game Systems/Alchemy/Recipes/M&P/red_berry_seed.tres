@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://dvvyw1xoajrh5"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://Game Systems/Items/Item.gd" id="1_6wu5r"]
+[ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://Game Systems/Items/Gatherable/red_berries.tres" id="2_lw3wl"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://Game Systems/Alchemy/Recipes/ProcedureInputAction.gd" id="3_ky0v0"]
+[ext_resource type="Resource" uid="uid://dvu23hpuws6rd" path="res://Game Systems/Alchemy/Recipes/M&P/ProcedureInputActions/grind.tres" id="4_dc7uq"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://Game Systems/Alchemy/Procedure.gd" id="5_g4vd4"]
+[ext_resource type="Resource" uid="uid://bnx8u3aprp62y" path="res://Game Systems/Alchemy/Recipes/M&P/ProcedureInputActions/crush.tres" id="5_lw3wl"]
+[ext_resource type="Resource" uid="uid://w7c2gigpa368" path="res://Game Systems/Items/M&P Products/red_berry_seed.tres" id="6_mqg45"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://Game Systems/Alchemy/Recipes/Recipe.gd" id="7_evmji"]
+
+[sub_resource type="Resource" id="Resource_se45k"]
+script = ExtResource("5_g4vd4")
+input_actions = Array[ExtResource("3_ky0v0")]([ExtResource("4_dc7uq"), ExtResource("4_dc7uq"), ExtResource("5_lw3wl"), ExtResource("4_dc7uq"), ExtResource("4_dc7uq")])
+metadata/_custom_type_script = "uid://b2d7pi15oxo04"
+
+[resource]
+script = ExtResource("7_evmji")
+id = 2
+product_item = ExtResource("6_mqg45")
+product_item_amount = 2
+ingredients = Array[ExtResource("1_6wu5r")]([ExtResource("2_lw3wl")])
+tool_used = "m&p"
+procedure = SubResource("Resource_se45k")
+metadata/_custom_type_script = "uid://dmsouatunq2be"
