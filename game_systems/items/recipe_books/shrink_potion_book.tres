@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Book" format=3 uid="uid://fxa0hd1d00qg"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_wugdq"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_1jgv8"]
+[ext_resource type="Resource" uid="uid://dqeoj2bwvortw" path="res://game_systems/alchemy/recipes/cauldron/shrink_potion.tres" id="3_h1moo"]
+[ext_resource type="Script" uid="uid://dvfx56s3nb8gd" path="res://game_systems/items/book.gd" id="3_t40ic"]
+[ext_resource type="Resource" uid="uid://dg8a30l0ydhnc" path="res://game_systems/alchemy/recipes/merger/orange_paste.tres" id="4_agfon"]
+[ext_resource type="Resource" uid="uid://dus5f01yypc4q" path="res://game_systems/alchemy/recipes/mp/red_juice.tres" id="5_0c6v6"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="6_fyekp"]
+[ext_resource type="Resource" uid="uid://cnje0lw5h44o8" path="res://game_systems/alchemy/recipes/merger/yellow_paste.tres" id="7_v5apf"]
+[ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://game_systems/alchemy/recipes/mp/gray_juice.tres" id="8_3dvwd"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="10_j62b7"]
+
+[resource]
+script = ExtResource("3_t40ic")
+recipes = Array[ExtResource("2_1jgv8")]([ExtResource("3_h1moo"), ExtResource("4_agfon"), ExtResource("5_0c6v6"), ExtResource("6_fyekp"), ExtResource("7_v5apf"), ExtResource("8_3dvwd")])
+id = 1003
+display_name = "Shrink Potion 101"
+description = "Describes the process of making a Shrink Potion and the effects."
+texture = ExtResource("10_j62b7")
+on_consume_message = "t"
+metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

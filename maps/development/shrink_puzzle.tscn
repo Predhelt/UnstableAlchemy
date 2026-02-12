@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dmjjqutxwcjj7"]
+[gd_scene format=4 uid="uid://dmjjqutxwcjj7"]
 
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="1_1v48h"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://level_components/ui/windows/options/options_menu.tscn" id="2_vrmy2"]
@@ -19,180 +19,180 @@
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="17_wq3r3"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="18_7u4j8"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/recipe_item.tscn" id="19_hiqpv"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="20_yiq42"]
+[ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="20_1v48h"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="21_0itjd"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="22_8qlof"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="23_nhtey"]
 [ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://level_components/objects/collisions/wall_small_hole.tscn" id="24_5tibu"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="25_luu2e"]
-[ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red-berries.png" id="26_3coer"]
-[ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red-berry-seed.png" id="27_pcnx7"]
-[ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="28_k556j"]
-[ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="29_ntt1k"]
-[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy-mortar_pestle.png" id="30_8r344"]
+[ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant-blue-berry.png" id="26_vrmy2"]
+[ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant-red-berry.png" id="27_qyqwu"]
+[ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper-full.png" id="28_5j5wj"]
+[ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="29_v3o2u"]
+[ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow-paste.png" id="30_lgrco"]
 [ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrinkpuzzle/shelly_sp.tscn" id="31_5dgm1"]
 
-[node name="WorldGCSM" type="Node2D"]
+[node name="WorldGCSM" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=574275547]
 layer = 10
 
-[node name="MenuLayer" type="CanvasLayer" parent="UILayer"]
+[node name="MenuLayer" type="CanvasLayer" parent="UILayer" unique_id=141501223]
 layer = 3
 
-[node name="SettingsMenu" parent="UILayer/MenuLayer" instance=ExtResource("1_1v48h")]
+[node name="SettingsMenu" parent="UILayer/MenuLayer" unique_id=466945984 instance=ExtResource("1_1v48h")]
 unique_name_in_owner = true
 auto_translate_mode = 1
 visible = false
 
-[node name="OptionsMenu" parent="UILayer/MenuLayer" instance=ExtResource("2_vrmy2")]
+[node name="OptionsMenu" parent="UILayer/MenuLayer" unique_id=1604190083 instance=ExtResource("2_vrmy2")]
 unique_name_in_owner = true
 visible = false
 theme = ExtResource("3_qyqwu")
 
-[node name="HelpMenu" parent="UILayer/MenuLayer" instance=ExtResource("4_5j5wj")]
+[node name="HelpMenu" parent="UILayer/MenuLayer" unique_id=1997709990 instance=ExtResource("4_5j5wj")]
 unique_name_in_owner = true
 visible = false
 
-[node name="InventoryMenu" parent="UILayer/MenuLayer" instance=ExtResource("5_v3o2u")]
+[node name="InventoryMenu" parent="UILayer/MenuLayer" unique_id=1209495849 instance=ExtResource("5_v3o2u")]
 unique_name_in_owner = true
 visible = false
 
-[node name="RecipeList" parent="UILayer/MenuLayer" instance=ExtResource("6_lgrco")]
+[node name="RecipeList" parent="UILayer/MenuLayer" unique_id=1868385013 instance=ExtResource("6_lgrco")]
 unique_name_in_owner = true
 visible = false
 
-[node name="NPCShop" parent="UILayer/MenuLayer" instance=ExtResource("7_ew7dj")]
+[node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("7_ew7dj")]
 unique_name_in_owner = true
 visible = false
 
-[node name="NPCDialogue" parent="UILayer/MenuLayer" instance=ExtResource("8_ibin0")]
+[node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("8_ibin0")]
 unique_name_in_owner = true
 visible = false
 
-[node name="MinigameLayer" type="CanvasLayer" parent="UILayer"]
+[node name="MinigameLayer" type="CanvasLayer" parent="UILayer" unique_id=1354987911]
 layer = 2
 
-[node name="MinigameCauldron" parent="UILayer/MinigameLayer" instance=ExtResource("9_8oxmj")]
+[node name="MinigameCauldron" parent="UILayer/MinigameLayer" unique_id=1553878062 instance=ExtResource("9_8oxmj")]
 unique_name_in_owner = true
 visible = false
 
-[node name="MinigameMP" parent="UILayer/MinigameLayer" instance=ExtResource("10_ss2lp")]
+[node name="MinigameMP" parent="UILayer/MinigameLayer" unique_id=95134907 instance=ExtResource("10_ss2lp")]
 unique_name_in_owner = true
 visible = false
 
-[node name="HUDLayer" type="CanvasLayer" parent="UILayer"]
+[node name="HUDLayer" type="CanvasLayer" parent="UILayer" unique_id=1167861916]
 
-[node name="MenuBar" parent="UILayer/HUDLayer" instance=ExtResource("11_ovebi")]
+[node name="MenuBar" parent="UILayer/HUDLayer" unique_id=2084920634 instance=ExtResource("11_ovebi")]
 unique_name_in_owner = true
 offset_bottom = 8.0
 
-[node name="StatusEffectBar" parent="UILayer/HUDLayer" instance=ExtResource("12_6se7g")]
+[node name="StatusEffectBar" parent="UILayer/HUDLayer" unique_id=768429819 instance=ExtResource("12_6se7g")]
 unique_name_in_owner = true
 
-[node name="Hotbar" parent="UILayer/HUDLayer" instance=ExtResource("13_1jg0v")]
+[node name="Hotbar" parent="UILayer/HUDLayer" unique_id=1812231048 instance=ExtResource("13_1jg0v")]
 unique_name_in_owner = true
 
-[node name="ToolWheel" parent="UILayer/HUDLayer" instance=ExtResource("14_yebxw")]
+[node name="ToolWheel" parent="UILayer/HUDLayer" unique_id=2089509891 instance=ExtResource("14_yebxw")]
 unique_name_in_owner = true
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
 
-[node name="Player" parent="." node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_leri6")]
+[node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_leri6")]
 unique_name_in_owner = true
 position = Vector2(529, 298)
 character_camera_ref = NodePath("../PlayerCamera")
 known_recipes = Array[ExtResource("16_iwwtm")]([])
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="Player"]
+[node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
 remote_path = NodePath("../../PlayerCamera")
 
-[node name="PlayerCamera" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
 position = Vector2(529, 298)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="TileMaps" type="Node2D" parent="."]
+[node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
 metadata/_edit_lock_ = true
 
-[node name="Water" type="TileMapLayer" parent="TileMaps"]
+[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
 z_index = -50
 scale = Vector2(2, 2)
 tile_set = ExtResource("17_wq3r3")
 
-[node name="Ground" type="TileMapLayer" parent="TileMaps"]
+[node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
 tile_map_data = PackedByteArray("AAAOAAEAAgAAAAAAAQAOAAIAAgAAAAAAAQAOAAMAAgAAAAAAAQAOAAQAAgAAAAAAAQAOAAUAAgAAAAAAAQAOAAYAAgAAAAAAAQAOAAcAAgAAAAAAAQAOAAgAAgAAAAAAAQAOAAkAAgAAAAAAAQANAAkAAgAAAAAAAQAMAAkAAgAAAAAAAQALAAkAAgAAAAAAAQAKAAkAAgAAAAAAAQAJAAkAAgAAAAAAAQAIAAkAAgAAAAAAAQAHAAkAAgAAAAAAAQAGAAkAAgAAAAAAAQAFAAkAAgAAAAAAAQAEAAkAAgAAAAAAAQADAAkAAgAAAAAAAQADAAgAAgAAAAAAAQADAAcAAgAAAAAAAQADAAYAAgAAAAAAAQADAAUAAgAAAAAAAQADAAQAAgAAAAAAAQADAAMAAgAAAAAAAQADAAIAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQAJAAEAAgAAAAAAAQAKAAEAAgAAAAAAAQALAAEAAgAAAAAAAQAMAAEAAgAAAAAAAQANAAEAAgAAAAAAAQANAAIAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQANAAYAAgAAAAAAAQANAAcAAgAAAAAAAQANAAgAAgAAAAAAAQAMAAgAAgAAAAAAAQALAAgAAgAAAAAAAQAKAAgAAgAAAAAAAQAJAAgAAgAAAAAAAQAIAAgAAgAAAAAAAQAHAAgAAgAAAAAAAQAGAAgAAgAAAAAAAQAFAAgAAgAAAAAAAQAEAAgAAgAAAAAAAQAEAAcAAgAAAAAAAQAEAAYAAgAAAAAAAQAEAAUAAgAAAAAAAQAEAAQAAgAAAAAAAQAEAAMAAgAAAAAAAQAEAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAIAAIAAgAAAAAAAQAJAAIAAgAAAAAAAQAKAAIAAgAAAAAAAQALAAIAAgAAAAAAAQAMAAIAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQAMAAYAAgAAAAAAAQALAAYAAgAAAAAAAQALAAcAAgAAAAAAAQAKAAcAAgAAAAAAAQAJAAcAAgAAAAAAAQAIAAcAAgAAAAAAAQAHAAcAAgAAAAAAAQAGAAcAAgAAAAAAAQAFAAcAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAMAAgAAAAAAAQAGAAMAAgAAAAAAAQAHAAMAAgAAAAAAAQAIAAMAAgAAAAAAAQAJAAMAAgAAAAAAAQAKAAMAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQAMAAcAAgAAAAAAAQALAAUAAgAAAAAAAQAKAAUAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAYAAgAAAAAAAQAJAAYAAgAAAAAAAQAJAAUAAgAAAAAAAQAJAAQAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAYAAgAAAAAAAQAIAAUAAgAAAAAAAQAHAAYAAgAAAAAAAQAHAAUAAgAAAAAAAQAHAAQAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAGAAYAAgAAAAAAAQAFAAYAAgAAAAAAAQAFAAUAAgAAAAAAAQAJAAAAAgAAAAAAAQAJAP//AgAAAAAAAAAJAP7/AgAAAAAAAAAIAP7/AgAAAAAAAAAIAP3/AgAAAAAAAAAIAPz/AgAAAAAAAAAJAPz/AgAAAAAAAAAKAPz/AgAAAAAAAAAKAP3/AgAAAAAAAAAKAP7/AgAAAAAAAAAJAP3/AgAAAAAAAAAHAPv/AgAAAAAAAAAIAPv/AgAAAAAAAAAJAPv/AgAAAAAAAAAKAPv/AgAAAAAAAAALAPv/AgAAAAAAAAALAPz/AgAAAAAAAAALAP3/AgAAAAAAAAALAP7/AgAAAAAAAAAHAP7/AgAAAAAAAAAHAP3/AgAAAAAAAAAHAPz/AgAAAAAAAAAFAPr/AgAAAAAAAAAFAPv/AgAAAAAAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAFAP7/AgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgAAAAAAAQAGAPr/AgAAAAAAAAAGAPv/AgAAAAAAAAAGAPz/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAQAHAPr/AgAAAAAAAAAHAP//AgAAAAAAAAAHAAAAAgAAAAAAAQAIAPr/AgAAAAAAAAAIAP//AgAAAAAAAAAIAAAAAgAAAAAAAQAJAPr/AgAAAAAAAAAKAPr/AgAAAAAAAAAKAP//AgAAAAAAAAAKAAAAAgAAAAAAAQALAPr/AgAAAAAAAAALAP//AgAAAAAAAAALAAAAAgAAAAAAAQAMAPr/AgAAAAAAAAAMAPv/AgAAAAAAAAAMAPz/AgAAAAAAAAAMAP3/AgAAAAAAAAAMAP7/AgAAAAAAAAAMAP//AgAAAAAAAAAMAAAAAgAAAAAAAQANAPr/AgAAAAAAAAANAPv/AgAAAAAAAAANAPz/AgAAAAAAAAANAP3/AgAAAAAAAAANAP7/AgAAAAAAAAANAP//AgAAAAAAAAANAAAAAgAAAAAAAQACAAAAAgAAAAAAAQACAAEAAgAAAAAAAQACAAIAAgAAAAAAAQACAAMAAgAAAAAAAQACAAQAAgAAAAAAAQACAAUAAgAAAAAAAQACAAYAAgAAAAAAAQACAAcAAgAAAAAAAQACAAgAAgAAAAAAAQACAAkAAgAAAAAAAQACAAoAAgAAAAAAAQADAAAAAgAAAAAAAQADAAoAAgAAAAAAAQAEAAAAAgAAAAAAAQAEAAoAAgAAAAAAAQAFAAoAAgAAAAAAAQAGAAoAAgAAAAAAAQAHAAoAAgAAAAAAAQAIAAoAAgAAAAAAAQAJAAoAAgAAAAAAAQAKAAoAAgAAAAAAAQALAAoAAgAAAAAAAQAMAAoAAgAAAAAAAQAPAAAAAgAAAAAAAQAPAAEAAgAAAAAAAQAPAAIAAgAAAAAAAQAPAAMAAgAAAAAAAQAPAAQAAgAAAAAAAQAPAAUAAgAAAAAAAQAPAAYAAgAAAAAAAQAPAAcAAgAAAAAAAQAPAAgAAgAAAAAAAQAPAAkAAgAAAAAAAQAPAAoAAgAAAAAAAQANAAoAAgAAAAAAAQAOAAoAAgAAAAAAAQAOAAAAAgAAAAAAAQA=")
 tile_set = ExtResource("18_7u4j8")
 metadata/_edit_lock_ = true
 
-[node name="Top" type="TileMapLayer" parent="TileMaps"]
+[node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
 z_index = -10
 tile_map_data = PackedByteArray("AAAFAPv/AgADAAAAAAAHAPv/AgABAAAAAAAIAP7/AgAHAAAAAAAIAP//AgAGAAAAAAAJAPr/AgADAAAAAAAKAP3/AgAEAAAAAAAKAP7/AgAEAAAAAAAMAPv/AgACAAAAAAANAPr/AgAGAAAAAAANAP//AgAGAAAAAAADAAIAAgAFAAAAAAADAAkAAgAGAAAAAAAFAAYAAgACAAAAAAAHAAgAAgADAAAAAAAIAAcAAgAGAAAAAAALAAcAAgAFAAAAAAAMAAIAAgACAAAAAAAMAAQAAgACAAAAAAAMAAgAAgAEAAAAAAAOAAIAAgADAAAAAAAGAAIAAgACAAAAAAAIAAIAAgAEAAAAAAAOAAgAAQACAAAAAAANAAgAAQACAAAAAAANAAkAAQACAAAAAAAOAAkAAQADAAAAAAA=")
 tile_set = ExtResource("18_7u4j8")
 metadata/_edit_lock_ = true
 
-[node name="Wall" type="TileMapLayer" parent="TileMaps"]
+[node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAADAAAAAAAEAAIAAAAEAAAAAAAEAAIAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAIAAAAKAAAAAAAEAAAAAAALAAAAAAAEAAIAAAAMAAAAAAAEAAIAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAFAAAAAAAPAAEAAAAFAAEAAAAPAAIAAAAFAAEAAAAPAAMAAAADAAEAAAAPAAQAAAAFAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAFAAEAAAAPAAcAAAADAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAADAAEAAAAPAAoAAAAFAAIAAAAOAAoAAAAEAAAAAAANAAoAAAAEAAIAAAAMAAoAAAAEAAIAAAALAAoAAAAEAAAAAAAKAAoAAAAEAAIAAAAJAAoAAAAEAAIAAAAIAAoAAAAEAAAAAAAHAAoAAAAEAAIAAAAGAAoAAAAEAAAAAAAFAAoAAAAEAAAAAAAEAAoAAAAEAAIAAAADAAoAAAAEAAAAAAACAAoAAAADAAIAAAACAAkAAAAFAAEAAAACAAgAAAAFAAEAAAACAAcAAAAFAAEAAAACAAYAAAADAAEAAAACAAUAAAAFAAEAAAACAAQAAAAFAAEAAAACAAMAAAAFAAEAAAACAAIAAAAFAAEAAAACAAEAAAAFAAEAAAAIAAAAAAAEAAAAAAAHAAAAAAAEAAAAAAA=")
 tile_set = ExtResource("18_7u4j8")
 metadata/_edit_lock_ = true
 
-[node name="Objects" type="Node2D" parent="."]
+[node name="Objects" type="Node2D" parent="." unique_id=354937822]
 y_sort_enabled = true
 
-[node name="RecipeItem" parent="Objects" instance=ExtResource("19_hiqpv")]
+[node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("19_hiqpv")]
 position = Vector2(361, 134)
 display_name = "\"The making of a shrinking potion\""
 description = "Describes how to make a shrink potion"
-book_info = ExtResource("20_yiq42")
+book_info = ExtResource("20_1v48h")
 
-[node name="GreenHerb" parent="Objects" instance=ExtResource("21_0itjd")]
+[node name="GreenHerb" parent="Objects" unique_id=1902924727 instance=ExtResource("21_0itjd")]
 position = Vector2(365, 227)
 
-[node name="Green_herb" parent="Objects" instance=ExtResource("21_0itjd")]
+[node name="Green_herb" parent="Objects" unique_id=252499680 instance=ExtResource("21_0itjd")]
 position = Vector2(274, 184)
 
-[node name="Green_herb2" parent="Objects" instance=ExtResource("21_0itjd")]
+[node name="Green_herb2" parent="Objects" unique_id=1732342034 instance=ExtResource("21_0itjd")]
 position = Vector2(293, 280)
 
-[node name="RedBerryBush" parent="Objects" instance=ExtResource("22_8qlof")]
+[node name="RedBerryBush" parent="Objects" unique_id=1695177738 instance=ExtResource("22_8qlof")]
 position = Vector2(624, 248)
 
-[node name="RedBerryBush2" parent="Objects" instance=ExtResource("22_8qlof")]
+[node name="RedBerryBush2" parent="Objects" unique_id=1623145614 instance=ExtResource("22_8qlof")]
 position = Vector2(720, 272)
 
-[node name="RedBerryBush3" parent="Objects" instance=ExtResource("22_8qlof")]
+[node name="RedBerryBush3" parent="Objects" unique_id=156238578 instance=ExtResource("22_8qlof")]
 position = Vector2(644, 345)
 
-[node name="YellowFlowers" parent="Objects" instance=ExtResource("23_nhtey")]
+[node name="YellowFlowers" parent="Objects" unique_id=1328707074 instance=ExtResource("23_nhtey")]
 position = Vector2(384, 484)
 
-[node name="YellowFlowers2" parent="Objects" instance=ExtResource("23_nhtey")]
+[node name="YellowFlowers2" parent="Objects" unique_id=1623226810 instance=ExtResource("23_nhtey")]
 position = Vector2(550, 536.00006)
 
-[node name="YellowFlowers3" parent="Objects" instance=ExtResource("23_nhtey")]
+[node name="YellowFlowers3" parent="Objects" unique_id=2088947147 instance=ExtResource("23_nhtey")]
 position = Vector2(677, 463.00003)
 
-[node name="PuzzleNodes" type="Node2D" parent="."]
+[node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
 
-[node name="WallSmallHole" parent="PuzzleNodes" instance=ExtResource("24_5tibu")]
+[node name="WallSmallHole" parent="PuzzleNodes" unique_id=1105064273 instance=ExtResource("24_5tibu")]
 position = Vector2(608, 58)
 gap_size = 50.0
 metadata/_edit_lock_ = true
 
-[node name="DisplayArea" parent="." node_paths=PackedStringArray("display_scene") instance=ExtResource("25_luu2e")]
+[node name="DisplayArea" parent="." unique_id=2100822737 node_paths=PackedStringArray("display_scene") instance=ExtResource("25_luu2e")]
 position = Vector2(928, 608)
 display_scene = NodePath("../CraftHint")
 
-[node name="CraftHint" type="Node2D" parent="."]
+[node name="CraftHint" type="Node2D" parent="." unique_id=1569651535]
 
-[node name="Label2" type="Label" parent="CraftHint"]
+[node name="Label2" type="Label" parent="CraftHint" unique_id=1978105825]
 editor_description = "Displaying the recipe hints on the right side of the screen allows them to be visible while the player is attempting to craft."
 offset_left = 1195.0
 offset_top = 540.0
@@ -201,57 +201,64 @@ offset_bottom = 563.0
 theme_override_constants/outline_size = 5
 text = "You see something on the wall:"
 
-[node name="TextureRect" type="TextureRect" parent="CraftHint"]
-offset_left = 1286.0
-offset_top = 713.0
-offset_right = 1336.0
-offset_bottom = 763.0
-texture = ExtResource("26_3coer")
+[node name="TextureRect" type="TextureRect" parent="CraftHint" unique_id=192445466]
+offset_left = 1352.0
+offset_top = 777.0
+offset_right = 1402.0
+offset_bottom = 827.0
+texture = ExtResource("26_vrmy2")
 
-[node name="TextureRect2" type="TextureRect" parent="CraftHint"]
-offset_left = 1280.0
-offset_top = 832.0
-offset_right = 1344.0
-offset_bottom = 896.0
-texture = ExtResource("27_pcnx7")
+[node name="TextureRect2" type="TextureRect" parent="CraftHint" unique_id=619412281]
+offset_left = 1152.0
+offset_top = 767.0
+offset_right = 1216.0
+offset_bottom = 831.0
+texture = ExtResource("27_qyqwu")
 
-[node name="Ground2" type="TileMapLayer" parent="CraftHint"]
+[node name="Ground2" type="TileMapLayer" parent="CraftHint" unique_id=1716895465]
 z_index = -20
-tile_map_data = PackedByteArray("AAAUAAsAAQAAAAEAAAAVAAsAAQAAAAEAAAAWAAsAAQAAAAEAAAAWAAwAAQADAAAAAAAVAA0AAQAAAAEAAAASAAwAAQADAAAAAAATAAwAAQADAAAAAAAUAAwAAQABAAAAAAAVAAwAAQADAAAAAAAWAA0AAQAAAAEAAAASAA0AAQAAAAEAAAATAA0AAQAAAAEAAAAUAA0AAQAAAAEAAAATAAsAAQAAAAEAAAASAAsAAQAAAAEAAAASAAoAAQAAAAEAAAAVAAoAAQABAAAAAAAWAAoAAQAAAAEAAAATAAoAAQADAAAAAAAUAAoAAQAAAAEAAAAXAAoAAQACAAAAAAAXAAsAAQACAAAAAAAXAAwAAQACAAAAAAAXAA0AAQACAAAAAAAXAA4AAQACAAAAAAAWAA4AAQACAAAAAAAVAA4AAQACAAAAAAAUAA4AAQACAAAAAAATAA4AAQACAAAAAAASAA4AAQACAAAAAAARAA4AAQACAAAAAAARAA0AAQACAAAAAAARAAwAAQACAAAAAAARAAsAAQACAAAAAAARAAoAAQACAAAAAAARAAkAAQACAAAAAAASAAkAAQACAAAAAAATAAkAAQACAAAAAAAUAAkAAQACAAAAAAAVAAkAAQACAAAAAAAWAAkAAQACAAAAAAAXAAkAAQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAUAAsAAQACAAAAAAAVAAsAAQACAAAAAAATAAsAAQACAAAAAAASAAsAAQACAAAAAAASAAoAAQABAAEAAAAVAAoAAgAAAAAAAQATAAoAAQABAAEAAAAUAAoAAQADAAAAAAARAAsAAQACAAAAAAARAAoAAQACAAAAAAARAAkAAQACAAAAAAASAAkAAQACAAAAAAATAAkAAQACAAAAAAAUAAkAAQACAAAAAAAVAAkAAQACAAAAAAAWAAkAAQACAAAAAAAWAAoAAQACAAAAAAAWAAsAAQACAAAAAAARAAwAAQACAAAAAAASAAwAAQABAAEAAAATAAwAAQABAAEAAAAUAAwAAQADAAAAAAAVAAwAAgAAAAAAAQAWAAwAAQACAAAAAAARAA0AAQACAAAAAAASAA0AAQACAAAAAAATAA0AAQACAAAAAAAUAA0AAQACAAAAAAAVAA0AAQACAAAAAAAWAA0AAQACAAAAAAA=")
 tile_set = ExtResource("18_7u4j8")
 metadata/_edit_lock_ = true
 
-[node name="TextureRect3" type="TextureRect" parent="CraftHint"]
-offset_left = 1216.0
-offset_top = 640.0
-offset_right = 1280.0
-offset_bottom = 704.0
-texture = ExtResource("28_k556j")
-
-[node name="TextureRect4" type="TextureRect" parent="CraftHint"]
+[node name="TextureRect3" type="TextureRect" parent="CraftHint" unique_id=161164347]
 offset_left = 1344.0
 offset_top = 640.0
 offset_right = 1408.0
 offset_bottom = 704.0
-texture = ExtResource("29_ntt1k")
+texture = ExtResource("28_5j5wj")
 
-[node name="TextureRect5" type="TextureRect" parent="CraftHint"]
-offset_left = 1280.0
+[node name="TextureRect4" type="TextureRect" parent="CraftHint" unique_id=1257288372]
+offset_left = 1151.0
 offset_top = 640.0
-offset_right = 1344.0
+offset_right = 1215.0
 offset_bottom = 704.0
-texture = ExtResource("30_8r344")
+texture = ExtResource("29_v3o2u")
+
+[node name="TextureRect5" type="TextureRect" parent="CraftHint" unique_id=132927856]
+offset_left = 1217.0
+offset_top = 639.0
+offset_right = 1281.0
+offset_bottom = 703.0
+texture = ExtResource("30_lgrco")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="LabelCongratulations" type="Label" parent="."]
+[node name="TextureRect6" type="TextureRect" parent="CraftHint" unique_id=17762075]
+offset_left = 1217.0
+offset_top = 767.0
+offset_right = 1281.0
+offset_bottom = 831.0
+texture = ExtResource("28_5j5wj")
+
+[node name="LabelCongratulations" type="Label" parent="." unique_id=886711945]
 offset_left = 540.0
 offset_top = -354.0
 offset_right = 669.0
 offset_bottom = -331.0
 text = "Congratulations!"
 
-[node name="PuzzleDescription" type="Label" parent="."]
+[node name="PuzzleDescription" type="Label" parent="." unique_id=1978709420]
 offset_left = -680.0
 offset_top = -573.0
 offset_right = 33.0
@@ -259,7 +266,7 @@ offset_bottom = -290.0
 text = "Requires knowledge of _ recipes in order to complete:
 Shrink Potion: "
 
-[node name="NPCShelly" parent="." instance=ExtResource("31_5dgm1")]
+[node name="NPCShelly" parent="." unique_id=1676905046 instance=ExtResource("31_5dgm1")]
 position = Vector2(695, 192)
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 

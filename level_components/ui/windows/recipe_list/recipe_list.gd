@@ -127,14 +127,14 @@ func add_procedure(recipe: Recipe):
 	var cur_procedures_container = HBoxContainer.new()
 	var tool_icon : TextureRect = recipe_tool_icon.instantiate()
 	match recipe.tool_used:
-		&"cauldron": 
-			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-cauldron.png")
+		&"Cauldron": 
+			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy-cauldron.png")
 			tool_icon.tooltip_text = "Ingredients are combined in the Cauldron"
-		&"m&p":
-			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-mortar_pestle.png")
+		&"Mortar & Pestle":
+			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy-mortar_pestle.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Mortar and Pestle"
-		&"merger":
-			tool_icon.texture = load("res://Art/UAPrototype/Alchemy/Tools/alchemy-abstract_container-half_full.png")
+		&"Merger":
+			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy-abstract_container-half_full.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Merger"
 		&"hand": pass
 		&"blade": pass

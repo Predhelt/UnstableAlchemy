@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=13 format=3 uid="uid://dynh2mra6j665"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dynh2mra6j665"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_45bvj"]
 [ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://game_systems/items/potions/speed_potion.tres" id="1_y7a4k"]
@@ -31,5 +31,4 @@ product_item = ExtResource("1_y7a4k")
 product_item_amount = 2
 product_craft_time = 2.0
 ingredients = Array[ExtResource("1_45bvj")]([ExtResource("2_x8ccd"), ExtResource("3_km33r")])
-tool_used = "cauldron"
 procedure = SubResource("Resource_odu4m")

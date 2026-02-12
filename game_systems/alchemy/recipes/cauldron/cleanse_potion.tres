@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=13 format=3 uid="uid://csmejokrssatv"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://csmejokrssatv"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_rpl2h"]
 [ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://game_systems/items/merged_ingredients/green_paste.tres" id="2_7l2t4"]
@@ -32,5 +32,4 @@ product_item = ExtResource("4_wye1e")
 product_item_amount = 2
 product_craft_time = 4.0
 ingredients = Array[ExtResource("1_rpl2h")]([ExtResource("2_7l2t4"), ExtResource("3_v0qvq")])
-tool_used = "cauldron"
 procedure = SubResource("Resource_2m061")

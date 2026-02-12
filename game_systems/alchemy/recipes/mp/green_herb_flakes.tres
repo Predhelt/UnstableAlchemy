@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://c03phe4ob10nn"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://c03phe4ob10nn"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_h0ppu"]
 [ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://game_systems/items/gatherable/green_herb_leaf.tres" id="2_uoo4b"]
@@ -19,5 +19,4 @@ product_item = ExtResource("7_hfec7")
 product_item_amount = 1
 product_craft_time = 1.0
 ingredients = Array[ExtResource("1_h0ppu")]([ExtResource("2_uoo4b")])
-tool_used = "Mortar & Pestle"
 procedure = SubResource("Resource_kcj7p")

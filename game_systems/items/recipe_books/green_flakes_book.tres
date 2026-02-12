@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Book" load_steps=6 format=3 uid="uid://b4r42orem8r1r"]
+[gd_resource type="Resource" script_class="Book" format=3 uid="uid://b4r42orem8r1r"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_ad2qp"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_iy3l3"]

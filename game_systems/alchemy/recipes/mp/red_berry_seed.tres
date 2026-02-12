@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://dvvyw1xoajrh5"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dvvyw1xoajrh5"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_6wu5r"]
 [ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://game_systems/items/gatherable/red_berries.tres" id="2_lw3wl"]
@@ -20,6 +20,5 @@ id = 2
 product_item = ExtResource("6_mqg45")
 product_item_amount = 2
 ingredients = Array[ExtResource("1_6wu5r")]([ExtResource("2_lw3wl")])
-tool_used = "Mortar & Pestle"
 procedure = SubResource("Resource_se45k")
 metadata/_custom_type_script = "uid://dmsouatunq2be"

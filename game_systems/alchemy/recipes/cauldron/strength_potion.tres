@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=15 format=3 uid="uid://dq4dwbhvd818i"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dq4dwbhvd818i"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_dja4h"]
 [ext_resource type="Resource" uid="uid://dk4ifinqh2q2o" path="res://game_systems/items/mp_products/yellow_dust.tres" id="2_0ie6y"]
@@ -33,10 +33,9 @@ metadata/_custom_type_script = "uid://b2d7pi15oxo04"
 
 [resource]
 script = ExtResource("10_kwf1d")
-id = 504
+id = 505
 product_item = ExtResource("9_d7bti")
 product_item_amount = 3
 ingredients = Array[ExtResource("1_dja4h")]([ExtResource("2_0ie6y"), ExtResource("3_8gejb"), ExtResource("4_516fn")])
-tool_used = "cauldron"
 procedure = SubResource("Resource_spalt")
 metadata/_custom_type_script = "uid://dmsouatunq2be"

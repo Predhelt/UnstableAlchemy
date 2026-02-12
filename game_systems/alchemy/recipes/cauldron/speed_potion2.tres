@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=14 format=3 uid="uid://ch8ask17pesg6"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://ch8ask17pesg6"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_0xm64"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="2_h6s2q"]
@@ -32,10 +32,9 @@ metadata/_custom_type_script = "uid://b2d7pi15oxo04"
 
 [resource]
 script = ExtResource("2_y0jnm")
-id = 502
+id = 505
 product_item = ExtResource("4_8p32p")
 product_item_amount = 5
 product_craft_time = 3.0
 ingredients = Array[ExtResource("1_0xm64")]([ExtResource("2_h6s2q"), ExtResource("2_h6s2q"), ExtResource("3_ifxva")])
-tool_used = "cauldron"
 procedure = SubResource("Resource_tsjil")

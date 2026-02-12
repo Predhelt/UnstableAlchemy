@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=6 format=3 uid="uid://dg8a30l0ydhnc"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dg8a30l0ydhnc"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_7yjxi"]
 [ext_resource type="Resource" uid="uid://b6ygdugfvt53y" path="res://game_systems/items/mp_products/red_juice.tres" id="2_7h72x"]
@@ -13,5 +13,4 @@ product_item = ExtResource("4_s1crp")
 product_item_amount = 2
 product_craft_time = 1.5
 ingredients = Array[ExtResource("1_7yjxi")]([ExtResource("2_7h72x"), ExtResource("3_gupyc")])
-tool_used = "merger"
 metadata/_custom_type_script = "uid://dmsouatunq2be"

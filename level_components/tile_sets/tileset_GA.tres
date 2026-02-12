@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://dxkp51yxc2dcm"]
+[gd_resource type="TileSet" format=3 uid="uid://dxkp51yxc2dcm"]
 
 [ext_resource type="Texture2D" uid="uid://dvhy1y78ci3ck" path="res://addons/GatherersExterior/Tilesets/tileset_grass.png" id="1_2bixh"]
 [ext_resource type="Texture2D" uid="uid://cueejjvcsvpsq" path="res://addons/GatherersExterior/Tilesets/tileset_water.png" id="2_v58dk"]

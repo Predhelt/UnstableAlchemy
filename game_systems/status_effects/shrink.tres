@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://dpj7rac2ern5w"]
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://dpj7rac2ern5w"]
 
 [ext_resource type="Texture2D" uid="uid://bqxrtqfulunhn" path="res://icon.svg" id="1_7x24n"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="2_aid1g"]
@@ -10,5 +10,5 @@ name = "Shrink"
 description = "Makes you small"
 icon = ExtResource("1_7x24n")
 effect = "grow"
-value = 0.3
+value = 0.5
 duration = -1.0
