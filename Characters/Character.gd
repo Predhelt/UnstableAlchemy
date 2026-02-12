@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	for rb in pushing_bodies:
 		_push_body(rb)
 	
-	_update_active_status_effects(delta)
+	_update_status_effect_timers(delta)
 	
 	if status_message_timer > 0 and global.mode == &"default":
 		status_message_timer -= delta
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 func _move_character(vector : Vector2) -> void:
 	if global.mode == &"default":
 		direction = vector
-		velocity = direction * attributes.move_speed * (Vector2(1.0, 1.0) + 
+		velocity = direction * attributes.get_attribute("move speed") * (Vector2(1.0, 1.0) + 
 			(scale/Vector2(1/SIZE_DAMPENER, 1/SIZE_DAMPENER) - 
 				Vector2(SIZE_DAMPENER, SIZE_DAMPENER))) * 2 # base speed too slow, doubles it.
 		move_and_slide()
@@ -198,12 +198,11 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 ## Helper function that applies the status effect to the player based on the effect name.
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		&"move speed" :
-			attributes.move_speed = _calc_attribute_change(se, attributes.move_speed)
+		&"move speed bonus" :
+			attributes.add_move_speed_bonus(se.value)
 			return true
-		&"strength" :
-			attributes.strength = _calc_attribute_change(se, attributes.strength)
-			#print(attributes.strength)
+		&"strength bonus" :
+			attributes.add_strength_bonus(se.value)
 			return true
 		&"cleanse" : if _cleanse_status_effects():
 			return true
@@ -221,7 +220,7 @@ func update_status_message(message: String):
 	status_message_timer = 5.0
 
 ## Updates the duration of an active status effect based on the amount of time that has passed.
-func _update_active_status_effects(delta : float) -> void:
+func _update_status_effect_timers(delta : float) -> void:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		var se = active_status_effects[i]
 		if se.duration != -1:
@@ -233,12 +232,12 @@ func _update_active_status_effects(delta : float) -> void:
 ## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
 	match se.effect:
-		&"move speed" : 
-			attributes.move_speed = _calc_attribute_change(se, attributes.move_speed, true)
+		&"move speed bonus" : 
+			attributes.add_move_speed_bonus(1/se.value)
 			return true
 		&"grow" : return _grow_player(se, true)
-		&"strength" : 
-			attributes.strength = _calc_attribute_change(se, attributes.strength, true)
+		&"strength bonus" : 
+			attributes.add_strength_bonus(1/se.value)
 			return true
 	return false
 
@@ -260,7 +259,7 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 
 ## Status effect functions ##
 
-## Adds/subtracts the value of the given status effect from the value of an attribute.
+## Increases/decreases the value of the given status effect from the value of an attribute.
 ## Returns the value after the change from the status effect.
 func _calc_attribute_change(se: StatusEffect, attribute_val: float, is_removing_status := false) -> float:
 	for i in len(active_status_effects):
@@ -306,50 +305,41 @@ func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
 			if se.value == cur_se.value and not is_removing_status:
 				return false
 			
-			attributes.size *= 1.0/se.value
+			attributes.add_size_mult(1.0/se.value)
 			
 			if is_removing_status:
-				set_character_size(attributes.size)
+				set_character_scale(attributes.get_attribute("size"))
 				update_status_bar(se, i, true)
 				return true
 			
-			attributes.size *= se.value
-			
-			set_character_size(attributes.size)
+			attributes.add_size_mult(se.value)
+			set_character_scale(attributes.get_attribute("size"))
 			update_status_bar(se, i)
 			return true
 	
-	attributes.size *= se.value
-	set_character_size(attributes.size)
+	attributes.add_size_mult(se.value)
+	set_character_scale(attributes.get_attribute("size"))
 	update_status_bar(se)
 	return true
 
-## Sets the size of the character, including mass and strength.
-## 100 is the default size, which should represent the scale times 100
-func set_character_size(size: float):
-	var diff_ratio := size/(scale[0]*100.0)
-	scale = Vector2(size/100,size/100)
-	## Multiply the current mass by the area of the vector (change in x by change in y)
-	attributes.mass *= diff_ratio * diff_ratio
-	attributes.strength *= diff_ratio * diff_ratio
+## Sets the scale of the character.
+func set_character_scale(size: float):
+	var diff_ratio := size/(scale[0]*attributes.base_size)
+	set_scale(Vector2(size/attributes.base_size,size/attributes.base_size))
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/diff_ratio
 
-## Changes the scale of the character, including size and mass based on the multiplier provided
+## Changes the scale of the character.
 func change_character_scale(mult: Vector2):
 	scale *= mult
-	## Multiply the current mass by the area of the vector (change in x by change in y)
-	attributes.mass *= mult[0] * mult[1]
-	attributes.strength *= mult[0] * mult[1]
-	attributes.size *= mult[0] # NOTE: This assume that x and y are the same.
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
 
 ## Checks the rigid body that is near the character to see if it is pushable.
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Pushable"):
-		if attributes.strength >= body.mass:
+		if attributes.get_attribute("strength") >= body.mass:
 			pushing_bodies.append(body)
 	if body.is_in_group("Crawlspace"):
-		if attributes.size <= body.gap_size:
+		if attributes.get_attribute("size") <= body.gap_size:
 			if crawlspace_bodies.is_empty():
 				## Remove collision from crawlspaces nearby
 				## NOTE: Assumes that all nearby crawlspaces have the same gap size.
@@ -371,11 +361,12 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 ## Check the mass of the object and compare to the player's strength
 ## to determine if the player is strong enough to move the body.
 func _push_body(body: PhysicsBody2D) -> bool:
-	if attributes.strength <= body.mass:
+	if attributes.get_attribute("strength") <= body.mass:
 		return false
 	## Calculate force based on the strength of the character vs the mass of the body.
 	var mult : float
-	mult = (attributes.strength - body.mass) / 50
+	## 50 is the extra strength needed over the mass to push at max velocity.a
+	mult = (attributes.get_attribute("strength") - body.mass) / 50
 	if mult > 1:
 		mult = 1
 		

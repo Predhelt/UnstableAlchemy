@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bug73xhr5bl3w"]
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://bug73xhr5bl3w"]
 
 [ext_resource type="Texture2D" uid="uid://dd5cw46t72adw" path="res://art/pack/ui/status_effects/status_effect-energized.png" id="1_0fcdt"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_4bjhv"]
@@ -8,6 +8,6 @@ script = ExtResource("1_4bjhv")
 name = "Energized Burst"
 description = "Increases movement speed for a very short time"
 icon = ExtResource("1_0fcdt")
-effect = "move speed"
+effect = "move speed bonus"
 value = 50.0
 duration = 5.0

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Attributes" load_steps=2 format=3 uid="uid://c2p3owaoyxfkl"]
+[gd_resource type="Resource" script_class="Attributes" format=3 uid="uid://c2p3owaoyxfkl"]
 
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="1_7cajb"]
 

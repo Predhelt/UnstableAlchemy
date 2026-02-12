@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 	for rb in pushing_bodies:
 		_push_body(rb)
 	
-	_update_active_status_effects(delta)
+	_update_status_effect_timers(delta)
 
 	if status_message_timer > 0:
 		status_message_timer -= delta
