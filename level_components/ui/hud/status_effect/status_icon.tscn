@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl5hwf03hewkf"]
+[gd_scene format=3 uid="uid://cl5hwf03hewkf"]
 
 [ext_resource type="Texture2D" uid="uid://bqxrtqfulunhn" path="res://icon.svg" id="1_hmltb"]
 [ext_resource type="Script" uid="uid://bo3hnrqh7dqo0" path="res://level_components/ui/hud/status_effect/status_icon.gd" id="2_c35fh"]
 
-[node name="StatusIcon" type="TextureRect"]
-offset_right = 100.0
-offset_bottom = 100.0
+[node name="StatusIcon" type="Panel" unique_id=1205997405]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("2_c35fh")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1003443846]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
 texture = ExtResource("1_hmltb")
 expand_mode = 3
 stretch_mode = 5
-script = ExtResource("2_c35fh")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="TextureRect" unique_id=1257102433]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

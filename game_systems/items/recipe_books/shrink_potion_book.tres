@@ -9,11 +9,12 @@
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="6_fyekp"]
 [ext_resource type="Resource" uid="uid://cnje0lw5h44o8" path="res://game_systems/alchemy/recipes/merger/yellow_paste.tres" id="7_v5apf"]
 [ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://game_systems/alchemy/recipes/mp/gray_juice.tres" id="8_3dvwd"]
+[ext_resource type="Resource" uid="uid://vv03n4lupcdg" path="res://game_systems/alchemy/recipes/mp/yellow_dust.tres" id="9_agfon"]
 [ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="10_j62b7"]
 
 [resource]
 script = ExtResource("3_t40ic")
-recipes = Array[ExtResource("2_1jgv8")]([ExtResource("3_h1moo"), ExtResource("4_agfon"), ExtResource("5_0c6v6"), ExtResource("6_fyekp"), ExtResource("7_v5apf"), ExtResource("8_3dvwd")])
+recipes = Array[ExtResource("2_1jgv8")]([ExtResource("3_h1moo"), ExtResource("4_agfon"), ExtResource("5_0c6v6"), ExtResource("6_fyekp"), ExtResource("7_v5apf"), ExtResource("8_3dvwd"), ExtResource("9_agfon")])
 id = 1003
 display_name = "Shrink Potion 101"
 description = "Describes the process of making a Shrink Potion and the effects."

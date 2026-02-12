@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bpgnegvcg63o4"]
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://bpgnegvcg63o4"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_1wrnr"]
-[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/CheckMark.png" id="1_llbuy"]
+[ext_resource type="Texture2D" uid="uid://bja2o0mtpv0xw" path="res://art/pack/ui/status_effects/grow.png" id="1_e0mj2"]
 
 [resource]
 script = ExtResource("1_1wrnr")
 id = 3
 name = "Grow"
 description = "Makes you big"
-icon = ExtResource("1_llbuy")
+icon = ExtResource("1_e0mj2")
 effect = "grow"
 value = 3.0
 duration = -1.0
