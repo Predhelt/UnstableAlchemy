@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 ## How far the door travels to open/close (px).
-const MAX_OPEN_DISTANCE := 128.0 
+const MAX_OPEN_DISTANCE := 64.0 
 
 ## Tracks whether the door is currently open.
 var is_open := false

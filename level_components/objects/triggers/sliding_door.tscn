@@ -1,20 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkqs8bymlk354"]
+[gd_scene format=3 uid="uid://dkqs8bymlk354"]
 
 [ext_resource type="Script" uid="uid://nfaon5fja8pq" path="res://level_components/objects/triggers/sliding_door.gd" id="1_b6o5m"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object-gray.png" id="2_xwrac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m66gg"]
-size = Vector2(128, 7)
+size = Vector2(64, 12)
 
-[node name="SlidingDoor" type="AnimatableBody2D"]
+[node name="SlidingDoor" type="AnimatableBody2D" unique_id=463050243]
 script = ExtResource("1_b6o5m")
 open_time = 0.5
 close_time = 0.5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -57)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=564414494]
+position = Vector2(0, -26)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xwrac")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782915014]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_m66gg")
