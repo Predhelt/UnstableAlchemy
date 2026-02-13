@@ -18,7 +18,7 @@ var procedure_icon_grind := preload("res://art/pack/ui/minigame/grind.png")
 var procedure_icon_crush := preload("res://art/pack/ui/minigame/crush.png")
 var procedure_icon_bellows := preload("res://art/pack/ui/minigame/bellows.png")
 ## Button to be preloaded for initiating a quick craft of the procedure.
-var quick_craft_button := preload("./procedure_quick_craft_button.tscn")
+var recipe_craft_details := preload("./recipe_craft_details.tscn")
 ## Effect for when quick crafting is successful.
 var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_ui.tscn")
 
@@ -129,7 +129,13 @@ func add_ingredients(recipe: Recipe):
 	%ProcedureList.add_child(ingredient_display)
 
 func add_procedure(recipe: Recipe):
+	## Contains the craft procedure as well as additonal craft info
+	var cur_craft_info_container : VBoxContainer = VBoxContainer.new()
+	cur_craft_info_container.add_theme_constant_override("separation",2)
+	## Contains the craft procedure
 	var cur_procedures_container = HBoxContainer.new()
+	cur_craft_info_container.add_child(cur_procedures_container)
+	
 	var tool_icon : TextureRect = recipe_tool_icon.instantiate()
 	match recipe.tool_used:
 		&"Cauldron": 
@@ -183,17 +189,19 @@ func add_procedure(recipe: Recipe):
 	
 	%ProcedureList.add_child(cur_procedures_container)
 	
-	## Add the quick craft button.
-	var cur_qcb : Button = quick_craft_button.instantiate()
-	cur_qcb.craft_recipe = recipe
-	cur_qcb.connect("quick_craft_pressed", _on_quick_craft_pressed)
+	## Add the craft details.
+	var cur_cd : Control = recipe_craft_details.instantiate()
+	cur_cd.craft_recipe = recipe
+	cur_cd.connect("quick_craft_pressed", _on_quick_craft_pressed)
 	
-	if _has_craft_items(recipe) and recipe.id in character.crafted_recipes:
-		cur_qcb.disabled = false
+	if _has_craft_items(recipe) and character.crafted_recipes.has(recipe.id):
+		cur_cd.set_craft_count(character.crafted_recipes[recipe.id])
+		cur_cd.set_quick_craft_enabled(false)
 	else:
-		cur_qcb.disabled = true
+		cur_cd.set_quick_craft_enabled(true)
 	
-	%ProcedureList.add_child(cur_qcb)
+	cur_craft_info_container.add_child(cur_cd)
+	%ProcedureList.add_child(cur_craft_info_container)
 
 ## Helper function that adds each procedure input action button
 ## and whether the button should be enabled.

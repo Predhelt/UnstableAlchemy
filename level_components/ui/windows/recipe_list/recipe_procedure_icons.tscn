@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq7fjcq4ol8qy"]
+[gd_scene format=3 uid="uid://cq7fjcq4ol8qy"]
 
 [ext_resource type="PackedScene" uid="uid://dnl0g6b6pxenh" path="res://level_components/ui/windows/recipe_list/recipe_item_icon.tscn" id="1_4nb40"]
 
-[node name="RecipeProcedureIcons" type="Panel"]
+[node name="RecipeProcedureIcons" type="Panel" unique_id=828127796]
 custom_minimum_size = Vector2(252, 48)
 anchors_preset = -1
 anchor_right = 0.21
@@ -10,25 +10,26 @@ anchor_bottom = 0.075
 offset_right = -252.0
 offset_bottom = -48.0
 
-[node name="RecipeItemIcons" type="HBoxContainer" parent="."]
+[node name="RecipeItemIcons" type="HBoxContainer" parent="." unique_id=414845120]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_right = 1.016
 anchor_bottom = 1.0
+offset_right = -0.03201294
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RecipeItemIcon" parent="RecipeItemIcons" instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon" parent="RecipeItemIcons" unique_id=1062151229 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon2" parent="RecipeItemIcons" instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon2" parent="RecipeItemIcons" unique_id=1650747574 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon3" parent="RecipeItemIcons" instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon3" parent="RecipeItemIcons" unique_id=773320482 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon4" parent="RecipeItemIcons" instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon4" parent="RecipeItemIcons" unique_id=600755556 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon5" parent="RecipeItemIcons" instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon5" parent="RecipeItemIcons" unique_id=1765270768 instance=ExtResource("1_4nb40")]
 layout_mode = 2

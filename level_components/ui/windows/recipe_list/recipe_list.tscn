@@ -11,9 +11,9 @@
 clip_contents = true
 anchors_preset = -1
 anchor_left = 0.61
-anchor_top = 0.1
+anchor_top = 0.075
 anchor_right = 0.98
-anchor_bottom = 0.9
+anchor_bottom = 0.95
 theme = ExtResource("1_vxomh")
 script = ExtResource("2_2htw0")
 
@@ -24,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 1
 
 [node name="Panel" type="Panel" parent="VBoxContainer" unique_id=1677386495]
 custom_minimum_size = Vector2(0, 40)
@@ -80,7 +81,7 @@ text = "<-"
 [node name="Container" type="MarginContainer" parent="VBoxContainer" unique_id=741100764]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
@@ -105,16 +106,17 @@ layout_mode = 2
 
 [node name="ProductIcon" type="TextureRect" parent="VBoxContainer/Container/ProductDetails/HBoxContainer" unique_id=2006871977]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("3_2hrkg")
-expand_mode = 5
+expand_mode = 1
 stretch_mode = 5
 
 [node name="ProductName" type="Label" parent="VBoxContainer/Container/ProductDetails/HBoxContainer" unique_id=311045369]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Product Name"
 label_settings = ExtResource("5_eyj61")
 autowrap_mode = 3
@@ -134,6 +136,7 @@ label_settings = ExtResource("6_xwfla")
 
 [node name="ProcedureList" type="GridContainer" parent="VBoxContainer/Container/ProductDetails" unique_id=409876766]
 unique_name_in_owner = true
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 13
 size_flags_vertical = 3
