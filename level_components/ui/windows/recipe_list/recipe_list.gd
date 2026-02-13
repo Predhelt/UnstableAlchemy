@@ -187,8 +187,6 @@ func add_procedure(recipe: Recipe):
 	product_icon.tooltip_text = recipe.product_item.display_name
 	cur_procedures_container.add_child(product_icon)
 	
-	%ProcedureList.add_child(cur_procedures_container)
-	
 	## Add the craft details.
 	var cur_cd : Control = recipe_craft_details.instantiate()
 	cur_cd.craft_recipe = recipe
@@ -201,6 +199,7 @@ func add_procedure(recipe: Recipe):
 		cur_cd.set_quick_craft_enabled(true)
 	
 	cur_craft_info_container.add_child(cur_cd)
+	
 	%ProcedureList.add_child(cur_craft_info_container)
 
 ## Helper function that adds each procedure input action button
