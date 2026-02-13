@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwmnuacpgn38h"]
+[gd_scene format=3 uid="uid://bwmnuacpgn38h"]
 
 [ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/UADefaultTheme.tres" id="1_85brq"]
 [ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.gd" id="1_vo0bl"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy-mortar_pestle.png" id="5_eoa2f"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="6_1mow8"]
 
-[node name="MinigameMP" type="Panel"]
+[node name="MinigameMP" type="Panel" unique_id=542892921]
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.15
@@ -19,10 +19,10 @@ grow_vertical = 2
 theme = ExtResource("1_85brq")
 script = ExtResource("1_vo0bl")
 
-[node name="StartupDelay" type="Timer" parent="."]
+[node name="StartupDelay" type="Timer" parent="." unique_id=907235121]
 one_shot = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1437469776]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,11 +30,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="VBoxContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=179033537]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="WindowName" type="Label" parent="VBoxContainer/Panel"]
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel" unique_id=851627376]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -49,7 +49,7 @@ label_settings = ExtResource("2_aqc0h")
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel"]
+[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel" unique_id=870354735]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 6
@@ -66,7 +66,7 @@ grow_vertical = 2
 focus_mode = 0
 text = "X"
 
-[node name="ButtonBack" type="Button" parent="VBoxContainer/Panel"]
+[node name="ButtonBack" type="Button" parent="VBoxContainer/Panel" unique_id=375977391]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 6
@@ -83,12 +83,12 @@ grow_vertical = 2
 focus_mode = 0
 text = "<-"
 
-[node name="Container" type="Control" parent="VBoxContainer"]
+[node name="Container" type="Control" parent="VBoxContainer" unique_id=1879887728]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ButtonStart" type="Button" parent="VBoxContainer/Container"]
+[node name="ButtonStart" type="Button" parent="VBoxContainer/Container" unique_id=264976767]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
@@ -105,18 +105,7 @@ icon = ExtResource("4_r2g22")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ButtonAgain" type="Button" parent="VBoxContainer/Container"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 0
-offset_left = 43.0
-offset_top = 218.0
-offset_right = 193.0
-offset_bottom = 268.0
-text = "Make Another"
-
-[node name="Tool" type="Control" parent="VBoxContainer/Container"]
+[node name="Tool" type="Control" parent="VBoxContainer/Container" unique_id=1442688757]
 layout_mode = 1
 anchor_left = 0.65
 anchor_top = 0.1
@@ -124,7 +113,7 @@ anchor_right = 0.95
 anchor_bottom = 0.6
 offset_bottom = -1.5258789e-05
 
-[node name="ToolIcon" type="TextureRect" parent="VBoxContainer/Container/Tool"]
+[node name="ToolIcon" type="TextureRect" parent="VBoxContainer/Container/Tool" unique_id=314870759]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,7 +126,7 @@ texture = ExtResource("5_eoa2f")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ItemIcon" type="TextureRect" parent="VBoxContainer/Container/Tool"]
+[node name="ItemIcon" type="TextureRect" parent="VBoxContainer/Container/Tool" unique_id=1172065734]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
@@ -150,11 +139,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_1mow8")
 
-[node name="MinigameProgressBar" parent="VBoxContainer/Container" instance=ExtResource("2_70xyk")]
+[node name="MinigameProgressBar" parent="VBoxContainer/Container" unique_id=1199176248 instance=ExtResource("2_70xyk")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="ActionButtons" type="Control" parent="VBoxContainer/Container"]
+[node name="ActionButtons" type="Control" parent="VBoxContainer/Container" unique_id=1535259891]
 layout_mode = 1
 anchor_left = 0.25
 anchor_top = 0.1
@@ -164,7 +153,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(132, 111.6)
 
-[node name="ButtonUp" type="Button" parent="VBoxContainer/Container/ActionButtons"]
+[node name="ButtonUp" type="Button" parent="VBoxContainer/Container/ActionButtons" unique_id=381235021]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
@@ -186,7 +175,7 @@ theme_override_font_sizes/font_size = 36
 text = "^"
 icon_alignment = 1
 
-[node name="ButtonDown" type="Button" parent="VBoxContainer/Container/ActionButtons"]
+[node name="ButtonDown" type="Button" parent="VBoxContainer/Container/ActionButtons" unique_id=1080443497]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
@@ -207,7 +196,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 36
 text = "v"
 
-[node name="ButtonLeft" type="Button" parent="VBoxContainer/Container/ActionButtons"]
+[node name="ButtonLeft" type="Button" parent="VBoxContainer/Container/ActionButtons" unique_id=814750035]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
@@ -228,7 +217,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 36
 text = "<"
 
-[node name="ButtonRight" type="Button" parent="VBoxContainer/Container/ActionButtons"]
+[node name="ButtonRight" type="Button" parent="VBoxContainer/Container/ActionButtons" unique_id=1292398942]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
@@ -253,7 +242,6 @@ text = ">"
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ButtonStart" to="." method="_on_button_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Container/ButtonAgain" to="." method="_on_button_again_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonUp" to="." method="_on_button_up_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonDown" to="." method="_on_button_down_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/ActionButtons/ButtonLeft" to="." method="_on_button_left_pressed"]

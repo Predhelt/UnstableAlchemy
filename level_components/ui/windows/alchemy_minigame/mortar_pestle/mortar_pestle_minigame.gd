@@ -13,13 +13,11 @@ var cur_motion_index := 0
 var last_pressed_button : Button
 
 
-
 func _ready() -> void:
 	minigame_buttons.append(%ButtonUp)
 	minigame_buttons.append(%ButtonDown)
 	minigame_buttons.append(%ButtonLeft)
 	minigame_buttons.append(%ButtonRight)
-	
 
 
 func _input(event: InputEvent) -> void: # Override in M&P
@@ -89,19 +87,17 @@ func update_combo_input(action: StringName):
 	if cur_motion_index > 4:
 		is_crafting = false
 		check_results()
-		## Check if any more of the ingredient is in the inventory
-		if inventory_menu_ref.find_item(cur_craft_ingredients[0]) != -1:
-			## Generate the effect for completed crafting item
-			var last_item := last_item_produced.duplicate()
-			last_item.qty = 1
-			var effect_instance = items_gained_effect.instantiate()	
-			effect_instance.add_item(last_item)
-			effect_instance.scale = Vector2(1.3, 1.3)
-			add_child(effect_instance)
-			## Allow the last procedure to be auto-completed
-			%ButtonAgain.visible = true
-		else:
-			previous_window()
+		### Check if any more of the ingredient is in the inventory
+		#if inventory_menu_ref.find_item(cur_craft_ingredients[0]) != -1:
+			### Generate the effect for completed crafting item
+			#var last_item := last_item_produced.duplicate()
+			#last_item.qty = 1
+			#var effect_instance = items_gained_effect.instantiate()	
+			#effect_instance.add_item(last_item)
+			#effect_instance.scale = Vector2(1.3, 1.3)
+			#add_child(effect_instance)
+		#else:
+		previous_window()
 
 ## Overrides inherited function. Once a valid input configuration is recognized,
 ## this function is called to set the associated input action in the minigame to the current index.
@@ -138,7 +134,6 @@ func matching_recipe() -> Recipe:
 func open_window():
 	## Reset the window before opening
 	cur_craft_procedure = Procedure.new()
-	%ButtonAgain.visible = false
 	%ButtonStart.disabled = false
 	for button in minigame_buttons:
 		button.disabled = true
@@ -179,19 +174,19 @@ func _on_button_right_pressed() -> void:
 	update_combo_input(&"right")
 	select_button(%ButtonRight)
 
-
-func _on_button_again_pressed() -> void:
-	## Remove an ingredient from the inventory and add another produced item.
-	inventory_menu_ref.remove_inventory_item(cur_craft_ingredients[0], 1)
-	var last_item := last_item_produced.duplicate()
-	last_item.qty = 1
-	
-	var effect_instance = items_gained_effect.instantiate()	
-	effect_instance.add_item(last_item)
-	effect_instance.scale = Vector2(1.3, 1.3)
-	add_child(effect_instance)
-	
-	inventory_menu_ref.add_inventory_item(last_item)
-	
-	if inventory_menu_ref.find_item(cur_craft_ingredients[0]) == -1:
-		previous_window()
+#DEPRECATED: Using Quick Craft button in recipe list for similar purpose
+#func _on_button_again_pressed() -> void:
+	### Remove an ingredient from the inventory and add another produced item.
+	#inventory_menu_ref.remove_inventory_item(cur_craft_ingredients[0], 1)
+	#var last_item := last_item_produced.duplicate()
+	#last_item.qty = 1
+	#
+	#var effect_instance = items_gained_effect.instantiate()	
+	#effect_instance.add_item(last_item)
+	#effect_instance.scale = Vector2(1.3, 1.3)
+	#add_child(effect_instance)
+	#
+	#inventory_menu_ref.add_inventory_item(last_item)
+	#
+	#if inventory_menu_ref.find_item(cur_craft_ingredients[0]) == -1:
+		#previous_window()

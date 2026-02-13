@@ -27,8 +27,6 @@ func _ready() -> void:
 	%MortarPestle.inventory_menu_ref = self
 	%MinigameMP.tool_ref = %MortarPestle
 	%Merger.inventory_menu_ref = self
-	
-	
 
 ## Controls functions executed when input actions are pressed
 func _input(event: InputEvent) -> void:
@@ -121,6 +119,14 @@ func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 		add_inventory_item(item)
 	if recipe != null:
 		character_ref.learn_recipe(recipe, true)
+		
+		## Update the recipe list if already open.
+		if %RecipeList.visible:
+			var cur_recipe : Recipe = %RecipeList.cur_recipe_page
+			%RecipeList.close_window()
+			%RecipeList.open_window()
+			if cur_recipe:
+				%RecipeList.open_recipe_page(cur_recipe)
 
 ## Finds the first index of a given item in the inventory. returns -1 if not found.
 func find_item(item : Item) -> int:
@@ -231,6 +237,7 @@ func consume_item(item : Item, index : int):
 				if %RecipeList.visible:
 					%RecipeList.close_window()
 					%RecipeList.open_window()
+					
 			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
 				character_ref.update_status_message(item.on_consume_message)
 		

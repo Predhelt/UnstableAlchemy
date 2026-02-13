@@ -145,6 +145,13 @@ func open_minigame(mg_items: Array[Item]):
 	minigame_ref.init_ingredients(mg_items)
 	minigame_ref.inventory_menu_ref = inventory_menu_ref
 	inventory_menu_ref.close_window()
+	## Remove the items being used by the alchemy tool from the inventory
+	## while the minigame is in progress
+	var mg_qtys : Array[int] = []
+	for i in mg_items.size():
+		mg_qtys.append(1)
+	inventory_menu_ref.remove_inventory_items(mg_items,mg_qtys)
+	
 	minigame_ref.open_window()
 
 ## For alchemy tools that do not have a separate minigame window.

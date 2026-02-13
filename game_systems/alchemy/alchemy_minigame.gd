@@ -62,10 +62,14 @@ func init_ingredients(ingredients : Array[Item]) -> void:
 	for i in range(ingredients.size()):
 		cur_craft_ingredients.append(ingredients[i])
 
-## Closes the minigame window and ensures that the menu group is updated
+## Closes the minigame window and ensures that the menu group is updated.
 func close_window():
 	is_crafting = false
 	visible = false
+	## Return the craft ingredients back to the inventory if not already used.
+	for item in cur_craft_ingredients:
+		item.qty = 1
+		inventory_menu_ref.add_inventory_item(item)
 	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	global.left_window = null ## This window shows up in the center of the screen
@@ -80,6 +84,9 @@ func close_window():
 func previous_window():
 	is_crafting = false
 	visible = false
+	for item in cur_craft_ingredients:
+		item.qty = 1
+		inventory_menu_ref.add_inventory_item(item)
 	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	global.left_window = null
@@ -127,9 +134,7 @@ func check_results():
 	effect_instance.scale = Vector2(1.3, 1.3)
 	tool_ref.add_child(effect_instance)
 	
-	for item : Item in cur_craft_ingredients:
-		if item:
-			inventory_menu_ref.remove_inventory_item(item, 1)
+	cur_craft_ingredients = [] ## Consider the ingredients as used, clear the list.
 	inventory_menu_ref.add_produced_item(product_item, product_recipe)
 	last_item_produced = product_item
 	

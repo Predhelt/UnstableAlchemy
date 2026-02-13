@@ -9,6 +9,8 @@ extends UIWindow
 ## List of product IDs in the recipe list.
 ## Prevents the same item appearing multiple times in the recipe list.
 var product_ids : Array[int]
+## Tracks if a recipe page is open or not for state checks.
+var cur_recipe_page : Recipe
 ## Icon(Node)s to be preloaded for use in display
 var recipe_item_icon : PackedScene = preload("./recipe_item_icon.tscn")
 var recipe_tool_icon : PackedScene = preload("./recipe_tool_icon.tscn")
@@ -50,6 +52,7 @@ func close_window() -> void:
 	
 	%RecipeItems.clear()
 	product_ids.clear()
+	cur_recipe_page = null
 
 
 func open_window() -> bool:
@@ -104,7 +107,15 @@ func open_recipe_page(recipe : Recipe):
 	%WindowName.text = "Item Details"
 	%ButtonBack.visible = true
 	%ProductDetails.visible = true
-	
+	cur_recipe_page = recipe
+
+## Refreshes the display on the recipe page
+## NOTE: Approach is general-purpose and not optimized.
+func refresh_recipe_page():
+	var cur_recipe = cur_recipe_page
+	close_window()
+	open_window()
+	open_recipe_page(cur_recipe)
 
 func add_ingredients(recipe: Recipe):
 	var ingredient_display : Control = recipe_ingredient_icons.instantiate()
@@ -192,11 +203,17 @@ func add_procedure(recipe: Recipe):
 	cur_cd.craft_recipe = recipe
 	cur_cd.connect("quick_craft_pressed", _on_quick_craft_pressed)
 	
-	if _has_craft_items(recipe) and character.crafted_recipes.has(recipe.id):
+	var has_craft_recipe := character.crafted_recipes.has(recipe.id)
+	if has_craft_recipe:
 		cur_cd.set_craft_count(character.crafted_recipes[recipe.id])
-		cur_cd.set_quick_craft_enabled(false)
 	else:
+		cur_cd.set_craft_count(0)
+	
+	if (_has_craft_items(recipe) and has_craft_recipe and 
+			character.crafted_recipes[recipe.id] > 0):
 		cur_cd.set_quick_craft_enabled(true)
+	else:
+		cur_cd.set_quick_craft_enabled(false)
 	
 	cur_craft_info_container.add_child(cur_cd)
 	
@@ -261,7 +278,7 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 		print("ERROR: Character has not crafted this recipe before. returning false.")
 		return false
 	if not _has_craft_items(recipe):
-		print("ERROR: character inventory does not have the necessary items to craft. returning false.")
+		print("ERROR: Character inventory does not have the necessary items to craft. returning false.")
 		return false
 	for item in recipe.ingredients:
 		if not item:
@@ -276,13 +293,23 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 		print("ERROR: Product item " + product_item.display_name + 
 			" not added successfully to inventory.")
 		return false
+	
 	## Update the inventory window if it is open while the recipe window is open.
 	%InventoryMenu.update_window()
+	## Update the alchemy minigame window if it is open while recipe window is open.
+	if %MinigameCauldron.visible:
+		%MinigameCauldron.update_window()
+	if %MinigameMP.visible:
+		%MinigameMP.update_window()
+	
 	## Create effect in recipe window to show that the item was added successfuly.
 	var effect_instance = items_gained_effect.instantiate()
 	effect_instance.add_item(product_item, recipe.product_item.qty)
 	effect_instance.scale = Vector2(1.3, 1.3)
 	add_child(effect_instance)
+	## Check if has the ingredients to craft the item again.
+	if not _has_craft_items(recipe):
+		refresh_recipe_page()
 	return true
 
 ## Uses the button icon reference and ingredient item as input.
@@ -301,11 +328,9 @@ func _link_ingredient_button_to_recipe(button : Button, item : Item) -> bool:
 	return false
 
 ## When an ingredient button in a recipe page is pressed, opens that ingredient's recipe page.
-## Inefficient, but closes and reopens the recipe menu for the given ingredient.
 func _on_ingredient_button_pressed(recipe : Recipe):
-	close_window()
-	open_window()
-	open_recipe_page(recipe)
+	cur_recipe_page = recipe
+	refresh_recipe_page()
 
 ## When a recipe item is clicked in the procedure, open that recipe page.
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
