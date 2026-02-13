@@ -188,7 +188,7 @@ func add_procedure(recipe: Recipe):
 	cur_qcb.craft_recipe = recipe
 	cur_qcb.connect("quick_craft_pressed", _on_quick_craft_pressed)
 	
-	if _has_craft_items(recipe):
+	if _has_craft_items(recipe) and recipe.id in character.crafted_recipes:
 		cur_qcb.disabled = false
 	else:
 		cur_qcb.disabled = true
@@ -250,8 +250,11 @@ func _has_craft_items(recipe : Recipe) -> bool:
 ## Perform the craft, if possible, then add the result to the character's inventory.
 ## Returns whether or not the craft was successful.
 func _on_quick_craft_pressed(recipe : Recipe) -> bool:
+	if recipe.id not in character.crafted_recipes:
+		print("ERROR: Character has not crafted this recipe before. returning false.")
+		return false
 	if not _has_craft_items(recipe):
-		print("ERROR: character inventory does not have the necessary items to craft.")
+		print("ERROR: character inventory does not have the necessary items to craft. returning false.")
 		return false
 	for item in recipe.ingredients:
 		if not item:

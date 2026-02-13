@@ -120,7 +120,7 @@ func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
 	if recipe != null:
-		character_ref.learn_recipe(recipe)
+		character_ref.learn_recipe(recipe, true)
 
 ## Finds the first index of a given item in the inventory. returns -1 if not found.
 func find_item(item : Item) -> int:

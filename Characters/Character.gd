@@ -32,6 +32,8 @@ var status_message_timer := 0.0
 @export var attributes : Attributes
 ## List of recipes known by the character
 @export var known_recipes : Array[Recipe]
+## List of IDs of recipes that have been crafted by the character
+var crafted_recipes : Array[int]
 ## Recipes that have not been viewed yet in the recipe page
 var new_recipes: Array[Recipe]
 ## The currently selected tool that the character is holding
@@ -111,7 +113,10 @@ func get_attribute(att_name : String) -> float:
 
 ## Adds the given recipe to the list of known recipes. Returns false if the recipe is already learned
 ## or true if the recipe is successfully added to the list of known recipes.
-func learn_recipe(r: Recipe) -> bool:
+## if is_crafted is true, will add the recipe to the list of crafted recipes, if not already.
+func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
+	if is_crafted and r.id not in crafted_recipes:
+		crafted_recipes.append(r.id)
 	if r in known_recipes:
 		return false
 	known_recipes.append(r)
