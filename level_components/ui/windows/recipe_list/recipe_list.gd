@@ -17,6 +17,11 @@ var recipe_procedure_icons : PackedScene = preload("./recipe_procedure_icons.tsc
 var procedure_icon_grind := preload("res://art/pack/ui/minigame/grind.png")
 var procedure_icon_crush := preload("res://art/pack/ui/minigame/crush.png")
 var procedure_icon_bellows := preload("res://art/pack/ui/minigame/bellows.png")
+## Button to be preloaded for initiating a quick craft of the procedure.
+var quick_craft_button := preload("./procedure_quick_craft_button.tscn")
+## Effect for when quick crafting is successful.
+var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_ui.tscn")
+
 
 func _ready() -> void:
 	window_mode = &"menu"
@@ -146,6 +151,7 @@ func add_procedure(recipe: Recipe):
 	label_arrow.text = "<-"
 	cur_procedures_container.add_child(label_arrow)
 	
+	## Set up the merger, if current tool.
 	if  recipe.tool_used == &"Merger":
 		var ingredient_icon : Button = recipe_item_icon.instantiate()
 		ingredient_icon.icon = recipe.ingredients[0].texture
@@ -163,9 +169,11 @@ func add_procedure(recipe: Recipe):
 		_link_ingredient_button_to_recipe(ingredient_icon, recipe.ingredients[1])
 		cur_procedures_container.add_child(ingredient_icon)
 	
+	## Add the procedure icons.
 	_add_procedure_input_actions(cur_procedures_container, recipe)
 	
-	var label_qty = Label.new()
+	## Add the product icon and count.
+	var label_qty : Label = Label.new()
 	label_qty.text = "= " + str(recipe.product_item_amount)
 	cur_procedures_container.add_child(label_qty)
 	var product_icon : Button = recipe_item_icon.instantiate()
@@ -174,8 +182,21 @@ func add_procedure(recipe: Recipe):
 	cur_procedures_container.add_child(product_icon)
 	
 	%ProcedureList.add_child(cur_procedures_container)
+	
+	## Add the quick craft button.
+	var cur_qcb : Button = quick_craft_button.instantiate()
+	cur_qcb.craft_recipe = recipe
+	cur_qcb.connect("quick_craft_pressed", _on_quick_craft_pressed)
+	
+	if _has_craft_items(recipe):
+		cur_qcb.disabled = false
+	else:
+		cur_qcb.disabled = true
+	
+	%ProcedureList.add_child(cur_qcb)
 
-
+## Helper function that adds each procedure input action button
+## and whether the button should be enabled.
 func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 	if not recipe.procedure:
 		return
@@ -215,6 +236,45 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 		
 	container.add_child(procedure_icons)
 
+## Determines whether or not the current procedure can be crafted
+## with the character's current inventory
+func _has_craft_items(recipe : Recipe) -> bool:
+	for item in recipe.ingredients:
+		var has_item := false
+		if not item:
+			continue
+		if not character.inventory.has_item(item):
+			return false
+	return true
+
+## Perform the craft, if possible, then add the result to the character's inventory.
+## Returns whether or not the craft was successful.
+func _on_quick_craft_pressed(recipe : Recipe) -> bool:
+	if not _has_craft_items(recipe):
+		print("ERROR: character inventory does not have the necessary items to craft.")
+		return false
+	for item in recipe.ingredients:
+		if not item:
+			continue
+		if not character.inventory.remove_items([item], [1]):
+			print("ERROR: No item " + item.display_name + " found in inventory.")
+			return false
+	## Add product items to inventory.
+	var product_item : Item = recipe.product_item.duplicate()
+	product_item.qty = recipe.product_item_amount
+	if not character.inventory.add_item(product_item):
+		print("ERROR: Product item " + product_item.display_name + 
+			" not added successfully to inventory.")
+		return false
+	## Update the inventory window if it is open while the recipe window is open.
+	%InventoryMenu.update_window()
+	## Create effect in recipe window to show that the item was added successfuly.
+	var effect_instance = items_gained_effect.instantiate()
+	effect_instance.add_item(product_item, recipe.product_item.qty)
+	effect_instance.scale = Vector2(1.3, 1.3)
+	add_child(effect_instance)
+	return true
+
 ## Uses the button icon reference and ingredient item as input.
 ## If ingredient is also a known recipe, make it so that when the icon is pressed,
 ## it links to the ingredient's recipe page.
@@ -237,15 +297,15 @@ func _on_ingredient_button_pressed(recipe : Recipe):
 	open_window()
 	open_recipe_page(recipe)
 
-
+## When a recipe item is clicked in the procedure, open that recipe page.
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	open_recipe_page(character.known_recipes[index])
 
-
+## Close the window.
 func _on_button_close_pressed() -> void:
 	close_window()
 
-
+## Close the current window an reopen the default list of recipes.
 func _on_button_back_pressed() -> void:
 	close_window()
 	open_window()

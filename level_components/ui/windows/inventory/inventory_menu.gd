@@ -115,7 +115,7 @@ func add_inventory_item(item : Item) -> bool:
 	return true
 
 ## Adds an item that was produced through crafting to the inventory
-## And add the recipe to the recipe book, if not already.
+## And add the recipe to the known recipe book, if not already.
 func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
@@ -228,6 +228,9 @@ func consume_item(item : Item, index : int):
 		if item.type == "Book": ## If item is a book
 			for recipe in item.recipes:
 				character_ref.learn_recipe(recipe)
+				if %RecipeList.visible:
+					%RecipeList.close_window()
+					%RecipeList.open_window()
 			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
 				character_ref.update_status_message(item.on_consume_message)
 		

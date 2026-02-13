@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b40gmo70ipncx"]
+
+[ext_resource type="Script" uid="uid://dsclyua8eplsr" path="res://level_components/ui/windows/recipe_list/procedure_quick_craft_button.gd" id="1_v32ms"]
+
+[node name="ProcedureQuickCraftButton" type="Button" unique_id=59974045]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Quick
+Craft"
+script = ExtResource("1_v32ms")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
