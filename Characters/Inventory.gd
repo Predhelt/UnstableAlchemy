@@ -44,7 +44,6 @@ func add_stackable_item(item : Item) -> bool:
 			
 			cur_item.qty = cur_item.max_qty
 			item.qty -= amount_to_remove
-			
 			return true
 		
 		## If the stack is a match
@@ -94,7 +93,6 @@ func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingSta
 					if cur_qty < inventory_item.qty:
 						inventory_item.qty -= cur_qty ## Only remove some if amount is less than the stack
 						qtys[cur_item_index] = 0
-						break
 					else:
 						#remove_inventory_slot(inventory_index)
 						items.remove_at(inventory_index)
@@ -122,6 +120,8 @@ func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingSta
 ## Returns whether the inventory contains any amount of the requested item.
 func has_item(item : Item) -> bool:
 	for i in items:
+		if not i:
+			continue
 		if i.id == item.id:
 			return true
 	return false
@@ -136,7 +136,7 @@ func has_item_id(item_id : int) -> bool:
 ## Returns whether the inventory contains the appropriate amount of each item.
 func has_item_amounts(items_checking : Array[Item], qtys : Array[int]) -> bool:
 	if items_checking.size() != qtys.size():
-		print("ERROR: Items and quantities arrays should have the name size")
+		print("ERROR: Items and quantities arrays should have the same size")
 		return false
 	
 	for i in range(items_checking.size()):
@@ -160,13 +160,12 @@ func get_item_index(item_id : int) -> int:
 	return -1
 
 ## Checks if the inventory has all items and their appropriate amounts.
-## Returns a dictionary of Keys: indices and Values: IDs of the items in inventory.
+## Returns a dictionary of Keys: Indices and Values: IDs of the items in inventory.
 func get_item_indices(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
 	if items_checking.size() != qtys.size():
 		print("ERROR: Items and quantities arrays should have the name size")
 		return {}
-	
-	var found_items : Dictionary ## Key : index, Value : id of items in inventory
+	var found_items : Dictionary ## Key : Index, Value : ID of items in inventory
 	
 	for i in range(items_checking.size()):
 		var temp_qty : int = qtys[i]

@@ -18,8 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="15_vrmy2"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="16_iwwtm"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="17_wq3r3"]
+[ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://game_systems/alchemy/recipes/cauldron/speed_potion.tres" id="18_5j5wj"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="18_7u4j8"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/recipe_item.tscn" id="19_hiqpv"]
+[ext_resource type="Resource" uid="uid://ch8ask17pesg6" path="res://game_systems/alchemy/recipes/cauldron/speed_potion2.tres" id="19_v3o2u"]
 [ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="20_1v48h"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="21_0itjd"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="22_8qlof"]
@@ -109,7 +111,7 @@ offset_bottom = 154.0
 unique_name_in_owner = true
 position = Vector2(529, 298)
 character_camera_ref = NodePath("../PlayerCamera")
-known_recipes = Array[ExtResource("16_iwwtm")]([])
+known_recipes = Array[ExtResource("16_iwwtm")]([ExtResource("18_5j5wj"), ExtResource("19_v3o2u")])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
 remote_path = NodePath("../../PlayerCamera")

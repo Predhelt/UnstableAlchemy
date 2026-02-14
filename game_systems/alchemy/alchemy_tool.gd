@@ -150,8 +150,8 @@ func open_minigame(mg_items: Array[Item]):
 	var mg_qtys : Array[int] = []
 	for i in mg_items.size():
 		mg_qtys.append(1)
-	inventory_menu_ref.remove_inventory_items(mg_items,mg_qtys)
-	
+	if not inventory_menu_ref.remove_inventory_items(mg_items,mg_qtys):
+		print("ERROR: Items not all removed from the inventory properly.")
 	minigame_ref.open_window()
 
 ## For alchemy tools that do not have a separate minigame window.

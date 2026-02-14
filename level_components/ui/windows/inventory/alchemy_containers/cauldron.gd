@@ -6,4 +6,4 @@ func _ready() -> void:
 
 
 func _use_items(): ## Overrides the _use_items() function in AlchemyTool
-	open_minigame(items)
+	open_minigame(items.duplicate())

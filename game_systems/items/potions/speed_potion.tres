@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Potion" load_steps=5 format=3 uid="uid://8t2gx2tso7i3"]
+[gd_resource type="Resource" script_class="Potion" format=3 uid="uid://8t2gx2tso7i3"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_xs4j4"]
 [ext_resource type="Resource" uid="uid://cxhb6l0h81ebt" path="res://game_systems/status_effects/energized.tres" id="2_b3il5"]
@@ -11,7 +11,6 @@ id = 500
 display_name = "Speed Potion"
 description = "A potion with a green tint."
 texture = ExtResource("4_xs4j4")
-max_qty = 10
-qty = 1
+qty = 5
 on_consume_effects = Array[ExtResource("1_xs4j4")]([ExtResource("2_b3il5")])
 on_consume_message = "I feel [color=green]faster[/color]"

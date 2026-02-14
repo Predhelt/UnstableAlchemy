@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bduil7kx6jkrw"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bduil7kx6jkrw"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_toqpt"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_7pasi"]
@@ -11,5 +11,7 @@ id = 100
 display_name = "Green Flakes"
 description = "Green herb leaves that have been ground up into flakes"
 texture = ExtResource("4_06jds")
+max_qty = 32
+qty = 5
 on_consume_effects = Array[ExtResource("1_toqpt")]([ExtResource("2_eg217")])
 on_consume_message = "You feel a burst of energy, but it quickly subsides"

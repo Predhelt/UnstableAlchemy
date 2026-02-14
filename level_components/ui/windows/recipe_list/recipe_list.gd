@@ -200,7 +200,7 @@ func add_procedure(recipe: Recipe):
 	product_icon.tooltip_text = recipe.product_item.display_name
 	cur_procedures_container.add_child(product_icon)
 	
-	## Add the craft details.
+	## Add the craft details and quick craft button.
 	var cur_cd : Control = recipe_craft_details.instantiate()
 	cur_cd.craft_recipe = recipe
 	cur_cd.connect("quick_craft_pressed", _on_quick_craft_pressed)
@@ -265,12 +265,24 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 ## Determines whether or not the current procedure can be crafted
 ## with the character's current inventory
 func _has_craft_items(recipe : Recipe) -> bool:
+	## Combine duplicate ingredients
+	var ingredients : Array[Item]
+	var qtys : Array[int]
 	for item in recipe.ingredients:
-		var has_item := false
-		if not item:
-			continue
-		if not character.inventory.has_item(item):
-			return false
+		var is_item_added := false
+		if ingredients:
+			for i in range(ingredients.size()):
+				if item.id == ingredients[i].id:
+					qtys[i] += 1
+					is_item_added = true
+					break
+		if not is_item_added:
+			ingredients.append(item)
+			qtys.append(1)
+	#print(qtys)
+	## Check if item counts are in the inventory
+	if not character.inventory.has_item_amounts(ingredients, qtys):
+		return false
 	return true
 
 ## Perform the craft, if possible, then add the result to the character's inventory.

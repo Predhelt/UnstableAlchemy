@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cyyy0xtvgwap3"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cyyy0xtvgwap3"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_sfhn5"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_mv5cx"]
@@ -8,10 +8,6 @@
 script = ExtResource("2_mv5cx")
 id = 201
 display_name = "Yellow Paste"
-description = ""
 texture = ExtResource("3_ebv0x")
-max_qty = 10
-qty = 1
-on_consume_effects = Array[ExtResource("1_sfhn5")]([])
-on_consume_message = ""
+qty = 5
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

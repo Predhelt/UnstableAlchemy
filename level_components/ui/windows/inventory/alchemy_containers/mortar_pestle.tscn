@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://y1067fe07wmf"]
+[gd_scene format=3 uid="uid://y1067fe07wmf"]
 
 [ext_resource type="Script" uid="uid://bcq37w6pbek80" path="res://level_components/ui/windows/inventory/alchemy_containers/mortar_pestle.gd" id="1_a40nq"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy-mortar_pestle.png" id="2_0nnx4"]
@@ -15,12 +15,12 @@ func add_item(item: Item):
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nbwu"]
 size = Vector2(126, 124)
 
-[node name="MortarPestle" type="Control"]
+[node name="MortarPestle" type="Control" unique_id=919740570]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_a40nq")
 
-[node name="ToolIcon" type="TextureRect" parent="."]
+[node name="ToolIcon" type="TextureRect" parent="." unique_id=878702128]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -37,7 +37,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("2_0nnx4")
 
-[node name="ItemGrid" type="GridContainer" parent="ToolIcon"]
+[node name="ItemGrid" type="GridContainer" parent="ToolIcon" unique_id=1946886269]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,7 +53,7 @@ grow_vertical = 2
 mouse_filter = 2
 columns = 2
 
-[node name="Button1" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button1" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=1889489127]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -62,7 +62,7 @@ texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button2" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button2" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=811437289]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -71,7 +71,7 @@ texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button3" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button3" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=1249444247]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -80,7 +80,7 @@ texture_normal = ExtResource("2_m0hp4")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ButtonConfirm" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="ButtonConfirm" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=555999888]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -89,7 +89,7 @@ texture_normal = ExtResource("4_88qmb")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="ToolIcon"]
+[node name="ProgressBar" type="ProgressBar" parent="ToolIcon" unique_id=1427846018]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -106,14 +106,14 @@ mouse_filter = 2
 step = 0.001
 show_percentage = false
 
-[node name="MortarPestleArea" type="Area2D" parent="." groups=["droppable"]]
+[node name="MortarPestleArea" type="Area2D" parent="." unique_id=291153026 groups=["droppable"]]
 collision_layer = 4
 collision_mask = 4
 monitoring = false
 priority = 1
 script = SubResource("GDScript_ailbx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MortarPestleArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MortarPestleArea" unique_id=82524870]
 shape = SubResource("RectangleShape2D_0nbwu")
 debug_color = Color(0.5137255, 0.41960785, 1, 0.41960785)
 
