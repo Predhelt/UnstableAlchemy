@@ -70,23 +70,6 @@ func pickup_book(character : Character) -> void:
 	
 	## remove item from world
 	self.queue_free()
-	
-	## Add recipe to recipe list (if not already in recipe)
-	#if not recipes:
-		#character.update_status_message("No recipes!")
-	#
-	#else: 
-		#var has_new_recipe := false
-		#for recipe in recipes:
-			#if character.learn_recipe(recipe):
-				#has_new_recipe = true
-		#
-		#if has_new_recipe:
-			#character.update_status_message("Recipe(s) learned")
-		#else:
-			#character.update_status_message("No new recipes")
-	#
-	
 
 func emit_effect():
 	var effect_instance : GPUParticles2D = interact_effect.instantiate()

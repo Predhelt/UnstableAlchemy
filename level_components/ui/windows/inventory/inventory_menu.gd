@@ -122,11 +122,11 @@ func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 		
 		## Update the recipe list if already open.
 		if %RecipeList.visible:
-			var cur_recipe : Recipe = %RecipeList.cur_recipe_page
+			var cur_recipe_item : Item = %RecipeList.cur_recipe_item
 			%RecipeList.close_window()
 			%RecipeList.open_window()
-			if cur_recipe:
-				%RecipeList.open_recipe_page(cur_recipe)
+			if cur_recipe_item:
+				%RecipeList.open_recipe_page(cur_recipe_item)
 
 ## Finds the first index of a given item in the inventory. returns -1 if not found.
 func find_item(item : Item) -> int:
