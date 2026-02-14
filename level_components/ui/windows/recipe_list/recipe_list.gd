@@ -143,6 +143,8 @@ func add_procedure(recipe: Recipe):
 	## Contains the craft procedure as well as additonal craft info
 	var cur_craft_info_container : VBoxContainer = VBoxContainer.new()
 	cur_craft_info_container.add_theme_constant_override("separation",2)
+	cur_craft_info_container.size_flags_horizontal = SIZE_FILL + SIZE_EXPAND
+	
 	## Contains the craft procedure
 	var cur_procedures_container = HBoxContainer.new()
 	cur_craft_info_container.add_child(cur_procedures_container)
