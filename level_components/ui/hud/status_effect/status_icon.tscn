@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cl5hwf03hewkf"]
 
-[ext_resource type="Texture2D" uid="uid://bqxrtqfulunhn" path="res://icon.svg" id="1_hmltb"]
 [ext_resource type="Script" uid="uid://bo3hnrqh7dqo0" path="res://level_components/ui/hud/status_effect/status_icon.gd" id="2_c35fh"]
+[ext_resource type="Texture2D" uid="uid://saa6dltakqms" path="res://art/pack/ui/question.png" id="2_nvt4q"]
 
 [node name="StatusIcon" type="Panel" unique_id=1205997405]
 custom_minimum_size = Vector2(64, 64)
@@ -13,7 +13,7 @@ script = ExtResource("2_c35fh")
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
-texture = ExtResource("1_hmltb")
+texture = ExtResource("2_nvt4q")
 expand_mode = 3
 stretch_mode = 5
 
