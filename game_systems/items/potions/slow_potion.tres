@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="Potion" load_steps=5 format=3 uid="uid://brixxgupiecr2"]
+[gd_resource type="Resource" script_class="Potion" format=3 uid="uid://brixxgupiecr2"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_dhjbp"]
 [ext_resource type="Resource" uid="uid://081jaxfsfvmd" path="res://game_systems/status_effects/slow.tres" id="2_6uoqi"]
 [ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="2_dhjbp"]
-[ext_resource type="Texture2D" uid="uid://cvc8nh7ajt6ym" path="res://art/pack/alchemy/potions/potion-standard-blue.png" id="4_4iylo"]
+[ext_resource type="Texture2D" uid="uid://dvb4agusn0mbp" path="res://art/pack/alchemy/potions/potion-standard-purple.png" id="4_4gaxh"]
 
 [resource]
 script = ExtResource("2_dhjbp")
 id = 505
 display_name = "Slow Potion"
 description = "Move slower"
-texture = ExtResource("4_4iylo")
+texture = ExtResource("4_4gaxh")
 on_consume_effects = Array[ExtResource("1_dhjbp")]([ExtResource("2_6uoqi")])
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

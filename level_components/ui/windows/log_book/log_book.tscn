@@ -1,0 +1,612 @@
+[gd_scene format=3 uid="uid://devoaotbjwrvh"]
+
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/UADefaultTheme.tres" id="1_3k5yu"]
+[ext_resource type="Script" uid="uid://dtft7r4vn4wk7" path="res://level_components/ui/windows/log_book/log_book.gd" id="2_xtph8"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/WindowLabel.tres" id="3_3ksyy"]
+[ext_resource type="Texture2D" uid="uid://b2piytxgwcmnx" path="res://art/pack/ingredients/inventory/blue-berries.png" id="4_wuyk7"]
+[ext_resource type="Texture2D" uid="uid://bjdhvk5254amr" path="res://art/pack/ingredients/inventory/blue-juice.png" id="5_lrrx2"]
+[ext_resource type="Texture2D" uid="uid://c16pbasu8ahrb" path="res://art/pack/ingredients/inventory/blue-berry-seed.png" id="6_vptl1"]
+[ext_resource type="Texture2D" uid="uid://bla8lcdtx1wn7" path="res://art/pack/ingredients/inventory/flower-stem.png" id="7_welqp"]
+[ext_resource type="Texture2D" uid="uid://cu1jbdjnxfplf" path="res://art/pack/ingredients/inventory/gray-juice.png" id="8_555qq"]
+[ext_resource type="Texture2D" uid="uid://saa6dltakqms" path="res://art/pack/ui/question.png" id="9_o6slk"]
+[ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="10_y53h3"]
+[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://art/pack/ingredients/inventory/herb-green-leaf.png" id="11_0tc3s"]
+[ext_resource type="Texture2D" uid="uid://k1iskddykeea" path="res://art/pack/ingredients/inventory/green-paste.png" id="12_80ihe"]
+[ext_resource type="Texture2D" uid="uid://nf7rq681d3ku" path="res://art/pack/ingredients/inventory/orange-paste.png" id="13_t6qy2"]
+[ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red-berries.png" id="14_luiyi"]
+[ext_resource type="Texture2D" uid="uid://b5mm0hootfp6a" path="res://art/pack/ingredients/inventory/red-juice.png" id="15_b6osi"]
+[ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red-berry-seed.png" id="16_4y6fb"]
+[ext_resource type="Texture2D" uid="uid://bx5pe8o6eontp" path="res://art/pack/ingredients/inventory/flower-stem-saturated.png" id="17_yrnwa"]
+[ext_resource type="Texture2D" uid="uid://n2yf4o3180f6" path="res://art/pack/ingredients/inventory/stem-strands.png" id="18_yrbgu"]
+[ext_resource type="Texture2D" uid="uid://b2dy15055yv71" path="res://art/pack/ingredients/inventory/yellow-petals-ground.png" id="19_xyuuy"]
+[ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow-paste.png" id="20_s8crv"]
+[ext_resource type="Texture2D" uid="uid://clun0l8tflfr1" path="res://art/pack/ingredients/inventory/yellow-petals.png" id="21_0kap8"]
+[ext_resource type="Texture2D" uid="uid://cyottad4fs3dy" path="res://art/pack/alchemy/potions/potion-standard-green.png" id="22_nvycw"]
+[ext_resource type="Texture2D" uid="uid://dycwpig3a48tr" path="res://art/pack/alchemy/potions/potion-standard-cyan.png" id="23_y3hki"]
+[ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://art/pack/alchemy/potions/potion-standard-grey.png" id="24_rda33"]
+[ext_resource type="Texture2D" uid="uid://nbjw72ep5di7" path="res://art/pack/alchemy/potions/potion-standard-orange.png" id="25_gdb1q"]
+[ext_resource type="Texture2D" uid="uid://cvc8nh7ajt6ym" path="res://art/pack/alchemy/potions/potion-standard-blue.png" id="26_2dv36"]
+[ext_resource type="Texture2D" uid="uid://dvb4agusn0mbp" path="res://art/pack/alchemy/potions/potion-standard-purple.png" id="27_a8fgq"]
+[ext_resource type="Texture2D" uid="uid://be0mimtq0pj4r" path="res://art/pack/alchemy/potions/potion-standard-red.png" id="28_51e1v"]
+
+[node name="LogBookMenu" type="Panel" unique_id=357727730]
+z_index = 25
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3k5yu")
+script = ExtResource("2_xtph8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1702535529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=740406083]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel" unique_id=2021165783]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Window Name"
+label_settings = ExtResource("3_3ksyy")
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel" unique_id=1416352540]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -16.0
+offset_right = -4.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "X"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 2
+tab_0/title = "Items"
+tab_1/title = "Potions"
+tab_2/title = "Objects"
+tab_3/title = "Books"
+tab_4/title = "Places"
+tab_5/title = "People"
+
+[node name="TabItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Items"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabItems" unique_id=805910414]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer" unique_id=752397701]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons" unique_id=1022370267]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PageButtonList" type="GridContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer" unique_id=1834773395]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="ButtonBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1772312219]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Blue Berries"
+icon = ExtResource("4_wuyk7")
+expand_icon = true
+
+[node name="ButtonBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Blue Juice"
+icon = ExtResource("5_lrrx2")
+expand_icon = true
+
+[node name="ButtonBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2076160104]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Blue Seed"
+icon = ExtResource("6_vptl1")
+expand_icon = true
+
+[node name="ButtonFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1030593771]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Flower Stem"
+icon = ExtResource("7_welqp")
+expand_icon = true
+
+[node name="ButtonGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1261853127]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Gray Juice"
+icon = ExtResource("8_555qq")
+expand_icon = true
+
+[node name="ButtonGraySeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1240727151]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Gray Seed"
+icon = ExtResource("9_o6slk")
+expand_icon = true
+
+[node name="ButtonGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1068973908]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Green Herb Flakes"
+icon = ExtResource("10_y53h3")
+expand_icon = true
+
+[node name="ButtonGreenHerb" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1952889663]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Green Herb Leaf"
+icon = ExtResource("11_0tc3s")
+expand_icon = true
+
+[node name="ButtonGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=105487582]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Green Paste"
+icon = ExtResource("12_80ihe")
+expand_icon = true
+
+[node name="ButtonOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1149686490]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Orange Paste"
+icon = ExtResource("13_t6qy2")
+expand_icon = true
+
+[node name="ButtonRedBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1482916989]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Red Berries"
+icon = ExtResource("14_luiyi")
+expand_icon = true
+
+[node name="ButtonRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1210965709]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Red Juice"
+icon = ExtResource("15_b6osi")
+expand_icon = true
+
+[node name="ButtonRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2008177175]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Red Seed"
+icon = ExtResource("16_4y6fb")
+expand_icon = true
+
+[node name="ButtonSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=898051407]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Saturated Stem"
+icon = ExtResource("17_yrnwa")
+expand_icon = true
+
+[node name="ButtonStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1417137024]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Flower Stem Strands"
+icon = ExtResource("18_yrbgu")
+expand_icon = true
+
+[node name="ButtonYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1805018482]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Flower Dust"
+icon = ExtResource("19_xyuuy")
+expand_icon = true
+
+[node name="ButtonYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1533011342]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Paste"
+icon = ExtResource("20_s8crv")
+expand_icon = true
+
+[node name="ButtonYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1464741231]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Petals"
+icon = ExtResource("21_0kap8")
+expand_icon = true
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer" unique_id=1256355520]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 1
+tabs_visible = false
+
+[node name="PageGreenHerb" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=482196387]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageGreenHerb" unique_id=1620917341]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageGreenHerb/VBoxContainer" unique_id=1848592186]
+layout_mode = 2
+text = "Green Herb Description"
+
+[node name="PageRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=230363401]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageRedBerries" unique_id=53788833]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageRedBerries/VBoxContainer" unique_id=430988333]
+layout_mode = 2
+text = "Red Berry Description"
+
+[node name="TabPotions" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=732305972]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Potions"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPotions" unique_id=957592620]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer" unique_id=1589543196]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons" unique_id=968404629]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer" unique_id=394044773]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonSpeed" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1704041391]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Speed"
+icon = ExtResource("22_nvycw")
+expand_icon = true
+
+[node name="ButtonCleanse" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=243613671]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Cleanse"
+icon = ExtResource("23_y3hki")
+expand_icon = true
+
+[node name="ButtonNormalize" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=609171140]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Normalize"
+icon = ExtResource("24_rda33")
+expand_icon = true
+
+[node name="ButtonGrow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=708159419]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Grow"
+icon = ExtResource("25_gdb1q")
+expand_icon = true
+
+[node name="ButtonShrink" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1623302864]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Shrink"
+icon = ExtResource("26_2dv36")
+expand_icon = true
+
+[node name="ButtonSlow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1525145451]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Slow"
+icon = ExtResource("27_a8fgq")
+expand_icon = true
+
+[node name="ButtonStrength" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=993901136]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "Strength"
+icon = ExtResource("28_51e1v")
+expand_icon = true
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer" unique_id=1134312735]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageSpeedPotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer" unique_id=393618728]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageSpeedPotion" unique_id=646541714]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageSpeedPotion/VBoxContainer" unique_id=2085281305]
+layout_mode = 2
+text = "Speed Potion Description"
+
+[node name="PageCleansePotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer" unique_id=1746413089]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageCleansePotion" unique_id=1981430840]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageCleansePotion/VBoxContainer" unique_id=746636258]
+layout_mode = 2
+text = "Cleanse Potion Description"
+
+[node name="TabObjects" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=508245017]
+layout_mode = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Objects"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabObjects" unique_id=751575042]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer" unique_id=706335191]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons" unique_id=1521997777]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1703768243]
+layout_mode = 2
+text = "General"
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer" unique_id=1460950125]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=1212584644]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageGeneral" unique_id=10367409]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=120017]
+layout_mode = 2
+text = "Welcome to the library"
+
+[node name="TabBooks" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=961548159]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+metadata/_tab_name = "Books"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabBooks" unique_id=1853235188]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=1028127602]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons" unique_id=81576526]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=771660860]
+layout_mode = 2
+text = "General"
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=1263152269]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=773621354]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageGeneral" unique_id=2093380665]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=1904344405]
+layout_mode = 2
+text = "Welcome to the library"
+
+[node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+metadata/_tab_name = "Places"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces" unique_id=645678036]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer" unique_id=394046697]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons" unique_id=1967328722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1614831328]
+layout_mode = 2
+text = "General"
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer" unique_id=1546926551]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer" unique_id=1820970300]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer/PageGeneral" unique_id=1627465897]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=1029070775]
+layout_mode = 2
+text = "Welcome to the library"
+
+[node name="TabPeople" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=279743256]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+metadata/_tab_name = "People"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPeople" unique_id=1327798155]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer" unique_id=1047985148]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons" unique_id=1752102821]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1734343491]
+layout_mode = 2
+text = "General"
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer" unique_id=720333832]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer" unique_id=1666394050]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer/PageGeneral" unique_id=1360697530]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=983408363]
+layout_mode = 2
+text = "Welcome to the library"
+
+[connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonGeneral" to="." method="_on_button_general_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonGeneral" to="." method="_on_button_general_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonGeneral" to="." method="_on_button_general_pressed"]
