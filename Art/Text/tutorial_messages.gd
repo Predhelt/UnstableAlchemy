@@ -9,7 +9,7 @@ func _ready() -> void:
 		InputMap.action_get_events("inventory")[0].as_text().replace(' (Physical)','')
 		+"\".\nOpen your recipe book with \""+
 		InputMap.action_get_events("recipe_book")[0].as_text().replace(' (Physical)','')
-		+"\".\nUse the Help menu (\"?\" in the top left)
+		+"\".\nOpen the Log Book (\"?\" in the top left)
 		and known recipes to craft \"Green Flakes\".")
 	
 	$LabelRecipe.text = ("Pick up books with \""+

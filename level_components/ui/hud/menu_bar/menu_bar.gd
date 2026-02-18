@@ -38,5 +38,5 @@ func _on_button_recipes_pressed() -> void:
 func _on_button_options_pressed() -> void:
 	open_pressed_window(%OptionsMenu)
 
-func _on_button_help_pressed() -> void:
-	open_pressed_window(%HelpMenu)
+func _on_button_log_book_pressed() -> void:
+	open_pressed_window(%LogBookMenu)

@@ -28,14 +28,44 @@
 [ext_resource type="Texture2D" uid="uid://cvc8nh7ajt6ym" path="res://art/pack/alchemy/potions/potion-standard-blue.png" id="26_2dv36"]
 [ext_resource type="Texture2D" uid="uid://dvb4agusn0mbp" path="res://art/pack/alchemy/potions/potion-standard-purple.png" id="27_a8fgq"]
 [ext_resource type="Texture2D" uid="uid://be0mimtq0pj4r" path="res://art/pack/alchemy/potions/potion-standard-red.png" id="28_51e1v"]
+[ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant-red-berry.png" id="29_hrbh4"]
+[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://art/pack/objects/planted/HerbBasicGreen.png" id="30_rj7yf"]
+[ext_resource type="Texture2D" uid="uid://b6puigkphrifg" path="res://art/pack/objects/planted/yellow-flowers.png" id="31_1jb0j"]
+[ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant-blue-berry.png" id="32_olvlp"]
+[ext_resource type="Texture2D" uid="uid://vet5yvxugey6" path="res://art/pack/objects/boulder.png" id="33_gd8cp"]
+[ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object-gray.png" id="34_ry02e"]
+[ext_resource type="Texture2D" uid="uid://byrdwsf0sld3f" path="res://art/pack/objects/rock_wall_hole.png" id="35_m16e7"]
+[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/object-pressure-plate-green.png" id="36_tfpcq"]
+[ext_resource type="Texture2D" uid="uid://baysd77wlv4ma" path="res://art/pack/tools/hand.png" id="37_rs23k"]
+[ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="38_swgt7"]
+[ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://art/pack/tools/blade.png" id="39_2mxqo"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy-mortar_pestle.png" id="40_8rxm1"]
+[ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://art/pack/alchemy/tools/alchemy-cauldron.png" id="41_vmjhy"]
+[ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://art/pack/alchemy/tools/alchemy-abstract_container-half_full.png" id="42_rpebb"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_rs23k"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_swgt7"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2mxqo"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_8rxm1"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vmjhy"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_rpebb"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vjhag"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_4wpt1"]
 
 [node name="LogBookMenu" type="Panel" unique_id=357727730]
 z_index = 25
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
+anchor_left = 0.08
+anchor_top = 0.08
+anchor_right = 0.92
+anchor_bottom = 0.92
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3k5yu")
@@ -63,7 +93,7 @@ offset_left = 10.0
 offset_right = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Window Name"
+text = "Log Book"
 label_settings = ExtResource("3_3ksyy")
 vertical_alignment = 1
 text_overrun_behavior = 3
@@ -87,18 +117,393 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 2
-tab_0/title = "Items"
-tab_1/title = "Potions"
-tab_2/title = "Objects"
-tab_3/title = "Books"
-tab_4/title = "Places"
-tab_5/title = "People"
+current_tab = 5
+tab_0/title = "Help"
+tab_1/title = "Items"
+tab_2/title = "Potions"
+tab_3/title = "Plants"
+tab_4/title = "Objects"
+tab_5/title = "Books"
+tab_6/title = "Places"
+tab_7/title = "People"
+
+[node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 0
+metadata/_tab_name = "Help"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabHelp" unique_id=1008869100]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer" unique_id=1384413824]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons" unique_id=1244989062]
+layout_mode = 2
+
+[node name="ButtonHelpGeneral" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=1306445496]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_rs23k")
+text = "General"
+
+[node name="ButtonHelpInteractions" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=261623297]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rs23k")
+text = "Interactions"
+
+[node name="ButtonHelpTools" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=348258149]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rs23k")
+text = "Tools"
+
+[node name="ButtonHelpMortarPestle" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=2044851229]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rs23k")
+text = "Mortar & Pestle
+"
+
+[node name="ButtonHelpCauldron" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=845776110]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rs23k")
+text = "Cauldron
+"
+
+[node name="ButtonHelpMerger" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=593279218]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rs23k")
+text = "Merger
+"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer" unique_id=2122716912]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageHelpGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=2090489077]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpGeneral" unique_id=1407640640]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="LabelMovement" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpGeneral/VBoxContainer" unique_id=1896769602]
+layout_mode = 2
+text = "Press WASD to move."
+
+[node name="Label11" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpGeneral/VBoxContainer" unique_id=243817131]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+text = "You can get ingredients or other materials depending on how you interact with objects.
+
+With your ingredients, you can craft new materials or potions using the tools in your inventory.
+
+Drag ingredients from your inventory onto a tool to the right to add the ingredient to the tool.
+Then, click on the check mark to open the crafting screen. Or click on the ingredient to remove it from the tool."
+autowrap_mode = 3
+text_overrun_behavior = 4
+
+[node name="LabelToolUse" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpGeneral/VBoxContainer" unique_id=292485428]
+layout_mode = 2
+text = "Walk near a plant or object and use a tool on it by pressing \"\"."
+
+[node name="LabelInteraction" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpGeneral/VBoxContainer" unique_id=1948899195]
+layout_mode = 2
+text = "You can talk to other characters by pressing \"\""
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpGeneral/VBoxContainer" unique_id=749361982]
+layout_mode = 2
+text = "Hover the mouse over an item the player has to get information about it"
+
+[node name="PageHelpInteractions" type="Control" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=1123073960]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 1
+
+[node name="LabelUse" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions" unique_id=1740622204]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 142.0
+offset_right = 548.0
+offset_bottom = 165.0
+text = "Press \"\" to use the currently held tool on a nearby object"
+
+[node name="Label2" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions" unique_id=417079705]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 172.0
+offset_right = 267.0
+offset_bottom = 195.0
+text = "The different tools can be found in the top right
+by clicking on the selected tool icon. It looks like this:"
+
+[node name="Button" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions" unique_id=31444308]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 235.0
+offset_right = 184.0
+offset_bottom = 307.0
+focus_mode = 0
+icon = ExtResource("37_rs23k")
+
+[node name="LabelInspect" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions" unique_id=544594974]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 11.0
+offset_right = 576.0
+offset_bottom = 34.0
+text = "Press \"\" to inspect a nearby object and get a description of it"
+
+[node name="Label12" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions" unique_id=543163371]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 37.0
+offset_right = 177.0
+offset_bottom = 60.0
+text = "Example:"
+
+[node name="HerbBasicGreen" type="Sprite2D" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions" unique_id=904825567]
+position = Vector2(143, 95)
+texture = ExtResource("30_rj7yf")
+
+[node name="Label10" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions" unique_id=165323721]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 85.0
+offset_right = 385.0
+offset_bottom = 108.0
+text = "a plant with green leaves"
+
+[node name="PageHelpTools" type="Control" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=1407672869]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 2
+
+[node name="LabelUse" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=227389737]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 456.0
+offset_bottom = 32.0
+text = "Press \"\" to use the currently held tool on a nearby object"
+
+[node name="Label2" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=170581806]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 39.0
+offset_right = 473.0
+offset_bottom = 88.0
+text = "These are your tools. You can select the tool in the top right
+of the screen:"
+
+[node name="Hand" type="Sprite2D" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=580809981]
+position = Vector2(45, 126)
+texture = ExtResource("37_rs23k")
+
+[node name="Dropper" type="Sprite2D" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=591182228]
+position = Vector2(45, 298)
+texture = ExtResource("38_swgt7")
+
+[node name="Blade" type="Sprite2D" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=470353394]
+position = Vector2(45, 207)
+texture = ExtResource("39_2mxqo")
+
+[node name="Label3" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=2100038964]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 111.0
+offset_right = 147.0
+offset_bottom = 134.0
+text = "Hand"
+
+[node name="Label4" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=1480799884]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 196.0
+offset_right = 145.0
+offset_bottom = 219.0
+text = "Blade"
+
+[node name="Label5" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=1908502508]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 283.0
+offset_right = 161.0
+offset_bottom = 306.0
+text = "Dropper"
+
+[node name="Label6" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=512912291]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 86.0
+offset_right = 520.0
+offset_bottom = 161.0
+text = "Grab or touch the object. Gives you items that can be easily plucked with little to no risk."
+autowrap_mode = 3
+
+[node name="Label7" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=1500838185]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 172.0
+offset_right = 505.0
+offset_bottom = 247.0
+text = "Cut the object. Some items must be cut off to recieve them. Be careful, some things have a defensive response when cut."
+autowrap_mode = 3
+
+[node name="Label8" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=730544856]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 257.0
+offset_right = 496.0
+offset_bottom = 332.0
+text = "Use the \"+\" icon when selected to add an item from your inventory to the dropper. Then, use the tool to apply the selected item to an object."
+autowrap_mode = 3
+
+[node name="Label12" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=444873989]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 366.0
+offset_right = 517.0
+offset_bottom = 389.0
+text = "For example, grabbing a green herb might give you some leaves:"
+
+[node name="HerbBasicGreen" type="Sprite2D" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=1362342985]
+position = Vector2(167, 422)
+texture = ExtResource("30_rj7yf")
+
+[node name="Label10" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=528647745]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 414.0
+offset_right = 324.0
+offset_bottom = 437.0
+text = "+2"
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=1726522276]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 409.0
+offset_right = 145.0
+offset_bottom = 432.0
+text = "->"
+
+[node name="Hand2" type="Sprite2D" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=1998500766]
+position = Vector2(60, 424)
+texture = ExtResource("37_rs23k")
+
+[node name="Label9" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=1571285218]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 411.0
+offset_right = 247.0
+offset_bottom = 434.0
+text = "="
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools" unique_id=473867903]
+position = Vector2(259, 426)
+texture = ExtResource("11_0tc3s")
+
+[node name="PageHelpMP" type="Control" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=48917037]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpMP" unique_id=1433646215]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 12.0
+offset_right = 800.0
+offset_bottom = 455.0
+text = "Mortar and Pestle can be accessed from the inventory. drag an item from the inventory onto the mortar to add it to the mortar. Click on an item in the mortar to remove it. When at least one item is in the mortar, you can begin the minigame by pressing the check mark button.
+The minigame will take the first item in the mortar to use for the minigame. To begin, press the \"Start\" button and use the arrow keys on the screen or the keyboard to input motions.
+There are 2 main motions: crush and grind. Crush by going up and down. Grind by going left and right. If you do the inputs correctly, an icon will appear to represent the motion.
+When 5 motions are made, if the process matches a possible recipe for the item, a new item will be produced and added to the inventory. "
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpMP" unique_id=1202542894]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("40_8rxm1")
+
+[node name="PageHelpCauldron" type="Control" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=1206075980]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpCauldron" unique_id=1394352297]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 5.0
+offset_right = 787.0
+offset_bottom = 392.0
+text = "Items can be added to the cauldron from the inventory. Drag an item onto the cauldron to add it to the cauldron.
+When at least one item is in the cauldron, the crafting minigame can begin by pressing the check mark button on the cauldron. This opens a minigame window which shows the ingrediends that were added to the cauldron in the inventory as well as a fire icon representing bellows.
+The minigame begins by pressing the \"start\" button. there will be a short countdown before the progress bar at the bottom will begin moving. The minigame works by adding an ingredient or using the bellows at a time interval until the process is complete. This can be done by either pressing the icons with the ingredients or bellows or pressing the hotkeys.
+Once the minigame is complete, the producet item(s) will be added to the inventory and the minigame window will close."
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpCauldron" unique_id=1811678527]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("41_vmjhy")
+
+[node name="PageHelpMerger" type="Control" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=902728844]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpMerger" unique_id=783800486]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 15.0
+offset_right = 801.0
+offset_bottom = 157.0
+text = "The merger combines certain items together to produce a new item. This works by dragging items from the inventory onto the merger icon. Pressing the check mark when two or three items are in the merger will combine them and place the result in your inventory after a short crafting time. The items can be removed from the merger by pressing on them."
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpMerger" unique_id=1517580420]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("42_rpebb")
 
 [node name="TabItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 0
+theme_override_constants/margin_top = 4
+metadata/_tab_index = 1
 metadata/_tab_name = "Items"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabItems" unique_id=805910414]
@@ -106,7 +511,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer" unique_id=752397701]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons" unique_id=1022370267]
@@ -119,145 +524,198 @@ theme_override_constants/margin_bottom = 8
 
 [node name="PageButtonList" type="GridContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer" unique_id=1834773395]
 layout_mode = 2
-theme_override_constants/h_separation = 12
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 4
-columns = 2
+columns = 3
 
-[node name="ButtonBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1772312219]
+[node name="ButtonItemBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1772312219]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Berries"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("4_wuyk7")
 expand_icon = true
 
-[node name="ButtonBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
+[node name="ButtonItemBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Juice"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("5_lrrx2")
 expand_icon = true
 
-[node name="ButtonBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2076160104]
+[node name="ButtonItemBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2076160104]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Seed"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("6_vptl1")
 expand_icon = true
 
-[node name="ButtonFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1030593771]
+[node name="ButtonItemFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1030593771]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Stem"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("7_welqp")
 expand_icon = true
 
-[node name="ButtonGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1261853127]
+[node name="ButtonItemGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1261853127]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Gray Juice"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("8_555qq")
 expand_icon = true
 
-[node name="ButtonGraySeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1240727151]
+[node name="ButtonItemGraySeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1240727151]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Gray Seed"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("9_o6slk")
 expand_icon = true
 
-[node name="ButtonGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1068973908]
+[node name="ButtonItemGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1068973908]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herb Flakes"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("10_y53h3")
 expand_icon = true
 
-[node name="ButtonGreenHerb" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1952889663]
+[node name="ButtonItemGreenHerb" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1952889663]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herb Leaf"
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("11_0tc3s")
 expand_icon = true
 
-[node name="ButtonGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=105487582]
+[node name="ButtonItemGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=105487582]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Paste"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("12_80ihe")
 expand_icon = true
 
-[node name="ButtonOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1149686490]
+[node name="ButtonItemOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1149686490]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Orange Paste"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("13_t6qy2")
 expand_icon = true
 
-[node name="ButtonRedBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1482916989]
+[node name="ButtonItemRedBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1482916989]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Berries"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("14_luiyi")
 expand_icon = true
 
-[node name="ButtonRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1210965709]
+[node name="ButtonItemRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1210965709]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Juice"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("15_b6osi")
 expand_icon = true
 
-[node name="ButtonRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2008177175]
+[node name="ButtonItemRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2008177175]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Seed"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("16_4y6fb")
 expand_icon = true
 
-[node name="ButtonSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=898051407]
+[node name="ButtonItemSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=898051407]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Saturated Stem"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("17_yrnwa")
 expand_icon = true
 
-[node name="ButtonStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1417137024]
+[node name="ButtonItemStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1417137024]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Stem Strands"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("18_yrbgu")
 expand_icon = true
 
-[node name="ButtonYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1805018482]
+[node name="ButtonItemYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1805018482]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Dust"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("19_xyuuy")
 expand_icon = true
 
-[node name="ButtonYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1533011342]
+[node name="ButtonItemYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1533011342]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Paste"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("20_s8crv")
 expand_icon = true
 
-[node name="ButtonYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1464741231]
+[node name="ButtonItemYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1464741231]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Petals"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("21_0kap8")
 expand_icon = true
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer" unique_id=1256355520]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 
-[node name="PageGreenHerb" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=482196387]
+[node name="PageItemGreenHerb" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=482196387]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -266,16 +724,17 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageGreenHerb" unique_id=1620917341]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb" unique_id=1620917341]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageGreenHerb/VBoxContainer" unique_id=1848592186]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=1848592186]
 layout_mode = 2
 text = "Green Herb Description"
 
-[node name="PageRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=230363401]
+[node name="PageItemRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=230363401]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -284,18 +743,22 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageRedBerries" unique_id=53788833]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerries" unique_id=53788833]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageRedBerries/VBoxContainer" unique_id=430988333]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=430988333]
 layout_mode = 2
 text = "Red Berry Description"
 
 [node name="TabPotions" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=732305972]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 2
 metadata/_tab_name = "Potions"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPotions" unique_id=957592620]
@@ -306,63 +769,76 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons" unique_id=968404629]
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons" unique_id=394044773]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+size_flags_vertical = 3
 
-[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer" unique_id=394044773]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ButtonSpeed" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1704041391]
+[node name="ButtonPotionCleanse" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=243613671]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "Speed"
-icon = ExtResource("22_nvycw")
-expand_icon = true
-
-[node name="ButtonCleanse" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=243613671]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_2mxqo")
 text = "Cleanse"
 icon = ExtResource("23_y3hki")
 expand_icon = true
 
-[node name="ButtonNormalize" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=609171140]
+[node name="ButtonPotionGrow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=708159419]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "Normalize"
-icon = ExtResource("24_rda33")
-expand_icon = true
-
-[node name="ButtonGrow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=708159419]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
 text = "Grow"
 icon = ExtResource("25_gdb1q")
 expand_icon = true
 
-[node name="ButtonShrink" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1623302864]
+[node name="ButtonPotionNormalize" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=609171140]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
+text = "Normalize"
+icon = ExtResource("24_rda33")
+expand_icon = true
+
+[node name="ButtonPotionShrink" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1623302864]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
 text = "Shrink"
 icon = ExtResource("26_2dv36")
 expand_icon = true
 
-[node name="ButtonSlow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1525145451]
+[node name="ButtonPotionSlow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1525145451]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
 text = "Slow"
 icon = ExtResource("27_a8fgq")
 expand_icon = true
 
-[node name="ButtonStrength" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=993901136]
+[node name="ButtonPotionSpeed" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1704041391]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
+text = "Speed"
+icon = ExtResource("22_nvycw")
+expand_icon = true
+
+[node name="ButtonPotionStrength" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=993901136]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
 text = "Strength"
 icon = ExtResource("28_51e1v")
 expand_icon = true
@@ -372,8 +848,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 current_tab = 0
 tabs_visible = false
+tab_0/title = "Cleanse Potion"
+tab_1/title = "Speed Potion"
 
-[node name="PageSpeedPotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer" unique_id=393618728]
+[node name="PagePotionCleanse" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer" unique_id=1746413089]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -381,16 +860,18 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
+metadata/_tab_name = "Cleanse Potion"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageSpeedPotion" unique_id=646541714]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PagePotionCleanse" unique_id=1981430840]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageSpeedPotion/VBoxContainer" unique_id=2085281305]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PagePotionCleanse/VBoxContainer" unique_id=746636258]
 layout_mode = 2
-text = "Speed Potion Description"
+text = "Cleanse Potion Description"
 
-[node name="PageCleansePotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer" unique_id=1746413089]
+[node name="PagePotionSpeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer" unique_id=393618728]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -399,39 +880,165 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
+metadata/_tab_name = "Speed Potion"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageCleansePotion" unique_id=1981430840]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PagePotionSpeed" unique_id=646541714]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PageCleansePotion/VBoxContainer" unique_id=746636258]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PagePotionSpeed/VBoxContainer" unique_id=2085281305]
 layout_mode = 2
-text = "Cleanse Potion Description"
+text = "Speed Potion Description"
+
+[node name="TabPlants" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1775764380]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 3
+metadata/_tab_name = "Plants"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPlants" unique_id=1134175996]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer" unique_id=1787340169]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="PageButtonList" type="GridContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons" unique_id=1955512128]
+layout_mode = 2
+size_flags_horizontal = 6
+columns = 3
+
+[node name="ButtonPlantRedBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=1596357552]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Red Berry Bush"
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_8rxm1")
+icon = ExtResource("29_hrbh4")
+expand_icon = true
+
+[node name="ButtonPlantGreenHerbs" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=225389601]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Green Herbs"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8rxm1")
+icon = ExtResource("30_rj7yf")
+expand_icon = true
+
+[node name="ButtonPlantYellowFlowers" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=261273563]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Flowers"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8rxm1")
+icon = ExtResource("31_1jb0j")
+expand_icon = true
+
+[node name="ButtonPlantBlueBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=342536655]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Blue Berry Bush"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_8rxm1")
+icon = ExtResource("32_olvlp")
+expand_icon = true
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer" unique_id=1895968697]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageRedBerryBush" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=4201000]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush" unique_id=59874129]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=311009144]
+layout_mode = 2
+text = "Description and interacitons with red berry bush"
 
 [node name="TabObjects" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=508245017]
+visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 4
 metadata/_tab_name = "Objects"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabObjects" unique_id=751575042]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer" unique_id=706335191]
-custom_minimum_size = Vector2(140, 0)
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer" unique_id=1575112108]
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
-[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons" unique_id=1521997777]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1703768243]
+[node name="PageButtonList" type="GridContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons" unique_id=1790291595]
 layout_mode = 2
-text = "General"
+size_flags_horizontal = 6
+columns = 3
+
+[node name="ButtonObjectBoulder" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1703768243]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Boulder"
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_vmjhy")
+icon = ExtResource("33_gd8cp")
+expand_icon = true
+
+[node name="ButtonObjectSlidingDoor" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1970625925]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Sliding Door"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmjhy")
+icon = ExtResource("34_ry02e")
+expand_icon = true
+
+[node name="ButtonObjectCrawlspace" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1958059311]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Crawlspace"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmjhy")
+icon = ExtResource("35_m16e7")
+expand_icon = true
+
+[node name="ButtonObjectPressurePlate" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=455355147]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Pressure Plate"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmjhy")
+icon = ExtResource("36_tfpcq")
+expand_icon = true
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer" unique_id=1460950125]
 layout_mode = 2
@@ -439,7 +1046,8 @@ size_flags_horizontal = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=1212584644]
+[node name="PageObjectBoulder" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=1212584644]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -448,40 +1056,49 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageGeneral" unique_id=10367409]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectBoulder" unique_id=10367409]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=120017]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectBoulder/VBoxContainer" unique_id=120017]
 layout_mode = 2
-text = "Welcome to the library"
+text = "Description and details of Boulder."
 
 [node name="TabBooks" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=961548159]
-visible = false
 layout_mode = 2
-metadata/_tab_index = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 5
 metadata/_tab_name = "Books"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabBooks" unique_id=1853235188]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=1028127602]
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=2146009193]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 
 [node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons" unique_id=81576526]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=771660860]
 layout_mode = 2
-text = "General"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonBook1" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=771660860]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_rpebb")
+text = "Book 1"
+
+[node name="ButtonBook2" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1961863231]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rpebb")
+text = "Book 2"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=1263152269]
 layout_mode = 2
@@ -489,7 +1106,8 @@ size_flags_horizontal = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=773621354]
+[node name="PageBook1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=773621354]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -498,40 +1116,54 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageGeneral" unique_id=2093380665]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBook1" unique_id=893067344]
 layout_mode = 2
-theme_override_constants/separation = 32
+size_flags_vertical = 3
+text = "Hello reader,
+Before you venture into the land of Botania (name pending), there are a few things you should know:
+You cannot die here. If you get stuck, you can always get back to your camp by [surrendering yourself to the earth]. [You may lose some items in the process].
+The plants grow back quickly, but gathered materials often decompose quickly.
+The plants and creatures contain magical properties that can be extracted using specific processes.
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=1904344405]
-layout_mode = 2
-text = "Welcome to the library"
+This place is bizarre and mysterious, but as you grow to understand it, you can learn to do extraordinary things. Just try not to lose yourself in the process.
+-R"
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 4
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 6
 metadata/_tab_name = "Places"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces" unique_id=645678036]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer" unique_id=394046697]
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer" unique_id=952579434]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 
 [node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons" unique_id=1967328722]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1614831328]
 layout_mode = 2
-text = "General"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonPlacesBotania" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1614831328]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_vjhag")
+text = "Botania"
+
+[node name="ButtonPlacesElsewhere" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1084518842]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vjhag")
+text = "Elsewhere"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer" unique_id=1546926551]
 layout_mode = 2
@@ -539,7 +1171,8 @@ size_flags_horizontal = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer" unique_id=1820970300]
+[node name="PagePlacesBotania" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer" unique_id=1820970300]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -548,40 +1181,55 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer/PageGeneral" unique_id=1627465897]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer/PagePlacesBotania" unique_id=1627465897]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=1029070775]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer/PagePlacesBotania/VBoxContainer" unique_id=1246330478]
 layout_mode = 2
-text = "Welcome to the library"
+texture = ExtResource("34_ry02e")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageContainer/PagePlacesBotania/VBoxContainer" unique_id=1029070775]
+layout_mode = 2
+text = "A mysterious expanse brimming with magical life and undiscovered secrets."
 
 [node name="TabPeople" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=279743256]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 5
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 7
 metadata/_tab_name = "People"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPeople" unique_id=1327798155]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PageButtons" type="Control" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer" unique_id=1047985148]
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer" unique_id=627889372]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 
 [node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons" unique_id=1752102821]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ButtonGeneral" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1734343491]
 layout_mode = 2
-text = "General"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonPeoplePerson1" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1734343491]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Person 1"
+
+[node name="ButtonPeoplePerson2" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1047855317]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Person 1"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer" unique_id=720333832]
 layout_mode = 2
@@ -589,7 +1237,8 @@ size_flags_horizontal = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="PageGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer" unique_id=1666394050]
+[node name="PagePeoplePerson1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer" unique_id=1666394050]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -598,15 +1247,36 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer/PageGeneral" unique_id=1360697530]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer/PagePeoplePerson1" unique_id=1360697530]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer/PageGeneral/VBoxContainer" unique_id=983408363]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer/PagePeoplePerson1/VBoxContainer" unique_id=983408363]
 layout_mode = 2
-text = "Welcome to the library"
+text = "A description of the person and any useful information."
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonGeneral" to="." method="_on_button_general_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonGeneral" to="." method="_on_button_general_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonGeneral" to="." method="_on_button_general_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpGeneral" to="." method="_on_button_help_general_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpInteractions" to="." method="_on_button_help_interactions_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpTools" to="." method="_on_button_help_tools_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMortarPestle" to="." method="_on_button_help_mortar_pestle_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpCauldron" to="." method="_on_button_help_cauldron_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMerger" to="." method="_on_button_help_merger_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueBerries" to="." method="_on_button_item_blue_berries_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="." method="_on_button_item_blue_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueSeed" to="." method="_on_button_item_blue_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemFlowerStem" to="." method="_on_button_item_flower_stem_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGrayJuice" to="." method="_on_button_item_gray_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGraySeed" to="." method="_on_button_item_gray_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenFlakes" to="." method="_on_button_item_green_flakes_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerb" to="." method="_on_button_item_green_herb_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenPaste" to="." method="_on_button_item_green_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemOrangePaste" to="." method="_on_button_item_orange_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" to="." method="_on_button_item_red_berries_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedJuice" to="." method="_on_button_item_red_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedSeed" to="." method="_on_button_item_red_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemSaturatedStem" to="." method="_on_button_item_saturated_stem_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemStemStrands" to="." method="_on_button_item_stem_strands_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowDust" to="." method="_on_button_item_yellow_dust_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPaste" to="." method="_on_button_item_yellow_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="." method="_on_button_item_yellow_petals_pressed"]
