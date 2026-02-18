@@ -17,7 +17,6 @@ var drag_item_scene := preload("./drag_item_scene.tscn")
 ## Sets references, initializes variables in references, and connects signals
 func _ready() -> void:
 	window_mode = &"menu"
-	%ItemList.item_clicked.connect(on_inventory_item_clicked)
 	%Cauldron.minigame_ref = %MinigameCauldron
 	%Cauldron.minigame_ref.recipes = %Cauldron.recipes
 	%Cauldron.inventory_menu_ref = self
@@ -169,7 +168,7 @@ func remove_inventory_item(item_removing : Item, qty : int, isRemovingStacks : b
 	return true
 
 ## Determines what to do when the item is clicked on.
-func on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index : int) -> void:
+func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index : int) -> void:
 	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click.
 		var item = character_ref.inventory.get_inventory_item(index)
 		

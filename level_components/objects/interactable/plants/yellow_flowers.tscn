@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://uq3raot8fskq"]
+[gd_scene format=3 uid="uid://uq3raot8fskq"]
 
 [ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://level_components/objects/interactable/plants/interactable_plant.gd" id="1_rrjub"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_fnaup"]
@@ -7,25 +7,24 @@
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="5_qjaiv"]
 [ext_resource type="Texture2D" uid="uid://b6puigkphrifg" path="res://art/pack/objects/planted/yellow-flowers.png" id="6_gca1m"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="6_gt0rl"]
+[ext_resource type="Resource" uid="uid://081jaxfsfvmd" path="res://game_systems/status_effects/slow.tres" id="7_p31p1"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="8_8mo8m"]
 
 [sub_resource type="Resource" id="Resource_bp2sj"]
 script = ExtResource("6_gt0rl")
 on_interact_items = Array[ExtResource("2_fnaup")]([ExtResource("3_amppn")])
 on_interact_amounts = Array[int]([2])
-on_interact_status_effects = Array[ExtResource("5_qjaiv")]([])
-on_interact_status_message = ""
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_h72d8"]
 script = ExtResource("6_gt0rl")
 on_interact_items = Array[ExtResource("2_fnaup")]([ExtResource("3_amppn"), ExtResource("4_b7thv")])
 on_interact_amounts = Array[int]([5, 1])
-on_interact_status_effects = Array[ExtResource("5_qjaiv")]([])
-on_interact_status_message = ""
+on_interact_status_effects = Array[ExtResource("5_qjaiv")]([ExtResource("7_p31p1")])
+on_interact_status_message = "That felt weird."
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[node name="YellowFlowers" type="Node2D"]
+[node name="YellowFlowers" type="Node2D" unique_id=687975100]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_rrjub")
 display_name = "Yellow Flowers"
@@ -34,11 +33,11 @@ items = Array[ExtResource("2_fnaup")]([ExtResource("3_amppn"), ExtResource("4_b7
 grab_interaction = SubResource("Resource_bp2sj")
 cut_interaction = SubResource("Resource_h72d8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1178813598]
 position = Vector2(-1.42857, -20)
 texture = ExtResource("6_gca1m")
 
-[node name="InteractArea" parent="." instance=ExtResource("8_8mo8m")]
+[node name="InteractArea" parent="." unique_id=1628581114 instance=ExtResource("8_8mo8m")]
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(1.68572, 1)
 interact_label = "Yellow Flowers"

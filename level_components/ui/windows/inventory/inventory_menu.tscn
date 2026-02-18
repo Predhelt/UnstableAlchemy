@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy5h4xq84fujx"]
+[gd_scene format=3 uid="uid://cy5h4xq84fujx"]
 
 [ext_resource type="Script" uid="uid://cfe3j5o7dsabu" path="res://level_components/ui/windows/inventory/inventory_menu.gd" id="1_3n8ow"]
 [ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/UADefaultTheme.tres" id="1_gie0h"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://level_components/ui/windows/inventory/alchemy_containers/mortar_pestle.tscn" id="4_0n6gb"]
 [ext_resource type="PackedScene" uid="uid://camniccw7m1md" path="res://level_components/ui/windows/inventory/alchemy_containers/merger.tscn" id="5_r3wkv"]
 
-[node name="InventoryMenu" type="Panel"]
+[node name="InventoryMenu" type="Panel" unique_id=361018792]
 z_index = 1
 anchors_preset = -1
 anchor_left = 0.02
@@ -19,10 +19,10 @@ grow_vertical = 2
 theme = ExtResource("1_gie0h")
 script = ExtResource("1_3n8ow")
 
-[node name="CooldownInteract" type="Timer" parent="."]
+[node name="CooldownInteract" type="Timer" parent="." unique_id=673854014]
 one_shot = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1767385633]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,11 +30,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="VBoxContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=1895427957]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="WindowName" type="Label" parent="VBoxContainer/Panel"]
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel" unique_id=532848257]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -47,7 +47,7 @@ label_settings = ExtResource("2_tx3c8")
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel"]
+[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel" unique_id=621814071]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 6
@@ -63,11 +63,11 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=1522830097]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemList" type="ItemList" parent="VBoxContainer/Control"]
+[node name="ItemList" type="ItemList" parent="VBoxContainer/Control" unique_id=231199511]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -79,7 +79,7 @@ allow_search = false
 max_text_lines = 2
 fixed_icon_size = Vector2i(32, 32)
 
-[node name="AlchemyActivity" type="Control" parent="VBoxContainer/Control"]
+[node name="AlchemyActivity" type="Control" parent="VBoxContainer/Control" unique_id=49228267]
 layout_mode = 1
 anchor_left = 0.81
 anchor_right = 1.0
@@ -87,7 +87,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="VBoxContainer/Control/AlchemyActivity"]
+[node name="Panel" type="Panel" parent="VBoxContainer/Control/AlchemyActivity" unique_id=822989645]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +95,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Cauldron" parent="VBoxContainer/Control/AlchemyActivity/Panel" instance=ExtResource("3_016ij")]
+[node name="Cauldron" parent="VBoxContainer/Control/AlchemyActivity/Panel" unique_id=1620407346 instance=ExtResource("3_016ij")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -106,7 +106,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MortarPestle" parent="VBoxContainer/Control/AlchemyActivity/Panel" instance=ExtResource("4_0n6gb")]
+[node name="MortarPestle" parent="VBoxContainer/Control/AlchemyActivity/Panel" unique_id=106720903 instance=ExtResource("4_0n6gb")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -116,7 +116,7 @@ anchor_right = 0.5
 anchor_bottom = 0.2
 grow_horizontal = 2
 
-[node name="Merger" parent="VBoxContainer/Control/AlchemyActivity/Panel" instance=ExtResource("5_r3wkv")]
+[node name="Merger" parent="VBoxContainer/Control/AlchemyActivity/Panel" unique_id=302613995 instance=ExtResource("5_r3wkv")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -126,3 +126,4 @@ anchor_right = 0.5
 anchor_bottom = 0.8
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
+[connection signal="item_clicked" from="VBoxContainer/Control/ItemList" to="." method="_on_inventory_item_clicked"]

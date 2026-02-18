@@ -57,7 +57,10 @@ func _process(_delta: float) -> void:
 ## Update character position and messages every frame.
 ## NOTE: Player overrides this method.
 func _physics_process(delta: float) -> void:
-	#_move_character(Vector2(0,0))
+	if global.mode != &"default":
+		return
+	
+	#_move_character(Vector2(0,0)) #Placeholder
 	
 	for rb in pushing_bodies:
 		_push_body(rb)
@@ -73,9 +76,7 @@ func _physics_process(delta: float) -> void:
 func _move_character(vector : Vector2) -> void:
 	if global.mode == &"default":
 		direction = vector
-		velocity = direction * attributes.get_attribute("move speed") * (Vector2(1.0, 1.0) + 
-			(scale/Vector2(1/SIZE_DAMPENER, 1/SIZE_DAMPENER) - 
-				Vector2(SIZE_DAMPENER, SIZE_DAMPENER))) * 2 # base speed too slow, doubles it.
+		velocity = direction * attributes.get_attribute("move speed") * 2 # base speed too slow, doubles it.
 		move_and_slide()
 
 ## TODO: Change animations when certain criteria are met
@@ -208,18 +209,11 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 ## Helper function that applies the status effect to the player based on the effect name.
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		&"move speed bonus" :
-			attributes.add_move_speed_bonus(se.value)
-			return true
-		&"strength bonus" :
-			attributes.add_strength_bonus(se.value)
-			return true
-		&"cleanse" : if _cleanse_status_effects():
-			return true
-		&"normalize" : if _normalize_status_effects():
-			return true
-		&"grow" : if _grow_player(se):
-			return true
+		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
+		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus)
+		&"cleanse" : return _cleanse_status_effects()
+		&"normalize" : return _normalize_status_effects()
+		&"grow" : return _grow_player(se)
 	return false
 
 ## Changes the text of the status message and resets the timer for how long the message appears.
@@ -231,29 +225,26 @@ func update_status_message(message: String):
 
 ## Updates the duration of an active status effect based on the amount of time that has passed.
 func _update_status_effect_timers(delta : float) -> void:
-	for i in range(len(active_status_effects)-1, -1, -1):
+	for i in range(active_status_effects.size()-1, -1, -1):
 		var se = active_status_effects[i]
 		if se.duration != -1:
 			se.duration -= delta
 			if se.duration <= 0:
 				remove_status_effect(se)
 
-## Removes a given status effect and reverts the changes to the character.
+## Removes a given status effect at the given index in active_status_effects 
+## and reverts the changes to the character.
 ## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
 	match se.effect:
-		&"move speed bonus" : 
-			attributes.add_move_speed_bonus(1/se.value)
-			return true
+		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus, true)
 		&"grow" : return _grow_player(se, true)
-		&"strength bonus" : 
-			attributes.add_strength_bonus(1/se.value)
-			return true
+		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus, true)
 	return false
 
 ## Updates the images and progress bars on the status bar UI of the given status effect.
 ## If is_removing_status is true, the status effect will be removed from the status bar.
-func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false):
+func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false) -> void:
 	if index != -1:
 		active_status_effects.remove_at(index)
 		if is_removing_status:
@@ -267,28 +258,28 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 	%StatusEffectBar.generate_status(se)
 
 
-## Status effect functions ##
+### Status effect functions ###
 
-## Increases/decreases the value of the given status effect from the value of an attribute.
-## Returns the value after the change from the status effect.
-func _calc_attribute_change(se: StatusEffect, attribute_val: float, is_removing_status := false) -> float:
-	for i in len(active_status_effects):
-		var cur_se = active_status_effects[i]
-		if cur_se.id == se.id:
-				
-			## Reset the active status effect (New effect overwrites the old effect)
-			attribute_val -= cur_se.value
-			
-			if is_removing_status:
-				update_status_bar(se, i, true)
-			else:
-				attribute_val += se.value
-				update_status_bar(se, i)
-			return attribute_val
-	
-	attribute_val += se.value
-	update_status_bar(se)
-	return attribute_val
+## Takes the status effect and adds its value to the given callable Attributes function.
+## For instance, attributes.add_move_speed_bonus(se) or attributes.add_strength_bonus(se).
+## If is_removing is true, removes the status effect from the status bar and list of active statuses.
+func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = false) -> bool:
+	var se_index := _get_se_index(se)
+	if  se_index == -1:
+		if not is_removing:
+			c.call(se.value)
+			update_status_bar(se)
+			return true
+		else:
+			print("ERROR: No status effect " + se.name + " Currently active to remomve. Returning false.")
+			return false
+	else:
+		if not is_removing:
+			c.call(se.value)
+		else:
+			c.call(-se.value)
+		update_status_bar(se, se_index, is_removing)
+		return true
 
 ## Removes all status effects that have a limited duration
 func _cleanse_status_effects() -> bool:
@@ -308,29 +299,35 @@ func _normalize_status_effects() -> bool:
 
 ## Increases the size of the player, which also changes other attributes of the character relative to size.
 func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
-	for i in len(active_status_effects):
-		var cur_se = active_status_effects[i]
-		if cur_se.id == se.id:
-			# Check if the status effect is already active
-			if se.value == cur_se.value and not is_removing_status:
-				return false
-			
-			attributes.add_size_mult(1.0/se.value)
-			
-			if is_removing_status:
-				set_character_scale(attributes.get_attribute("size"))
-				update_status_bar(se, i, true)
-				return true
-			
-			attributes.add_size_mult(se.value)
-			set_character_scale(attributes.get_attribute("size"))
-			update_status_bar(se, i)
-			return true
+	var se_index : int = _get_se_index(se)
+	if se_index == -1:
+		attributes.add_size_mult(se.value)
+		set_character_scale(attributes.get_attribute("size"))
+		update_status_bar(se)
+		return true
+	
+	if se.value == active_status_effects[se_index].value and not is_removing_status:
+		return false
+	
+	attributes.add_size_mult(1.0/se.value)
+	
+	if is_removing_status:
+		set_character_scale(attributes.get_attribute("size"))
+		update_status_bar(se, se_index, true)
+		return true
 	
 	attributes.add_size_mult(se.value)
 	set_character_scale(attributes.get_attribute("size"))
-	update_status_bar(se)
+	update_status_bar(se, se_index)
 	return true
+
+## Compares the ID of the status effect to the array of active status effects
+## Returns the index of the status effect, -1 if not found.
+func _get_se_index(se : StatusEffect) -> int:
+	for i in range(active_status_effects.size()):
+		if se.id == active_status_effects[i].id:
+			return i
+	return -1
 
 ## Sets the scale of the character.
 func set_character_scale(size: float):
@@ -338,10 +335,10 @@ func set_character_scale(size: float):
 	set_scale(Vector2(size/attributes.base_size,size/attributes.base_size))
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/diff_ratio
 
-## Changes the scale of the character.
-func change_character_scale(mult: Vector2):
-	scale *= mult
-	character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
+### Changes the scale of the character.
+#func change_character_scale(mult: Vector2):
+	#scale *= mult
+	#character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
 
 ## Checks the rigid body that is near the character to see if it is pushable.
 func _on_area_2d_body_entered(body: Node2D) -> void:
