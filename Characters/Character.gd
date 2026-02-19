@@ -39,6 +39,8 @@ var crafted_recipes : Dictionary[int,int]
 var new_recipes: Array[Recipe]
 ## The currently selected tool that the character is holding
 var selected_tool : StringName = &"hand"
+## List of books by ID that the character has read
+var books_read : Array[int]
 
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
@@ -143,6 +145,13 @@ func knows_recipe_id(item_id: int) -> bool:
 			return true
 	return false
 
+
+func read_book(book: Book):
+	for recipe in book.recipes:
+		learn_recipe(recipe)
+	if not book.id in books_read:
+		books_read.append(book.id)
+
 ## Interaction Methods ##
 
 ## Triggers when an object's interaction area enters the interaction proximity of the player.
@@ -191,10 +200,10 @@ func execute_tool():
 			&"blade" : all_interaction_areas[0].cut_object(self)
 			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
 
-
+## Open the inspection panel for an object in the interaciton area
 func inspect_object():
 	if all_interaction_areas:
-		var cur_interaction := all_interaction_areas[0]
+		var cur_interaction := all_interaction_areas[0] #TODO: Function to do smart selection of nearby areas.
 		cur_interaction.inspect_object()
 
 ## Status Effect Handler Methods ##

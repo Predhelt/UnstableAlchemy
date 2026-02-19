@@ -26,12 +26,12 @@
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="24_bctkk"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="25_xgfel"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/recipe_item.tscn" id="26_xlmxe"]
-[ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="27_s5xkr"]
-[ext_resource type="PackedScene" uid="uid://b8t1hbo8um0bg" path="res://level_components/objects/triggers/sliding_door_facing_left.tscn" id="28_forcu"]
+[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="27_euxjm"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="29_euxjm"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="29_mm532"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="30_euxjm"]
 
-[node name="WorldGCSM" type="Node2D" unique_id=1661168125]
+[node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
@@ -134,7 +134,7 @@ tile_set = ExtResource("24_bctkk")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
-tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgAAAAAAAAABAP//AgAAAAAAAAACAP//AgAAAAAAAAADAP//AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAADAAAAAgAAAAAAAAACAAAAAgAAAAAAAAABAAAAAgAAAAAAAAAAAAAAAgAAAAAAAAD//wAAAgAAAAAAAAAFAAAAAgAAAAAAAAAGAAAAAgAAAAAAAAAHAAAAAgAAAAAAAAAIAAAAAgAAAAAAAAAIAP//AgAAAAAAAAAHAP//AgAAAAAAAAAGAP//AgAAAAAAAAAFAP//AgAAAAAAAAAEAP7/AgAAAAAAAAADAP7/AgAAAAAAAAACAP7/AgAAAAAAAAAFAP7/AgAAAAAAAAAGAP7/AgAAAAAAAAAHAP7/AgAAAAAAAAAIAP7/AgAAAAAAAAAJAP7/AgAAAAAAAAAJAP//AgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAAAAAAIAAEAAgAAAAAAAAAHAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAADAAEAAgAAAAAAAAACAAEAAgAAAAAAAAABAAEAAgAAAAAAAAAAAAEAAgAAAAAAAAD//wEAAgAAAAAAAAD+/wEAAgAAAAAAAAD+/wAAAgAAAAAAAAD+////AgAAAAAAAAD+//7/AgAAAAAAAAD///7/AgAAAAAAAAAAAP7/AgAAAAAAAAABAP7/AgAAAAAAAAACAP3/AgAAAAAAAAADAP3/AgAAAAAAAAAEAP3/AgAAAAAAAAAEAPz/AgAAAAAAAAADAPz/AgAAAAAAAAACAPz/AgAAAAAAAAABAPz/AgAAAAAAAAABAP3/AgAAAAAAAAABAPv/AgAAAAAAAAACAPv/AgAAAAAAAAADAPv/AgAAAAAAAAAEAPv/AgAAAAAAAAAFAPv/AgAAAAAAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAGAPv/AgAAAAAAAAAHAPv/AgAAAAAAAAAIAPv/AgAAAAAAAAAJAPv/AgAAAAAAAAAJAPz/AgAAAAAAAAAJAP3/AgAAAAAAAAAIAP3/AgAAAAAAAAAHAP3/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAPz/AgAAAAAAAAAHAPz/AgAAAAAAAAAIAPz/AgAAAAAAAAAAAPv/AgAAAAAAAAD///v/AgAAAAAAAAD+//v/AgAAAAAAAAD+//z/AgAAAAAAAAD+//3/AgAAAAAAAAD///3/AgAAAAAAAAAAAP3/AgAAAAAAAAAAAPz/AgAAAAAAAAD///z/AgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAAAAP//AgAAAAAAAAABAP//AgAAAAAAAAACAP//AgAAAAAAAAADAP//AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAADAAAAAgAAAAAAAAACAAAAAgAAAAAAAAABAAAAAgAAAAAAAAAAAAAAAgAAAAAAAAD//wAAAgAAAAAAAAAFAAAAAgAAAAAAAAAGAAAAAgAAAAAAAAAHAAAAAgAAAAAAAAAHAP//AgAAAAAAAAAGAP//AgAAAAAAAAAFAP//AgAAAAAAAAAEAP7/AgAAAAAAAAADAP7/AgAAAAAAAAACAP7/AgAAAAAAAAAFAP7/AgAAAAAAAAAGAP7/AgAAAAAAAAAHAP7/AgAAAAAAAAAIAP7/AgAAAAAAAAAJAP7/AgAAAAAAAAAHAAEAAgAAAAAAAAAGAAEAAgAAAAAAAAAFAAEAAgAAAAAAAAAEAAEAAgAAAAAAAAADAAEAAgAAAAAAAAACAAEAAgAAAAAAAAABAAEAAgAAAAAAAAAAAAEAAgAAAAAAAAD//wEAAgAAAAAAAAD+/wEAAgAAAAAAAAD+/wAAAgAAAAAAAAD+////AgAAAAAAAAD+//7/AgAAAAAAAAD///7/AgAAAAAAAAAAAP7/AgAAAAAAAAABAP7/AgAAAAAAAAACAP3/AgAAAAAAAAADAP3/AgAAAAAAAAAEAP3/AgAAAAAAAAAEAPz/AgAAAAAAAAADAPz/AgAAAAAAAAACAPz/AgAAAAAAAAABAPz/AgAAAAAAAAABAP3/AgAAAAAAAAABAPv/AgAAAAAAAAACAPv/AgAAAAAAAAADAPv/AgAAAAAAAAAEAPv/AgAAAAAAAAAFAPv/AgAAAAAAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAGAPv/AgAAAAAAAAAHAPv/AgAAAAAAAAAIAPv/AgAAAAAAAAAJAPv/AgAAAAAAAAAJAPz/AgAAAAAAAAAJAP3/AgAAAAAAAAAIAP3/AgAAAAAAAAAHAP3/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAPz/AgAAAAAAAAAHAPz/AgAAAAAAAAAIAPz/AgAAAAAAAAAAAPv/AgAAAAAAAAD///v/AgAAAAAAAAD+//v/AgAAAAAAAAD+//z/AgAAAAAAAAD+//3/AgAAAAAAAAD///3/AgAAAAAAAAAAAP3/AgAAAAAAAAAAAPz/AgAAAAAAAAD///z/AgAAAAAAAAA=")
 tile_set = ExtResource("25_xgfel")
 metadata/_edit_lock_ = true
 
@@ -145,7 +145,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
-tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAAEAAAAAAABAP7/AAAEAAIAAAD+//7/AAADAAEAAAD+////AAAFAAEAAAD+/wAAAAAFAAEAAAD+/wEAAAADAAIAAAD//wEAAAAEAAAAAAAAAAEAAAAEAAAAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAAAAAAIAP7/AAAEAAAAAAAJAP7/AAAFAAAAAAAJAAEAAAAFAAIAAAAIAAEAAAAEAAIAAAAHAAEAAAAEAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAJAP//AAAFAAEAAAAJAAAAAAADAAEAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAAEAAIAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAIAAAAIAPv/AAAEAAIAAAAJAPv/AAAFAAAAAAAJAPz/AAAFAAEAAAAJAP3/AAADAAEAAAACAP7/AAAHAAIAAAA=")
+tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAAEAAIAAAABAP7/AAAEAAAAAAD+//7/AAAAAAEAAAD+////AAAFAAEAAAD+/wAAAAAFAAEAAAD+/wEAAAADAAIAAAD//wEAAAAEAAAAAAAAAAEAAAAEAAAAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAABAAAAAAAIAP7/AAAEAAAAAAAJAP7/AAAFAAIAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAAEAAIAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAIAAAAIAPv/AAAEAAIAAAAJAPv/AAAFAAAAAAAJAPz/AAAFAAEAAAAJAP3/AAADAAEAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAA=")
 tile_set = ExtResource("25_xgfel")
 metadata/_edit_lock_ = true
 
@@ -153,45 +153,54 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 
 [node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("26_xlmxe")]
-position = Vector2(513, -1)
-display_name = "\"The making of a shrinking potion\""
-description = "Describes how to make a shrink potion"
-book_info = ExtResource("27_s5xkr")
+position = Vector2(388, 4)
+display_name = "\"Green Herbs - An Introduction\""
+description = "Describes how to make Green Flakes"
+book_info = ExtResource("27_euxjm")
+
+[node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("30_euxjm")]
+position = Vector2(-20, -209)
+
+[node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("30_euxjm")]
+position = Vector2(69, -156)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
 
-[node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("28_forcu")]
-z_index = 1
-position = Vector2(325, -32)
-open_time = 1.0
-close_time = 1.0
-
-[node name="SlidingDoor2" parent="PuzzleNodes" unique_id=1936157800 instance=ExtResource("28_forcu")]
-z_index = 1
-position = Vector2(325, 32)
-open_time = 1.0
-close_time = 1.0
-open_direction = 2
-
 [node name="PressurePlate" parent="PuzzleNodes" unique_id=1033225261 node_paths=PackedStringArray("door_refs") instance=ExtResource("29_mm532")]
-position = Vector2(223.99998, -2)
+position = Vector2(256, -160)
 scale = Vector2(0.59999907, 0.59999907)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="PressurePlate2" parent="PuzzleNodes" unique_id=993208049 node_paths=PackedStringArray("door_refs") instance=ExtResource("29_mm532")]
-position = Vector2(419.99997, -2)
+position = Vector2(257, -351.99997)
 scale = Vector2(0.59999907, 0.59999907)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
-[node name="LabelCongratulations" type="Label" parent="." unique_id=886711945]
+[node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("29_euxjm")]
+position = Vector2(224, -262)
+open_direction = 3
+
+[node name="SlidingDoor2" parent="PuzzleNodes" unique_id=495895326 instance=ExtResource("29_euxjm")]
+position = Vector2(288, -262)
+open_direction = 1
+
+[node name="Labels" type="Control" parent="." unique_id=957710452]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelCongratulations" type="Label" parent="Labels" unique_id=886711945]
+layout_mode = 0
 offset_left = 173.0
 offset_top = -778.0
 offset_right = 302.0
 offset_bottom = -755.0
 text = "Congratulations!"
 
-[node name="MapDescription" type="Label" parent="." unique_id=1978709420]
+[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
+layout_mode = 0
 offset_left = -1125.0
 offset_top = -773.0
 offset_right = -412.0
@@ -200,11 +209,13 @@ text = "- Get used to movement
 - Learn basic interaction
 - "
 
-[node name="GreenHerb" parent="." unique_id=1059254419 instance=ExtResource("30_euxjm")]
-position = Vector2(-20, -209)
-
-[node name="GreenHerb2" parent="." unique_id=916472379 instance=ExtResource("30_euxjm")]
-position = Vector2(69, -156)
+[node name="Label" type="Label" parent="Labels" unique_id=755762151]
+layout_mode = 0
+offset_left = -114.0
+offset_top = -107.0
+offset_right = 183.0
+offset_bottom = -84.0
+text = "Press the \"?\" icon to open the log book"
 
 [connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_consume_inventory_item"]

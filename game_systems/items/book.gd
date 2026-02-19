@@ -4,5 +4,7 @@ class_name Book extends Item
 ## The list of recipes in the book.
 @export var recipes : Array[Recipe]
 
+@export_multiline var content : String
+
 func _init() -> void:
 	type = "Book"

@@ -231,11 +231,10 @@ func consume_item(item : Item, index : int):
 		character_ref.update_status_effects(item.on_consume_effects, item.on_consume_message)
 		
 		if item.type == "Book": ## If item is a book
-			for recipe in item.recipes:
-				character_ref.learn_recipe(recipe)
-				if %RecipeList.visible:
-					%RecipeList.close_window()
-					%RecipeList.open_window()
+			character_ref.read_book(item)
+			if %RecipeList.visible:
+				%RecipeList.close_window()
+				%RecipeList.open_window()
 					
 			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
 				character_ref.update_status_message(item.on_consume_message)

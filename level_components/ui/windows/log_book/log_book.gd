@@ -32,6 +32,30 @@ func open_window() -> bool:
 	open_page_help_general()
 	return true
 
+
+## Initializes which pages are visible in the log book based on character's stored information.
+func init_logs(character : Character) -> void:
+	for book_id in character.books_read:
+		match book_id:
+			1000: ## Green Flakes Book
+				pass
+			1001: ## Strength Potion Book
+				pass
+			1002: ## Red Berry Seed Book
+				pass
+			1003: ## Shrink Potion Book
+				pass
+			1004: ## 
+				pass
+			1005:
+				pass
+	for recipe in character.known_recipes:
+		match recipe.id:
+			0:
+				pass
+			1:
+				pass
+
 ########################################
 ### Open Pages With Dynamic Elements ###
 ########################################
