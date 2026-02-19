@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="24_2ngwq"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="25_h8hxp"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="26_nfkp7"]
-[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door.tscn" id="26_y47t4"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="26_y47t4"]
 [ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant-blue-berry.png" id="27_owdbl"]
 [ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant-red-berry.png" id="28_4houa"]
 [ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper-full.png" id="29_ljkwa"]

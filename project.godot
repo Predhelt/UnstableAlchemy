@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Unstable Alchemist (Pseudo Jam)"
 config/tags=PackedStringArray("deadline", "git")
-run/main_scene="uid://dmjjqutxwcjj7"
+run/main_scene="uid://dpd48ep3t8rbh"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://cwkvxpniso0yh"
 

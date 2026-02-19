@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://mt03glkxr0eu"]
+[gd_scene format=4 uid="uid://mt03glkxr0eu"]
 
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://level_components/ui/windows/inventory/inventory_menu.tscn" id="1_54j8a"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://level_components/ui/windows/recipe_list/recipe_list.tscn" id="2_7gs13"]
@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="16_pyevf"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="17_47nph"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="17_pyevf"]
-[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door.tscn" id="18_134n1"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="18_134n1"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/recipe_item.tscn" id="21_8p4i5"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="21_47nph"]
 

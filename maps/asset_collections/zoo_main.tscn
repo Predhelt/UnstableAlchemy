@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="1_8mkxd"]
 [ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://level_components/objects/collisions/wall_small_hole.tscn" id="2_y2io7"]
-[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door.tscn" id="3_tybpe"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="3_tybpe"]
 
 [node name="ZooMain" type="Node2D" unique_id=1524417957]
 

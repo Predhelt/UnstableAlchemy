@@ -71,15 +71,15 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
+[node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("9_ibin0")]
+unique_name_in_owner = true
+visible = false
+
 [node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("7_ew7dj")]
 unique_name_in_owner = true
 visible = false
 
 [node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("8_ibin0")]
-unique_name_in_owner = true
-visible = false
-
-[node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("9_ibin0")]
 unique_name_in_owner = true
 visible = false
 
@@ -117,7 +117,7 @@ offset_bottom = 154.0
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_leri6")]
 unique_name_in_owner = true
-position = Vector2(529, 298)
+position = Vector2(500, 97)
 character_camera_ref = NodePath("../PlayerCamera")
 known_recipes = Array[ExtResource("16_iwwtm")]([ExtResource("18_5j5wj"), ExtResource("19_v3o2u"), ExtResource("20_ew7dj"), ExtResource("21_ibin0"), ExtResource("22_8oxmj")])
 
@@ -126,7 +126,7 @@ remote_path = NodePath("../../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
-position = Vector2(529, 298)
+position = Vector2(500, 97)
 process_callback = 0
 position_smoothing_enabled = true
 
