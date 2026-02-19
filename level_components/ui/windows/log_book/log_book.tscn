@@ -117,7 +117,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 5
+current_tab = 0
 tab_0/title = "Help"
 tab_1/title = "Items"
 tab_2/title = "Potions"
@@ -128,7 +128,6 @@ tab_6/title = "Places"
 tab_7/title = "People"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1065,6 +1064,7 @@ layout_mode = 2
 text = "Description and details of Boulder."
 
 [node name="TabBooks" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=961548159]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1121,9 +1121,9 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Hello reader,
 Before you venture into the land of Botania (name pending), there are a few things you should know:
-You cannot die here. If you get stuck, you can always get back to your camp by [surrendering yourself to the earth]. [You may lose some items in the process].
-The plants grow back quickly, but gathered materials often decompose quickly.
 The plants and creatures contain magical properties that can be extracted using specific processes.
+The plants grow back quickly, but gathered materials often decompose quickly.
+You cannot die here. If you get stuck, you can always get back to your camp by [surrendering yourself to the earth]. [You may lose certain items in the process].
 
 This place is bizarre and mysterious, but as you grow to understand it, you can learn to do extraordinary things. Just try not to lose yourself in the process.
 -R"

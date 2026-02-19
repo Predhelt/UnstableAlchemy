@@ -26,3 +26,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("use_tool"):
 		if global.mode == &"default": ## Only execute tool in appropriate mode
 			execute_tool()
+	if event.is_action_pressed("inspect_object"):
+		if global.mode == &"default":
+			inspect_object()

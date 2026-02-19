@@ -29,6 +29,7 @@
 [ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="27_s5xkr"]
 [ext_resource type="PackedScene" uid="uid://b8t1hbo8um0bg" path="res://level_components/objects/triggers/sliding_door_facing_left.tscn" id="28_forcu"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="29_mm532"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="30_euxjm"]
 
 [node name="WorldGCSM" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -109,7 +110,7 @@ visible = false
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_7tul0")]
 unique_name_in_owner = true
-position = Vector2(5, -30)
+position = Vector2(0, 2)
 character_camera_ref = NodePath("../PlayerCamera")
 known_recipes = Array[ExtResource("18_n0sxj")]([ExtResource("19_qarrr"), ExtResource("20_e4fs0"), ExtResource("21_ov3fm"), ExtResource("22_4lsri"), ExtResource("23_jhjy3")])
 
@@ -118,7 +119,7 @@ remote_path = NodePath("../../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
-position = Vector2(5, -30)
+position = Vector2(0, 2)
 process_callback = 0
 position_smoothing_enabled = true
 
@@ -198,6 +199,12 @@ offset_bottom = -490.0
 text = "- Get used to movement
 - Learn basic interaction
 - "
+
+[node name="GreenHerb" parent="." unique_id=1059254419 instance=ExtResource("30_euxjm")]
+position = Vector2(-20, -209)
+
+[node name="GreenHerb2" parent="." unique_id=916472379 instance=ExtResource("30_euxjm")]
+position = Vector2(69, -156)
 
 [connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_consume_inventory_item"]

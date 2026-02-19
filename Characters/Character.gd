@@ -191,6 +191,12 @@ func execute_tool():
 			&"blade" : all_interaction_areas[0].cut_object(self)
 			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
 
+
+func inspect_object():
+	if all_interaction_areas:
+		var cur_interaction := all_interaction_areas[0]
+		cur_interaction.inspect_object()
+
 ## Status Effect Handler Methods ##
 
 ## Goes through the list of statuses given and adds or updates the active status effects.
@@ -372,7 +378,7 @@ func _push_body(body: PhysicsBody2D) -> bool:
 		return false
 	## Calculate force based on the strength of the character vs the mass of the body.
 	var mult : float
-	## 50 is the extra strength needed over the mass to push at max velocity.a
+	## 50 is the extra strength needed over the mass to push at max velocity.
 	mult = (attributes.get_attribute("strength") - body.mass) / 50
 	if mult > 1:
 		mult = 1

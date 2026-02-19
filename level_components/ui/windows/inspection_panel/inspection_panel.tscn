@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccrubsrhkvb1n"]
+[gd_scene format=3 uid="uid://ccrubsrhkvb1n"]
 
 [ext_resource type="Script" uid="uid://bb3fqxidwdd8u" path="res://level_components/ui/windows/inspection_panel/inspection_panel.gd" id="1_tln8h"]
 [ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://art/text/SubtitleLabel.tres" id="2_2hdbo"]
 [ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://art/text/DescriptionLabel.tres" id="3_wm1b8"]
 
-[node name="InspectionPanel" type="Control"]
+[node name="InspectionPanel" type="Control" unique_id=1138323551]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tln8h")
 
-[node name="Canvas" type="CanvasLayer" parent="."]
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=841330491]
 
-[node name="Control" type="Control" parent="Canvas"]
+[node name="Control" type="Control" parent="Canvas" unique_id=916811641]
 z_index = 30
 layout_mode = 3
 anchor_left = 0.2
@@ -23,37 +23,37 @@ anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Canvas/Control"]
+[node name="ColorRect" type="ColorRect" parent="Canvas/Control" unique_id=681554945]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.12549, 0.12549, 0.12549, 0.411765)
+color = Color(0.1254902, 0.1254902, 0.1254902, 0.8862745)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Canvas/Control" unique_id=299818583]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 196.0
 offset_bottom = 54.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/Control/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/Control/VBoxContainer" unique_id=442692076]
 layout_mode = 2
 
-[node name="ObjectImage" type="TextureRect" parent="Canvas/Control/VBoxContainer/HBoxContainer"]
+[node name="ObjectImage" type="TextureRect" parent="Canvas/Control/VBoxContainer/HBoxContainer" unique_id=285136919]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ObjectName" type="Label" parent="Canvas/Control/VBoxContainer/HBoxContainer"]
+[node name="ObjectName" type="Label" parent="Canvas/Control/VBoxContainer/HBoxContainer" unique_id=273157404]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Name"
 label_settings = ExtResource("2_2hdbo")
 vertical_alignment = 1
 
-[node name="ObjectDescription" type="Label" parent="Canvas/Control/VBoxContainer"]
+[node name="ObjectDescription" type="Label" parent="Canvas/Control/VBoxContainer" unique_id=1575444442]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Description
