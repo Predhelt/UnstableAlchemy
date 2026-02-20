@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://b2d7pi15oxo04"
 
 [resource]
 script = ExtResource("10_kwf1d")
-id = 505
+id = 506
 product_item = ExtResource("9_d7bti")
 product_item_amount = 3
 ingredients = Array[ExtResource("1_dja4h")]([ExtResource("2_0ie6y"), ExtResource("3_8gejb"), ExtResource("4_516fn")])

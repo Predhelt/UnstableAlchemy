@@ -8,11 +8,13 @@ extends HBoxContainer
 
 func _ready() -> void:
 	$ButtonInventory.tooltip_text = ("Inventory (" +
-			InputMap.action_get_events("inventory")[0].as_text().replace(' (Physical)','') + ")")
+		InputMap.action_get_events("inventory")[0].as_text().replace(' (Physical)','') + ")")
 	$ButtonRecipes.tooltip_text = ("Recipes (" +
-			InputMap.action_get_events("recipe_book")[0].as_text().replace(' (Physical)','') + ")")
+		InputMap.action_get_events("recipe_book")[0].as_text().replace(' (Physical)','') + ")")
 	$ButtonOptions.tooltip_text = ("Options (" +
-			InputMap.action_get_events("options_menu")[0].as_text().replace(' (Physical)','') + ")")
+		InputMap.action_get_events("options_menu")[0].as_text().replace(' (Physical)','') + ")")
+	$ButtonLogBook.tooltip_text = ("Log Book (" +
+		InputMap.action_get_events("log_book")[0].as_text().replace(' (Physical)','') + ")")
 
 
 func open_pressed_window(ui : Control):

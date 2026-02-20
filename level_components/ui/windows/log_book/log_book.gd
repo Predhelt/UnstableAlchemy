@@ -1,6 +1,10 @@
 extends UIWindow
 var prev_mode : StringName
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("log_book"):
+		toggle_window()
+
 ## Changes the window from opened to closed and vice versa.
 func toggle_window() -> void:
 	if visible:
@@ -19,7 +23,7 @@ func close_window() -> void:
 ## Opens the log book to the default "Help: General" page.
 func open_window() -> bool:
 	if global.center_window or visible:
-		print("Inventory could not be open, " + global.center_window.name + " window already open")
+		print("Log Book could not be open, " + global.center_window.name + " window already open")
 		return false ## Do not open, there is already a window open in the area.
 	
 	prev_mode = global.mode
@@ -51,9 +55,47 @@ func init_logs(character : Character) -> void:
 				pass
 	for recipe in character.known_recipes:
 		match recipe.id:
-			0:
+			### M&P ###
+			0: ## Green Herb Flakes
 				pass
-			1:
+			1: ## Gray Juice
+				pass
+			2: ## Red Berry Seed
+				pass
+			3: ## Yellow Dust
+				pass
+			4: ## Stem Strands
+				pass
+			5: ## Red Juice
+				pass
+			6: ## Blue Berry Seed
+				pass
+			### Merger ###
+			100: ## Green Paste
+				pass
+			101: ## Yellow Paste
+				pass
+			102: ## Orange Paste
+				pass
+			103: ## Saturated Stem
+				pass
+			### Cauldron ###
+			500: ## Speed Potion
+				pass
+			501: ## Cleanse Potion
+				pass
+			502: ## Normalize Potion
+				pass
+			503: ## Grow Potion
+				pass
+			504: ## Shrink Potion
+				pass
+			505: ## Speed Potion (2)
+				pass
+			506: ## Strength Potion
+				pass
+			### Misc ###
+			999: ## Failed Craft
 				pass
 
 ########################################
@@ -75,21 +117,21 @@ func open_page_help_general():
 
 func open_page_help_interactions():
 	#%WindowName.text = "Help: Interactions"
-	%PageHelpInteractions/LabelUse.text = ("Press \""+
+	%PageHelpInteractions/VBoxContainer/LabelUse.text = ("Press \""+
 		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
 		+"\" to use the currently held tool on a nearby object.")
 	if not InputMap.action_get_events("inspect_object").is_empty():
-		%PageHelpInteractions/LabelInspect.text = ("Press \""+
+		%PageHelpInteractions/VBoxContainer/LabelInspect.text = ("Press \""+
 			InputMap.action_get_events("inspect_object")[0].as_text().replace(' (Physical)','')
 			+"\" to inspect a nearby object and get a description of it.")
 	else:
-		%PageHelpInteractions/LabelInspect.text = "(Inspection not currently possible)"
+		%PageHelpInteractions/VBoxContainer/LabelInspect.text = "(Inspection not currently possible)"
 	
 	%PageHelpInteractions.visible = true
 
 func open_page_help_tools():
 	#%WindowName.text = "Help: Tools"
-	%PageHelpTools/LabelUse.text = ("Press \""+
+	%PageHelpTools/VBoxContainer/LabelUse.text = ("Press \""+
 		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
 		+"\" to use the currently held tool on a nearby object.")
 	
@@ -105,6 +147,7 @@ func _on_button_close_pressed() -> void:
 ####################################################
 
 ### Help Tab ###
+################
 func _on_button_help_general_pressed() -> void:
 	open_page_help_general()
 
@@ -127,6 +170,7 @@ func _on_button_help_merger_pressed() -> void:
 	%PageHelpMerger.visible = true
 
 ### Item Tab ###
+################
 func _on_button_item_blue_berries_pressed() -> void:
 	#%WindowName.text = "Item: Blue Berries"
 	pass
@@ -198,3 +242,69 @@ func _on_button_item_yellow_paste_pressed() -> void:
 func _on_button_item_yellow_petals_pressed() -> void:
 	#%WindowName.text = "Item: Yellow Petals"
 	pass
+
+### Potion Tab ###
+##################
+func _on_button_potion_cleanse_pressed() -> void:
+	%PagePotionCleanse.visible = true
+
+func _on_button_potion_grow_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_potion_normalize_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_potion_shrink_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_potion_slow_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_potion_speed_pressed() -> void:
+	%PagePotionSpeed.visible = true
+
+func _on_button_potion_strength_pressed() -> void:
+	pass # Replace with function body.
+
+### Plant Tab ###
+#################
+func _on_button_plant_red_berry_bush_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_plant_green_herbs_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_plant_yellow_flowers_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_plant_blue_berry_bush_pressed() -> void:
+	pass # Replace with function body.
+
+### Object Tab ###
+##################
+func _on_button_object_boulder_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_object_sliding_door_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_object_crawlspace_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_button_object_pressure_plate_pressed() -> void:
+	pass # Replace with function body.
+
+### Book Tab ###
+################
+func _on_button_book_1_pressed() -> void:
+	pass # Replace with function body.
+
+### Places Tab ###
+##################
+func _on_button_places_botania_pressed() -> void:
+	pass # Replace with function body.
+
+### People Tab ###
+##################
+func _on_button_people_person_1_pressed() -> void:
+	pass # Replace with function body.

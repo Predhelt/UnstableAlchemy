@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		var dist = MAX_OPEN_DISTANCE * (delta / open_time)
 		if open_dist < MAX_OPEN_DISTANCE:
 			open_dist += dist
-			if open_dist > MAX_OPEN_DISTANCE: # Prevents moving too far
+			if open_dist > MAX_OPEN_DISTANCE: # Prevents moving too far #FIXME: Stutters can cause misalignment.
 				open_dist = MAX_OPEN_DISTANCE
 			
 			_move_door(dist)

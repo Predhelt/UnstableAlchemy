@@ -241,8 +241,6 @@ func consume_item(item : Item, index : int):
 		
 		$CooldownInteract.start()
 	
-	
-	
 	if item.qty <= 1:
 		remove_inventory_slot(index)
 	else:
@@ -266,45 +264,46 @@ func _on_hotbar_add_inventory_item(item: Item) -> void:
 	character_ref.inventory.add_item(item)
 
 ## Uses the item on the hotbar and removes it from the inventory.
-func consume_hotbar_item(item : Item):
-	var has_more_items := false
-	var is_consumed := false
-	var num_items := len(character_ref.inventory.items)
+func use_hotbar_item(item : Item):
+	use_item(item, character_ref.inventory.get_item_index(item))
+	#var has_more_items := false
+	#var is_consumed := false
+	#var num_items := len(character_ref.inventory.items)
+	#
+	#for i in num_items:
+		### If item is removed from inventory, prevents accessing invalid index of inventory
+		#if num_items <= i: 
+			#break
+		#var cur_item = character_ref.inventory.items[i]
+		#if cur_item.id != item.id:
+			#continue
+		#if not is_consumed:
+			#character_ref.update_status_effects(cur_item.on_consume_effects, cur_item.on_consume_message)
+			#
+			#if item.type == "Book":
+				#for recipe in item.recipes:
+					#character_ref.learn_recipe(recipe)
+				#if not item.on_consume_effects: ## If there were no effects, display book message anyways.
+					#character_ref.update_status_message(item.on_consume_message)
+			#
+			#is_consumed = true
+			#if cur_item.qty <= 1:
+				#remove_inventory_slot(i)
+				#num_items -= 1
+			#else:
+				#cur_item.qty -= 1
+				#%ItemList.set_item_text(i, generate_item_text(cur_item))
+				#has_more_items = true
+		#else:
+			#has_more_items = true
 	
-	for i in num_items:
-		## If item is removed from inventory, prevents accessing invalid index of inventory
-		if num_items <= i: 
-			break
-		var cur_item = character_ref.inventory.items[i]
-		if cur_item.id != item.id:
-			continue
-		if not is_consumed:
-			character_ref.update_status_effects(cur_item.on_consume_effects, cur_item.on_consume_message)
-			
-			if item.type == "Book":
-				for recipe in item.recipes:
-					character_ref.learn_recipe(recipe)
-				if not item.on_consume_effects: ## If there were no effects, display book message anyways.
-					character_ref.update_status_message(item.on_consume_message)
-			
-			is_consumed = true
-			if cur_item.qty <= 1:
-				remove_inventory_slot(i)
-				num_items -= 1
-			else:
-				cur_item.qty -= 1
-				%ItemList.set_item_text(i, generate_item_text(cur_item))
-				has_more_items = true
-		else:
-			has_more_items = true
-	
-	if not has_more_items: # Remove item from hotbar if no more of this item is in inventory
+	if item.qty == 0: # Remove item from hotbar if no more of this item is in inventory slot
 		hotbar_ref.remove_hotbar_item(item)
 
 ## Triggers when the input action is pressed to use the item in the given hotbar slot.\
 ## Uses the given item on the hotbar and reduces its count.
-func _on_hotbar_consume_inventory_item(item: Item) -> void:
-	consume_hotbar_item(item) #FIXME: Items that are not potions should either be sampled or not allowed on the hotbar
+func _on_hotbar_use_inventory_item(item: Item) -> void:
+	use_hotbar_item(item) #FIXME: Items that are not potions should either be sampled or not allowed on the hotbar
 
 ## Triggers when the item in the dropper item is set, and the currently active tool.
 func _on_tool_wheel_set_dropper_item() -> void:

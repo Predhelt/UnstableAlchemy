@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://vqnn2xq30mxw"]
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://vqnn2xq30mxw"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_245wb"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_4f6ax"]
@@ -20,6 +20,5 @@ id = 4
 product_item = ExtResource("7_25hqx")
 product_item_amount = 5
 ingredients = Array[ExtResource("1_245wb")]([ExtResource("2_egs7u")])
-tool_used = "Mortar & Pestle"
 procedure = SubResource("Resource_fnbhc")
 metadata/_custom_type_script = "uid://dmsouatunq2be"

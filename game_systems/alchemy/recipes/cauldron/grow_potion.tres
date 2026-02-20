@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://blno3rlbqvdhu"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_y5bbl"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_3osft"]
+[ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://game_systems/items/merged_ingredients/green_paste.tres" id="2_abkh4"]
+[ext_resource type="Resource" uid="uid://cmisle6abqkow" path="res://game_systems/items/gatherable/yellow_petals.tres" id="3_3dggm"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://game_systems/alchemy/recipes/procedure_input_action.gd" id="4_i78vi"]
+[ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://game_systems/alchemy/recipes/cauldron/procedure_input_actions/bellows.tres" id="5_mwsso"]
+[ext_resource type="Script" uid="uid://c0cgelhbhui2g" path="res://game_systems/alchemy/recipes/pia_item.gd" id="6_uhyuw"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://game_systems/alchemy/procedure.gd" id="7_4oano"]
+[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="8_28njw"]
+
+[sub_resource type="Resource" id="Resource_fslb4"]
+script = ExtResource("6_uhyuw")
+item = ExtResource("2_abkh4")
+metadata/_custom_type_script = "uid://c0cgelhbhui2g"
+
+[sub_resource type="Resource" id="Resource_kmhxr"]
+script = ExtResource("6_uhyuw")
+item = ExtResource("3_3dggm")
+metadata/_custom_type_script = "uid://c0cgelhbhui2g"
+
+[sub_resource type="Resource" id="Resource_bit2y"]
+script = ExtResource("7_4oano")
+input_actions = Array[ExtResource("4_i78vi")]([ExtResource("5_mwsso"), SubResource("Resource_fslb4"), null, null, SubResource("Resource_kmhxr")])
+metadata/_custom_type_script = "uid://b2d7pi15oxo04"
+
+[resource]
+script = ExtResource("2_3osft")
+id = 503
+product_item = ExtResource("8_28njw")
+product_item_amount = 3
+ingredients = Array[ExtResource("1_y5bbl")]([ExtResource("2_abkh4"), ExtResource("3_3dggm")])
+procedure = SubResource("Resource_bit2y")
+metadata/_custom_type_script = "uid://dmsouatunq2be"

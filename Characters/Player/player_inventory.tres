@@ -2,15 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_hxlld"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="2_48wm2"]
-[ext_resource type="Resource" uid="uid://db62qwoxlu4p8" path="res://game_systems/items/potions/shrink_potion.tres" id="2_876eg"]
-[ext_resource type="Resource" uid="uid://cyyy0xtvgwap3" path="res://game_systems/items/merged_ingredients/yellow_paste.tres" id="3_ahw18"]
-[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://game_systems/items/potions/speed_potion.tres" id="4_01bfv"]
-[ext_resource type="Resource" uid="uid://dmmjiexaj27y4" path="res://game_systems/items/potions/strength_potion.tres" id="5_rclo8"]
-[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="6_3d4k3"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="7_3d4k3"]
-[ext_resource type="Resource" uid="uid://cmisle6abqkow" path="res://game_systems/items/gatherable/yellow_petals.tres" id="8_jeb84"]
 
 [resource]
 script = ExtResource("2_48wm2")
-items = Array[ExtResource("1_hxlld")]([ExtResource("2_876eg"), ExtResource("3_ahw18"), ExtResource("4_01bfv"), ExtResource("5_rclo8"), ExtResource("6_3d4k3"), ExtResource("7_3d4k3"), ExtResource("8_jeb84")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"

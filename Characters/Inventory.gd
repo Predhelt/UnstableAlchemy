@@ -152,10 +152,11 @@ func has_item_amounts(items_checking : Array[Item], qtys : Array[int]) -> bool:
 			return false
 	return true
 
-## Returns the index of the first intance of the item. Returns -1 if no item found.
-func get_item_index(item_id : int) -> int:
+## Returns the index of the first intance of the item with matching quantity.
+## Returns -1 if no item found.
+func get_item_index(item : Item) -> int:
 	for i in range(items.size()):
-		if items[i].id == item_id:
+		if items[i].id == item.id and items[i].qty == item.qty:
 			return i
 	return -1
 

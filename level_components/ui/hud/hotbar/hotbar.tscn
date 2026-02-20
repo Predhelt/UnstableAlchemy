@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx7cj5bebv67b"]
+[gd_scene format=3 uid="uid://cx7cj5bebv67b"]
 
 [ext_resource type="PackedScene" uid="uid://76pe5cfluv8j" path="res://level_components/ui/hud/hotbar/hotbar_slot.tscn" id="1_e73bl"]
 [ext_resource type="Script" uid="uid://dbs3whanxbk2m" path="res://level_components/ui/hud/hotbar/hotbar.gd" id="1_o6b42"]
 
-[node name="Hotbar" type="Control"]
+[node name="Hotbar" type="Control" unique_id=635247042]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -14,33 +14,47 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_o6b42")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=2117838694]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -52.0
-offset_top = -50.0
-offset_right = 52.0
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HotbarSlot0" parent="HBoxContainer" instance=ExtResource("1_e73bl")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=668851775]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -27.5
+offset_right = 86.5
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HotbarSlot0" parent="Panel/HBoxContainer" unique_id=686020149 instance=ExtResource("1_e73bl")]
 layout_mode = 2
 
-[node name="HotbarSlot1" parent="HBoxContainer" instance=ExtResource("1_e73bl")]
+[node name="HotbarSlot1" parent="Panel/HBoxContainer" unique_id=364147621 instance=ExtResource("1_e73bl")]
 layout_mode = 2
 slot_id = 1
 
-[node name="HotbarSlot2" parent="HBoxContainer" instance=ExtResource("1_e73bl")]
+[node name="HotbarSlot2" parent="Panel/HBoxContainer" unique_id=37386248 instance=ExtResource("1_e73bl")]
 layout_mode = 2
 slot_id = 2
 
-[connection signal="add_inventory_item" from="HBoxContainer/HotbarSlot0" to="." method="_on_add_inventory_item"]
-[connection signal="consume_inventory_item" from="HBoxContainer/HotbarSlot0" to="." method="_on_consume_inventory_item"]
-[connection signal="add_inventory_item" from="HBoxContainer/HotbarSlot1" to="." method="_on_add_inventory_item"]
-[connection signal="consume_inventory_item" from="HBoxContainer/HotbarSlot1" to="." method="_on_consume_inventory_item"]
-[connection signal="add_inventory_item" from="HBoxContainer/HotbarSlot2" to="." method="_on_add_inventory_item"]
-[connection signal="consume_inventory_item" from="HBoxContainer/HotbarSlot2" to="." method="_on_consume_inventory_item"]
+[connection signal="add_inventory_item" from="Panel/HBoxContainer/HotbarSlot0" to="." method="_on_add_inventory_item"]
+[connection signal="use_inventory_item" from="Panel/HBoxContainer/HotbarSlot0" to="." method="_on_use_inventory_item"]
+[connection signal="add_inventory_item" from="Panel/HBoxContainer/HotbarSlot1" to="." method="_on_add_inventory_item"]
+[connection signal="use_inventory_item" from="Panel/HBoxContainer/HotbarSlot1" to="." method="_on_use_inventory_item"]
+[connection signal="add_inventory_item" from="Panel/HBoxContainer/HotbarSlot2" to="." method="_on_add_inventory_item"]
+[connection signal="use_inventory_item" from="Panel/HBoxContainer/HotbarSlot2" to="." method="_on_use_inventory_item"]
