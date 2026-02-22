@@ -20,6 +20,7 @@ layout_mode = 2
 tooltip_text = "Inventory"
 icon = ExtResource("2_117ys")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonRecipes" type="Button" parent="." unique_id=572678631]
 custom_minimum_size = Vector2(64, 64)

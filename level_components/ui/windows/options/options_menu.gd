@@ -31,12 +31,15 @@ func close_window():
 		prev_mode = ""
 		visible = false
 
+## Close the options menu and return to the game.
 func _on_button_return_pressed() -> void:
 	close_window()
 
+## Close the options menu and open the settings menu.
 func _on_button_settings_pressed() -> void:
 	close_window()
 	%SettingsMenu.popup()
 
+## Close the game.
 func _on_button_exit_pressed() -> void:
 	get_tree().quit()

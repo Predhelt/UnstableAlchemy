@@ -1,6 +1,6 @@
 extends Control
 
-#@export var levels
+@export var level_select_path : String = "res://maps/menu/level_select.tscn"
 
 ## Opens the level that was selected. Returns whether or not the level was opened successfuly.
 func open_level() -> bool:
