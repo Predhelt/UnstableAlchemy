@@ -4,7 +4,7 @@ extends Control
 const BUTTON_LEVEL_SELECT = preload("res://maps/menu/button_level_select.tscn")
 
 ## Folder containing the levels being used to populated the level select.
-@export_dir var dir_levels_path
+@export_dir var dir_levels_path : String = "res://maps/main/"
 
 
 func _ready() -> void:

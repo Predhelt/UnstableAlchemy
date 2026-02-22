@@ -1,4 +1,4 @@
-extends Button
+class_name LevelSelectButton extends Button
 
 @export_file var level_path
 

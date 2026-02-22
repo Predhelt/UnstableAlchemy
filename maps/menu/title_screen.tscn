@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckgxm2etu6kdm"]
+[gd_scene format=3 uid="uid://ckgxm2etu6kdm"]
 
 [ext_resource type="Script" uid="uid://rv8tslq5els7" path="res://maps/menu/title_screen.gd" id="1_scg0l"]
+[ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_12dnu"]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" unique_id=2038214120]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_scg0l")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1430391897]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -25,7 +26,7 @@ theme_override_font_sizes/font_size = 50
 text = "Alchemix"
 horizontal_alignment = 1
 
-[node name="ButtonPlay" type="Button" parent="."]
+[node name="ButtonPlay" parent="." unique_id=1276432221 instance=ExtResource("2_12dnu")]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -33,17 +34,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.5
-offset_top = -15.5
-offset_right = 20.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -125.0
+offset_top = -38.5
+offset_right = 125.0
+offset_bottom = 38.5
 theme_override_font_sizes/font_size = 50
 text = "Play"
-icon_alignment = 1
+level_path = "uid://bxw8y0udo7u4o"
 
-[node name="ButtonSettings" type="Button" parent="."]
+[node name="ButtonSettings" type="Button" parent="." unique_id=2133861704]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -58,9 +57,10 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "Settings"
+disabled = true
+text = "Settings (WIP)"
 
-[node name="ButtonExit" type="Button" parent="."]
+[node name="ButtonExit" type="Button" parent="." unique_id=131960736]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -77,6 +77,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[connection signal="pressed" from="ButtonPlay" to="." method="_on_button_play_pressed"]
 [connection signal="pressed" from="ButtonSettings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]

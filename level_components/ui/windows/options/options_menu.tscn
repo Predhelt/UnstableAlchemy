@@ -73,7 +73,7 @@ theme = ExtResource("3_ldjf7")
 disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "Save"
+text = "Save (WIP)"
 
 [node name="ButtonLoad" type="Button" parent="VBoxContainer/Control/VBoxContainer" unique_id=551023030]
 unique_name_in_owner = true
@@ -82,7 +82,7 @@ theme = ExtResource("3_ldjf7")
 disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "Load"
+text = "Load (WIP)"
 
 [node name="ButtonLevel" parent="VBoxContainer/Control/VBoxContainer" unique_id=2028205128 instance=ExtResource("6_qrcwd")]
 unique_name_in_owner = true
@@ -97,8 +97,7 @@ theme = ExtResource("3_ldjf7")
 disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "Settings
-"
+text = "Settings (WIP)"
 
 [node name="ButtonExit" type="Button" parent="VBoxContainer/Control/VBoxContainer" unique_id=207233914]
 unique_name_in_owner = true
