@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://0xjfmhsed3rt"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_3dh88"]
+
+[resource]
+script = ExtResource("1_3dh88")
+id = 5
+name = "Self-Attunement"
+description = "This creature has an absolute understanding of its staus"
+effect = "self-attunement"
+value = 1.0
+duration = 40.0
+metadata/_custom_type_script = "uid://odkkljfrjpee"

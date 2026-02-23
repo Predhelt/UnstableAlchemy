@@ -12,6 +12,11 @@ const SIZE_DAMPENER := 0.5
 ## Reference to the camera that is being used to follow the character and display the game screen.
 @export var character_camera_ref : Camera2D
 
+## Tracks whether the character is being controlled by the player
+var is_controlled : bool = false
+## Tracks whether the camera is focused on the character
+var is_camera_focused : bool = false
+
 ## The direction in 2D space that the character is moving
 var direction := Vector2.ZERO
 
@@ -228,7 +233,8 @@ func _apply_status_effect(se: StatusEffect) -> bool:
 		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus)
 		&"cleanse" : return _cleanse_status_effects()
 		&"normalize" : return _normalize_status_effects()
-		&"grow" : return _grow_player(se)
+		&"grow" : return _grow_character(se)
+		&"self-attunement" : return _attune_self(se)
 	return false
 
 ## Changes the text of the status message and resets the timer for how long the message appears.
@@ -253,8 +259,9 @@ func _update_status_effect_timers(delta : float) -> void:
 func remove_status_effect(se : StatusEffect) -> bool:
 	match se.effect:
 		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus, true)
-		&"grow" : return _grow_player(se, true)
+		&"grow" : return _grow_character(se, true)
 		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus, true)
+		&"self-attunement" : return _attune_self(se, true)
 	return false
 
 ## Updates the images and progress bars on the status bar UI of the given status effect.
@@ -312,10 +319,11 @@ func _normalize_status_effects() -> bool:
 			
 	return true
 
-## Increases the size of the player, which also changes other attributes of the character relative to size.
-func _grow_player(se: StatusEffect, is_removing_status := false) -> bool:
+## Increases the size of the player, 
+## which also changes other attributes of the character relative to size.
+func _grow_character(se: StatusEffect, is_removing_status := false) -> bool:
 	var se_index : int = _get_se_index(se)
-	if se_index == -1:
+	if se_index == -1: ## If status effect not already applied:
 		attributes.add_size_mult(se.value)
 		set_character_scale(attributes.get_attribute("size"))
 		update_status_bar(se)
@@ -344,16 +352,34 @@ func _get_se_index(se : StatusEffect) -> int:
 			return i
 	return -1
 
-## Sets the scale of the character.
+## Sets the scale of this character.
 func set_character_scale(size: float):
 	var diff_ratio := size/(scale[0]*attributes.base_size)
 	set_scale(Vector2(size/attributes.base_size,size/attributes.base_size))
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/diff_ratio
 
-### Changes the scale of the character.
-#func change_character_scale(mult: Vector2):
-	#scale *= mult
-	#character_camera_ref.zoom *= Vector2(1.0, 1.0)/mult
+## Sets visibility of the attribues panel
+func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
+	var se_index : int = _get_se_index(se)
+	
+	if is_removing or se.value == 0.0:
+		if se_index == -1:
+			return false
+		%AttributeDisplay.visible = false
+		update_status_bar(se, se_index, true)
+		return true
+	
+	if se.value == 1.0: ## add = true
+		if se_index == -1: ## If not already set:
+			%AttributeDisplay.visible = true ## Value should be either 1 = true or 0 = false.
+			update_status_bar(se)
+			return true
+		if se.duration > active_status_effects[se_index].duration: ## Keep the longer duration
+			update_status_bar(se, se_index)
+		return true
+	return false
+
+### Collision Functions ###
 
 ## Checks the rigid body that is near the character to see if it is pushable.
 func _on_area_2d_body_entered(body: Node2D) -> void:

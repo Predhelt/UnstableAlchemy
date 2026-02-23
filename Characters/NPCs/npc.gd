@@ -40,7 +40,8 @@ func _process(delta: float) -> void:
 		## Checks if enough time has passed since the last message to say another message
 		if last_message_delta > 15:
 			last_message_delta = 0.0
-			say_random_message()
+			if not passive_messages.is_empty():
+				say_random_message()
 
 func init_dialogues():
 	var dialogue_path : String = scene_file_path.rsplit("/", false, 1)[0] + "/Dialogue/Dialogues/"
