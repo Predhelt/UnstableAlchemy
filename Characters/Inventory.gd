@@ -14,12 +14,13 @@ func add_item(item : Item) -> bool:
 		return false
 	## Add to any existing stacks
 	var could_pickup : bool = add_stackable_item(item)
-	## If item was added to existing stacks
+	## If item was added to existing stacks:
 	if item.qty <= 0:
 		return true
 	
 	if items.size() < max_item_count:
-		items.append(item)
+		items.append(item.duplicate())
+		item.qty = 0
 		return true
 	
 	return could_pickup
