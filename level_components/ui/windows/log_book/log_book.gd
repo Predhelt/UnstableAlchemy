@@ -29,6 +29,9 @@ func open_window() -> bool:
 	prev_mode = global.mode
 	global.mode = window_mode
 	global.center_window = self
+	
+	init_logs(%Player) #NOTE: Rework if user is able to control different characters.
+	
 	#%WindowName.text = "Help: General"
 	#$VBoxContainer/TabContainer/TabHelp.visible = true
 	visible = true
@@ -48,7 +51,7 @@ func init_logs(character : Character) -> void:
 			1002: ## Red Berry Seed Book
 				pass
 			1003: ## Shrink Potion Book
-				pass
+				%ButtonBookShrinkPotion.visible = true
 			1004: ## 
 				pass
 			1005:
@@ -296,8 +299,14 @@ func _on_button_object_pressure_plate_pressed() -> void:
 
 ### Book Tab ###
 ################
+func _on_button_book_raw_materials_pressed() -> void:
+	%PageBookRawMaterials.visible = true
+
 func _on_button_book_1_pressed() -> void:
-	pass # Replace with function body.
+	%PageBook1.visible = true
+
+func _on_button_book_shrink_potion_pressed() -> void:
+	%PageBookShrinkPotion.visible = true
 
 ### Places Tab ###
 ##################

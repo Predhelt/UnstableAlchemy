@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://depbbsatmakqx"]
+[gd_scene format=4 uid="uid://depbbsatmakqx"]
 
 [ext_resource type="PackedScene" path="res://UI/ui_layer.tscn" id="1_xex24"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="2_8gh32"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="8_pd4bm"]
 [ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://game_systems/alchemy/recipes/mp/gray_juice.tres" id="12_w86px"]
 [ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://game_systems/alchemy/recipes/cauldron/speed_potion.tres" id="14_b8puf"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/recipe_item.tscn" id="17_w6c75"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="17_w6c75"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="18_843r2"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="20_ilw7q"]
 [ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://game_systems/alchemy/recipes/merger/saturated_stem.tres" id="21_ood0e"]

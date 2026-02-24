@@ -7,16 +7,16 @@
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="5_qjaiv"]
 [ext_resource type="Texture2D" uid="uid://b6puigkphrifg" path="res://art/pack/objects/planted/yellow-flowers.png" id="6_gca1m"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="6_gt0rl"]
-[ext_resource type="Resource" uid="uid://dpj7rac2ern5w" path="res://game_systems/status_effects/shrink.tres" id="7_p31p1"]
+[ext_resource type="Resource" uid="uid://081jaxfsfvmd" path="res://game_systems/status_effects/slow.tres" id="7_p31p1"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="8_8mo8m"]
 
-[sub_resource type="Resource" id="Resource_bp2sj"]
+[sub_resource type="Resource" id="Resource_27njb"]
 script = ExtResource("6_gt0rl")
 on_interact_items = Array[ExtResource("2_fnaup")]([ExtResource("3_amppn")])
 on_interact_amounts = Array[int]([2])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[sub_resource type="Resource" id="Resource_h72d8"]
+[sub_resource type="Resource" id="Resource_1hau4"]
 script = ExtResource("6_gt0rl")
 on_interact_items = Array[ExtResource("2_fnaup")]([ExtResource("3_amppn"), ExtResource("4_b7thv")])
 on_interact_amounts = Array[int]([5, 1])
@@ -30,8 +30,8 @@ script = ExtResource("1_rrjub")
 display_name = "Yellow Flowers"
 description = "Flowers with yellow petals"
 items = Array[ExtResource("2_fnaup")]([ExtResource("3_amppn"), ExtResource("4_b7thv")])
-grab_interaction = SubResource("Resource_bp2sj")
-cut_interaction = SubResource("Resource_h72d8")
+grab_interaction = SubResource("Resource_27njb")
+cut_interaction = SubResource("Resource_1hau4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1178813598]
 position = Vector2(-1.42857, -20)

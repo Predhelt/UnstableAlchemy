@@ -117,7 +117,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 5
 tab_0/title = "Help"
 tab_1/title = "Items"
 tab_2/title = "Potions"
@@ -128,6 +128,7 @@ tab_6/title = "Places"
 tab_7/title = "People"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1090,7 +1091,6 @@ layout_mode = 2
 text = "Description and details of Boulder."
 
 [node name="TabBooks" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=961548159]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1104,13 +1104,20 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=2146009193]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons" unique_id=81576526]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="ButtonBookRawMaterials" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1371375633]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rpebb")
+text = "Raw Materials"
 
 [node name="ButtonBook1" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=771660860]
 unique_name_in_owner = true
@@ -1120,13 +1127,13 @@ button_pressed = true
 button_group = SubResource("ButtonGroup_rpebb")
 text = "Book 1"
 
-[node name="ButtonBook2" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1961863231]
+[node name="ButtonBookShrinkPotion" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1961863231]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
-text = "Book 2"
+text = "Shrink Potion"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=1263152269]
 layout_mode = 2
@@ -1134,7 +1141,7 @@ size_flags_horizontal = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="PageBook1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=773621354]
+[node name="PageBookRawMaterials" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=2075876923]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1143,6 +1150,49 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=516332756]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+text = "All commonly known raw materials and how to get them:
+
+- Red Berries from Red Berry Bushes
+
+- Blue Berries from Blue Berry Bushes
+*Note: Blue Berry Bushes are usually not naturally found.
+
+- Yellow Petals from Yellow Flowers
+- Flower Stems from Yellow Flowers
+
+- Green Herb Leaves from Green Herbs"
+
+[node name="HerbBasicGreen" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=520386645]
+position = Vector2(422, 309.8)
+texture = ExtResource("30_rj7yf")
+
+[node name="YellowFlowers" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=1167620675]
+position = Vector2(421, 234.8)
+texture = ExtResource("31_1jb0j")
+
+[node name="PlantRedBerry" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=1114860152]
+position = Vector2(418, 82.8)
+texture = ExtResource("29_hrbh4")
+
+[node name="PlantBlueBerry" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=1494794482]
+position = Vector2(419, 134.8)
+texture = ExtResource("32_olvlp")
+
+[node name="PageBook1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=773621354]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBook1" unique_id=893067344]
 layout_mode = 2
@@ -1153,8 +1203,26 @@ The plants and creatures contain magical properties that can be extracted using 
 The plants grow back quickly, but gathered materials often decompose quickly.
 You cannot die here. If you get stuck, you can always get back to your camp by [surrendering yourself to the earth]. [You may lose certain items in the process].
 
-This place is bizarre and mysterious, but as you grow to understand it, you can learn to do extraordinary things. Just try not to lose yourself in the process.
+This place is bizarre and mysterious, but as you grow to understand it, you can learn to do utilize it to do extraordinary things. Just try not to lose yourself in the process.
 -R"
+
+[node name="PageBookShrinkPotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1130674966]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookShrinkPotion" unique_id=2102844388]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Changing someone’s size can pose some questions: Do my clothes change with me? Are the changes proportional across all body parts? Is this reversible?
+
+Luckily, the answer to all of these questions is yes, if you follow the procedure properly."
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
 visible = false
@@ -1327,6 +1395,8 @@ text = "A description of the person and any useful information."
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectSlidingDoor" to="." method="_on_button_object_sliding_door_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectCrawlspace" to="." method="_on_button_object_crawlspace_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectPressurePlate" to="." method="_on_button_object_pressure_plate_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" to="." method="_on_button_book_raw_materials_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBook1" to="." method="_on_button_book_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" to="." method="_on_button_people_person_1_pressed"]
