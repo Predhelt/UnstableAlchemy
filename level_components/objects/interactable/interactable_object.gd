@@ -94,6 +94,7 @@ func collect_items(character: Character, interaction: Interaction) -> bool:
 			
 			
 			if character.inventory.add_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
+				#TODO: Add information to character about which item was added and from which object.
 				item_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
 			
 			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object

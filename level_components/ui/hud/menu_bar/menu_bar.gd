@@ -7,16 +7,20 @@ extends HBoxContainer
 #TODO: Update the keyboard shortcut when the keybinds change or input device changes
 
 func _ready() -> void:
-	$ButtonInventory.tooltip_text = ("Inventory (" +
-		InputMap.action_get_events("inventory")[0].as_text().replace(' (Physical)','') + ")")
-	$ButtonRecipes.tooltip_text = ("Recipes (" +
-		InputMap.action_get_events("recipe_book")[0].as_text().replace(' (Physical)','') + ")")
-	$ButtonOptions.tooltip_text = ("Options (" +
-		InputMap.action_get_events("options_menu")[0].as_text().replace(' (Physical)','') + ")")
-	$ButtonLogBook.tooltip_text = ("Log Book (" +
-		InputMap.action_get_events("log_book")[0].as_text().replace(' (Physical)','') + ")")
+	var cur_action : String = InputMap.action_get_events("inventory")[0].as_text().replace(' (Physical)','')
+	$ButtonInventory.set_btn_text(cur_action)
+	$ButtonInventory.tooltip_text = ("Inventory (" + cur_action + ")")
+	cur_action = InputMap.action_get_events("recipe_book")[0].as_text().replace(' (Physical)','')
+	$ButtonRecipes.set_btn_text(cur_action)
+	$ButtonRecipes.tooltip_text = ("Recipes (" + cur_action + ")")
+	cur_action = InputMap.action_get_events("options_menu")[0].as_text().replace(' (Physical)','')
+	$ButtonOptions.set_btn_text(cur_action)
+	$ButtonOptions.tooltip_text = ("Options (" + cur_action + ")")
+	cur_action = InputMap.action_get_events("log_book")[0].as_text().replace(' (Physical)','')
+	$ButtonLogBook.set_btn_text(cur_action)
+	$ButtonLogBook.tooltip_text = ("Log Book (" + cur_action + ")")
 
-
+## Opens the window of the button that was pressed
 func open_pressed_window(ui : Control):
 	if global.mode == &"default":
 		ui.open_window()

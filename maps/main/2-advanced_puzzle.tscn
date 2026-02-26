@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_q35ux"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_s6vkc"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="18_5cv6r"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="19_ieghg"]
 [ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrinkpuzzle/shelly_sp.tscn" id="19_o5lra"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="20_3ia0k"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="21_v8p44"]
@@ -36,6 +37,11 @@
 [ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper-full.png" id="34_rdvj0"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="35_b2b0t"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow-paste.png" id="36_wlxb5"]
+
+[sub_resource type="Resource" id="Resource_sgipv"]
+resource_local_to_scene = true
+script = ExtResource("19_ieghg")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_w7xfw"]
 script = ExtResource("24_3b27p")
@@ -131,6 +137,7 @@ visible = false
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_s6vkc")]
 unique_name_in_owner = true
 position = Vector2(256, 6)
+inventory = SubResource("Resource_sgipv")
 character_camera_ref = NodePath("../PlayerCamera")
 known_recipes = Array[ExtResource("18_5cv6r")]([])
 

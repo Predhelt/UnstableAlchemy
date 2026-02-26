@@ -11,21 +11,3 @@ class_name Recipe extends Resource
 var tool_used : StringName ## The tool used in the craft
 @export var ingredients : Array[Item] ## The ingredients used in the craft
 @export var procedure : Procedure ## The procedure to be followed to create the product
-
-
-#DEPRECATED
-#func _init() -> void:
-	# Order the ingredients from least ID to greatest for consistency
-	#var ordered_ingredients : Array[Item]
-	#
-	#for i in len(ingredients):
-		#var min_ingredient : Item = null
-		#var min_index := 0
-		#for j in len(ingredients):
-			#if not min_ingredient or ingredients[j].id < min_ingredient.id:
-				#min_ingredient = ingredients[j]
-				#min_index = j
-		#ordered_ingredients.append(min_ingredient)
-		#ingredients.remove_at(min_index)
-	#
-	#ingredients = ordered_ingredients

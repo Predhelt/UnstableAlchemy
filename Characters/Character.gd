@@ -35,11 +35,15 @@ var status_message_timer := 0.0
 
 ## The character's stats that determine interactions with the environment
 @export var attributes : Attributes
+
 ## List of recipes known by the character. Easy to edit.
 @export var known_recipes : Array[Recipe]
 ## Keys: IDs of recipes that have been crafted by the player.
 ## Values: the number of times the recipe has been crafted.
 var crafted_recipes : Dictionary[int,int]
+## Keys: IDs of items that have been gathered from interactable objects like plants.
+## Values: Number of times gathered.
+var gathered_items : Dictionary[int, int]
 ## Recipes that have not been viewed yet in the recipe page
 var new_recipes: Array[Recipe]
 ## The currently selected tool that the character is holding
