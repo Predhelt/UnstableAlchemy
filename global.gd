@@ -27,5 +27,9 @@ func _input(event: InputEvent) -> void:
 		elif left_window:
 			left_window.close_window()
 
+func save_persistent_characters() -> void:
+	get_tree().call_group("Persist", "save")
+	#TODO: Properly save all of the persistent object data to a file.
+
 #TODO: add items and recipes based on the spreadsheet
 #TODO: Remake UI with mobile-first

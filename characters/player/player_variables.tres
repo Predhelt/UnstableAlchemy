@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterVariables" format=3 uid="uid://bev3tgvw10lop"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_s5wgm"]
+[ext_resource type="Resource" uid="uid://dpj7rac2ern5w" path="res://game_systems/status_effects/shrink.tres" id="2_52luv"]
+[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://characters/player/player_attributes.tres" id="3_bm5qv"]
+[ext_resource type="Resource" uid="uid://c4voe1xwewivt" path="res://characters/player/player_inventory.tres" id="4_miw51"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="5_p0634"]
+[ext_resource type="Script" uid="uid://vwhpe3kinxdm" path="res://characters/character_variables.gd" id="6_ohye5"]
+
+[resource]
+script = ExtResource("6_ohye5")
+inventory = ExtResource("4_miw51")
+attributes = ExtResource("3_bm5qv")
+active_status_effects = Array[ExtResource("1_s5wgm")]([ExtResource("2_52luv")])
+metadata/_custom_type_script = "uid://vwhpe3kinxdm"

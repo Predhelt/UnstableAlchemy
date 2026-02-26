@@ -1116,16 +1116,16 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
+button_pressed = true
 button_group = SubResource("ButtonGroup_rpebb")
 text = "Raw Materials"
 
-[node name="ButtonBook1" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=771660860]
+[node name="ButtonBookLetterFromR" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=771660860]
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
-button_pressed = true
 button_group = SubResource("ButtonGroup_rpebb")
-text = "Book 1"
+text = "Letter from \"R\""
 
 [node name="ButtonBookShrinkPotion" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1961863231]
 unique_name_in_owner = true
@@ -1145,7 +1145,7 @@ tabs_visible = false
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
+theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
@@ -1157,33 +1157,33 @@ size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 20
 text = "All commonly known raw materials and how to get them:
 
-- Red Berries from Red Berry Bushes
+Red Berries from Red Berry Bushes
 
-- Blue Berries from Blue Berry Bushes
+Blue Berries from Blue Berry Bushes
 *Note: Blue Berry Bushes are usually not naturally found.
 
-- Yellow Petals from Yellow Flowers
-- Flower Stems from Yellow Flowers
+Yellow Petals from Yellow Flowers
+Flower Stems from Yellow Flowers
 
 - Green Herb Leaves from Green Herbs"
 
 [node name="HerbBasicGreen" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=520386645]
-position = Vector2(422, 309.8)
+position = Vector2(56, 308.8)
 texture = ExtResource("30_rj7yf")
 
 [node name="YellowFlowers" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=1167620675]
-position = Vector2(421, 234.8)
+position = Vector2(55, 233.8)
 texture = ExtResource("31_1jb0j")
 
 [node name="PlantRedBerry" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=1114860152]
-position = Vector2(418, 82.8)
+position = Vector2(52, 81.8)
 texture = ExtResource("29_hrbh4")
 
 [node name="PlantBlueBerry" type="Sprite2D" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookRawMaterials" unique_id=1494794482]
-position = Vector2(419, 134.8)
+position = Vector2(53, 152.8)
 texture = ExtResource("32_olvlp")
 
-[node name="PageBook1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=773621354]
+[node name="PageBookLetterFromR" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=773621354]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1194,7 +1194,7 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBook1" unique_id=893067344]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookLetterFromR" unique_id=893067344]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Hello reader,
@@ -1396,7 +1396,7 @@ text = "A description of the person and any useful information."
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectCrawlspace" to="." method="_on_button_object_crawlspace_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectPressurePlate" to="." method="_on_button_object_pressure_plate_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" to="." method="_on_button_book_raw_materials_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBook1" to="." method="_on_button_book_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" to="." method="_on_button_book_letter_from_r_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" to="." method="_on_button_people_person_1_pressed"]

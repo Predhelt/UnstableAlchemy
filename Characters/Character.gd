@@ -7,59 +7,58 @@ const SIZE_DAMPENER := 0.5
 
 ## The tree determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
-## Reference to the inventory resource of the character(s).
-@export var inventory : Inventory
+## Path of the file containing he global variables of the current character, if any.
+@export var global_variables : CharacterVariables
 ## Reference to the camera that is being used to follow the character and display the game screen.
 @export var character_camera_ref : Camera2D
 
-## Tracks whether the character is being controlled by the player
-var is_controlled : bool = false
-## Tracks whether the camera is focused on the character
-var is_camera_focused : bool = false
+### Tracks whether the character is being controlled by the player
+#var is_controlled : bool = true
+### Tracks whether the camera is focused on the character
+#var is_camera_focused : bool = true
 
 ## The direction in 2D space that the character is moving
 var direction := Vector2.ZERO
-
 ## List of rigid bodies the character is pushing
 var pushing_bodies : Array[RigidBody2D]
 ## List of crawlspace bodies that the character is occupying.
 var crawlspace_bodies : Array[StaticBody2D]
-
-## The list of status effects that are currently active on the character
-var active_status_effects : Array[StatusEffect]
-
 ## The list of interaction areas that overlap with the character's reach
 var all_interaction_areas : Array[Interactable]
 ## The time left before the status message disappears
 var status_message_timer := 0.0
 
-## The character's stats that determine interactions with the environment
-@export var attributes : Attributes
-
-## List of recipes known by the character. Easy to edit.
-@export var known_recipes : Array[Recipe]
-## Keys: IDs of recipes that have been crafted by the player.
-## Values: the number of times the recipe has been crafted.
-var crafted_recipes : Dictionary[int,int]
-## Keys: IDs of items that have been gathered from interactable objects like plants.
-## Values: Number of times gathered.
-var gathered_items : Dictionary[int, int]
-## Recipes that have not been viewed yet in the recipe page
-var new_recipes: Array[Recipe]
+### The list of status effects that are currently active on the character
+#var active_status_effects : Array[StatusEffect]
+### Keys: IDs of recipes that have been crafted by the player.
+### Values: the number of times the recipe has been crafted.
+#var crafted_recipes : Dictionary[int,int]
+### Keys: IDs of items that have been gathered from interactable objects like plants.
+### Values: Number of times gathered.
+#var gathered_items : Dictionary[int, int]
+### Recipes that have not been viewed yet in the recipe page
+#var new_recipes: Array[Recipe]
 ## The currently selected tool that the character is holding
 var selected_tool : StringName = &"hand"
-## List of books by ID that the character has read
-var books_read : Array[int]
+### List of books by ID that the character has read
+#var books_read : Array[int]
+
+
+
 
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
-	for recipe in known_recipes:
-		new_recipes.append(recipe)
+	for recipe in global_variables.known_recipes:
+		global_variables.new_recipes.append(recipe)
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
 	
-	## Initialize character size based on attributes
+	#FIXME: Active Status Effects carrying over between levels without being applied properly
+	
+	## Initialize character stats based on attributes
 	#TODO
+	for se in global_variables.active_status_effects:
+		_apply_status_effect(se)
 
 ## Every time the character updates, upade the character animations
 func _process(_delta: float) -> void:
@@ -87,7 +86,7 @@ func _physics_process(delta: float) -> void:
 func _move_character(vector : Vector2) -> void:
 	if global.mode == &"default":
 		direction = vector
-		velocity = direction * attributes.get_attribute("move speed") * 2 # base speed too slow, doubles it.
+		velocity = direction * global_variables.attributes.get_attribute("move speed") * 2 # base speed too slow, doubles it.
 		move_and_slide()
 
 ## TODO: Change animations when certain criteria are met
@@ -111,45 +110,47 @@ func save() -> Dictionary:
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
-		"attributes" : attributes,
-		"inventory" : inventory,
-		"known_recipes" : known_recipes,
-		"crafted_recipes" : crafted_recipes,
-		"active_status_effects" : active_status_effects,
-		"selected_tool" : selected_tool
+		"attributes" : global_variables.attributes,
+		"inventory" : global_variables.inventory,
+		"known_recipes" : global_variables.known_recipes,
+		"crafted_recipes" : global_variables.crafted_recipes,
+		"gathered_items" : global_variables.gathered_items,
+		"books_read" : global_variables.books_read,
+		"active_status_effects" : global_variables.active_status_effects,
+		#"selected_tool" : selected_tool
 	}
 	return save_dict
 
 ## Used to call the get_attribute function of Attributes
 ## without needing to access the attributes variable.
 func get_attribute(att_name : String) -> float:
-	return attributes.get_attribute(att_name)
+	return global_variables.attributes.get_attribute(att_name)
 
 ## Adds the given recipe to the list of known recipes. Returns false if the recipe is already learned
 ## or true if the recipe is successfully added to the list of known recipes.
 ## if is_crafted is true, will add to the count of succesful recipe crafts.
 func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
 	if is_crafted:
-		if not crafted_recipes.has(r.id):
-			crafted_recipes[r.id] = 1 ## Add key to dictionary
+		if not global_variables.crafted_recipes.has(r.id):
+			global_variables.crafted_recipes[r.id] = 1 ## Add key to dictionary
 		else:
-			crafted_recipes[r.id] += 1 ## iterate on key in dictionary
-	if r in known_recipes:
+			global_variables.crafted_recipes[r.id] += 1 ## iterate on key in dictionary
+	if r in global_variables.known_recipes:
 		return false
-	known_recipes.append(r)
-	new_recipes.append(r)
+	global_variables.known_recipes.append(r)
+	global_variables.new_recipes.append(r)
 	return true
 
 ## Returns whether or not the character knows a recipe with the given item as the product.
 func knows_recipe(item: Item) -> bool:
-	for r in known_recipes:
+	for r in global_variables.known_recipes:
 		if r.product_item.id == item.id:
 			return true
 	return false
 
 ## Returns whether or not the character knows a recipe with the given item id as the product.
 func knows_recipe_id(item_id: int) -> bool:
-	for r in known_recipes:
+	for r in global_variables.known_recipes:
 		if r.product_item.id == item_id:
 			return true
 	return false
@@ -158,8 +159,8 @@ func knows_recipe_id(item_id: int) -> bool:
 func read_book(book: Book):
 	for recipe in book.recipes:
 		learn_recipe(recipe)
-	if not book.id in books_read:
-		books_read.append(book.id)
+	if not book.id in global_variables.books_read:
+		global_variables.books_read.append(book.id)
 
 ## Interaction Methods ##
 
@@ -233,8 +234,8 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 ## Helper function that applies the status effect to the player based on the effect name.
 func _apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
-		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus)
+		&"move speed bonus" : return _add_attribute_bonus(se, global_variables.attributes.add_move_speed_bonus)
+		&"strength bonus" : return _add_attribute_bonus(se, global_variables.attributes.add_strength_bonus)
 		&"cleanse" : return _cleanse_status_effects()
 		&"normalize" : return _normalize_status_effects()
 		&"grow" : return _grow_character(se)
@@ -250,8 +251,8 @@ func update_status_message(message: String):
 
 ## Updates the duration of an active status effect based on the amount of time that has passed.
 func _update_status_effect_timers(delta : float) -> void:
-	for i in range(active_status_effects.size()-1, -1, -1):
-		var se = active_status_effects[i]
+	for i in range(global_variables.active_status_effects.size()-1, -1, -1):
+		var se = global_variables.active_status_effects[i]
 		if se.duration != -1:
 			se.duration -= delta
 			if se.duration <= 0:
@@ -262,9 +263,9 @@ func _update_status_effect_timers(delta : float) -> void:
 ## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
 	match se.effect:
-		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus, true)
+		&"move speed bonus" : return _add_attribute_bonus(se, global_variables.attributes.add_move_speed_bonus, true)
 		&"grow" : return _grow_character(se, true)
-		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus, true)
+		&"strength bonus" : return _add_attribute_bonus(se, global_variables.attributes.add_strength_bonus, true)
 		&"self-attunement" : return _attune_self(se, true)
 	return false
 
@@ -272,15 +273,15 @@ func remove_status_effect(se : StatusEffect) -> bool:
 ## If is_removing_status is true, the status effect will be removed from the status bar.
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false) -> void:
 	if index != -1:
-		active_status_effects.remove_at(index)
+		global_variables.active_status_effects.remove_at(index)
 		if is_removing_status:
 			%StatusEffectBar.remove_status(se)
 			return
-		active_status_effects.append(se.duplicate())
+		global_variables.active_status_effects.append(se.duplicate())
 		%StatusEffectBar.update_status(se)
 		return
 	
-	active_status_effects.append(se.duplicate())
+	global_variables.active_status_effects.append(se.duplicate())
 	%StatusEffectBar.generate_status(se)
 
 
@@ -309,17 +310,17 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 
 ## Removes all status effects that have a limited duration
 func _cleanse_status_effects() -> bool:
-	for i in range(len(active_status_effects)-1, -1, -1):
-		if active_status_effects[i].duration != -1:
-			remove_status_effect(active_status_effects[i])
+	for i in range(len(global_variables.active_status_effects)-1, -1, -1):
+		if global_variables.active_status_effects[i].duration != -1:
+			remove_status_effect(global_variables.active_status_effects[i])
 			
 	return true
 
 ## Removes all status effects that last indefinitely.
 func _normalize_status_effects() -> bool:
-	for i in range(len(active_status_effects)-1, -1, -1):
-		if active_status_effects[i].duration == -1:
-			remove_status_effect(active_status_effects[i])
+	for i in range(len(global_variables.active_status_effects)-1, -1, -1):
+		if global_variables.active_status_effects[i].duration == -1:
+			remove_status_effect(global_variables.active_status_effects[i])
 			
 	return true
 
@@ -328,38 +329,39 @@ func _normalize_status_effects() -> bool:
 func _grow_character(se: StatusEffect, is_removing_status := false) -> bool:
 	var se_index : int = _get_se_index(se)
 	if se_index == -1: ## If status effect not already applied:
-		attributes.add_size_mult(se.value)
-		set_character_scale(attributes.get_attribute("size"))
+		global_variables.attributes.add_size_mult(se.value)
+		set_character_scale(global_variables.attributes.get_attribute("size"))
 		update_status_bar(se)
 		return true
 	
-	if se.value == active_status_effects[se_index].value and not is_removing_status:
+	if se.value == global_variables.active_status_effects[se_index].value and not is_removing_status:
 		return false
 	
-	attributes.add_size_mult(1.0/se.value)
+	global_variables.attributes.add_size_mult(1.0/se.value)
 	
 	if is_removing_status:
-		set_character_scale(attributes.get_attribute("size"))
+		set_character_scale(global_variables.attributes.get_attribute("size"))
 		update_status_bar(se, se_index, true)
 		return true
 	
-	attributes.add_size_mult(se.value)
-	set_character_scale(attributes.get_attribute("size"))
+	global_variables.attributes.add_size_mult(se.value)
+	set_character_scale(global_variables.attributes.get_attribute("size"))
 	update_status_bar(se, se_index)
 	return true
 
 ## Compares the ID of the status effect to the array of active status effects
 ## Returns the index of the status effect, -1 if not found.
 func _get_se_index(se : StatusEffect) -> int:
-	for i in range(active_status_effects.size()):
-		if se.id == active_status_effects[i].id:
+	for i in range(global_variables.active_status_effects.size()):
+		if se.id == global_variables.active_status_effects[i].id:
 			return i
 	return -1
 
 ## Sets the scale of this character.
 func set_character_scale(size: float):
-	var diff_ratio := size/(scale[0]*attributes.base_size)
-	set_scale(Vector2(size/attributes.base_size,size/attributes.base_size))
+	var base_size := global_variables.attributes.base_size
+	var diff_ratio := size/(scale[0]*base_size)
+	set_scale(Vector2(size/base_size,size/base_size))
 	character_camera_ref.zoom *= Vector2(1.0, 1.0)/diff_ratio
 
 ## Sets visibility of the attribues panel
@@ -378,7 +380,7 @@ func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
 			%AttributeDisplay.visible = true ## Value should be either 1 = true or 0 = false.
 			update_status_bar(se)
 			return true
-		if se.duration > active_status_effects[se_index].duration: ## Keep the longer duration
+		if se.duration > global_variables.active_status_effects[se_index].duration: ## Keep the longer duration
 			update_status_bar(se, se_index)
 		return true
 	return false
@@ -388,10 +390,10 @@ func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
 ## Checks the rigid body that is near the character to see if it is pushable.
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Pushable"):
-		if attributes.get_attribute("strength") >= body.mass:
+		if global_variables.attributes.get_attribute("strength") >= body.mass:
 			pushing_bodies.append(body)
 	if body.is_in_group("Crawlspace"):
-		if attributes.get_attribute("size") <= body.gap_size:
+		if global_variables.attributes.get_attribute("size") <= body.gap_size:
 			if crawlspace_bodies.is_empty():
 				## Remove collision from crawlspaces nearby
 				## NOTE: Assumes that all nearby crawlspaces have the same gap size.
@@ -413,12 +415,12 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 ## Check the mass of the object and compare to the player's strength
 ## to determine if the player is strong enough to move the body.
 func _push_body(body: PhysicsBody2D) -> bool:
-	if attributes.get_attribute("strength") <= body.mass:
+	if global_variables.attributes.get_attribute("strength") <= body.mass:
 		return false
 	## Calculate force based on the strength of the character vs the mass of the body.
 	var mult : float
 	## 50 is the extra strength needed over the mass to push at max velocity.
-	mult = (attributes.get_attribute("strength") - body.mass) / 50
+	mult = (global_variables.attributes.get_attribute("strength") - body.mass) / 50
 	if mult > 1:
 		mult = 1
 		

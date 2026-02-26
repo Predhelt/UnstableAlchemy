@@ -72,7 +72,7 @@ func set_recipes(recipe_tool : StringName):
 		&"Mortar & Pestle": tool_name = "mp"
 		&"Merger": tool_name = "merger"
 	
-	var dir = DirAccess.open(recipes_folder_path + tool_name + "/")
+	var dir := DirAccess.open(recipes_folder_path + tool_name + "/")
 	if not dir:
 		print("Error: Recipe folder path not found")
 		return

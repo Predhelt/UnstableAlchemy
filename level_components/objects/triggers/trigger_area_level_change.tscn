@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://co1x243ro1gma"]
+
+[ext_resource type="Script" uid="uid://doa4j68phsnwl" path="res://level_components/objects/triggers/trigger_area_level_change.gd" id="1_qp5la"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx0wj"]
+size = Vector2(64, 64)
+
+[node name="TriggerAreaLevelChange" type="Area2D" unique_id=1639851176]
+script = ExtResource("1_qp5la")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2032749017]
+shape = SubResource("RectangleShape2D_xx0wj")
+debug_color = Color(0.9999998, 0.019426124, 0.0004711038, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -9,7 +9,7 @@ var is_door_open : bool = false
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.attributes.get_attribute("mass") >= trigger_weight:
+	if body.global_variables.attributes.get_attribute("mass") >= trigger_weight:
 		for door in door_refs:
 			door.open_door()
 			is_door_open = true

@@ -302,8 +302,8 @@ func _on_button_object_pressure_plate_pressed() -> void:
 func _on_button_book_raw_materials_pressed() -> void:
 	%PageBookRawMaterials.visible = true
 
-func _on_button_book_1_pressed() -> void:
-	%PageBook1.visible = true
+func _on_button_book_letter_from_r_pressed() -> void:
+	%PageBookLetterFromR.visible = true
 
 func _on_button_book_shrink_potion_pressed() -> void:
 	%PageBookShrinkPotion.visible = true

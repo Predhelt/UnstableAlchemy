@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="2_xs4sq"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("2_48wm2")
 items = Array[ExtResource("1_hxlld")]([ExtResource("2_xs4sq")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
