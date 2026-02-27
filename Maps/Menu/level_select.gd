@@ -18,8 +18,9 @@ func set_levels(path : String) ->  void:
 	dir.list_dir_begin()
 	var file_name : String = dir.get_next()
 	while file_name != "":
-		add_level_button("%s/%s" % [dir.get_current_dir(), file_name], 
-			file_name.trim_suffix(".tscn").replace("_", " "))
+		if file_name.rsplit(".")[1] == "tscn":
+			add_level_button("%s/%s" % [dir.get_current_dir(), file_name], 
+				file_name.trim_suffix(".tscn").replace("_", " "))
 		file_name = dir.get_next()
 	dir.list_dir_end()
 

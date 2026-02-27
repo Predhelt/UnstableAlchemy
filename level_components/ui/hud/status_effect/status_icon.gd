@@ -4,7 +4,7 @@ var has_duration : bool
 var effect : StatusEffect
 
 func _process(delta: float) -> void:
-	if global.mode != &"default":
+	if Global.mode != &"default":
 		return
 	if has_duration and $TextureRect/ProgressBar.value < $TextureRect/ProgressBar.max_value:
 		$TextureRect/ProgressBar.value += delta

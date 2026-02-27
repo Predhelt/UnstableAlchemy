@@ -18,16 +18,16 @@ func toggle_window():
 		open_window()
 
 func open_window():
-	if not global.center_window:
-		prev_mode = global.mode
-		global.mode = window_mode
-		global.center_window = self
+	if not Global.center_window:
+		prev_mode = Global.mode
+		Global.mode = window_mode
+		Global.center_window = self
 		visible = true
 
 func close_window():
-	if global.mode == window_mode:
-		global.mode = prev_mode
-		global.center_window = null
+	if Global.mode == window_mode:
+		Global.mode = prev_mode
+		Global.center_window = null
 		prev_mode = ""
 		visible = false
 

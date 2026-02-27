@@ -43,13 +43,13 @@ func toggle_window() -> void:
 		open_window()
 
 func close_window() -> void:
-	if global.mode != window_mode:
+	if Global.mode != window_mode:
 		return
 	
 	visible = false
-	global.right_window = null
-	if not global.left_window and not global.center_window:
-		global.mode = &"default"
+	Global.right_window = null
+	if not Global.left_window and not Global.center_window:
+		Global.mode = &"default"
 	
 	%RecipeItems.clear()
 	product_ids.clear()
@@ -57,22 +57,22 @@ func close_window() -> void:
 
 
 func open_window() -> bool:
-	if global.right_window or global.center_window:
+	if Global.right_window or Global.center_window:
 		return false
-	if global.mode == &"default" or global.mode == &"menu":
-		global.mode = window_mode # Shares mode with inventory, minigame, and help menu
+	if Global.mode == &"default" or Global.mode == &"menu":
+		Global.mode = window_mode # Shares mode with inventory, minigame, and help menu
 		
 		%ProductDetails.visible = false
 		for child in %ProcedureList.get_children(): # Remove all children
 			%ProcedureList.remove_child(child)
 		%WindowName.text = "Known Recipes"
 		
-		for recipe in character.global_variables.known_recipes:
+		for recipe in character.known_recipes:
 			## If a recipe already exists for the item, do not add another recipe item.
 			if not recipe or recipe.product_item.id in product_ids:
 				continue
 			var display_text := ""
-			if recipe in character.global_variables.new_recipes:
+			if recipe in character.new_recipes:
 				display_text += "*New*"
 			display_text += recipe.product_item.display_name
 			%RecipeItems.add_item(display_text, recipe.product_item.texture)
@@ -80,7 +80,7 @@ func open_window() -> bool:
 		%RecipeItems.visible = true
 	
 		%ButtonBack.visible = false
-		global.right_window = self
+		Global.right_window = self
 		visible = true
 		return true
 	return false
@@ -93,12 +93,12 @@ func open_recipe_page(item : Item):
 	%ProductDescription.text = item.description
 	%ProductIcon.texture = item.texture
 	## Check if product item is in the list of new recipes, and remove all instances.
-	for i in range(character.global_variables.new_recipes.size()-1, -1, -1): # Removing indices, so preventing out-of-bounds error
-		if item == character.global_variables.new_recipes[i].product_item:
-			character.global_variables.new_recipes.remove_at(i)
+	for i in range(character.new_recipes.size()-1, -1, -1): # Removing indices, so preventing out-of-bounds error
+		if item == character.new_recipes[i].product_item:
+			character.new_recipes.remove_at(i)
 	
 	## Add each procedure to create the associated product item
-	for r in character.global_variables.known_recipes:
+	for r in character.known_recipes:
 		if r.product_item.id != item.id:
 			continue
 		if r.tool_used == &"Mortar & Pestle":
@@ -207,14 +207,14 @@ func add_procedure(recipe: Recipe):
 	cur_cd.craft_recipe = recipe
 	cur_cd.connect("quick_craft_pressed", _on_quick_craft_pressed)
 	
-	var has_craft_recipe := character.global_variables.crafted_recipes.has(recipe.id)
+	var has_craft_recipe := character.crafted_recipes.has(recipe.id)
 	if has_craft_recipe:
-		cur_cd.set_craft_count(character.global_variables.crafted_recipes[recipe.id])
+		cur_cd.set_craft_count(character.crafted_recipes[recipe.id])
 	else:
 		cur_cd.set_craft_count(0)
 	
 	if (_has_craft_items(recipe) and has_craft_recipe and 
-			character.global_variables.crafted_recipes[recipe.id] > 0):
+			character.crafted_recipes[recipe.id] > 0):
 		cur_cd.set_quick_craft_enabled(true)
 	else:
 		cur_cd.set_quick_craft_enabled(false)
@@ -236,7 +236,7 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 		var pia_icon : Button = procedure_icons.get_child(0).get_child(i) 
 		#Icon of procedure index i
 		if not recipe.procedure.input_actions[i]:
-			pia_icon.icon = global.blank_texture
+			pia_icon.icon = Global.blank_texture
 			pia_icon.tooltip_text = "No input"
 			continue
 		if recipe.tool_used == &"Mortar & Pestle":
@@ -284,14 +284,14 @@ func _has_craft_items(recipe : Recipe) -> bool:
 			qtys.append(1)
 	#print(qtys)
 	## Check if item counts are in the inventory
-	if not character.global_variables.inventory.has_item_amounts(ingredients, qtys):
+	if not character.inventory.has_item_amounts(ingredients, qtys):
 		return false
 	return true
 
 ## Perform the craft, if possible, then add the result to the character's inventory.
 ## Returns whether or not the craft was successful.
 func _on_quick_craft_pressed(recipe : Recipe) -> bool:
-	if recipe.id not in character.global_variables.crafted_recipes:
+	if recipe.id not in character.crafted_recipes:
 		print("ERROR: Character has not crafted this recipe before. returning false.")
 		return false
 	if not _has_craft_items(recipe):
@@ -300,13 +300,13 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 	for item in recipe.ingredients:
 		if not item:
 			continue
-		if not character.global_variables.inventory.remove_items([item], [1]):
+		if not character.inventory.remove_items([item], [1]):
 			print("ERROR: No item " + item.display_name + " found in inventory.")
 			return false
 	## Add product items to inventory.
 	var product_item : Item = recipe.product_item.duplicate()
 	product_item.qty = recipe.product_item_amount
-	if not character.global_variables.inventory.add_item(product_item):
+	if not character.inventory.add_item(product_item):
 		print("ERROR: Product item " + product_item.display_name + 
 			" not added successfully to inventory.")
 		return false
@@ -334,7 +334,7 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 ## it links to the ingredient's recipe page.
 func _link_ingredient_button_to_item(button : Button, item : Item) -> bool:
 	## Check to see if the ingredient is a product of a known recipe.
-	for r in character.global_variables.known_recipes:
+	for r in character.known_recipes:
 		if r and item.id == r.product_item.id:
 			## Connect the button press action to opening the item's recipe page.
 			## This assumes that the recipe item button has a custom 
@@ -351,7 +351,7 @@ func _on_ingredient_button_pressed(item : Item):
 
 ## When a recipe item is clicked in the procedure, open that recipe page.
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
-	for recipe in character.global_variables.known_recipes:
+	for recipe in character.known_recipes:
 		if product_ids[index] == recipe.product_item.id:
 			open_recipe_page(recipe.product_item)
 			return

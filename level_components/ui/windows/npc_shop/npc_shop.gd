@@ -1,7 +1,7 @@
 ## This node allows an npc to trade items with the player.
 extends UIWindow
 ## Reference to player that is buying items from the shop.
-@onready var player : Player = %Player
+@onready var player : Character = %Player
 ## Reference to the inventory menu to be displayed alongside the shop by default.
 @onready var inventory_menu := %InventoryMenu
 ## Scene that sets up the transaction UI for the shop.
@@ -33,23 +33,23 @@ func toggle_window() -> void:
 
 ## Closes the NPC Shop UI window and removes it from the window group.
 func close_window() -> void:
-	if global.mode != window_mode:
+	if Global.mode != window_mode:
 		return
 	
 	visible = false
-	global.right_window = null
-	if not global.left_window and not global.center_window:
-		global.mode = &"default"
+	Global.right_window = null
+	if not Global.left_window and not Global.center_window:
+		Global.mode = &"default"
 	
 
 ## Opens the NPC Shop UI window and adds it to the window group.
 func open_window() -> bool:
-	if global.right_window or global.center_window:
+	if Global.right_window or Global.center_window:
 		return false
-	if global.mode == &"default":
-		global.mode = window_mode ## Shares mode with inventory, minigame, and help menu
-	if global.mode == window_mode:
-		global.right_window = self
+	if Global.mode == &"default":
+		Global.mode = window_mode ## Shares mode with inventory, minigame, and help menu
+	if Global.mode == window_mode:
+		Global.right_window = self
 		add_shop_transactions() # Populate the shop transactions
 		
 		#TODO: If shop opens from Dialogue, enable back button and configure to go back to Dialogue.

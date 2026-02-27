@@ -7,7 +7,7 @@ class_name StatusEffect extends Resource
 ## Description to be given to the player
 @export var description := ""
 ## Icon to be shown when the status effect is active
-@export var icon := global.blank_texture
+@export var icon := Global.blank_texture
 ## Identifier for the effect
 @export_enum("move speed bonus", "strength bonus", "grow", "cleanse", "normalize", "self-attunement") var effect : String
 ## Amount/Mult to change the player's stat by. use negative value for stat reduction

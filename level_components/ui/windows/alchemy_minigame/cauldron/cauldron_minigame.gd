@@ -9,12 +9,12 @@ func _ready() -> void:
 ## Sets minigame input displays, updates minigame timers,
 ## checks to see if the crafting is complete.
 func _process(delta: float) -> void:
-	#if global.mode != window_mode: #FIXME: on wrong mode, so disabling check
+	#if Global.mode != window_mode: #FIXME: on wrong mode, so disabling check
 		#return ## Do not continue minigame if another mode has priority.
 	for i in len(minigame_buttons): ## Set hotkey text for each button
 		minigame_buttons[i].text = ("(" +
 			InputMap.action_get_events("minigame_cauldron_action_"+str(i+1))[0].as_text().replace(
-				' (Physical)','') + ")")	
+				' - Physical','') + ")")	
 	if is_crafting:
 		if slider.value < slider.max_value:
 			slider.value += delta
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if global.mode != window_mode or not visible:
+	if Global.mode != window_mode or not visible:
 		return ## No input events should catch on wrong mode or not visible
 	if is_crafting and recipes[0].tool_used == "Cauldron":
 		if event.is_action_pressed("minigame_cauldron_action_1") and not minigame_buttons[0].disabled:
@@ -52,20 +52,20 @@ func open_window():
 			if cur_craft_ingredients[i]:
 				minigame_buttons[i].icon = cur_craft_ingredients[i].texture
 			else:
-				minigame_buttons[i].icon = global.blank_texture
+				minigame_buttons[i].icon = Global.blank_texture
 	%MinigameProgressBar/ProgressSlider.value = 0
 	
 	#%ItemIcon.texture = items.texture
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
-		tb.texture = global.blank_texture
+		tb.texture = Global.blank_texture
 	
 	slider.max_value = 6
 	slider.tick_count = 7
 	
 	%WindowName.text = "Cauldron"
-	global.left_window = self
+	Global.left_window = self
 	visible = true
-	global.mode = window_mode
+	Global.mode = window_mode
 
 ## Checks to see if the input is near a tick on the progress bar. If so,
 ## sets the nearest tick image and information equal to the given information.

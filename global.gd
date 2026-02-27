@@ -27,6 +27,16 @@ func _input(event: InputEvent) -> void:
 		elif left_window:
 			left_window.close_window()
 
+## Changes the root node of the scene. Used for changing levels.
+func change_scene(scene_path : String):
+	_deferred_change_scene.call_deferred(scene_path)
+
+## Defer to pevent errors when signal is called during physics process.
+func _deferred_change_scene(path : String):
+	#save_persistent_characters()
+	get_tree().change_scene_to_file(path)
+
+
 func save_persistent_characters() -> void:
 	get_tree().call_group("Persist", "save")
 	#TODO: Properly save all of the persistent object data to a file.

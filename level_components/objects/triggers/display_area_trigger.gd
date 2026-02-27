@@ -1,12 +1,11 @@
 extends Node
 
 @export var display_scene : Node2D
-var player_ref : Player
+@onready var player_ref : Character = %Player
 
 func _ready() -> void:
 	if display_scene:
 		display_scene.visible = false
-	player_ref = %Player
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not display_scene:

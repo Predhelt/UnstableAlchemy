@@ -8,7 +8,7 @@ var texture : Texture2D :
 var inventory_menu : Control
 
 func _ready() -> void:
-	global.is_dragging = true
+	Global.is_dragging = true
 	pass
 
 func _physics_process(_delta: float) -> void:
@@ -19,7 +19,7 @@ func _physics_process(_delta: float) -> void:
 			inventory_menu.add_inventory_item(item)
 		else:
 			inside_droppables[0].add_item(item)
-		global.is_dragging = false
+		Global.is_dragging = false
 		queue_free()
 
 

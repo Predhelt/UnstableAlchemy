@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c6crxd1b2iewf"]
+[gd_scene format=3 uid="uid://c6crxd1b2iewf"]
 
 [ext_resource type="Script" uid="uid://cyetv8imlnycm" path="res://characters/character.gd" id="1_d1l3k"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc-robe.png" id="2_2esnv"]
@@ -168,22 +168,20 @@ radius = 46.0109
 [sub_resource type="CircleShape2D" id="CircleShape2D_5slg2"]
 radius = 14.0
 
-[node name="Character" type="CharacterBody2D" groups=["Persist"]]
+[node name="Character" type="CharacterBody2D" unique_id=1948548714 groups=["Persist"]]
 collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_d1l3k")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=349065661]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_2esnv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bkg2i")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2067884357]
+libraries/ = SubResource("AnimationLibrary_bkg2i")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1117491036]
 tree_root = SubResource("AnimationNodeStateMachine_5c34o")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
@@ -191,12 +189,12 @@ parameters/conditions/is_moving = false
 parameters/Idle/blend_position = Vector2(-0.12014133, 0.5278027)
 parameters/Walk/blend_position = Vector2(0, 0)
 
-[node name="CollisionBody" type="CollisionShape2D" parent="."]
+[node name="CollisionBody" type="CollisionShape2D" parent="." unique_id=1060732686]
 shape = SubResource("CircleShape2D_6e64a")
 
-[node name="LabelGroup" type="Node2D" parent="."]
+[node name="LabelGroup" type="Node2D" parent="." unique_id=1126790412]
 
-[node name="InteractLabel" type="Label" parent="LabelGroup"]
+[node name="InteractLabel" type="Label" parent="LabelGroup" unique_id=1365152143]
 unique_name_in_owner = true
 z_index = 1
 anchors_preset = 7
@@ -216,7 +214,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup" unique_id=293261000]
 unique_name_in_owner = true
 clip_contents = false
 anchors_preset = 5
@@ -238,24 +236,24 @@ scroll_following = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="InteractionComponents" type="Node2D" parent="."]
+[node name="InteractionComponents" type="Node2D" parent="." unique_id=1215169441]
 
-[node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
+[node name="InteractionArea" type="Area2D" parent="InteractionComponents" unique_id=1306454490]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 linear_damp_space_override = 1
 linear_damp = 5.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea" unique_id=1558105940]
 shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1007725882]
 collision_layer = 0
 collision_mask = 40
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1485776007]
 shape = SubResource("CircleShape2D_5slg2")
 debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 

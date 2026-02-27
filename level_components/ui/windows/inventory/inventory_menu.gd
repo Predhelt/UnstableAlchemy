@@ -41,18 +41,18 @@ func toggle_window() -> void:
 
 ## Closes the window and removes it from the active window group.
 func close_window() -> void:
-	if global.mode == window_mode:
-		global.left_window = null
-		if not global.right_window and not global.center_window:
-			global.mode = &"default"
+	if Global.mode == window_mode:
+		Global.left_window = null
+		if not Global.right_window and not Global.center_window:
+			Global.mode = &"default"
 		visible = false
 	
-	elif global.mode == &"dropper":
-		global.left_window = null
-		global.mode = &"default" ## There should be no other UI windows open
+	elif Global.mode == &"dropper":
+		Global.left_window = null
+		Global.mode = &"default" ## There should be no other UI windows open
 		visible = false
 	
-	elif global.mode == &"menu": ## Minigame in progress, do not change groups.
+	elif Global.mode == &"menu": ## Minigame in progress, do not change groups.
 		visible = false
 	
 	return_alchemy_items()
@@ -60,22 +60,22 @@ func close_window() -> void:
 ## Opens the window and adds it to the active window group.
 ## Inventory reference should be set before the window is opened.
 func open_window() -> bool:
-	if global.left_window or global.center_window or visible:
+	if Global.left_window or Global.center_window or visible:
 		return false ## Do not open, there is already a window open in the area.
 	if not character_ref:
 		print("ERROR: No character reference to display inventory")
 		return false ## Cannot configure inventory menu without an inventory reference.
-	if global.mode == &"default":
-		global.mode = window_mode
-	if global.mode == window_mode:
+	if Global.mode == &"default":
+		Global.mode = window_mode
+	if Global.mode == window_mode:
 		update_window()
-		global.left_window = self
+		Global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
 		visible = true
 		return true
-	elif global.mode == &"dropper":
+	elif Global.mode == &"dropper":
 		update_window()
-		global.left_window = self
+		Global.left_window = self
 		%WindowName.text = "Select an Item for the Dropper"
 		visible = true
 		return true
@@ -85,7 +85,7 @@ func open_window() -> bool:
 ## in the currently referenced character's inventory.
 func update_window():
 	%ItemList.clear()
-	var items := character_ref.global_variables.inventory.items
+	var items := character_ref.inventory.items
 	
 	for i in items.size():
 		if items[i] == null:
@@ -97,16 +97,16 @@ func update_window():
 ## returns the items back to the inventory.
 func return_alchemy_items() -> void:
 	for i in range(3):
-		character_ref.global_variables.inventory.add_item(%Cauldron.items[i])
+		character_ref.inventory.add_item(%Cauldron.items[i])
 		%Cauldron.remove_item(i)
-		character_ref.global_variables.inventory.add_item(%MortarPestle.items[i])
+		character_ref.inventory.add_item(%MortarPestle.items[i])
 		%MortarPestle.remove_item(i)
-		character_ref.global_variables.inventory.add_item(%Merger.items[i])
+		character_ref.inventory.add_item(%Merger.items[i])
 		%Merger.remove_item(i)
 
 ## Adds an item to the character's inventory, then updates the menu.
 func add_inventory_item(item : Item) -> bool:
-	if not item or not character_ref.global_variables.inventory.add_item(item):
+	if not item or not character_ref.inventory.add_item(item):
 		return false
 	update_window()
 	return true
@@ -129,7 +129,7 @@ func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 
 ## Finds the first index of a given item in the inventory. returns -1 if not found.
 func find_item(item : Item) -> int:
-	var inventory_items := character_ref.global_variables.inventory.items
+	var inventory_items := character_ref.inventory.items
 	for i in range(inventory_items.size()):
 		if inventory_items[i].id == item.id:
 			return i
@@ -154,7 +154,7 @@ func remove_inventory_slot(index : int) -> void:
 ## Removes the list of inventory items from the inventory.
 ## If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
 func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
-	if not character_ref.global_variables.inventory.remove_items(items_removing, qtys, isRemovingStacks):
+	if not character_ref.inventory.remove_items(items_removing, qtys, isRemovingStacks):
 		return false
 	update_window()
 	return true
@@ -162,7 +162,7 @@ func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isR
 ## Removes the given quantity of the item from the inventory.
 ## If isRemovingStacks is true, removes any stack that contains the item in the inventory.
 func remove_inventory_item(item_removing : Item, qty : int, isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
-	if not character_ref.global_variables.inventory.remove_items([item_removing], [qty], isRemovingStacks):
+	if not character_ref.inventory.remove_items([item_removing], [qty], isRemovingStacks):
 		return false
 	update_window()
 	return true
@@ -170,25 +170,25 @@ func remove_inventory_item(item_removing : Item, qty : int, isRemovingStacks : b
 ## Determines what to do when the item is clicked on.
 func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index : int) -> void:
 	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click.
-		var item = character_ref.global_variables.inventory.get_inventory_item(index)
+		var item = character_ref.inventory.get_inventory_item(index)
 		
 		if item == null:
 			print("No items found")
 			return
 		
-		match global.mode:
+		match Global.mode:
 			&"menu": use_item(item, index)
 			&"dropper": pass
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
-		var item = character_ref.global_variables.inventory.get_inventory_item(index)
+		var item = character_ref.inventory.get_inventory_item(index)
 		
 		if item == null:
 			print("No items found")
 			return
 		
-		match global.mode:
+		match Global.mode:
 			&"menu": drag_item(item, index)
 			&"dropper": _set_dropper_item(item)
 		
@@ -214,10 +214,10 @@ func drag_item(item : Item, index : int):
 func use_item(item: Item, index : int):
 	## Potions are ID 500-750. Splash potions are 750+. Recipe books are 1000+.
 	
-	if item.type == "Potion" or item.type == "Book":
-		consume_item(item, index)
-	else:
-		sample_item(item)
+	#if item.type == "Potion" or item.type == "Book":
+	consume_item(item, index)
+	#else:
+		#sample_item(item)
 
 ## Uses the given item without reducing the count of the item.
 func sample_item(item):
@@ -307,7 +307,7 @@ func _on_hotbar_use_inventory_item(item: Item) -> void:
 
 ## Triggers when the item in the dropper item is set, and the currently active tool.
 func _on_tool_wheel_set_dropper_item() -> void:
-	global.mode = "dropper"
+	Global.mode = "dropper"
 	open_window()
 
 ## Sets the dropper item in the tool wheel.

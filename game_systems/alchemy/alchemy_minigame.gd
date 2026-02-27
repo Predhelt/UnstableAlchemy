@@ -72,13 +72,13 @@ func close_window():
 		inventory_menu_ref.add_inventory_item(item)
 	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
-	global.left_window = null ## This window shows up in the center of the screen
-	if not global.center_window and not global.right_window:
-		global.mode = &"default"
-	elif global.center_window:
-		global.mode = global.center_window.window_mode
-	elif global.right_window:
-		global.mode = global.right_window.window_mode
+	Global.left_window = null ## This window shows up in the center of the screen
+	if not Global.center_window and not Global.right_window:
+		Global.mode = &"default"
+	elif Global.center_window:
+		Global.mode = Global.center_window.window_mode
+	elif Global.right_window:
+		Global.mode = Global.right_window.window_mode
 
 ## Closes the current window and returns to the inventory menu.
 func previous_window():
@@ -89,13 +89,13 @@ func previous_window():
 		inventory_menu_ref.add_inventory_item(item)
 	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
-	global.left_window = null
-	if not global.center_window and not global.right_window:
-		global.mode = &"default"
-	elif global.center_window:
-		global.mode = global.center_window.window_mode
-	elif global.right_window:
-		global.mode = global.right_window.window_mode
+	Global.left_window = null
+	if not Global.center_window and not Global.right_window:
+		Global.mode = &"default"
+	elif Global.center_window:
+		Global.mode = Global.center_window.window_mode
+	elif Global.right_window:
+		Global.mode = Global.right_window.window_mode
 	
 	inventory_menu_ref.open_window()
 

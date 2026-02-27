@@ -30,7 +30,7 @@ func _ready() -> void:
 	init_dialogues()
 
 func _process(delta: float) -> void:
-	if global.mode == &"default":
+	if Global.mode == &"default":
 		if message_timer > 0:
 			message_timer -= delta
 			if message_timer <= 0:
@@ -73,13 +73,13 @@ func save() -> Dictionary:
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
 		"npc_name" : npc_name,
-		"attributes" : global_variables.attributes,
-		"inventory" : global_variables.inventory,
-		"known_recipes" : global_variables.known_recipes,
-		"crafted_recipes" : global_variables.crafted_recipes,
-		"gathered_items" : global_variables.gathered_items,
-		"books_read" : global_variables.books_read,
-		"active_status_effects" : global_variables.active_status_effects,
+		"attributes" : attributes,
+		"inventory" : inventory,
+		"known_recipes" : known_recipes,
+		"crafted_recipes" : crafted_recipes,
+		"gathered_items" : gathered_items,
+		"books_read" : books_read,
+		"active_status_effects" : active_status_effects,
 		#"selected_tool" : selected_tool,
 		"interaction_type" : interaction_type,
 		"dialogues" : dialogues,
@@ -89,7 +89,7 @@ func save() -> Dictionary:
 	return save_dict
 
 ## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
-func open_dialogue(player : Player) -> void:
+func open_dialogue(player : Character) -> void:
 	%NPCDialogue.open_window_as_npc(self, player)
 
 ## Opens the NPC shop window after configuring the transactions on the page
@@ -141,7 +141,7 @@ func update_message(message: String):
 
 ## Called when the player interacts with the NPC when the interaction type is "talk".
 ## Initiates setting up the npc dialogue window.
-func _on_interact_area_npc_talk(player : Player) -> void:
+func _on_interact_area_npc_talk(player : Character) -> void:
 	open_dialogue(player)
 
 ## Called when the player interacts with the NPC when the interaction type is "shop".

@@ -3,7 +3,7 @@ extends UIWindow
 ## Reference to the npc that is determining the dialogue and interactions
 var npc_ref : NPC
 ## Reference to the player that is talking to the npc
-var player_ref : Player
+var player_ref : Character
 ## The currend dialogue that is being used
 var cur_dialogue : Dialogue
 
@@ -16,27 +16,27 @@ func _init() -> void:
 
 ## Removes the dialogue window from the menu category and hides the window.
 func close_window() -> void:
-	if global.mode != window_mode:
+	if Global.mode != window_mode:
 		return
 	
 	visible = false
-	global.right_window = null
-	if not global.left_window and not global.center_window:
-		global.mode = &"default"
+	Global.right_window = null
+	if not Global.left_window and not Global.center_window:
+		Global.mode = &"default"
 
 ## Opens window using reference to the NPC that opened the window.
 ## and the player that is talking to the Character
 ## to get the proper Dialogue and shop information.
-func open_window_as_npc(npc : NPC, player : Player) -> bool:
+func open_window_as_npc(npc : NPC, player : Character) -> bool:
 	if not npc:
 		print("Error, no npc found.")
 		return false
-	if global.right_window or global.center_window or visible:
+	if Global.right_window or Global.center_window or visible:
 		return false
-	if global.mode == &"default":
-		global.mode = window_mode
-	if global.mode == window_mode:
-		global.right_window = self
+	if Global.mode == &"default":
+		Global.mode = window_mode
+	if Global.mode == window_mode:
+		Global.right_window = self
 		npc_ref = npc
 		player_ref = player
 		%WindowName.text = npc_ref.npc_name
@@ -51,12 +51,12 @@ func open_window_as_npc(npc : NPC, player : Player) -> bool:
 ## Opens the window, assumes that the relevant npc and player were already set
 ## and the page was previously loaded.
 func open_window() -> bool:
-	if global.right_window or global.center_window or visible:
+	if Global.right_window or Global.center_window or visible:
 		return false
-	if global.mode == &"default":
-		global.mode = window_mode
-	if global.mode == window_mode:
-		global.right_window = self
+	if Global.mode == &"default":
+		Global.mode = window_mode
+	if Global.mode == window_mode:
+		Global.right_window = self
 		
 		%ButtonBack.visible = false
 		visible = true

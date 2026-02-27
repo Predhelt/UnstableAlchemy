@@ -131,7 +131,7 @@ func _on_object_inspected() -> void:
 func inspect_object():
 	
 	var inspection_panel = find_child("InspectionPanel")
-	if global.mode == &"inspection":
+	if Global.mode == &"inspection":
 		return
 	inspection_panel = inspection_panel_scene.instantiate()
 	inspection_panel.name = "InspectionPanel"
@@ -140,7 +140,7 @@ func inspect_object():
 	inspection_panel.object_image = $Sprite2D.texture
 	inspection_panel.add_to_group("open_window")
 	add_child(inspection_panel)
-	global.mode = &"inspection"
+	Global.mode = &"inspection"
 
 
 func _on_object_combined(character: Character, item: Item) -> void:

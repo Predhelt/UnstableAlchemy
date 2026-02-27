@@ -28,5 +28,5 @@ func add_item(item: Item) -> bool:
 ## Remmoves item from the hotbar slot.
 func remove_item():
 	cur_item = null
-	$TextureRect.texture = global.blank_texture
+	$TextureRect.texture = Global.blank_texture
 	#$LabelCount.text = ""

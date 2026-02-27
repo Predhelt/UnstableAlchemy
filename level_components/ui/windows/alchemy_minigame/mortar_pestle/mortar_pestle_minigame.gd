@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void: # Override in M&P
-	if global.mode != window_mode or not visible:
+	if Global.mode != window_mode or not visible:
 		return # No input events should catch on wrong mode
 	if is_crafting and recipes[0].tool_used == "Mortar & Pestle":
 		if event.is_action_pressed("minigame_m&p_up") and not minigame_buttons[0].disabled:
@@ -131,15 +131,15 @@ func open_window():
 	%MinigameProgressBar/ProgressSlider.value = 0
 	%ItemIcon.texture = cur_craft_ingredients[0].texture
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
-		tb.texture = global.blank_texture
+		tb.texture = Global.blank_texture
 	
 	slider.max_value = 5
 	slider.tick_count = 6
 	
 	%WindowName.text = "Mortar and Pestle"
-	global.left_window = self
+	Global.left_window = self
 	visible = true
-	global.mode = &"menu"
+	Global.mode = &"menu"
 
 
 func _on_button_start_pressed() -> void:

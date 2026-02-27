@@ -17,37 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://level_components/ui/hud/tool_wheel/tool_wheel.tscn" id="15_61oxt"]
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_5t78b"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_e21mu"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_bo0de"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="18_sx8rp"]
-[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="19_bo0de"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_j6g11"]
-[ext_resource type="Resource" uid="uid://bug73xhr5bl3w" path="res://game_systems/status_effects/energized_burst.tres" id="20_ocdcf"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_sq2ll"]
-[ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="21_i6hi3"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="22_vjyhm"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="26_0imah"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="27_1ym06"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="28_fk7tt"]
-
-[sub_resource type="Resource" id="Resource_ocdcf"]
-script = ExtResource("18_bo0de")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_sx8rp"]
-script = ExtResource("18_sx8rp")
-id = 100
-display_name = "Green Flakes"
-description = "Green herb leaves that have been ground up into flakes"
-texture = ExtResource("21_i6hi3")
-max_qty = 32
-qty = 10
-on_consume_effects = Array[ExtResource("19_bo0de")]([ExtResource("20_ocdcf")])
-on_consume_message = "You feel a quick burst of energy"
-
-[sub_resource type="Resource" id="Resource_bo0de"]
-script = ExtResource("22_vjyhm")
-items = Array[ExtResource("18_sx8rp")]([SubResource("Resource_sx8rp")])
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -127,21 +101,17 @@ offset_bottom = 154.0
 [node name="AttributeDisplay" parent="UILayer/HUDLayer" unique_id=1551514349 instance=ExtResource("16_5t78b")]
 unique_name_in_owner = true
 
-[node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_e21mu")]
+[node name="Player" parent="." unique_id=693995075 instance=ExtResource("17_e21mu")]
 unique_name_in_owner = true
 position = Vector2(135, 17)
-character_camera_ref = NodePath("../PlayerCamera")
-attributes = SubResource("Resource_ocdcf")
-known_recipes = null
-inventory = SubResource("Resource_bo0de")
-active_status_effects = null
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
+position = Vector2(338, 62)
 remote_path = NodePath("../../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
-position = Vector2(135, 17)
+position = Vector2(473, 79)
 process_callback = 0
 position_smoothing_enabled = true
 

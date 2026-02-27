@@ -14,21 +14,21 @@ func toggle_window() -> void:
 
 ## Hides the window after removing it from the appropriate group.
 func close_window() -> void:
-	if global.mode == window_mode:
-		global.mode = prev_mode
-		global.center_window = null
+	if Global.mode == window_mode:
+		Global.mode = prev_mode
+		Global.center_window = null
 		prev_mode = ""
 		visible = false
 
 ## Opens the log book to the default "Help: General" page.
 func open_window() -> bool:
-	if global.center_window or visible:
-		print("Log Book could not be open, " + global.center_window.name + " window already open")
+	if Global.center_window or visible:
+		print("Log Book could not be open, " + Global.center_window.name + " window already open")
 		return false ## Do not open, there is already a window open in the area.
 	
-	prev_mode = global.mode
-	global.mode = window_mode
-	global.center_window = self
+	prev_mode = Global.mode
+	Global.mode = window_mode
+	Global.center_window = self
 	
 	init_logs(%Player) #NOTE: Rework if user is able to control different characters.
 	
@@ -110,10 +110,10 @@ func open_page_help_general():
 	#%WindowName.text = "Help: General"
 	%PageHelpGeneral/VBoxContainer/LabelToolUse.text = ("Walk near a plant or object "+
 	"and use a tool on it by pressing \"" +
-		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
+		InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','')
 		+ "\".")
 	%PageHelpGeneral/VBoxContainer/LabelInteraction.text = ("You can talk to other characters by pressing \"" +
-		InputMap.action_get_events("interact")[0].as_text().replace(' (Physical)','')
+		InputMap.action_get_events("interact")[0].as_text().replace(' - Physical','')
 		+ "\".")
 	
 	%PageHelpGeneral.visible = true
@@ -121,11 +121,11 @@ func open_page_help_general():
 func open_page_help_interactions():
 	#%WindowName.text = "Help: Interactions"
 	%PageHelpInteractions/VBoxContainer/LabelUse.text = ("Press \""+
-		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
+		InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','')
 		+"\" to use the currently held tool on a nearby object.")
 	if not InputMap.action_get_events("inspect_object").is_empty():
 		%PageHelpInteractions/VBoxContainer/LabelInspect.text = ("Press \""+
-			InputMap.action_get_events("inspect_object")[0].as_text().replace(' (Physical)','')
+			InputMap.action_get_events("inspect_object")[0].as_text().replace(' - Physical','')
 			+"\" to inspect a nearby object and get a description of it.")
 	else:
 		%PageHelpInteractions/VBoxContainer/LabelInspect.text = "(Inspection not currently possible)"
@@ -135,7 +135,7 @@ func open_page_help_interactions():
 func open_page_help_tools():
 	#%WindowName.text = "Help: Tools"
 	%PageHelpTools/VBoxContainer/LabelUse.text = ("Press \""+
-		InputMap.action_get_events("use_tool")[0].as_text().replace(' (Physical)','')
+		InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','')
 		+"\" to use the currently held tool on a nearby object.")
 	
 	%PageHelpTools.visible = true

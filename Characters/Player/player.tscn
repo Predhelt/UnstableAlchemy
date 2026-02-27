@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://csw57bxt7nvm2"]
 
-[ext_resource type="Script" uid="uid://o7qbeojih17c" path="res://characters/player/player.gd" id="1_xf5fp"]
+[ext_resource type="Script" uid="uid://cyetv8imlnycm" path="res://characters/character.gd" id="1_dirf7"]
 [ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://art/pack/characters/herbalist-down.png" id="2_23e54"]
-[ext_resource type="Resource" uid="uid://bev3tgvw10lop" path="res://characters/player/player_variables.tres" id="2_c6leb"]
+[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://characters/player/main_character_attributes.tres" id="2_rpf03"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist-left.png" id="3_q5yn3"]
+[ext_resource type="Resource" uid="uid://c4voe1xwewivt" path="res://characters/player/main_character_inventory.tres" id="3_x5dtk"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist-right.png" id="4_eve5b"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist-up.png" id="5_n5fht"]
 
@@ -172,8 +173,11 @@ radius = 14.0
 [node name="Player" type="CharacterBody2D" unique_id=693995075 groups=["Persist"]]
 collision_mask = 57
 motion_mode = 1
-script = ExtResource("1_xf5fp")
-global_variables = ExtResource("2_c6leb")
+script = ExtResource("1_dirf7")
+attributes = ExtResource("2_rpf03")
+known_recipes = null
+inventory = ExtResource("3_x5dtk")
+active_status_effects = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1512704566]
 position = Vector2(0, -36)
@@ -195,6 +199,16 @@ parameters/Walk/blend_position = Vector2(0, 0)
 shape = SubResource("CircleShape2D_6e64a")
 
 [node name="LabelGroup" type="Node2D" parent="." unique_id=917784483]
+
+[node name="HotkeyLabel" type="Label" parent="LabelGroup" unique_id=289740372]
+unique_name_in_owner = true
+anchors_preset = -1
+offset_top = -130.0
+offset_bottom = -130.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 4
+text = "hotkey"
+horizontal_alignment = 1
 
 [node name="InteractLabel" type="Label" parent="LabelGroup" unique_id=1387437011]
 unique_name_in_owner = true

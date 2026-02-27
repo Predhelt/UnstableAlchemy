@@ -91,7 +91,7 @@ func set_recipes(recipe_tool : StringName):
 
 
 func _process(delta: float) -> void:
-	if global.is_dragging:
+	if Global.is_dragging:
 		scale = Vector2(1.1, 1.1)
 	else:
 		scale = Vector2(1, 1)
@@ -179,7 +179,7 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 func remove_item(index: int) -> void:
 	if not items[index]:
 		return
-	buttons[index].texture_normal = global.blank_texture
+	buttons[index].texture_normal = Global.blank_texture
 	buttons[index].disabled = true
 	items[index] = null
 	num_items -= 1

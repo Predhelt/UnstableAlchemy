@@ -6,9 +6,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_close_requested() -> void:
-	global.mode = &"default"
+	Global.mode = &"default"
 	hide()
 
 
 func _on_about_to_popup() -> void:
-	global.mode = &"settings"
+	Global.mode = &"settings"

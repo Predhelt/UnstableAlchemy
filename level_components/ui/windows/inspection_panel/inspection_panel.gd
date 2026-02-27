@@ -19,5 +19,5 @@ func _input(event: InputEvent) -> void:
 		if (event.is_action_pressed("ui_cancel")
 		or event.is_action_pressed("inventory")
 		or event.is_action_pressed("inspect_object")):
-			global.mode = &"default"
+			Global.mode = &"default"
 			queue_free()

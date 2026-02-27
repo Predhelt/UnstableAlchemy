@@ -17,10 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://level_components/ui/hud/tool_wheel/tool_wheel.tscn" id="15_8ou0s"]
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_q35ux"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_s6vkc"]
-[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="18_5cv6r"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_gcp2g"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="19_ieghg"]
 [ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrinkpuzzle/shelly_sp.tscn" id="19_o5lra"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="20_3ia0k"]
+[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="20_7gp5o"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="21_v8p44"]
 [ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="22_spukt"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="23_c8n0i"]
@@ -38,9 +39,13 @@
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="35_b2b0t"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow-paste.png" id="36_wlxb5"]
 
-[sub_resource type="Resource" id="Resource_sgipv"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_qo0cn"]
+script = ExtResource("18_gcp2g")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_yiupm"]
 script = ExtResource("19_ieghg")
+items = Array[ExtResource("21_v8p44")]([ExtResource("20_7gp5o")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_w7xfw"]
@@ -137,9 +142,9 @@ visible = false
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_s6vkc")]
 unique_name_in_owner = true
 position = Vector2(256, 6)
-inventory = SubResource("Resource_sgipv")
 character_camera_ref = NodePath("../PlayerCamera")
-known_recipes = Array[ExtResource("18_5cv6r")]([])
+attributes = SubResource("Resource_qo0cn")
+inventory = SubResource("Resource_yiupm")
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
 remote_path = NodePath("../../PlayerCamera")
@@ -153,6 +158,7 @@ position_smoothing_enabled = true
 [node name="NPCShelly" parent="." unique_id=1346242213 instance=ExtResource("19_o5lra")]
 position = Vector2(385, -173)
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
+attributes = null
 
 [node name="RecipeItem" parent="NPCShelly" unique_id=188532359 instance=ExtResource("20_3ia0k")]
 position = Vector2(0, 181)
