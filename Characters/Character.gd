@@ -18,9 +18,6 @@ const SIZE_DAMPENER := 0.5
 @export var attributes : Attributes
 ## List of recipes known by the character. Easy to edit.
 @export var known_recipes : Array[Recipe]
-## Keys: IDs of recipes that have been crafted by the player.
-## Values: the number of times the recipe has been crafted.
-var crafted_recipes : Dictionary[int,int]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
 ## Values: Number of times gathered.
 var gathered_items : Dictionary[int, int]
@@ -60,7 +57,7 @@ func _ready() -> void:
 			UserVariables.new_recipes.append(recipe)
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
-	%HotkeyLabel.text = ""
+	#%HotkeyLabel.text = ""
 	
 	if character_camera_ref != null:
 		is_player_controlled = true
@@ -144,7 +141,6 @@ func save() -> Dictionary:
 		"attributes" : attributes,
 		"inventory" : inventory,
 		"known_recipes" : known_recipes,
-		"crafted_recipes" : crafted_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
 		"active_status_effects" : active_status_effects,
@@ -161,11 +157,11 @@ func get_attribute(att_name : String) -> float:
 ## or true if the recipe is successfully added to the list of known recipes.
 ## if is_crafted is true, will add to the count of succesful recipe crafts.
 func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
-	if is_crafted:
-		if not crafted_recipes.has(r.id):
-			crafted_recipes[r.id] = 1 ## Add key to dictionary
+	if is_crafted and is_camera_focused:
+		if not UserVariables.crafted_recipes.has(r.id):
+			UserVariables.crafted_recipes[r.id] = 1 ## Add key to dictionary
 		else:
-			crafted_recipes[r.id] += 1 ## iterate on key in dictionary
+			UserVariables.crafted_recipes[r.id] += 1 ## iterate on key in dictionary
 	if r in known_recipes:
 		return false
 	known_recipes.append(r)
@@ -193,8 +189,6 @@ func read_book(book: Book):
 		learn_recipe(recipe)
 	if not book.id in books_read:
 		books_read.append(book.id)
-		if is_player_controlled:
-			UserVariables.books_read.append(book.id)
 
 ## Interaction Methods ##
 
@@ -217,16 +211,19 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 func update_interactions():
 	if all_interaction_areas:
 		#TODO: Smarter way to choose an interaction near the player.
-		var cur_interaction = all_interaction_areas[0]
+		var cur_interaction : Interactable = all_interaction_areas[0]
 		%InteractLabel.text = cur_interaction.interact_label
-		if is_player_controlled:
-			if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
-				%HotkeyLabel.text = InputMap.action_get_events("interact")[0].as_text().replace(' - Physical','')
-			else:
-				%HotkeyLabel.text = InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','')
+		#if is_player_controlled:
+			#if str(cur_interaction.interact_type) == "talk" or str(cur_interaction.interact_type) == "shop":
+				#%HotkeyLabel.text = (
+					#"(" + InputMap.action_get_events("interact")[0].as_text().replace(' - Physical','') + ")")
+			#else:
+				#%HotkeyLabel.text = (
+					#"(" + InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','') + ")")
 		# TODO: Add outline to the object that will be interacted with.
 	else:
 		%InteractLabel.text = ""
+		#%HotkeyLabel.text = ""
 
 ## Executes functions on the selected interaction area given the current interaction type
 func execute_interaction():

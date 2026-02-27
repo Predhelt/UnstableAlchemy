@@ -76,7 +76,6 @@ func save() -> Dictionary:
 		"attributes" : attributes,
 		"inventory" : inventory,
 		"known_recipes" : known_recipes,
-		"crafted_recipes" : crafted_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
 		"active_status_effects" : active_status_effects,

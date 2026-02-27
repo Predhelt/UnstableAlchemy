@@ -72,7 +72,7 @@ func open_window() -> bool:
 			if not recipe or recipe.product_item.id in product_ids:
 				continue
 			var display_text := ""
-			if recipe in character.new_recipes:
+			if recipe in UserVariables.new_recipes:
 				display_text += "*New*"
 			display_text += recipe.product_item.display_name
 			%RecipeItems.add_item(display_text, recipe.product_item.texture)
@@ -93,9 +93,9 @@ func open_recipe_page(item : Item):
 	%ProductDescription.text = item.description
 	%ProductIcon.texture = item.texture
 	## Check if product item is in the list of new recipes, and remove all instances.
-	for i in range(character.new_recipes.size()-1, -1, -1): # Removing indices, so preventing out-of-bounds error
-		if item == character.new_recipes[i].product_item:
-			character.new_recipes.remove_at(i)
+	for i in range(UserVariables.new_recipes.size()-1, -1, -1): # Removing indices, so preventing out-of-bounds error
+		if item == UserVariables.new_recipes[i].product_item:
+			UserVariables.new_recipes.remove_at(i)
 	
 	## Add each procedure to create the associated product item
 	for r in character.known_recipes:
@@ -207,14 +207,14 @@ func add_procedure(recipe: Recipe):
 	cur_cd.craft_recipe = recipe
 	cur_cd.connect("quick_craft_pressed", _on_quick_craft_pressed)
 	
-	var has_craft_recipe := character.crafted_recipes.has(recipe.id)
+	var has_craft_recipe : bool = UserVariables.crafted_recipes.has(recipe.id)
 	if has_craft_recipe:
-		cur_cd.set_craft_count(character.crafted_recipes[recipe.id])
+		cur_cd.set_craft_count(UserVariables.crafted_recipes[recipe.id])
 	else:
 		cur_cd.set_craft_count(0)
 	
 	if (_has_craft_items(recipe) and has_craft_recipe and 
-			character.crafted_recipes[recipe.id] > 0):
+			UserVariables.crafted_recipes[recipe.id] > 0):
 		cur_cd.set_quick_craft_enabled(true)
 	else:
 		cur_cd.set_quick_craft_enabled(false)
@@ -291,7 +291,7 @@ func _has_craft_items(recipe : Recipe) -> bool:
 ## Perform the craft, if possible, then add the result to the character's inventory.
 ## Returns whether or not the craft was successful.
 func _on_quick_craft_pressed(recipe : Recipe) -> bool:
-	if recipe.id not in character.crafted_recipes:
+	if recipe.id not in UserVariables.crafted_recipes:
 		print("ERROR: Character has not crafted this recipe before. returning false.")
 		return false
 	if not _has_craft_items(recipe):

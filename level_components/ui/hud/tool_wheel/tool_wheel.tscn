@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds5yiq3dhtl87"]
+[gd_scene format=3 uid="uid://ds5yiq3dhtl87"]
 
 [ext_resource type="Texture2D" uid="uid://baysd77wlv4ma" path="res://art/pack/tools/hand.png" id="1_ca3uo"]
 [ext_resource type="Script" uid="uid://be67ygi1synun" path="res://level_components/ui/hud/tool_wheel/tool_wheel.gd" id="1_pfl3v"]
@@ -6,7 +6,7 @@
 [ext_resource type="ButtonGroup" uid="uid://bkc0bljvgsssy" path="res://level_components/ui/hud/tool_wheel/tool_wheel_group.tres" id="2_xe7og"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="3_oqfol"]
 
-[node name="ToolWheel" type="GridContainer"]
+[node name="ToolWheel" type="GridContainer" unique_id=1159411071]
 layout_direction = 3
 offset_left = 8.0
 offset_top = 8.0
@@ -14,12 +14,18 @@ mouse_filter = 2
 columns = 2
 script = ExtResource("1_pfl3v")
 
-[node name="CurrentTool" type="Button" parent="."]
+[node name="CurrentTool" type="Button" parent="." unique_id=261771755]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 icon_alignment = 1
 
-[node name="AddItemButton" type="Button" parent="CurrentTool"]
+[node name="HotkeyLabel" type="Label" parent="CurrentTool" unique_id=1780934708]
+layout_mode = 0
+offset_left = -0.9999542
+offset_right = 19.000046
+offset_bottom = 23.0
+
+[node name="AddItemButton" type="Button" parent="CurrentTool" unique_id=440950340]
 visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
@@ -28,7 +34,7 @@ offset_bottom = 8.0
 theme_override_font_sizes/font_size = 24
 text = "+"
 
-[node name="ItemLabel" type="Label" parent="CurrentTool"]
+[node name="ItemLabel" type="Label" parent="CurrentTool" unique_id=958133504]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -43,7 +49,7 @@ grow_vertical = 0
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="Slot1" type="Button" parent="."]
+[node name="Slot1" type="Button" parent="." unique_id=586437243]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Hand"
@@ -52,7 +58,7 @@ button_group = ExtResource("2_xe7og")
 icon = ExtResource("1_ca3uo")
 icon_alignment = 1
 
-[node name="Slot2" type="Button" parent="."]
+[node name="Slot2" type="Button" parent="." unique_id=1724536183]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Blade"
@@ -61,7 +67,7 @@ button_group = ExtResource("2_xe7og")
 icon = ExtResource("2_mhpsv")
 icon_alignment = 1
 
-[node name="Slot3" type="Button" parent="."]
+[node name="Slot3" type="Button" parent="." unique_id=220984713]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Dropper"

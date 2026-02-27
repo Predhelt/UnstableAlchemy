@@ -11,5 +11,3 @@ var crafted_recipes : Dictionary[int,int]
 var gathered_items : Dictionary[int, int]
 ## Recipes that have not been viewed yet in the recipe page
 var new_recipes: Array[Recipe]
-## List of books by ID that the character has read
-var books_read : Array[int]

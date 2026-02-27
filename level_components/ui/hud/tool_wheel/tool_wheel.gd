@@ -17,6 +17,8 @@ func _ready() -> void:
 	$Slot1.button_pressed = true
 	$CurrentTool/AddItemButton.visible = false
 	tooltip_text = selected_tool
+	$CurrentTool/HotkeyLabel.text = ("(" +
+		InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','') + ")")
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
