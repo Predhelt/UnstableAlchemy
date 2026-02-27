@@ -70,19 +70,17 @@ text = "Return"
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ldjf7")
-disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "Save (WIP)"
+text = "Save"
 
 [node name="ButtonLoad" type="Button" parent="VBoxContainer/Control/VBoxContainer" unique_id=551023030]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ldjf7")
-disabled = true
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "Load (WIP)"
+text = "Load"
 
 [node name="ButtonLevel" parent="VBoxContainer/Control/VBoxContainer" unique_id=2028205128 instance=ExtResource("6_qrcwd")]
 unique_name_in_owner = true
@@ -118,5 +116,7 @@ text = "Are you sure you want to exit?"
 label_settings = ExtResource("5_b017p")
 
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_return_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSave" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

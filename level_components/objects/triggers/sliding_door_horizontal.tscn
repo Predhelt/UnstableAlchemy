@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object-gray.png" id="2_xwrac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m66gg"]
-size = Vector2(64, 10)
+size = Vector2(64, 8)
 
 [node name="SlidingDoor" type="AnimatableBody2D" unique_id=463050243]
 script = ExtResource("1_b6o5m")
@@ -12,10 +12,9 @@ open_time = 0.5
 close_time = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=564414494]
-position = Vector2(0, -27)
+position = Vector2(0, -28)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_xwrac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782915014]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_m66gg")

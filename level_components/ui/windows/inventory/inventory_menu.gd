@@ -4,7 +4,7 @@ extends UIWindow
 ## Max number of slots in the inventory.
 @export var max_item_count := 24 
 ## Reference to the currently used inventory. Sets the default referenced character as Player.
-@onready var character_ref : Character = %Player
+#@onready var character_ref : Character = Global.focused_node
 ## visual for item when dragging from inventory
 var drag_item_scene := preload("./drag_item_scene.tscn") 
 ## Reference to the Hotbar UI
@@ -62,7 +62,7 @@ func close_window() -> void:
 func open_window() -> bool:
 	if Global.left_window or Global.center_window or visible:
 		return false ## Do not open, there is already a window open in the area.
-	if not character_ref:
+	if not Global.focused_node:
 		print("ERROR: No character reference to display inventory")
 		return false ## Cannot configure inventory menu without an inventory reference.
 	if Global.mode == &"default":
@@ -85,7 +85,7 @@ func open_window() -> bool:
 ## in the currently referenced character's inventory.
 func update_window():
 	%ItemList.clear()
-	var items := character_ref.inventory.items
+	var items : Array[Item] = Global.focused_node.inventory.items
 	
 	for i in items.size():
 		if items[i] == null:
@@ -97,16 +97,16 @@ func update_window():
 ## returns the items back to the inventory.
 func return_alchemy_items() -> void:
 	for i in range(3):
-		character_ref.inventory.add_item(%Cauldron.items[i])
+		Global.focused_node.inventory.add_item(%Cauldron.items[i])
 		%Cauldron.remove_item(i)
-		character_ref.inventory.add_item(%MortarPestle.items[i])
+		Global.focused_node.inventory.add_item(%MortarPestle.items[i])
 		%MortarPestle.remove_item(i)
-		character_ref.inventory.add_item(%Merger.items[i])
+		Global.focused_node.inventory.add_item(%Merger.items[i])
 		%Merger.remove_item(i)
 
 ## Adds an item to the character's inventory, then updates the menu.
 func add_inventory_item(item : Item) -> bool:
-	if not item or not character_ref.inventory.add_item(item):
+	if not item or not Global.focused_node.inventory.add_item(item):
 		return false
 	update_window()
 	return true
@@ -117,7 +117,7 @@ func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
 	if recipe != null:
-		character_ref.learn_recipe(recipe, true)
+		Global.focused_node.learn_recipe(recipe, true)
 		
 		## Update the recipe list if already open.
 		if %RecipeList.visible:
@@ -129,7 +129,7 @@ func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 
 ## Finds the first index of a given item in the inventory. returns -1 if not found.
 func find_item(item : Item) -> int:
-	var inventory_items := character_ref.inventory.items
+	var inventory_items : Array[Item] = Global.focused_node.inventory.items
 	for i in range(inventory_items.size()):
 		if inventory_items[i].id == item.id:
 			return i
@@ -148,13 +148,13 @@ func remove_inventory_slot(index : int) -> void:
 	if index < 0 or index >= %ItemList.item_count:
 		return
 	
-	character_ref.inventory.items.remove_at(index)
+	Global.focused_node.inventory.items.remove_at(index)
 	%ItemList.remove_item(index)
 
 ## Removes the list of inventory items from the inventory.
 ## If isRemoveingStacks is true, removes any stack that contains any item in the array of items.
 func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
-	if not character_ref.inventory.remove_items(items_removing, qtys, isRemovingStacks):
+	if not Global.focused_node.inventory.remove_items(items_removing, qtys, isRemovingStacks):
 		return false
 	update_window()
 	return true
@@ -162,7 +162,7 @@ func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isR
 ## Removes the given quantity of the item from the inventory.
 ## If isRemovingStacks is true, removes any stack that contains the item in the inventory.
 func remove_inventory_item(item_removing : Item, qty : int, isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
-	if not character_ref.inventory.remove_items([item_removing], [qty], isRemovingStacks):
+	if not Global.focused_node.inventory.remove_items([item_removing], [qty], isRemovingStacks):
 		return false
 	update_window()
 	return true
@@ -170,7 +170,7 @@ func remove_inventory_item(item_removing : Item, qty : int, isRemovingStacks : b
 ## Determines what to do when the item is clicked on.
 func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index : int) -> void:
 	if mouse_button_index == MOUSE_BUTTON_RIGHT: # Right click.
-		var item = character_ref.inventory.get_inventory_item(index)
+		var item = Global.focused_node.inventory.get_inventory_item(index)
 		
 		if item == null:
 			print("No items found")
@@ -182,7 +182,7 @@ func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index 
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
-		var item = character_ref.inventory.get_inventory_item(index)
+		var item = Global.focused_node.inventory.get_inventory_item(index)
 		
 		if item == null:
 			print("No items found")
@@ -222,22 +222,22 @@ func use_item(item: Item, index : int):
 ## Uses the given item without reducing the count of the item.
 func sample_item(item):
 	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the sampling is disabled
-		character_ref.update_status_effects(item.on_consume_effects, item.on_consume_message)
+		Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
 		$CooldownInteract.start()
 
 ## Uses the given item and reduces its count in the inventory.
 func consume_item(item : Item, index : int):
 	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the consuming is disabled
-		character_ref.update_status_effects(item.on_consume_effects, item.on_consume_message)
+		Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
 		
 		if item.type == "Book": ## If item is a book
-			character_ref.read_book(item)
+			Global.focused_node.read_book(item)
 			if %RecipeList.visible:
 				%RecipeList.close_window()
 				%RecipeList.open_window()
 					
 			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
-				character_ref.update_status_message(item.on_consume_message)
+				Global.focused_node.update_status_message(item.on_consume_message)
 		
 		$CooldownInteract.start()
 	
@@ -250,7 +250,7 @@ func consume_item(item : Item, index : int):
 	## Check item for if it should be removed from the hotbar
 	if hotbar_ref.has_item(item):
 		var has_more_items := false
-		for cur_item in character_ref.inventory.items:
+		for cur_item in Global.focused_node.inventory.items:
 			if cur_item.id != item.id:
 				continue
 			has_more_items = true
@@ -261,11 +261,11 @@ func consume_item(item : Item, index : int):
 
 ## Adds item from the hotbar to the inventory.
 func _on_hotbar_add_inventory_item(item: Item) -> void:
-	character_ref.inventory.add_item(item)
+	Global.focused_node.inventory.add_item(item)
 
 ## Uses the item on the hotbar and removes it from the inventory.
 func use_hotbar_item(item : Item):
-	use_item(item, character_ref.inventory.get_item_index(item))
+	use_item(item, Global.focused_node.inventory.get_item_index(item))
 	#var has_more_items := false
 	#var is_consumed := false
 	#var num_items := len(character_ref.inventory.items)

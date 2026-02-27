@@ -30,5 +30,5 @@ offset_top = 219.0
 offset_right = 390.0
 offset_bottom = 294.0
 text = "Standard object size is 64x64px
-Collision height is 10px
+Collision height is 8px
 center of object is in the middle of the collision"

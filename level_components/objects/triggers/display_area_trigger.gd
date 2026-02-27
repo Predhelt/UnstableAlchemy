@@ -1,7 +1,7 @@
 extends Node
 
 @export var display_scene : Node2D
-@onready var player_ref : Character = %Player
+#@onready var player_ref : Character = %Player
 
 func _ready() -> void:
 	if display_scene:
@@ -11,12 +11,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not display_scene:
 		return
 	
-	if body == player_ref:
+	if body == Global.focused_node:
 		display_scene.visible = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if not display_scene:
 		return
 	
-	if body == player_ref:
+	if body == Global.focused_node:
 		display_scene.visible = false

@@ -4,7 +4,4 @@ class_name LevelSelectButton extends Button
 
 
 func _on_pressed() -> void:
-	if level_path == null:
-		return
-	Global.mode = &"default"
-	get_tree().change_scene_to_file(level_path)
+	Global.change_scene(level_path)

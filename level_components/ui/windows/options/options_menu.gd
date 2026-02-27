@@ -43,3 +43,11 @@ func _on_button_settings_pressed() -> void:
 ## Close the game.
 func _on_button_exit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_button_save_pressed() -> void:
+	Global.save_game()
+
+
+func _on_button_load_pressed() -> void:
+	Global.load_game()

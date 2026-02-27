@@ -59,9 +59,11 @@ func _ready() -> void:
 	%InteractLabel.text = ""
 	#%HotkeyLabel.text = ""
 	
+	# Should only be 1 reference to a camera in the scene.
 	if character_camera_ref != null:
 		is_player_controlled = true
 		is_camera_focused = true
+		Global.focused_node = self
 	
 	#FIXME: Active Status Effects carrying over between levels without being applied properly
 	
@@ -144,6 +146,8 @@ func save() -> Dictionary:
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
 		"active_status_effects" : active_status_effects,
+		"is_player_controlled" : is_player_controlled,
+		"is_camera_focused" : is_camera_focused
 		#"selected_tool" : selected_tool
 	}
 	return save_dict

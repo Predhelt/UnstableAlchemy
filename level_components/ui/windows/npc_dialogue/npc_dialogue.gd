@@ -3,7 +3,7 @@ extends UIWindow
 ## Reference to the npc that is determining the dialogue and interactions
 var npc_ref : NPC
 ## Reference to the player that is talking to the npc
-var player_ref : Character
+#var player_ref : Character
 ## The currend dialogue that is being used
 var cur_dialogue : Dialogue
 
@@ -38,9 +38,9 @@ func open_window_as_npc(npc : NPC, player : Character) -> bool:
 	if Global.mode == window_mode:
 		Global.right_window = self
 		npc_ref = npc
-		player_ref = player
+		Global.focused_node = player
 		%WindowName.text = npc_ref.npc_name
-		set_dialogue(npc_ref.get_initial_dialogue_name(player_ref))
+		set_dialogue(npc_ref.get_initial_dialogue_name(Global.focused_node))
 		
 		%ButtonBack.visible = false
 		visible = true
@@ -121,15 +121,15 @@ func _are_conditions_met(conditions : Array[DialogueCondition]) -> bool:
 	for condition in conditions:
 		match condition.type:
 			"player_att_gte":
-				if not player_ref.get_attribute(condition.descriptor) >= condition.value:
+				if not Global.focused_node.get_attribute(condition.descriptor) >= condition.value:
 					return false
 			"player_att_lte":
-				if not player_ref.get_attribute(condition.descriptor) <= condition.value:
+				if not Global.focused_node.get_attribute(condition.descriptor) <= condition.value:
 					return false
 			"player_status_is_active": print("ERROR: Not yet implemented")
 				#return false
 			"player_known_recipe": ## Finds a recipe ID matching the given value
-				if player_ref.knows_recipe_id(condition.value):
+				if Global.focused_node.knows_recipe_id(condition.value):
 					return false
 			"event_trigger": print("ERROR: Not yet implemented")
 				#return false

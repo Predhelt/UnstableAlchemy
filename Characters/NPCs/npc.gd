@@ -24,7 +24,7 @@ var last_message_delta := 0.0
 func _ready() -> void:
 	$InteractArea.interact_type = interaction_type
 	$InteractArea.interact_label = npc_name
-	%NPCShop.player = %Player
+	%NPCShop.player = Global.focused_node
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
 	init_dialogues()
@@ -97,7 +97,7 @@ func open_shop() -> void:
 		if %NPCShop.transactions.size(): ## If the shop already has populated the transaction UI
 			%NPCShop.clear_transactions()
 		%NPCShop.transactions = transactions
-		%NPCShop.player = %Player #NOTE: This would only not be the case if the player controls a different character or multiplayer is added.
+		%NPCShop.player = Global.focused_node
 		%NPCShop.open_window()
 
 ## Does additional logic if the shop was opened from the dialogue menu

@@ -30,7 +30,7 @@ func open_window() -> bool:
 	Global.mode = window_mode
 	Global.center_window = self
 	
-	init_logs(%Player) #NOTE: Rework if user is able to control different characters.
+	init_logs(Global.focused_node)
 	
 	#%WindowName.text = "Help: General"
 	#$VBoxContainer/TabContainer/TabHelp.visible = true

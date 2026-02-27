@@ -18,64 +18,55 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -261.0
-offset_top = 80.0
+offset_top = 36.0
 offset_right = 261.0
-offset_bottom = 147.0
+offset_bottom = 105.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "Alchemix"
 horizontal_alignment = 1
 
-[node name="ButtonPlay" parent="." unique_id=1276432221 instance=ExtResource("2_12dnu")]
-custom_minimum_size = Vector2(250, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1846484415]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -38.5
-offset_right = 125.0
-offset_bottom = 38.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="ButtonPlay" parent="VBoxContainer" unique_id=1276432221 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Play"
 level_path = "uid://bxw8y0udo7u4o"
 
-[node name="ButtonSettings" type="Button" parent="." unique_id=2133861704]
+[node name="ButtonLoad" type="Button" parent="VBoxContainer" unique_id=373167392]
 custom_minimum_size = Vector2(250, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.65
-anchor_right = 0.5
-anchor_bottom = 0.65
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Load"
+
+[node name="ButtonSettings" type="Button" parent="VBoxContainer" unique_id=2133861704]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
 theme_override_font_sizes/font_size = 50
 disabled = true
 text = "Settings (WIP)"
 
-[node name="ButtonExit" type="Button" parent="." unique_id=131960736]
+[node name="ButtonExit" type="Button" parent="VBoxContainer" unique_id=131960736]
 custom_minimum_size = Vector2(250, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.8
-anchor_right = 0.5
-anchor_bottom = 0.8
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[connection signal="pressed" from="ButtonSettings" to="." method="_on_button_settings_pressed"]
-[connection signal="pressed" from="ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]
