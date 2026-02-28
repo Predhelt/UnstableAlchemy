@@ -146,9 +146,6 @@ character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_qo0cn")
 inventory = SubResource("Resource_yiupm")
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
-remote_path = NodePath("../../PlayerCamera")
-
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
 position = Vector2(256, 6)

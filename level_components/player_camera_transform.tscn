@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://b20dt6bauxsdv"]
+
+[node name="CameraTransform" type="RemoteTransform2D" unique_id=1340326280]
+remote_path = NodePath("../../PlayerCamera")

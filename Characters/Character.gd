@@ -61,9 +61,7 @@ func _ready() -> void:
 	
 	# Should only be 1 reference to a camera in the scene.
 	if character_camera_ref != null:
-		is_player_controlled = true
-		is_camera_focused = true
-		Global.focused_node = self
+		set_camera()
 	
 	#FIXME: Active Status Effects carrying over between levels without being applied properly
 	
@@ -75,6 +73,15 @@ func _ready() -> void:
 		active_status_effects.remove_at(i)
 		_apply_status_effect(cur_se)
 
+func set_camera() -> void:
+	is_player_controlled = true
+	is_camera_focused = true
+	Global.focused_node = self
+	Global.focused_camera = character_camera_ref
+	# Set up camera transform
+	var camera_transform : RemoteTransform2D = load("res://level_components/player_camera_transform.tscn").instantiate()
+	camera_transform.remote_path = character_camera_ref.get_path()
+	add_child(camera_transform)
 
 ## Update character position and messages every frame
 func _physics_process(delta: float) -> void:
@@ -147,7 +154,7 @@ func save() -> Dictionary:
 		"books_read" : books_read,
 		"active_status_effects" : active_status_effects,
 		"is_player_controlled" : is_player_controlled,
-		"is_camera_focused" : is_camera_focused
+		"is_camera_focused" : is_camera_focused,
 		#"selected_tool" : selected_tool
 	}
 	return save_dict

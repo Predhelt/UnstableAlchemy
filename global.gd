@@ -1,5 +1,7 @@
 extends Node2D
 
+## Reference to the main camera used for displaying to the user.
+var focused_camera : Camera2D
 ## Reference to the node that has focus of the window's camera.
 var focused_node : Node
 ## File path of the current level
@@ -81,6 +83,9 @@ func save_game() -> void:
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
 
+func save() -> Dictionary:
+	return {} #TODO: Save global variables to file.
+
 
 func load_game() -> void:
 	if not FileAccess.file_exists("user://savegame.save"):
@@ -115,19 +120,30 @@ func load_game() -> void:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			continue
 		
-		
-		
 		node_data = json.data
-		var new_object = load(node_data["filename"]).instantiate()
+		var new_object : Node2D = load(node_data["filename"]).instantiate()
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		
+		var has_camera : bool = false
 		for i in node_data.keys():
 			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
 				continue
 			if i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
+				var cam  = get_tree().root.get_children()[-1].find_child("PlayerCamera")
+				focused_camera = cam
+				new_object.character_camera_ref = cam
+				has_camera = true
+				continue
+			if i == "inventory": #TODO: Figure out save/load of resources
+				new_object.inventory = node_data[i]
+				continue
+			if i == "attributes": #TODO: Figure out save/load of resources
+				new_object.attributes = node_data[i]
 			new_object.set(i, node_data[i])
+		if has_camera:
+			new_object.set_camera()
 	
 	
 

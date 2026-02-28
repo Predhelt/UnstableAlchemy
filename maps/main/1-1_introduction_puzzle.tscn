@@ -134,12 +134,8 @@ character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_ocdcf")
 inventory = SubResource("Resource_bo0de")
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
-remote_path = NodePath("../../PlayerCamera")
-
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
-position = Vector2(135, 17)
 process_callback = 0
 position_smoothing_enabled = true
 
