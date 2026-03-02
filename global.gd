@@ -5,7 +5,7 @@ var focused_camera : Camera2D
 ## Reference to the node that has focus of the window's camera.
 var focused_node : Node
 ## File path of the current level
-var current_level : String
+var current_level_path : String
 ## Tracks if an item is being dragged by the mouse / cursor.
 var is_dragging := false
 ## Keeps reference of the blank texture that is used when another texture is not available.
@@ -41,7 +41,7 @@ func change_scene(scene_path : String):
 		return
 	_deferred_change_scene.call_deferred(scene_path)
 	mode = &"default"
-	current_level = scene_path
+	current_level_path = scene_path
 
 ## Defer to pevent errors when signal is called during physics process.
 func _deferred_change_scene(path : String):
@@ -51,17 +51,17 @@ func _deferred_change_scene(path : String):
 func save_game() -> void:
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	
-	# Store the current level
-	save_file.store_line(JSON.stringify({"current_level" : current_level}))
+	# Store global data at top of the file.
+	var node_data : Dictionary = save()
+	var json_string : String = JSON.stringify(node_data)
+	save_file.store_line(json_string)
 	
-	var node_data
-	var json_string
+	# Store the user data next.
+	node_data = UserVariables.call("save")
+	json_string = JSON.stringify(node_data)
+	save_file.store_line(json_string)
 	
-	# TODO: Store user data at top of the file.
-	#node_data = UserVariables.call("save")
-	#json_string = JSON.stringify(node_data)
-	#save_file.store_line(json_string)
-	
+	# Store persistent node data.
 	var save_nodes : Array[Node] = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
 		# Check the node is an instanced scene so it can be instanced again during load.
@@ -83,34 +83,54 @@ func save_game() -> void:
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
 
+## Save the persistent Global variables as a dictionary.
 func save() -> Dictionary:
-	return {} #TODO: Save global variables to file.
+	return {
+		"focused_camera" : focused_camera,
+		"focused_node" : focused_node,
+		"current_level_path" : current_level_path,
+	}
 
-
+## Loads the game state based on the savegame.save file in the user directory.
 func load_game() -> void:
 	if not FileAccess.file_exists("user://savegame.save"):
 		print("ERROR: No save file found!")
 		return
 	
-	### Free the nodes in the persistent group to revert game state without cloning.
-	var save_nodes = get_tree().get_nodes_in_group("Persist")
-	for i in save_nodes:
-		i.queue_free()
-	
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
 	
-	## Extract the level file
+	# Initialize variables and change the level scene.
 	var json_string = save_file.get_line()
 	var json = JSON.new()
 	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	var node_data = json.data
-	if node_data.keys()[0] == "current_level":
-		pass
-		#_deferred_change_scene(node_data["current_level"])
+	if node_data["current_level_path"]:
+		var level_node : Node2D = load(node_data["current_level_path"]).instantiate()
+		get_tree().change_scene_to_node(level_node)
+		# Wait for the scene to load before continuing.
+		await level_node.ready
 	else:
 		print("ERROR: No level data found. Returning.")
 		return
 	
+	# Set User Variables
+	json_string = save_file.get_line()
+	json = JSON.new()
+	parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+	for i in node_data.keys():
+		UserVariables.set(i, node_data[i])
+	
+	# Free the nodes in the persistent group to revert game state without cloning.
+	var save_nodes = get_tree().get_nodes_in_group("Persist")
+	for i in save_nodes:
+		i.queue_free()
+	
+	#TODO: set node data after the level has finished loading [ready()]
+	# Possibly connect level's ready() signal to load function.
 	while save_file.get_position() < save_file.get_length():
 		json_string = save_file.get_line()
 	
@@ -131,21 +151,25 @@ func load_game() -> void:
 				continue
 			if i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
-				var cam  = get_tree().root.get_children()[-1].find_child("PlayerCamera")
-				focused_camera = cam
+				var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
+				cam.position.x = node_data["pos_x"]
+				cam.position.y = node_data["pos_y"]
+				#focused_camera = cam
 				new_object.character_camera_ref = cam
 				has_camera = true
 				continue
-			if i == "inventory": #TODO: Figure out save/load of resources
-				new_object.inventory = node_data[i]
+			if i == "inventory_path":
+				new_object.inventory = load(node_data[i])
+				#FIXME: Replace the existing inventory instead of loading a new one. (CACHEMODE = 2)
 				continue
-			if i == "attributes": #TODO: Figure out save/load of resources
-				new_object.attributes = node_data[i]
+			if i == "attributes_path":
+				new_object.attributes = load(node_data[i])
+				continue
 			new_object.set(i, node_data[i])
 		if has_camera:
 			new_object.set_camera()
 	
-	
+	mode = &"default"
 
 #TODO: add items and recipes based on the spreadsheet
 #TODO: Remake UI with mobile-first

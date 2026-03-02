@@ -1,5 +1,12 @@
 class_name Character extends CharacterBody2D
 
+@onready var se_bar_ref = %StatusEffectBar
+@onready var status_label_ref = %StatusLabel
+@onready var interact_label_ref = %InteractLabel
+@onready var tool_wheel_ref = %ToolWheel
+@onready var attribute_display_ref = %AttributeDisplay
+
+
 ## Determines the Y offset of the labels above the character
 const LABEL_DEFAULT_Y_POS := -60.0
 ## Value used to reduce the intensity of effects when size is changed
@@ -55,8 +62,8 @@ func _ready() -> void:
 	for recipe in known_recipes:
 		if is_camera_focused:
 			UserVariables.new_recipes.append(recipe)
-	%StatusLabel.text = ""
-	%InteractLabel.text = ""
+	status_label_ref.text = ""
+	interact_label_ref.text = ""
 	#%HotkeyLabel.text = ""
 	
 	# Should only be 1 reference to a camera in the scene.
@@ -99,7 +106,7 @@ func _physics_process(delta: float) -> void:
 	if status_message_timer > 0:
 		status_message_timer -= delta
 		if status_message_timer <= 0:
-			%StatusLabel.text = ""
+			status_label_ref.text = ""
 
 ## Handles input action events. Only accepts inputs when the player is controlling the character.
 func _input(event: InputEvent) -> void:
@@ -142,13 +149,25 @@ func update_animation_parameters() -> void:
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the character to be saved to file.
 func save() -> Dictionary:
+	var cur_path : String = "user://save/characters/%s/" % name
+	if not DirAccess.dir_exists_absolute(cur_path):
+		DirAccess.make_dir_recursive_absolute(cur_path)
+	
+	print(ResourceSaver.save(attributes, "user://save/characters/%s/attributes.tres" % name))
+	print(ResourceSaver.save(inventory, "user://save/characters/%s/inventory.tres" % name))
+	
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
-		"attributes" : attributes,
-		"inventory" : inventory,
+		#"se_bar_ref" : se_bar_ref,
+		#"status_label_ref" : status_label_ref,
+		#"interact_label_ref" : interact_label_ref,
+		#"tool_wheel_ref" : tool_wheel_ref,
+		#"attribute_display_ref" : attribute_display_ref,
+		"attributes_path" : "user://save/characters/%s/attributes.tres" % name,
+		"inventory_path" : "user://save/characters/%s/inventory.tres" % name,
 		"known_recipes" : known_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
@@ -223,7 +242,7 @@ func update_interactions():
 	if all_interaction_areas:
 		#TODO: Smarter way to choose an interaction near the player.
 		var cur_interaction : Interactable = all_interaction_areas[0]
-		%InteractLabel.text = cur_interaction.interact_label
+		interact_label_ref.text = cur_interaction.interact_label
 		#if is_player_controlled:
 			#if str(cur_interaction.interact_type) == "talk" or str(cur_interaction.interact_type) == "shop":
 				#%HotkeyLabel.text = (
@@ -233,7 +252,7 @@ func update_interactions():
 					#"(" + InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','') + ")")
 		# TODO: Add outline to the object that will be interacted with.
 	else:
-		%InteractLabel.text = ""
+		interact_label_ref.text = ""
 		#%HotkeyLabel.text = ""
 
 ## Executes functions on the selected interaction area given the current interaction type
@@ -257,7 +276,7 @@ func execute_tool():
 		match selected_tool: # NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
 			&"hand" : all_interaction_areas[0].grab_object(self)
 			&"blade" : all_interaction_areas[0].cut_object(self)
-			&"dropper" : all_interaction_areas[0].combine_object(self, %ToolWheel.dropper_item)
+			&"dropper" : all_interaction_areas[0].combine_object(self, tool_wheel_ref.dropper_item)
 
 ## Open the inspection panel for an object in the interaciton area
 func inspect_object():
@@ -295,7 +314,7 @@ func _apply_status_effect(se: StatusEffect) -> bool:
 func update_status_message(message: String):
 	if not message:
 		message = "..."
-	%StatusLabel.text = "[center]" + message + "[/center]"
+	status_label_ref.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
 
 ## Updates the duration of an active status effect based on the amount of time that has passed.
@@ -324,14 +343,14 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 	if index != -1:
 		active_status_effects.remove_at(index)
 		if is_removing_status:
-			%StatusEffectBar.remove_status(se)
+			se_bar_ref.remove_status(se)
 			return
 		active_status_effects.append(se.duplicate())
-		%StatusEffectBar.update_status(se)
+		se_bar_ref.update_status(se)
 		return
 	
 	active_status_effects.append(se.duplicate())
-	%StatusEffectBar.generate_status(se)
+	se_bar_ref.generate_status(se)
 
 
 ### Status effect functions ###
@@ -420,13 +439,13 @@ func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
 	if is_removing or se.value == 0.0:
 		if se_index == -1:
 			return false
-		%AttributeDisplay.visible = false
+		attribute_display_ref.visible = false
 		update_status_bar(se, se_index, true)
 		return true
 	
 	if se.value == 1.0: ## add = true
 		if se_index == -1: ## If not already set:
-			%AttributeDisplay.visible = true ## Value should be either 1 = true or 0 = false.
+			attribute_display_ref.visible = true ## Value should be either 1 = true or 0 = false.
 			update_status_bar(se)
 			return true
 		if se.duration > active_status_effects[se_index].duration: ## Keep the longer duration
