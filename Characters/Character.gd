@@ -1,10 +1,10 @@
 class_name Character extends CharacterBody2D
 
-@onready var se_bar_ref = %StatusEffectBar
+@onready var se_bar_ref = $UILayer/HUDLayer/StatusEffectBar
 @onready var status_label_ref = %StatusLabel
 @onready var interact_label_ref = %InteractLabel
-@onready var tool_wheel_ref = %ToolWheel
-@onready var attribute_display_ref = %AttributeDisplay
+@onready var tool_wheel_ref = $UILayer/HUDLayer/ToolWheel
+@onready var attribute_display_ref = $UILayer/HUDLayer/AttributeDisplay
 
 
 ## Determines the Y offset of the labels above the character
@@ -70,15 +70,12 @@ func _ready() -> void:
 	if character_camera_ref != null:
 		set_camera()
 	
-	#FIXME: Active Status Effects carrying over between levels without being applied properly
-	
-	## Initialize character stats based on attributes
-	#TODO
-	var cur_se
+	## Initialize character statuses based on attributes
+	var cur_se : StatusEffect
 	for i in range(active_status_effects.size()-1, -1, -1):
 		cur_se = active_status_effects[i]
 		active_status_effects.remove_at(i)
-		_apply_status_effect(cur_se)
+		apply_status_effect(cur_se)
 
 func set_camera() -> void:
 	is_player_controlled = true
@@ -149,15 +146,22 @@ func update_animation_parameters() -> void:
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the character to be saved to file.
 func save() -> Dictionary:
-	var cur_path : String = "user://save/characters/%s/" % name
+	var cur_path : String = "user://save/characters/%s" % name
 	if not DirAccess.dir_exists_absolute(cur_path):
 		DirAccess.make_dir_recursive_absolute(cur_path)
 	
-	print(ResourceSaver.save(attributes, "user://save/characters/%s/attributes.tres" % name))
-	print(ResourceSaver.save(inventory, "user://save/characters/%s/inventory.tres" % name))
+	ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
+	ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+	
+	if(not active_status_effects.is_empty() and 
+			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
+		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
+	for se in active_status_effects:
+		print(ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name]))
 	
 	var save_dict = {
 		"filename" : get_scene_file_path(),
+		"name" : name,
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
@@ -171,7 +175,7 @@ func save() -> Dictionary:
 		"known_recipes" : known_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
-		"active_status_effects" : active_status_effects,
+		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
 		#"selected_tool" : selected_tool
@@ -292,7 +296,7 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 	# Adds and/or updates the given status effects
 	var is_added = false
 	for se in statuses:
-		if _apply_status_effect(se):
+		if apply_status_effect(se):
 			is_added = true
 	if is_added:
 		update_status_message(message)
@@ -300,7 +304,7 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 		update_status_message("...")
 
 ## Helper function that applies the status effect to the player based on the effect name.
-func _apply_status_effect(se: StatusEffect) -> bool:
+func apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
 		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
 		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus)

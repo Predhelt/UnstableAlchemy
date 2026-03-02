@@ -61,6 +61,9 @@ func save_game() -> void:
 	json_string = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
+	# TODO: Remove current (outdated) directories in save location
+	DirAccess.remove_absolute("user://save") #FIXME: Does not work if directory is not empty.
+	
 	# Store persistent node data.
 	var save_nodes : Array[Node] = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
@@ -128,9 +131,10 @@ func load_game() -> void:
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
 		i.queue_free()
+	# Wait for the nodes to be freed from the level.
+	await get_tree().get_nodes_in_group("Persist")[-1].tree_exited
 	
-	#TODO: set node data after the level has finished loading [ready()]
-	# Possibly connect level's ready() signal to load function.
+	# Set node data
 	while save_file.get_position() < save_file.get_length():
 		json_string = save_file.get_line()
 	
@@ -142,33 +146,49 @@ func load_game() -> void:
 		
 		node_data = json.data
 		var new_object : Node2D = load(node_data["filename"]).instantiate()
+		new_object.name = node_data["name"]
+		
+		# Add status effects before connecting to parent, if status effects exist.
+		var field : String = "active_status_effects_path"
+		if node_data[field]:
+			if DirAccess.dir_exists_absolute(node_data[field]):
+				var se_dir : DirAccess = DirAccess.open(node_data[field])
+				if se_dir != null:
+					# Get each status effect resource from file and add it to object.
+					var se_list : PackedStringArray = se_dir.get_files()
+					for se_name in se_list:
+						var cur_se : StatusEffect = load(node_data[field] + se_name)
+						#new_object.apply_status_effect(cur_se)
+						new_object.active_status_effects.append(cur_se)
+		
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		
-		var has_camera : bool = false
+		# Go through each node and initialize the stored values..
 		for i in node_data.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
+			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" or i == "active_status_effects_path":
 				continue
 			if i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
 				var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
-				cam.position.x = node_data["pos_x"]
-				cam.position.y = node_data["pos_y"]
-				#focused_camera = cam
+				#cam.position.x = node_data["pos_x"]
+				#cam.position.y = node_data["pos_y"]
+				
+				focused_camera = cam
 				new_object.character_camera_ref = cam
-				has_camera = true
+				new_object.set_camera()
+				cam.reset_smoothing()
 				continue
 			if i == "inventory_path":
-				new_object.inventory = load(node_data[i])
-				#FIXME: Replace the existing inventory instead of loading a new one. (CACHEMODE = 2)
+				new_object.inventory = ResourceLoader.load(node_data[i], "", ResourceLoader.CACHE_MODE_REPLACE)
+				#TODO: Check if replacing cached version is making a difference.
+				#FIXME: Replace the existing inventory instead of loading a new instance.
 				continue
 			if i == "attributes_path":
-				new_object.attributes = load(node_data[i])
+				new_object.attributes = ResourceLoader.load(node_data[i], "", ResourceLoader.CACHE_MODE_REPLACE)
 				continue
+			
 			new_object.set(i, node_data[i])
-		if has_camera:
-			new_object.set_camera()
-	
 	mode = &"default"
 
 #TODO: add items and recipes based on the spreadsheet

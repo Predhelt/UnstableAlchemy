@@ -85,7 +85,7 @@ func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingSta
 				if inventory_item_infos[inventory_index] == cur_item.id:
 					var cur_qty = qtys[cur_item_index]
 					if cur_qty < 0:
-						print("error, trying to remove negative quantity of" + cur_item.display_name)
+						print("ERROR: trying to remove negative quantity of" + cur_item.display_name)
 					if cur_qty == 0: ## Nothing to remove, skip to next index.
 						break
 					## Remove item qty from index in inventory
