@@ -1,7 +1,7 @@
 extends HBoxContainer
 
 @onready var mode_windows := {
-	&"options" : %OptionsMenu,
+	&"options" : $"../../MenuLayer/OptionsMenu",
 }
 
 #TODO: Update the keyboard shortcut when the keybinds change or input device changes
@@ -36,13 +36,13 @@ func open_pressed_window(ui : Control):
 
 
 func _on_button_inventory_pressed() -> void:
-	open_pressed_window(%InventoryMenu)
+	open_pressed_window($"../../MenuLayer/InventoryMenu")
 
 func _on_button_recipes_pressed() -> void:
-	open_pressed_window(%RecipeList)
+	open_pressed_window($"../../MenuLayer/RecipeList")
 
 func _on_button_options_pressed() -> void:
-	open_pressed_window(%OptionsMenu)
+	open_pressed_window($"../../MenuLayer/OptionsMenu")
 
 func _on_button_log_book_pressed() -> void:
-	open_pressed_window(%LogBookMenu)
+	open_pressed_window($"../../MenuLayer/LogBookMenu")

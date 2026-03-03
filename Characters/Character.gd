@@ -1,5 +1,9 @@
+## A 2D Character with attributes, an inventory, animations, movement, known recipes, etc.
+## Status effects can be applied to the character, which can effect how the character
+## can be controlled by the player or how the character interacts with the environment.
 class_name Character extends CharacterBody2D
 
+## References to UI Nodes that the Character may access.
 @onready var se_bar_ref = $"../UILayer/HUDLayer/StatusEffectBar"
 @onready var status_label_ref = %StatusLabel
 @onready var interact_label_ref = %InteractLabel
@@ -19,8 +23,6 @@ const SIZE_DAMPENER := 0.5
 ## Reference to the camera that is being used to follow the character and display the game screen.
 @export var character_camera_ref : Camera2D
 
-##### Always Kept: Always retained upon scene transition. #####
-
 ## The character's base stats that determine interactions with the environment
 @export var attributes : Attributes
 ## List of recipes known by the character. Easy to edit.
@@ -31,8 +33,6 @@ var gathered_items : Dictionary[int, int]
 ## List of books by ID that the character has read
 var books_read : Array[int]
 
-##### Optional: May reset between levels depending on scene. #####
-
 ## Reference to the inventory resource of the character(s).
 @export var inventory : Inventory
 ## The list of status effects that are currently active on the character
@@ -41,8 +41,6 @@ var books_read : Array[int]
 var is_player_controlled : bool = false
 ## Tracks whether the camera is focused on the character
 var is_camera_focused : bool = false
-
-##### Local: Will reset upon scene transition #####
 
 ## The direction in 2D space that the character is moving
 var direction := Vector2.ZERO

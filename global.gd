@@ -160,13 +160,23 @@ func load_game() -> void:
 						var cur_se : StatusEffect = load(node_data[field] + se_name)
 						#new_object.apply_status_effect(cur_se)
 						new_object.active_status_effects.append(cur_se)
+		# Set the inventory before setting parent node to scene.
+		field = "inventory_path"
+		if node_data[field]:
+				new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
+				#TODO: Check if replacing cached version is making a difference.
+				#FIXME: Replace the existing inventory instead of loading a new instance.
+		# Set the attributes before setting parent node to scene.
+		field = "attributes_path"
+		if node_data[field]:
+			new_object.attributes = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 		
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		
 		# Go through each node and initialize the stored values..
 		for i in node_data.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" or i == "active_status_effects_path":
+			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path":
 				continue
 			if i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
@@ -179,14 +189,7 @@ func load_game() -> void:
 				new_object.set_camera()
 				cam.reset_smoothing()
 				continue
-			if i == "inventory_path":
-				new_object.inventory = ResourceLoader.load(node_data[i], "", ResourceLoader.CACHE_MODE_REPLACE)
-				#TODO: Check if replacing cached version is making a difference.
-				#FIXME: Replace the existing inventory instead of loading a new instance.
-				continue
-			if i == "attributes_path":
-				new_object.attributes = ResourceLoader.load(node_data[i], "", ResourceLoader.CACHE_MODE_REPLACE)
-				continue
+			
 			
 			new_object.set(i, node_data[i])
 	mode = &"default"

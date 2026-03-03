@@ -8,4 +8,7 @@ func _on_body_entered(_body: Node2D) -> void:
 	#call_deferred()
 	#TODO: Transfer any data that is relevant between levels.
 	#(inventory, known_recipes, crafted_recipes, etc.)
-	Global.change_scene(level_path)
+	if level_path:
+		Global.change_scene(level_path)
+	else:
+		print("ERROR: No level path set for scene change.")

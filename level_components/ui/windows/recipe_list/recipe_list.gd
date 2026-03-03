@@ -300,7 +300,9 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 	for item in recipe.ingredients:
 		if not item:
 			continue
-		if not Global.focused_node.inventory.remove_items([item], [1]):
+		var i : Array[Item] = [item] # Type cast
+		var c : Array[int] = [1] # Type cast
+		if not Global.focused_node.inventory.remove_items(i, c):
 			print("ERROR: No item " + item.display_name + " found in inventory.")
 			return false
 	## Add product items to inventory.
@@ -312,16 +314,16 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 		return false
 	
 	## Update the inventory window if it is open while the recipe window is open.
-	%InventoryMenu.update_window()
+	$"../InventoryMenu".update_window()
 	## Update the alchemy minigame window if it is open while recipe window is open.
-	if %MinigameCauldron.visible:
-		%MinigameCauldron.update_window()
-	if %MinigameMP.visible:
-		%MinigameMP.update_window()
+	if $"../../MinigameLayer/MinigameCauldron".visible:
+		$"../../MinigameLayer/MinigameCauldron".update_window()
+	if $"../../MinigameLayer/MinigameMP".visible:
+		$"../../MinigameLayer/MinigameMP".update_window()
 	
 	## Create effect in recipe window to show that the item was added successfuly.
 	var effect_instance = items_gained_effect.instantiate()
-	effect_instance.add_item(product_item, recipe.product_item.qty)
+	effect_instance.add_item(product_item, recipe.product_item_amount)
 	effect_instance.scale = Vector2(1.3, 1.3)
 	add_child(effect_instance)
 	## Check if has the ingredients to craft the item again.

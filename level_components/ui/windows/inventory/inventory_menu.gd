@@ -8,23 +8,29 @@ extends UIWindow
 ## visual for item when dragging from inventory
 var drag_item_scene := preload("./drag_item_scene.tscn") 
 ## Reference to the Hotbar UI
-@onready var hotbar_ref := %Hotbar
+@onready var hotbar_ref := $"../../HUDLayer/Hotbar"
 ## Reference to the Tool Wheel UI
-@onready var toolwheel_ref := %ToolWheel
+@onready var toolwheel_ref := $"../../HUDLayer/ToolWheel"
+## Reference to the Recipe List UI
+@onready var recipe_list_ref := $"../RecipeList"
+## Reference to Cauldron Minigame UI
+@onready var minigame_cauldron_ref := $"../../MinigameLayer/MinigameCauldron"
+## Reference to Mortar Pestle Minigame UI
+@onready var minigame_mp_ref := $"../../MinigameLayer/MinigameMP"
 ## (UNUSED)Item that is currently selected in the inventory (not dragged)
 #var selected_item : Item 
 
 ## Sets references, initializes variables in references, and connects signals
 func _ready() -> void:
 	window_mode = &"menu"
-	%Cauldron.minigame_ref = %MinigameCauldron
+	%Cauldron.minigame_ref = minigame_cauldron_ref
 	%Cauldron.minigame_ref.recipes = %Cauldron.recipes
 	%Cauldron.inventory_menu_ref = self
-	%MinigameCauldron.tool_ref = %Cauldron
-	%MortarPestle.minigame_ref = %MinigameMP
+	minigame_cauldron_ref.tool_ref = %Cauldron
+	%MortarPestle.minigame_ref = minigame_mp_ref
 	%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
 	%MortarPestle.inventory_menu_ref = self
-	%MinigameMP.tool_ref = %MortarPestle
+	minigame_mp_ref.tool_ref = %MortarPestle
 	%Merger.inventory_menu_ref = self
 
 ## Controls functions executed when input actions are pressed
@@ -120,12 +126,12 @@ func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 		Global.focused_node.learn_recipe(recipe, true)
 		
 		## Update the recipe list if already open.
-		if %RecipeList.visible:
-			var cur_recipe_item : Item = %RecipeList.cur_recipe_item
-			%RecipeList.close_window()
-			%RecipeList.open_window()
+		if recipe_list_ref.visible:
+			var cur_recipe_item : Item = recipe_list_ref.cur_recipe_item
+			recipe_list_ref.close_window()
+			recipe_list_ref.open_window()
 			if cur_recipe_item:
-				%RecipeList.open_recipe_page(cur_recipe_item)
+				recipe_list_ref.open_recipe_page(cur_recipe_item)
 
 ## Finds the first index of a given item in the inventory. returns -1 if not found.
 func find_item(item : Item) -> int:
@@ -232,9 +238,9 @@ func consume_item(item : Item, index : int):
 		
 		if item.type == "Book": ## If item is a book
 			Global.focused_node.read_book(item)
-			if %RecipeList.visible:
-				%RecipeList.close_window()
-				%RecipeList.open_window()
+			if recipe_list_ref.visible:
+				recipe_list_ref.close_window()
+				recipe_list_ref.open_window()
 					
 			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
 				Global.focused_node.update_status_message(item.on_consume_message)

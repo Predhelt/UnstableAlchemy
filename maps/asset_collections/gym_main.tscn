@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://level_components/ui/hud/tool_wheel/tool_wheel.tscn" id="15_v1mxg"]
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_4jqmy"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_h7t87"]
-[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="18_2rlms"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_dennm"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_heyse"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="23_hq65m"]
@@ -69,79 +68,62 @@ layer = 10
 layer = 3
 
 [node name="SettingsMenu" parent="UILayer/MenuLayer" unique_id=466945984 instance=ExtResource("1_fabap")]
-unique_name_in_owner = true
 auto_translate_mode = 1
 visible = false
 
 [node name="OptionsMenu" parent="UILayer/MenuLayer" unique_id=1604190083 instance=ExtResource("2_f43xc")]
-unique_name_in_owner = true
 visible = false
 theme = ExtResource("3_1yiqj")
 
 [node name="HelpMenu" parent="UILayer/MenuLayer" unique_id=1997709990 instance=ExtResource("4_2op21")]
-unique_name_in_owner = true
 visible = false
 
 [node name="InventoryMenu" parent="UILayer/MenuLayer" unique_id=1209495849 instance=ExtResource("5_ho7mb")]
-unique_name_in_owner = true
 visible = false
 
 [node name="RecipeList" parent="UILayer/MenuLayer" unique_id=1868385013 instance=ExtResource("6_detnd")]
-unique_name_in_owner = true
 visible = false
 
 [node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("7_biipd")]
-unique_name_in_owner = true
 visible = false
 
 [node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("8_2no2m")]
-unique_name_in_owner = true
 visible = false
 
 [node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("9_e1r8p")]
-unique_name_in_owner = true
 visible = false
 
 [node name="MinigameLayer" type="CanvasLayer" parent="UILayer" unique_id=1354987911]
 layer = 2
 
 [node name="MinigameCauldron" parent="UILayer/MinigameLayer" unique_id=1553878062 instance=ExtResource("10_8v7fn")]
-unique_name_in_owner = true
 visible = false
 
 [node name="MinigameMP" parent="UILayer/MinigameLayer" unique_id=95134907 instance=ExtResource("11_kegp2")]
-unique_name_in_owner = true
 visible = false
 
 [node name="HUDLayer" type="CanvasLayer" parent="UILayer" unique_id=1167861916]
 
 [node name="MenuBar" parent="UILayer/HUDLayer" unique_id=2084920634 instance=ExtResource("12_yqx7q")]
-unique_name_in_owner = true
 offset_bottom = 8.0
 
 [node name="StatusEffectBar" parent="UILayer/HUDLayer" unique_id=768429819 instance=ExtResource("13_phpm6")]
-unique_name_in_owner = true
 
 [node name="Hotbar" parent="UILayer/HUDLayer" unique_id=1812231048 instance=ExtResource("14_86ibb")]
-unique_name_in_owner = true
 visible = false
 
 [node name="ToolWheel" parent="UILayer/HUDLayer" unique_id=2089509891 instance=ExtResource("15_v1mxg")]
-unique_name_in_owner = true
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
 
 [node name="AttributeDisplay" parent="UILayer/HUDLayer" unique_id=1551514349 instance=ExtResource("16_4jqmy")]
-unique_name_in_owner = true
 visible = false
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_h7t87")]
-unique_name_in_owner = true
 position = Vector2(-42, -39)
 character_camera_ref = NodePath("../PlayerCamera")
-known_recipes = Array[ExtResource("18_2rlms")]([])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
 remote_path = NodePath("../../PlayerCamera")

@@ -71,76 +71,60 @@ layer = 10
 layer = 3
 
 [node name="SettingsMenu" parent="UILayer/MenuLayer" unique_id=466945984 instance=ExtResource("1_pruax")]
-unique_name_in_owner = true
 auto_translate_mode = 1
 visible = false
 
 [node name="OptionsMenu" parent="UILayer/MenuLayer" unique_id=1604190083 instance=ExtResource("2_fi456")]
-unique_name_in_owner = true
 visible = false
 theme = ExtResource("3_fhhku")
 
 [node name="HelpMenu" parent="UILayer/MenuLayer" unique_id=1997709990 instance=ExtResource("4_6hpkd")]
-unique_name_in_owner = true
 visible = false
 
 [node name="InventoryMenu" parent="UILayer/MenuLayer" unique_id=1209495849 instance=ExtResource("5_olxky")]
-unique_name_in_owner = true
 visible = false
 
 [node name="RecipeList" parent="UILayer/MenuLayer" unique_id=1868385013 instance=ExtResource("6_1koyq")]
-unique_name_in_owner = true
 visible = false
 
 [node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("7_4i1bq")]
-unique_name_in_owner = true
 visible = false
 
 [node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("8_ieghg")]
-unique_name_in_owner = true
 visible = false
 
 [node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("9_sgipv")]
-unique_name_in_owner = true
 visible = false
 
 [node name="MinigameLayer" type="CanvasLayer" parent="UILayer" unique_id=1354987911]
 layer = 2
 
 [node name="MinigameCauldron" parent="UILayer/MinigameLayer" unique_id=1553878062 instance=ExtResource("10_rdvj0")]
-unique_name_in_owner = true
 visible = false
 
 [node name="MinigameMP" parent="UILayer/MinigameLayer" unique_id=95134907 instance=ExtResource("11_b2b0t")]
-unique_name_in_owner = true
 visible = false
 
 [node name="HUDLayer" type="CanvasLayer" parent="UILayer" unique_id=1167861916]
 
 [node name="MenuBar" parent="UILayer/HUDLayer" unique_id=2084920634 instance=ExtResource("12_wlxb5")]
-unique_name_in_owner = true
 offset_bottom = 8.0
 
 [node name="StatusEffectBar" parent="UILayer/HUDLayer" unique_id=768429819 instance=ExtResource("13_rl6sd")]
-unique_name_in_owner = true
 
 [node name="Hotbar" parent="UILayer/HUDLayer" unique_id=1812231048 instance=ExtResource("14_28ebd")]
-unique_name_in_owner = true
 visible = false
 
 [node name="ToolWheel" parent="UILayer/HUDLayer" unique_id=2089509891 instance=ExtResource("15_8ou0s")]
-unique_name_in_owner = true
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
 
 [node name="AttributeDisplay" parent="UILayer/HUDLayer" unique_id=1551514349 instance=ExtResource("16_q35ux")]
-unique_name_in_owner = true
 visible = false
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_s6vkc")]
-unique_name_in_owner = true
 position = Vector2(256, 6)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_qo0cn")
@@ -156,14 +140,6 @@ position_smoothing_enabled = true
 position = Vector2(385, -173)
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 attributes = null
-
-[node name="RecipeItem" parent="NPCShelly" unique_id=188532359 instance=ExtResource("20_3ia0k")]
-position = Vector2(0, 181)
-display_name = "\"Shrink Potion 101\""
-description = "Describes how to make a potion of shrinking."
-items = Array[ExtResource("21_v8p44")]([ExtResource("22_spukt")])
-grab_interaction = SubResource("Resource_w7xfw")
-cut_interaction = SubResource("Resource_wbsda")
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
 y_sort_enabled = true
@@ -194,6 +170,14 @@ metadata/_edit_lock_ = true
 
 [node name="Objects" type="Node2D" parent="." unique_id=354937822]
 y_sort_enabled = true
+
+[node name="RecipeItem" parent="Objects" unique_id=188532359 instance=ExtResource("20_3ia0k")]
+position = Vector2(385, 8)
+display_name = "\"Shrink Potion 101\""
+description = "Describes how to make a potion of shrinking."
+items = Array[ExtResource("21_v8p44")]([ExtResource("22_spukt")])
+grab_interaction = SubResource("Resource_w7xfw")
+cut_interaction = SubResource("Resource_wbsda")
 
 [node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("27_ojnyh")]
 position = Vector2(103, -223)

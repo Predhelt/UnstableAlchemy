@@ -26,8 +26,6 @@
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="24_i0bke"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="25_auhtm"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="26_rkj8u"]
-[ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="27_xakv6"]
-[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="28_ch6yj"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("18_6fxfb")
@@ -56,76 +54,60 @@ layer = 10
 layer = 3
 
 [node name="SettingsMenu" parent="UILayer/MenuLayer" unique_id=466945984 instance=ExtResource("1_e5bvk")]
-unique_name_in_owner = true
 auto_translate_mode = 1
 visible = false
 
 [node name="OptionsMenu" parent="UILayer/MenuLayer" unique_id=1604190083 instance=ExtResource("2_1ukpx")]
-unique_name_in_owner = true
 visible = false
 theme = ExtResource("3_2a218")
 
 [node name="HelpMenu" parent="UILayer/MenuLayer" unique_id=1997709990 instance=ExtResource("4_3etfl")]
-unique_name_in_owner = true
 visible = false
 
 [node name="InventoryMenu" parent="UILayer/MenuLayer" unique_id=1209495849 instance=ExtResource("5_lsy8w")]
-unique_name_in_owner = true
 visible = false
 
 [node name="RecipeList" parent="UILayer/MenuLayer" unique_id=1868385013 instance=ExtResource("6_dnggc")]
-unique_name_in_owner = true
 visible = false
 
 [node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("7_g5pqt")]
-unique_name_in_owner = true
 visible = false
 
 [node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("8_eujj1")]
-unique_name_in_owner = true
 visible = false
 
 [node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("9_wqpor")]
-unique_name_in_owner = true
 visible = false
 
 [node name="MinigameLayer" type="CanvasLayer" parent="UILayer" unique_id=1354987911]
 layer = 2
 
 [node name="MinigameCauldron" parent="UILayer/MinigameLayer" unique_id=1553878062 instance=ExtResource("10_asgfs")]
-unique_name_in_owner = true
 visible = false
 
 [node name="MinigameMP" parent="UILayer/MinigameLayer" unique_id=95134907 instance=ExtResource("11_qnwjw")]
-unique_name_in_owner = true
 visible = false
 
 [node name="HUDLayer" type="CanvasLayer" parent="UILayer" unique_id=1167861916]
 
 [node name="MenuBar" parent="UILayer/HUDLayer" unique_id=2084920634 instance=ExtResource("12_e5ft3")]
-unique_name_in_owner = true
 offset_bottom = 8.0
 
 [node name="StatusEffectBar" parent="UILayer/HUDLayer" unique_id=768429819 instance=ExtResource("13_y1g2j")]
-unique_name_in_owner = true
 
 [node name="Hotbar" parent="UILayer/HUDLayer" unique_id=1812231048 instance=ExtResource("14_ws41n")]
-unique_name_in_owner = true
 visible = false
 
 [node name="ToolWheel" parent="UILayer/HUDLayer" unique_id=2089509891 instance=ExtResource("15_kadn5")]
-unique_name_in_owner = true
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
 
 [node name="AttributeDisplay" parent="UILayer/HUDLayer" unique_id=1551514349 instance=ExtResource("16_qfd1i")]
-unique_name_in_owner = true
 visible = false
 
 [node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v6gsf")]
-unique_name_in_owner = true
 position = Vector2(123, 13)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_ovyrl")
@@ -185,24 +167,6 @@ position = Vector2(56, -164)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
-
-[node name="PressurePlate" parent="PuzzleNodes" unique_id=1033225261 node_paths=PackedStringArray("door_refs") instance=ExtResource("27_xakv6")]
-position = Vector2(258, -95.99999)
-scale = Vector2(0.59999907, 0.59999907)
-door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
-
-[node name="PressurePlate2" parent="PuzzleNodes" unique_id=993208049 node_paths=PackedStringArray("door_refs") instance=ExtResource("27_xakv6")]
-position = Vector2(257, -351.99997)
-scale = Vector2(0.59999907, 0.59999907)
-door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
-
-[node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("28_ch6yj")]
-position = Vector2(224, -262)
-open_direction = 3
-
-[node name="SlidingDoor2" parent="PuzzleNodes" unique_id=495895326 instance=ExtResource("28_ch6yj")]
-position = Vector2(288, -262)
-open_direction = 1
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
