@@ -1,10 +1,10 @@
 class_name Character extends CharacterBody2D
 
-@onready var se_bar_ref = $UILayer/HUDLayer/StatusEffectBar
+@onready var se_bar_ref = $"../UILayer/HUDLayer/StatusEffectBar"
 @onready var status_label_ref = %StatusLabel
 @onready var interact_label_ref = %InteractLabel
-@onready var tool_wheel_ref = $UILayer/HUDLayer/ToolWheel
-@onready var attribute_display_ref = $UILayer/HUDLayer/AttributeDisplay
+@onready var tool_wheel_ref = $"../UILayer/HUDLayer/ToolWheel"
+@onready var attribute_display_ref = $"../UILayer/HUDLayer/AttributeDisplay"
 
 
 ## Determines the Y offset of the labels above the character
