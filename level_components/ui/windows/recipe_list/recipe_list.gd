@@ -67,7 +67,7 @@ func open_window() -> bool:
 			%ProcedureList.remove_child(child)
 		%WindowName.text = "Known Recipes"
 		
-		for recipe in Global.focused_node.known_recipes:
+		for recipe in UserVariables.known_recipes:
 			## If a recipe already exists for the item, do not add another recipe item.
 			if not recipe or recipe.product_item.id in product_ids:
 				continue
@@ -98,7 +98,7 @@ func open_recipe_page(item : Item):
 			UserVariables.new_recipes.remove_at(i)
 	
 	## Add each procedure to create the associated product item
-	for r in Global.focused_node.known_recipes:
+	for r in UserVariables.known_recipes:
 		if r.product_item.id != item.id:
 			continue
 		if r.tool_used == &"Mortar & Pestle":
@@ -336,7 +336,7 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 ## it links to the ingredient's recipe page.
 func _link_ingredient_button_to_item(button : Button, item : Item) -> bool:
 	## Check to see if the ingredient is a product of a known recipe.
-	for r in Global.focused_node.known_recipes:
+	for r in UserVariables.known_recipes:
 		if r and item.id == r.product_item.id:
 			## Connect the button press action to opening the item's recipe page.
 			## This assumes that the recipe item button has a custom 
@@ -353,7 +353,7 @@ func _on_ingredient_button_pressed(item : Item):
 
 ## When a recipe item is clicked in the procedure, open that recipe page.
 func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
-	for recipe in Global.focused_node.known_recipes:
+	for recipe in UserVariables.known_recipes:
 		if product_ids[index] == recipe.product_item.id:
 			open_recipe_page(recipe.product_item)
 			return

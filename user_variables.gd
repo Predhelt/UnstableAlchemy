@@ -12,6 +12,8 @@ var crafted_recipes : Dictionary[int,int]
 ## Values: Number of times gathered.
 var gathered_items : Dictionary[int, int]
 
+#var books_read: Array[Book]
+
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
 func save() -> Dictionary:
@@ -24,3 +26,9 @@ func save() -> Dictionary:
 		"gathered_items" : gathered_items,
 	}
 	return save_dict
+
+## Add a recipe to the list of known recipes and new recipes if not already.
+func add_recipe(recipe : Recipe) -> void:
+	if recipe not in known_recipes:
+		known_recipes.append(recipe)
+		new_recipes.append(recipe)

@@ -25,7 +25,9 @@ const SIZE_DAMPENER := 0.5
 
 ## The character's base stats that determine interactions with the environment
 @export var attributes : Attributes
-## List of recipes known by the character. Easy to edit.
+## List of recipes known by the character. This is mainly used internally for keeping
+## track of the character-specific knowledge, not the player's known recipes.
+## Player-known recipes are stored in UserVariables.
 @export var known_recipes : Array[Recipe]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
 ## Values: Number of times gathered.
@@ -189,16 +191,16 @@ func get_attribute(att_name : String) -> float:
 ## or true if the recipe is successfully added to the list of known recipes.
 ## if is_crafted is true, will add to the count of succesful recipe crafts.
 func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
-	if is_crafted and is_camera_focused:
-		if not UserVariables.crafted_recipes.has(r.id):
-			UserVariables.crafted_recipes[r.id] = 1 ## Add key to dictionary
-		else:
-			UserVariables.crafted_recipes[r.id] += 1 ## iterate on key in dictionary
+	if is_camera_focused:
+		UserVariables.add_recipe(r)
+		if is_crafted:
+			if not UserVariables.crafted_recipes.has(r.id):
+				UserVariables.crafted_recipes[r.id] = 1 ## Add key to dictionary
+			else:
+				UserVariables.crafted_recipes[r.id] += 1 ## iterate on key in dictionary
 	if r in known_recipes:
 		return false
 	known_recipes.append(r)
-	if is_camera_focused:
-		UserVariables.new_recipes.append(r)
 	return true
 
 ## Returns whether or not the character knows a recipe with the given item as the product.
@@ -215,7 +217,7 @@ func knows_recipe_id(item_id: int) -> bool:
 			return true
 	return false
 
-
+## marks the book as "read" and learns any associated recipes in the book.
 func read_book(book: Book):
 	for recipe in book.recipes:
 		learn_recipe(recipe)
