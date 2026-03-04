@@ -932,6 +932,7 @@ columns = 3
 
 [node name="ButtonPlantRedBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=1596357552]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Berry Bush"
@@ -980,7 +981,7 @@ size_flags_horizontal = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="PageRedBerryBush" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=4201000]
+[node name="PagePlantRedBerryBush" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=4201000]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -990,22 +991,32 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush" unique_id=59874129]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush" unique_id=59874129]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=311009144]
+[node name="LabelName" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=634006841]
 layout_mode = 2
-text = "Description and interacitons with red berry bush"
+text = "Red Berry Bush"
 
-[node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=1683094039]
+[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=311009144]
 layout_mode = 2
+text = "General description."
 
-[node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=393585713]
+[node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=1683094039]
+visible = false
 layout_mode = 2
+text = "Grab description."
 
-[node name="LabelCombine" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=1338176085]
+[node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=393585713]
+visible = false
 layout_mode = 2
+text = "Cut Description"
+
+[node name="LabelCombine" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=1338176085]
+visible = false
+layout_mode = 2
+text = "Combination description."
 
 [node name="TabObjects" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=508245017]
 visible = false

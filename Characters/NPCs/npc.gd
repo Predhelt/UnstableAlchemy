@@ -69,7 +69,7 @@ func init_dialogues():
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the npc to be saved to file. Overrides the Character save function.
-func save() -> Dictionary:
+func save() -> Dictionary: #FIXME: Outdated save fields.
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),

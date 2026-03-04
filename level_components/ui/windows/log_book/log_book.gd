@@ -30,7 +30,7 @@ func open_window() -> bool:
 	Global.mode = window_mode
 	Global.center_window = self
 	
-	init_logs(Global.focused_node)
+	init_logs()
 	
 	#%WindowName.text = "Help: General"
 	#$VBoxContainer/TabContainer/TabHelp.visible = true
@@ -39,10 +39,15 @@ func open_window() -> bool:
 	open_page_help_general()
 	return true
 
-
 ## Initializes which pages are visible in the log book based on character's stored information.
-func init_logs(character : Character) -> void:
-	for book_id in character.books_read:
+## If page buttons or sections are visible by default in the node editor, they will remain visible.
+## Allows showing of character-specific log entries by passing the character node.
+## By default, gets information from global UserVariables.
+func init_logs(character : Character = null) -> void:
+	var node = character
+	if not node:
+		node = UserVariables
+	for book_id in node.books_read:
 		match book_id:
 			1000: ## Green Flakes Book
 				pass
@@ -56,7 +61,7 @@ func init_logs(character : Character) -> void:
 				pass
 			1005:
 				pass
-	for recipe in character.known_recipes:
+	for recipe in node.known_recipes:
 		match recipe.id:
 			### M&P ###
 			0: ## Green Herb Flakes
@@ -100,6 +105,17 @@ func init_logs(character : Character) -> void:
 			### Misc ###
 			999: ## Failed Craft
 				pass
+	for obj_name in node.interacted_objects.keys():
+		match obj_name:
+			"Red Berry Bush":
+				%ButtonPlantRedBerryBush.visible = true
+				var obj_counts : Array = node.interacted_objects[obj_name]
+				if obj_counts[0]:
+					%PagePlantRedBerryBush/VBoxContainer/LabelGrab.visible = true
+				if obj_counts[1]:
+					%PagePlantRedBerryBush/VBoxContainer/LabelCut.visible = true
+				if obj_counts[2]:
+					%PagePlantRedBerryBush/VBoxContainer/LabelCombine.visible = true
 
 ########################################
 ### Open Pages With Dynamic Elements ###
@@ -272,7 +288,7 @@ func _on_button_potion_strength_pressed() -> void:
 ### Plant Tab ###
 #################
 func _on_button_plant_red_berry_bush_pressed() -> void:
-	pass # Replace with function body.
+	%PagePlantRedBerryBush.visible = true
 
 func _on_button_plant_green_herbs_pressed() -> void:
 	pass # Replace with function body.

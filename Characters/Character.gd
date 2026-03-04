@@ -56,6 +56,10 @@ var all_interaction_areas : Array[Interactable]
 var status_message_timer := 0.0
 ## The currently selected tool that the character is holding
 var selected_tool : StringName = &"hand"
+## List of objects that have been interacted with.
+## Keys: Display name of the interactable object.
+## Values: Array of different tracking values: [times_grabbed, times_cut, times_combined1,...]
+var interacted_objects: Dictionary[String, Array]
 
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
@@ -170,6 +174,7 @@ func save() -> Dictionary:
 		"known_recipes" : known_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
+		"interacted_objects": interacted_objects,
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
@@ -244,14 +249,7 @@ func update_interactions():
 		#TODO: Smarter way to choose an interaction near the player.
 		var cur_interaction : Interactable = all_interaction_areas[0]
 		interact_label_ref.text = cur_interaction.interact_label
-		#if is_player_controlled:
-			#if str(cur_interaction.interact_type) == "talk" or str(cur_interaction.interact_type) == "shop":
-				#%HotkeyLabel.text = (
-					#"(" + InputMap.action_get_events("interact")[0].as_text().replace(' - Physical','') + ")")
-			#else:
-				#%HotkeyLabel.text = (
-					#"(" + InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','') + ")")
-		# TODO: Add outline to the object that will be interacted with.
+		# TODO: Add outline/differentiator to the object that will be interacted with.
 	else:
 		interact_label_ref.text = ""
 		#%HotkeyLabel.text = ""

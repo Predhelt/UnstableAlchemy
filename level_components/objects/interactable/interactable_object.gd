@@ -110,14 +110,18 @@ func _on_object_grabbed(character: Character) -> void:
 	if not collect_items(character, grab_interaction):
 		return
 	
+	add_interaction_count(character, 0)
+	
 	if grab_interaction.on_interact_status_effects:
 		character.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
 	check_empty()
-	
+
 func _on_object_cut(character: Character) -> void:
 	if not collect_items(character, cut_interaction):
 		return
+	
+	add_interaction_count(character, 1)
 	
 	if cut_interaction.on_interact_status_effects:
 		character.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
@@ -126,6 +130,19 @@ func _on_object_cut(character: Character) -> void:
 
 func _on_object_inspected() -> void:
 	inspect_object()
+
+## i = 0: grab interaction. i = 1: cut interaction. i = 2: combine interaction.
+func add_interaction_count(character : Character, i : int) -> void:
+	if i > 2: #TODO
+		print("Not implemented: Tracking Counts of Multiple Combinations on the same object.")
+		return
+	if not display_name in character.interacted_objects:
+		character.interacted_objects[display_name] = [0,0,0] #grab, cut, combine1
+	character.interacted_objects[display_name][i] += 1
+	if character.is_camera_focused:
+		if not display_name in UserVariables.interacted_objects:
+			UserVariables.interacted_objects[display_name] = [0,0,0] #grab, cut, combine1
+		UserVariables.interacted_objects[display_name][i] += 1
 
 #FIXME: Inspect not getting called properly.
 func inspect_object():
@@ -148,15 +165,18 @@ func _on_object_combined(character: Character, item: Item) -> void:
 		return
 	for c in combinations:
 		if c.input_item.id == item.id:
+			add_interaction_count(character, 2)
+			
 			character.update_status_message(c.status_message)
 			transform_object(c.result_object_scene)
 			character._on_interaction_area_exited($InteractArea)
 			emit_effect()
 			character._on_interaction_area_entered($InteractArea)
 			return
+	
 	character.update_status_message("...")
 
-
+## Changes the current object to the new object based on the combination that occurred.
 func transform_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
 	obj._ready()
@@ -166,7 +186,7 @@ func transform_object(new_object_scene: PackedScene):
 	
 	display_name = obj.display_name
 	description = obj.description
-	items = obj.items
+	items = obj.items #NOTE: Any discrepency in item counts is not accounted for. New object always has default item counts.
 	
 	item_quantities = []
 	for item in items:
