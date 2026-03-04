@@ -10,9 +10,9 @@ var new_recipes: Array[Recipe]
 var crafted_recipes : Dictionary[int,int]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
 ## Values: Number of times gathered.
-var gathered_items : Dictionary[int, int]
-
-#var books_read: Array[Book]
+var gathered_items : Dictionary[int,int] #TODO: Never updated. Check add_item.
+## List of books the user has read/used
+var books_read: Array[Book]
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
@@ -24,6 +24,7 @@ func save() -> Dictionary:
 		"new_recipes" : new_recipes,
 		"crafted_recipes" : crafted_recipes,
 		"gathered_items" : gathered_items,
+		"books_read" : books_read
 	}
 	return save_dict
 

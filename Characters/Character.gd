@@ -59,9 +59,7 @@ var selected_tool : StringName = &"hand"
 
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
-	for recipe in known_recipes:
-		if is_camera_focused:
-			UserVariables.new_recipes.append(recipe)
+	
 	status_label_ref.text = ""
 	interact_label_ref.text = ""
 	#%HotkeyLabel.text = ""
@@ -69,6 +67,8 @@ func _ready() -> void:
 	# Should only be 1 reference to a camera in the scene.
 	if character_camera_ref != null:
 		set_camera()
+		#for recipe in known_recipes:
+			#UserVariables.new_recipes.append(recipe)
 	
 	## Initialize character statuses based on attributes
 	var cur_se : StatusEffect
@@ -165,11 +165,6 @@ func save() -> Dictionary:
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
-		#"se_bar_ref" : se_bar_ref,
-		#"status_label_ref" : status_label_ref,
-		#"interact_label_ref" : interact_label_ref,
-		#"tool_wheel_ref" : tool_wheel_ref,
-		#"attribute_display_ref" : attribute_display_ref,
 		"attributes_path" : "user://save/characters/%s/attributes.tres" % name,
 		"inventory_path" : "user://save/characters/%s/inventory.tres" % name,
 		"known_recipes" : known_recipes,
@@ -223,6 +218,8 @@ func read_book(book: Book):
 		learn_recipe(recipe)
 	if not book.id in books_read:
 		books_read.append(book.id)
+	if is_camera_focused and book.id in UserVariables.books_read:
+		UserVariables.books_read.append(book.id)
 
 ## Interaction Methods ##
 

@@ -117,7 +117,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 5
+current_tab = 3
 tab_0/title = "Help"
 tab_1/title = "Items"
 tab_2/title = "Potions"
@@ -909,7 +909,6 @@ layout_mode = 2
 text = "Speed Potion Description"
 
 [node name="TabPlants" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1775764380]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -995,9 +994,18 @@ metadata/_tab_index = 0
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=311009144]
+[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=311009144]
 layout_mode = 2
 text = "Description and interacitons with red berry bush"
+
+[node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=1683094039]
+layout_mode = 2
+
+[node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=393585713]
+layout_mode = 2
+
+[node name="LabelCombine" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PageRedBerryBush/VBoxContainer" unique_id=1338176085]
+layout_mode = 2
 
 [node name="TabObjects" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=508245017]
 visible = false
@@ -1091,6 +1099,7 @@ layout_mode = 2
 text = "Description and details of Boulder."
 
 [node name="TabBooks" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=961548159]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
