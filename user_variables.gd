@@ -7,16 +7,21 @@ var known_recipes : Array[Recipe]
 var new_recipes: Array[Recipe]
 ## Keys: IDs of recipes that have been crafted by the user.
 ## Values: the number of times the recipe has been crafted.
-var crafted_recipes : Dictionary[int,int]
-## Keys: IDs of items that have been gathered from interactable objects like plants.
-## Values: Number of times gathered.
-var gathered_items : Dictionary[int,int] #TODO: Never updated. Check add_item.
+var crafted_recipes : Dictionary[int, int]
+### Keys: IDs of items that have been gathered from interactable objects like plants.
+### Values: Array containing number of times gathered.
+#var gathered_items : Dictionary[int, Array] #TODO: Not implemented.
 ## List of books the user has read/used
 var books_read: Array[Book]
-## List of objects that have been interacted with.
-## Keys: Display name of the interactable object.
-## Values: Array of different tracking values: [times_grabbed, times_cut, times_combined1,...]
-var interacted_objects: Dictionary[String, Array]
+## List of grab interactions that the user has performed.
+## String is the name of the object, Array is the list of grab interactions of the object.
+var objects_grab_interacted: Dictionary[String, Interaction]
+## List of cut interactions that the user has performed.
+## String is the name of the object, Array is the list of cut interactions of the object.
+var objects_cut_interacted: Dictionary[String, Interaction]
+## List of combinations that the user has performed.
+## String is the name of the object, Array is the list of combinations of the object.
+var objects_combined: Dictionary[String, Array]
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
@@ -29,7 +34,9 @@ func save() -> Dictionary:
 		"crafted_recipes" : crafted_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
-		"interacted_objects" : interacted_objects
+		"objects_grab_interacted" : objects_grab_interacted,
+		"objects_cut_interacted" : objects_cut_interacted,
+		"objects_combined" : objects_combined,
 	}
 	return save_dict
 

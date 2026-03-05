@@ -1,3 +1,5 @@
+## The list of actions that are taken to produce a result for a recipe.
+## Input Actions can be equipment or ingredients.
 class_name Procedure extends Resource
 
 @export var input_actions : Array[ProcedureInputAction] = [null, null, null, null, null]

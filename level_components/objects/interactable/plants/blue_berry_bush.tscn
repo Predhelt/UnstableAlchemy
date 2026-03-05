@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckpgxnig808b"]
+[gd_scene format=3 uid="uid://ckpgxnig808b"]
 
 [ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://level_components/objects/interactable/plants/interactable_plant.gd" id="1_gmrfj"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_t551g"]
@@ -10,17 +10,19 @@
 
 [sub_resource type="Resource" id="Resource_24wvq"]
 script = ExtResource("5_5kvaj")
+interaction_type = "grab"
 on_interact_items = Array[ExtResource("2_t551g")]([ExtResource("3_43ssr")])
 on_interact_amounts = Array[int]([2])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_lcwfn"]
 script = ExtResource("5_5kvaj")
+interaction_type = "cut"
 on_interact_items = Array[ExtResource("2_t551g")]([ExtResource("3_43ssr")])
 on_interact_amounts = Array[int]([5])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[node name="BlueBerryBush" type="Node2D"]
+[node name="BlueBerryBush" type="Node2D" unique_id=1022518106]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_gmrfj")
 display_name = "Blue Berry Bush"
@@ -29,11 +31,11 @@ items = Array[ExtResource("2_t551g")]([ExtResource("3_43ssr")])
 grab_interaction = SubResource("Resource_24wvq")
 cut_interaction = SubResource("Resource_lcwfn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028528064]
 position = Vector2(0, -25)
 texture = ExtResource("7_c5pea")
 
-[node name="InteractArea" parent="." instance=ExtResource("8_7j465")]
+[node name="InteractArea" parent="." unique_id=315626531 instance=ExtResource("8_7j465")]
 interact_label = "Blue Berry Bush"
 interact_type = 2
 

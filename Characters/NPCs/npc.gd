@@ -79,7 +79,7 @@ func save() -> Dictionary: #FIXME: Outdated save fields.
 		"attributes" : attributes,
 		"inventory" : inventory,
 		"known_recipes" : known_recipes,
-		"gathered_items" : gathered_items,
+		#"gathered_items" : gathered_items,
 		"books_read" : books_read,
 		"active_status_effects" : active_status_effects,
 		#"selected_tool" : selected_tool,
@@ -100,7 +100,6 @@ func open_shop() -> void:
 		if npc_shop_ref.transactions.size(): ## If the shop already has populated the transaction UI
 			npc_shop_ref.clear_transactions()
 		npc_shop_ref.transactions = transactions
-		npc_shop_ref.player = Global.focused_node
 		npc_shop_ref.open_window()
 
 ## Does additional logic if the shop was opened from the dialogue menu

@@ -1,7 +1,5 @@
 ## This node allows an npc to trade items with the player.
 extends UIWindow
-## Reference to player that is buying items from the shop.
-#@onready var player : Character = Global.focused_node
 ## Reference to the inventory menu to be displayed alongside the shop by default.
 @onready var inventory_menu := $"../InventoryMenu"
 ## Scene that sets up the transaction UI for the shop.

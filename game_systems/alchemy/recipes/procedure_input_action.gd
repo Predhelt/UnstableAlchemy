@@ -1,10 +1,12 @@
+## An action performed by the procedure as part of a recipe.
 class_name ProcedureInputAction extends Resource
 
+## The ID of the input action to be checked by the procedure
+var id := -1 
+## Type of input. Either Equipment or Item.
+var type : String = "" 
 
-var id := -1 ## The ID of the input action to be checked by the procedure
-var type : String = "" ## Type of input. Either Equipment or Item.
-
-
+## Checks if the current action and given action are the same.
 func equal(ia: ProcedureInputAction):
 	if not ia:
 		return false

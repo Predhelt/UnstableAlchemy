@@ -28,12 +28,10 @@ var inspection_panel_scene : PackedScene = preload("res://level_components/ui/wi
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#init_resources()
-	
 	for item in items:
 		item_quantities.append(item.qty)
 
-
+## Get the local file path of the current object.
 func get_cur_folder_path() -> String:
 	var folder_path := ""
 	var path := scene_file_path.split("/")
@@ -46,7 +44,7 @@ func get_cur_folder_path() -> String:
 		path_counter += 1
 	return folder_path
 
-
+## Check if the object has no items left. If so, free the object from memory.
 func check_empty():
 	var sum = 0
 	for item_qty in item_quantities:
@@ -56,14 +54,15 @@ func check_empty():
 		emit_effect()
 		queue_free()
 
-
+## Emits a particle effect on top of the object determined by interact_effect.
 func emit_effect():
 	var effect_instance : GPUParticles2D = interact_effect.instantiate()
 	effect_instance.position = position
 	get_parent().add_child(effect_instance)
 	effect_instance.emitting = true
 
-
+## Removes items from the object. Adds any items to the character's inventory
+## based on the interaction. Displays on screen the items that were collected.
 func collect_items(character: Character, interaction: Interaction) -> bool:
 	if not interaction:
 		print("No interaction")
@@ -110,46 +109,54 @@ func _on_object_grabbed(character: Character) -> void:
 	if not collect_items(character, grab_interaction):
 		return
 	
-	add_interaction_count(character, 0)
+	_add_grab_interaction_to_node(character, cut_interaction)
+	if character.is_camera_focused:
+		_add_grab_interaction_to_node(UserVariables, cut_interaction)
 	
 	if grab_interaction.on_interact_status_effects:
 		character.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
 	check_empty()
 
+## Adds the grab interaction record to the node, if not already.
+func _add_grab_interaction_to_node(node : Node, interaction : Interaction) -> void:
+	for object_name in node.objects_grab_interacted.keys():
+		if object_name == display_name:
+			#TODO: This is where the count would get added
+			return
+	node.objects_grab_interacted[display_name] = interaction
+
+
 func _on_object_cut(character: Character) -> void:
 	if not collect_items(character, cut_interaction):
 		return
 	
-	add_interaction_count(character, 1)
+	_add_cut_interaction_to_node(character, cut_interaction)
+	if character.is_camera_focused:
+		_add_cut_interaction_to_node(UserVariables, cut_interaction)
 	
 	if cut_interaction.on_interact_status_effects:
 		character.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
 	
 	check_empty()
 
+## Adds the cut interaction record to the node, if not already.
+func _add_cut_interaction_to_node(node : Node, interaction : Interaction) -> void:
+	for object_name in node.objects_cut_interacted.keys():
+		if object_name == display_name:
+			#TODO: This is where the count would get added
+			return
+	node.objects_cut_interacted[display_name] = interaction
+
+
 func _on_object_inspected() -> void:
 	inspect_object()
 
-## i = 0: grab interaction. i = 1: cut interaction. i = 2: combine interaction.
-func add_interaction_count(character : Character, i : int) -> void:
-	if i > 2: #TODO
-		print("Not implemented: Tracking Counts of Multiple Combinations on the same object.")
-		return
-	if not display_name in character.interacted_objects:
-		character.interacted_objects[display_name] = [0,0,0] #grab, cut, combine1
-	character.interacted_objects[display_name][i] += 1
-	if character.is_camera_focused:
-		if not display_name in UserVariables.interacted_objects:
-			UserVariables.interacted_objects[display_name] = [0,0,0] #grab, cut, combine1
-		UserVariables.interacted_objects[display_name][i] += 1
-
-#FIXME: Inspect not getting called properly.
+## Opens inspection panel for the object.
 func inspect_object():
-	
+	#if Global.mode == &"inspection":
+		#return
 	var inspection_panel = find_child("InspectionPanel")
-	if Global.mode == &"inspection":
-		return
 	inspection_panel = inspection_panel_scene.instantiate()
 	inspection_panel.name = "InspectionPanel"
 	inspection_panel.object_name = display_name
@@ -165,7 +172,9 @@ func _on_object_combined(character: Character, item: Item) -> void:
 		return
 	for c in combinations:
 		if c.input_item.id == item.id:
-			add_interaction_count(character, 2)
+			_add_combination_to_node(character, c)
+			if character.is_camera_focused:
+				_add_combination_to_node(UserVariables, c)
 			
 			character.update_status_message(c.status_message)
 			transform_object(c.result_object_scene)
@@ -175,6 +184,20 @@ func _on_object_combined(character: Character, item: Item) -> void:
 			return
 	
 	character.update_status_message("...")
+
+## Adds the combination record to the node, if not already.
+func _add_combination_to_node(node : Node, combination : ObjectCombination):
+	for object_name in node.objects_combined.keys():
+		if object_name == display_name:
+			var combos = node.objects_combined[display_name]
+			if not combination in combos: #TODO: Test if the combination reference works for matching.
+				combos.append(combination)
+			else:
+				# TODO: This is where the count would get added
+				pass
+			return
+	## If no combinations for current object stored, set combination.
+	node.objects_combined[display_name] = [combination]
 
 ## Changes the current object to the new object based on the combination that occurred.
 func transform_object(new_object_scene: PackedScene):

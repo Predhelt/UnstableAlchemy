@@ -1,6 +1,8 @@
+## A ProcedureInputAction that represents and Item being used.
 class_name ProcedureInputActionItem extends ProcedureInputAction
 
-@export var item : Item: ## Placing the associated item here automatically overrides the ID of self.
+## Placing the associated item here automatically overrides the ID of self.
+@export var item : Item:
 	set(i):
 		id = i.id
 

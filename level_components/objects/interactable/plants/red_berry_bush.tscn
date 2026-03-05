@@ -13,12 +13,14 @@
 
 [sub_resource type="Resource" id="Resource_odqey"]
 script = ExtResource("5_vrd4a")
+interaction_type = "grab"
 on_interact_items = Array[ExtResource("2_xvjhr")]([ExtResource("3_4mvhq")])
 on_interact_amounts = Array[int]([2])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_pf15v"]
 script = ExtResource("5_vrd4a")
+interaction_type = "cut"
 on_interact_items = Array[ExtResource("2_xvjhr")]([ExtResource("3_4mvhq")])
 on_interact_amounts = Array[int]([5])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"

@@ -29,11 +29,20 @@ const SIZE_DAMPENER := 0.5
 ## track of the character-specific knowledge, not the player's known recipes.
 ## Player-known recipes are stored in UserVariables.
 @export var known_recipes : Array[Recipe]
-## Keys: IDs of items that have been gathered from interactable objects like plants.
-## Values: Number of times gathered.
-var gathered_items : Dictionary[int, int]
+### Keys: IDs of items that have been gathered from interactable objects like plants.
+### Values: Number of times gathered.
+#var gathered_items : Dictionary[int, int]
 ## List of books by ID that the character has read
 var books_read : Array[int]
+## List of grab interactions that the user has performed.
+## String is the name of the object, Array is the list of grab interactions of the object.
+var objects_grab_interacted: Dictionary[String, Interaction]
+## List of cut interactions that the user has performed.
+## String is the name of the object, Array is the list of cut interactions of the object.
+var objects_cut_interacted: Dictionary[String, Interaction]
+## List of combinations that the user has performed.
+## String is the name of the object, Array is the list of combinations of the object.
+var objects_combined: Dictionary[String, Array]
 
 ## Reference to the inventory resource of the character(s).
 @export var inventory : Inventory
@@ -56,11 +65,6 @@ var all_interaction_areas : Array[Interactable]
 var status_message_timer := 0.0
 ## The currently selected tool that the character is holding
 var selected_tool : StringName = &"hand"
-## List of objects that have been interacted with.
-## Keys: Display name of the interactable object.
-## Values: Array of different tracking values: [times_grabbed, times_cut, times_combined1,...]
-var interacted_objects: Dictionary[String, Array]
-
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
 	
@@ -172,9 +176,11 @@ func save() -> Dictionary:
 		"attributes_path" : "user://save/characters/%s/attributes.tres" % name,
 		"inventory_path" : "user://save/characters/%s/inventory.tres" % name,
 		"known_recipes" : known_recipes,
-		"gathered_items" : gathered_items,
+		#"gathered_items" : gathered_items,
 		"books_read" : books_read,
-		"interacted_objects": interacted_objects,
+		"objects_grab_interacted" : objects_grab_interacted,
+		"objects_cut_interacted" : objects_cut_interacted,
+		"objects_combined" : objects_combined,
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,

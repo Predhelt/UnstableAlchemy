@@ -1,5 +1,5 @@
+## An interaction that can be performed by a character producing the provided results.
 class_name Interaction extends Resource
-
 ## The items to be received upon interacting (taken out of "items").
 @export var on_interact_items : Array[Item] 
 ## The amount of items to be recieved upon interacting (taken out of "items").
