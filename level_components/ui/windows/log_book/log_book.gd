@@ -105,17 +105,19 @@ func init_logs(character : Character = null) -> void:
 			### Misc ###
 			999: ## Failed Craft
 				pass
-	for obj_name in node.interacted_objects.keys():
-		match obj_name:
-			"Red Berry Bush":
-				%ButtonPlantRedBerryBush.visible = true
-				var obj_counts : Array = node.interacted_objects[obj_name]
-				if obj_counts[0]:
-					%PagePlantRedBerryBush/VBoxContainer/LabelGrab.visible = true
-				if obj_counts[1]:
-					%PagePlantRedBerryBush/VBoxContainer/LabelCut.visible = true
-				if obj_counts[2]:
-					%PagePlantRedBerryBush/VBoxContainer/LabelCombine.visible = true
+	var cur_name : String = "Red Berry Bush"
+	for obj_name in node.objects_grab_interacted.keys():
+		if obj_name == cur_name:
+			%ButtonPlantRedBerryBush.visible = true
+			%PagePlantRedBerryBush/VBoxContainer/LabelGrab.visible = true
+	for obj_name in node.objects_cut_interacted.keys():
+		if obj_name == cur_name:
+			%ButtonPlantRedBerryBush.visible = true
+			%PagePlantRedBerryBush/VBoxContainer/LabelCut.visible = true
+	for obj_name in node.objects_combined.keys():
+		if obj_name == cur_name:
+			%ButtonPlantRedBerryBush.visible = true
+			%PagePlantRedBerryBush/VBoxContainer/LabelCombine.visible = true
 
 ########################################
 ### Open Pages With Dynamic Elements ###

@@ -32,7 +32,7 @@ func save() -> Dictionary:
 		"known_recipes" : known_recipes,
 		"new_recipes" : new_recipes,
 		"crafted_recipes" : crafted_recipes,
-		"gathered_items" : gathered_items,
+		#"gathered_items" : gathered_items,
 		"books_read" : books_read,
 		"objects_grab_interacted" : objects_grab_interacted,
 		"objects_cut_interacted" : objects_cut_interacted,
