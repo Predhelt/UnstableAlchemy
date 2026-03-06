@@ -29,17 +29,19 @@ const SIZE_DAMPENER := 0.5
 ## track of the character-specific knowledge, not the player's known recipes.
 ## Player-known recipes are stored in UserVariables.
 @export var known_recipes : Array[Recipe]
-### Keys: IDs of items that have been gathered from interactable objects like plants.
-### Values: Number of times gathered.
-#var gathered_items : Dictionary[int, int]
 ## List of books by ID that the character has read
 var books_read : Array[int]
+## Keys: IDs of items that have been gathered from interactable objects like plants.
+## Values: Dictionary containing names of objects that the item was gathered from and the interaction type.
+## Internal dictionary returns the count for number of times the interaction was performed.
+## Ex: {item_id : {[obj1_name, interaction_type1] : 1, [obj1_name, interaction_type2] : 5, [obj2_name, interaction_type1] : 15}
+var gathered_items : Dictionary[int, Dictionary]
 ## List of grab interactions that the user has performed.
-## String is the name of the object, Array is the list of grab interactions of the object.
-var objects_grab_interacted: Dictionary[String, Interaction]
+## String is the name of the object, Dictionary is the list of grab interactions of the object and their count.
+var objects_grab_interacted: Dictionary[String, Dictionary]
 ## List of cut interactions that the user has performed.
-## String is the name of the object, Array is the list of cut interactions of the object.
-var objects_cut_interacted: Dictionary[String, Interaction]
+## String is the name of the object, Dictionary is the list of cut interactions of the object and their count.
+var objects_cut_interacted: Dictionary[String, Dictionary]
 ## List of combinations that the user has performed.
 ## String is the name of the object, Array is the list of combinations of the object.
 var objects_combined: Dictionary[String, Array]
@@ -65,6 +67,44 @@ var all_interaction_areas : Array[Interactable]
 var status_message_timer := 0.0
 ## The currently selected tool that the character is holding
 var selected_tool : StringName = &"hand"
+
+## Sets up and returns a dictionary that represents the persistent information
+## of the character to be saved to file.
+func save() -> Dictionary:
+	var cur_path : String = "user://save/characters/%s" % name
+	if not DirAccess.dir_exists_absolute(cur_path):
+		DirAccess.make_dir_recursive_absolute(cur_path)
+	
+	ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
+	ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+	
+	if(not active_status_effects.is_empty() and 
+			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
+		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
+	for se in active_status_effects:
+		print(ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name]))
+	
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"name" : name,
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
+		"pos_y" : position.y,
+		"attributes_path" : "user://save/characters/%s/attributes.tres" % name,
+		"inventory_path" : "user://save/characters/%s/inventory.tres" % name,
+		"known_recipes" : known_recipes,
+		"gathered_items" : gathered_items,
+		"books_read" : books_read,
+		"objects_grab_interacted" : objects_grab_interacted,
+		"objects_cut_interacted" : objects_cut_interacted,
+		"objects_combined" : objects_combined,
+		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
+		"is_player_controlled" : is_player_controlled,
+		"is_camera_focused" : is_camera_focused,
+		#"selected_tool" : selected_tool
+	}
+	return save_dict
+
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
 	
@@ -138,7 +178,7 @@ func _move_character(vector : Vector2) -> void:
 		velocity = direction * attributes.get_attribute("move speed") * 2 # base speed too slow, doubles it.
 		move_and_slide()
 
-## TODO: Change animations when certain criteria are met
+# TODO: Change animations when certain criteria are met
 func update_animation_parameters() -> void:
 	if(velocity == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
@@ -151,42 +191,7 @@ func update_animation_parameters() -> void:
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Walk/blend_position"] = direction
 
-## Sets up and returns a dictionary that represents the persistent information
-## of the character to be saved to file.
-func save() -> Dictionary:
-	var cur_path : String = "user://save/characters/%s" % name
-	if not DirAccess.dir_exists_absolute(cur_path):
-		DirAccess.make_dir_recursive_absolute(cur_path)
-	
-	ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
-	ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
-	
-	if(not active_status_effects.is_empty() and 
-			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
-		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
-	for se in active_status_effects:
-		print(ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name]))
-	
-	var save_dict = {
-		"filename" : get_scene_file_path(),
-		"name" : name,
-		"parent" : get_parent().get_path(),
-		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
-		"pos_y" : position.y,
-		"attributes_path" : "user://save/characters/%s/attributes.tres" % name,
-		"inventory_path" : "user://save/characters/%s/inventory.tres" % name,
-		"known_recipes" : known_recipes,
-		#"gathered_items" : gathered_items,
-		"books_read" : books_read,
-		"objects_grab_interacted" : objects_grab_interacted,
-		"objects_cut_interacted" : objects_cut_interacted,
-		"objects_combined" : objects_combined,
-		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
-		"is_player_controlled" : is_player_controlled,
-		"is_camera_focused" : is_camera_focused,
-		#"selected_tool" : selected_tool
-	}
-	return save_dict
+
 
 ## Used to call the get_attribute function of Attributes
 ## without needing to access the attributes variable.
@@ -223,7 +228,7 @@ func knows_recipe_id(item_id: int) -> bool:
 			return true
 	return false
 
-## marks the book as "read" and learns any associated recipes in the book.
+## Marks the book as "read" and learns any associated recipes in the book.
 func read_book(book: Book):
 	for recipe in book.recipes:
 		learn_recipe(recipe)

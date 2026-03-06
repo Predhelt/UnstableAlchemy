@@ -8,17 +8,19 @@ var new_recipes: Array[Recipe]
 ## Keys: IDs of recipes that have been crafted by the user.
 ## Values: the number of times the recipe has been crafted.
 var crafted_recipes : Dictionary[int, int]
-### Keys: IDs of items that have been gathered from interactable objects like plants.
-### Values: Array containing number of times gathered.
-#var gathered_items : Dictionary[int, Array] #TODO: Not implemented.
 ## List of books the user has read/used
 var books_read: Array[Book]
+## Keys: IDs of items that have been gathered from interactable objects like plants.
+## Values: Dictionary containing names of objects that the item was gathered from and the interaction type.
+## Internal dictionary returns the count for number of times the interaction was performed.
+## Ex: {item_id : {[obj1_name, interaction_type1] : 1, [obj1_name, interaction_type2] : 5, [obj2_name, interaction_type1] : 15}
+var gathered_items : Dictionary[int, Dictionary]
 ## List of grab interactions that the user has performed.
-## String is the name of the object, Array is the list of grab interactions of the object.
-var objects_grab_interacted: Dictionary[String, Interaction]
+## String is the name of the object, Dictionary is the list of grab interactions of the object and their count.
+var objects_grab_interacted: Dictionary[String, Dictionary]
 ## List of cut interactions that the user has performed.
-## String is the name of the object, Array is the list of cut interactions of the object.
-var objects_cut_interacted: Dictionary[String, Interaction]
+## String is the name of the object, Dictionary is the list of cut interactions of the object and their count.
+var objects_cut_interacted: Dictionary[String, Dictionary]
 ## List of combinations that the user has performed.
 ## String is the name of the object, Array is the list of combinations of the object.
 var objects_combined: Dictionary[String, Array]

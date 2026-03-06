@@ -304,7 +304,7 @@ func _on_button_plant_blue_berry_bush_pressed() -> void:
 ### Object Tab ###
 ##################
 func _on_button_object_boulder_pressed() -> void:
-	pass # Replace with function body.
+	%PageObjectBoulder.visible = true
 
 func _on_button_object_sliding_door_pressed() -> void:
 	pass # Replace with function body.
@@ -329,9 +329,14 @@ func _on_button_book_shrink_potion_pressed() -> void:
 ### Places Tab ###
 ##################
 func _on_button_places_botania_pressed() -> void:
-	pass # Replace with function body.
+	%PagePlacesBotania.visible = true
 
 ### People Tab ###
 ##################
-func _on_button_people_person_1_pressed() -> void:
-	pass # Replace with function body.
+func _on_button_people_person_1_pressed() -> void: #Placeholder
+	%PagePeoplePerson1.visible = true
+
+### Status Effects Tab ###
+##########################
+func _on_button_status_1_pressed() -> void: #Placeholder
+	%PageStatus1.visible = true

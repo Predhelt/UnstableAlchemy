@@ -117,7 +117,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 1
 tab_0/title = "Help"
 tab_1/title = "Items"
 tab_2/title = "Potions"
@@ -126,6 +126,7 @@ tab_4/title = "Objects"
 tab_5/title = "Books"
 tab_6/title = "Places"
 tab_7/title = "People"
+tab_8/title = "People"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
 visible = false
@@ -493,7 +494,6 @@ Pressing the check mark when two or three items are in the merger will combine t
 autowrap_mode = 3
 
 [node name="TabItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -739,9 +739,15 @@ metadata/_tab_index = 0
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=1848592186]
+[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=1848592186]
 layout_mode = 2
 text = "Green Herb Description"
+
+[node name="LabelGreenHerbGrab" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=269016404]
+layout_mode = 2
+
+[node name="LabelGreenHerbCut" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=910500327]
+layout_mode = 2
 
 [node name="PageItemRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=230363401]
 unique_name_in_owner = true
@@ -909,6 +915,7 @@ layout_mode = 2
 text = "Speed Potion Description"
 
 [node name="TabPlants" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1775764380]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1375,6 +1382,67 @@ theme_override_constants/separation = 32
 layout_mode = 2
 text = "A description of the person and any useful information."
 
+[node name="TabStatuses" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1523671769]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 8
+metadata/_tab_name = "People"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses" unique_id=1068253488]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer" unique_id=1289504505]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons" unique_id=625223075]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonStatus1" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=2084685705]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Status 1"
+
+[node name="ButtonStatus2" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1130861027]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Status 2"
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer" unique_id=1500686523]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageStatus1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer" unique_id=2052823942]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatus1" unique_id=842424249]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatus1/VBoxContainer" unique_id=1515993243]
+layout_mode = 2
+text = "A description of the a status effect"
+
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpGeneral" to="." method="_on_button_help_general_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpInteractions" to="." method="_on_button_help_interactions_pressed"]
@@ -1420,3 +1488,4 @@ text = "A description of the person and any useful information."
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" to="." method="_on_button_people_person_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatus1" to="." method="_on_button_status_1_pressed"]

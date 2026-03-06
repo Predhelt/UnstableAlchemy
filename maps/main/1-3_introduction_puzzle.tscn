@@ -21,25 +21,26 @@
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_ryunv"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_auicj"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="21_nn3fs"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="22_c54m0"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="23_hn6p7"]
-[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="24_i0bke"]
-[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="25_auhtm"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="22_kpwao"]
+[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="23_e5bvk"]
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="23_uc71n"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="24_1ukpx"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="25_2a218"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="26_rkj8u"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("18_6fxfb")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_51mqc"]
-script = ExtResource("25_auhtm")
-on_interact_items = Array[ExtResource("22_c54m0")]([ExtResource("23_hn6p7")])
+[sub_resource type="Resource" id="Resource_3etfl"]
+script = ExtResource("25_2a218")
+on_interact_items = Array[ExtResource("22_kpwao")]([ExtResource("23_e5bvk")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[sub_resource type="Resource" id="Resource_i4gor"]
-script = ExtResource("25_auhtm")
-on_interact_items = Array[ExtResource("22_c54m0")]([ExtResource("23_hn6p7")])
+[sub_resource type="Resource" id="Resource_lsy8w"]
+script = ExtResource("25_2a218")
+on_interact_items = Array[ExtResource("22_kpwao")]([ExtResource("23_e5bvk")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
@@ -153,17 +154,17 @@ y_sort_enabled = true
 
 [node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("21_nn3fs")]
 position = Vector2(367, 6)
-display_name = "\"Green Herbs - An Introduction\""
-description = "Describes how to make Green Flakes"
-items = Array[ExtResource("22_c54m0")]([ExtResource("23_hn6p7")])
-grab_interaction = SubResource("Resource_51mqc")
-cut_interaction = SubResource("Resource_i4gor")
+grab_interaction = SubResource("Resource_3etfl")
+cut_interaction = SubResource("Resource_lsy8w")
 
 [node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("26_rkj8u")]
 position = Vector2(-20, -209)
 
 [node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("26_rkj8u")]
 position = Vector2(56, -164)
+
+[node name="BoulderPushable" parent="Objects" unique_id=794065921 instance=ExtResource("23_uc71n")]
+position = Vector2(288, -260)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true

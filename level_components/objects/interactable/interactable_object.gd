@@ -93,7 +93,6 @@ func collect_items(character: Character, interaction: Interaction) -> bool:
 			
 			
 			if character.inventory.add_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
-				#TODO: Add information to character about which item was added and from which object.
 				item_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
 			
 			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
@@ -104,49 +103,57 @@ func collect_items(character: Character, interaction: Interaction) -> bool:
 	
 	return true
 
+## Adds the cut interaction record to the node's given interaction dictionary, if not already.
+func _add_interaction_to_node(dict : Dictionary, interaction : Interaction) -> void:
+	if dict.keys().is_empty() or display_name not in dict.keys():
+		dict[display_name] = {interaction : 1}
+	elif interaction not in dict[display_name].keys():
+		dict[display_name][interaction] = 1
+	else:
+		dict[display_name][interaction] += 1
+
+## Add the interaction with the given type to the node's gathered_items.
+func _add_gathered_items_entry_to_node(node : Node, interaction : Interaction, type : String) -> void:
+	for item in interaction.on_interact_items:
+		var entry = [display_name, type]
+		if node.gathered_items.keys().is_empty() or item.id not in node.gathered_items.keys():
+			node.gathered_items[item.id] = {entry : 1}
+		elif entry not in node.gathered_items[item.id].keys():
+			node.gathered_items[item.id][entry] = 1
+		else:
+			node.gathered_items[item.id][entry] += 1
+
 
 func _on_object_grabbed(character: Character) -> void:
 	if not collect_items(character, grab_interaction):
 		return
 	
-	_add_grab_interaction_to_node(character, cut_interaction)
+	_add_interaction_to_node(character.objects_grab_interacted, grab_interaction)
+	_add_gathered_items_entry_to_node(character, grab_interaction, "grab")
 	if character.is_camera_focused:
-		_add_grab_interaction_to_node(UserVariables, cut_interaction)
+		_add_interaction_to_node(UserVariables.objects_grab_interacted, grab_interaction)
+		_add_gathered_items_entry_to_node(UserVariables, grab_interaction, "grab")
 	
 	if grab_interaction.on_interact_status_effects:
 		character.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
 	check_empty()
 
-## Adds the grab interaction record to the node, if not already.
-func _add_grab_interaction_to_node(node : Node, interaction : Interaction) -> void:
-	for object_name in node.objects_grab_interacted.keys():
-		if object_name == display_name:
-			#TODO: This is where the count would get added
-			return
-	node.objects_grab_interacted[display_name] = interaction
-
 
 func _on_object_cut(character: Character) -> void:
 	if not collect_items(character, cut_interaction):
 		return
 	
-	_add_cut_interaction_to_node(character, cut_interaction)
+	_add_interaction_to_node(character.objects_cut_interacted, cut_interaction)
+	_add_gathered_items_entry_to_node(character, cut_interaction, "cut")
 	if character.is_camera_focused:
-		_add_cut_interaction_to_node(UserVariables, cut_interaction)
+		_add_interaction_to_node(UserVariables.objects_cut_interacted, cut_interaction)
+		_add_gathered_items_entry_to_node(UserVariables, cut_interaction, "cut")
 	
 	if cut_interaction.on_interact_status_effects:
 		character.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
 	
 	check_empty()
-
-## Adds the cut interaction record to the node, if not already.
-func _add_cut_interaction_to_node(node : Node, interaction : Interaction) -> void:
-	for object_name in node.objects_cut_interacted.keys():
-		if object_name == display_name:
-			#TODO: This is where the count would get added
-			return
-	node.objects_cut_interacted[display_name] = interaction
 
 
 func _on_object_inspected() -> void:
