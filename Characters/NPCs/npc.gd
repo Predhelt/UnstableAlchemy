@@ -70,6 +70,27 @@ func init_dialogues():
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the npc to be saved to file. Overrides the Character save function.
 func save() -> Dictionary: #FIXME: Outdated save fields.
+	var cur_path : String = "user://save/characters/%s" % name
+	if not DirAccess.dir_exists_absolute(cur_path):
+		DirAccess.make_dir_recursive_absolute(cur_path)
+	
+	var att_path : String = "user://save/characters/%s/attributes.tres" % name
+	if attributes:
+		ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
+	else:
+		att_path = ""
+	var inv_path : String = "user://save/characters/%s/inventory.tres" % name
+	if inventory:
+		ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+	else:
+		inv_path =  ""
+	
+	if(not active_status_effects.is_empty() and 
+			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
+		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
+	for se in active_status_effects:
+		print(ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name]))
+	
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"name" : name,
@@ -77,15 +98,17 @@ func save() -> Dictionary: #FIXME: Outdated save fields.
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
 		"npc_name" : npc_name,
-		"attributes_path" : "user://save/characters/%s/attributes.tres" % name,
-		"inventory_path" : "user://save/characters/%s/inventory.tres" % name,
+		"attributes_path" : att_path,
+		"inventory_path" : inv_path,
 		"known_recipes" : known_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
-		"objects_grab_interacted" : objects_grab_interacted,
-		"objects_cut_interacted" : objects_cut_interacted,
-		"objects_combined" : objects_combined,
+		"objects_grab_interacted" : objects_grab_interacted, #FIXME: Not saved/loaded properly
+		"objects_cut_interacted" : objects_cut_interacted, #FIXME: Not saved/loaded properly
+		"objects_combined" : objects_combined, #FIXME: Not saved/loaded properly
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
+		"is_player_controlled" : is_player_controlled,
+		"is_camera_focused" : is_camera_focused,
 		#"selected_tool" : selected_tool,
 		"interaction_type" : interaction_type,
 		"dialogues" : dialogues,

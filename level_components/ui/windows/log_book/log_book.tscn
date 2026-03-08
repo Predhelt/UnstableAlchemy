@@ -117,7 +117,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 3
 tab_0/title = "Help"
 tab_1/title = "Items"
 tab_2/title = "Potions"
@@ -126,7 +126,7 @@ tab_4/title = "Objects"
 tab_5/title = "Books"
 tab_6/title = "Places"
 tab_7/title = "People"
-tab_8/title = "People"
+tab_8/title = "Status Effects"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
 visible = false
@@ -494,6 +494,7 @@ Pressing the check mark when two or three items are in the merger will combine t
 autowrap_mode = 3
 
 [node name="TabItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -915,7 +916,6 @@ layout_mode = 2
 text = "Speed Potion Description"
 
 [node name="TabPlants" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1775764380]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -939,7 +939,6 @@ columns = 3
 
 [node name="ButtonPlantRedBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=1596357552]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Berry Bush"
@@ -951,7 +950,6 @@ expand_icon = true
 
 [node name="ButtonPlantGreenHerbs" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=225389601]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herbs"
@@ -962,7 +960,6 @@ expand_icon = true
 
 [node name="ButtonPlantYellowFlowers" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=261273563]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flowers"
@@ -973,7 +970,6 @@ expand_icon = true
 
 [node name="ButtonPlantBlueBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=342536655]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Berry Bush"
@@ -983,6 +979,7 @@ icon = ExtResource("32_olvlp")
 expand_icon = true
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer" unique_id=1895968697]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 current_tab = 0
@@ -1390,7 +1387,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 metadata/_tab_index = 8
-metadata/_tab_name = "People"
+metadata/_tab_name = "Status Effects"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses" unique_id=1068253488]
 layout_mode = 2

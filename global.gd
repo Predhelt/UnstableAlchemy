@@ -62,7 +62,7 @@ func save_game() -> void:
 	save_file.store_line(json_string)
 	
 	# TODO: Remove current (outdated) directories in save location
-	DirAccess.remove_absolute("user://save") #FIXME: Does not work if directory is not empty.
+	#DirAccess.remove_absolute("user://save") #FIXME: Does not work if directory is not empty.
 	
 	# Store persistent node data.
 	var save_nodes : Array[Node] = get_tree().get_nodes_in_group("Persist")
@@ -124,6 +124,7 @@ func load_game() -> void:
 	parse_result = json.parse(json_string)
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+	node_data = json.data
 	for i in node_data.keys():
 		UserVariables.set(i, node_data[i])
 	
@@ -162,13 +163,13 @@ func load_game() -> void:
 						new_object.active_status_effects.append(cur_se)
 		# Set the inventory before setting parent node to scene.
 		field = "inventory_path"
-		if node_data[field]:
+		if node_data[field]  != "":
 				new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 				#TODO: Check if replacing cached version is making a difference.
 				#FIXME: Replace the existing inventory instead of loading a new instance.
 		# Set the attributes before setting parent node to scene.
 		field = "attributes_path"
-		if node_data[field]:
+		if node_data[field] != "":
 			new_object.attributes = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 		
 		get_node(node_data["parent"]).add_child(new_object)

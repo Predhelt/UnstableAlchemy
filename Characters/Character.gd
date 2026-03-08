@@ -75,8 +75,17 @@ func save() -> Dictionary:
 	if not DirAccess.dir_exists_absolute(cur_path):
 		DirAccess.make_dir_recursive_absolute(cur_path)
 	
-	ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
-	ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+	var att_path : String = "user://save/characters/%s/attributes.tres" % name
+	if attributes:
+		ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
+	else:
+		att_path = ""
+	
+	var inv_path : String = "user://save/characters/%s/inventory.tres" % name
+	if inventory:
+		ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+	else:
+		inv_path =  ""
 	
 	if(not active_status_effects.is_empty() and 
 			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
@@ -90,8 +99,8 @@ func save() -> Dictionary:
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
-		"attributes_path" : "user://save/characters/%s/attributes.tres" % name,
-		"inventory_path" : "user://save/characters/%s/inventory.tres" % name,
+		"attributes_path" : att_path,
+		"inventory_path" : inv_path,
 		"known_recipes" : known_recipes,
 		"gathered_items" : gathered_items,
 		"books_read" : books_read,
