@@ -1,21 +1,6 @@
 [gd_scene format=4 uid="uid://cj16115plnjxs"]
 
-[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="1_e5bvk"]
-[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://level_components/ui/windows/options/options_menu.tscn" id="2_1ukpx"]
-[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_2a218"]
-[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://level_components/ui/windows/help_menu/help_menu.tscn" id="4_3etfl"]
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://level_components/ui/windows/inventory/inventory_menu.tscn" id="5_lsy8w"]
-[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://level_components/ui/windows/recipe_list/recipe_list.tscn" id="6_dnggc"]
-[ext_resource type="PackedScene" uid="uid://devoaotbjwrvh" path="res://level_components/ui/windows/log_book/log_book.tscn" id="7_g5pqt"]
-[ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://level_components/ui/windows/npc_shop/npc_shop.tscn" id="8_eujj1"]
-[ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://level_components/ui/windows/npc_dialogue/npc_dialogue.tscn" id="9_wqpor"]
-[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldro_minigame.tscn" id="10_asgfs"]
-[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.tscn" id="11_qnwjw"]
-[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://level_components/ui/hud/menu_bar/menu_bar.tscn" id="12_e5ft3"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://level_components/ui/hud/status_effect/status_effect_bar.tscn" id="13_y1g2j"]
-[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://level_components/ui/hud/hotbar/hotbar.tscn" id="14_ws41n"]
-[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://level_components/ui/hud/tool_wheel/tool_wheel.tscn" id="15_kadn5"]
-[ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_qfd1i"]
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_y0o4k"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_v6gsf"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_6fxfb"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_ryunv"]
@@ -48,65 +33,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="UILayer" type="CanvasLayer" parent="." unique_id=574275547]
-layer = 10
-
-[node name="MenuLayer" type="CanvasLayer" parent="UILayer" unique_id=141501223]
-layer = 3
-
-[node name="SettingsMenu" parent="UILayer/MenuLayer" unique_id=466945984 instance=ExtResource("1_e5bvk")]
-auto_translate_mode = 1
-visible = false
-
-[node name="OptionsMenu" parent="UILayer/MenuLayer" unique_id=1604190083 instance=ExtResource("2_1ukpx")]
-visible = false
-theme = ExtResource("3_2a218")
-
-[node name="HelpMenu" parent="UILayer/MenuLayer" unique_id=1997709990 instance=ExtResource("4_3etfl")]
-visible = false
-
-[node name="InventoryMenu" parent="UILayer/MenuLayer" unique_id=1209495849 instance=ExtResource("5_lsy8w")]
-visible = false
-
-[node name="RecipeList" parent="UILayer/MenuLayer" unique_id=1868385013 instance=ExtResource("6_dnggc")]
-visible = false
-
-[node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("7_g5pqt")]
-visible = false
-
-[node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("8_eujj1")]
-visible = false
-
-[node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("9_wqpor")]
-visible = false
-
-[node name="MinigameLayer" type="CanvasLayer" parent="UILayer" unique_id=1354987911]
-layer = 2
-
-[node name="MinigameCauldron" parent="UILayer/MinigameLayer" unique_id=1553878062 instance=ExtResource("10_asgfs")]
-visible = false
-
-[node name="MinigameMP" parent="UILayer/MinigameLayer" unique_id=95134907 instance=ExtResource("11_qnwjw")]
-visible = false
-
-[node name="HUDLayer" type="CanvasLayer" parent="UILayer" unique_id=1167861916]
-
-[node name="MenuBar" parent="UILayer/HUDLayer" unique_id=2084920634 instance=ExtResource("12_e5ft3")]
-offset_bottom = 8.0
-
-[node name="StatusEffectBar" parent="UILayer/HUDLayer" unique_id=768429819 instance=ExtResource("13_y1g2j")]
-
-[node name="Hotbar" parent="UILayer/HUDLayer" unique_id=1812231048 instance=ExtResource("14_ws41n")]
-visible = false
-
-[node name="ToolWheel" parent="UILayer/HUDLayer" unique_id=2089509891 instance=ExtResource("15_kadn5")]
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 154.0
-offset_bottom = 154.0
-
-[node name="AttributeDisplay" parent="UILayer/HUDLayer" unique_id=1551514349 instance=ExtResource("16_qfd1i")]
-visible = false
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_y0o4k")]
 
 [node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v6gsf")]
 position = Vector2(123, 13)
@@ -225,7 +152,3 @@ offset_top = -299.0
 offset_right = 182.0
 offset_bottom = -276.0
 text = "Some plants can be gathered (e)"
-
-[connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
-[connection signal="use_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_use_inventory_item"]
-[connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
