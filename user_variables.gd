@@ -16,11 +16,13 @@ var books_read: Array[Book]
 ## Ex: {item_id : {[obj1_name, interaction_type1] : 1, [obj1_name, interaction_type2] : 5, [obj2_name, interaction_type1] : 15}
 var gathered_items : Dictionary[int, Dictionary]
 ## List of grab interactions that the user has performed.
-## String is the name of the object, Dictionary is the list of grab interactions of the object and their count.
-var objects_grab_interacted: Dictionary[String, Dictionary]
+## String is the name of the object, Array is the list of grab interactions of the object and their count.
+## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
+var objects_grab_interacted: Dictionary[String, Array]
 ## List of cut interactions that the user has performed.
-## String is the name of the object, Dictionary is the list of cut interactions of the object and their count.
-var objects_cut_interacted: Dictionary[String, Dictionary]
+## String is the name of the object, Array is the list of grab interactions of the object and their count.
+## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
+var objects_cut_interacted: Dictionary[String, Array]
 ## List of combinations that the user has performed.
 ## String is the name of the object, Array is the list of combinations of the object.
 var objects_combined: Dictionary[String, Array]
@@ -34,11 +36,11 @@ func save() -> Dictionary:
 		"known_recipes" : known_recipes,
 		"new_recipes" : new_recipes,
 		"crafted_recipes" : crafted_recipes,
-		#"gathered_items" : gathered_items,
+		"gathered_items" : var_to_str(gathered_items),
 		"books_read" : books_read,
-		"objects_grab_interacted" : objects_grab_interacted,
-		"objects_cut_interacted" : objects_cut_interacted,
-		"objects_combined" : objects_combined,
+		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
+		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
+		"objects_combined" : var_to_str(objects_combined),
 	}
 	return save_dict
 

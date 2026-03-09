@@ -37,11 +37,13 @@ var books_read : Array[int]
 ## Ex: {item_id : {[obj1_name, interaction_type1] : 1, [obj1_name, interaction_type2] : 5, [obj2_name, interaction_type1] : 15}
 var gathered_items : Dictionary[int, Dictionary]
 ## List of grab interactions that the user has performed.
-## String is the name of the object, Dictionary is the list of grab interactions of the object and their count.
-var objects_grab_interacted: Dictionary[String, Dictionary]
+## String is the name of the object, Array is the list of grab interactions of the object and their count.
+## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
+var objects_grab_interacted: Dictionary[String, Array]
 ## List of cut interactions that the user has performed.
-## String is the name of the object, Dictionary is the list of cut interactions of the object and their count.
-var objects_cut_interacted: Dictionary[String, Dictionary]
+## String is the name of the object, Array is the list of grab interactions of the object and their count.
+## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
+var objects_cut_interacted: Dictionary[String, Array]
 ## List of combinations that the user has performed.
 ## String is the name of the object, Array is the list of combinations of the object.
 var objects_combined: Dictionary[String, Array]
@@ -102,11 +104,11 @@ func save() -> Dictionary:
 		"attributes_path" : att_path,
 		"inventory_path" : inv_path,
 		"known_recipes" : known_recipes,
-		"gathered_items" : gathered_items,
+		"gathered_items" : var_to_str(gathered_items),
 		"books_read" : books_read,
-		"objects_grab_interacted" : objects_grab_interacted,
-		"objects_cut_interacted" : objects_cut_interacted,
-		"objects_combined" : objects_combined,
+		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
+		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
+		"objects_combined" : var_to_str(objects_combined),
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
@@ -286,7 +288,7 @@ func execute_interaction():
 			&"shop" : cur_interaction.shop()
 
 ## Triggers when the tool type is changed. Sets selected_tool as the tool type that was changed.
-func _on_tool_updated(tool_name: String) -> void:
+func tool_updated(tool_name: String) -> void:
 	selected_tool = tool_name
 
 ## Executes functions on the selected interaction area given the current tool selected.

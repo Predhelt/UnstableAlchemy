@@ -1,6 +1,5 @@
 extends GridContainer
 
-signal tool_updated(tool_name: String)
 signal set_dropper_item()
 
 var selected_tool := ""
@@ -37,7 +36,8 @@ func _on_slot_1_toggled(toggled_on: bool) -> void:
 		
 		selected_tool = "hand"
 		tooltip_text = selected_tool
-		tool_updated.emit("hand")
+		if Global.focused_node:
+			Global.focused_node.tool_updated("hand")
 		$CurrentTool.icon = $Slot1.icon
 		toggle_tool_selection()
 
@@ -49,7 +49,8 @@ func _on_slot_2_toggled(toggled_on: bool) -> void:
 		
 		selected_tool = "blade"
 		tooltip_text = selected_tool
-		tool_updated.emit("blade")
+		if Global.focused_node:
+			Global.focused_node.tool_updated("blade")
 		$CurrentTool.icon = $Slot2.icon
 		toggle_tool_selection()
 
@@ -61,7 +62,8 @@ func _on_slot_3_toggled(toggled_on: bool) -> void:
 		
 		selected_tool = "dropper"
 		tooltip_text = selected_tool
-		tool_updated.emit("dropper")
+		if Global.focused_node:
+			Global.focused_node.tool_updated("dropper")
 		$CurrentTool.icon = $Slot3.icon
 		toggle_tool_selection()
 		$CurrentTool/AddItemButton.visible = true

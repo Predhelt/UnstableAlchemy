@@ -103,14 +103,14 @@ func collect_items(character: Character, interaction: Interaction) -> bool:
 	
 	return true
 
-## Adds the cut interaction record to the node's given interaction dictionary, if not already.
+## Adds the interaction record to the node's given interaction dictionary, if not already.
 func _add_interaction_to_node(dict : Dictionary, interaction : Interaction) -> void:
 	if dict.keys().is_empty() or display_name not in dict.keys():
-		dict[display_name] = {interaction : 1}
-	elif interaction not in dict[display_name].keys():
-		dict[display_name][interaction] = 1
+		dict[display_name] = [interaction, 1]
+	#elif interaction not in dict[display_name].keys():
+		#dict[display_name][1] = 1
 	else:
-		dict[display_name][interaction] += 1
+		dict[display_name][1] += 1
 
 ## Add the interaction with the given type to the node's gathered_items.
 func _add_gathered_items_entry_to_node(node : Node, interaction : Interaction, type : String) -> void:
