@@ -1,6 +1,28 @@
 extends UIWindow
 var prev_mode : StringName
 
+#func _ready() -> void:
+	# Set descriptions for pages relating to resources upon scene load
+	# Status Effects:
+	#var res : Resource = load("res://game_systems/status_effects/energized.tres")
+	#%ButtonEnergized.icon = res.icon
+	#%PageEnergized/VBoxContainer/Label.text = res.description
+	#res = load("res://game_systems/status_effects/grow.tres")
+	#%ButtonGrow.icon = res.icon
+	#%PageGrow/VBoxContainer/Label.text = res.description
+	#res = load("res://game_systems/status_effects/self_attunement.tres")
+	#%ButtonSelfAttunement.icon = res.icon
+	#%PageSelfAttunement/VBoxContainer/Label.text = res.description
+	#res = load("res://game_systems/status_effects/shrink.tres")
+	#%ButtonShrink.icon = res.icon
+	#%PageShrink/VBoxContainer/Label.text = res.description
+	#res = load("res://game_systems/status_effects/slow.tres")
+	#%ButtonSlow.icon = res.icon
+	#%PageSlow/VBoxContainer/Label.text = res.description
+	#res = load("res://game_systems/status_effects/strengthen.tres")
+	#%ButtonStrengthen.icon = res.icon
+	#%PageStrengthen/VBoxContainer/Label.text = res.description
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("log_book"):
 		toggle_window()
@@ -105,19 +127,46 @@ func init_logs(character : Character = null) -> void:
 			### Misc ###
 			999: ## Failed Craft
 				pass
-	var cur_name : String = "Red Berry Bush"
+	# Object Pages and context labels based on performed interactions
 	for obj_name in node.objects_grab_interacted.keys():
-		if obj_name == cur_name:
+		if obj_name == "Red Berry Bush":
 			%ButtonPlantRedBerryBush.visible = true
 			%PagePlantRedBerryBush/VBoxContainer/LabelGrab.visible = true
+		if obj_name == "Green Herbs":
+			%ButtonPlantGreenHerbs.visible = true
+			%PagePlantGreenHerbs/VBoxContainer/LabelGrab.visible = true
+		if obj_name == "Yellow Flowers":
+			%ButtonPlantYellowFlowers.visible = true
+			%PagePlantYellowFlowers/VBoxContainer/LabelGrab.visible = true
+		if obj_name == "Blue Berry Bush":
+			%ButtonPlantBlueBerryBush.visible = true
+			%PagePlantBlueBerryBush/VBoxContainer/LabelGrab.visible = true
 	for obj_name in node.objects_cut_interacted.keys():
-		if obj_name == cur_name:
+		if obj_name == "Red Berry Bush":
 			%ButtonPlantRedBerryBush.visible = true
 			%PagePlantRedBerryBush/VBoxContainer/LabelCut.visible = true
+		if obj_name == "Green Herb":
+			%ButtonPlantGreenHerbs.visible = true
+			%PagePlantGreenHerbs/VBoxContainer/LabelCut.visible = true
+		if obj_name == "Yellow Flowers":
+			%ButtonPlantYellowFlowers.visible = true
+			%PagePlantYellowFlowers/VBoxContainer/LabelCut.visible = true
+		if obj_name == "Blue Berry Bush":
+			%ButtonPlantBlueBerryBush.visible = true
+			%PagePlantBlueBerryBush/VBoxContainer/LabelCut.visible = true
 	for obj_name in node.objects_combined.keys():
-		if obj_name == cur_name:
+		if obj_name == "Red Berry Bush":
 			%ButtonPlantRedBerryBush.visible = true
 			%PagePlantRedBerryBush/VBoxContainer/LabelCombine.visible = true
+		if obj_name == "Green Herb":
+			%ButtonPlantGreenHerbs.visible = true
+			%PagePlantGreenHerbs/VBoxContainer/LabelCombine.visible = true
+		if obj_name == "Yellow Flowers":
+			%ButtonPlantYellowFlowers.visible = true
+			%PagePlantYellowFlowers/VBoxContainer/LabelCombine.visible = true
+		if obj_name == "Blue Berry Bush":
+			%ButtonPlantBlueBerryBush.visible = true
+			%PagePlantBlueBerryBush/VBoxContainer/LabelCombine.visible = true
 
 ########################################
 ### Open Pages With Dynamic Elements ###
@@ -194,31 +243,31 @@ func _on_button_help_merger_pressed() -> void:
 ################
 func _on_button_item_blue_berries_pressed() -> void:
 	#%WindowName.text = "Item: Blue Berries"
-	pass
+	%PageItemBlueBerries.visible = true
 
 func _on_button_item_blue_juice_pressed() -> void:
 	#%WindowName.text = "Item: Blue Juice"
-	pass
+	%PageItemBlueJuice.visible = true
 
 func _on_button_item_blue_seed_pressed() -> void:
 	#%WindowName.text = "Item: Blue Seed"
-	pass
+	%PageItemBlueBerrySeed.visible = true
 
 func _on_button_item_flower_stem_pressed() -> void:
 	#%WindowName.text = "Item: Flower Stem"
-	pass
+	%PageItemFlowerStem.visible = true
 
 func _on_button_item_gray_juice_pressed() -> void:
 	#%WindowName.text = "Item: Gray Juice"
-	pass
+	%PageItemGrayJuice.visible = true
 
 func _on_button_item_gray_seed_pressed() -> void:
 	#%WindowName.text = "Item: Gray Seed"
-	pass
+	%PageItemGraySeed.visible = true
 
 func _on_button_item_green_flakes_pressed() -> void:
 	#%WindowName.text = "Item: Green Flakes"
-	pass
+	%PageItemGreenFlakes.visible = true
 
 func _on_button_item_green_herb_pressed() -> void:
 	#%WindowName.text = "Item: Green Herb"
@@ -226,11 +275,11 @@ func _on_button_item_green_herb_pressed() -> void:
 
 func _on_button_item_green_paste_pressed() -> void:
 	#%WindowName.text = "Item: Green Paste"
-	pass
+	%PageItemGreenPaste.visible = true
 
 func _on_button_item_orange_paste_pressed() -> void:
 	#%WindowName.text = "Item: Orange Paste"
-	pass
+	%PageItemOrangePasted.visible = true
 
 func _on_button_item_red_berries_pressed() -> void:
 	#%WindowName.text = "Item: Red Berries"
@@ -238,31 +287,31 @@ func _on_button_item_red_berries_pressed() -> void:
 
 func _on_button_item_red_juice_pressed() -> void:
 	#%WindowName.text = "Item: Red Juice"
-	pass
+	%PageItemRedJuice.visible = true
 
 func _on_button_item_red_seed_pressed() -> void:
 	#%WindowName.text = "Item: Red Seed"
-	pass
+	%PageItemRedBerrySeed.visible = true
 
 func _on_button_item_saturated_stem_pressed() -> void:
 	#%WindowName.text = "Item: Saturated Stem"
-	pass
+	%PageItemSaturatedStem.visible = true
 
 func _on_button_item_stem_strands_pressed() -> void:
 	#%WindowName.text = "Item: Stem Strands"
-	pass
+	%PageItemStemStrands.visible = true
 
 func _on_button_item_yellow_dust_pressed() -> void:
 	#%WindowName.text = "Item: Yellow Dust"
-	pass
+	%PageItemYellowDust.visible = true
 
 func _on_button_item_yellow_paste_pressed() -> void:
 	#%WindowName.text = "Item: Yellow Paste"
-	pass
+	%PageItemYellowPaste.visible = true
 
 func _on_button_item_yellow_petals_pressed() -> void:
 	#%WindowName.text = "Item: Yellow Petals"
-	pass
+	%PageItemYellowPetals.visible = true
 
 ### Potion Tab ###
 ##################
@@ -270,22 +319,22 @@ func _on_button_potion_cleanse_pressed() -> void:
 	%PagePotionCleanse.visible = true
 
 func _on_button_potion_grow_pressed() -> void:
-	pass # Replace with function body.
+	%PagePotionGrow.visible = true
 
 func _on_button_potion_normalize_pressed() -> void:
-	pass # Replace with function body.
+	%PagePotionNormalize.visible = true
 
 func _on_button_potion_shrink_pressed() -> void:
-	pass # Replace with function body.
+	%PagePotionShrink.visible = true
 
 func _on_button_potion_slow_pressed() -> void:
-	pass # Replace with function body.
+	%PagePotionSlow.visible = true
 
 func _on_button_potion_speed_pressed() -> void:
 	%PagePotionSpeed.visible = true
 
 func _on_button_potion_strength_pressed() -> void:
-	pass # Replace with function body.
+	%PagePotionStrengthen.visible = true
 
 ### Plant Tab ###
 #################
@@ -293,13 +342,13 @@ func _on_button_plant_red_berry_bush_pressed() -> void:
 	%PagePlantRedBerryBush.visible = true
 
 func _on_button_plant_green_herbs_pressed() -> void:
-	pass # Replace with function body.
+	%PagePlantGreenHerbs.visible = true
 
 func _on_button_plant_yellow_flowers_pressed() -> void:
-	pass # Replace with function body.
+	%PagePlantYellowFlowers.visible = true
 
 func _on_button_plant_blue_berry_bush_pressed() -> void:
-	pass # Replace with function body.
+	%PagePlantBlueBerryBush.visible = true
 
 ### Object Tab ###
 ##################
@@ -307,13 +356,13 @@ func _on_button_object_boulder_pressed() -> void:
 	%PageObjectBoulder.visible = true
 
 func _on_button_object_sliding_door_pressed() -> void:
-	pass # Replace with function body.
+	%PageObjectSlidingDoor.visible = true
 
 func _on_button_object_crawlspace_pressed() -> void:
-	pass # Replace with function body.
+	%PageObjectCrawlSpace.visible = true
 
 func _on_button_object_pressure_plate_pressed() -> void:
-	pass # Replace with function body.
+	%PageObjectPressurePlate.visible = true
 
 ### Book Tab ###
 ################
@@ -338,5 +387,20 @@ func _on_button_people_person_1_pressed() -> void: #Placeholder
 
 ### Status Effects Tab ###
 ##########################
-func _on_button_status_1_pressed() -> void: #Placeholder
-	%PageStatus1.visible = true
+func _on_button_energized() -> void:
+	%PageEnergized.visible = true
+
+func _on_button_grow() -> void:
+	%PageGrow.visible = true
+
+func _on_button_self_attunement() -> void:
+	%PageSelfAttunement.visible = true
+
+func _on_button_shrink() -> void:
+	%PageShrink.visible = true
+
+func _on_button_slow() -> void:
+	%PageSlow.visible = true
+
+func _on_button_strengthen() -> void:
+	%PageStrengthen.visible = true
