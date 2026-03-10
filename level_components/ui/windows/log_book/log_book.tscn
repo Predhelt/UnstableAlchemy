@@ -123,7 +123,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 3
 tab_0/title = "Help"
 tab_1/title = "Items"
 tab_2/title = "Potions"
@@ -500,6 +500,7 @@ Pressing the check mark when two or three items are in the merger will combine t
 autowrap_mode = 3
 
 [node name="TabItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -530,7 +531,6 @@ columns = 3
 
 [node name="ButtonItemBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1772312219]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Berries"
@@ -541,7 +541,6 @@ expand_icon = true
 
 [node name="ButtonItemBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Juice"
@@ -552,7 +551,6 @@ expand_icon = true
 
 [node name="ButtonItemBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2076160104]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Seed"
@@ -563,7 +561,6 @@ expand_icon = true
 
 [node name="ButtonItemFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1030593771]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Stem"
@@ -574,7 +571,6 @@ expand_icon = true
 
 [node name="ButtonItemGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1261853127]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Gray Juice"
@@ -596,7 +592,6 @@ expand_icon = true
 
 [node name="ButtonItemGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1068973908]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herb Flakes"
@@ -618,7 +613,6 @@ expand_icon = true
 
 [node name="ButtonItemGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=105487582]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Paste"
@@ -629,7 +623,6 @@ expand_icon = true
 
 [node name="ButtonItemOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1149686490]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Orange Paste"
@@ -650,7 +643,6 @@ expand_icon = true
 
 [node name="ButtonItemRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1210965709]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Juice"
@@ -661,7 +653,6 @@ expand_icon = true
 
 [node name="ButtonItemRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2008177175]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Seed"
@@ -672,7 +663,6 @@ expand_icon = true
 
 [node name="ButtonItemSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=898051407]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Saturated Stem"
@@ -683,7 +673,6 @@ expand_icon = true
 
 [node name="ButtonItemStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1417137024]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Stem Strands"
@@ -694,7 +683,6 @@ expand_icon = true
 
 [node name="ButtonItemYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1805018482]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Dust"
@@ -705,7 +693,6 @@ expand_icon = true
 
 [node name="ButtonItemYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1533011342]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Paste"
@@ -716,7 +703,6 @@ expand_icon = true
 
 [node name="ButtonItemYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1464741231]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Petals"
@@ -728,8 +714,46 @@ expand_icon = true
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer" unique_id=1256355520]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 0
+current_tab = 2
 tabs_visible = false
+
+[node name="PageItemBlueBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2073653872]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerries" unique_id=1893820804]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=1667616430]
+layout_mode = 2
+text = "Berries from a blue berry bush. The inside is red."
+
+[node name="PageItemFlowerStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1196629362]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemFlowerStem" unique_id=1443043595]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1852425634]
+layout_mode = 2
+text = "Stem of a yellow flower"
 
 [node name="PageItemGreenHerb" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=482196387]
 unique_name_in_owner = true
@@ -739,7 +763,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 0
+metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb" unique_id=1620917341]
 layout_mode = 2
@@ -747,12 +771,12 @@ theme_override_constants/separation = 32
 
 [node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=1848592186]
 layout_mode = 2
-text = "Green Herb Description"
+text = "A leaf of a green herb. It is mundane in its current state."
 
-[node name="LabelGreenHerbGrab" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=269016404]
+[node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=269016404]
 layout_mode = 2
 
-[node name="LabelGreenHerbCut" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=910500327]
+[node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=910500327]
 layout_mode = 2
 
 [node name="PageItemRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=230363401]
@@ -764,7 +788,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 1
+metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerries" unique_id=53788833]
 layout_mode = 2
@@ -772,7 +796,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=430988333]
 layout_mode = 2
-text = "Red Berry Description"
+text = "Large berries with a bright red skin. The inside is surprisingly gray."
 
 [node name="PageItemYellowPetals" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1445970889]
 unique_name_in_owner = true
@@ -783,7 +807,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 2
+metadata/_tab_index = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowPetals" unique_id=301477897]
 layout_mode = 2
@@ -791,45 +815,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=1832774853]
 layout_mode = 2
-text = "Red Berry Description"
-
-[node name="PageItemFlowerStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1196629362]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemFlowerStem" unique_id=1443043595]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1852425634]
-layout_mode = 2
-text = "Red Berry Description"
-
-[node name="PageItemBlueBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2073653872]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerries" unique_id=1893820804]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=1667616430]
-layout_mode = 2
-text = "Red Berry Description"
+text = "The petals of a yellow flower"
 
 [node name="PageItemBlueJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2017973318]
 unique_name_in_owner = true
@@ -848,7 +834,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=277639081]
 layout_mode = 2
-text = "Red Berry Description"
+text = "?"
 
 [node name="PageItemGreenPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=253790857]
 unique_name_in_owner = true
@@ -867,9 +853,9 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=1749950569]
 layout_mode = 2
-text = "Red Berry Description"
+text = "?"
 
-[node name="PageItemOrangePasted" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=132044803]
+[node name="PageItemOrangePaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=132044803]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -880,13 +866,13 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemOrangePasted" unique_id=1131455138]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemOrangePaste" unique_id=1131455138]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemOrangePasted/VBoxContainer" unique_id=405085699]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=405085699]
 layout_mode = 2
-text = "Red Berry Description"
+text = "?"
 
 [node name="PageItemYellowPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=729300132]
 unique_name_in_owner = true
@@ -905,7 +891,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1955314475]
 layout_mode = 2
-text = "Red Berry Description"
+text = "?"
 
 [node name="PageItemSaturatedStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=902515774]
 unique_name_in_owner = true
@@ -924,7 +910,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=1541044635]
 layout_mode = 2
-text = "Red Berry Description"
+text = "The stem of a yellow flower soaked in gray juice."
 
 [node name="PageItemBlueBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=104953081]
 unique_name_in_owner = true
@@ -943,7 +929,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=1200763370]
 layout_mode = 2
-text = "Red Berry Description"
+text = "A red paste made of ground up blue berries."
 
 [node name="PageItemBlueBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2107688363]
 unique_name_in_owner = true
@@ -962,7 +948,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=1883082452]
 layout_mode = 2
-text = "Red Berry Description"
+text = "A seed extracted from a blue berry."
 
 [node name="PageItemGrayJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=273502980]
 unique_name_in_owner = true
@@ -981,7 +967,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=1094948326]
 layout_mode = 2
-text = "Red Berry Description"
+text = "Juice extracted from a red berry."
 
 [node name="PageItemGreenFlakes" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1214577227]
 unique_name_in_owner = true
@@ -1000,7 +986,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=1905331609]
 layout_mode = 2
-text = "Red Berry Description"
+text = "Green herb leaves that have been ground up into flakes."
 
 [node name="PageItemRedBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1152016609]
 unique_name_in_owner = true
@@ -1019,7 +1005,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=1086993237]
 layout_mode = 2
-text = "Red Berry Description"
+text = "A gray paste made of ground up red berries."
 
 [node name="PageItemRedBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2011689591]
 unique_name_in_owner = true
@@ -1038,7 +1024,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=1836449298]
 layout_mode = 2
-text = "Red Berry Description"
+text = "A seed extracted from a red berry."
 
 [node name="PageItemRedJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=906455435]
 unique_name_in_owner = true
@@ -1057,7 +1043,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=831030375]
 layout_mode = 2
-text = "Red Berry Description"
+text = "Juice extracted from a blue berry."
 
 [node name="PageItemStemStrands" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1306940939]
 unique_name_in_owner = true
@@ -1076,7 +1062,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=896291940]
 layout_mode = 2
-text = "Red Berry Description"
+text = "Strands of a yellow flower stem, carefully separated."
 
 [node name="PageItemYellowDust" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=481230460]
 unique_name_in_owner = true
@@ -1095,7 +1081,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=1292130829]
 layout_mode = 2
-text = "Red Berry Description"
+text = "The ground up dust of petals from a yellow flower."
 
 [node name="TabPotions" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=732305972]
 visible = false
@@ -1344,7 +1330,6 @@ layout_mode = 2
 text = "Speed Potion Description"
 
 [node name="TabPlants" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1775764380]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1410,7 +1395,7 @@ expand_icon = true
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer" unique_id=1895968697]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 3
+current_tab = 1
 tabs_visible = false
 
 [node name="PagePlantRedBerryBush" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=4201000]
@@ -1432,9 +1417,13 @@ theme_override_constants/separation = 32
 layout_mode = 2
 text = "Red Berry Bush"
 
-[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=311009144]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=311009144]
 layout_mode = 2
-text = "General description."
+text = "A bush full of red berries"
+
+[node name="LabelInteractions" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=58501348]
+layout_mode = 2
+text = "Times Grabbed: Cut: Transfomed:"
 
 [node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=1683094039]
 visible = false
@@ -1453,7 +1442,6 @@ text = "Combination description."
 
 [node name="PagePlantGreenHerbs" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=2007907375]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -1472,7 +1460,7 @@ text = "Green Herbs"
 
 [node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantGreenHerbs/VBoxContainer" unique_id=1148907291]
 layout_mode = 2
-text = "General description."
+text = "Herbs with green leaves."
 
 [node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantGreenHerbs/VBoxContainer" unique_id=1950515163]
 visible = false
@@ -1529,6 +1517,7 @@ text = "Combination description."
 
 [node name="PagePlantBlueBerryBush" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=1822368033]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -1545,9 +1534,15 @@ theme_override_constants/separation = 32
 layout_mode = 2
 text = "Blue Berry Bush"
 
-[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=849812575]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=849812575]
 layout_mode = 2
-text = "General description."
+text = "Set by script. Content found in plant scene."
+
+[node name="LabelContainedItems" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=1665970613]
+layout_mode = 2
+
+[node name="LabelInteractionCounts" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=839973260]
+layout_mode = 2
 
 [node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=1302625575]
 visible = false

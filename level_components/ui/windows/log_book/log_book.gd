@@ -1,10 +1,30 @@
+## UI Log Book containing various different kinds of information, such as:
+## Help pages for details on game mechanics.
+## Items pages for details on items the character can pick up or craft.
+## Potions pages for details on potions the player can find or craft.
+## Plants pages for details on different plants the plaer may encounter.
+## Objects pages
+## Books pages
+## Places pages
+## People pages
+## Statuses pages
+
 extends UIWindow
 var prev_mode : StringName
 
-#func _ready() -> void:
+func _ready() -> void:
 	# Set descriptions for pages relating to resources upon scene load
+	
+	# Plants:
+	var scn = load("res://level_components/objects/interactable/plants/blue_berry_bush.tscn").instantiate()
+	%PagePlantBlueBerryBush/VBoxContainer/LabelDescription.text = scn.description
+	%PagePlantBlueBerryBush/VBoxContainer/LabelContainedItems.text = _interaction_object_contained_items_as_str(scn)
+	#FIXME: Object counts should be updated on page load, not level load.
+	%PagePlantBlueBerryBush/VBoxContainer/LabelInteractionCounts.text = _interaction_object_counts_as_str(scn.display_name)
+	
+	#var res : Resource
 	# Status Effects:
-	#var res : Resource = load("res://game_systems/status_effects/energized.tres")
+	#res = load("res://game_systems/status_effects/energized.tres")
 	#%ButtonEnergized.icon = res.icon
 	#%PageEnergized/VBoxContainer/Label.text = res.description
 	#res = load("res://game_systems/status_effects/grow.tres")
@@ -22,6 +42,19 @@ var prev_mode : StringName
 	#res = load("res://game_systems/status_effects/strengthen.tres")
 	#%ButtonStrengthen.icon = res.icon
 	#%PageStrengthen/VBoxContainer/Label.text = res.description
+
+## Uses the given interaction object to display the amounts of each item contained in the object.
+func _interaction_object_contained_items_as_str(obj : InteractableObject) -> String:
+	var ostr : String = "Contains: "
+	if not obj.items:
+		return "Does not contain items."
+	var i : int = 0
+	for item in obj.items:
+		ostr += "%s %s" % [item.qty, item.display_name]
+		if i < obj.items.size()-1:
+			ostr += ", "
+		i += 1
+	return ostr
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("log_book"):
@@ -168,6 +201,25 @@ func init_logs(character : Character = null) -> void:
 			%ButtonPlantBlueBerryBush.visible = true
 			%PagePlantBlueBerryBush/VBoxContainer/LabelCombine.visible = true
 
+## Uses the given object name to create a string with the counts of different interactions performed.
+func _interaction_object_counts_as_str(object_name : String) -> String:
+	var ostr : String = ""
+	if object_name in UserVariables.objects_grab_interacted.keys():
+		ostr += "Times Grabbed: %s, " % str(UserVariables.objects_grab_interacted[object_name][1])
+	else:
+		ostr += "Times Grabbed: 0, "
+	
+	if object_name in UserVariables.objects_cut_interacted.keys():
+		ostr += "Times Cut: %s, " % str(UserVariables.objects_cur_interacted[object_name][1])
+	else:
+		ostr += "Times Cut: 0, "
+	
+	if object_name in UserVariables.objects_combined.keys():
+		ostr += "Times Combined: %s" % str(UserVariables.objects_combined[object_name][1])
+	else:
+		ostr += "Times Combined: 0"
+	return ostr
+
 ########################################
 ### Open Pages With Dynamic Elements ###
 ########################################
@@ -279,7 +331,7 @@ func _on_button_item_green_paste_pressed() -> void:
 
 func _on_button_item_orange_paste_pressed() -> void:
 	#%WindowName.text = "Item: Orange Paste"
-	%PageItemOrangePasted.visible = true
+	%PageItemOrangePaste.visible = true
 
 func _on_button_item_red_berries_pressed() -> void:
 	#%WindowName.text = "Item: Red Berries"
