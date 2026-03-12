@@ -245,6 +245,16 @@ func consume_item(item : Item, index : int):
 			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
 				Global.focused_node.update_status_message(item.on_consume_message)
 		
+		if item.id not in Global.focused_node.items_used.keys():
+			Global.focused_node.items_used[item.id] = 1
+		else:
+			Global.focused_node.items_used[item.id] += 1
+		
+		if item.id not in UserVariables.items_used.keys():
+			UserVariables.items_used[item.id] = 1
+		else:
+			UserVariables.items_used[item.id] += 1
+		
 		$CooldownInteract.start()
 	
 	if item.qty <= 1:

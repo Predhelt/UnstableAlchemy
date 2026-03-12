@@ -127,7 +127,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 4
+current_tab = 1
 tab_0/title = "Help"
 tab_1/title = "Raw Items"
 tab_2/title = "Crafed Items"
@@ -511,7 +511,6 @@ Pressing the check mark when two or three items are in the merger will combine t
 autowrap_mode = 3
 
 [node name="TabRawItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1613085781]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -560,7 +559,7 @@ button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("7_welqp")
 expand_icon = true
 
-[node name="ButtonItemGreenHerb" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=817022746]
+[node name="ButtonItemGreenHerbLeaf" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=817022746]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -612,9 +611,23 @@ metadata/_tab_index = 0
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=2139474419]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=703654114]
 layout_mode = 2
-text = "Berries from a blue berry bush. The inside is red."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=878968125]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=1809929962]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=677282437]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=1990198426]
+layout_mode = 2
 
 [node name="PageItemFlowerStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=461341057]
 unique_name_in_owner = true
@@ -631,11 +644,25 @@ metadata/_tab_index = 1
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1211916493]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1505994298]
 layout_mode = 2
-text = "Stem of a yellow flower"
+text = "A leaf of a green herb. It is mundane in its current state."
 
-[node name="PageItemGreenHerb" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=1725521670]
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1739177240]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=2054749208]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1220170080]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=654183944]
+layout_mode = 2
+
+[node name="PageItemGreenHerbLeaf" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=1725521670]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -645,18 +672,26 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb" unique_id=1395829161]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerbLeaf" unique_id=1395829161]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=1061413768]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerbLeaf/VBoxContainer" unique_id=1061413768]
 layout_mode = 2
 text = "A leaf of a green herb. It is mundane in its current state."
 
-[node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=976435270]
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerbLeaf/VBoxContainer" unique_id=1545008667]
 layout_mode = 2
 
-[node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=868633828]
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerbLeaf/VBoxContainer" unique_id=67197230]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerbLeaf/VBoxContainer" unique_id=976435270]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerbLeaf/VBoxContainer" unique_id=868633828]
 layout_mode = 2
 
 [node name="PageItemRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=2075515088]
@@ -674,9 +709,23 @@ metadata/_tab_index = 3
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=643916211]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=1613387832]
 layout_mode = 2
-text = "Large berries with a bright red skin. The inside is surprisingly gray."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=89649558]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=634675845]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=839796964]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=1763232604]
+layout_mode = 2
 
 [node name="PageItemYellowPetals" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=1303196124]
 unique_name_in_owner = true
@@ -693,9 +742,23 @@ metadata/_tab_index = 4
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=1696646159]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=1704571233]
 layout_mode = 2
-text = "The petals of a yellow flower"
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=1593140536]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=937715664]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=1711496328]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=28289787]
+layout_mode = 2
 
 [node name="TabCraftedItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
 visible = false
@@ -729,6 +792,7 @@ columns = 3
 
 [node name="ButtonItemBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Juice"
@@ -878,9 +942,23 @@ metadata/_tab_index = 0
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=277639081]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=28527230]
 layout_mode = 2
-text = "?"
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=761744813]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=655352580]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=223709156]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=1335647984]
+layout_mode = 2
 
 [node name="PageItemGreenPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=253790857]
 unique_name_in_owner = true
@@ -897,9 +975,23 @@ metadata/_tab_index = 1
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=1749950569]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=1285025418]
 layout_mode = 2
-text = "?"
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=1447329484]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=798153275]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=76453500]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=645990689]
+layout_mode = 2
 
 [node name="PageItemOrangePaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=132044803]
 unique_name_in_owner = true
@@ -916,9 +1008,23 @@ metadata/_tab_index = 2
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=405085699]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=542512568]
 layout_mode = 2
-text = "?"
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=1405149795]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=179843604]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=244828172]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=1761210159]
+layout_mode = 2
 
 [node name="PageItemYellowPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=729300132]
 unique_name_in_owner = true
@@ -935,9 +1041,23 @@ metadata/_tab_index = 3
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1955314475]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=448973450]
 layout_mode = 2
-text = "?"
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1656014215]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1324546767]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1735851795]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1628168892]
+layout_mode = 2
 
 [node name="PageItemSaturatedStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=902515774]
 unique_name_in_owner = true
@@ -954,9 +1074,23 @@ metadata/_tab_index = 4
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=1541044635]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=1825447417]
 layout_mode = 2
-text = "The stem of a yellow flower soaked in gray juice."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=134724247]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=1528209401]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=1802158997]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=512350457]
+layout_mode = 2
 
 [node name="PageItemBlueBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=104953081]
 unique_name_in_owner = true
@@ -973,9 +1107,23 @@ metadata/_tab_index = 5
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=1200763370]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=1116887934]
 layout_mode = 2
-text = "A red paste made of ground up blue berries."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=1238952794]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=196896651]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=1711987729]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=699074127]
+layout_mode = 2
 
 [node name="PageItemBlueBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=2107688363]
 unique_name_in_owner = true
@@ -992,9 +1140,23 @@ metadata/_tab_index = 6
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=1883082452]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=488204745]
 layout_mode = 2
-text = "A seed extracted from a blue berry."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=1400286135]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=1130628315]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=223387599]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=835716263]
+layout_mode = 2
 
 [node name="PageItemGrayJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=273502980]
 unique_name_in_owner = true
@@ -1011,9 +1173,23 @@ metadata/_tab_index = 7
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=1094948326]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=264347825]
 layout_mode = 2
-text = "Juice extracted from a red berry."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=1740339874]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=1953784879]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=1654537141]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=748880336]
+layout_mode = 2
 
 [node name="PageItemGreenFlakes" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=1214577227]
 unique_name_in_owner = true
@@ -1030,9 +1206,23 @@ metadata/_tab_index = 8
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=1905331609]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=902057122]
 layout_mode = 2
-text = "Green herb leaves that have been ground up into flakes."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=2007215025]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=160740667]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=2034276453]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=1687345706]
+layout_mode = 2
 
 [node name="PageItemRedBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=1152016609]
 unique_name_in_owner = true
@@ -1049,9 +1239,23 @@ metadata/_tab_index = 9
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=1086993237]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=688613862]
 layout_mode = 2
-text = "A gray paste made of ground up red berries."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=2088678384]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=1338994406]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=1332336132]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=113010275]
+layout_mode = 2
 
 [node name="PageItemRedBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=2011689591]
 unique_name_in_owner = true
@@ -1068,9 +1272,23 @@ metadata/_tab_index = 10
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=1836449298]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=1145375344]
 layout_mode = 2
-text = "A seed extracted from a red berry."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=242738888]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=271036542]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=839143557]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=732213465]
+layout_mode = 2
 
 [node name="PageItemRedJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=906455435]
 unique_name_in_owner = true
@@ -1087,9 +1305,23 @@ metadata/_tab_index = 11
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=831030375]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=1939556079]
 layout_mode = 2
-text = "Juice extracted from a blue berry."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=1863164144]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=236355229]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=2037046662]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=1062509786]
+layout_mode = 2
 
 [node name="PageItemStemStrands" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=1306940939]
 unique_name_in_owner = true
@@ -1106,9 +1338,23 @@ metadata/_tab_index = 12
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=896291940]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=2106615343]
 layout_mode = 2
-text = "Strands of a yellow flower stem, carefully separated."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=1471698491]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=1998539780]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=1283405974]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=241478011]
+layout_mode = 2
 
 [node name="PageItemYellowDust" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=481230460]
 unique_name_in_owner = true
@@ -1125,9 +1371,23 @@ metadata/_tab_index = 13
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=1292130829]
+[node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=2026261640]
 layout_mode = 2
-text = "The ground up dust of petals from a yellow flower."
+text = "A leaf of a green herb. It is mundane in its current state."
+
+[node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=471176738]
+layout_mode = 2
+
+[node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=1201832334]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=1431270182]
+visible = false
+layout_mode = 2
+
+[node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=1538944431]
+layout_mode = 2
 
 [node name="TabPotions" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=732305972]
 visible = false
@@ -1376,6 +1636,7 @@ layout_mode = 2
 text = "Speed Potion Description"
 
 [node name="TabPlants" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1775764380]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -2277,7 +2538,7 @@ text = "A description of the status effect"
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMerger" to="." method="_on_button_help_merger_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueBerries" to="." method="_on_button_item_blue_berries_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemFlowerStem" to="." method="_on_button_item_flower_stem_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerb" to="." method="_on_button_item_green_herb_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerbLeaf" to="." method="_on_button_item_green_herb_leaf_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" to="." method="_on_button_item_red_berries_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="." method="_on_button_item_yellow_petals_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="." method="_on_button_item_blue_juice_pressed"]

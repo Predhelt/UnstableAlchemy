@@ -26,6 +26,8 @@ var objects_cut_interacted: Dictionary[String, Array]
 ## List of combinations that the user has performed.
 ## String is the name of the object, Array is the list of combinations of the object.
 var objects_combined: Dictionary[String, Array]
+## The count of each item with a given item ID
+var items_used: Dictionary[int, int]
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.

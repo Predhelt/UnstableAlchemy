@@ -35,8 +35,8 @@ func _ready() -> void:
 	# Default pages on each tab
 	%ButtonHelpGeneral.button_pressed = true
 	%ButtonHelpGeneral.pressed.emit()
-	%ButtonItemGreenHerb.button_pressed = true
-	%ButtonItemGreenHerb.pressed.emit()
+	%ButtonItemGreenHerbLeaf.button_pressed = true
+	%ButtonItemGreenHerbLeaf.pressed.emit()
 	%ButtonPotionCleanse.button_pressed = true
 	%ButtonPotionCleanse.pressed.emit()
 	%ButtonPlantGreenHerbs.button_pressed = true
@@ -276,7 +276,7 @@ func open_page_help_tools():
 func open_help_page(page : MarginContainer) -> void:
 	page.visible = true
 
-##
+## Uses given page node to set up the curent raw item.
 func open_raw_item_page(page : MarginContainer) -> void:#TODO
 	if not current_raw_item:
 		print("ERROR: No scene currently referenced for plant page.")
@@ -286,16 +286,49 @@ func open_raw_item_page(page : MarginContainer) -> void:#TODO
 		return
 	
 	# Set Descripion
-	
+	page.get_child(0).find_child("LabelDescription").text = current_raw_item.description
 	# List where you can get the item from
-	
-	# List what to use the item in (if any uses were found)
-	
+	page.get_child(0).find_child("LabelSources").text = _get_raw_item_sources_as_str()
+	# List what to use the item in (if any uses were found)#TODO
+	page.get_child(0).find_child("LabelUses").text
 	# List the number of times the item has been consumed/used (or y/n)
-	
+	#page.get_child(0).find_child("LabelUseCount").text
 	# Set whether to show the details of using the item & effects
+	page.get_child(0).find_child("LabelUseText").text = _get_item_use_effects_as_str(current_raw_item)
 	
 	page.visible = true
+
+func _get_raw_item_sources_as_str() -> String:
+	var has_known_source : bool = false
+	var sources_str : String = "Known Sources:  "
+	for item_id in character_ref.gathered_items.keys():
+		if item_id == current_raw_item.id:
+			var obj_dict = character_ref.gathered_items[item_id]
+			for obj_interaction in obj_dict:
+				sources_str += "%s %s, " % [obj_interaction[1], obj_interaction[0]]
+				has_known_source = true
+	if has_known_source:
+		sources_str = sources_str.rsplit(",")[0]
+	return sources_str
+
+func _get_item_uses_as_str(item : Item) -> String:
+	var uses_str : String = "Used in: "
+	#TODO
+	return uses_str
+
+func _get_item_use_effects_as_str(item : Item) -> String:
+	var effects_str : String = "Use Note: \""
+	if item.on_consume_message:
+		effects_str += item.on_consume_message + "\" | "
+	else:
+		effects_str += item.on_consume_message + "...\" | "
+	if item.on_consume_effects.is_empty():
+		effects_str += "No effects."
+	else:
+		effects_str += "Effects: "
+	for se in item.on_consume_effects:
+		effects_str += "%s" % se.name
+	return effects_str
 
 ##
 func open_crafted_item_page(page : MarginContainer) -> void:#TODO
@@ -305,20 +338,33 @@ func open_crafted_item_page(page : MarginContainer) -> void:#TODO
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_crafted_item.display_name)
 		return
+	
 	# Set Descripion
-	
-	# List how you can craft the item (specifics would be in recipe book)
-	
-	# List what to use the item in (if any uses were found)
-	
+	page.get_child(0).find_child("LabelDescription").text = current_crafted_item.description
+	# List where you can get the item from
+	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
+	# List what to use the item in (if any uses were found)#TODO
+	page.get_child(0).find_child("LabelUses").text
 	# List the number of times the item has been consumed/used (or y/n)
-	
+	#page.get_child(0).find_child("LabelUseCount").text
 	# Set whether to show the details of using the item & effects
+	#TODO set visibility
+	page.get_child(0).find_child("LabelUseText").text = _get_item_use_effects_as_str(current_crafted_item)
 	
 	page.visible = true
 
+func _get_crafted_item_sources_as_str() -> String:
+	var has_known_source : bool = false
+	var sources_str : String = "Known Sources:  "
+	# TODO:Go through known recipes to see which recipes the item is the product in
+	
+	# TODO:Add brief text about each procedure
+	if has_known_source:
+		sources_str = sources_str.rsplit(",")[0]
+	return sources_str
+
 ##
-func open_potion_page(page : MarginContainer) -> void:
+func open_potion_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
 ## Opens the provided page that exists under the plant tab.
@@ -345,23 +391,23 @@ func open_plant_page(page : MarginContainer) -> void:
 	page.visible = true
 
 ##
-func open_object_page(page : MarginContainer) -> void:
+func open_object_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
 ##
-func open_book_page(page : MarginContainer) -> void:
+func open_book_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
 ##
-func open_place_page(page : MarginContainer) -> void:
+func open_place_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
 ##
-func open_person_page(page : MarginContainer) -> void:
+func open_person_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
 ##
-func open_status_page(page : MarginContainer) -> void:
+func open_status_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
 ## Loads the currently open page in the given tab.
@@ -430,9 +476,9 @@ func _on_button_item_flower_stem_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/flower_stem.tres")
 	open_raw_item_page(%PageItemFlowerStem)
 
-func _on_button_item_green_herb_pressed() -> void:
+func _on_button_item_green_herb_leaf_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/green_herb_leaf.tres")
-	open_raw_item_page(%PageItemGreenHerb)
+	open_raw_item_page(%PageItemGreenHerbLeaf)
 
 func _on_button_item_red_berries_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/red_berries.tres")
