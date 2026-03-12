@@ -10,7 +10,6 @@ class_name Character extends CharacterBody2D
 @onready var tool_wheel_ref = $"../UILayer/HUDLayer/ToolWheel"
 @onready var attribute_display_ref = $"../UILayer/HUDLayer/AttributeDisplay"
 
-
 ## Determines the Y offset of the labels above the character
 const LABEL_DEFAULT_Y_POS := -60.0
 ## Value used to reduce the intensity of effects when size is changed

@@ -15,12 +15,21 @@ var prev_mode : StringName
 ## Reference to the current character/node whose information is being used to display the log book.
 var character_ref : Node = UserVariables
 
-## Tracks the current item being referenced in the items tab.
-var current_item : Item
+# trackers for tabs with dynamic page elements.
+## Tracks the current item being referenced in the raw items tab.
+var current_raw_item : Item
+## Tracks the current item being referenced in the crafted items tab.
+var current_crafted_item : Item
 ## Tracks the current potion being referenced in the potions tab.
 var current_potion : Potion
 ## Tracks the current plant's scene being referenced in the plants tab.
 var current_plant_scene : Node2D
+## Tracks the current object's scene being referenced in the objects tab.
+var current_object_scene : Node2D
+## Tracks the current book being referenced in the books tab.
+#var current_book : Book
+## Tracks the current status effect being referenced in the statuses tab.
+var current_status_effect : StatusEffect
 
 func _ready() -> void:
 	# Default pages on each tab
@@ -32,6 +41,8 @@ func _ready() -> void:
 	%ButtonPotionCleanse.pressed.emit()
 	%ButtonPlantGreenHerbs.button_pressed = true
 	%ButtonPlantGreenHerbs.pressed.emit()
+	%ButtonItemGreenFlakes.button_pressed = true
+	%ButtonItemGreenFlakes.pressed.emit()
 	%ButtonObjectBoulder.button_pressed = true
 	%ButtonObjectBoulder.pressed.emit()
 	%ButtonBookRawMaterials.button_pressed = true
@@ -74,21 +85,20 @@ func open_window() -> bool:
 	Global.mode = window_mode
 	Global.center_window = self
 	
-	init_logs()
+	set_buttons_visibility()
 	
-	#%WindowName.text = "Help: General"
-	#$VBoxContainer/TabContainer/TabHelp.visible = true
-	visible = true
 	#FIXME: Menus in background can prevent tab buttons from being pressed
-	# open the current page in the current tab
+	# Open the current page in the current tab
 	open_page_in_tab($VBoxContainer/TabContainer.current_tab)
+	
+	visible = true
 	return true
 
 ## Initializes which pages are visible in the log book based on character's stored information.
 ## If page buttons or sections are visible by default in the node editor, they will remain visible.
 ## Allows showing of character-specific log entries by passing the character node.
 ## By default, gets information from global UserVariables.
-func init_logs(character : Character = null) -> void:
+func set_buttons_visibility(character : Character = null) -> void:
 	character_ref = character
 	if not character_ref:
 		character_ref = UserVariables
@@ -262,12 +272,49 @@ func open_page_help_tools():
 	
 	%PageHelpTools.visible = true
 
-##
+## Help pages are already set up,
 func open_help_page(page : MarginContainer) -> void:
 	page.visible = true
 
 ##
-func open_item_page(page : MarginContainer) -> void:
+func open_raw_item_page(page : MarginContainer) -> void:#TODO
+	if not current_raw_item:
+		print("ERROR: No scene currently referenced for plant page.")
+		return
+	if not page:
+		print("ERROR: No page '%s' exists, cannot be opened." % current_raw_item.display_name)
+		return
+	
+	# Set Descripion
+	
+	# List where you can get the item from
+	
+	# List what to use the item in (if any uses were found)
+	
+	# List the number of times the item has been consumed/used (or y/n)
+	
+	# Set whether to show the details of using the item & effects
+	
+	page.visible = true
+
+##
+func open_crafted_item_page(page : MarginContainer) -> void:#TODO
+	if not current_crafted_item:
+		print("ERROR: No scene currently referenced for plant page.")
+		return
+	if not page:
+		print("ERROR: No page '%s' exists, cannot be opened." % current_crafted_item.display_name)
+		return
+	# Set Descripion
+	
+	# List how you can craft the item (specifics would be in recipe book)
+	
+	# List what to use the item in (if any uses were found)
+	
+	# List the number of times the item has been consumed/used (or y/n)
+	
+	# Set whether to show the details of using the item & effects
+	
 	page.visible = true
 
 ##
@@ -277,11 +324,11 @@ func open_potion_page(page : MarginContainer) -> void:
 ## Opens the provided page that exists under the plant tab.
 ## Assumes only one Combine label.
 func open_plant_page(page : MarginContainer) -> void:
-	if not page:
-		print("ERROR: No page '%s' exists, cannot be opened." % current_plant_scene.display_name)
-		return
 	if not current_plant_scene:
 		print("ERROR: No scene currently referenced for plant page.")
+		return
+	if not page:
+		print("ERROR: No page '%s' exists, cannot be opened." % current_plant_scene.display_name)
 		return
 	
 	page.get_child(0).find_child("LabelDescription").text = current_plant_scene.description
@@ -321,20 +368,21 @@ func open_status_page(page : MarginContainer) -> void:
 func open_page_in_tab(tab: int) -> void:
 	match tab:
 		0: open_help_page(get_current_page(tab))
-		1: open_item_page(get_current_page(tab))
-		2: open_potion_page(get_current_page(tab))
-		3: open_plant_page(get_current_page(tab))
-		4: open_object_page(get_current_page(tab))
-		5: open_book_page(get_current_page(tab))
-		6: open_place_page(get_current_page(tab))
-		7: open_person_page(get_current_page(tab))
-		8: open_status_page(get_current_page(tab))
+		1: open_raw_item_page(get_current_page(tab))
+		2: open_crafted_item_page(get_current_page(tab))
+		3: open_potion_page(get_current_page(tab))
+		4: open_plant_page(get_current_page(tab))
+		5: open_object_page(get_current_page(tab))
+		6: open_book_page(get_current_page(tab))
+		7: open_place_page(get_current_page(tab))
+		8: open_person_page(get_current_page(tab))
+		9: open_status_page(get_current_page(tab))
 
 #####################
 ### Other Signals ###
 #####################
 
-## TODO:When the tab is changed, update the currently visible page on the new tab.
+## When the tab is changed, update the currently visible page on the new tab.
 func _on_tab_container_tab_changed(tab: int) -> void:
 	if not is_node_ready():
 		return
@@ -372,104 +420,114 @@ func _on_button_help_merger_pressed() -> void:
 	#%WindowName.text = "Help: Merger"
 	%PageHelpMerger.visible = true
 
-### Item Tab ###
-################
+### Raw Item Tab ###
+####################
 func _on_button_item_blue_berries_pressed() -> void:
-	#%WindowName.text = "Item: Blue Berries"
-	%PageItemBlueBerries.visible = true
-
-func _on_button_item_blue_juice_pressed() -> void:
-	#%WindowName.text = "Item: Blue Juice"
-	%PageItemBlueJuice.visible = true
-
-func _on_button_item_blue_seed_pressed() -> void:
-	#%WindowName.text = "Item: Blue Seed"
-	%PageItemBlueBerrySeed.visible = true
+	current_raw_item = load("res://game_systems/items/gatherable/blue_berries.tres")
+	open_raw_item_page(%PageItemBlueBerries)
 
 func _on_button_item_flower_stem_pressed() -> void:
-	#%WindowName.text = "Item: Flower Stem"
-	%PageItemFlowerStem.visible = true
-
-func _on_button_item_gray_juice_pressed() -> void:
-	#%WindowName.text = "Item: Gray Juice"
-	%PageItemGrayJuice.visible = true
-
-func _on_button_item_gray_seed_pressed() -> void:
-	#%WindowName.text = "Item: Gray Seed"
-	%PageItemGraySeed.visible = true
-
-func _on_button_item_green_flakes_pressed() -> void:
-	#%WindowName.text = "Item: Green Flakes"
-	%PageItemGreenFlakes.visible = true
+	current_raw_item = load("res://game_systems/items/gatherable/flower_stem.tres")
+	open_raw_item_page(%PageItemFlowerStem)
 
 func _on_button_item_green_herb_pressed() -> void:
-	#%WindowName.text = "Item: Green Herb"
-	%PageItemGreenHerb.visible = true
-
-func _on_button_item_green_paste_pressed() -> void:
-	#%WindowName.text = "Item: Green Paste"
-	%PageItemGreenPaste.visible = true
-
-func _on_button_item_orange_paste_pressed() -> void:
-	#%WindowName.text = "Item: Orange Paste"
-	%PageItemOrangePaste.visible = true
+	current_raw_item = load("res://game_systems/items/gatherable/green_herb_leaf.tres")
+	open_raw_item_page(%PageItemGreenHerb)
 
 func _on_button_item_red_berries_pressed() -> void:
-	#%WindowName.text = "Item: Red Berries"
-	%PageItemRedBerries.visible = true
-
-func _on_button_item_red_juice_pressed() -> void:
-	#%WindowName.text = "Item: Red Juice"
-	%PageItemRedJuice.visible = true
-
-func _on_button_item_red_seed_pressed() -> void:
-	#%WindowName.text = "Item: Red Seed"
-	%PageItemRedBerrySeed.visible = true
-
-func _on_button_item_saturated_stem_pressed() -> void:
-	#%WindowName.text = "Item: Saturated Stem"
-	%PageItemSaturatedStem.visible = true
-
-func _on_button_item_stem_strands_pressed() -> void:
-	#%WindowName.text = "Item: Stem Strands"
-	%PageItemStemStrands.visible = true
-
-func _on_button_item_yellow_dust_pressed() -> void:
-	#%WindowName.text = "Item: Yellow Dust"
-	%PageItemYellowDust.visible = true
-
-func _on_button_item_yellow_paste_pressed() -> void:
-	#%WindowName.text = "Item: Yellow Paste"
-	%PageItemYellowPaste.visible = true
+	current_raw_item = load("res://game_systems/items/gatherable/red_berries.tres")
+	open_raw_item_page(%PageItemRedBerries)
 
 func _on_button_item_yellow_petals_pressed() -> void:
-	#%WindowName.text = "Item: Yellow Petals"
-	%PageItemYellowPetals.visible = true
+	current_raw_item = load("res://game_systems/items/gatherable/yellow_petals.tres")
+	open_raw_item_page(%PageItemYellowPetals)
+
+### Crafted Item Tab ###
+########################
+#FIXME: blue juice item does not exist, will throw error.
+func _on_button_item_blue_juice_pressed() -> void:
+	#current_crafted_item = load("res://game_systems/items/mp_products/blue_juice.tres")
+	#open_crafted_item_page(%PageItemBlueJuice)
+	print("ERROR: Page not implemented")
+
+func _on_button_item_blue_seed_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/mp_products/blue_berry_seed.tres")
+	open_crafted_item_page(%PageItemBlueBerrySeed)
+
+func _on_button_item_gray_juice_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/mp_products/gray_juice.tres")
+	open_crafted_item_page(%PageItemGrayJuice)
+#FIXME: gray seed item does not exist, will throw error.
+func _on_button_item_gray_seed_pressed() -> void:
+	#current_crafted_item = load("res://game_systems/items/mp_products/gray_berry_seed.tres")
+	#open_crafted_item_page(%PageItemGraySeed)
+	print("ERROR: Page not implemented")
+
+func _on_button_item_green_flakes_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/mp_products/green_flakes.tres")
+	open_crafted_item_page(%PageItemGreenFlakes)
+
+func _on_button_item_green_paste_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/merged_ingredients/green_paste.tres")
+	open_crafted_item_page(%PageItemGreenPaste)
+
+func _on_button_item_orange_paste_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/merged_ingredients/orange_paste.tres")
+	open_crafted_item_page(%PageItemOrangePaste)
+
+func _on_button_item_red_juice_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/mp_products/red_juice.tres")
+	open_crafted_item_page(%PageItemRedJuice)
+
+func _on_button_item_red_seed_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/mp_products/red_berry_seed.tres")
+	open_crafted_item_page(%PageItemRedBerrySeed)
+
+func _on_button_item_saturated_stem_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/merged_ingredients/saturated_stem.tres")
+	open_crafted_item_page(%PageItemSaturatedStem)
+
+func _on_button_item_stem_strands_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/mp_products/stem_strands.tres")
+	open_crafted_item_page(%PageItemStemStrands)
+
+func _on_button_item_yellow_dust_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/mp_products/yellow_dust.tres")
+	open_crafted_item_page(%PageItemYellowDust)
+
+func _on_button_item_yellow_paste_pressed() -> void:
+	current_crafted_item = load("res://game_systems/items/merged_ingredients/yellow_paste.tres")
+	open_crafted_item_page(%PageItemYellowPaste)
 
 ### Potion Tab ###
 ##################
 func _on_button_potion_cleanse_pressed() -> void:
+	current_potion = load("res://game_systems/items/potions/cleanse_potion.tres")
 	open_potion_page(%PagePotionCleanse)
 
-
-
 func _on_button_potion_grow_pressed() -> void:
-	%PagePotionGrow.visible = true
+	current_potion = load("res://game_systems/items/potions/grow_potion.tres")
+	open_potion_page(%PagePotionGrow)
 
 func _on_button_potion_normalize_pressed() -> void:
-	%PagePotionNormalize.visible = true
+	current_potion = load("res://game_systems/items/potions/normalize_potion.tres")
+	open_potion_page(%PagePotionNormalize)
 
 func _on_button_potion_shrink_pressed() -> void:
-	%PagePotionShrink.visible = true
+	current_potion = load("res://game_systems/items/potions/shrink_potion.tres")
+	open_potion_page(%PagePotionShrink)
 
 func _on_button_potion_slow_pressed() -> void:
-	%PagePotionSlow.visible = true
+	current_potion = load("res://game_systems/items/potions/slow_potion.tres")
+	open_potion_page(%PagePotionSlow)
 
 func _on_button_potion_speed_pressed() -> void:
-	%PagePotionSpeed.visible = true
+	current_potion = load("res://game_systems/items/potions/speed_potion.tres")
+	open_potion_page(%PagePotionSpeed)
 
 func _on_button_potion_strength_pressed() -> void:
-	%PagePotionStrengthen.visible = true
+	current_potion = load("res://game_systems/items/potions/strength_potion.tres")
+	open_potion_page(%PagePotionStrengthen)
 
 ### Plant Tab ###
 #################
@@ -494,54 +552,71 @@ func _on_button_plant_blue_berry_bush_pressed() -> void:
 ### Object Tab ###
 ##################
 func _on_button_object_boulder_pressed() -> void:
-	%PageObjectBoulder.visible = true
+	current_object_scene = load("res://level_components/objects/collisions/boulder_pushable.tscn").instantiate()
+	open_object_page(%PageObjectBoulder)
 
 func _on_button_object_sliding_door_pressed() -> void:
-	%PageObjectSlidingDoor.visible = true
-
-func _on_button_object_crawlspace_pressed() -> void:
-	%PageObjectCrawlSpace.visible = true
+	current_object_scene = load("res://level_components/objects/triggers/sliding_door_horizontal.tscn").instantiate()
+	open_object_page(%PageObjectSlidingDoor)
+# FIXME: crawlspace is a script, wall_small_hole is a scene containing it.
+func _on_button_object_wall_small_hole_pressed() -> void:
+	current_object_scene = load("res://level_components/objects/collisions/wall_small_hole.tscn").instantiate()
+	open_object_page(%PageObjectWallSmallHole)
 
 func _on_button_object_pressure_plate_pressed() -> void:
-	%PageObjectPressurePlate.visible = true
+	current_object_scene = load("res://level_components/objects/triggers/pressure_plate.tscn").instantiate()
+	open_object_page(%PageObjectPressurePlate)
 
 ### Book Tab ###
 ################
 func _on_button_book_raw_materials_pressed() -> void:
-	%PageBookRawMaterials.visible = true
+	#current_book = load("")
+	open_book_page(%PageBookRawMaterials)
 
 func _on_button_book_letter_from_r_pressed() -> void:
-	%PageBookLetterFromR.visible = true
+	#current_book = load("")
+	open_book_page(%PageBookLetterFromR)
 
 func _on_button_book_shrink_potion_pressed() -> void:
-	%PageBookShrinkPotion.visible = true
+	#current_book = load("")
+	open_book_page(%PageBookShrinkPotion)
 
 ### Places Tab ###
 ##################
 func _on_button_places_botania_pressed() -> void:
-	%PagePlacesBotania.visible = true
+	open_place_page(%PagePlacesBotania)
 
 ### People Tab ###
 ##################
 func _on_button_people_person_1_pressed() -> void: #Placeholder
-	%PagePeoplePerson1.visible = true
+	open_person_page(%PagePeoplePerson1)
 
 ### Status Effects Tab ###
 ##########################
 func _on_button_status_energized_pressed() -> void:
-	%PageEnergized.visible = true
+	current_status_effect = load("res://game_systems/status_effects/energized.tres")
+	open_status_page(%PageStatusEnergized)
+
+func _on_button_status_energized_burst_pressed() -> void:
+	current_status_effect = load("res://game_systems/status_effects/energized_burst.tres")
+	open_status_page(%PageStatusEnergizedBurst)
 
 func _on_button_status_grow_pressed() -> void:
-	%PageGrow.visible = true
+	current_status_effect = load("res://game_systems/status_effects/grow.tres")
+	open_status_page(%PageStatusGrow)
 
 func _on_button_status_self_attunement_pressed() -> void:
-	%PageSelfAttunement.visible = true
+	current_status_effect = load("res://game_systems/status_effects/self_attunement.tres")
+	open_status_page(%PageStatusSelfAttunement)
 
 func _on_button_status_shrink_pressed() -> void:
-	%PageShrink.visible = true
+	current_status_effect = load("res://game_systems/status_effects/shrink.tres")
+	open_status_page(%PageStatusShrink)
 
 func _on_button_status_slow_pressed() -> void:
-	%PageSlow.visible = true
+	current_status_effect = load("res://game_systems/status_effects/slow.tres")
+	open_status_page(%PageStatusSlow)
 
 func _on_button_status_strengthen_pressed() -> void:
-	%PageStrengthen.visible = true
+	current_status_effect = load("res://game_systems/status_effects/strengthen.tres")
+	open_status_page(%PageStatusStrengthen)

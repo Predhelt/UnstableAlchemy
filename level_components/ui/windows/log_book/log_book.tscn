@@ -51,6 +51,8 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_rs23k"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_x37hv"]
+
 [sub_resource type="ButtonGroup" id="ButtonGroup_swgt7"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_2mxqo"]
@@ -62,6 +64,8 @@
 [sub_resource type="ButtonGroup" id="ButtonGroup_rpebb"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vjhag"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_6jatn"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_4wpt1"]
 
@@ -123,16 +127,17 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 4
 tab_0/title = "Help"
-tab_1/title = "Items"
-tab_2/title = "Potions"
-tab_3/title = "Plants"
-tab_4/title = "Objects"
-tab_5/title = "Books"
-tab_6/title = "Places"
-tab_7/title = "People"
-tab_8/title = "Status Effects"
+tab_1/title = "Raw Items"
+tab_2/title = "Crafed Items"
+tab_3/title = "Potions"
+tab_4/title = "Plants"
+tab_5/title = "Objects"
+tab_6/title = "Books"
+tab_7/title = "Places"
+tab_8/title = "People"
+tab_9/title = "Status Effects"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
 visible = false
@@ -505,22 +510,22 @@ text = "The merger combines certain items together to produce a new item. This w
 Pressing the check mark when two or three items are in the merger will combine them and place the result in your inventory after a short crafting time. The items can be removed from the merger by pressing on them."
 autowrap_mode = 3
 
-[node name="TabItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
+[node name="TabRawItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1613085781]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
-metadata/_tab_name = "Items"
+metadata/_tab_name = "Raw Items"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabItems" unique_id=805910414]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems" unique_id=2120653375]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer" unique_id=752397701]
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer" unique_id=60772634]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons" unique_id=1022370267]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons" unique_id=1848359168]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
@@ -528,202 +533,71 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="PageButtonList" type="GridContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer" unique_id=1834773395]
+[node name="PageButtonList" type="GridContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer" unique_id=1097124179]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 4
 columns = 3
 
-[node name="ButtonItemBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1772312219]
+[node name="ButtonItemBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=190789836]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Berries"
 toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
+button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("4_wuyk7")
 expand_icon = true
 
-[node name="ButtonItemBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Blue Juice"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("5_lrrx2")
-expand_icon = true
-
-[node name="ButtonItemBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2076160104]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Blue Seed"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("6_vptl1")
-expand_icon = true
-
-[node name="ButtonItemFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1030593771]
+[node name="ButtonItemFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1380616477]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Stem"
 toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
+button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("7_welqp")
 expand_icon = true
 
-[node name="ButtonItemGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1261853127]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Gray Juice"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("8_555qq")
-expand_icon = true
-
-[node name="ButtonItemGraySeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1240727151]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Gray Seed"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("9_o6slk")
-expand_icon = true
-
-[node name="ButtonItemGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1068973908]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Green Herb Flakes"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("10_y53h3")
-expand_icon = true
-
-[node name="ButtonItemGreenHerb" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1952889663]
+[node name="ButtonItemGreenHerb" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=817022746]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herb Leaf"
 toggle_mode = true
 button_pressed = true
-button_group = SubResource("ButtonGroup_swgt7")
+button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("11_0tc3s")
 expand_icon = true
 
-[node name="ButtonItemGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=105487582]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Green Paste"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("12_80ihe")
-expand_icon = true
-
-[node name="ButtonItemOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1149686490]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Orange Paste"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("13_t6qy2")
-expand_icon = true
-
-[node name="ButtonItemRedBerries" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1482916989]
+[node name="ButtonItemRedBerries" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1043223202]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Berries"
 toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
+button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("14_luiyi")
 expand_icon = true
 
-[node name="ButtonItemRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1210965709]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Red Juice"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("15_b6osi")
-expand_icon = true
-
-[node name="ButtonItemRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2008177175]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Red Seed"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("16_4y6fb")
-expand_icon = true
-
-[node name="ButtonItemSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=898051407]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Saturated Stem"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("17_yrnwa")
-expand_icon = true
-
-[node name="ButtonItemStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1417137024]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Yellow Flower Stem Strands"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("18_yrbgu")
-expand_icon = true
-
-[node name="ButtonItemYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1805018482]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Yellow Flower Dust"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("19_xyuuy")
-expand_icon = true
-
-[node name="ButtonItemYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1533011342]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-tooltip_text = "Yellow Paste"
-toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
-icon = ExtResource("20_s8crv")
-expand_icon = true
-
-[node name="ButtonItemYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1464741231]
+[node name="ButtonItemYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1436380443]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Petals"
 toggle_mode = true
-button_group = SubResource("ButtonGroup_swgt7")
+button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("21_0kap8")
 expand_icon = true
 
-[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer" unique_id=1256355520]
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer" unique_id=208240892]
 layout_mode = 2
 size_flags_horizontal = 3
 current_tab = 2
 tabs_visible = false
 
-[node name="PageItemBlueBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2073653872]
+[node name="PageItemBlueBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=1823314401]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -734,15 +608,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerries" unique_id=1893820804]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries" unique_id=1649351316]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=1667616430]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemBlueBerries/VBoxContainer" unique_id=2139474419]
 layout_mode = 2
 text = "Berries from a blue berry bush. The inside is red."
 
-[node name="PageItemFlowerStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1196629362]
+[node name="PageItemFlowerStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=461341057]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -753,15 +627,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemFlowerStem" unique_id=1443043595]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem" unique_id=1990247226]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1852425634]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemFlowerStem/VBoxContainer" unique_id=1211916493]
 layout_mode = 2
 text = "Stem of a yellow flower"
 
-[node name="PageItemGreenHerb" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=482196387]
+[node name="PageItemGreenHerb" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=1725521670]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -771,21 +645,21 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb" unique_id=1620917341]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb" unique_id=1395829161]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=1848592186]
+[node name="LabelGeneral" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=1061413768]
 layout_mode = 2
 text = "A leaf of a green herb. It is mundane in its current state."
 
-[node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=269016404]
+[node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=976435270]
 layout_mode = 2
 
-[node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=910500327]
+[node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemGreenHerb/VBoxContainer" unique_id=868633828]
 layout_mode = 2
 
-[node name="PageItemRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=230363401]
+[node name="PageItemRedBerries" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=2075515088]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -796,15 +670,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerries" unique_id=53788833]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries" unique_id=871202517]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=430988333]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemRedBerries/VBoxContainer" unique_id=643916211]
 layout_mode = 2
 text = "Large berries with a bright red skin. The inside is surprisingly gray."
 
-[node name="PageItemYellowPetals" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1445970889]
+[node name="PageItemYellowPetals" type="MarginContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer" unique_id=1303196124]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -815,15 +689,276 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowPetals" unique_id=301477897]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals" unique_id=366234974]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=1832774853]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageItemYellowPetals/VBoxContainer" unique_id=1696646159]
 layout_mode = 2
 text = "The petals of a yellow flower"
 
-[node name="PageItemBlueJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2017973318]
+[node name="TabCraftedItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 4
+metadata/_tab_index = 2
+metadata/_tab_name = "Crafed Items"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems" unique_id=805910414]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer" unique_id=752397701]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons" unique_id=1022370267]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PageButtonList" type="GridContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer" unique_id=1834773395]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 4
+columns = 3
+
+[node name="ButtonItemBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Blue Juice"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("5_lrrx2")
+expand_icon = true
+
+[node name="ButtonItemBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2076160104]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Blue Seed"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("6_vptl1")
+expand_icon = true
+
+[node name="ButtonItemGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1261853127]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Gray Juice"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("8_555qq")
+expand_icon = true
+
+[node name="ButtonItemGraySeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1240727151]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Gray Seed"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("9_o6slk")
+expand_icon = true
+
+[node name="ButtonItemGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1068973908]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Green Herb Flakes"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("10_y53h3")
+expand_icon = true
+
+[node name="ButtonItemGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=105487582]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Green Paste"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("12_80ihe")
+expand_icon = true
+
+[node name="ButtonItemOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1149686490]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Orange Paste"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("13_t6qy2")
+expand_icon = true
+
+[node name="ButtonItemRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1210965709]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Red Juice"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("15_b6osi")
+expand_icon = true
+
+[node name="ButtonItemRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2008177175]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Red Seed"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("16_4y6fb")
+expand_icon = true
+
+[node name="ButtonItemSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=898051407]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Saturated Stem"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("17_yrnwa")
+expand_icon = true
+
+[node name="ButtonItemStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1417137024]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Flower Stem Strands"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("18_yrbgu")
+expand_icon = true
+
+[node name="ButtonItemYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1805018482]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Flower Dust"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("19_xyuuy")
+expand_icon = true
+
+[node name="ButtonItemYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1533011342]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Paste"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_swgt7")
+icon = ExtResource("20_s8crv")
+expand_icon = true
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer" unique_id=1256355520]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageItemBlueJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=2017973318]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice" unique_id=557457368]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=277639081]
+layout_mode = 2
+text = "?"
+
+[node name="PageItemGreenPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=253790857]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste" unique_id=1627894751]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=1749950569]
+layout_mode = 2
+text = "?"
+
+[node name="PageItemOrangePaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=132044803]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste" unique_id=1131455138]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=405085699]
+layout_mode = 2
+text = "?"
+
+[node name="PageItemYellowPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=729300132]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste" unique_id=60752412]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1955314475]
+layout_mode = 2
+text = "?"
+
+[node name="PageItemSaturatedStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=902515774]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem" unique_id=573942553]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=1541044635]
+layout_mode = 2
+text = "The stem of a yellow flower soaked in gray juice."
+
+[node name="PageItemBlueBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=104953081]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -834,15 +969,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueJuice" unique_id=557457368]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround" unique_id=904447871]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueJuice/VBoxContainer" unique_id=277639081]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=1200763370]
 layout_mode = 2
-text = "?"
+text = "A red paste made of ground up blue berries."
 
-[node name="PageItemGreenPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=253790857]
+[node name="PageItemBlueBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=2107688363]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -853,15 +988,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenPaste" unique_id=1627894751]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed" unique_id=612737047]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenPaste/VBoxContainer" unique_id=1749950569]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=1883082452]
 layout_mode = 2
-text = "?"
+text = "A seed extracted from a blue berry."
 
-[node name="PageItemOrangePaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=132044803]
+[node name="PageItemGrayJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=273502980]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -872,15 +1007,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemOrangePaste" unique_id=1131455138]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice" unique_id=1013114767]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemOrangePaste/VBoxContainer" unique_id=405085699]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=1094948326]
 layout_mode = 2
-text = "?"
+text = "Juice extracted from a red berry."
 
-[node name="PageItemYellowPaste" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=729300132]
+[node name="PageItemGreenFlakes" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=1214577227]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -891,15 +1026,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowPaste" unique_id=60752412]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes" unique_id=104668020]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowPaste/VBoxContainer" unique_id=1955314475]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=1905331609]
 layout_mode = 2
-text = "?"
+text = "Green herb leaves that have been ground up into flakes."
 
-[node name="PageItemSaturatedStem" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=902515774]
+[node name="PageItemRedBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=1152016609]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -910,15 +1045,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 9
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemSaturatedStem" unique_id=573942553]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround" unique_id=1751385086]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemSaturatedStem/VBoxContainer" unique_id=1541044635]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=1086993237]
 layout_mode = 2
-text = "The stem of a yellow flower soaked in gray juice."
+text = "A gray paste made of ground up red berries."
 
-[node name="PageItemBlueBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=104953081]
+[node name="PageItemRedBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=2011689591]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -929,15 +1064,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerryGround" unique_id=904447871]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed" unique_id=76685603]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerryGround/VBoxContainer" unique_id=1200763370]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=1836449298]
 layout_mode = 2
-text = "A red paste made of ground up blue berries."
+text = "A seed extracted from a red berry."
 
-[node name="PageItemBlueBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2107688363]
+[node name="PageItemRedJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=906455435]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -948,15 +1083,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 11
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed" unique_id=612737047]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice" unique_id=1903831467]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemBlueBerrySeed/VBoxContainer" unique_id=1883082452]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=831030375]
 layout_mode = 2
-text = "A seed extracted from a blue berry."
+text = "Juice extracted from a blue berry."
 
-[node name="PageItemGrayJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=273502980]
+[node name="PageItemStemStrands" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=1306940939]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -967,15 +1102,15 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGrayJuice" unique_id=1013114767]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands" unique_id=1929978102]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGrayJuice/VBoxContainer" unique_id=1094948326]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=896291940]
 layout_mode = 2
-text = "Juice extracted from a red berry."
+text = "Strands of a yellow flower stem, carefully separated."
 
-[node name="PageItemGreenFlakes" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1214577227]
+[node name="PageItemYellowDust" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer" unique_id=481230460]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -986,106 +1121,11 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 13
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenFlakes" unique_id=104668020]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust" unique_id=123035499]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemGreenFlakes/VBoxContainer" unique_id=1905331609]
-layout_mode = 2
-text = "Green herb leaves that have been ground up into flakes."
-
-[node name="PageItemRedBerryGround" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1152016609]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 14
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerryGround" unique_id=1751385086]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerryGround/VBoxContainer" unique_id=1086993237]
-layout_mode = 2
-text = "A gray paste made of ground up red berries."
-
-[node name="PageItemRedBerrySeed" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=2011689591]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 15
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerrySeed" unique_id=76685603]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedBerrySeed/VBoxContainer" unique_id=1836449298]
-layout_mode = 2
-text = "A seed extracted from a red berry."
-
-[node name="PageItemRedJuice" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=906455435]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedJuice" unique_id=1903831467]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemRedJuice/VBoxContainer" unique_id=831030375]
-layout_mode = 2
-text = "Juice extracted from a blue berry."
-
-[node name="PageItemStemStrands" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=1306940939]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 17
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemStemStrands" unique_id=1929978102]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemStemStrands/VBoxContainer" unique_id=896291940]
-layout_mode = 2
-text = "Strands of a yellow flower stem, carefully separated."
-
-[node name="PageItemYellowDust" type="MarginContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer" unique_id=481230460]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 18
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowDust" unique_id=123035499]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=1292130829]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageContainer/PageItemYellowDust/VBoxContainer" unique_id=1292130829]
 layout_mode = 2
 text = "The ground up dust of petals from a yellow flower."
 
@@ -1096,7 +1136,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 metadata/_tab_name = "Potions"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPotions" unique_id=957592620]
@@ -1341,7 +1381,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 metadata/_tab_name = "Plants"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPlants" unique_id=1134175996]
@@ -1586,7 +1626,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-metadata/_tab_index = 4
+metadata/_tab_index = 5
 metadata/_tab_name = "Objects"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabObjects" unique_id=751575042]
@@ -1624,7 +1664,7 @@ button_group = SubResource("ButtonGroup_vmjhy")
 icon = ExtResource("34_ry02e")
 expand_icon = true
 
-[node name="ButtonObjectCrawlspace" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1958059311]
+[node name="ButtonObjectWallSmallHole" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1958059311]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(48, 48)
@@ -1689,7 +1729,7 @@ theme_override_constants/separation = 32
 layout_mode = 2
 text = "Description and details of Boulder."
 
-[node name="PageObjectCrawlSpace" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=1253948399]
+[node name="PageObjectWallSmallHole" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=1253948399]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1700,11 +1740,11 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectCrawlSpace" unique_id=571627416]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectWallSmallHole" unique_id=571627416]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectCrawlSpace/VBoxContainer" unique_id=1766699169]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectWallSmallHole/VBoxContainer" unique_id=1766699169]
 layout_mode = 2
 text = "Description and details of Boulder."
 
@@ -1734,7 +1774,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-metadata/_tab_index = 5
+metadata/_tab_index = 6
 metadata/_tab_name = "Books"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabBooks" unique_id=1853235188]
@@ -1870,7 +1910,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-metadata/_tab_index = 6
+metadata/_tab_index = 7
 metadata/_tab_name = "Places"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPlaces" unique_id=645678036]
@@ -1938,7 +1978,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-metadata/_tab_index = 7
+metadata/_tab_index = 8
 metadata/_tab_name = "People"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabPeople" unique_id=1327798155]
@@ -1958,8 +1998,7 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 toggle_mode = true
-button_pressed = true
-button_group = SubResource("ButtonGroup_4wpt1")
+button_group = SubResource("ButtonGroup_6jatn")
 text = "Person 1"
 
 [node name="ButtonPeoplePerson2" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1047855317]
@@ -1967,7 +2006,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 toggle_mode = true
-button_group = SubResource("ButtonGroup_4wpt1")
+button_group = SubResource("ButtonGroup_6jatn")
 text = "Person 1"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer" unique_id=720333832]
@@ -2001,7 +2040,7 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
-metadata/_tab_index = 8
+metadata/_tab_index = 9
 metadata/_tab_name = "Status Effects"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses" unique_id=1068253488]
@@ -2022,9 +2061,18 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
-button_pressed = true
 button_group = SubResource("ButtonGroup_4wpt1")
 text = "Energized"
+icon = ExtResource("43_vjhag")
+icon_alignment = 1
+
+[node name="ButtonStatusEnergizedBurst" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=916113807]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Energized Burst"
 icon = ExtResource("43_vjhag")
 icon_alignment = 1
 
@@ -2105,7 +2153,7 @@ theme_override_constants/separation = 32
 layout_mode = 2
 text = "A description of the status effect"
 
-[node name="PageStatusGrow" type="MarginContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer" unique_id=656999784]
+[node name="PageStatusEnergizedBurst" type="MarginContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer" unique_id=1730663453]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -2115,6 +2163,25 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatusEnergizedBurst" unique_id=1991802315]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatusEnergizedBurst/VBoxContainer" unique_id=1041818749]
+layout_mode = 2
+text = "A description of the status effect"
+
+[node name="PageStatusGrow" type="MarginContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer" unique_id=656999784]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatusGrow" unique_id=498806541]
 layout_mode = 2
@@ -2133,7 +2200,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatusSelfAttunement" unique_id=497328269]
 layout_mode = 2
@@ -2152,7 +2219,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatusShrink" unique_id=1031549346]
 layout_mode = 2
@@ -2171,7 +2238,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 4
+metadata/_tab_index = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatusSlow" unique_id=581335999]
 layout_mode = 2
@@ -2190,7 +2257,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 5
+metadata/_tab_index = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatusStrengthen" unique_id=468286578]
 layout_mode = 2
@@ -2208,24 +2275,24 @@ text = "A description of the status effect"
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMortarPestle" to="." method="_on_button_help_mortar_pestle_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpCauldron" to="." method="_on_button_help_cauldron_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMerger" to="." method="_on_button_help_merger_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueBerries" to="." method="_on_button_item_blue_berries_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="." method="_on_button_item_blue_juice_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueSeed" to="." method="_on_button_item_blue_seed_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemFlowerStem" to="." method="_on_button_item_flower_stem_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGrayJuice" to="." method="_on_button_item_gray_juice_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGraySeed" to="." method="_on_button_item_gray_seed_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenFlakes" to="." method="_on_button_item_green_flakes_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerb" to="." method="_on_button_item_green_herb_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenPaste" to="." method="_on_button_item_green_paste_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemOrangePaste" to="." method="_on_button_item_orange_paste_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" to="." method="_on_button_item_red_berries_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedJuice" to="." method="_on_button_item_red_juice_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedSeed" to="." method="_on_button_item_red_seed_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemSaturatedStem" to="." method="_on_button_item_saturated_stem_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemStemStrands" to="." method="_on_button_item_stem_strands_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowDust" to="." method="_on_button_item_yellow_dust_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPaste" to="." method="_on_button_item_yellow_paste_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="." method="_on_button_item_yellow_petals_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueBerries" to="." method="_on_button_item_blue_berries_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemFlowerStem" to="." method="_on_button_item_flower_stem_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerb" to="." method="_on_button_item_green_herb_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" to="." method="_on_button_item_red_berries_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="." method="_on_button_item_yellow_petals_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="." method="_on_button_item_blue_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueSeed" to="." method="_on_button_item_blue_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGrayJuice" to="." method="_on_button_item_gray_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGraySeed" to="." method="_on_button_item_gray_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenFlakes" to="." method="_on_button_item_green_flakes_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenPaste" to="." method="_on_button_item_green_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemOrangePaste" to="." method="_on_button_item_orange_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedJuice" to="." method="_on_button_item_red_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedSeed" to="." method="_on_button_item_red_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemSaturatedStem" to="." method="_on_button_item_saturated_stem_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemStemStrands" to="." method="_on_button_item_stem_strands_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowDust" to="." method="_on_button_item_yellow_dust_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPaste" to="." method="_on_button_item_yellow_paste_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionCleanse" to="." method="_on_button_potion_cleanse_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionGrow" to="." method="_on_button_potion_grow_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionNormalize" to="." method="_on_button_potion_normalize_pressed"]
@@ -2239,16 +2306,17 @@ text = "A description of the status effect"
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantBlueBerryBush" to="." method="_on_button_plant_blue_berry_bush_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectBoulder" to="." method="_on_button_object_boulder_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectSlidingDoor" to="." method="_on_button_object_sliding_door_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectCrawlspace" to="." method="_on_button_object_crawlspace_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectWallSmallHole" to="." method="_on_button_object_wall_small_hole_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectPressurePlate" to="." method="_on_button_object_pressure_plate_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" to="." method="_on_button_book_raw_materials_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" to="." method="_on_button_book_letter_from_r_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" to="." method="_on_button_people_person_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergized" to="." method="_on_button_energized_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusGrow" to="." method="_on_button_grow_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSelfAttunement" to="." method="_on_button_self_attunement_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusShrink" to="." method="_on_button_shrink_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" to="." method="_on_button_slow_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" to="." method="_on_button_strengthen_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergized" to="." method="_on_button_status_energized_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergizedBurst" to="." method="_on_button_status_energized_burst_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusGrow" to="." method="_on_button_status_grow_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSelfAttunement" to="." method="_on_button_status_self_attunement_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusShrink" to="." method="_on_button_status_shrink_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" to="." method="_on_button_status_slow_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" to="." method="_on_button_status_strengthen_pressed"]
