@@ -14,10 +14,6 @@ extends UIWindow
 var prev_mode : StringName
 ## Reference to the current character/node whose information is being used to display the log book.
 var character_ref : Node = UserVariables
-## Tracks the current page that is open
-var current_page : Control
-## Tracks the current tab that is open
-var current_tab : int
 
 ## Tracks the current item being referenced in the items tab.
 var current_item : Item
@@ -27,9 +23,6 @@ var current_potion : Potion
 var current_plant_scene : Node2D
 
 func _ready() -> void:
-	current_page = %PageHelpGeneral
-	current_tab = 0 # Help Tab
-	
 	# Default pages on each tab
 	%ButtonHelpGeneral.button_pressed = true
 	%ButtonHelpGeneral.pressed.emit()
@@ -50,20 +43,7 @@ func _ready() -> void:
 	%ButtonStatusEnergized.button_pressed = true
 	%ButtonStatusEnergized.pressed.emit()
 	
-	$VBoxContainer/TabContainer.current_tab = current_tab
-
-## Uses the given interaction object to display the amounts of each item contained in the object.
-func _interaction_object_contained_items_as_str(obj : InteractableObject) -> String:
-	var ostr : String = "Contains: "
-	if not obj.items:
-		return "Does not contain items."
-	var i : int = 0
-	for item in obj.items:
-		ostr += "%s %s" % [item.qty, item.display_name]
-		if i < obj.items.size()-1:
-			ostr += ", "
-		i += 1
-	return ostr
+	$VBoxContainer/TabContainer.current_tab = 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("log_book"):
@@ -100,8 +80,8 @@ func open_window() -> bool:
 	#$VBoxContainer/TabContainer/TabHelp.visible = true
 	visible = true
 	#FIXME: Menus in background can prevent tab buttons from being pressed
-	#TODO: open the current_page in the current_tab
-	
+	# open the current page in the current tab
+	open_page_in_tab($VBoxContainer/TabContainer.current_tab)
 	return true
 
 ## Initializes which pages are visible in the log book based on character's stored information.
@@ -199,6 +179,29 @@ func init_logs(character : Character = null) -> void:
 		if obj_name == "Blue Berry Bush":
 			%ButtonPlantBlueBerryBush.visible = true
 
+## Returns the node of the page that is currently open in the given tab index.
+## If index is -1, gets the currently open tab's open page node.
+func get_current_page(tab_index : int =  -1) -> MarginContainer:
+	if tab_index == -1:
+		tab_index = $VBoxContainer/TabContainer.current_tab
+	var inner_tab : TabContainer = $VBoxContainer/TabContainer.get_child(tab_index).get_child(0).get_child(1)
+	inner_tab.get_child(inner_tab.current_tab)
+	#print(inner_tab.get_child(inner_tab.current_tab).name)
+	return inner_tab.get_child(inner_tab.current_tab)
+
+## Uses the given interaction object to display the amounts of each item contained in the object.
+func _interaction_object_contained_items_as_str(obj : InteractableObject) -> String:
+	var ostr : String = "Contains: "
+	if not obj.items:
+		return "Does not contain items."
+	var i : int = 0
+	for item in obj.items:
+		ostr += "%s %s" % [item.qty, item.display_name]
+		if i < obj.items.size()-1:
+			ostr += ", "
+		i += 1
+	return ostr
+
 ## Uses the given object name to create a string with the counts of different interactions performed.
 func _interaction_object_counts_as_str(object_name : String) -> String:
 	var ostr : String = ""
@@ -260,6 +263,10 @@ func open_page_help_tools():
 	%PageHelpTools.visible = true
 
 ##
+func open_help_page(page : MarginContainer) -> void:
+	page.visible = true
+
+##
 func open_item_page(page : MarginContainer) -> void:
 	page.visible = true
 
@@ -290,20 +297,48 @@ func open_plant_page(page : MarginContainer) -> void:
 	
 	page.visible = true
 
+##
+func open_object_page(page : MarginContainer) -> void:
+	page.visible = true
+
+##
+func open_book_page(page : MarginContainer) -> void:
+	page.visible = true
+
+##
+func open_place_page(page : MarginContainer) -> void:
+	page.visible = true
+
+##
+func open_person_page(page : MarginContainer) -> void:
+	page.visible = true
+
+##
+func open_status_page(page : MarginContainer) -> void:
+	page.visible = true
+
+## Loads the currently open page in the given tab.
+func open_page_in_tab(tab: int) -> void:
+	match tab:
+		0: open_help_page(get_current_page(tab))
+		1: open_item_page(get_current_page(tab))
+		2: open_potion_page(get_current_page(tab))
+		3: open_plant_page(get_current_page(tab))
+		4: open_object_page(get_current_page(tab))
+		5: open_book_page(get_current_page(tab))
+		6: open_place_page(get_current_page(tab))
+		7: open_person_page(get_current_page(tab))
+		8: open_status_page(get_current_page(tab))
+
+#####################
+### Other Signals ###
+#####################
+
 ## TODO:When the tab is changed, update the currently visible page on the new tab.
 func _on_tab_container_tab_changed(tab: int) -> void:
 	if not is_node_ready():
 		return
-	#match tab:
-		#0: open_help_page($VBoxContainer/TabContainer/TabHelp)
-		#1: open_item_page($VBoxContainer/TabContainer/TabItems)
-		#2: open_potion_page($VBoxContainer/TabContainer/TabPotions)
-		#3: open_plant_page($VBoxContainer/TabContainer/TabPlants)
-		#4: open_object_page($VBoxContainer/TabContainer/TabObjects)
-		#5: open_book_page($VBoxContainer/TabContainer/TabBooks)
-		#6: open_place_page($VBoxContainer/TabContainer/TabPlaces)
-		#7: open_person_page($VBoxContainer/TabContainer/TabPeople)
-		#8: open_status_page($VBoxContainer/TabContainer/TabStatuses)
+	open_page_in_tab(tab)
 
 ## When close button is pressed, close the log book window.
 func _on_button_close_pressed() -> void:
