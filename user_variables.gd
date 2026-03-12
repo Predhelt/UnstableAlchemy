@@ -43,6 +43,7 @@ func save() -> Dictionary:
 		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
+		"items_used" : var_to_str(items_used)
 	}
 	return save_dict
 

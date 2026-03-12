@@ -110,6 +110,7 @@ func save() -> Dictionary:
 		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
+		"items_used" : var_to_str(items_used),
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,

@@ -179,7 +179,7 @@ func load_game() -> void:
 		for i in node_data.keys():
 			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path":
 				continue
-			elif i == "gathered_items" or i == "objects_grab_interacted" or i == "objects_cut_interacted" or i == "objects_combined":
+			elif i == "gathered_items" or i == "objects_grab_interacted" or i == "objects_cut_interacted" or i == "objects_combined" or i == "items_used":
 				new_object.set(i, str_to_var(node_data[i]))
 			elif i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
