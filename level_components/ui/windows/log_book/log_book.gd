@@ -3,45 +3,54 @@
 ## Items pages for details on items the character can pick up or craft.
 ## Potions pages for details on potions the player can find or craft.
 ## Plants pages for details on different plants the plaer may encounter.
-## Objects pages
-## Books pages
-## Places pages
-## People pages
-## Statuses pages
-
+## Objects pages for details on interactable objects that are not plants.
+## Books pages for the contents of books that the player has access to.
+## Places pages for information on locations that the player knows about.
+## People pages for informaion on people that the user has met.
+## Statuses pages for information on status effects that the player can encounter.
 extends UIWindow
+
+## Tracks the mode prior to the log book opening.
 var prev_mode : StringName
+## Reference to the current character/node whose information is being used to display the log book.
+var character_ref : Node = UserVariables
+## Tracks the current page that is open
+var current_page : Control
+## Tracks the current tab that is open
+var current_tab : int
+
+## Tracks the current item being referenced in the items tab.
+var current_item : Item
+## Tracks the current potion being referenced in the potions tab.
+var current_potion : Potion
+## Tracks the current plant's scene being referenced in the plants tab.
+var current_plant_scene : Node2D
 
 func _ready() -> void:
-	# Set descriptions for pages relating to resources upon scene load
+	current_page = %PageHelpGeneral
+	current_tab = 0 # Help Tab
 	
-	# Plants:
-	var scn = load("res://level_components/objects/interactable/plants/blue_berry_bush.tscn").instantiate()
-	%PagePlantBlueBerryBush/VBoxContainer/LabelDescription.text = scn.description
-	%PagePlantBlueBerryBush/VBoxContainer/LabelContainedItems.text = _interaction_object_contained_items_as_str(scn)
-	#FIXME: Object counts should be updated on page load, not level load.
-	%PagePlantBlueBerryBush/VBoxContainer/LabelInteractionCounts.text = _interaction_object_counts_as_str(scn.display_name)
+	# Default pages on each tab
+	%ButtonHelpGeneral.button_pressed = true
+	%ButtonHelpGeneral.pressed.emit()
+	%ButtonItemGreenHerb.button_pressed = true
+	%ButtonItemGreenHerb.pressed.emit()
+	%ButtonPotionCleanse.button_pressed = true
+	%ButtonPotionCleanse.pressed.emit()
+	%ButtonPlantGreenHerbs.button_pressed = true
+	%ButtonPlantGreenHerbs.pressed.emit()
+	%ButtonObjectBoulder.button_pressed = true
+	%ButtonObjectBoulder.pressed.emit()
+	%ButtonBookRawMaterials.button_pressed = true
+	%ButtonBookRawMaterials.pressed.emit()
+	%ButtonPlacesBotania.button_pressed = true
+	%ButtonPlacesBotania.pressed.emit()
+	%ButtonPeoplePerson1.button_pressed = true
+	%ButtonPeoplePerson1.pressed.emit()
+	%ButtonStatusEnergized.button_pressed = true
+	%ButtonStatusEnergized.pressed.emit()
 	
-	#var res : Resource
-	# Status Effects:
-	#res = load("res://game_systems/status_effects/energized.tres")
-	#%ButtonEnergized.icon = res.icon
-	#%PageEnergized/VBoxContainer/Label.text = res.description
-	#res = load("res://game_systems/status_effects/grow.tres")
-	#%ButtonGrow.icon = res.icon
-	#%PageGrow/VBoxContainer/Label.text = res.description
-	#res = load("res://game_systems/status_effects/self_attunement.tres")
-	#%ButtonSelfAttunement.icon = res.icon
-	#%PageSelfAttunement/VBoxContainer/Label.text = res.description
-	#res = load("res://game_systems/status_effects/shrink.tres")
-	#%ButtonShrink.icon = res.icon
-	#%PageShrink/VBoxContainer/Label.text = res.description
-	#res = load("res://game_systems/status_effects/slow.tres")
-	#%ButtonSlow.icon = res.icon
-	#%PageSlow/VBoxContainer/Label.text = res.description
-	#res = load("res://game_systems/status_effects/strengthen.tres")
-	#%ButtonStrengthen.icon = res.icon
-	#%PageStrengthen/VBoxContainer/Label.text = res.description
+	$VBoxContainer/TabContainer.current_tab = current_tab
 
 ## Uses the given interaction object to display the amounts of each item contained in the object.
 func _interaction_object_contained_items_as_str(obj : InteractableObject) -> String:
@@ -91,7 +100,8 @@ func open_window() -> bool:
 	#$VBoxContainer/TabContainer/TabHelp.visible = true
 	visible = true
 	#FIXME: Menus in background can prevent tab buttons from being pressed
-	open_page_help_general()
+	#TODO: open the current_page in the current_tab
+	
 	return true
 
 ## Initializes which pages are visible in the log book based on character's stored information.
@@ -99,10 +109,10 @@ func open_window() -> bool:
 ## Allows showing of character-specific log entries by passing the character node.
 ## By default, gets information from global UserVariables.
 func init_logs(character : Character = null) -> void:
-	var node = character
-	if not node:
-		node = UserVariables
-	for book_id in node.books_read:
+	character_ref = character
+	if not character_ref:
+		character_ref = UserVariables
+	for book_id in character_ref.books_read:
 		match book_id:
 			1000: ## Green Flakes Book
 				pass
@@ -116,7 +126,7 @@ func init_logs(character : Character = null) -> void:
 				pass
 			1005:
 				pass
-	for recipe in node.known_recipes:
+	for recipe in character_ref.known_recipes:
 		match recipe.id:
 			### M&P ###
 			0: ## Green Herb Flakes
@@ -160,46 +170,34 @@ func init_logs(character : Character = null) -> void:
 			### Misc ###
 			999: ## Failed Craft
 				pass
-	# Object Pages and context labels based on performed interactions
-	for obj_name in node.objects_grab_interacted.keys():
+	# Button visibility for Object Pages based on performed interactions
+	for obj_name in character_ref.objects_grab_interacted.keys():
 		if obj_name == "Red Berry Bush":
 			%ButtonPlantRedBerryBush.visible = true
-			%PagePlantRedBerryBush/VBoxContainer/LabelGrab.visible = true
 		if obj_name == "Green Herbs":
 			%ButtonPlantGreenHerbs.visible = true
-			%PagePlantGreenHerbs/VBoxContainer/LabelGrab.visible = true
 		if obj_name == "Yellow Flowers":
 			%ButtonPlantYellowFlowers.visible = true
-			%PagePlantYellowFlowers/VBoxContainer/LabelGrab.visible = true
 		if obj_name == "Blue Berry Bush":
 			%ButtonPlantBlueBerryBush.visible = true
-			%PagePlantBlueBerryBush/VBoxContainer/LabelGrab.visible = true
-	for obj_name in node.objects_cut_interacted.keys():
+	for obj_name in character_ref.objects_cut_interacted.keys():
 		if obj_name == "Red Berry Bush":
 			%ButtonPlantRedBerryBush.visible = true
-			%PagePlantRedBerryBush/VBoxContainer/LabelCut.visible = true
 		if obj_name == "Green Herb":
 			%ButtonPlantGreenHerbs.visible = true
-			%PagePlantGreenHerbs/VBoxContainer/LabelCut.visible = true
 		if obj_name == "Yellow Flowers":
 			%ButtonPlantYellowFlowers.visible = true
-			%PagePlantYellowFlowers/VBoxContainer/LabelCut.visible = true
 		if obj_name == "Blue Berry Bush":
 			%ButtonPlantBlueBerryBush.visible = true
-			%PagePlantBlueBerryBush/VBoxContainer/LabelCut.visible = true
-	for obj_name in node.objects_combined.keys():
+	for obj_name in character_ref.objects_combined.keys():
 		if obj_name == "Red Berry Bush":
 			%ButtonPlantRedBerryBush.visible = true
-			%PagePlantRedBerryBush/VBoxContainer/LabelCombine.visible = true
 		if obj_name == "Green Herb":
 			%ButtonPlantGreenHerbs.visible = true
-			%PagePlantGreenHerbs/VBoxContainer/LabelCombine.visible = true
 		if obj_name == "Yellow Flowers":
 			%ButtonPlantYellowFlowers.visible = true
-			%PagePlantYellowFlowers/VBoxContainer/LabelCombine.visible = true
 		if obj_name == "Blue Berry Bush":
 			%ButtonPlantBlueBerryBush.visible = true
-			%PagePlantBlueBerryBush/VBoxContainer/LabelCombine.visible = true
 
 ## Uses the given object name to create a string with the counts of different interactions performed.
 func _interaction_object_counts_as_str(object_name : String) -> String:
@@ -220,11 +218,11 @@ func _interaction_object_counts_as_str(object_name : String) -> String:
 		ostr += "Times Combined: 0"
 	return ostr
 
-########################################
-### Open Pages With Dynamic Elements ###
-########################################
+##################
+### Open Pages ###
+##################
 
-### Help Tab ###
+## 
 func open_page_help_general():
 	#%WindowName.text = "Help: General"
 	%PageHelpGeneral/VBoxContainer/LabelToolUse.text = ("Walk near a plant or object "+
@@ -237,6 +235,7 @@ func open_page_help_general():
 	
 	%PageHelpGeneral.visible = true
 
+## 
 func open_page_help_interactions():
 	#%WindowName.text = "Help: Interactions"
 	%PageHelpInteractions/VBoxContainer/LabelUse.text = ("Press \""+
@@ -251,6 +250,7 @@ func open_page_help_interactions():
 	
 	%PageHelpInteractions.visible = true
 
+##
 func open_page_help_tools():
 	#%WindowName.text = "Help: Tools"
 	%PageHelpTools/VBoxContainer/LabelUse.text = ("Press \""+
@@ -259,6 +259,51 @@ func open_page_help_tools():
 	
 	%PageHelpTools.visible = true
 
+##
+func open_item_page(page : MarginContainer) -> void:
+	page.visible = true
+
+##
+func open_potion_page(page : MarginContainer) -> void:
+	page.visible = true
+
+## Opens the provided page that exists under the plant tab.
+## Assumes only one Combine label.
+func open_plant_page(page : MarginContainer) -> void:
+	if not page:
+		print("ERROR: No page '%s' exists, cannot be opened." % current_plant_scene.display_name)
+		return
+	if not current_plant_scene:
+		print("ERROR: No scene currently referenced for plant page.")
+		return
+	
+	page.get_child(0).find_child("LabelDescription").text = current_plant_scene.description
+	page.get_child(0).find_child("LabelContainedItems").text = _interaction_object_contained_items_as_str(current_plant_scene)
+	page.get_child(0).find_child("LabelInteractionCounts").text = _interaction_object_counts_as_str(current_plant_scene.display_name)
+	
+	if current_plant_scene.display_name in character_ref.objects_grab_interacted.keys():
+		page.get_child(0).find_child("LabelGrab").visible = true
+	if current_plant_scene.display_name in character_ref.objects_cut_interacted.keys():
+		page.get_child(0).find_child("LabelCut").visible = true
+	if current_plant_scene.display_name in character_ref.objects_combined.keys():
+		page.get_child(0).find_child("LabelCombine").visible = true
+	
+	page.visible = true
+
+## TODO:When the tab is changed, update the currently visible page on the new tab.
+func _on_tab_container_tab_changed(tab: int) -> void:
+	if not is_node_ready():
+		return
+	#match tab:
+		#0: open_help_page($VBoxContainer/TabContainer/TabHelp)
+		#1: open_item_page($VBoxContainer/TabContainer/TabItems)
+		#2: open_potion_page($VBoxContainer/TabContainer/TabPotions)
+		#3: open_plant_page($VBoxContainer/TabContainer/TabPlants)
+		#4: open_object_page($VBoxContainer/TabContainer/TabObjects)
+		#5: open_book_page($VBoxContainer/TabContainer/TabBooks)
+		#6: open_place_page($VBoxContainer/TabContainer/TabPlaces)
+		#7: open_person_page($VBoxContainer/TabContainer/TabPeople)
+		#8: open_status_page($VBoxContainer/TabContainer/TabStatuses)
 
 ## When close button is pressed, close the log book window.
 func _on_button_close_pressed() -> void:
@@ -271,6 +316,7 @@ func _on_button_close_pressed() -> void:
 ### Help Tab ###
 ################
 func _on_button_help_general_pressed() -> void:
+	#current_help_page = %PageHelpGeneral
 	open_page_help_general()
 
 func _on_button_help_interactions_pressed() -> void:
@@ -368,7 +414,9 @@ func _on_button_item_yellow_petals_pressed() -> void:
 ### Potion Tab ###
 ##################
 func _on_button_potion_cleanse_pressed() -> void:
-	%PagePotionCleanse.visible = true
+	open_potion_page(%PagePotionCleanse)
+
+
 
 func _on_button_potion_grow_pressed() -> void:
 	%PagePotionGrow.visible = true
@@ -391,16 +439,22 @@ func _on_button_potion_strength_pressed() -> void:
 ### Plant Tab ###
 #################
 func _on_button_plant_red_berry_bush_pressed() -> void:
-	%PagePlantRedBerryBush.visible = true
+	current_plant_scene =  load("res://level_components/objects/interactable/plants/red_berry_bush.tscn").instantiate()
+	open_plant_page(%PagePlantRedBerryBush)
+	
 
 func _on_button_plant_green_herbs_pressed() -> void:
-	%PagePlantGreenHerbs.visible = true
+	current_plant_scene = load("res://level_components/objects/interactable/plants/green_herb.tscn").instantiate()
+	open_plant_page(%PagePlantGreenHerbs)
+
 
 func _on_button_plant_yellow_flowers_pressed() -> void:
-	%PagePlantYellowFlowers.visible = true
+	current_plant_scene = load("res://level_components/objects/interactable/plants/yellow_flowers.tscn").instantiate()
+	open_plant_page(%PagePlantYellowFlowers)
 
 func _on_button_plant_blue_berry_bush_pressed() -> void:
-	%PagePlantBlueBerryBush.visible = true
+	current_plant_scene = load("res://level_components/objects/interactable/plants/blue_berry_bush.tscn").instantiate()
+	open_plant_page(%PagePlantBlueBerryBush)
 
 ### Object Tab ###
 ##################
@@ -439,20 +493,20 @@ func _on_button_people_person_1_pressed() -> void: #Placeholder
 
 ### Status Effects Tab ###
 ##########################
-func _on_button_energized() -> void:
+func _on_button_status_energized_pressed() -> void:
 	%PageEnergized.visible = true
 
-func _on_button_grow() -> void:
+func _on_button_status_grow_pressed() -> void:
 	%PageGrow.visible = true
 
-func _on_button_self_attunement() -> void:
+func _on_button_status_self_attunement_pressed() -> void:
 	%PageSelfAttunement.visible = true
 
-func _on_button_shrink() -> void:
+func _on_button_status_shrink_pressed() -> void:
 	%PageShrink.visible = true
 
-func _on_button_slow() -> void:
+func _on_button_status_slow_pressed() -> void:
 	%PageSlow.visible = true
 
-func _on_button_strengthen() -> void:
+func _on_button_status_strengthen_pressed() -> void:
 	%PageStrengthen.visible = true
