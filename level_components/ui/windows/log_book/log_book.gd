@@ -221,7 +221,7 @@ func _interaction_object_counts_as_str(object_name : String) -> String:
 		ostr += "Times Grabbed: 0, "
 	
 	if object_name in UserVariables.objects_cut_interacted.keys():
-		ostr += "Times Cut: %s, " % str(UserVariables.objects_cur_interacted[object_name][1])
+		ostr += "Times Cut: %s, " % str(UserVariables.objects_cut_interacted[object_name][1])
 	else:
 		ostr += "Times Cut: 0, "
 	
