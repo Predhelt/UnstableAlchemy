@@ -277,10 +277,11 @@ func open_help_page(page : MarginContainer) -> void:
 	page.visible = true
 
 ## Uses given page node to set up the curent raw item.
-func open_raw_item_page(page : MarginContainer) -> void:#TODO
+func open_raw_item_page() -> void:#TODO
 	if not current_raw_item:
 		print("ERROR: No scene currently referenced for plant page.")
 		return
+	var page : MarginContainer = %PageRawItem
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_raw_item.display_name)
 		return
@@ -352,10 +353,11 @@ func _get_item_use_effects_as_str(item : Item) -> String:
 	return effects_str
 
 ##
-func open_crafted_item_page(page : MarginContainer) -> void:#TODO
+func open_crafted_item_page() -> void:
 	if not current_crafted_item:
 		print("ERROR: No scene currently referenced for plant page.")
 		return
+	var page : MarginContainer = %PageCraftedItem
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_crafted_item.display_name)
 		return
@@ -369,7 +371,6 @@ func open_crafted_item_page(page : MarginContainer) -> void:#TODO
 	# List the number of times the item has been consumed/used (or y/n)
 	#page.get_child(0).find_child("LabelUseCount").text
 	# Set whether to show the details of using the item & effects
-	#TODO set visibility of label
 	page.get_child(0).find_child("LabelUseText").text = _get_item_use_effects_as_str(current_crafted_item)
 	
 	page.visible = true
@@ -440,9 +441,8 @@ func open_status_page(page : MarginContainer) -> void:#TODO
 func open_page_in_tab(tab: int) -> void:
 	match tab:
 		0: open_help_page(get_current_page(tab))
-		1: open_raw_item_page(get_current_page(tab))
-		2: open_crafted_item_page(get_current_page(tab))
-		3: open_potion_page(get_current_page(tab))
+		1: open_raw_item_page()
+		2: open_crafted_item_page()
 		4: open_plant_page(get_current_page(tab))
 		5: open_object_page(get_current_page(tab))
 		6: open_book_page(get_current_page(tab))
@@ -496,23 +496,23 @@ func _on_button_help_merger_pressed() -> void:
 ####################
 func _on_button_item_blue_berries_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/blue_berries.tres")
-	open_raw_item_page(%PageItemBlueBerries)
+	open_raw_item_page()
 
 func _on_button_item_flower_stem_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/flower_stem.tres")
-	open_raw_item_page(%PageItemFlowerStem)
+	open_raw_item_page()
 
 func _on_button_item_green_herb_leaf_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/green_herb_leaf.tres")
-	open_raw_item_page(%PageItemGreenHerbLeaf)
+	open_raw_item_page()
 
 func _on_button_item_red_berries_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/red_berries.tres")
-	open_raw_item_page(%PageItemRedBerries)
+	open_raw_item_page()
 
 func _on_button_item_yellow_petals_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/yellow_petals.tres")
-	open_raw_item_page(%PageItemYellowPetals)
+	open_raw_item_page()
 
 ### Crafted Item Tab ###
 ########################
@@ -524,11 +524,11 @@ func _on_button_item_blue_juice_pressed() -> void:
 
 func _on_button_item_blue_seed_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/blue_berry_seed.tres")
-	open_crafted_item_page(%PageItemBlueBerrySeed)
+	open_crafted_item_page()
 
 func _on_button_item_gray_juice_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/gray_juice.tres")
-	open_crafted_item_page(%PageItemGrayJuice)
+	open_crafted_item_page()
 #FIXME: gray seed item does not exist, will throw error.
 func _on_button_item_gray_seed_pressed() -> void:
 	#current_crafted_item = load("res://game_systems/items/mp_products/gray_berry_seed.tres")
@@ -537,39 +537,39 @@ func _on_button_item_gray_seed_pressed() -> void:
 
 func _on_button_item_green_flakes_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/green_flakes.tres")
-	open_crafted_item_page(%PageItemGreenFlakes)
+	open_crafted_item_page()
 
 func _on_button_item_green_paste_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/green_paste.tres")
-	open_crafted_item_page(%PageItemGreenPaste)
+	open_crafted_item_page()
 
 func _on_button_item_orange_paste_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/orange_paste.tres")
-	open_crafted_item_page(%PageItemOrangePaste)
+	open_crafted_item_page()
 
 func _on_button_item_red_juice_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/red_juice.tres")
-	open_crafted_item_page(%PageItemRedJuice)
+	open_crafted_item_page()
 
 func _on_button_item_red_seed_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/red_berry_seed.tres")
-	open_crafted_item_page(%PageItemRedBerrySeed)
+	open_crafted_item_page()
 
 func _on_button_item_saturated_stem_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/saturated_stem.tres")
-	open_crafted_item_page(%PageItemSaturatedStem)
+	open_crafted_item_page()
 
 func _on_button_item_stem_strands_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/stem_strands.tres")
-	open_crafted_item_page(%PageItemStemStrands)
+	open_crafted_item_page()
 
 func _on_button_item_yellow_dust_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/yellow_dust.tres")
-	open_crafted_item_page(%PageItemYellowDust)
+	open_crafted_item_page()
 
 func _on_button_item_yellow_paste_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/yellow_paste.tres")
-	open_crafted_item_page(%PageItemYellowPaste)
+	open_crafted_item_page()
 
 ### Potion Tab ###
 ##################

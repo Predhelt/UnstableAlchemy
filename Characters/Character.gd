@@ -247,7 +247,7 @@ func read_book(book: Book):
 		learn_recipe(recipe)
 	if not book.id in books_read:
 		books_read.append(book.id)
-	if is_camera_focused and book.id in UserVariables.books_read:
+	if is_camera_focused and book.id not in UserVariables.books_read:
 		UserVariables.books_read.append(book.id)
 
 ## Interaction Methods ##

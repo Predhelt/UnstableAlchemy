@@ -9,7 +9,7 @@ var new_recipes: Array[Recipe]
 ## Values: the number of times the recipe has been crafted.
 var crafted_recipes : Dictionary[int, int]
 ## List of books the user has read/used
-var books_read: Array[Book]
+var books_read: Array[int]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
 ## Values: Dictionary containing names of objects that the item was gathered from and the interaction type.
 ## Internal dictionary returns the count for number of times the interaction was performed.
