@@ -9,7 +9,7 @@ signal object_cut(character: Character)
 ## Sends signal to the parent object when the object is combined
 signal object_combined(character: Character, item: Item)
 ## Sends signal to the parent object when the npc_talk interaction is received
-signal npc_talk(character: Character)
+signal npc_talk()
 ## Sends signal to the parent object when the npc_shop interaction is received
 signal npc_shop()
 
@@ -78,9 +78,11 @@ func cut_object(character: Character) -> void:
 func combine_object(character: Character, item: Item) -> void:
 	object_combined.emit(character, item)
 
-## Emits signal to object to start talking.
+## Emits signal to object to start talking if the character is the "main" character.
+## This is because it opens a dialogue window, which should only be for the main character.
 func talk(character: Character) -> void:
-	npc_talk.emit(character)
+	if character.is_camera_focused:
+		npc_talk.emit()
 
 ## Emits signal to object to start shopping.
 func shop() -> void:

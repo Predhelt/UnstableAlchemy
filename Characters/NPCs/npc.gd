@@ -118,8 +118,8 @@ func save() -> Dictionary: #FIXME: Outdated save fields.
 	return save_dict
 
 ## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
-func open_dialogue(player : Character) -> void:
-	npc_shop_ref.open_window_as_npc(self, player)
+func open_dialogue() -> void:
+	npc_dialogue_ref.open_window_as_npc(self)
 
 ## Opens the NPC shop window after configuring the transactions on the page
 func open_shop() -> void:
@@ -169,8 +169,8 @@ func update_message(message: String):
 
 ## Called when the player interacts with the NPC when the interaction type is "talk".
 ## Initiates setting up the npc dialogue window.
-func _on_interact_area_npc_talk(player : Character) -> void:
-	open_dialogue(player)
+func _on_interact_area_npc_talk() -> void:
+	open_dialogue()
 
 ## Called when the player interacts with the NPC when the interaction type is "shop".
 ## Initiates setting up the npc shop window.

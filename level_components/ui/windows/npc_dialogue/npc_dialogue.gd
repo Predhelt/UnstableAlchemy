@@ -27,7 +27,7 @@ func close_window() -> void:
 ## Opens window using reference to the NPC that opened the window.
 ## and the player that is talking to the Character
 ## to get the proper Dialogue and shop information.
-func open_window_as_npc(npc : NPC, player : Character) -> bool:
+func open_window_as_npc(npc : NPC) -> bool:
 	if not npc:
 		print("Error, no npc found.")
 		return false
@@ -38,7 +38,7 @@ func open_window_as_npc(npc : NPC, player : Character) -> bool:
 	if Global.mode == window_mode:
 		Global.right_window = self
 		npc_ref = npc
-		Global.focused_node = player
+		#Global.focused_node = player
 		%WindowName.text = npc_ref.npc_name
 		set_dialogue(npc_ref.get_initial_dialogue_name(Global.focused_node))
 		
