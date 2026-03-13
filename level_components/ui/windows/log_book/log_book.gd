@@ -276,7 +276,7 @@ func open_page_help_tools():
 func open_help_page(page : MarginContainer) -> void:
 	page.visible = true
 
-## Uses given page node to set up the curent raw item.
+## Uses template page node to set up the [member current_raw_item] information.
 func open_raw_item_page() -> void:#TODO
 	if not current_raw_item:
 		print("ERROR: No scene currently referenced for plant page.")
@@ -299,6 +299,7 @@ func open_raw_item_page() -> void:#TODO
 	
 	page.visible = true
 
+##
 func _get_raw_item_sources_as_str() -> String:
 	var has_source : bool = false
 	var sources_str : String = "Known Sources:  "
@@ -352,7 +353,7 @@ func _get_item_use_effects_as_str(item : Item) -> String:
 		effects_str += "%s" % se.name
 	return effects_str
 
-##
+## Uses template page node to set up the [member current_crafted_item] item information.
 func open_crafted_item_page() -> void:
 	if not current_crafted_item:
 		print("ERROR: No scene currently referenced for plant page.")
@@ -390,8 +391,8 @@ func _get_crafted_item_sources_as_str() -> String:
 	#return sources_str
 	
 
-## Opens the Potion Page and fills the page with the information of the current potion in memory.
-func open_potion_page() -> void:#TODO
+## Uses template page node to set up the [member current_potion] item information.
+func open_potion_page() -> void:
 	if not current_potion:
 		print("ERROR: No scene currently referenced for plant page.")
 		return
@@ -449,8 +450,27 @@ func open_place_page(page : MarginContainer) -> void:#TODO
 func open_person_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
-##
-func open_status_page(page : MarginContainer) -> void:#TODO
+## Uses template page node to set up the [member current_satus_effect] item information.
+func open_status_page() -> void:
+	if not current_status_effect:
+		print("ERROR: No scene currently referenced for plant page.")
+		return
+	var page : MarginContainer = %PageStatus
+	if not page:
+		print("ERROR: No page '%s' exists, cannot be opened." % current_status_effect.display_name)
+		return
+	
+	page.get_child(0).find_child("LabelDescription").text = current_status_effect.description
+	# List where you can get the item from
+	page.get_child(0).find_child("LabelValue").text = "Potency: " + str(current_status_effect.value)
+	# Set whether to show the details of using the item & effects
+	var str_duration : String = "Duration: "
+	if current_status_effect.duration == -1:
+		str_duration += "Permanent."
+	else:
+		str_duration += str(current_status_effect.duration)
+	page.get_child(0).find_child("LabelDuration").text = str_duration
+	
 	page.visible = true
 
 ## Loads the currently open page in the given tab.
@@ -459,12 +479,13 @@ func open_page_in_tab(tab: int) -> void:
 		0: open_help_page(get_current_page(tab))
 		1: open_raw_item_page()
 		2: open_crafted_item_page()
+		3: open_potion_page()
 		4: open_plant_page(get_current_page(tab))
 		5: open_object_page(get_current_page(tab))
 		6: open_book_page(get_current_page(tab))
 		7: open_place_page(get_current_page(tab))
 		8: open_person_page(get_current_page(tab))
-		9: open_status_page(get_current_page(tab))
+		9: open_status_page()
 
 #####################
 ### Other Signals ###
@@ -683,28 +704,28 @@ func _on_button_people_person_1_pressed() -> void: #Placeholder
 ##########################
 func _on_button_status_energized_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/energized.tres")
-	open_status_page(%PageStatusEnergized)
+	open_status_page()
 
 func _on_button_status_energized_burst_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/energized_burst.tres")
-	open_status_page(%PageStatusEnergizedBurst)
+	open_status_page()
 
 func _on_button_status_grow_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/grow.tres")
-	open_status_page(%PageStatusGrow)
+	open_status_page()
 
 func _on_button_status_self_attunement_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/self_attunement.tres")
-	open_status_page(%PageStatusSelfAttunement)
+	open_status_page()
 
 func _on_button_status_shrink_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/shrink.tres")
-	open_status_page(%PageStatusShrink)
+	open_status_page()
 
 func _on_button_status_slow_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/slow.tres")
-	open_status_page(%PageStatusSlow)
+	open_status_page()
 
 func _on_button_status_strengthen_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/strengthen.tres")
-	open_status_page(%PageStatusStrengthen)
+	open_status_page()
