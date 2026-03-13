@@ -19,6 +19,10 @@ script = ExtResource("1_w6cvk")
 layout_mode = 2
 icon = ExtResource("2_117ys")
 
+[node name="ButtonLogBook" parent="." unique_id=150725565 instance=ExtResource("2_50tiv")]
+layout_mode = 2
+icon = ExtResource("3_wk4yw")
+
 [node name="ButtonRecipes" parent="." unique_id=131825927 instance=ExtResource("2_50tiv")]
 layout_mode = 2
 icon = ExtResource("4_qngx1")
@@ -27,11 +31,7 @@ icon = ExtResource("4_qngx1")
 layout_mode = 2
 icon = ExtResource("4_w6cvk")
 
-[node name="ButtonLogBook" parent="." unique_id=150725565 instance=ExtResource("2_50tiv")]
-layout_mode = 2
-icon = ExtResource("3_wk4yw")
-
 [connection signal="pressed" from="ButtonInventory" to="." method="_on_button_inventory_pressed"]
+[connection signal="pressed" from="ButtonLogBook" to="." method="_on_button_log_book_pressed"]
 [connection signal="pressed" from="ButtonRecipes" to="." method="_on_button_recipes_pressed"]
 [connection signal="pressed" from="ButtonOptions" to="." method="_on_button_options_pressed"]
-[connection signal="pressed" from="ButtonLogBook" to="." method="_on_button_log_book_pressed"]

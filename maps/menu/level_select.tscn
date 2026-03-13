@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bxw8y0udo7u4o"]
 
 [ext_resource type="Script" uid="uid://mfft2nnrm265" path="res://maps/menu/level_select.gd" id="1_cido5"]
+[ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_wjowx"]
 
 [node name="LevelSelect" type="Control" unique_id=1253611101]
 layout_mode = 3
@@ -39,3 +40,18 @@ layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 5
+
+[node name="ButtonLevelSelect" parent="." unique_id=1276432221 instance=ExtResource("2_wjowx")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 20.0
+offset_top = 33.0
+offset_right = 70.0
+offset_bottom = 83.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "<-"
+level_path = "uid://ckgxm2etu6kdm"

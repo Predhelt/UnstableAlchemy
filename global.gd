@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 
 ## Changes the root node of the scene. Used for changing levels.
 func change_scene(scene_path : String):
-	if scene_path == null:
+	if scene_path == "":
 		return
 	_deferred_change_scene.call_deferred(scene_path)
 	mode = &"default"
@@ -88,6 +88,8 @@ func save_game() -> void:
 
 ## Save the persistent Global variables as a dictionary.
 func save() -> Dictionary:
+	if current_level_path == "": #FIXME: Level path not always set.
+		print("Error: No Level Path Found. Save Failed")
 	return {
 		"focused_camera" : focused_camera,
 		"focused_node" : focused_node,
@@ -110,12 +112,13 @@ func load_game() -> void:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	var node_data = json.data
 	if node_data["current_level_path"]:
-		var level_node : Node2D = load(node_data["current_level_path"]).instantiate()
+		current_level_path = node_data["current_level_path"]
+		var level_node : Node2D = load(current_level_path).instantiate()
 		get_tree().change_scene_to_node(level_node)
 		# Wait for the scene to load before continuing.
 		await level_node.ready
 	else:
-		print("ERROR: No level data found. Returning.")
+		print("ERROR: No level data found. Load Failed.")
 		return
 	
 	# Set User Variables
@@ -126,7 +129,10 @@ func load_game() -> void:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	node_data = json.data
 	for i in node_data.keys():
-		UserVariables.set(i, node_data[i])
+		if i == "crafted_recipes" or i == "gathered_items" or i == "objects_grab_interacted" or i == "objects_cut_interacted" or i == "objects_combined" or i == "items_used":
+			UserVariables.set(i, str_to_var(node_data[i]))
+		else:
+			UserVariables.set(i, node_data[i])
 	
 	# Free the nodes in the persistent group to revert game state without cloning.
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -163,7 +169,7 @@ func load_game() -> void:
 						new_object.active_status_effects.append(cur_se)
 		# Set the inventory before setting parent node to scene.
 		field = "inventory_path"
-		if node_data[field]  != "":
+		if node_data[field] != "":
 				new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 				#TODO: Check if replacing cached version is making a difference.
 				#FIXME: Replace the existing inventory instead of loading a new instance.

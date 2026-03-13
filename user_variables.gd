@@ -5,7 +5,7 @@ extends Node
 var known_recipes : Array[Recipe]
 ## Recipes that have not been viewed yet in the recipe page
 var new_recipes: Array[Recipe]
-## Keys: IDs of recipes that have been crafted by the user.
+## Keys: IDs of [Recipe]s that have been crafted by the user.
 ## Values: the number of times the recipe has been crafted.
 var crafted_recipes : Dictionary[int, int]
 ## List of books the user has read/used
@@ -37,7 +37,7 @@ func save() -> Dictionary:
 		"parent" : get_parent().get_path(),
 		"known_recipes" : known_recipes,
 		"new_recipes" : new_recipes,
-		"crafted_recipes" : crafted_recipes,
+		"crafted_recipes" : var_to_str(crafted_recipes),
 		"gathered_items" : var_to_str(gathered_items),
 		"books_read" : books_read,
 		"objects_grab_interacted" : var_to_str(objects_grab_interacted),

@@ -289,8 +289,8 @@ func open_raw_item_page(page : MarginContainer) -> void:#TODO
 	page.get_child(0).find_child("LabelDescription").text = current_raw_item.description
 	# List where you can get the item from
 	page.get_child(0).find_child("LabelSources").text = _get_raw_item_sources_as_str()
-	# List what to use the item in (if any uses were found)#TODO
-	page.get_child(0).find_child("LabelUses").text
+	# List what to use the item in (if any uses were found)
+	page.get_child(0).find_child("LabelUses").text = _get_item_uses_as_str(current_raw_item)
 	# List the number of times the item has been consumed/used (or y/n)
 	#page.get_child(0).find_child("LabelUseCount").text
 	# Set whether to show the details of using the item & effects
@@ -299,21 +299,42 @@ func open_raw_item_page(page : MarginContainer) -> void:#TODO
 	page.visible = true
 
 func _get_raw_item_sources_as_str() -> String:
-	var has_known_source : bool = false
+	var has_source : bool = false
 	var sources_str : String = "Known Sources:  "
 	for item_id in character_ref.gathered_items.keys():
 		if item_id == current_raw_item.id:
 			var obj_dict = character_ref.gathered_items[item_id]
 			for obj_interaction in obj_dict:
 				sources_str += "%s %s, " % [obj_interaction[1], obj_interaction[0]]
-				has_known_source = true
-	if has_known_source:
+				has_source = true
+	if has_source:
 		sources_str = sources_str.rsplit(",")[0]
 	return sources_str
 
+## Returns a [String] of a list of [member Recipe.product_item]s in [member Character.known_recipes]
+## and [member Character.objects_combined] that the given [param item] is used in.
 func _get_item_uses_as_str(item : Item) -> String:
 	var uses_str : String = "Used in: "
-	#TODO
+	var is_used : bool = false
+	# Go through known recipes and find where the item is an ingredient.
+	for r : Recipe in character_ref.known_recipes:
+		for i : Item in r.ingredients:
+			if i.id == item.id:
+				uses_str += r.product_item.display_name + ", "
+				is_used = true
+	
+	# Find combinations that the item is used in.
+	for obj_name : String in character_ref.objects_combined.keys():
+		for combination : ObjectCombination in character_ref.objects_combined[obj_name]:
+			if combination.input_item.id == item.id:
+				uses_str += combination.result_object_scene.instantiate().display_name + ", "
+				is_used = true
+	
+	# Remove the last comma
+	if is_used:
+		uses_str = uses_str.rsplit(",")[0]
+	else:
+		uses_str += "None"
 	return uses_str
 
 func _get_item_use_effects_as_str(item : Item) -> String:
@@ -343,25 +364,30 @@ func open_crafted_item_page(page : MarginContainer) -> void:#TODO
 	page.get_child(0).find_child("LabelDescription").text = current_crafted_item.description
 	# List where you can get the item from
 	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
-	# List what to use the item in (if any uses were found)#TODO
-	page.get_child(0).find_child("LabelUses").text
+	# List what to use the item in (if any uses were found)
+	page.get_child(0).find_child("LabelUses").text = _get_item_uses_as_str(current_crafted_item)
 	# List the number of times the item has been consumed/used (or y/n)
 	#page.get_child(0).find_child("LabelUseCount").text
 	# Set whether to show the details of using the item & effects
-	#TODO set visibility
+	#TODO set visibility of label
 	page.get_child(0).find_child("LabelUseText").text = _get_item_use_effects_as_str(current_crafted_item)
 	
 	page.visible = true
 
 func _get_crafted_item_sources_as_str() -> String:
-	var has_known_source : bool = false
-	var sources_str : String = "Known Sources:  "
-	# TODO:Go through known recipes to see which recipes the item is the product in
+	return "Check Recipe Book for how to craft."
+	#var has_known_source : bool = false
+	#var sources_str : String = "Known Sources:\n"
+	# Go through known recipes to see which recipes the item is the product in
+	#for r in character_ref.known_recipes:
+		#if r.product_item.id == current_crafted_item.id:
+			#sources_str + "Use "
+			#for 
+	# Add brief text about each procedure
+	#if has_known_source:
+		#sources_str = sources_str.rsplit(",")[0]
+	#return sources_str
 	
-	# TODO:Add brief text about each procedure
-	if has_known_source:
-		sources_str = sources_str.rsplit(",")[0]
-	return sources_str
 
 ##
 func open_potion_page(page : MarginContainer) -> void:#TODO

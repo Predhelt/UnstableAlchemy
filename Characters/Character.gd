@@ -1,30 +1,30 @@
-## A 2D Character with attributes, an inventory, animations, movement, known recipes, etc.
-## Status effects can be applied to the character, which can effect how the character
-## can be controlled by the player or how the character interacts with the environment.
+## A 2D Character with [Attributes], an [Inventory], animations, movement, known [Recipe]s, etc.
+## [StatusEffect]s can be applied to the character, and the character may be situationally
+## controlled by the player.
 class_name Character extends CharacterBody2D
 
-## References to UI Nodes that the Character may access.
-@onready var se_bar_ref = $"../UILayer/HUDLayer/StatusEffectBar"
-@onready var status_label_ref = %StatusLabel
-@onready var interact_label_ref = %InteractLabel
-@onready var tool_wheel_ref = $"../UILayer/HUDLayer/ToolWheel"
-@onready var attribute_display_ref = $"../UILayer/HUDLayer/AttributeDisplay"
+## References to UI [Control]s that the Character may access.
+@onready var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
+@onready var status_label_ref : Control = %StatusLabel
+@onready var interact_label_ref : Control = %InteractLabel
+@onready var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+@onready var attribute_display_ref : Control = $"../UILayer/HUDLayer/AttributeDisplay"
 
-## Determines the Y offset of the labels above the character
-const LABEL_DEFAULT_Y_POS := -60.0
-## Value used to reduce the intensity of effects when size is changed
-const SIZE_DAMPENER := 0.5
+## Determines the Y-offset of the labels above the character as [float]
+const LABEL_DEFAULT_Y_POS : float = -60.0
+## [float] value used to reduce the intensity of effects when size is changed
+const SIZE_DAMPENER : float = 0.5
 
-## The tree determing how different animations connect and transition between each other 
+## The [AnimationTree] determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
 ## Path of the file containing the global variables of the current character, if any.
 #@export var global_variables : CharacterVariables
-## Reference to the camera that is being used to follow the character and display the game screen.
+## Reference to the [Camera2D] that is being used to follow the character and display the game screen.
 @export var character_camera_ref : Camera2D
 
-## The character's base stats that determine interactions with the environment
+## The character's base [Attributes] that determine interactions with the environment
 @export var attributes : Attributes
-## List of recipes known by the character. This is mainly used internally for keeping
+## List of [Recipe]s known by the character. This is mainly used internally for keeping
 ## track of the character-specific knowledge, not the player's known recipes.
 ## Player-known recipes are stored in UserVariables.
 @export var known_recipes : Array[Recipe]
@@ -44,35 +44,35 @@ var objects_grab_interacted: Dictionary[String, Array]
 ## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
 var objects_cut_interacted: Dictionary[String, Array]
 ## List of combinations that the user has performed.
-## String is the name of the object, Array is the list of combinations of the object.
+## String is the name of the object, Array is the list of [ObjectCombination]s of the object.
 var objects_combined: Dictionary[String, Array]
-## The count of each item with a given item ID
+## The count of each [Item] with a given item ID
 var items_used: Dictionary[int, int]
 
-## Reference to the inventory resource of the character(s).
+## Reference to the [Inventory] of the character(s).
 @export var inventory : Inventory
-## The list of status effects that are currently active on the character
+## The list of [StatusEffect]s that are currently active on the character
 @export var active_status_effects : Array[StatusEffect]
 ## Tracks whether the character is being controlled by the player
 var is_player_controlled : bool = false
-## Tracks whether the camera is focused on the character
+## Tracks whether the [Camera2D] is focused on the character
 var is_camera_focused : bool = false
 
 ## The direction in 2D space that the character is moving
 var direction := Vector2.ZERO
-## List of rigid bodies the character is pushing
+## List of [RigidBody2D]s the character is pushing
 var pushing_bodies : Array[RigidBody2D]
-## List of crawlspace bodies that the character is occupying.
+## List of crawlspace [StaticBody2D]s that the character is occupying.
 var crawlspace_bodies : Array[StaticBody2D]
-## The list of interaction areas that overlap with the character's reach
+## The list of [Interactable] areas that overlap with the character's reach
 var all_interaction_areas : Array[Interactable]
-## The time left before the status message disappears
+## The time left, as a [float], before the status message disappears
 var status_message_timer := 0.0
 ## The currently selected tool that the character is holding
 var selected_tool : StringName = &"hand"
 
-## Sets up and returns a dictionary that represents the persistent information
-## of the character to be saved to file.
+## Sets up and returns a [Dictionary] that represents the persistent information
+## of the character to be saved to file in [JSON]-compatible format.
 func save() -> Dictionary:
 	var cur_path : String = "user://save/characters/%s" % name
 	if not DirAccess.dir_exists_absolute(cur_path):
@@ -120,7 +120,6 @@ func save() -> Dictionary:
 
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
-	
 	status_label_ref.text = ""
 	interact_label_ref.text = ""
 	#%HotkeyLabel.text = ""
@@ -138,6 +137,7 @@ func _ready() -> void:
 		active_status_effects.remove_at(i)
 		apply_status_effect(cur_se)
 
+## Sets this character as the focus by the camera and sets up the camera's [RemoteTransform2D].
 func set_camera() -> void:
 	is_player_controlled = true
 	is_camera_focused = true
@@ -204,14 +204,12 @@ func update_animation_parameters() -> void:
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Walk/blend_position"] = direction
 
-
-
-## Used to call the get_attribute function of Attributes
+## Used to call the get_attribute function of [Attributes]
 ## without needing to access the attributes variable.
 func get_attribute(att_name : String) -> float:
 	return attributes.get_attribute(att_name)
 
-## Adds the given recipe to the list of known recipes. Returns false if the recipe is already learned
+## Adds the given [Recipe] to the list of [member known_recipes]. Returns false if the recipe is already learned
 ## or true if the recipe is successfully added to the list of known recipes.
 ## if is_crafted is true, will add to the count of succesful recipe crafts.
 func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
@@ -227,21 +225,23 @@ func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
 	known_recipes.append(r)
 	return true
 
-## Returns whether or not the character knows a recipe with the given item as the product.
+## Returns whether or not the character has a [Recipe] in [member known_recipes]
+## with the given [Item] as the recipe product.
 func knows_recipe(item: Item) -> bool:
 	for r in known_recipes:
 		if r.product_item.id == item.id:
 			return true
 	return false
 
-## Returns whether or not the character knows a recipe with the given item id as the product.
+## Returns whether or not the character has a [Recipe] in [member known_recipes]
+##  with the given [member Item.id] as the recipe product.
 func knows_recipe_id(item_id: int) -> bool:
 	for r in known_recipes:
 		if r.product_item.id == item_id:
 			return true
 	return false
 
-## Marks the book as "read" and learns any associated recipes in the book.
+## Marks the [Book] as "read" and adds any associated [Recipe]s in the book.
 func read_book(book: Book):
 	for recipe in book.recipes:
 		learn_recipe(recipe)
@@ -252,13 +252,13 @@ func read_book(book: Book):
 
 ## Interaction Methods ##
 
-## Triggers when an object's interaction area enters the interaction proximity of the player.
+## Triggers when an object's [Interactable] area enters the interaction proximity of the player.
 func _on_interaction_area_entered(area: Interactable) -> void:
 	all_interaction_areas.insert(0, area)
 	update_interactions()
 	# Outline the object that will be interacted with
 
-## Triggers when an object's interaction area leaves the interaction proximity of the player
+## Triggers when an object's [Interactable] area leaves the interaction proximity of the player
 func _on_interaction_area_exited(area: Interactable) -> void:
 	if area.is_menu_open:
 		area.close_context_menu()
@@ -266,8 +266,8 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 	all_interaction_areas.erase(area)
 	update_interactions()
 
-## Checks if there are any overlapping interaction areas with the player and
-## Shows information for an overlapping interaction
+## Checks if there are any overlapping [Interactable] areas with the player and
+## shows information for an overlapping interaction in [member all_interaction_areas]
 func update_interactions():
 	if all_interaction_areas:
 		#TODO: Smarter way to choose an interaction near the player.
@@ -278,7 +278,7 @@ func update_interactions():
 		interact_label_ref.text = ""
 		#%HotkeyLabel.text = ""
 
-## Executes functions on the selected interaction area given the current interaction type
+## Executes functions on the selected [Interactable] area given the current interaction type
 func execute_interaction():
 	if all_interaction_areas:
 		var cur_interaction = all_interaction_areas[0] # Simple approach
@@ -289,7 +289,7 @@ func execute_interaction():
 			&"talk" : cur_interaction.talk(self)
 			&"shop" : cur_interaction.shop()
 
-## Triggers when the tool type is changed. Sets selected_tool as the tool type that was changed.
+## Triggers when the tool type is changed. Sets [member selected_tool] to the [param tool_name].
 func tool_updated(tool_name: String) -> void:
 	selected_tool = tool_name
 
@@ -322,7 +322,8 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 	else:
 		update_status_message("...")
 
-## Helper function that applies the status effect to the player based on the effect name.
+## Helper function that applies the [StatusEffect] to the player
+## based on the [member StatusEffect.effect].
 func apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
 		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
@@ -349,7 +350,7 @@ func _update_status_effect_timers(delta : float) -> void:
 			if se.duration <= 0:
 				remove_status_effect(se)
 
-## Removes a given status effect at the given index in active_status_effects 
+## Removes a given [StatusEffect] at the given index in [member active_status_effects] 
 ## and reverts the changes to the character.
 ## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
@@ -360,8 +361,8 @@ func remove_status_effect(se : StatusEffect) -> bool:
 		&"self-attunement" : return _attune_self(se, true)
 	return false
 
-## Updates the images and progress bars on the status bar UI of the given status effect.
-## If is_removing_status is true, the status effect will be removed from the status bar.
+## Updates the images and progress bars on the status bar UI of the given [StatusEffect].
+## If [param is_removing_status] is true, the status effect will be removed from the status bar.
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false) -> void:
 	if index != -1:
 		active_status_effects.remove_at(index)
@@ -375,11 +376,11 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 	active_status_effects.append(se.duplicate())
 	se_bar_ref.generate_status(se)
 
-
 ### Status effect functions ###
 
 ## Takes the status effect and adds its value to the given callable Attributes function.
-## For instance, attributes.add_move_speed_bonus(se) or attributes.add_strength_bonus(se).
+## For instance, [code]attributes.add_move_speed_bonus(se)[/code]
+## or [code]attributes.add_strength_bonus(se)[/code].
 ## If is_removing is true, removes the status effect from the status bar and list of active statuses.
 func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = false) -> bool:
 	var se_index := _get_se_index(se)
@@ -399,7 +400,7 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 		update_status_bar(se, se_index, is_removing)
 		return true
 
-## Removes all status effects that have a limited duration
+## Removes all [member active_status_effects] that have a limited duration
 func _cleanse_status_effects() -> bool:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration != -1:

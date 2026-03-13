@@ -331,9 +331,9 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 		refresh_recipe_page()
 	return true
 
-## Uses the button icon reference and ingredient item as input.
-## If ingredient is also a known recipe, make it so that when the icon is pressed,
-## it links to the ingredient's recipe page.
+## Uses the [Button] icon reference and ingredient [Item] as input.
+## If ingredient is also a [member Character.known_recipe],
+## make it so that when the icon is pressed. It links to the ingredient's recipe page.
 func _link_ingredient_button_to_item(button : Button, item : Item) -> bool:
 	## Check to see if the ingredient is a product of a known recipe.
 	for r in UserVariables.known_recipes:
