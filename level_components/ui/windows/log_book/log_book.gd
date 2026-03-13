@@ -390,8 +390,24 @@ func _get_crafted_item_sources_as_str() -> String:
 	#return sources_str
 	
 
-##
-func open_potion_page(page : MarginContainer) -> void:#TODO
+## Opens the Potion Page and fills the page with the information of the current potion in memory.
+func open_potion_page() -> void:#TODO
+	if not current_potion:
+		print("ERROR: No scene currently referenced for plant page.")
+		return
+	var page : MarginContainer = %PagePotion
+	if not page:
+		print("ERROR: No page '%s' exists, cannot be opened." % current_potion.display_name)
+		return
+	
+	page.get_child(0).find_child("LabelDescription").text = current_potion.description
+	# List where you can get the item from
+	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
+	# Set whether to show the details of using the item & effects
+	page.get_child(0).find_child("LabelUseText").text = _get_item_use_effects_as_str(current_potion)
+	# List the number of times the item has been consumed/used (or y/n)
+	page.get_child(0).find_child("LabelMaxUses").text = "Max Uses: " + str(current_potion.max_uses)
+	
 	page.visible = true
 
 ## Opens the provided page that exists under the plant tab.
@@ -575,31 +591,31 @@ func _on_button_item_yellow_paste_pressed() -> void:
 ##################
 func _on_button_potion_cleanse_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/cleanse_potion.tres")
-	open_potion_page(%PagePotionCleanse)
+	open_potion_page()
 
 func _on_button_potion_grow_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/grow_potion.tres")
-	open_potion_page(%PagePotionGrow)
+	open_potion_page()
 
 func _on_button_potion_normalize_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/normalize_potion.tres")
-	open_potion_page(%PagePotionNormalize)
+	open_potion_page()
 
 func _on_button_potion_shrink_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/shrink_potion.tres")
-	open_potion_page(%PagePotionShrink)
+	open_potion_page()
 
 func _on_button_potion_slow_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/slow_potion.tres")
-	open_potion_page(%PagePotionSlow)
+	open_potion_page()
 
 func _on_button_potion_speed_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/speed_potion.tres")
-	open_potion_page(%PagePotionSpeed)
+	open_potion_page()
 
 func _on_button_potion_strength_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/strength_potion.tres")
-	open_potion_page(%PagePotionStrengthen)
+	open_potion_page()
 
 ### Plant Tab ###
 #################
