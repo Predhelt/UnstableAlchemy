@@ -129,10 +129,13 @@ func load_game() -> void:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	node_data = json.data
 	for i in node_data.keys():
-		if i == "crafted_recipes" or i == "gathered_items" or i == "objects_grab_interacted" or i == "objects_cut_interacted" or i == "objects_combined" or i == "items_used":
-			UserVariables.set(i, str_to_var(node_data[i]))
-		else:
+		if i == "filename" or i == "parent":
 			UserVariables.set(i, node_data[i])
+		else:
+			if typeof(node_data[i]) == typeof("String"):
+				UserVariables.set(i, str_to_var(node_data[i]))
+			else:
+				UserVariables.set(i, node_data[i])
 	
 	# Free the nodes in the persistent group to revert game state without cloning.
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -183,11 +186,16 @@ func load_game() -> void:
 		
 		# Go through each node and initialize the stored values..
 		for i in node_data.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path":
+			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" 
+					or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path"):
 				continue
-			elif i == "gathered_items" or i == "objects_grab_interacted" or i == "objects_cut_interacted" or i == "objects_combined" or i == "items_used":
+			#elif(i == "gathered_items" or i == "objects_grab_interacted" or i == "objects_cut_interacted" or i == "objects_combined"
+					#or i == "items_used" or i == "books_read" or i == "known_recipes"):
+			if typeof(node_data[i]) == typeof("String") and i != "name":
 				new_object.set(i, str_to_var(node_data[i]))
-			elif i == "is_camera_focused" and node_data[i] == true:
+			else:
+				new_object.set(i, node_data[i])
+			if i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
 				var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
 				#cam.position.x = node_data["pos_x"]
