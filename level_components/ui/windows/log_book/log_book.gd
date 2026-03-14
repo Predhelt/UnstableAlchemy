@@ -462,13 +462,20 @@ func open_status_page() -> void:
 	
 	page.get_child(0).find_child("LabelDescription").text = current_status_effect.description
 	# List where you can get the item from
-	page.get_child(0).find_child("LabelValue").text = "Potency: " + str(current_status_effect.value)
+	var str_value : String = "Potency: "
+	if current_status_effect.value == 0:
+		str_value += "-"
+	else:
+		str_value += str(current_status_effect.value)
+	page.get_child(0).find_child("LabelValue").text = str_value
 	# Set whether to show the details of using the item & effects
 	var str_duration : String = "Duration: "
 	if current_status_effect.duration == -1:
 		str_duration += "Permanent."
+	elif current_status_effect.duration == 0:
+		str_duration += "Instant."
 	else:
-		str_duration += str(current_status_effect.duration)
+		str_duration += str(current_status_effect.duration) + "s."
 	page.get_child(0).find_child("LabelDuration").text = str_duration
 	
 	page.visible = true
@@ -702,6 +709,10 @@ func _on_button_people_person_1_pressed() -> void: #Placeholder
 
 ### Status Effects Tab ###
 ##########################
+func _on_button_status_cleanse_pressed() -> void:
+	current_status_effect = load("res://game_systems/status_effects/cleanse.tres")
+	open_status_page()
+
 func _on_button_status_energized_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/energized.tres")
 	open_status_page()
@@ -712,6 +723,10 @@ func _on_button_status_energized_burst_pressed() -> void:
 
 func _on_button_status_grow_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/grow.tres")
+	open_status_page()
+
+func _on_button_status_normalize_pressed() -> void:
+	current_status_effect = load("res://game_systems/status_effects/normalize.tres")
 	open_status_page()
 
 func _on_button_status_self_attunement_pressed() -> void:

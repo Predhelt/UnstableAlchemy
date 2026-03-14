@@ -43,9 +43,11 @@
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://art/pack/alchemy/tools/alchemy-cauldron.png" id="41_vmjhy"]
 [ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://art/pack/alchemy/tools/alchemy-abstract_container-half_full.png" id="42_rpebb"]
 [ext_resource type="Texture2D" uid="uid://dd5cw46t72adw" path="res://art/pack/ui/status_effects/status_effect-energized.png" id="43_vjhag"]
+[ext_resource type="Texture2D" uid="uid://bdlclow8newot" path="res://art/pack/alchemy/tools/alchemy-abstract_container-full_blue.png" id="43_x37hv"]
 [ext_resource type="Texture2D" uid="uid://bja2o0mtpv0xw" path="res://art/pack/ui/status_effects/grow.png" id="44_4wpt1"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="45_x37hv"]
 [ext_resource type="Texture2D" uid="uid://8orc63ee6ot" path="res://art/pack/ui/status_effects/shrink.png" id="46_6jatn"]
+[ext_resource type="Texture2D" uid="uid://dvry72d4fo4md" path="res://art/pack/alchemy/tools/alchemy-abstract_container-full.png" id="46_fds71"]
 [ext_resource type="Texture2D" uid="uid://1l2ovcm2c3fy" path="res://art/pack/ui/status_effects/status_effect-slowed.png" id="47_fds71"]
 [ext_resource type="Texture2D" uid="uid://cr0muadltxmeb" path="res://art/pack/ui/status_effects/strength.png" id="48_oxki8"]
 
@@ -613,13 +615,15 @@ theme_override_constants/separation = 32
 
 [node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageRawItem/VBoxContainer" unique_id=703654114]
 layout_mode = 2
-text = "A leaf of a green herb. It is mundane in its current state."
+text = "Description"
 
 [node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageRawItem/VBoxContainer" unique_id=878968125]
 layout_mode = 2
+text = "Source"
 
 [node name="LabelUses" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageRawItem/VBoxContainer" unique_id=1809929962]
 layout_mode = 2
+text = "Uses"
 
 [node name="LabelUseCount" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageRawItem/VBoxContainer" unique_id=677282437]
 visible = false
@@ -627,6 +631,7 @@ layout_mode = 2
 
 [node name="LabelUseText" type="Label" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageContainer/PageRawItem/VBoxContainer" unique_id=1990198426]
 layout_mode = 2
+text = "Use text"
 
 [node name="TabCraftedItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
 visible = false
@@ -1641,8 +1646,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="ButtonStatusCleanse" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1539810891]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_constants/outline_size = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Cleanse"
+icon = ExtResource("43_x37hv")
+icon_alignment = 1
+expand_icon = true
+
 [node name="ButtonStatusEnergized" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=2084685705]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
@@ -1650,9 +1668,11 @@ button_group = SubResource("ButtonGroup_4wpt1")
 text = "Energized"
 icon = ExtResource("43_vjhag")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStatusEnergizedBurst" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=916113807]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
@@ -1660,9 +1680,11 @@ button_group = SubResource("ButtonGroup_4wpt1")
 text = "Energized Burst"
 icon = ExtResource("43_vjhag")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStatusGrow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1130861027]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
@@ -1671,9 +1693,23 @@ text = "Grow
 "
 icon = ExtResource("44_4wpt1")
 icon_alignment = 1
+expand_icon = true
+
+[node name="ButtonStatusNormalize" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=577414180]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_constants/outline_size = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Normalize"
+icon = ExtResource("46_fds71")
+icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStatusSelfAttunement" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=986311952]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
@@ -1682,9 +1718,11 @@ text = "Self-Attunement
 "
 icon = ExtResource("45_x37hv")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStatusShrink" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=243309831]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
@@ -1693,9 +1731,11 @@ text = "Shrink
 "
 icon = ExtResource("46_6jatn")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStatusSlow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1175888700]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
@@ -1703,9 +1743,11 @@ button_group = SubResource("ButtonGroup_4wpt1")
 text = "Slow"
 icon = ExtResource("47_fds71")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonStatusStrengthen" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=574720329]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/outline_size = 4
 toggle_mode = true
@@ -1713,6 +1755,7 @@ button_group = SubResource("ButtonGroup_4wpt1")
 text = "Strengthen"
 icon = ExtResource("48_oxki8")
 icon_alignment = 1
+expand_icon = true
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer" unique_id=1500686523]
 layout_mode = 2
@@ -1790,9 +1833,11 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" to="." method="_on_button_people_person_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusCleanse" to="." method="_on_button_status_cleanse_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergized" to="." method="_on_button_status_energized_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergizedBurst" to="." method="_on_button_status_energized_burst_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusGrow" to="." method="_on_button_status_grow_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusNormalize" to="." method="_on_button_status_normalize_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSelfAttunement" to="." method="_on_button_status_self_attunement_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusShrink" to="." method="_on_button_status_shrink_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" to="." method="_on_button_status_slow_pressed"]

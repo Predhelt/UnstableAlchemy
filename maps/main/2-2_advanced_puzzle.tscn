@@ -64,7 +64,7 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="NPCShelly" parent="." unique_id=1346242213 instance=ExtResource("19_o5lra")]
-position = Vector2(385, -173)
+position = Vector2(395, -213)
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 attributes = null
 
@@ -145,65 +145,65 @@ position = Vector2(736, -160)
 display_scene = NodePath("../CraftHint")
 
 [node name="CraftHint" type="Node2D" parent="PuzzleNodes" unique_id=1607466099]
-position = Vector2(-191, -767)
+position = Vector2(850, -171)
 
 [node name="Label2" type="Label" parent="PuzzleNodes/CraftHint" unique_id=286511202]
 editor_description = "Displaying the recipe hints on the right side of the screen allows them to be visible while the player is attempting to craft."
-offset_left = 1152.0
-offset_top = 544.0
-offset_right = 1392.0
-offset_bottom = 567.0
+offset_left = 63.0
+offset_top = -31.0
+offset_right = 303.0
+offset_bottom = -8.0
 theme_override_constants/outline_size = 5
 text = "You see something on the wall:"
 
 [node name="TextureRect" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=44461253]
-offset_left = 1352.0
-offset_top = 777.0
-offset_right = 1402.0
-offset_bottom = 827.0
+offset_left = 263.0
+offset_top = 202.0
+offset_right = 313.0
+offset_bottom = 252.0
 texture = ExtResource("32_ieghg")
 
 [node name="TextureRect2" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=657638774]
-offset_left = 1152.0
-offset_top = 767.0
-offset_right = 1216.0
-offset_bottom = 831.0
+offset_left = 63.0
+offset_top = 192.0
+offset_right = 127.0
+offset_bottom = 256.0
 texture = ExtResource("33_sgipv")
 
 [node name="Ground2" type="TileMapLayer" parent="PuzzleNodes/CraftHint" unique_id=1085470927]
 z_index = -20
-tile_map_data = PackedByteArray("AAAUAAsAAQACAAAAAAAVAAsAAQACAAAAAAATAAsAAQACAAAAAAASAAsAAQACAAAAAAASAAoAAQABAAEAAAAVAAoAAgAAAAAAAQATAAoAAQABAAEAAAAUAAoAAQADAAAAAAARAAsAAQACAAAAAAARAAoAAQACAAAAAAARAAkAAQACAAAAAAASAAkAAQACAAAAAAATAAkAAQACAAAAAAAUAAkAAQACAAAAAAAVAAkAAQACAAAAAAAWAAkAAQACAAAAAAAWAAoAAQACAAAAAAAWAAsAAQACAAAAAAARAAwAAQACAAAAAAASAAwAAQABAAEAAAATAAwAAQABAAEAAAAUAAwAAQADAAAAAAAVAAwAAgAAAAAAAQAWAAwAAQACAAAAAAARAA0AAQACAAAAAAASAA0AAQACAAAAAAATAA0AAQACAAAAAAAUAA0AAQACAAAAAAAVAA0AAQACAAAAAAAWAA0AAQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAFAAEAAQACAAAAAAAFAAIAAQACAAAAAAAFAAMAAQACAAAAAAAFAAQAAQACAAAAAAAEAAQAAQACAAAAAAADAAQAAQACAAAAAAACAAQAAQACAAAAAAABAAQAAQACAAAAAAAAAAQAAQACAAAAAAAAAAEAAQACAAAAAAAAAAIAAQACAAAAAAAAAAMAAQACAAAAAAABAAIAAQACAAAAAAACAAIAAQACAAAAAAADAAIAAQACAAAAAAAEAAIAAQACAAAAAAABAAEAAQABAAEAAAACAAEAAQABAAEAAAABAAMAAQABAAEAAAACAAMAAQABAAEAAAADAAMAAQADAAAAAAADAAEAAQADAAAAAAAEAAEAAgAAAAAAAQAEAAMAAgAAAAAAAQA=")
 tile_set = ExtResource("26_wl3dv")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect3" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=1758385695]
-offset_left = 1344.0
-offset_top = 640.0
-offset_right = 1408.0
-offset_bottom = 704.0
+offset_left = 255.0
+offset_top = 65.0
+offset_right = 319.0
+offset_bottom = 129.0
 texture = ExtResource("34_rdvj0")
 
 [node name="TextureRect4" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=876192258]
-offset_left = 1151.0
-offset_top = 640.0
-offset_right = 1215.0
-offset_bottom = 704.0
+offset_left = 62.0
+offset_top = 65.0
+offset_right = 126.0
+offset_bottom = 129.0
 texture = ExtResource("35_b2b0t")
 
 [node name="TextureRect5" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=1838609437]
-offset_left = 1217.0
-offset_top = 639.0
-offset_right = 1281.0
-offset_bottom = 703.0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 128.0
 texture = ExtResource("36_wlxb5")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="TextureRect6" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=811598178]
-offset_left = 1217.0
-offset_top = 767.0
-offset_right = 1281.0
-offset_bottom = 831.0
+offset_left = 128.0
+offset_top = 192.0
+offset_right = 192.0
+offset_bottom = 256.0
 texture = ExtResource("34_rdvj0")
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
@@ -222,10 +222,10 @@ text = "Congratulations!"
 
 [node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
 layout_mode = 0
-offset_left = -1125.0
-offset_top = -773.0
-offset_right = -412.0
-offset_bottom = -490.0
+offset_left = -984.0
+offset_top = -917.0
+offset_right = -271.0
+offset_bottom = -634.0
 text = "- Merging Items
 - Cauldron Crafting
 - Drinking Potions
@@ -237,3 +237,11 @@ offset_top = 87.0
 offset_right = 525.0
 offset_bottom = 110.0
 text = "If you get stuck, reset by going to level select and back to this level."
+
+[node name="LabelReset" type="Label" parent="Labels/LabelReset" unique_id=464580011]
+layout_mode = 0
+offset_left = 356.0
+offset_top = -195.0
+offset_right = 386.0
+offset_bottom = -172.0
+text = "WIP"
