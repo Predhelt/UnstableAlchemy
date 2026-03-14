@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b6x30mscbd1us"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_b2p63"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_7x101"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="15_hy5ad"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="16_y57lw"]
 [ext_resource type="PackedScene" uid="uid://5ru7ywrgkfd3" path="res://characters/npcs/brindan_gcsm/brindan_gcsm.tscn" id="17_6sggx"]
@@ -25,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="35_kg878"]
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="36_tipee"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy-mortar_pestle.png" id="37_qr7p7"]
+
+[sub_resource type="Resource" id="Resource_gybuj"]
+script = ExtResource("4_7x101")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_fa7q6"]
 script = ExtResource("18_pvubm")
@@ -55,6 +60,7 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1220527263 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_hy5ad")]
 position = Vector2(529, 298)
 character_camera_ref = NodePath("../PlayerCamera")
+inventory = SubResource("Resource_gybuj")
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1211842578]
 remote_path = NodePath("../../PlayerCamera")

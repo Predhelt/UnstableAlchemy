@@ -97,70 +97,82 @@ func open_window() -> bool:
 ## Initializes which pages are visible in the log book based on character's stored information.
 ## Allows character-specific log entries to be shown by passing the character node.
 ## By default, gets information from global UserVariables.
-func set_buttons_visibility(character : Character = null) -> void:
+func set_buttons_visibility(character : Node = null) -> void:
 	# Reset button visibility
 	hide_dynamic_buttons()
 	
 	character_ref = character
 	if not character_ref:
 		character_ref = UserVariables
+	for item_id in character_ref.gathered_items.keys():
+		match item_id:
+			0: # Green Herb Leaf
+				%ButtonItemGreenHerbLeaf.visible = true
+			1: # Red Berries
+				%ButtonItemRedBerries.visible = true
+			2: # Yellow Petals
+				%ButtonItemYellowPetals.visible = true
+			3: # Flower Stem
+				%ButtonItemFlowerStem.visible = true
+			4: # Blue Berries
+				%ButtonItemBlueBerries.visible = true
 	for book_id in character_ref.books_read:
 		match book_id:
-			1000: ## Green Flakes Book
+			1000: # Green Flakes Book
 				pass
-			1001: ## Strength Potion Book
+			1001: # Strength Potion Book
 				pass
-			1002: ## Red Berry Seed Book
+			1002: # Red Berry Seed Book
 				pass
-			1003: ## Shrink Potion Book
+			1003: # Shrink Potion Book
 				%ButtonBookShrinkPotion.visible = true
-			1004: ## 
+			1004: # 
 				pass
 			1005:
 				pass
 	for recipe in character_ref.known_recipes:
 		match recipe.id:
 			### M&P ###
-			0: ## Green Herb Flakes
-				pass
-			1: ## Gray Juice
-				pass
-			2: ## Red Berry Seed
-				pass
-			3: ## Yellow Dust
-				pass
-			4: ## Stem Strands
-				pass
-			5: ## Red Juice
-				pass
-			6: ## Blue Berry Seed
-				pass
+			0: # Green Herb Flakes
+				%ButtonItemGreenFlakes.visible = true
+			1: # Gray Juice
+				%ButtonItemGrayJuice.visible = true
+			2: # Red Berry Seed
+				%ButtonItemRedSeed.visible = true
+			3: # Yellow Dust
+				%ButtonItemYellowDust.visible = true
+			4: # Stem Strands
+				%ButtonItemStemStrands.visible = true
+			5: # Red Juice
+				%ButtonItemRedJuice.visible = true
+			6: # Blue Berry Seed
+				%ButtonItemBlueSeed.visible = true
 			### Merger ###
-			100: ## Green Paste
-				pass
-			101: ## Yellow Paste
-				pass
-			102: ## Orange Paste
-				pass
-			103: ## Saturated Stem
-				pass
+			100: # Green Paste
+				%ButtonItemGreenPaste.visible = true
+			101: # Yellow Paste
+				%ButtonItemYellowPaste.visible = true
+			102: # Orange Paste
+				%ButtonItemOrangePaste.visible = true
+			103: # Saturated Stem
+				%ButtonItemSaturatedStem.visible = true
 			### Cauldron ###
-			500: ## Speed Potion
+			500: # Speed Potion
+				%ButtonPotionSpeed.visible = true
+			501: # Cleanse Potion
+				%ButtonPotionCleanse.visible = true
+			502: # Normalize Potion
+				%ButtonPotionNormalize.visible = true
+			503: # Grow Potion
+				%ButtonPotionGrow.visible = true
+			504: # Shrink Potion
+				%ButtonPotionShrink.visible = true
+			505: # Speed Potion (2)
 				pass
-			501: ## Cleanse Potion
-				pass
-			502: ## Normalize Potion
-				pass
-			503: ## Grow Potion
-				pass
-			504: ## Shrink Potion
-				pass
-			505: ## Speed Potion (2)
-				pass
-			506: ## Strength Potion
-				pass
+			506: # Strength Potion
+				%ButtonPotionStrength.visible = true
 			### Misc ###
-			999: ## Failed Craft
+			999: # Failed Craft
 				pass
 	# Button visibility for Object Pages based on performed interactions
 	for obj_name in character_ref.objects_grab_interacted.keys():
@@ -198,17 +210,22 @@ func hide_dynamic_buttons() -> void:
 		if button == %ButtonItemGreenHerbLeaf:
 			continue
 		button.visible = false
-	# Hide Crafted Item Buttons
+	# Hide most Crafted Item Buttons
 	for button in %TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList.get_children():
 		if button == %ButtonItemGreenFlakes:
 			continue
 		button.visible = false
-	# Hide Potion Buttons
+	# Hide most Potion Buttons
 	for button in %TabPotions/HBoxContainer/PageButtons/PageButtonList.get_children():
 		if button == %ButtonPotionCleanse:
 			continue
 		button.visible = false
-	# Hide most Books
+	# Hide most Plant Buttons
+	for button in %TabPlants/HBoxContainer/PageButtons/PageButtonList.get_children():
+		if button == %ButtonPlantGreenHerbs:
+			continue
+		button.visible = false
+	# Hide most Book Buttons
 	for button in %TabBooks/HBoxContainer/PageButtons/PageButtonList.get_children():
 		if button == %ButtonBookRawMaterials:
 			continue

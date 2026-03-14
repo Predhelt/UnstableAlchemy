@@ -132,7 +132,7 @@ size_flags_vertical = 3
 current_tab = 6
 tab_0/title = "Help"
 tab_1/title = "Raw Items"
-tab_2/title = "Crafed Items"
+tab_2/title = "Crafted Items"
 tab_3/title = "Potions"
 tab_4/title = "Plants"
 tab_5/title = "Objects"
@@ -641,7 +641,7 @@ visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 2
-metadata/_tab_name = "Crafed Items"
+metadata/_tab_name = "Crafted Items"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabCraftedItems" unique_id=805910414]
 layout_mode = 2
@@ -1627,7 +1627,7 @@ theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageContainer/PagePeoplePerson1/VBoxContainer" unique_id=983408363]
 layout_mode = 2
-text = "A description of the person and any useful information."
+text = "Placeholder: A description of the person and any useful information."
 
 [node name="TabStatuses" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1523671769]
 unique_name_in_owner = true
