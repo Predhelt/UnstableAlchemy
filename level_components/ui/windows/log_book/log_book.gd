@@ -95,10 +95,12 @@ func open_window() -> bool:
 	return true
 
 ## Initializes which pages are visible in the log book based on character's stored information.
-## If page buttons or sections are visible by default in the node editor, they will remain visible.
-## Allows showing of character-specific log entries by passing the character node.
+## Allows character-specific log entries to be shown by passing the character node.
 ## By default, gets information from global UserVariables.
 func set_buttons_visibility(character : Character = null) -> void:
+	# Reset button visibility
+	hide_dynamic_buttons()
+	
 	character_ref = character
 	if not character_ref:
 		character_ref = UserVariables
@@ -188,6 +190,31 @@ func set_buttons_visibility(character : Character = null) -> void:
 			%ButtonPlantYellowFlowers.visible = true
 		if obj_name == "Blue Berry Bush":
 			%ButtonPlantBlueBerryBush.visible = true
+
+## Hides all buttons whose visibility is changed dynamically based on the character/user's data.
+func hide_dynamic_buttons() -> void:
+	# Hide Raw Item Buttons
+	for button in %TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList.get_children():
+		if button == %ButtonItemGreenHerbLeaf:
+			continue
+		button.visible = false
+	# Hide Crafted Item Buttons
+	for button in %TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList.get_children():
+		if button == %ButtonItemGreenFlakes:
+			continue
+		button.visible = false
+	# Hide Potion Buttons
+	for button in %TabPotions/HBoxContainer/PageButtons/PageButtonList.get_children():
+		if button == %ButtonPotionCleanse:
+			continue
+		button.visible = false
+	# Hide most Books
+	for button in %TabBooks/HBoxContainer/PageButtons/PageButtonList.get_children():
+		if button == %ButtonBookRawMaterials:
+			continue
+		button.visible = false
+	# NOTE: Ideally, status pages should only get shown if they have been triggered or relevant
+	# items/potions have been acquired/crafted.
 
 ## Returns the node of the page that is currently open in the given tab index.
 ## If index is -1, gets the currently open tab's open page node.

@@ -129,7 +129,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 6
 tab_0/title = "Help"
 tab_1/title = "Raw Items"
 tab_2/title = "Crafed Items"
@@ -142,6 +142,7 @@ tab_8/title = "People"
 tab_9/title = "Status Effects"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -513,6 +514,7 @@ Pressing the check mark when two or three items are in the merger will combine t
 autowrap_mode = 3
 
 [node name="TabRawItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1613085781]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
@@ -634,6 +636,7 @@ layout_mode = 2
 text = "Use text"
 
 [node name="TabCraftedItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=145568248]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
@@ -833,6 +836,8 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TabPotions" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=732305972]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -965,6 +970,7 @@ layout_mode = 2
 text = "max uses"
 
 [node name="TabPlants" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1775764380]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -1210,6 +1216,7 @@ layout_mode = 2
 text = "Combination description."
 
 [node name="TabObjects" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=508245017]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -1245,7 +1252,6 @@ expand_icon = true
 
 [node name="ButtonObjectSlidingDoor" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1970625925]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Sliding Door"
@@ -1256,7 +1262,6 @@ expand_icon = true
 
 [node name="ButtonObjectWallSmallHole" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1958059311]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Crawlspace"
@@ -1267,7 +1272,6 @@ expand_icon = true
 
 [node name="ButtonObjectPressurePlate" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=455355147]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Pressure Plate"
@@ -1358,7 +1362,7 @@ layout_mode = 2
 text = "Description and details of Boulder."
 
 [node name="TabBooks" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=961548159]
-visible = false
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -1494,6 +1498,7 @@ text = "Changing someone’s size can pose some questions: Do my clothes change 
 Luckily, the answer to all of these questions is yes, if you follow the procedure properly."
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -1562,6 +1567,7 @@ layout_mode = 2
 text = "A mysterious expanse brimming with magical life and undiscovered secrets."
 
 [node name="TabPeople" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=279743256]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
@@ -1624,6 +1630,7 @@ layout_mode = 2
 text = "A description of the person and any useful information."
 
 [node name="TabStatuses" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1523671769]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
