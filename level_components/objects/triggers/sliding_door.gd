@@ -10,8 +10,7 @@ var is_open := false
 ## Total time it takes to close this door.
 @export var close_time : float 
 ## Tracks the direction that the door opens.
-## 0 = Up, 1 = Right, 2 = Down, 3 = Left.
-@export var open_direction := 0
+@export_enum("Left", "Right", "Up", "Down") var open_direction := "Right"
 ## 0 = not moving, 1 = opening, 2 = closing.
 var is_moving := 0 
 ## The position of the door when it is closed
@@ -61,26 +60,27 @@ func _physics_process(delta : float) -> void:
 ## Moves the door the given distance based on the open_direction
 func _move_door(dist : float) -> void:
 	match open_direction:
-				0: # Up
+				"Up":
 					position.y -= dist
-				1: # Right
+				"Right":
 					position.x += dist
-				2: # Down
+				"Down":
 					position.y += dist
-				3: # Left
+				"Left":
 					position.x -= dist
 
 ## Moves the door to the given position in the axis of open_direction
 func _move_door_to(pos : float) -> void:
 	match open_direction:
-				0: # Up
+				"Up":
 					position.y = default_pos.y - pos
-				1: # Right
+				"Right":
 					position.x = default_pos.x + pos
-				2: # Down
+				"Down":
 					position.y = default_pos.y + pos
-				3: # Left
+				"Left":
 					position.x = default_pos.x - pos
+
 
 func close_door():
 	is_moving = 2

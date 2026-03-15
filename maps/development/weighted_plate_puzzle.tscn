@@ -1,26 +1,10 @@
 [gd_scene format=4 uid="uid://bhrsnkap76smw"]
 
-[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="1_la6ku"]
-[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://level_components/ui/windows/options/options_menu.tscn" id="2_h8hxp"]
-[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_y47t4"]
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://level_components/ui/windows/inventory/inventory_menu.tscn" id="5_xufy3"]
-[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://level_components/ui/windows/recipe_list/recipe_list.tscn" id="6_7vvkk"]
-[ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://level_components/ui/windows/npc_shop/npc_shop.tscn" id="7_xq2rr"]
-[ext_resource type="PackedScene" uid="uid://devoaotbjwrvh" path="res://level_components/ui/windows/log_book/log_book.tscn" id="8_h8hxp"]
-[ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://level_components/ui/windows/npc_dialogue/npc_dialogue.tscn" id="8_rj1k6"]
-[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldro_minigame.tscn" id="9_iww1f"]
-[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.tscn" id="10_ppoa5"]
-[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://level_components/ui/hud/menu_bar/menu_bar.tscn" id="11_60epn"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://level_components/ui/hud/status_effect/status_effect_bar.tscn" id="12_7pcwx"]
-[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://level_components/ui/hud/hotbar/hotbar.tscn" id="13_wha2a"]
-[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://level_components/ui/hud/tool_wheel/tool_wheel.tscn" id="14_b5e70"]
-[ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="15_my8sf"]
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_1ox6g"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="16_3no3h"]
-[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="17_tewwt"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="18_w5tsc"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="19_midar"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="20_bmql1"]
-[ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="21_qjxvo"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="22_h8hre"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="23_heaso"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="24_2ngwq"]
@@ -38,82 +22,11 @@
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="UILayer" type="CanvasLayer" parent="." unique_id=574275547]
-layer = 10
-
-[node name="MenuLayer" type="CanvasLayer" parent="UILayer" unique_id=141501223]
-layer = 3
-
-[node name="SettingsMenu" parent="UILayer/MenuLayer" unique_id=466945984 instance=ExtResource("1_la6ku")]
-unique_name_in_owner = true
-auto_translate_mode = 1
-visible = false
-
-[node name="OptionsMenu" parent="UILayer/MenuLayer" unique_id=1604190083 instance=ExtResource("2_h8hxp")]
-unique_name_in_owner = true
-visible = false
-theme = ExtResource("3_y47t4")
-
-[node name="InventoryMenu" parent="UILayer/MenuLayer" unique_id=1209495849 instance=ExtResource("5_xufy3")]
-unique_name_in_owner = true
-visible = false
-
-[node name="RecipeList" parent="UILayer/MenuLayer" unique_id=1868385013 instance=ExtResource("6_7vvkk")]
-unique_name_in_owner = true
-visible = false
-
-[node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("7_xq2rr")]
-unique_name_in_owner = true
-visible = false
-
-[node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("8_rj1k6")]
-unique_name_in_owner = true
-visible = false
-
-[node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("8_h8hxp")]
-unique_name_in_owner = true
-offset_left = 784.53
-offset_top = -222.82
-offset_right = 784.53
-offset_bottom = -222.82
-
-[node name="MinigameLayer" type="CanvasLayer" parent="UILayer" unique_id=1354987911]
-layer = 2
-
-[node name="MinigameCauldron" parent="UILayer/MinigameLayer" unique_id=1553878062 instance=ExtResource("9_iww1f")]
-unique_name_in_owner = true
-visible = false
-
-[node name="MinigameMP" parent="UILayer/MinigameLayer" unique_id=95134907 instance=ExtResource("10_ppoa5")]
-unique_name_in_owner = true
-visible = false
-
-[node name="HUDLayer" type="CanvasLayer" parent="UILayer" unique_id=1167861916]
-
-[node name="MenuBar" parent="UILayer/HUDLayer" unique_id=2084920634 instance=ExtResource("11_60epn")]
-unique_name_in_owner = true
-offset_bottom = 8.0
-
-[node name="StatusEffectBar" parent="UILayer/HUDLayer" unique_id=768429819 instance=ExtResource("12_7pcwx")]
-unique_name_in_owner = true
-
-[node name="Hotbar" parent="UILayer/HUDLayer" unique_id=1812231048 instance=ExtResource("13_wha2a")]
-unique_name_in_owner = true
-
-[node name="ToolWheel" parent="UILayer/HUDLayer" unique_id=2089509891 instance=ExtResource("14_b5e70")]
-unique_name_in_owner = true
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 154.0
-offset_bottom = 154.0
-
-[node name="AttributeDisplay" parent="UILayer/HUDLayer" unique_id=1551514349 instance=ExtResource("15_my8sf")]
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_1ox6g")]
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("16_3no3h")]
-unique_name_in_owner = true
 position = Vector2(529, 298)
 character_camera_ref = NodePath("../PlayerCamera")
-known_recipes = Array[ExtResource("17_tewwt")]([])
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
 remote_path = NodePath("../../PlayerCamera")
@@ -156,7 +69,6 @@ y_sort_enabled = true
 position = Vector2(361, 134)
 display_name = "\"The making of a shrinking potion\""
 description = "Describes how to make a shrink potion"
-book_info = ExtResource("21_qjxvo")
 
 [node name="GreenHerb" parent="Objects" unique_id=1902924727 instance=ExtResource("22_h8hre")]
 position = Vector2(365, 227)
@@ -189,8 +101,7 @@ position = Vector2(677, 463.00003)
 y_sort_enabled = true
 
 [node name="PressurePlate" parent="PuzzleNodes" unique_id=159287603 node_paths=PackedStringArray("door_refs") instance=ExtResource("25_h8hxp")]
-position = Vector2(610, 105)
-scale = Vector2(0.5, 0.5)
+position = Vector2(609, 105)
 trigger_weight = 120.0
 door_refs = [NodePath("../SlidingDoor")]
 
@@ -198,7 +109,6 @@ door_refs = [NodePath("../SlidingDoor")]
 position = Vector2(608, 58)
 open_time = 1.0
 close_time = 1.0
-is_opening_left = false
 
 [node name="DisplayArea" parent="." unique_id=2100822737 node_paths=PackedStringArray("display_scene") instance=ExtResource("26_nfkp7")]
 position = Vector2(928, 608)
@@ -282,8 +192,3 @@ text = "You can fit through while having the necessary mass by drinking a shrink
 [node name="NPCShelly" parent="." unique_id=1676905046 instance=ExtResource("32_spgur")]
 position = Vector2(695, 192)
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
-
-[connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
-[connection signal="consume_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_consume_inventory_item"]
-[connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
-[connection signal="tool_updated" from="UILayer/HUDLayer/ToolWheel" to="Player" method="_on_tool_updated"]

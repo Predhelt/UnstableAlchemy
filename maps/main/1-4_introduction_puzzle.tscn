@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cj16115plnjxs"]
+
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_65xqe"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_ucbr3"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_hqcxu"]
+[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="4_tbfy7"]
+[ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="5_06sjx"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="6_oil8d"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="7_n5j6g"]
+[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="8_5k33r"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="9_tepk0"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="10_uc71n"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="11_f5cpi"]
+[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="12_am6pl"]
+[ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://level_components/objects/interactable/plants/blue_berry_bush.tscn" id="13_5k5hu"]
+[ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="14_kpwao"]
+
+[sub_resource type="Resource" id="Resource_ovyrl"]
+script = ExtResource("3_hqcxu")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_51mqc"]
+script = ExtResource("10_uc71n")
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_i4gor"]
+script = ExtResource("10_uc71n")
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[node name="World" type="Node2D" unique_id=1661168125]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_65xqe")]
+
+[node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_ucbr3")]
+position = Vector2(123, 13)
+character_camera_ref = NodePath("../PlayerCamera")
+attributes = SubResource("Resource_ovyrl")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
+unique_name_in_owner = true
+position = Vector2(123, 13)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
+z_index = -50
+scale = Vector2(2, 2)
+tile_set = ExtResource("4_tbfy7")
+
+[node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
+z_index = -20
+tile_set = ExtResource("5_06sjx")
+metadata/_edit_lock_ = true
+
+[node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
+z_index = -10
+tile_set = ExtResource("5_06sjx")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
+z_index = -1
+tile_set = ExtResource("5_06sjx")
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="Node2D" parent="." unique_id=354937822]
+y_sort_enabled = true
+
+[node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("6_oil8d")]
+position = Vector2(229, 7)
+display_name = "\"Green Herbs - An Introduction\""
+description = "Describes how to make Green Flakes"
+items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+grab_interaction = SubResource("Resource_51mqc")
+cut_interaction = SubResource("Resource_i4gor")
+
+[node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("11_f5cpi")]
+position = Vector2(-20, -209)
+
+[node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("11_f5cpi")]
+position = Vector2(56, -164)
+
+[node name="GreenHerb3" parent="Objects" unique_id=658593362 instance=ExtResource("11_f5cpi")]
+position = Vector2(-82, -139)
+
+[node name="YellowFlowers" parent="Objects" unique_id=687975100 instance=ExtResource("12_am6pl")]
+position = Vector2(609, 107)
+
+[node name="BlueBerryBush" parent="Objects" unique_id=1022518106 instance=ExtResource("13_5k5hu")]
+position = Vector2(457, -209)
+
+[node name="BlueBerryBush2" parent="Objects" unique_id=1137260771 instance=ExtResource("13_5k5hu")]
+position = Vector2(546, -186)
+
+[node name="BlueBerryBush3" parent="Objects" unique_id=636110122 instance=ExtResource("13_5k5hu")]
+position = Vector2(401, -142)
+
+[node name="YellowFlowers2" parent="Objects" unique_id=181215601 instance=ExtResource("12_am6pl")]
+position = Vector2(388, 105.999985)
+
+[node name="YellowFlowers3" parent="Objects" unique_id=734487831 instance=ExtResource("12_am6pl")]
+position = Vector2(507, 27)
+
+[node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
+y_sort_enabled = true
+
+[node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("14_kpwao")]
+position = Vector2(343, -680)
+level_path = "res://maps/main/1-3_introduction_puzzle.tscn"
+
+[node name="Labels" type="Control" parent="." unique_id=957710452]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelCongratulations" type="Label" parent="Labels" unique_id=886711945]
+layout_mode = 0
+offset_left = 126.0
+offset_top = -693.0
+offset_right = 255.0
+offset_bottom = -670.0
+text = "Congratulations!"
+
+[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
+layout_mode = 0
+offset_left = -869.0
+offset_top = -720.0
+offset_right = -156.0
+offset_bottom = -437.0
+text = "- Use Blade
+- Use Merger
+- Use Cauldron"
