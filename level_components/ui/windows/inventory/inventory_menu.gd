@@ -217,45 +217,47 @@ func drag_item(item : Item, index : int):
 	get_parent().add_child(drag_item_instance)
 
 ## Determines how to use the item in the inventory.
-func use_item(item: Item, index : int):
+func use_item(item: Item, index : int) -> void:
 	## Potions are ID 500-750. Splash potions are 750+. Recipe books are 1000+.
-	
 	#if item.type == "Potion" or item.type == "Book":
 	consume_item(item, index)
 	#else:
 		#sample_item(item)
 
 ## Uses the given item without reducing the count of the item.
-func sample_item(item):
-	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the sampling is disabled
-		Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
-		$CooldownInteract.start()
+func sample_item(item) -> void:
+	if not $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the sampling is disabled
+		return
+	Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	$CooldownInteract.start()
 
 ## Uses the given item and reduces its count in the inventory.
-func consume_item(item : Item, index : int):
-	if $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the consuming is disabled
-		Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
+func consume_item(item : Item, index : int) -> void:
+	if not $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the consuming is disabled
+		return
 		
-		if item.type == "Book": ## If item is a book
-			Global.focused_node.read_book(item)
-			if recipe_list_ref.visible:
-				recipe_list_ref.close_window()
-				recipe_list_ref.open_window()
-					
-			if not item.on_consume_effects: ## If there were no effects, display book message anyways.
-				Global.focused_node.update_status_message(item.on_consume_message)
-		
-		if item.id not in Global.focused_node.items_used.keys():
-			Global.focused_node.items_used[item.id] = 1
-		else:
-			Global.focused_node.items_used[item.id] += 1
-		
-		if item.id not in UserVariables.items_used.keys():
-			UserVariables.items_used[item.id] = 1
-		else:
-			UserVariables.items_used[item.id] += 1
-		
-		$CooldownInteract.start()
+	Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	
+	if item.type == "Book": ## If item is a book
+		Global.focused_node.read_book(item)
+		if recipe_list_ref.visible:
+			recipe_list_ref.close_window()
+			recipe_list_ref.open_window()
+				
+		if not item.on_consume_effects: ## If there were no effects, display book message anyways.
+			Global.focused_node.update_status_message(item.on_consume_message)
+	
+	if item.id not in Global.focused_node.items_used.keys():
+		Global.focused_node.items_used[item.id] = 1
+	else:
+		Global.focused_node.items_used[item.id] += 1
+	
+	if item.id not in UserVariables.items_used.keys():
+		UserVariables.items_used[item.id] = 1
+	else:
+		UserVariables.items_used[item.id] += 1
+	
+	$CooldownInteract.start()
 	
 	if item.qty <= 1:
 		remove_inventory_slot(index)
