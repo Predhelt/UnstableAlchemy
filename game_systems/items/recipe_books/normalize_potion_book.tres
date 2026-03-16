@@ -10,8 +10,13 @@
 [ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://game_systems/alchemy/recipes/mp/gray_juice.tres" id="7_a7dxt"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="8_ojn0e"]
 [ext_resource type="Resource" uid="uid://dus5f01yypc4q" path="res://game_systems/alchemy/recipes/mp/red_juice.tres" id="9_kjp82"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="11_hxnry"]
 
 [resource]
 script = ExtResource("3_kecr6")
 recipes = Array[ExtResource("2_1dds6")]([ExtResource("3_lo6eq"), ExtResource("4_hxnry"), ExtResource("5_xnpyo"), ExtResource("6_7up2t"), ExtResource("7_a7dxt"), ExtResource("8_ojn0e"), ExtResource("9_kjp82")])
+id = 1005
+display_name = "Recipe: Normalize Potion"
+description = "Contains recipes relevant to crafting a normalizing potion."
+texture = ExtResource("11_hxnry")
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

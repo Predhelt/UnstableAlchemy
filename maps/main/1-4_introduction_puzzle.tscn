@@ -23,7 +23,7 @@
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="13_ejif0"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="14_kpwao"]
 [ext_resource type="Resource" uid="uid://bpgnegvcg63o4" path="res://game_systems/status_effects/grow.tres" id="15_4yetv"]
-[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="19_t7sp0"]
+[ext_resource type="Resource" uid="uid://c8iivm16gu105" path="res://game_systems/items/recipe_books/normalize_potion_book.tres" id="19_t816p"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("3_hqcxu")
@@ -36,13 +36,13 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_51mqc"]
 script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("19_t7sp0")])
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("19_t816p")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_i4gor"]
 script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("19_t7sp0")])
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("19_t816p")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
@@ -100,6 +100,7 @@ y_sort_enabled = true
 position = Vector2(175, 3)
 display_name = "\"Recipe: Normalize Potion\""
 description = "Likely contains information on how to craft a normalizing potion."
+items = Array[ExtResource("7_n5j6g")]([ExtResource("19_t816p")])
 grab_interaction = SubResource("Resource_51mqc")
 cut_interaction = SubResource("Resource_i4gor")
 
@@ -135,7 +136,7 @@ y_sort_enabled = true
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("14_kpwao")]
 position = Vector2(417, -800)
-level_path = "res://maps/main/1-3_introduction_puzzle.tscn"
+level_path = "res://maps/main/2-1_advanced_puzzle.tscn"
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
@@ -157,6 +158,5 @@ offset_left = -869.0
 offset_top = -720.0
 offset_right = -156.0
 offset_bottom = -437.0
-text = "- Use Blade
-- Use Merger
-- Use Cauldron"
+text = "- Use blue berries
+- More complicated craft"
