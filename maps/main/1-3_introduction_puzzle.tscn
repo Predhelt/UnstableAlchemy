@@ -1,16 +1,17 @@
-[gd_scene format=3 uid="uid://bwjtsxk1tr1mw"]
+[gd_scene format=4 uid="uid://bwjtsxk1tr1mw"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_65xqe"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_ucbr3"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_hqcxu"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="4_5k33r"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="4_tbfy7"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="5_06sjx"]
 [ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="5_oil8d"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="5_tepk0"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_n5j6g"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="6_oil8d"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_5k33r"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="7_n5j6g"]
-[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="7_tepk0"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="9_tepk0"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="10_uc71n"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="11_f5cpi"]
@@ -27,7 +28,7 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_uc71n"]
 script = ExtResource("7_5k33r")
-items = Array[ExtResource("7_n5j6g")]([ExtResource("5_oil8d"), ExtResource("6_n5j6g"), ExtResource("7_tepk0")])
+items = Array[ExtResource("7_n5j6g")]([ExtResource("5_oil8d"), ExtResource("6_n5j6g")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_51mqc"]
@@ -49,9 +50,10 @@ metadata/_edit_lock_ = true
 [node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_65xqe")]
 
 [node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_ucbr3")]
-position = Vector2(123, 13)
+position = Vector2(28, 67)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_ovyrl")
+known_recipes = Array[ExtResource("4_5k33r")]([ExtResource("5_tepk0")])
 inventory = SubResource("Resource_uc71n")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
@@ -71,16 +73,19 @@ tile_set = ExtResource("4_tbfy7")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
+tile_map_data = PackedByteArray("AAD+//v/AgAAAAAAAQD///v/AgAAAAAAAQAAAPv/AgAAAAAAAQABAPv/AgAAAAAAAQACAPv/AgAAAAAAAQADAPv/AgAAAAAAAQAEAPv/AgAAAAAAAQAFAPv/AgAAAAAAAQAGAPv/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAJAPv/AgAAAAAAAQAJAPz/AgAAAAAAAQAJAP//AgAAAAAAAQAJAAAAAgAAAAAAAQAJAAEAAgAAAAAAAQAJAAIAAgAAAAAAAQAJAP7/AgAAAAAAAQAJAP3/AgAAAAAAAQAIAPz/AgAAAAAAAQAHAPz/AgAAAAAAAQAGAPz/AgAAAAAAAQAFAPz/AgAAAAAAAQAEAPz/AgAAAAAAAQADAPz/AgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQAAAPz/AgAAAAAAAQD///z/AgAAAAAAAQD+//z/AgAAAAAAAQD+//3/AgAAAAAAAQD+//7/AgAAAAAAAQD+////AgAAAAAAAQD+/wAAAgAAAAAAAQD+/wEAAgAAAAAAAQD//wEAAgAAAAAAAQAAAAEAAgAAAAAAAQABAAEAAgAAAAAAAQACAAEAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQAIAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAEAAIAAgAAAAAAAQADAAIAAgAAAAAAAQACAAIAAgAAAAAAAQABAAIAAgAAAAAAAQAAAAIAAgAAAAAAAQD+/wIAAgAAAAAAAQD//wIAAgAAAAAAAQD//wAAAgAAAAAAAQD/////AgAAAAAAAQD///7/AgAAAAAAAQD///3/AgAAAAAAAQAAAP3/AgAAAAAAAQABAP3/AgAAAAAAAQACAP3/AgAAAAAAAQADAP3/AgAAAAAAAQAEAP3/AgAAAAAAAQAFAP3/AgAAAAAAAQAGAP3/AgAAAAAAAQAHAP3/AgAAAAAAAQAIAP3/AgAAAAAAAQAIAP7/AgAAAAAAAQAIAP//AgAAAAAAAQAHAAAAAgAAAAAAAQAHAP//AgAAAAAAAQAGAP//AgAAAAAAAQAGAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAAAAAgAAAAAAAQAIAAAAAgAAAAAAAQAHAP7/AgAAAAAAAQAFAP//AgAAAAAAAQAFAAAAAgAAAAAAAQAEAP7/AgAAAAAAAQAEAP//AgAAAAAAAQADAP//AgAAAAAAAQADAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQACAP//AgAAAAAAAQABAP7/AgAAAAAAAQABAP//AgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQAAAP//AgAAAAAAAQAAAAAAAgAAAAAAAQAAAP7/AgAAAAAAAQD9//v/AgAAAAAAAQD9//z/AgAAAAAAAQD9//3/AgAAAAAAAQD9//7/AgAAAAAAAQD9////AgAAAAAAAQD9/wAAAgAAAAAAAQD9/wEAAgAAAAAAAQD9/wIAAgAAAAAAAQD9/wMAAgAAAAAAAQD+/wMAAgAAAAAAAQD//wMAAgAAAAAAAQAAAAMAAgAAAAAAAQABAAMAAgAAAAAAAQACAAMAAgAAAAAAAQADAAMAAgAAAAAAAQAEAAMAAgAAAAAAAQAFAAMAAgAAAAAAAQAGAAMAAgAAAAAAAQAHAAMAAgAAAAAAAQAIAAMAAgAAAAAAAQAJAAMAAgAAAAAAAQAKAPv/AgAAAAAAAQAKAPz/AgAAAAAAAQAKAP3/AgAAAAAAAQAKAP7/AgAAAAAAAQAKAP//AgAAAAAAAQAKAAAAAgAAAAAAAQAKAAEAAgAAAAAAAQAKAAIAAgAAAAAAAQAKAAMAAgAAAAAAAQAAAPT/AgAAAAAAAAAAAPX/AgAAAAAAAAAAAPb/AgAAAAAAAAAAAPf/AgAAAAAAAAAAAPj/AgAAAAAAAAAAAPn/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPT/AgAAAAAAAAABAPX/AgAAAAAAAAABAPb/AgAAAAAAAAABAPf/AgAAAAAAAAABAPj/AgAAAAAAAAABAPn/AgAAAAAAAAABAPr/AgAAAAAAAAACAPT/AgAAAAAAAAACAPX/AgAAAAAAAAACAPb/AgAAAAAAAAACAPf/AgAAAAAAAAACAPj/AgAAAAAAAAACAPn/AgAAAAAAAAACAPr/AgAAAAAAAAADAPT/AgAAAAAAAAADAPX/AgAAAAAAAAADAPb/AgAAAAAAAAADAPf/AgAAAAAAAAADAPj/AgAAAAAAAAADAPn/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPT/AgAAAAAAAAAEAPX/AgAAAAAAAAAEAPb/AgAAAAAAAAAEAPf/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPn/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPT/AgAAAAAAAAAFAPX/AgAAAAAAAAAFAPb/AgAAAAAAAAAFAPf/AgAAAAAAAAAFAPj/AgAAAAAAAAAFAPn/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPT/AgAAAAAAAAAGAPX/AgAAAAAAAAAGAPb/AgAAAAAAAAAGAPf/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPr/AgAAAAAAAAAHAPT/AgAAAAAAAAAHAPX/AgAAAAAAAAAHAPb/AgAAAAAAAAAHAPf/AgAAAAAAAAAHAPj/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPr/AgAAAAAAAAA=")
 tile_set = ExtResource("5_06sjx")
 metadata/_edit_lock_ = true
 
 [node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
 z_index = -10
+tile_map_data = PackedByteArray("AAAGAPX/AQACAAAAAAA=")
 tile_set = ExtResource("5_06sjx")
 metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
+tile_map_data = PackedByteArray("AAAAAPT/AAADAAAAAAAAAPX/AAAFAAEAAAAAAPb/AAADAAEAAAAAAPf/AAADAAEAAAAAAPj/AAAFAAEAAAAAAPn/AAADAAEAAAAAAPr/AAAFAAEAAAAHAPT/AAAFAAAAAAAGAPT/AAAEAAAAAAAFAPT/AAAEAAIAAAAEAPT/AAAEAAIAAAADAPT/AAAEAAAAAAACAPT/AAAEAAAAAAABAPT/AAAEAAIAAAAHAPr/AAAFAAEAAAAHAPn/AAAFAAEAAAAHAPj/AAADAAEAAAAHAPf/AAADAAEAAAAHAPb/AAAFAAEAAAAHAPX/AAAFAAEAAAD9/wMAAAADAAIAAAD9/wIAAAAFAAEAAAD9/wEAAAAFAAEAAAD9/wAAAAADAAEAAAD9////AAAFAAEAAAD9//7/AAADAAEAAAD9//3/AAADAAEAAAD9//z/AAAFAAEAAAD9//v/AAADAAAAAAAKAAMAAAAFAAIAAAAJAAMAAAAEAAIAAAAIAAMAAAAEAAIAAAAHAAMAAAAEAAAAAAAGAAMAAAAEAAIAAAAFAAMAAAAEAAAAAAAEAAMAAAAEAAAAAAADAAMAAAAEAAAAAAACAAMAAAAEAAAAAAABAAMAAAAEAAIAAAAAAAMAAAAEAAAAAAD//wMAAAAEAAIAAAD+/wMAAAAEAAIAAAAKAPv/AAAFAAAAAAAKAPz/AAAFAAEAAAAKAP3/AAADAAEAAAAKAP7/AAADAAEAAAAKAP//AAADAAEAAAAKAAAAAAAFAAEAAAAKAAEAAAADAAEAAAAKAAIAAAAFAAEAAAD+//v/AAAEAAAAAAD///v/AAAEAAIAAAAAAPv/AAADAAMAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAADAAMAAAAIAPv/AAAEAAIAAAAJAPv/AAAEAAAAAAA=")
 tile_set = ExtResource("5_06sjx")
 metadata/_edit_lock_ = true
 
@@ -88,7 +93,7 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 
 [node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("6_oil8d")]
-position = Vector2(229, 7)
+position = Vector2(155, 19)
 display_name = "\"Recipe: Growth Potion\""
 description = "Likely contains recipes for crafting a growth potion."
 items = Array[ExtResource("7_n5j6g")]([ExtResource("11_tepk0")])
@@ -105,35 +110,37 @@ position = Vector2(56, -164)
 position = Vector2(-82, -139)
 
 [node name="YellowFlowers" parent="Objects" unique_id=687975100 instance=ExtResource("12_65xqe")]
-position = Vector2(609, 107)
+position = Vector2(507, 121)
 
 [node name="YellowFlowers2" parent="Objects" unique_id=181215601 instance=ExtResource("12_65xqe")]
-position = Vector2(388, 105.999985)
+position = Vector2(378.00003, 122)
 
 [node name="YellowFlowers3" parent="Objects" unique_id=734487831 instance=ExtResource("12_65xqe")]
-position = Vector2(507, 27)
+position = Vector2(464.99997, 33)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("14_kpwao")]
-position = Vector2(343, -680)
+position = Vector2(416, -672)
 level_path = "res://maps/main/1-3_introduction_puzzle.tscn"
 
 [node name="PressurePlate" parent="PuzzleNodes" unique_id=28620858 node_paths=PackedStringArray("door_refs") instance=ExtResource("12_jld0c")]
-position = Vector2(241, -217)
+position = Vector2(256, -205)
 trigger_weight = 200.0
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="PressurePlate2" parent="PuzzleNodes" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("12_jld0c")]
-position = Vector2(242, -408)
+position = Vector2(258, -373)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("13_6073c")]
-position = Vector2(273, -301)
+position = Vector2(288, -260)
+close_time = 1.0
 
 [node name="SlidingDoor2" parent="PuzzleNodes" unique_id=1542809239 instance=ExtResource("13_6073c")]
-position = Vector2(208, -301)
+position = Vector2(224, -260)
+close_time = 1.0
 open_direction = "Left"
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://camniccw7m1md"]
+[gd_scene format=3 uid="uid://camniccw7m1md"]
 
 [ext_resource type="Script" uid="uid://cs52w7rkn32c8" path="res://level_components/ui/windows/inventory/alchemy_containers/merger.gd" id="1_nohpg"]
-[ext_resource type="Texture2D" uid="uid://dvry72d4fo4md" path="res://art/pack/alchemy/tools/alchemy-abstract_container-full.png" id="2_qp7v8"]
+[ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://art/pack/alchemy/tools/alchemy-abstract_container-half_full.png" id="2_wuoly"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="3_8cpav"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/CheckMark.png" id="4_vejrj"]
 
@@ -15,12 +15,12 @@ func add_item(item: Item):
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p613h"]
 size = Vector2(126, 124)
 
-[node name="Merger" type="Control"]
+[node name="Merger" type="Control" unique_id=1447005517]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nohpg")
 
-[node name="ToolIcon" type="TextureRect" parent="."]
+[node name="ToolIcon" type="TextureRect" parent="." unique_id=1198254047]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -35,9 +35,9 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_qp7v8")
+texture = ExtResource("2_wuoly")
 
-[node name="ItemGrid" type="GridContainer" parent="ToolIcon"]
+[node name="ItemGrid" type="GridContainer" parent="ToolIcon" unique_id=1829487618]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,7 +53,7 @@ grow_vertical = 2
 mouse_filter = 2
 columns = 2
 
-[node name="Button1" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button1" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=1914673644]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -62,7 +62,7 @@ texture_normal = ExtResource("3_8cpav")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button2" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button2" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=344426590]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -71,7 +71,7 @@ texture_normal = ExtResource("3_8cpav")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button3" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button3" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=1031024715]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -80,7 +80,7 @@ texture_normal = ExtResource("3_8cpav")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ButtonConfirm" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="ButtonConfirm" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=187007972]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -89,7 +89,7 @@ texture_normal = ExtResource("4_vejrj")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="ToolIcon"]
+[node name="ProgressBar" type="ProgressBar" parent="ToolIcon" unique_id=193759059]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -106,14 +106,14 @@ mouse_filter = 2
 step = 0.001
 show_percentage = false
 
-[node name="MergerArea" type="Area2D" parent="." groups=["droppable"]]
+[node name="MergerArea" type="Area2D" parent="." unique_id=85821760 groups=["droppable"]]
 collision_layer = 4
 collision_mask = 4
 monitoring = false
 priority = 1
 script = SubResource("GDScript_18djl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MergerArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MergerArea" unique_id=2108714880]
 shape = SubResource("RectangleShape2D_p613h")
 debug_color = Color(0.5137255, 0.41960785, 1, 0.41960785)
 
