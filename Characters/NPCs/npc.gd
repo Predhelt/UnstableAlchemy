@@ -152,7 +152,7 @@ func add_shop_transaction(items_buying : Array[Item], items_buying_amount : Arra
 
 ## Removes the shop transaction of the NPC at the given index.
 func remove_shop_transaction(id : int):
-	for i in range(transactions.size()):
+	for i in transactions.size():
 		if transactions[i].id == id:
 			transactions.remove_at(i)
 

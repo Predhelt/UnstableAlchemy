@@ -85,8 +85,9 @@ func previous_window():
 	is_crafting = false
 	visible = false
 	for item in cur_craft_ingredients:
-		item.qty = 1
-		inventory_menu_ref.add_inventory_item(item)
+		if item:
+			item.qty = 1
+			inventory_menu_ref.add_inventory_item(item)
 	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	Global.left_window = null

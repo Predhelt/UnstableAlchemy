@@ -81,6 +81,10 @@ func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingSta
 		for inventory_index in inventory_indices:
 			for cur_item_index in range(items_removing.size()):
 				var cur_item = items_removing[cur_item_index]
+				if not cur_item:
+					#print("Warning: No item referenced for removal at index %s. Continuing..." % str(cur_item_index))
+					qtys[cur_item_index] = 0
+					continue
 				## Find matching IDs
 				if inventory_item_infos[inventory_index] == cur_item.id:
 					var cur_qty = qtys[cur_item_index]
@@ -139,9 +143,9 @@ func has_item_amounts(items_checking : Array[Item], qtys : Array[int]) -> bool:
 		print("ERROR: Items and quantities arrays should have the same size")
 		return false
 	
-	for i in range(items_checking.size()):
+	for i in items_checking.size():
 		var temp_qty : int = qtys[i]
-		for j in range(items.size()):
+		for j in items.size():
 			if items_checking[i].id == items[j].id:
 				if temp_qty <= items[j].qty:
 					temp_qty = 0
@@ -160,16 +164,20 @@ func get_item_index(item : Item) -> int:
 			return i
 	return -1
 
-## Checks if the inventory has all items and their appropriate amounts.
-## Returns a dictionary of Keys: Indices and Values: IDs of the items in inventory.
+## Checks if this inventory has all [Item]s and their appropriate [member Item.qty].
+## Returns a [Dictionary] of Keys: Indices in the item menu and
+## Values: [member Item.id]s in this inventory.
 func get_item_indices(items_checking : Array[Item], qtys : Array[int]) -> Dictionary:
 	if items_checking.size() != qtys.size():
-		print("ERROR: Items and quantities arrays should have the name size")
+		print("ERROR: Items and quantities arrays should have the same size")
 		return {}
 	var found_items : Dictionary ## Key : Index, Value : ID of items in inventory
 	
 	for i in range(items_checking.size()):
 		var temp_qty : int = qtys[i]
+		if not items_checking[i] :
+			#print("Warning: Empty item slot in recipe items at index %s. Continuing..." % str(i))
+			continue
 		for j in range(items.size()-1, -1, -1): # Descending order, to remove the later elements first.
 			if items_checking[i].id == items[j].id:
 				found_items[j] = items_checking[i].id

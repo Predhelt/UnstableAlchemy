@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Book" format=3 uid="uid://c3c5x8an0plk1"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_g6pg2"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_e7bbl"]
+[ext_resource type="Resource" uid="uid://blno3rlbqvdhu" path="res://game_systems/alchemy/recipes/cauldron/grow_potion.tres" id="3_b3fci"]
+[ext_resource type="Script" uid="uid://dvfx56s3nb8gd" path="res://game_systems/items/book.gd" id="3_gmkwd"]
+[ext_resource type="Resource" uid="uid://cdk3gxltxa8dr" path="res://game_systems/alchemy/recipes/merger/green_paste.tres" id="4_xdrnw"]
+[ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://game_systems/alchemy/recipes/mp/gray_juice.tres" id="5_vv7tx"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="7_xdrnw"]
+
+[resource]
+script = ExtResource("3_gmkwd")
+recipes = Array[ExtResource("2_e7bbl")]([ExtResource("3_b3fci"), ExtResource("4_xdrnw"), ExtResource("5_vv7tx")])
+id = 1004
+display_name = "Recipe: Grow Potion"
+description = "Contains recipes for crafting a growth potion."
+texture = ExtResource("7_xdrnw")
+metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

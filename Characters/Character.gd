@@ -449,12 +449,14 @@ func _get_se_index(se : StatusEffect) -> int:
 			return i
 	return -1
 
-## Sets the scale of this character.
+## Sets the scale of this character. Also changes the camera zoom based on player size.
 func set_character_scale(size: float):
 	var base_size := attributes.base_size
-	var diff_ratio := size/(scale[0]*base_size)
-	set_scale(Vector2(size/base_size,size/base_size))
-	character_camera_ref.zoom *= Vector2(1.0, 1.0)/diff_ratio
+	# The percent difference between the base size and the desired size.
+	var diff_ratio := size/base_size
+	set_scale(Vector2(diff_ratio, diff_ratio))
+	# 
+	character_camera_ref.zoom = Vector2(1.0, 1.0) / ((diff_ratio + 100/base_size) / 2)
 
 ## Sets visibility of the attribues panel
 func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:

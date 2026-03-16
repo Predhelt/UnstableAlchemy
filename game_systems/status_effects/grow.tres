@@ -10,5 +10,5 @@ name = "Grow"
 description = "Makes you big"
 icon = ExtResource("1_e0mj2")
 effect = "grow"
-value = 3.0
+value = 2.0
 duration = -1.0

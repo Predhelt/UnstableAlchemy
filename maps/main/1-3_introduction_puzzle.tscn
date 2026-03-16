@@ -5,12 +5,16 @@
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_hqcxu"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="4_tbfy7"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="5_06sjx"]
+[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="5_oil8d"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_n5j6g"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="6_oil8d"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_5k33r"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="7_n5j6g"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="8_5k33r"]
+[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="7_tepk0"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="9_tepk0"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="10_uc71n"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="11_f5cpi"]
+[ext_resource type="Resource" uid="uid://c3c5x8an0plk1" path="res://game_systems/items/recipe_books/grow_potion_book.tres" id="11_tepk0"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="12_65xqe"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="12_jld0c"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="13_6073c"]
@@ -21,15 +25,20 @@
 script = ExtResource("3_hqcxu")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
+[sub_resource type="Resource" id="Resource_uc71n"]
+script = ExtResource("7_5k33r")
+items = Array[ExtResource("7_n5j6g")]([ExtResource("5_oil8d"), ExtResource("6_n5j6g"), ExtResource("7_tepk0")])
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
+
 [sub_resource type="Resource" id="Resource_51mqc"]
 script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("11_tepk0")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_i4gor"]
 script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("11_tepk0")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
@@ -43,6 +52,7 @@ metadata/_edit_lock_ = true
 position = Vector2(123, 13)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_ovyrl")
+inventory = SubResource("Resource_uc71n")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
@@ -79,7 +89,9 @@ y_sort_enabled = true
 
 [node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("6_oil8d")]
 position = Vector2(229, 7)
-display_name = "Recipe: Grow Potion"
+display_name = "\"Recipe: Growth Potion\""
+description = "Likely contains recipes for crafting a growth potion."
+items = Array[ExtResource("7_n5j6g")]([ExtResource("11_tepk0")])
 grab_interaction = SubResource("Resource_51mqc")
 cut_interaction = SubResource("Resource_i4gor")
 

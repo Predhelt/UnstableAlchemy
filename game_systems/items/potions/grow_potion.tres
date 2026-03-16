@@ -9,7 +9,7 @@
 script = ExtResource("2_j8fst")
 id = 503
 display_name = "Potion of Growth"
-description = "Increases size"
+description = "Increases size, which also increases mass, speed, and strength."
 texture = ExtResource("4_44pn3")
 qty = 5
 on_consume_effects = Array[ExtResource("1_j8fst")]([ExtResource("2_44pn3")])
