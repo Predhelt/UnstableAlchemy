@@ -3,31 +3,46 @@
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_65xqe"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_ucbr3"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_hqcxu"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="4_lwpxw"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="4_tbfy7"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="5_06sjx"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="5_t816p"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="6_oil8d"]
+[ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://game_systems/alchemy/recipes/mp/gray_juice.tres" id="6_uww4y"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="7_n5j6g"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="8_5k33r"]
+[ext_resource type="Resource" uid="uid://cdk3gxltxa8dr" path="res://game_systems/alchemy/recipes/merger/green_paste.tres" id="7_vac6p"]
+[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="9_jb4fk"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="9_tepk0"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="10_hi8vr"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="10_uc71n"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="11_f5cpi"]
+[ext_resource type="Resource" uid="uid://dyo76rscy5hss" path="res://game_systems/items/mp_products/gray_juice.tres" id="11_kslwc"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="12_am6pl"]
+[ext_resource type="Resource" uid="uid://dtbcgtw8wo2j6" path="res://game_systems/items/merged_ingredients/green_paste.tres" id="12_oua8c"]
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://level_components/objects/interactable/plants/blue_berry_bush.tscn" id="13_5k5hu"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="13_ejif0"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="14_kpwao"]
+[ext_resource type="Resource" uid="uid://bpgnegvcg63o4" path="res://game_systems/status_effects/grow.tres" id="15_4yetv"]
+[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="19_t7sp0"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("3_hqcxu")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
+[sub_resource type="Resource" id="Resource_etwul"]
+script = ExtResource("13_ejif0")
+items = Array[ExtResource("7_n5j6g")]([ExtResource("9_jb4fk"), ExtResource("10_hi8vr"), ExtResource("11_kslwc"), ExtResource("12_oua8c")])
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
+
 [sub_resource type="Resource" id="Resource_51mqc"]
 script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("19_t7sp0")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_i4gor"]
 script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("19_t7sp0")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
@@ -38,9 +53,12 @@ metadata/_edit_lock_ = true
 [node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_65xqe")]
 
 [node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_ucbr3")]
-position = Vector2(123, 13)
+position = Vector2(65, 36)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_ovyrl")
+known_recipes = Array[ExtResource("4_lwpxw")]([ExtResource("5_t816p"), ExtResource("6_uww4y"), ExtResource("7_vac6p")])
+inventory = SubResource("Resource_etwul")
+active_status_effects = Array[ExtResource("9_tepk0")]([ExtResource("15_4yetv")])
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
@@ -76,39 +94,38 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 
 [node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("6_oil8d")]
-position = Vector2(229, 7)
-display_name = "\"Green Herbs - An Introduction\""
-description = "Describes how to make Green Flakes"
-items = Array[ExtResource("7_n5j6g")]([ExtResource("8_5k33r")])
+position = Vector2(175, 3)
+display_name = "\"Recipe: Normalize Potion\""
+description = "Likely contains information on how to craft a normalizing potion."
 grab_interaction = SubResource("Resource_51mqc")
 cut_interaction = SubResource("Resource_i4gor")
 
 [node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("11_f5cpi")]
-position = Vector2(-20, -209)
+position = Vector2(8, -183)
 
 [node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("11_f5cpi")]
-position = Vector2(56, -164)
+position = Vector2(84, -138)
 
 [node name="GreenHerb3" parent="Objects" unique_id=658593362 instance=ExtResource("11_f5cpi")]
-position = Vector2(-82, -139)
+position = Vector2(-54, -113)
 
 [node name="YellowFlowers" parent="Objects" unique_id=687975100 instance=ExtResource("12_am6pl")]
-position = Vector2(609, 107)
+position = Vector2(543, 66)
 
 [node name="BlueBerryBush" parent="Objects" unique_id=1022518106 instance=ExtResource("13_5k5hu")]
-position = Vector2(457, -209)
+position = Vector2(385, -197)
 
 [node name="BlueBerryBush2" parent="Objects" unique_id=1137260771 instance=ExtResource("13_5k5hu")]
-position = Vector2(546, -186)
+position = Vector2(474, -174)
 
 [node name="BlueBerryBush3" parent="Objects" unique_id=636110122 instance=ExtResource("13_5k5hu")]
-position = Vector2(401, -142)
+position = Vector2(329, -130)
 
 [node name="YellowFlowers2" parent="Objects" unique_id=181215601 instance=ExtResource("12_am6pl")]
-position = Vector2(388, 105.999985)
+position = Vector2(322, 64.999985)
 
 [node name="YellowFlowers3" parent="Objects" unique_id=734487831 instance=ExtResource("12_am6pl")]
-position = Vector2(507, 27)
+position = Vector2(441, -13.999996)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true

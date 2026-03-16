@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Book" format=3 uid="uid://c8iivm16gu105"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_ll4vd"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_1dds6"]
+[ext_resource type="Script" uid="uid://dvfx56s3nb8gd" path="res://game_systems/items/book.gd" id="3_kecr6"]
+[ext_resource type="Resource" uid="uid://bc5eejkctp45w" path="res://game_systems/alchemy/recipes/cauldron/normalize_potion.tres" id="3_lo6eq"]
+[ext_resource type="Resource" uid="uid://cdk3gxltxa8dr" path="res://game_systems/alchemy/recipes/merger/green_paste.tres" id="4_hxnry"]
+[ext_resource type="Resource" uid="uid://dg8a30l0ydhnc" path="res://game_systems/alchemy/recipes/merger/orange_paste.tres" id="5_xnpyo"]
+[ext_resource type="Resource" uid="uid://b6qetxhw6gurj" path="res://game_systems/alchemy/recipes/mp/blue_berry_seed.tres" id="6_7up2t"]
+[ext_resource type="Resource" uid="uid://bcwvdvunrlclk" path="res://game_systems/alchemy/recipes/mp/gray_juice.tres" id="7_a7dxt"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="8_ojn0e"]
+[ext_resource type="Resource" uid="uid://dus5f01yypc4q" path="res://game_systems/alchemy/recipes/mp/red_juice.tres" id="9_kjp82"]
+
+[resource]
+script = ExtResource("3_kecr6")
+recipes = Array[ExtResource("2_1dds6")]([ExtResource("3_lo6eq"), ExtResource("4_hxnry"), ExtResource("5_xnpyo"), ExtResource("6_7up2t"), ExtResource("7_a7dxt"), ExtResource("8_ojn0e"), ExtResource("9_kjp82")])
+metadata/_custom_type_script = "uid://dvfx56s3nb8gd"
