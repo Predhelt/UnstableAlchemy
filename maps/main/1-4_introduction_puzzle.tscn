@@ -83,7 +83,7 @@ metadata/_edit_lock_ = true
 
 [node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
 z_index = -10
-tile_map_data = PackedByteArray("AAAGAPP/AQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAGAPP/AQACAAAAAAD+////AgAGAAAAAAD///7/AgACAAAAAAAAAP//AgAEAAAAAAABAP7/AgAGAAAAAAACAAAAAgADAAAAAAAFAAEAAgAGAAAAAAAHAPv/AgADAAAAAAAIAP7/AgADAAAAAAAIAP//AgAGAAAAAAAJAAIAAgAFAAAAAAABAPP/AgAGAAAAAAACAPT/AgAGAAAAAAAEAPf/AgAFAAAAAAAFAPf/AgAFAAAAAAAGAPj/AgAFAAAAAAA=")
 tile_set = ExtResource("5_06sjx")
 metadata/_edit_lock_ = true
 
@@ -104,31 +104,31 @@ grab_interaction = SubResource("Resource_51mqc")
 cut_interaction = SubResource("Resource_i4gor")
 
 [node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("11_f5cpi")]
-position = Vector2(8, -183)
+position = Vector2(-6, -195)
 
 [node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("11_f5cpi")]
-position = Vector2(84, -138)
+position = Vector2(48, -103)
 
 [node name="GreenHerb3" parent="Objects" unique_id=658593362 instance=ExtResource("11_f5cpi")]
-position = Vector2(-54, -113)
+position = Vector2(-101, -145)
 
 [node name="YellowFlowers" parent="Objects" unique_id=687975100 instance=ExtResource("12_am6pl")]
-position = Vector2(543, 66)
+position = Vector2(467, 135.99998)
 
 [node name="BlueBerryBush" parent="Objects" unique_id=1022518106 instance=ExtResource("13_5k5hu")]
-position = Vector2(385, -197)
+position = Vector2(354.99997, -229)
 
 [node name="BlueBerryBush2" parent="Objects" unique_id=1137260771 instance=ExtResource("13_5k5hu")]
-position = Vector2(474, -174)
+position = Vector2(481.99997, -184)
 
 [node name="BlueBerryBush3" parent="Objects" unique_id=636110122 instance=ExtResource("13_5k5hu")]
-position = Vector2(329, -130)
+position = Vector2(324, -100.000015)
 
 [node name="YellowFlowers2" parent="Objects" unique_id=181215601 instance=ExtResource("12_am6pl")]
-position = Vector2(322, 64.999985)
+position = Vector2(304, 40)
 
 [node name="YellowFlowers3" parent="Objects" unique_id=734487831 instance=ExtResource("12_am6pl")]
-position = Vector2(441, -13.999996)
+position = Vector2(434.99997, 14.999999)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true

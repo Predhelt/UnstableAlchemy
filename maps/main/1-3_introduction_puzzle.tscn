@@ -79,7 +79,7 @@ metadata/_edit_lock_ = true
 
 [node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
 z_index = -10
-tile_map_data = PackedByteArray("AAAGAPX/AQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAGAPX/AQACAAAAAAD///z/AgAFAAAAAAAAAP3/AgAEAAAAAAAAAP//AgAGAAAAAAAAAAIAAgAEAAAAAAACAPz/AgADAAAAAAADAAAAAgAFAAAAAAAFAAEAAgAEAAAAAAAHAP3/AgAGAAAAAAAJAAIAAgADAAAAAAABAPr/AgAFAAAAAAAGAPb/AgACAAAAAAA=")
 tile_set = ExtResource("5_06sjx")
 metadata/_edit_lock_ = true
 
@@ -101,22 +101,31 @@ grab_interaction = SubResource("Resource_51mqc")
 cut_interaction = SubResource("Resource_i4gor")
 
 [node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("11_f5cpi")]
-position = Vector2(-20, -209)
+position = Vector2(22, -210)
 
 [node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("11_f5cpi")]
-position = Vector2(56, -164)
+position = Vector2(83, -134)
 
 [node name="GreenHerb3" parent="Objects" unique_id=658593362 instance=ExtResource("11_f5cpi")]
-position = Vector2(-82, -139)
+position = Vector2(-44, -125)
 
 [node name="YellowFlowers" parent="Objects" unique_id=687975100 instance=ExtResource("12_65xqe")]
-position = Vector2(507, 121)
+position = Vector2(541.99994, 95)
 
 [node name="YellowFlowers2" parent="Objects" unique_id=181215601 instance=ExtResource("12_65xqe")]
-position = Vector2(378.00003, 122)
+position = Vector2(412, 112)
 
 [node name="YellowFlowers3" parent="Objects" unique_id=734487831 instance=ExtResource("12_65xqe")]
 position = Vector2(464.99997, 33)
+
+[node name="RedBerryBush" parent="Objects" unique_id=1320011023 instance=ExtResource("16_hqcxu")]
+position = Vector2(419.00003, -131)
+
+[node name="RedBerryBush2" parent="Objects" unique_id=86600028 instance=ExtResource("16_hqcxu")]
+position = Vector2(499, -208)
+
+[node name="RedBerryBush3" parent="Objects" unique_id=1079445657 instance=ExtResource("16_hqcxu")]
+position = Vector2(550, -142)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
@@ -167,11 +176,10 @@ text = "- Learn Attributes (Mass)
 - Use Merger
 - Use Cauldron"
 
-[node name="RedBerryBush" parent="." unique_id=1320011023 instance=ExtResource("16_hqcxu")]
-position = Vector2(381, -127)
-
-[node name="RedBerryBush2" parent="." unique_id=86600028 instance=ExtResource("16_hqcxu")]
-position = Vector2(499, -208)
-
-[node name="RedBerryBush3" parent="." unique_id=1079445657 instance=ExtResource("16_hqcxu")]
-position = Vector2(550, -142)
+[node name="LabelReset" type="Label" parent="Labels" unique_id=570485978]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 214.0
+offset_right = 519.0
+offset_bottom = 237.0
+text = "If you get stuck, reset by going to level select and back to this level."
