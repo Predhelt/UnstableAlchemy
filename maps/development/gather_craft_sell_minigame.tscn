@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="25_5anji"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="26_poe06"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="27_ey2lk"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="28_6m25f"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="28_6m25f"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="30_2m6xo"]
 [ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://level_components/objects/triggers/blockage_area.tscn" id="31_3ummi"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="32_ho6lh"]

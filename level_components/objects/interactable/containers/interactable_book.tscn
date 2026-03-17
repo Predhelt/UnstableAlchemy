@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://jq2f52igbal7"]
 
-[ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://level_components/objects/interactable/recipe_books/interactable_book.gd" id="1_emsgg"]
+[ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://level_components/objects/interactable/containers/interactable_book.gd" id="1_emsgg"]
 [ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="2_emsgg"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="7_s4f4p"]
 
-[node name="RecipeItem" type="Node2D"]
+[node name="RecipeItem" type="Node2D" unique_id=1856845390]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_emsgg")
 display_name = "Recipe"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
 texture = ExtResource("2_emsgg")
 
-[node name="InteractArea" parent="." instance=ExtResource("7_s4f4p")]
+[node name="InteractArea" parent="." unique_id=1577246465 instance=ExtResource("7_s4f4p")]
 interact_type = 2
 
 [connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]

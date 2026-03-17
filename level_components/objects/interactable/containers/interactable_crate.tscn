@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://6jdasvil2jhh"]
+
+[ext_resource type="Script" uid="uid://b4os8v32yq8rx" path="res://level_components/objects/interactable/containers/interactable_crate.gd" id="1_uf1m6"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="2_ktlv5"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="3_p1o4b"]
+
+[node name="Crate" type="Node2D" unique_id=1856845390]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_uf1m6")
+display_name = "Recipe"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
+texture = ExtResource("2_ktlv5")
+
+[node name="InteractArea" parent="." unique_id=1577246465 instance=ExtResource("3_p1o4b")]
+interact_type = 2
+
+[connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
+[connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
+[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
+[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]

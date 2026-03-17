@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="16_3no3h"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="18_w5tsc"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="19_midar"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="20_bmql1"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="20_bmql1"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="22_h8hre"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="23_heaso"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="24_2ngwq"]

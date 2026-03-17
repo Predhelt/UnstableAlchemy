@@ -1,47 +1,47 @@
 [gd_scene format=4 uid="uid://cljq0liiwb3o3"]
 
-[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_uy2ni"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_s6vkc"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_gcp2g"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="19_ieghg"]
-[ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrinkpuzzle/shelly_sp.tscn" id="19_o5lra"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="20_3ia0k"]
-[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="20_7gp5o"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="21_v8p44"]
-[ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="22_spukt"]
-[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="23_c8n0i"]
-[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="24_3b27p"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="25_fiksh"]
-[ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="26_wl3dv"]
-[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="27_ojnyh"]
-[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="28_8faoh"]
-[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="29_5w16x"]
-[ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://level_components/objects/collisions/wall_small_hole.tscn" id="30_vik43"]
-[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="31_4i1bq"]
-[ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant-blue-berry.png" id="32_ieghg"]
-[ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant-red-berry.png" id="33_sgipv"]
-[ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper-full.png" id="34_rdvj0"]
-[ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="35_b2b0t"]
-[ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow-paste.png" id="36_wlxb5"]
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_78sge"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_bcy3g"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_6o0uj"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_ssofw"]
+[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="5_vj4lo"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_wlp5u"]
+[ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrinkpuzzle/shelly_sp.tscn" id="7_cq7vc"]
+[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="8_uuc80"]
+[ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="9_a2l4l"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="10_oamna"]
+[ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="11_6oy8b"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="12_xc4n3"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="13_dbj7y"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="14_37q16"]
+[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="15_8p50i"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="16_qydtv"]
+[ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://level_components/objects/collisions/wall_small_hole.tscn" id="17_08dus"]
+[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="18_hmt3f"]
+[ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant-blue-berry.png" id="19_axwew"]
+[ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant-red-berry.png" id="20_e6reo"]
+[ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper-full.png" id="21_4gjee"]
+[ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="22_wl68a"]
+[ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow-paste.png" id="23_w53eh"]
 
 [sub_resource type="Resource" id="Resource_qo0cn"]
-script = ExtResource("18_gcp2g")
+script = ExtResource("3_6o0uj")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_yiupm"]
-script = ExtResource("19_ieghg")
-items = Array[ExtResource("21_v8p44")]([ExtResource("20_7gp5o")])
+script = ExtResource("6_wlp5u")
+items = Array[ExtResource("4_ssofw")]([ExtResource("5_vj4lo")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_w7xfw"]
-script = ExtResource("24_3b27p")
-on_interact_items = Array[ExtResource("21_v8p44")]([ExtResource("22_spukt")])
+script = ExtResource("13_dbj7y")
+on_interact_items = Array[ExtResource("4_ssofw")]([ExtResource("11_6oy8b")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_wbsda"]
-script = ExtResource("24_3b27p")
-on_interact_items = Array[ExtResource("21_v8p44")]([ExtResource("22_spukt")])
+script = ExtResource("13_dbj7y")
+on_interact_items = Array[ExtResource("4_ssofw")]([ExtResource("11_6oy8b")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
@@ -49,9 +49,9 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_uy2ni")]
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_78sge")]
 
-[node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_s6vkc")]
+[node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_bcy3g")]
 position = Vector2(256, 6)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_qo0cn")
@@ -63,7 +63,7 @@ position = Vector2(256, 6)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="NPCShelly" parent="." unique_id=1346242213 instance=ExtResource("19_o5lra")]
+[node name="NPCShelly" parent="." unique_id=1346242213 instance=ExtResource("7_cq7vc")]
 position = Vector2(395, -213)
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 attributes = null
@@ -75,72 +75,72 @@ metadata/_edit_lock_ = true
 [node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
 z_index = -50
 scale = Vector2(2, 2)
-tile_set = ExtResource("25_fiksh")
+tile_set = ExtResource("8_uuc80")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
 tile_map_data = PackedByteArray("AAAAAP//AgAAAAAAAQABAP//AgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQAAAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAHAP//AgAAAAAAAQAGAP//AgAAAAAAAQAFAP//AgAAAAAAAQAEAP7/AgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAHAP7/AgAAAAAAAQAIAP7/AgAAAAAAAQAJAP7/AgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQADAAEAAgAAAAAAAQACAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQD+//7/AgAAAAAAAQD///7/AgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAP3/AgAAAAAAAQADAP3/AgAAAAAAAQAEAP3/AgAAAAAAAQAEAPz/AgAAAAAAAQADAPz/AgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQABAP3/AgAAAAAAAQABAPv/AgAAAAAAAQACAPv/AgAAAAAAAQADAPv/AgAAAAAAAQAEAPv/AgAAAAAAAQAFAPv/AgAAAAAAAQAFAPz/AgAAAAAAAQAFAP3/AgAAAAAAAQAGAPv/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAJAPv/AgAAAAAAAQAJAPz/AgAAAAAAAQAJAP3/AgAAAAAAAQAIAP3/AgAAAAAAAQAHAP3/AgAAAAAAAQAGAP3/AgAAAAAAAQAGAPz/AgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQAAAPv/AgAAAAAAAQD///v/AgAAAAAAAQD+//v/AgAAAAAAAQD+//z/AgAAAAAAAQD+//3/AgAAAAAAAQD///3/AgAAAAAAAQAAAP3/AgAAAAAAAQAAAPz/AgAAAAAAAQD///z/AgAAAAAAAQAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAQAGAPr/AgAAAAAAAQAHAPr/AgAAAAAAAQAIAPr/AgAAAAAAAQAHAPn/AgAAAAAAAQAHAPj/AgAAAAAAAAAHAPf/AgAAAAAAAAAHAPb/AgAAAAAAAAAGAPb/AgAAAAAAAAAFAPb/AgAAAAAAAAAEAPb/AgAAAAAAAAADAPb/AgAAAAAAAAACAPb/AgAAAAAAAAABAPb/AgAAAAAAAAAAAPb/AgAAAAAAAAAAAPf/AgAAAAAAAAAAAPj/AgAAAAAAAAAAAPn/AgAAAAAAAAABAPn/AgAAAAAAAAABAPj/AgAAAAAAAAABAPf/AgAAAAAAAAABAPX/AgAAAAAAAAACAPX/AgAAAAAAAAADAPX/AgAAAAAAAAAEAPX/AgAAAAAAAAAFAPX/AgAAAAAAAAAGAPX/AgAAAAAAAAAHAPX/AgAAAAAAAAAIAPb/AgAAAAAAAAAIAPf/AgAAAAAAAAAIAPj/AgAAAAAAAAAIAPn/AgAAAAAAAQAJAPn/AgAAAAAAAQAJAPr/AgAAAAAAAQAGAPn/AgAAAAAAAQAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAFAPj/AgAAAAAAAAAFAPn/AgAAAAAAAQAEAPf/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPn/AgAAAAAAAAADAPn/AgAAAAAAAAADAPj/AgAAAAAAAAADAPf/AgAAAAAAAAACAPn/AgAAAAAAAAACAPj/AgAAAAAAAAACAPf/AgAAAAAAAAADAPr/AgAAAAAAAAAKAPn/AgAAAAAAAQAKAPr/AgAAAAAAAQAKAPv/AgAAAAAAAQAKAPz/AgAAAAAAAQAKAP3/AgAAAAAAAQAKAP7/AgAAAAAAAQALAPn/AgAAAAAAAQALAPr/AgAAAAAAAQALAPv/AgAAAAAAAQALAPz/AgAAAAAAAQALAP3/AgAAAAAAAQALAP7/AgAAAAAAAQAMAPn/AgAAAAAAAQAMAPr/AgAAAAAAAQAMAPv/AgAAAAAAAQAMAPz/AgAAAAAAAQAMAP3/AgAAAAAAAQAMAP7/AgAAAAAAAQA=")
-tile_set = ExtResource("26_wl3dv")
+tile_set = ExtResource("9_a2l4l")
 metadata/_edit_lock_ = true
 
 [node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
 z_index = -10
 tile_map_data = PackedByteArray("AAABAPb/AgACAAAAAAAFAPf/AgABAAAAAAAGAPb/AgADAAAAAAAFAP3/AgADAAAAAAADAP3/AgAFAAAAAAAHAP3/AgAGAAAAAAAFAP//AgAFAAAAAAD///z/AgAEAAAAAAACAP3/AgACAAAAAAAGAPr/AgAGAAAAAAAHAPz/AgAFAAAAAAALAP3/AQACAAAAAAA=")
-tile_set = ExtResource("26_wl3dv")
+tile_set = ExtResource("9_a2l4l")
 metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
 tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAAEAAMAAAABAP7/AAAEAAAAAAD+//7/AAADAAIAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAMAAAAIAP7/AAAEAAAAAAAJAP7/AAAEAAIAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAAEAAAAAAABAPv/AAAEAAIAAAACAPv/AAAEAAIAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPn/AAADAAIAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAAFAAEAAAAIAPj/AAAFAAEAAAAIAPn/AAADAAMAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAFAPr/AAADAAEAAAAFAPn/AAADAAAAAAAGAPn/AAAEAAAAAAAHAPn/AAAEAAAAAAACAPn/AAAEAAAAAAABAPn/AAAEAAIAAAADAPn/AAAFAAAAAAADAPr/AAADAAEAAAADAPv/AAADAAMAAAAJAPn/AAAEAAIAAAAFAPv/AAAFAAIAAAAKAPn/AAAEAAAAAAALAPn/AAAEAAIAAAAMAPn/AAAFAAAAAAAMAPr/AAAFAAEAAAAMAPv/AAAFAAEAAAAMAPz/AAADAAEAAAAMAP3/AAADAAEAAAAMAP7/AAAFAAIAAAALAP7/AAAEAAIAAAAKAP7/AAAEAAIAAAA=")
-tile_set = ExtResource("26_wl3dv")
+tile_set = ExtResource("9_a2l4l")
 metadata/_edit_lock_ = true
 
 [node name="Objects" type="Node2D" parent="." unique_id=354937822]
 y_sort_enabled = true
 
-[node name="RecipeItem" parent="Objects" unique_id=188532359 instance=ExtResource("20_3ia0k")]
+[node name="RecipeItem" parent="Objects" unique_id=188532359 instance=ExtResource("10_oamna")]
 position = Vector2(385, 8)
 display_name = "\"Shrink Potion 101\""
 description = "Describes how to make a potion of shrinking."
-items = Array[ExtResource("21_v8p44")]([ExtResource("22_spukt")])
+items = Array[ExtResource("4_ssofw")]([ExtResource("11_6oy8b")])
 grab_interaction = SubResource("Resource_w7xfw")
 cut_interaction = SubResource("Resource_wbsda")
 
-[node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("27_ojnyh")]
+[node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("14_37q16")]
 position = Vector2(103, -223)
 
-[node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("27_ojnyh")]
+[node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("14_37q16")]
 position = Vector2(73, -157)
 
-[node name="GreenHerb3" parent="Objects" unique_id=744275143 instance=ExtResource("27_ojnyh")]
+[node name="GreenHerb3" parent="Objects" unique_id=744275143 instance=ExtResource("14_37q16")]
 position = Vector2(-20, -165)
 
-[node name="YellowFlowers" parent="Objects" unique_id=687975100 instance=ExtResource("28_8faoh")]
+[node name="YellowFlowers" parent="Objects" unique_id=687975100 instance=ExtResource("15_8p50i")]
 position = Vector2(559, -186)
 
-[node name="YellowFlowers2" parent="Objects" unique_id=786601542 instance=ExtResource("28_8faoh")]
+[node name="YellowFlowers2" parent="Objects" unique_id=786601542 instance=ExtResource("15_8p50i")]
 position = Vector2(643, -146)
 
-[node name="YellowFlowers3" parent="Objects" unique_id=648610825 instance=ExtResource("28_8faoh")]
+[node name="YellowFlowers3" parent="Objects" unique_id=648610825 instance=ExtResource("15_8p50i")]
 position = Vector2(714, -223)
 
-[node name="RedBerryBush" parent="Objects" unique_id=1320011023 instance=ExtResource("29_5w16x")]
+[node name="RedBerryBush" parent="Objects" unique_id=1320011023 instance=ExtResource("16_qydtv")]
 position = Vector2(537, -320)
 
-[node name="RedBerryBush2" parent="Objects" unique_id=564445733 instance=ExtResource("29_5w16x")]
+[node name="RedBerryBush2" parent="Objects" unique_id=564445733 instance=ExtResource("16_qydtv")]
 position = Vector2(445, -291)
 
-[node name="RedBerryBush3" parent="Objects" unique_id=561923194 instance=ExtResource("29_5w16x")]
+[node name="RedBerryBush3" parent="Objects" unique_id=561923194 instance=ExtResource("16_qydtv")]
 position = Vector2(700, -332)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
 
-[node name="WallSmallHole" parent="PuzzleNodes" unique_id=1390089359 instance=ExtResource("30_vik43")]
+[node name="WallSmallHole" parent="PuzzleNodes" unique_id=1390089359 instance=ExtResource("17_08dus")]
 position = Vector2(288, -261)
 gap_size = 50.0
 
-[node name="DisplayArea" parent="PuzzleNodes" unique_id=1559738860 node_paths=PackedStringArray("display_scene") instance=ExtResource("31_4i1bq")]
+[node name="DisplayArea" parent="PuzzleNodes" unique_id=1559738860 node_paths=PackedStringArray("display_scene") instance=ExtResource("18_hmt3f")]
 position = Vector2(736, -160)
 display_scene = NodePath("../CraftHint")
 
@@ -161,19 +161,19 @@ offset_left = 263.0
 offset_top = 202.0
 offset_right = 313.0
 offset_bottom = 252.0
-texture = ExtResource("32_ieghg")
+texture = ExtResource("19_axwew")
 
 [node name="TextureRect2" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=657638774]
 offset_left = 63.0
 offset_top = 192.0
 offset_right = 127.0
 offset_bottom = 256.0
-texture = ExtResource("33_sgipv")
+texture = ExtResource("20_e6reo")
 
 [node name="Ground2" type="TileMapLayer" parent="PuzzleNodes/CraftHint" unique_id=1085470927]
 z_index = -20
 tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAFAAEAAQACAAAAAAAFAAIAAQACAAAAAAAFAAMAAQACAAAAAAAFAAQAAQACAAAAAAAEAAQAAQACAAAAAAADAAQAAQACAAAAAAACAAQAAQACAAAAAAABAAQAAQACAAAAAAAAAAQAAQACAAAAAAAAAAEAAQACAAAAAAAAAAIAAQACAAAAAAAAAAMAAQACAAAAAAABAAIAAQACAAAAAAACAAIAAQACAAAAAAADAAIAAQACAAAAAAAEAAIAAQACAAAAAAABAAEAAQABAAEAAAACAAEAAQABAAEAAAABAAMAAQABAAEAAAACAAMAAQABAAEAAAADAAMAAQADAAAAAAADAAEAAQADAAAAAAAEAAEAAgAAAAAAAQAEAAMAAgAAAAAAAQA=")
-tile_set = ExtResource("26_wl3dv")
+tile_set = ExtResource("9_a2l4l")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect3" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=1758385695]
@@ -181,21 +181,21 @@ offset_left = 255.0
 offset_top = 65.0
 offset_right = 319.0
 offset_bottom = 129.0
-texture = ExtResource("34_rdvj0")
+texture = ExtResource("21_4gjee")
 
 [node name="TextureRect4" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=876192258]
 offset_left = 62.0
 offset_top = 65.0
 offset_right = 126.0
 offset_bottom = 129.0
-texture = ExtResource("35_b2b0t")
+texture = ExtResource("22_wl68a")
 
 [node name="TextureRect5" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=1838609437]
 offset_left = 128.0
 offset_top = 64.0
 offset_right = 192.0
 offset_bottom = 128.0
-texture = ExtResource("36_wlxb5")
+texture = ExtResource("23_w53eh")
 expand_mode = 1
 stretch_mode = 4
 
@@ -204,7 +204,7 @@ offset_left = 128.0
 offset_top = 192.0
 offset_right = 192.0
 offset_bottom = 256.0
-texture = ExtResource("34_rdvj0")
+texture = ExtResource("21_4gjee")
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3

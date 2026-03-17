@@ -1,35 +1,38 @@
-[gd_scene format=4 uid="uid://dpd48ep3t8rbh"]
+[gd_scene format=4 uid="uid://dmu6gupsyxre7"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_7mplw"]
+[ext_resource type="Resource" uid="uid://bug73xhr5bl3w" path="res://game_systems/status_effects/energized_burst.tres" id="6_jipbs"]
+[ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="7_7mplw"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="8_pwspj"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_2sv4n"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_vgkhd"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_bkrfv"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_m8sw8"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/recipe_books/interactable_book.tscn" id="21_fufpr"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="22_t1nn1"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="23_crubh"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="24_vjxr3"]
-[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="25_03p8f"]
-[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="26_fxgvg"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="27_y833b"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="28_gocu4"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="29_ovyrl"]
 
-[sub_resource type="Resource" id="Resource_ovyrl"]
+[sub_resource type="Resource" id="Resource_ocdcf"]
 script = ExtResource("18_vgkhd")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_51mqc"]
-script = ExtResource("25_03p8f")
-on_interact_items = Array[ExtResource("22_t1nn1")]([ExtResource("23_crubh")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+[sub_resource type="Resource" id="Resource_sx8rp"]
+script = ExtResource("22_t1nn1")
+id = 100
+display_name = "Green Flakes"
+description = "Green herb leaves that have been ground up into flakes"
+texture = ExtResource("7_7mplw")
+max_qty = 32
+qty = 10
+on_consume_effects = Array[ExtResource("24_vjxr3")]([ExtResource("6_jipbs")])
+on_consume_message = "You feel a quick burst of energy"
 
-[sub_resource type="Resource" id="Resource_i4gor"]
-script = ExtResource("25_03p8f")
-on_interact_items = Array[ExtResource("22_t1nn1")]([ExtResource("23_crubh")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+[sub_resource type="Resource" id="Resource_bo0de"]
+script = ExtResource("8_pwspj")
+items = Array[ExtResource("22_t1nn1")]([SubResource("Resource_sx8rp")])
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -38,13 +41,13 @@ metadata/_edit_lock_ = true
 [node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_7mplw")]
 
 [node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_2sv4n")]
-position = Vector2(123, 13)
+position = Vector2(135, 17)
 character_camera_ref = NodePath("../PlayerCamera")
-attributes = SubResource("Resource_ovyrl")
+attributes = SubResource("Resource_ocdcf")
+inventory = SubResource("Resource_bo0de")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
-position = Vector2(123, 13)
 process_callback = 0
 position_smoothing_enabled = true
 
@@ -59,38 +62,24 @@ tile_set = ExtResource("19_bkrfv")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
-tile_map_data = PackedByteArray("AAAAAP//AgAAAAAAAQABAP//AgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQAAAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAHAP//AgAAAAAAAQAGAP//AgAAAAAAAQAFAP//AgAAAAAAAQAEAP7/AgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAHAP7/AgAAAAAAAQAIAP7/AgAAAAAAAQAJAP7/AgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQADAAEAAgAAAAAAAQACAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQD+//7/AgAAAAAAAQD///7/AgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAP3/AgAAAAAAAQADAP3/AgAAAAAAAQAEAP3/AgAAAAAAAQAEAPz/AgAAAAAAAQADAPz/AgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQABAP3/AgAAAAAAAQABAPv/AgAAAAAAAQACAPv/AgAAAAAAAQADAPv/AgAAAAAAAQAEAPv/AgAAAAAAAQAFAPv/AgAAAAAAAQAFAPz/AgAAAAAAAQAFAP3/AgAAAAAAAQAGAPv/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAJAPv/AgAAAAAAAQAJAPz/AgAAAAAAAQAJAP3/AgAAAAAAAQAIAP3/AgAAAAAAAQAHAP3/AgAAAAAAAQAGAP3/AgAAAAAAAQAGAPz/AgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQAAAPv/AgAAAAAAAQD///v/AgAAAAAAAQD+//v/AgAAAAAAAQD+//z/AgAAAAAAAQD+//3/AgAAAAAAAQD///3/AgAAAAAAAQAAAP3/AgAAAAAAAQAAAPz/AgAAAAAAAQD///z/AgAAAAAAAQABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAHAPr/AgAAAAAAAAAIAPr/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPj/AgAAAAAAAAAHAPf/AgAAAAAAAAAHAPb/AgAAAAAAAAAGAPb/AgAAAAAAAAAFAPb/AgAAAAAAAAAEAPb/AgAAAAAAAAADAPb/AgAAAAAAAAACAPb/AgAAAAAAAAABAPb/AgAAAAAAAAAAAPb/AgAAAAAAAAAAAPf/AgAAAAAAAAAAAPj/AgAAAAAAAAAAAPn/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPn/AgAAAAAAAAABAPj/AgAAAAAAAAABAPf/AgAAAAAAAAABAPX/AgAAAAAAAAACAPX/AgAAAAAAAAADAPX/AgAAAAAAAAAEAPX/AgAAAAAAAAAFAPX/AgAAAAAAAAAGAPX/AgAAAAAAAAAHAPX/AgAAAAAAAAAIAPb/AgAAAAAAAAAIAPf/AgAAAAAAAAAIAPj/AgAAAAAAAAAIAPn/AgAAAAAAAAAJAPn/AgAAAAAAAAAJAPr/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAFAPj/AgAAAAAAAAAFAPn/AgAAAAAAAAAEAPf/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPn/AgAAAAAAAAADAPn/AgAAAAAAAAADAPj/AgAAAAAAAAADAPf/AgAAAAAAAAACAPn/AgAAAAAAAAACAPj/AgAAAAAAAAACAPf/AgAAAAAAAAAKAPv/AgAAAAAAAQALAPv/AgAAAAAAAQAMAPv/AgAAAAAAAQANAPv/AgAAAAAAAQAOAPv/AgAAAAAAAQAPAPv/AgAAAAAAAQAQAPv/AgAAAAAAAQARAPv/AgAAAAAAAQARAPz/AgAAAAAAAQARAP3/AgAAAAAAAQARAP7/AgAAAAAAAQAQAP7/AgAAAAAAAQAPAP7/AgAAAAAAAQAOAP7/AgAAAAAAAQANAP7/AgAAAAAAAQAMAP7/AgAAAAAAAQALAP7/AgAAAAAAAQAKAP7/AgAAAAAAAQAKAP3/AgAAAAAAAQAKAPz/AgAAAAAAAQALAPz/AgAAAAAAAQAMAPz/AgAAAAAAAQANAPz/AgAAAAAAAQAOAPz/AgAAAAAAAQAPAPz/AgAAAAAAAQAQAPz/AgAAAAAAAQAQAP3/AgAAAAAAAQAPAP3/AgAAAAAAAQAOAP3/AgAAAAAAAQANAP3/AgAAAAAAAQAMAP3/AgAAAAAAAQALAP3/AgAAAAAAAQAKAPr/AgAAAAAAAQALAPr/AgAAAAAAAQAMAPr/AgAAAAAAAQANAPr/AgAAAAAAAQAOAPr/AgAAAAAAAQAPAPr/AgAAAAAAAQAQAPr/AgAAAAAAAQARAPr/AgAAAAAAAQASAPr/AgAAAAAAAQASAPv/AgAAAAAAAQASAPz/AgAAAAAAAQASAP3/AgAAAAAAAQASAP7/AgAAAAAAAQASAP//AgAAAAAAAQARAP//AgAAAAAAAQAQAP//AgAAAAAAAQAPAP//AgAAAAAAAQAOAP//AgAAAAAAAQANAP//AgAAAAAAAQAMAP//AgAAAAAAAQALAP//AgAAAAAAAQAKAP//AgAAAAAAAQAJAP//AgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAAAP//AgAAAAAAAQABAP//AgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQAAAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAHAP//AgAAAAAAAQAGAP//AgAAAAAAAQAFAP//AgAAAAAAAQAEAP7/AgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAHAP7/AgAAAAAAAQAIAP7/AgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQADAAEAAgAAAAAAAQACAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAP3/AgAAAAAAAQADAP3/AgAAAAAAAQAEAP3/AgAAAAAAAQAEAPz/AgAAAAAAAQADAPz/AgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQABAP3/AgAAAAAAAQABAPv/AgAAAAAAAQACAPv/AgAAAAAAAQADAPv/AgAAAAAAAQAEAPv/AgAAAAAAAQAFAPv/AgAAAAAAAQAFAPz/AgAAAAAAAQAFAP3/AgAAAAAAAQAGAPv/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAIAP3/AgAAAAAAAQAHAP3/AgAAAAAAAQAGAP3/AgAAAAAAAQAGAPz/AgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQAAAPv/AgAAAAAAAQAAAP3/AgAAAAAAAQAAAPz/AgAAAAAAAQABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAHAPr/AgAAAAAAAAAIAPr/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPj/AgAAAAAAAAAHAPf/AgAAAAAAAAAHAPb/AgAAAAAAAAAGAPb/AgAAAAAAAAAFAPb/AgAAAAAAAAAEAPb/AgAAAAAAAAADAPb/AgAAAAAAAAACAPb/AgAAAAAAAAABAPb/AgAAAAAAAAAAAPb/AgAAAAAAAAAAAPf/AgAAAAAAAAAAAPj/AgAAAAAAAAAAAPn/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPn/AgAAAAAAAAABAPj/AgAAAAAAAAABAPf/AgAAAAAAAAABAPX/AgAAAAAAAAACAPX/AgAAAAAAAAADAPX/AgAAAAAAAAAEAPX/AgAAAAAAAAAFAPX/AgAAAAAAAAAGAPX/AgAAAAAAAAAHAPX/AgAAAAAAAAAIAPb/AgAAAAAAAAAIAPf/AgAAAAAAAAAIAPj/AgAAAAAAAAAIAPn/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAFAPj/AgAAAAAAAAAFAPn/AgAAAAAAAAAEAPf/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPn/AgAAAAAAAAADAPn/AgAAAAAAAAADAPj/AgAAAAAAAAADAPf/AgAAAAAAAAACAPn/AgAAAAAAAAACAPj/AgAAAAAAAAACAPf/AgAAAAAAAAA=")
 tile_set = ExtResource("20_m8sw8")
 metadata/_edit_lock_ = true
 
 [node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
 z_index = -10
-tile_map_data = PackedByteArray("AAABAPf/AgACAAAAAAACAPf/AgAEAAAAAAADAPn/AgAFAAAAAAAEAPj/AgAGAAAAAAAEAPv/AgAGAAAAAAAEAPz/AgAFAAAAAAAFAPf/AgACAAAAAAAFAPz/AgAGAAAAAAAGAP3/AgACAAAAAAAHAPz/AgACAAAAAAAAAAAAAgAFAAAAAAAEAPf/AgAHAAAAAAAHAPn/AgAHAAAAAAAGAPb/AQADAAAAAAADAAAAAgAGAAAAAAAGAP//AgAEAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAPf/AgACAAAAAAACAPf/AgAEAAAAAAADAPn/AgAFAAAAAAAEAPj/AgAGAAAAAAAEAPv/AgAGAAAAAAAEAPz/AgAFAAAAAAAFAPz/AgAGAAAAAAAGAP3/AgACAAAAAAAHAPz/AgACAAAAAAAAAAAAAgAFAAAAAAAEAPf/AgAHAAAAAAAHAPn/AgAHAAAAAAAGAPb/AQADAAAAAAADAAAAAgAGAAAAAAAGAP//AgAEAAAAAAA=")
 tile_set = ExtResource("20_m8sw8")
 metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
-tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAABAAAAAAABAP7/AAAEAAAAAAD+//7/AAADAAIAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAABAAAAAAAIAP7/AAAEAAAAAAAJAP7/AAAEAAQAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAABAAIAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAAAAAAJAPv/AAACAAEAAAAJAPz/AAAFAAEAAAAJAP3/AAAFAAEAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAAFAAEAAAAIAPj/AAAFAAEAAAAIAPn/AAADAAIAAAAJAPn/AAAFAAAAAAAJAPr/AAADAAQAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAKAPr/AAAEAAAAAAALAPr/AAAEAAIAAAAMAPr/AAAEAAAAAAANAPr/AAAEAAIAAAAOAPr/AAAEAAIAAAAPAPr/AAAEAAAAAAAQAPr/AAAEAAAAAAARAPr/AAAEAAIAAAASAPr/AAAFAAAAAAASAPv/AAADAAEAAAASAPz/AAADAAEAAAASAP3/AAAFAAEAAAASAP7/AAAFAAEAAAASAP//AAAFAAIAAAARAP//AAAEAAAAAAAQAP//AAAEAAAAAAAPAP//AAAEAAAAAAAOAP//AAAEAAIAAAANAP//AAAEAAAAAAAMAP//AAAEAAAAAAALAP//AAAEAAAAAAAKAP//AAAEAAAAAAAJAP//AAADAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAAP7/AAABAAQAAAABAP7/AAAEAAAAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAMAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAAAPv/AAADAAQAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAQAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAADAAEAAAAIAPj/AAADAAEAAAAIAPn/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAAAPz/AAAFAAEAAAAAAP3/AAAFAAEAAAAIAPr/AAAFAAEAAAAIAP7/AAAFAAIAAAAIAP3/AAAFAAEAAAAIAPz/AAAFAAEAAAA=")
 tile_set = ExtResource("20_m8sw8")
 metadata/_edit_lock_ = true
 
 [node name="Objects" type="Node2D" parent="." unique_id=354937822]
 y_sort_enabled = true
-
-[node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("21_fufpr")]
-position = Vector2(367, 6)
-display_name = "\"Green Herbs - An Introduction\""
-description = "Describes how to make Green Flakes"
-items = Array[ExtResource("22_t1nn1")]([ExtResource("23_crubh")])
-grab_interaction = SubResource("Resource_51mqc")
-cut_interaction = SubResource("Resource_i4gor")
-
-[node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("26_fxgvg")]
-position = Vector2(-20, -209)
-
-[node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("26_fxgvg")]
-position = Vector2(56, -164)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
@@ -101,19 +90,22 @@ door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="PressurePlate2" parent="PuzzleNodes" unique_id=993208049 node_paths=PackedStringArray("door_refs") instance=ExtResource("27_y833b")]
 position = Vector2(257, -351.99997)
-scale = Vector2(0.59999907, 0.59999907)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("28_gocu4")]
 position = Vector2(224, -262)
+open_time = 0.4
+close_time = 0.55
 open_direction = "Left"
 
 [node name="SlidingDoor2" parent="PuzzleNodes" unique_id=495895326 instance=ExtResource("28_gocu4")]
 position = Vector2(288, -262)
+open_time = 0.4
+close_time = 0.55
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("29_ovyrl")]
 position = Vector2(416, -608)
-level_path = "res://maps/main/1-3_introduction_puzzle.tscn"
+level_path = "res://maps/main/1-2_introduction_puzzle.tscn"
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
@@ -123,51 +115,33 @@ offset_bottom = 40.0
 
 [node name="LabelCongratulations" type="Label" parent="Labels" unique_id=886711945]
 layout_mode = 0
-offset_left = 199.0
-offset_top = -621.0
-offset_right = 328.0
-offset_bottom = -598.0
+offset_left = 136.0
+offset_top = -685.0
+offset_right = 265.0
+offset_bottom = -662.0
 text = "Congratulations!"
 
 [node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
 layout_mode = 0
-offset_left = -932.0
-offset_top = -787.0
-offset_right = -219.0
-offset_bottom = -504.0
-text = "- Get used to movement
-- Learn basic interaction
-- M&P Crafting"
-
-[node name="Label" type="Label" parent="Labels" unique_id=755762151]
-layout_mode = 0
-offset_left = -124.0
-offset_top = -121.0
-offset_right = 188.0
-offset_bottom = -72.0
-text = "Click on the log book (top left)
-to get some tips"
-horizontal_alignment = 1
+offset_left = -1125.0
+offset_top = -773.0
+offset_right = -412.0
+offset_bottom = -490.0
+text = "- Using Items"
 
 [node name="Label2" type="Label" parent="Labels" unique_id=1866495259]
 layout_mode = 0
-offset_left = 646.0
-offset_top = -287.0
-offset_right = 1105.0
-offset_bottom = -72.0
-text = "Right-click on an item in the inventory to use it:
-Books are learned and any relevant recipes are added.
-Books and recipes also get added to the Log Book when used.
+offset_left = -47.0
+offset_top = -312.0
+offset_right = 176.0
+offset_bottom = -252.0
+text = "Use items in inventory (Tab)
+by right-clicking on them"
 
-Use the tools in the Inventory (Tab) to craft the
-item from the recipe (r) in the book on the ground.
-
-Hover over buttons and items in menus to get descriptions."
-
-[node name="Label3" type="Label" parent="Labels" unique_id=1034124446]
+[node name="Label3" type="Label" parent="Labels" unique_id=921756194]
 layout_mode = 0
-offset_left = -66.0
-offset_top = -299.0
-offset_right = 182.0
-offset_bottom = -276.0
-text = "Some plants can be gathered (e)"
+offset_left = 336.0
+offset_top = -684.0
+offset_right = 501.0
+offset_bottom = -661.0
+text = "Go to next level here:"
