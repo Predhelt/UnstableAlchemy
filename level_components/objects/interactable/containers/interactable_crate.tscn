@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://6jdasvil2jhh"]
 
 [ext_resource type="Script" uid="uid://b4os8v32yq8rx" path="res://level_components/objects/interactable/containers/interactable_crate.gd" id="1_uf1m6"]
-[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="2_ktlv5"]
+[ext_resource type="Texture2D" uid="uid://c0tkqa53cgd8a" path="res://art/pack/objects/crate.png" id="2_uf1m6"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="3_p1o4b"]
 
 [node name="Crate" type="Node2D" unique_id=1856845390]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_uf1m6")
-display_name = "Recipe"
+display_name = "\"Stuff\""
+description = "Possibly contains an assortment of items."
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
-texture = ExtResource("2_ktlv5")
+texture = ExtResource("2_uf1m6")
 
 [node name="InteractArea" parent="." unique_id=1577246465 instance=ExtResource("3_p1o4b")]
 interact_type = 2

@@ -3,15 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_65xqe"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_ucbr3"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_hqcxu"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="4_lwpxw"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="4_tbfy7"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="5_06sjx"]
-[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="6_oil8d"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="5_t816p"]
+[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://game_systems/items/gatherable/green_herb_leaf.tres" id="7_fc4ky"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="7_n5j6g"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="8_am6pl"]
-[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="9_tepk0"]
-[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="10_uc71n"]
-[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="11_f5cpi"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="12_5k5hu"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="13_ejif0"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="13_wdeqd"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="14_kpwao"]
 
@@ -19,17 +18,10 @@
 script = ExtResource("3_hqcxu")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_51mqc"]
-script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_am6pl")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_i4gor"]
-script = ExtResource("10_uc71n")
-on_interact_items = Array[ExtResource("7_n5j6g")]([ExtResource("8_am6pl")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+[sub_resource type="Resource" id="Resource_am6pl"]
+script = ExtResource("13_ejif0")
+items = Array[ExtResource("7_n5j6g")]([ExtResource("7_fc4ky")])
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -38,9 +30,11 @@ metadata/_edit_lock_ = true
 [node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_65xqe")]
 
 [node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_ucbr3")]
-position = Vector2(123, 13)
+position = Vector2(134, 13)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_ovyrl")
+known_recipes = Array[ExtResource("4_lwpxw")]([ExtResource("5_t816p")])
+inventory = SubResource("Resource_am6pl")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
@@ -59,7 +53,7 @@ tile_set = ExtResource("4_tbfy7")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
-tile_map_data = PackedByteArray("AAAAAP//AgAAAAAAAQABAP//AgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQAAAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAHAP//AgAAAAAAAQAGAP//AgAAAAAAAQAFAP//AgAAAAAAAQAEAP7/AgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAHAP7/AgAAAAAAAQAIAP7/AgAAAAAAAQAJAP7/AgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQADAAEAAgAAAAAAAQACAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQD+//7/AgAAAAAAAQD///7/AgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAP3/AgAAAAAAAQADAP3/AgAAAAAAAQAEAP3/AgAAAAAAAQAEAPz/AgAAAAAAAQADAPz/AgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQABAP3/AgAAAAAAAQABAPv/AgAAAAAAAQACAPv/AgAAAAAAAQADAPv/AgAAAAAAAQAEAPv/AgAAAAAAAQAFAPv/AgAAAAAAAQAFAPz/AgAAAAAAAQAFAP3/AgAAAAAAAQAGAPv/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAJAPv/AgAAAAAAAQAJAPz/AgAAAAAAAQAJAP3/AgAAAAAAAQAIAP3/AgAAAAAAAQAHAP3/AgAAAAAAAQAGAP3/AgAAAAAAAQAGAPz/AgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQAAAPv/AgAAAAAAAQD///v/AgAAAAAAAQD+//v/AgAAAAAAAQD+//z/AgAAAAAAAQD+//3/AgAAAAAAAQD///3/AgAAAAAAAQAAAP3/AgAAAAAAAQAAAPz/AgAAAAAAAQD///z/AgAAAAAAAQABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAHAPr/AgAAAAAAAAAIAPr/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPj/AgAAAAAAAAAHAPf/AgAAAAAAAAAHAPb/AgAAAAAAAAAGAPb/AgAAAAAAAAAFAPb/AgAAAAAAAAAEAPb/AgAAAAAAAAADAPb/AgAAAAAAAAACAPb/AgAAAAAAAAABAPb/AgAAAAAAAAAAAPb/AgAAAAAAAAAAAPf/AgAAAAAAAAAAAPj/AgAAAAAAAAAAAPn/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPn/AgAAAAAAAAABAPj/AgAAAAAAAAABAPf/AgAAAAAAAAABAPX/AgAAAAAAAAACAPX/AgAAAAAAAAADAPX/AgAAAAAAAAAEAPX/AgAAAAAAAAAFAPX/AgAAAAAAAAAGAPX/AgAAAAAAAAAHAPX/AgAAAAAAAAAIAPb/AgAAAAAAAAAIAPf/AgAAAAAAAAAIAPj/AgAAAAAAAAAIAPn/AgAAAAAAAAAJAPn/AgAAAAAAAAAJAPr/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAFAPj/AgAAAAAAAAAFAPn/AgAAAAAAAAAEAPf/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPn/AgAAAAAAAAADAPn/AgAAAAAAAAADAPj/AgAAAAAAAAADAPf/AgAAAAAAAAACAPn/AgAAAAAAAAACAPj/AgAAAAAAAAACAPf/AgAAAAAAAAAKAPv/AgAAAAAAAQALAPv/AgAAAAAAAQAMAPv/AgAAAAAAAQANAPv/AgAAAAAAAQAOAPv/AgAAAAAAAQAPAPv/AgAAAAAAAQAQAPv/AgAAAAAAAQARAPv/AgAAAAAAAQARAPz/AgAAAAAAAQARAP3/AgAAAAAAAQARAP7/AgAAAAAAAQAQAP7/AgAAAAAAAQAPAP7/AgAAAAAAAQAOAP7/AgAAAAAAAQANAP7/AgAAAAAAAQAMAP7/AgAAAAAAAQALAP7/AgAAAAAAAQAKAP7/AgAAAAAAAQAKAP3/AgAAAAAAAQAKAPz/AgAAAAAAAQALAPz/AgAAAAAAAQAMAPz/AgAAAAAAAQANAPz/AgAAAAAAAQAOAPz/AgAAAAAAAQAPAPz/AgAAAAAAAQAQAPz/AgAAAAAAAQAQAP3/AgAAAAAAAQAPAP3/AgAAAAAAAQAOAP3/AgAAAAAAAQANAP3/AgAAAAAAAQAMAP3/AgAAAAAAAQALAP3/AgAAAAAAAQAKAPr/AgAAAAAAAQALAPr/AgAAAAAAAQAMAPr/AgAAAAAAAQANAPr/AgAAAAAAAQAOAPr/AgAAAAAAAQAPAPr/AgAAAAAAAQAQAPr/AgAAAAAAAQARAPr/AgAAAAAAAQASAPr/AgAAAAAAAQASAPv/AgAAAAAAAQASAPz/AgAAAAAAAQASAP3/AgAAAAAAAQASAP7/AgAAAAAAAQASAP//AgAAAAAAAQARAP//AgAAAAAAAQAQAP//AgAAAAAAAQAPAP//AgAAAAAAAQAOAP//AgAAAAAAAQANAP//AgAAAAAAAQAMAP//AgAAAAAAAQALAP//AgAAAAAAAQAKAP//AgAAAAAAAQAJAP//AgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAAAP//AgAAAAAAAQABAP//AgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQAAAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAHAP//AgAAAAAAAQAGAP//AgAAAAAAAQAFAP//AgAAAAAAAQAEAP7/AgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAHAP7/AgAAAAAAAQAIAP7/AgAAAAAAAQAJAP7/AgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQADAAEAAgAAAAAAAQACAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAP3/AgAAAAAAAQADAP3/AgAAAAAAAQAEAP3/AgAAAAAAAQAEAPz/AgAAAAAAAQADAPz/AgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQABAP3/AgAAAAAAAQABAPv/AgAAAAAAAQACAPv/AgAAAAAAAQADAPv/AgAAAAAAAQAEAPv/AgAAAAAAAQAFAPv/AgAAAAAAAQAFAPz/AgAAAAAAAQAFAP3/AgAAAAAAAQAGAPv/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAJAPv/AgAAAAAAAQAJAPz/AgAAAAAAAQAJAP3/AgAAAAAAAQAIAP3/AgAAAAAAAQAHAP3/AgAAAAAAAQAGAP3/AgAAAAAAAQAGAPz/AgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQAAAPv/AgAAAAAAAQAAAP3/AgAAAAAAAQAAAPz/AgAAAAAAAQABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAHAPr/AgAAAAAAAAAIAPr/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPj/AgAAAAAAAAAHAPf/AgAAAAAAAAAHAPb/AgAAAAAAAAAGAPb/AgAAAAAAAAAFAPb/AgAAAAAAAAAEAPb/AgAAAAAAAAADAPb/AgAAAAAAAAACAPb/AgAAAAAAAAABAPb/AgAAAAAAAAAAAPb/AgAAAAAAAAAAAPf/AgAAAAAAAAAAAPj/AgAAAAAAAAAAAPn/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPn/AgAAAAAAAAABAPj/AgAAAAAAAAABAPf/AgAAAAAAAAABAPX/AgAAAAAAAAACAPX/AgAAAAAAAAADAPX/AgAAAAAAAAAEAPX/AgAAAAAAAAAFAPX/AgAAAAAAAAAGAPX/AgAAAAAAAAAHAPX/AgAAAAAAAAAIAPb/AgAAAAAAAAAIAPf/AgAAAAAAAAAIAPj/AgAAAAAAAAAIAPn/AgAAAAAAAAAJAPn/AgAAAAAAAAAJAPr/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAFAPj/AgAAAAAAAAAFAPn/AgAAAAAAAAAEAPf/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPn/AgAAAAAAAAADAPn/AgAAAAAAAAADAPj/AgAAAAAAAAADAPf/AgAAAAAAAAACAPn/AgAAAAAAAAACAPj/AgAAAAAAAAACAPf/AgAAAAAAAAAJAP//AgAAAAAAAQAIAP//AgAAAAAAAQAIAAAAAgAAAAAAAQAJAAAAAgAAAAAAAQAKAPz/AgAAAAAAAQAKAP3/AgAAAAAAAQAKAP7/AgAAAAAAAQAKAP//AgAAAAAAAQAKAAAAAgAAAAAAAQALAPz/AgAAAAAAAQALAP3/AgAAAAAAAQALAP7/AgAAAAAAAQALAP//AgAAAAAAAQALAAAAAgAAAAAAAQAMAPz/AgAAAAAAAQAMAP3/AgAAAAAAAQAMAP7/AgAAAAAAAQAMAP//AgAAAAAAAQAMAAAAAgAAAAAAAQANAPz/AgAAAAAAAQANAP3/AgAAAAAAAQANAP7/AgAAAAAAAQANAP//AgAAAAAAAQANAAAAAgAAAAAAAQAOAPz/AgAAAAAAAQAOAP3/AgAAAAAAAQAOAP7/AgAAAAAAAQAOAP//AgAAAAAAAQAOAAAAAgAAAAAAAQAIAAEAAgAAAAAAAQAJAAEAAgAAAAAAAQAKAPv/AgAAAAAAAQAKAAEAAgAAAAAAAQALAPv/AgAAAAAAAQALAAEAAgAAAAAAAQAMAPv/AgAAAAAAAQAMAAEAAgAAAAAAAQANAPv/AgAAAAAAAQANAAEAAgAAAAAAAQAOAPv/AgAAAAAAAQAOAAEAAgAAAAAAAQAPAPv/AgAAAAAAAQAPAPz/AgAAAAAAAQAPAP3/AgAAAAAAAQAPAP7/AgAAAAAAAQAPAP//AgAAAAAAAQAPAAAAAgAAAAAAAQAPAAEAAgAAAAAAAQAQAPv/AgAAAAAAAQAQAPz/AgAAAAAAAQAQAP3/AgAAAAAAAQAQAP7/AgAAAAAAAQAQAP//AgAAAAAAAQAQAAAAAgAAAAAAAQAQAAEAAgAAAAAAAQA=")
 tile_set = ExtResource("5_06sjx")
 metadata/_edit_lock_ = true
 
@@ -71,26 +65,12 @@ metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
-tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAABAAAAAAABAP7/AAAEAAAAAAD+//7/AAADAAIAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAABAAAAAAAIAP7/AAAEAAAAAAAJAP7/AAAEAAQAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAABAAIAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAAAAAAJAPv/AAACAAEAAAAJAPz/AAAFAAEAAAAJAP3/AAAFAAEAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAAFAAEAAAAIAPj/AAAFAAEAAAAIAPn/AAADAAIAAAAJAPn/AAAFAAAAAAAJAPr/AAADAAQAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAKAPr/AAAEAAAAAAALAPr/AAAEAAIAAAAMAPr/AAAEAAAAAAANAPr/AAAEAAIAAAAOAPr/AAAEAAIAAAAPAPr/AAAEAAAAAAAQAPr/AAAEAAAAAAARAPr/AAAEAAIAAAASAPr/AAAFAAAAAAASAPv/AAADAAEAAAASAPz/AAADAAEAAAASAP3/AAAFAAEAAAASAP7/AAAFAAEAAAASAP//AAAFAAIAAAARAP//AAAEAAAAAAAQAP//AAAEAAAAAAAPAP//AAAEAAAAAAAOAP//AAAEAAIAAAANAP//AAAEAAAAAAAMAP//AAAEAAAAAAALAP//AAAEAAAAAAAKAP//AAAEAAAAAAAJAP//AAADAAIAAAA=")
+tile_map_data = PackedByteArray("AAAAAP7/AAADAAQAAAABAP7/AAAEAAIAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAQAAAAHAAEAAAADAAMAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAAAPv/AAADAAQAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAMAAAAIAPv/AAAEAAIAAAAJAPv/AAADAAMAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAAFAAEAAAAIAPj/AAAFAAEAAAAIAPn/AAADAAIAAAAJAPn/AAAFAAAAAAAJAPr/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAHAPz/AAAFAAEAAAAHAP3/AAAFAAEAAAAKAPv/AAAEAAIAAAALAPv/AAAEAAIAAAAMAPv/AAAEAAAAAAANAPv/AAAEAAAAAAAOAPv/AAAEAAAAAAAPAPv/AAAEAAAAAAAPAAEAAAAEAAIAAAAOAAEAAAAEAAIAAAANAAEAAAAEAAIAAAAMAAEAAAAEAAIAAAALAAEAAAAEAAAAAAAKAAEAAAAEAAAAAAAJAAEAAAAEAAAAAAAIAAEAAAAEAAIAAAAQAPv/AAAFAAAAAAAQAPz/AAADAAEAAAAQAP3/AAADAAEAAAAQAP7/AAAFAAEAAAAQAP//AAADAAEAAAAQAAAAAAADAAEAAAAQAAEAAAAFAAIAAAAAAPz/AAADAAEAAAAAAP3/AAAFAAEAAAA=")
 tile_set = ExtResource("5_06sjx")
 metadata/_edit_lock_ = true
 
 [node name="Objects" type="Node2D" parent="." unique_id=354937822]
 y_sort_enabled = true
-
-[node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("6_oil8d")]
-position = Vector2(367, 6)
-display_name = "\"Green Herbs - An Introduction\""
-description = "Describes how to make Green Flakes"
-items = Array[ExtResource("7_n5j6g")]([ExtResource("8_am6pl")])
-grab_interaction = SubResource("Resource_51mqc")
-cut_interaction = SubResource("Resource_i4gor")
-
-[node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("11_f5cpi")]
-position = Vector2(-20, -209)
-
-[node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("11_f5cpi")]
-position = Vector2(56, -164)
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
@@ -112,7 +92,7 @@ position = Vector2(288, -262)
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("14_kpwao")]
 position = Vector2(416, -608)
-level_path = "res://maps/main/1-3_introduction_puzzle.tscn"
+level_path = "res://maps/main/1-5_introduction_puzzle.tscn"
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
@@ -134,39 +114,24 @@ offset_left = -932.0
 offset_top = -787.0
 offset_right = -219.0
 offset_bottom = -504.0
-text = "- Get used to movement
-- Learn basic interaction
+text = "- Use Recipe Book
 - M&P Crafting"
-
-[node name="Label" type="Label" parent="Labels" unique_id=755762151]
-layout_mode = 0
-offset_left = -124.0
-offset_top = -121.0
-offset_right = 188.0
-offset_bottom = -72.0
-text = "Click on the log book (top left)
-to get some tips"
-horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Labels" unique_id=1866495259]
 layout_mode = 0
-offset_left = 646.0
-offset_top = -287.0
-offset_right = 1105.0
-offset_bottom = -72.0
-text = "Right-click on an item in the inventory to use it:
-Books are learned and any relevant recipes are added.
-Books and recipes also get added to the Log Book when used.
+offset_left = 521.0
+offset_top = -244.0
+offset_right = 1030.0
+offset_bottom = 39.0
+text = "Check the recipe book (R) to see how to craft items.
 
-Use the tools in the Inventory (Tab) to craft the
-item from the recipe (r) in the book on the ground.
+Drag the leaves in the Inventory (Tab) to the proper tool, then
+click the check mark and follow the steps to complete the craft.
 
-Hover over buttons and items in menus to get descriptions."
+Hover over buttons and items in menus to get descriptions.
 
-[node name="Label3" type="Label" parent="Labels" unique_id=1034124446]
-layout_mode = 0
-offset_left = -66.0
-offset_top = -299.0
-offset_right = 182.0
-offset_bottom = -276.0
-text = "Some plants can be gathered (e)"
+
+Can use arrow keys or click the arrows to craft.
+
+Once you craft something once, you can quickly craft it again
+from the recipe book."

@@ -178,8 +178,16 @@ text = "- Learn Attributes (Mass)
 
 [node name="LabelReset" type="Label" parent="Labels" unique_id=570485978]
 layout_mode = 0
-offset_left = -6.0
-offset_top = 214.0
-offset_right = 519.0
-offset_bottom = 237.0
-text = "If you get stuck, reset by going to level select and back to this level."
+offset_left = 61.0
+offset_top = 210.0
+offset_right = 454.0
+offset_bottom = 233.0
+text = "Reset by going to level select and back to this level."
+
+[node name="Label" type="Label" parent="Labels" unique_id=407111028]
+layout_mode = 0
+offset_left = 340.0
+offset_top = -299.0
+offset_right = 626.0
+offset_bottom = -276.0
+text = "Plate requires more weight to trigger"

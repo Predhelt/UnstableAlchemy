@@ -1,0 +1,165 @@
+[gd_scene format=4 uid="uid://dfnd3mq0f8bi7"]
+
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_dktwa"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_3rbrj"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_gs0ls"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="6_scqd1"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="8_sm1j5"]
+[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="8_vh673"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="14_i7dvr"]
+[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="16_50cu8"]
+[ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="17_glcb5"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="20_yfdgh"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="21_e40da"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="24_3rbrj"]
+[ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="24_re0vv"]
+[ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="25_gs0ls"]
+
+[sub_resource type="Resource" id="Resource_ovyrl"]
+script = ExtResource("3_gs0ls")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_51mqc"]
+script = ExtResource("20_yfdgh")
+on_interact_items = Array[ExtResource("8_sm1j5")]([ExtResource("8_vh673")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_i4gor"]
+script = ExtResource("20_yfdgh")
+on_interact_items = Array[ExtResource("8_sm1j5")]([ExtResource("8_vh673")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[node name="World" type="Node2D" unique_id=1661168125]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_dktwa")]
+
+[node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_3rbrj")]
+position = Vector2(123, 13)
+character_camera_ref = NodePath("../PlayerCamera")
+attributes = SubResource("Resource_ovyrl")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
+unique_name_in_owner = true
+position = Vector2(123, 13)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
+z_index = -50
+scale = Vector2(2, 2)
+tile_set = ExtResource("16_50cu8")
+
+[node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
+z_index = -20
+tile_map_data = PackedByteArray("AAAAAP//AgAAAAAAAQABAP//AgAAAAAAAQACAP//AgAAAAAAAQADAP//AgAAAAAAAQAEAP//AgAAAAAAAQAEAAAAAgAAAAAAAQADAAAAAgAAAAAAAQACAAAAAgAAAAAAAQABAAAAAgAAAAAAAQAAAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAHAP//AgAAAAAAAQAGAP//AgAAAAAAAQAFAP//AgAAAAAAAQAEAP7/AgAAAAAAAQADAP7/AgAAAAAAAQACAP7/AgAAAAAAAQAFAP7/AgAAAAAAAQAGAP7/AgAAAAAAAQAHAP7/AgAAAAAAAQAIAP7/AgAAAAAAAQAJAP7/AgAAAAAAAQAHAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQADAAEAAgAAAAAAAQACAAEAAgAAAAAAAQABAAEAAgAAAAAAAQAAAAEAAgAAAAAAAQD+//7/AgAAAAAAAQD///7/AgAAAAAAAQAAAP7/AgAAAAAAAQABAP7/AgAAAAAAAQACAP3/AgAAAAAAAQADAP3/AgAAAAAAAQAEAP3/AgAAAAAAAQAEAPz/AgAAAAAAAQADAPz/AgAAAAAAAQACAPz/AgAAAAAAAQABAPz/AgAAAAAAAQABAP3/AgAAAAAAAQABAPv/AgAAAAAAAQACAPv/AgAAAAAAAQADAPv/AgAAAAAAAQAEAPv/AgAAAAAAAQAFAPv/AgAAAAAAAQAFAPz/AgAAAAAAAQAFAP3/AgAAAAAAAQAGAPv/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAJAPv/AgAAAAAAAQAJAPz/AgAAAAAAAQAJAP3/AgAAAAAAAQAIAP3/AgAAAAAAAQAHAP3/AgAAAAAAAQAGAP3/AgAAAAAAAQAGAPz/AgAAAAAAAQAHAPz/AgAAAAAAAQAIAPz/AgAAAAAAAQAAAPv/AgAAAAAAAQD///v/AgAAAAAAAQD+//v/AgAAAAAAAQD+//z/AgAAAAAAAQD+//3/AgAAAAAAAQD///3/AgAAAAAAAQAAAP3/AgAAAAAAAQAAAPz/AgAAAAAAAQD///z/AgAAAAAAAQABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAHAPr/AgAAAAAAAAAIAPr/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPj/AgAAAAAAAAAHAPf/AgAAAAAAAAAHAPb/AgAAAAAAAAAGAPb/AgAAAAAAAAAFAPb/AgAAAAAAAAAEAPb/AgAAAAAAAAADAPb/AgAAAAAAAAACAPb/AgAAAAAAAAABAPb/AgAAAAAAAAAAAPb/AgAAAAAAAAAAAPf/AgAAAAAAAAAAAPj/AgAAAAAAAAAAAPn/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPn/AgAAAAAAAAABAPj/AgAAAAAAAAABAPf/AgAAAAAAAAABAPX/AgAAAAAAAAACAPX/AgAAAAAAAAADAPX/AgAAAAAAAAAEAPX/AgAAAAAAAAAFAPX/AgAAAAAAAAAGAPX/AgAAAAAAAAAHAPX/AgAAAAAAAAAIAPb/AgAAAAAAAAAIAPf/AgAAAAAAAAAIAPj/AgAAAAAAAAAIAPn/AgAAAAAAAAAJAPn/AgAAAAAAAAAJAPr/AgAAAAAAAAAGAPn/AgAAAAAAAAAGAPj/AgAAAAAAAAAGAPf/AgAAAAAAAAAFAPf/AgAAAAAAAAAFAPj/AgAAAAAAAAAFAPn/AgAAAAAAAAAEAPf/AgAAAAAAAAAEAPj/AgAAAAAAAAAEAPn/AgAAAAAAAAADAPn/AgAAAAAAAAADAPj/AgAAAAAAAAADAPf/AgAAAAAAAAACAPn/AgAAAAAAAAACAPj/AgAAAAAAAAACAPf/AgAAAAAAAAAJAP//AgAAAAAAAQAIAP//AgAAAAAAAQAIAAAAAgAAAAAAAQAJAAAAAgAAAAAAAQAKAPz/AgAAAAAAAQAKAP3/AgAAAAAAAQAKAP7/AgAAAAAAAQAKAP//AgAAAAAAAQAKAAAAAgAAAAAAAQALAPz/AgAAAAAAAQALAP3/AgAAAAAAAQALAP7/AgAAAAAAAQALAP//AgAAAAAAAQALAAAAAgAAAAAAAQAMAPz/AgAAAAAAAQAMAP3/AgAAAAAAAQAMAP7/AgAAAAAAAQAMAP//AgAAAAAAAQAMAAAAAgAAAAAAAQANAPz/AgAAAAAAAQANAP3/AgAAAAAAAQANAP7/AgAAAAAAAQANAP//AgAAAAAAAQANAAAAAgAAAAAAAQAOAPz/AgAAAAAAAQAOAP3/AgAAAAAAAQAOAP7/AgAAAAAAAQAOAP//AgAAAAAAAQAOAAAAAgAAAAAAAQAIAAEAAgAAAAAAAQAJAAEAAgAAAAAAAQAKAPv/AgAAAAAAAQAKAAEAAgAAAAAAAQALAPv/AgAAAAAAAQALAAEAAgAAAAAAAQAMAPv/AgAAAAAAAQAMAAEAAgAAAAAAAQANAPv/AgAAAAAAAQANAAEAAgAAAAAAAQAOAPv/AgAAAAAAAQAOAAEAAgAAAAAAAQAPAPv/AgAAAAAAAQAPAPz/AgAAAAAAAQAPAP3/AgAAAAAAAQAPAP7/AgAAAAAAAQAPAP//AgAAAAAAAQAPAAAAAgAAAAAAAQAPAAEAAgAAAAAAAQAQAPv/AgAAAAAAAQAQAPz/AgAAAAAAAQAQAP3/AgAAAAAAAQAQAP7/AgAAAAAAAQAQAP//AgAAAAAAAQAQAAAAAgAAAAAAAQAQAAEAAgAAAAAAAQA=")
+tile_set = ExtResource("17_glcb5")
+metadata/_edit_lock_ = true
+
+[node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
+z_index = -10
+tile_map_data = PackedByteArray("AAABAPf/AgACAAAAAAACAPf/AgAEAAAAAAADAPn/AgAFAAAAAAAEAPj/AgAGAAAAAAAEAPv/AgAGAAAAAAAEAPz/AgAFAAAAAAAFAPf/AgACAAAAAAAFAPz/AgAGAAAAAAAGAP3/AgACAAAAAAAHAPz/AgACAAAAAAAAAAAAAgAFAAAAAAAEAPf/AgAHAAAAAAAHAPn/AgAHAAAAAAAGAPb/AQADAAAAAAADAAAAAgAGAAAAAAAGAP//AgAEAAAAAAA=")
+tile_set = ExtResource("17_glcb5")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
+z_index = -1
+tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAABAAAAAAABAP7/AAAEAAAAAAD+//7/AAADAAIAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAQAAAAHAAEAAAADAAMAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAABAAIAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAMAAAAIAPv/AAAEAAIAAAAJAPv/AAADAAMAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAAFAAEAAAAIAPj/AAAFAAEAAAAIAPn/AAADAAIAAAAJAPn/AAAFAAAAAAAJAPr/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAHAPz/AAAFAAEAAAAHAP3/AAAFAAEAAAAKAPv/AAAEAAIAAAALAPv/AAAEAAIAAAAMAPv/AAAEAAAAAAANAPv/AAAEAAAAAAAOAPv/AAAEAAAAAAAPAPv/AAAEAAAAAAAPAAEAAAAEAAIAAAAOAAEAAAAEAAIAAAANAAEAAAAEAAIAAAAMAAEAAAAEAAIAAAALAAEAAAAEAAAAAAAKAAEAAAAEAAAAAAAJAAEAAAAEAAAAAAAIAAEAAAAEAAIAAAAQAPv/AAAFAAAAAAAQAPz/AAADAAEAAAAQAP3/AAADAAEAAAAQAP7/AAAFAAEAAAAQAP//AAADAAEAAAAQAAAAAAADAAEAAAAQAAEAAAAFAAIAAAA=")
+tile_set = ExtResource("17_glcb5")
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="Node2D" parent="." unique_id=354937822]
+y_sort_enabled = true
+
+[node name="RecipeItem" parent="Objects" unique_id=1165379154 instance=ExtResource("6_scqd1")]
+position = Vector2(367, 6)
+display_name = "\"Green Herbs - An Introduction\""
+description = "Describes how to make Green Flakes"
+items = Array[ExtResource("8_sm1j5")]([ExtResource("8_vh673")])
+grab_interaction = SubResource("Resource_51mqc")
+cut_interaction = SubResource("Resource_i4gor")
+
+[node name="GreenHerb" parent="Objects" unique_id=1059254419 instance=ExtResource("21_e40da")]
+position = Vector2(-20, -209)
+
+[node name="GreenHerb2" parent="Objects" unique_id=916472379 instance=ExtResource("21_e40da")]
+position = Vector2(56, -164)
+
+[node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
+y_sort_enabled = true
+
+[node name="PressurePlate" parent="PuzzleNodes" unique_id=1033225261 node_paths=PackedStringArray("door_refs") instance=ExtResource("25_gs0ls")]
+position = Vector2(256, -116)
+door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
+
+[node name="PressurePlate2" parent="PuzzleNodes" unique_id=993208049 node_paths=PackedStringArray("door_refs") instance=ExtResource("25_gs0ls")]
+position = Vector2(257, -351.99997)
+door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
+
+[node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("24_3rbrj")]
+position = Vector2(224, -262)
+open_direction = "Left"
+
+[node name="SlidingDoor2" parent="PuzzleNodes" unique_id=495895326 instance=ExtResource("24_3rbrj")]
+position = Vector2(288, -262)
+
+[node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("24_re0vv")]
+position = Vector2(416, -608)
+level_path = "res://maps/main/2-1_beginner_puzzle.tscn"
+
+[node name="Labels" type="Control" parent="." unique_id=957710452]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelCongratulations" type="Label" parent="Labels" unique_id=886711945]
+layout_mode = 0
+offset_left = 199.0
+offset_top = -621.0
+offset_right = 328.0
+offset_bottom = -598.0
+text = "Congratulations!"
+
+[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
+layout_mode = 0
+offset_left = -932.0
+offset_top = -787.0
+offset_right = -219.0
+offset_bottom = -504.0
+text = "- Gather from plants
+- Use recipe book
+- Combine previous knowledge"
+
+[node name="Label2" type="Label" parent="Labels" unique_id=1866495259]
+layout_mode = 0
+offset_left = 515.0
+offset_top = -234.0
+offset_right = 1024.0
+offset_bottom = 49.0
+text = "Books and plants can be picked up.
+
+Right-click a book in the inventory to read it and learn
+its recipes.
+
+Note: You may already know the recipe from previous levels.
+
+Books and items also get added to the Log Book when discovered
+with additional information.
+
+Use everything you've learned so far."
+
+[node name="Label3" type="Label" parent="Labels" unique_id=1034124446]
+layout_mode = 0
+offset_left = -66.0
+offset_top = -299.0
+offset_right = 182.0
+offset_bottom = -276.0
+text = "Some plants can be gathered (E)"

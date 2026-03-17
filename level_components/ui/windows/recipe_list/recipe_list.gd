@@ -243,10 +243,10 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 			match recipe.procedure.input_actions[i].id:
 				0: 
 					pia_icon.icon = procedure_icon_crush
-					pia_icon.tooltip_text = "Crush"
+					pia_icon.tooltip_text = "Crush: up, down, up, down"
 				1: 
 					pia_icon.icon = procedure_icon_grind
-					pia_icon.tooltip_text = "Grind"
+					pia_icon.tooltip_text = "Grind: left, right, left, right"
 		else:
 			var cur_ia = recipe.procedure.input_actions[i]
 			if cur_ia.type == "equipment":

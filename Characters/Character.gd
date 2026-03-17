@@ -127,8 +127,15 @@ func _ready() -> void:
 	# Should only be 1 reference to a camera in the scene.
 	if character_camera_ref != null:
 		set_camera()
-		#for recipe in known_recipes:
-			#UserVariables.new_recipes.append(recipe)
+		for recipe in known_recipes:
+			var has_recipe : bool = false
+			for user_recipe in UserVariables.known_recipes:
+				if recipe.id == user_recipe.id:
+					has_recipe = true
+					break
+			if not has_recipe:
+				UserVariables.known_recipes.append(recipe)
+				UserVariables.new_recipes.append(recipe)
 	
 	## Initialize character statuses based on attributes
 	var cur_se : StatusEffect

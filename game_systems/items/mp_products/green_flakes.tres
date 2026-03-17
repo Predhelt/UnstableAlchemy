@@ -14,4 +14,4 @@ texture = ExtResource("4_06jds")
 max_qty = 32
 qty = 5
 on_consume_effects = Array[ExtResource("1_toqpt")]([ExtResource("2_eg217")])
-on_consume_message = "You feel a burst of energy, but it quickly subsides"
+on_consume_message = "I feel a burst of energy!"

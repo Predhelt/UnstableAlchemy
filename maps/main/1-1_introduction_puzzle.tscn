@@ -88,10 +88,6 @@ y_sort_enabled = true
 position = Vector2(258, -95.99999)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
-[node name="PressurePlate2" parent="PuzzleNodes" unique_id=993208049 node_paths=PackedStringArray("door_refs") instance=ExtResource("27_1ym06")]
-position = Vector2(257, -351.99997)
-door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
-
 [node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("28_fk7tt")]
 position = Vector2(224, -262)
 open_time = 0.4
@@ -131,11 +127,11 @@ text = "- Get used to movement"
 
 [node name="Label" type="Label" parent="Labels" unique_id=755762151]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 75.0
-offset_right = 405.0
-offset_bottom = 124.0
-text = "use wasd to move"
+offset_left = -49.0
+offset_top = -110.0
+offset_right = 263.0
+offset_bottom = -61.0
+text = "use WASD to move"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Labels" unique_id=921756194]
