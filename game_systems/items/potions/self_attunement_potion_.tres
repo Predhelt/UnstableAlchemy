@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_k7gyw"]
 [ext_resource type="Resource" uid="uid://0xjfmhsed3rt" path="res://game_systems/status_effects/self_attunement.tres" id="2_lhyi4"]
 [ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="2_w5wwa"]
-[ext_resource type="Texture2D" uid="uid://nbjw72ep5di7" path="res://art/pack/alchemy/potions/potion-standard-orange.png" id="3_w5wwa"]
+[ext_resource type="Texture2D" uid="uid://dvb4agusn0mbp" path="res://art/pack/alchemy/potions/potion-standard-purple.png" id="4_lhyi4"]
 
 [resource]
 script = ExtResource("2_w5wwa")
 id = 507
 display_name = "Potion of Self-Attunement"
 description = "Imbiber gets an absolute understanding of their current status."
-texture = ExtResource("3_w5wwa")
+texture = ExtResource("4_lhyi4")
 on_consume_effects = Array[ExtResource("1_k7gyw")]([ExtResource("2_lhyi4")])
 on_consume_message = "I feel more aware"
 metadata/_custom_type_script = "uid://cspp6theghsrh"

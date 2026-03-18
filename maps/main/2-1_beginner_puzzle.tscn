@@ -113,7 +113,7 @@ position = Vector2(-44, -125)
 position = Vector2(541.99994, 95)
 
 [node name="YellowFlowers2" parent="Objects" unique_id=181215601 instance=ExtResource("17_yqr6y")]
-position = Vector2(412, 112)
+position = Vector2(442, 143.99998)
 
 [node name="YellowFlowers3" parent="Objects" unique_id=734487831 instance=ExtResource("17_yqr6y")]
 position = Vector2(464.99997, 33)
