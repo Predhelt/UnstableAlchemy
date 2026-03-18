@@ -19,12 +19,13 @@ func set_levels(path : String) ->  void:
 	var file_name : String = dir.get_next()
 	while file_name != "":
 		if file_name.rsplit(".")[1] == "tscn":
-			add_level_button("%s/%s" % [dir.get_current_dir(), file_name], 
-				file_name.trim_suffix(".tscn").replace("_", " "))
+			print(file_name)
+			add_level_button("%s/%s" % [dir.get_current_dir(), file_name.split(".")[0]+".tscn"], 
+				file_name.split(".")[0].replace("_", " "))
 		file_name = dir.get_next()
 	dir.list_dir_end()
 
-## Creates and adds the 
+## Creates and adds the button representing the level at the given [param file_path].
 func add_level_button(file_path : String, level_name : String) -> void:
 	var button : Button = BUTTON_LEVEL_SELECT.instantiate()
 	button.level_path = file_path
