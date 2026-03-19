@@ -17,12 +17,13 @@ script = ExtResource("1_pfl3v")
 [node name="CurrentTool" type="Button" parent="." unique_id=261771755]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 icon_alignment = 1
 
 [node name="HotkeyLabel" type="Label" parent="CurrentTool" unique_id=1780934708]
 layout_mode = 0
-offset_left = -0.9999542
-offset_right = 19.000046
+offset_left = 52.000046
+offset_right = 72.000046
 offset_bottom = 23.0
 
 [node name="AddItemButton" type="Button" parent="CurrentTool" unique_id=440950340]

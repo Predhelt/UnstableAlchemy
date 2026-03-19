@@ -16,17 +16,14 @@ func _ready() -> void:
 	$Slot1.button_pressed = true
 	$CurrentTool/AddItemButton.visible = false
 	tooltip_text = selected_tool
-	$CurrentTool/HotkeyLabel.text = ("(" +
-		InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','') + ")")
+	$CurrentTool/HotkeyLabel.text = (
+		InputMap.action_get_events("tool_wheel")[0].as_text().replace(' - Physical',''))
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_close_tool_selection()
-	#if event.is_action_pressed("open_tool_wheel"):
-		#if visible:
-			#visible = false
-		#else:
-			#visible = true
+	if event.is_action_pressed("tool_wheel"):
+		toggle_tool_selection()
 
 
 func _on_slot_1_toggled(toggled_on: bool) -> void:
