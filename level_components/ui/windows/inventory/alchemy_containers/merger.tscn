@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://camniccw7m1md"]
 
 [ext_resource type="Script" uid="uid://cs52w7rkn32c8" path="res://level_components/ui/windows/inventory/alchemy_containers/merger.gd" id="1_nohpg"]
-[ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://art/pack/alchemy/tools/alchemy-abstract_container-half_full.png" id="2_wuoly"]
+[ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://art/pack/alchemy/tools/alchemy_abstract_container-half_full.png" id="2_wuoly"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="3_8cpav"]
-[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/CheckMark.png" id="4_vejrj"]
+[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_vejrj"]
 
 [sub_resource type="GDScript" id="GDScript_18djl"]
 script/source = "extends Area2D

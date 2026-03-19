@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_gqg1i"]
 [ext_resource type="Resource" uid="uid://dpj7rac2ern5w" path="res://game_systems/status_effects/shrink.tres" id="2_5hc3n"]
 [ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="2_gqg1i"]
-[ext_resource type="Texture2D" uid="uid://cvc8nh7ajt6ym" path="res://art/pack/alchemy/potions/potion-standard-blue.png" id="4_bq5v3"]
+[ext_resource type="Texture2D" uid="uid://cvc8nh7ajt6ym" path="res://art/pack/alchemy/potions/potion_standard_blue.png" id="4_bq5v3"]
 
 [resource]
 script = ExtResource("2_gqg1i")

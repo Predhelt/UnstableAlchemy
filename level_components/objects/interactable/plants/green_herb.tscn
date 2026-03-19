@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjw4k1o1djxtg"]
 
-[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://art/pack/objects/planted/HerbBasicGreen.png" id="1_i7iob"]
+[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://art/pack/objects/planted/herb_basic_green.png" id="1_i7iob"]
 [ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://level_components/objects/interactable/plants/interactable_plant.gd" id="1_n5xjd"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_hyj50"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="2_kx41t"]

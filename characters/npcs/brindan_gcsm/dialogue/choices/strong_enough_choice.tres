@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Choice" load_steps=4 format=3 uid="uid://cajxh64gqbxf3"]
+[gd_resource type="Resource" script_class="Choice" format=3 uid="uid://cajxh64gqbxf3"]
 
 [ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://characters/npcs/dialogue_condition.gd" id="1_in5cr"]
 [ext_resource type="Resource" uid="uid://dy3vt5dpsaj8e" path="res://characters/npcs/brindan_gcsm/dialogue/conditions/player_is_strong.tres" id="2_kfd7i"]

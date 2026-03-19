@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cy5h4xq84fujx"]
 
 [ext_resource type="Script" uid="uid://cfe3j5o7dsabu" path="res://level_components/ui/windows/inventory/inventory_menu.gd" id="1_3n8ow"]
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/UADefaultTheme.tres" id="1_gie0h"]
-[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/WindowLabel.tres" id="2_tx3c8"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_gie0h"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_tx3c8"]
 [ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://level_components/ui/windows/inventory/alchemy_containers/cauldron.tscn" id="3_016ij"]
 [ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://level_components/ui/windows/inventory/alchemy_containers/mortar_pestle.tscn" id="4_0n6gb"]
 [ext_resource type="PackedScene" uid="uid://camniccw7m1md" path="res://level_components/ui/windows/inventory/alchemy_containers/merger.tscn" id="5_r3wkv"]

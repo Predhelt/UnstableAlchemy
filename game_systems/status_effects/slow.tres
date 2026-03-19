@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://081jaxfsfvmd"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_2uvlx"]
-[ext_resource type="Texture2D" uid="uid://1l2ovcm2c3fy" path="res://art/pack/ui/status_effects/status_effect-slowed.png" id="1_wyqqb"]
+[ext_resource type="Texture2D" uid="uid://1l2ovcm2c3fy" path="res://art/pack/ui/status_effects/status_effect_slowed.png" id="1_wyqqb"]
 
 [resource]
 script = ExtResource("1_2uvlx")

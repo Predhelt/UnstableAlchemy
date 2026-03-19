@@ -4,7 +4,7 @@ signal set_dropper_item()
 
 var selected_tool := ""
 
-var dropper_icon_full := preload("res://art/pack/tools/dropper-full.png")
+var dropper_icon_full := preload("res://art/pack/tools/dropper_full.png")
 var dropper_item : Item:
 	set(item):
 		dropper_item = item

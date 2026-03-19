@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_x46fl"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_etrvr"]
-[ext_resource type="Texture2D" uid="uid://b2dy15055yv71" path="res://art/pack/ingredients/inventory/yellow-petals-ground.png" id="3_q11kd"]
+[ext_resource type="Texture2D" uid="uid://b2dy15055yv71" path="res://art/pack/ingredients/inventory/yellow_petals_ground.png" id="3_q11kd"]
 
 [resource]
 script = ExtResource("2_etrvr")

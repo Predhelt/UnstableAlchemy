@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bwmnuacpgn38h"]
 
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/UADefaultTheme.tres" id="1_85brq"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_85brq"]
 [ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.gd" id="1_vo0bl"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://level_components/ui/windows/alchemy_minigame/minigame_progress_bar.tscn" id="2_70xyk"]
-[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/WindowLabel.tres" id="2_aqc0h"]
-[ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object-gray.png" id="4_r2g22"]
-[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy-mortar_pestle.png" id="5_eoa2f"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_aqc0h"]
+[ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="4_r2g22"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="5_eoa2f"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="6_1mow8"]
 
 [node name="MinigameMP" type="Panel" unique_id=542892921]

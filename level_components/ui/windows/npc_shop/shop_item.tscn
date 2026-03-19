@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dksr1flt2gjap"]
+[gd_scene format=3 uid="uid://dksr1flt2gjap"]
 
-[ext_resource type="Texture2D" uid="uid://clun0l8tflfr1" path="res://art/pack/ingredients/inventory/yellow-petals.png" id="1_a5g2s"]
+[ext_resource type="Texture2D" uid="uid://clun0l8tflfr1" path="res://art/pack/ingredients/inventory/yellow_petals.png" id="1_a5g2s"]
 [ext_resource type="Script" uid="uid://8ajakyhxs0p2" path="res://level_components/ui/windows/npc_shop/shop_item.gd" id="2_e3r68"]
 
 [node name="ShopItem" type="TextureRect"]

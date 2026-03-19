@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://beud1y2jkll6r"]
+[gd_scene format=3 uid="uid://beud1y2jkll6r"]
 
 [ext_resource type="Script" uid="uid://cj8rcy6a4e8tp" path="res://characters/interactable.gd" id="1_dbi6v"]
 

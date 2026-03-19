@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg7gcw1ey7rhj"]
+[gd_scene format=3 uid="uid://cg7gcw1ey7rhj"]
 
-[ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object-gray.png" id="2_omqdo"]
+[ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="2_omqdo"]
 
 [node name="MinigameProgressBar" type="Control"]
 layout_mode = 3

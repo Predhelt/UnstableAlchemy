@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dle8dng5mtld0"]
 
 [ext_resource type="Script" uid="uid://bkjaos0jnpisd" path="res://level_components/objects/triggers/pressure_plate.gd" id="1_x57id"]
-[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/object-pressure-plate-green.png" id="2_qilna"]
+[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/object_pressure_plate_green.png" id="2_qilna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un22d"]
 size = Vector2(52, 52)

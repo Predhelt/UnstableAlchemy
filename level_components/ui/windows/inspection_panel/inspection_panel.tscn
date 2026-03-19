@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ccrubsrhkvb1n"]
 
 [ext_resource type="Script" uid="uid://bb3fqxidwdd8u" path="res://level_components/ui/windows/inspection_panel/inspection_panel.gd" id="1_tln8h"]
-[ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://art/text/SubtitleLabel.tres" id="2_2hdbo"]
-[ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://art/text/DescriptionLabel.tres" id="3_wm1b8"]
+[ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://art/text/subtitle_label.tres" id="2_2hdbo"]
+[ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://art/text/description_label.tres" id="3_wm1b8"]
 
 [node name="InspectionPanel" type="Control" unique_id=1138323551]
 layout_mode = 3
