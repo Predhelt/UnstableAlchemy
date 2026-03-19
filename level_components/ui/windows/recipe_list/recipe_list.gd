@@ -154,13 +154,13 @@ func add_procedure(recipe: Recipe):
 	var tool_icon : TextureRect = recipe_tool_icon.instantiate()
 	match recipe.tool_used:
 		&"Cauldron": 
-			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy-cauldron.png")
+			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy_cauldron.png")
 			tool_icon.tooltip_text = "Ingredients are combined in the Cauldron"
 		&"Mortar & Pestle":
-			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy-mortar_pestle.png")
+			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy_mortar_pestle.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Mortar and Pestle"
 		&"Merger":
-			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy-abstract_container-half_full.png")
+			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy_abstract_container-half_full.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Merger"
 		&"hand": pass
 		&"blade": pass
@@ -291,12 +291,18 @@ func _has_craft_items(recipe : Recipe) -> bool:
 ## Perform the craft, if possible, then add the result to the character's inventory.
 ## Returns whether or not the craft was successful.
 func _on_quick_craft_pressed(recipe : Recipe) -> bool:
+	## Do not allow quick craft to occur if a minigame window is open.
+	if $"../../MinigameLayer/MinigameCauldron".visible:
+		return false
+	if $"../../MinigameLayer/MinigameMP".visible:
+		return false
 	if recipe.id not in UserVariables.crafted_recipes:
 		print("ERROR: Character has not crafted this recipe before. returning false.")
 		return false
 	if not _has_craft_items(recipe):
 		print("ERROR: Character inventory does not have the necessary items to craft. returning false.")
 		return false
+	
 	for item in recipe.ingredients:
 		if not item:
 			continue
@@ -315,11 +321,6 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 	
 	## Update the inventory window if it is open while the recipe window is open.
 	$"../InventoryMenu".update_window()
-	## Update the alchemy minigame window if it is open while recipe window is open.
-	if $"../../MinigameLayer/MinigameCauldron".visible:
-		$"../../MinigameLayer/MinigameCauldron".update_window()
-	if $"../../MinigameLayer/MinigameMP".visible:
-		$"../../MinigameLayer/MinigameMP".update_window()
 	
 	## Create effect in recipe window to show that the item was added successfuly.
 	var effect_instance = items_gained_effect.instantiate()
