@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://y1067fe07wmf"]
 
 [ext_resource type="Script" uid="uid://bcq37w6pbek80" path="res://level_components/ui/windows/inventory/alchemy_containers/mortar_pestle.gd" id="1_a40nq"]
-[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy-mortar_pestle.png" id="2_0nnx4"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="2_0nnx4"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="2_m0hp4"]
-[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/CheckMark.png" id="4_88qmb"]
+[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_88qmb"]
 
 [sub_resource type="GDScript" id="GDScript_ailbx"]
 script/source = "extends Area2D

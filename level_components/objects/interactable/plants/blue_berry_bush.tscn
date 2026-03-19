@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://c26d1xhaienu3" path="res://game_systems/items/gatherable/blue_berries.tres" id="3_43ssr"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="4_rhut3"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="5_5kvaj"]
-[ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant-blue-berry.png" id="7_c5pea"]
+[ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant_blue_berry.png" id="7_c5pea"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="8_7j465"]
 
 [sub_resource type="Resource" id="Resource_24wvq"]

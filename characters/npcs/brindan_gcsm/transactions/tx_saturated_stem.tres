@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Transaction" load_steps=6 format=3 uid="uid://kvhv0o2fyg74"]
+[gd_resource type="Resource" script_class="Transaction" format=3 uid="uid://kvhv0o2fyg74"]
 
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_oeme7"]
 [ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://game_systems/items/gatherable/red_berries.tres" id="2_1ugs0"]

@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b6ygdugfvt53y"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b6ygdugfvt53y"]
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_uhiao"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_eluaa"]
-[ext_resource type="Texture2D" uid="uid://b5mm0hootfp6a" path="res://art/pack/ingredients/inventory/red-juice.png" id="3_22ttv"]
+[ext_resource type="Texture2D" uid="uid://b5mm0hootfp6a" path="res://art/pack/ingredients/inventory/red_juice.png" id="3_22ttv"]
 
 [resource]
 script = ExtResource("2_eluaa")

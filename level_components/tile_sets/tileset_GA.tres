@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dvhy1y78ci3ck" path="res://addons/GatherersExterior/Tilesets/tileset_grass.png" id="1_2bixh"]
 [ext_resource type="Texture2D" uid="uid://cueejjvcsvpsq" path="res://addons/GatherersExterior/Tilesets/tileset_water.png" id="2_v58dk"]
-[ext_resource type="Texture2D" uid="uid://dxyi8svdc8pj2" path="res://art/pack/tilesets/BasicTilemapx64.png" id="3_fcuee"]
+[ext_resource type="Texture2D" uid="uid://dxyi8svdc8pj2" path="res://art/pack/tilesets/basic_tilemapx64.png" id="3_fcuee"]
 [ext_resource type="Texture2D" uid="uid://dr3w450wlyba" path="res://addons/GatherersExterior/Tilesets/tileset_floating_bridge.png" id="3_tedbs"]
 [ext_resource type="Texture2D" uid="uid://dnjokmbjlu6kb" path="res://addons/GatherersExterior/Tilesets/floating_platform.png" id="4_vl47m"]
 [ext_resource type="Texture2D" uid="uid://bhnlf6dv1budh" path="res://addons/GatherersExterior/Tilesets/decor_grass.png" id="5_87wac"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_l6bdg"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_qiha4"]
-[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://art/pack/ingredients/inventory/herb-green-leaf.png" id="2_h743b"]
+[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://art/pack/ingredients/inventory/herb_green_leaf.png" id="2_h743b"]
 
 [resource]
 script = ExtResource("1_qiha4")

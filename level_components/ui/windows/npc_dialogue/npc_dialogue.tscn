@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhvfevmm005fp"]
+[gd_scene format=3 uid="uid://dhvfevmm005fp"]
 
 [ext_resource type="Script" uid="uid://di7udn24lejc1" path="res://level_components/ui/windows/npc_dialogue/npc_dialogue.gd" id="1_iho3e"]
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/UADefaultTheme.tres" id="1_j7ds4"]
-[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/WindowLabel.tres" id="2_buk1c"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_j7ds4"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_buk1c"]
 
 [node name="NPCDialogue" type="Panel"]
 clip_contents = true
