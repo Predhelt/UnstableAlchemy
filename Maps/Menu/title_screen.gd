@@ -1,5 +1,8 @@
 extends Control
 
+func _ready() -> void:
+	$LabelVersion.text = "Version: %s (Prototype)" % ProjectSettings.get_setting("application/config/version")
+
 ## Opens the level that was selected. Returns whether or not the level was opened successfuly.
 func open_level() -> bool:
 	return false
