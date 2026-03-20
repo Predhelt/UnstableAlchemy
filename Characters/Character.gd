@@ -15,9 +15,6 @@ const LABEL_DEFAULT_Y_POS : float = -60.0
 ## [float] value used to reduce the intensity of effects when size is changed
 const SIZE_DAMPENER : float = 0.5
 
-## Notification effect to be displayed
-var notification_effect := preload("res://art/effects/notification_new_entry.tscn")
-
 ## The [AnimationTree] determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
 ## Path of the file containing the global variables of the current character, if any.
@@ -138,7 +135,6 @@ func _ready() -> void:
 					break
 			if not has_recipe:
 				UserVariables.known_recipes.append(recipe)
-				emit_notification("New Recipe Learned")
 				UserVariables.new_recipes.append(recipe)
 	
 	## Initialize character statuses based on attributes
@@ -147,11 +143,6 @@ func _ready() -> void:
 		cur_se = active_status_effects[i]
 		active_status_effects.remove_at(i)
 		apply_status_effect(cur_se)
-
-func emit_notification(message : String):
-	var new_notification : Panel = notification_effect.instantiate()
-	new_notification.set_text(message)
-	get_tree().add_child(new_notification)
 
 ## Sets this character as the focus by the camera and sets up the camera's [RemoteTransform2D].
 func set_camera() -> void:
@@ -230,7 +221,8 @@ func get_attribute(att_name : String) -> float:
 ## if is_crafted is true, will add to the count of succesful recipe crafts.
 func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
 	if is_camera_focused:
-		UserVariables.add_recipe(r)
+		if UserVariables.add_recipe(r) and is_camera_focused:
+			Global.emit_notification("New Recipe(s) Learned")
 		if is_crafted:
 			if not UserVariables.crafted_recipes.has(r.id):
 				UserVariables.crafted_recipes[r.id] = 1 ## Add key to dictionary
@@ -265,6 +257,7 @@ func read_book(book: Book):
 		books_read.append(book.id)
 	if is_camera_focused and book.id not in UserVariables.books_read:
 		UserVariables.books_read.append(book.id)
+		Global.emit_notification("Log Book Entry Added")
 
 ## Interaction Methods ##
 

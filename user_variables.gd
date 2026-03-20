@@ -48,7 +48,10 @@ func save() -> Dictionary:
 	return save_dict
 
 ## Add a recipe to the list of known recipes and new recipes if not already known.
-func add_recipe(recipe : Recipe) -> void:
-	if recipe not in known_recipes:
-		known_recipes.append(recipe)
-		new_recipes.append(recipe)
+func add_recipe(recipe : Recipe) -> bool:
+	if recipe in known_recipes:
+		return false
+	known_recipes.append(recipe)
+	new_recipes.append(recipe)
+	return true
+	

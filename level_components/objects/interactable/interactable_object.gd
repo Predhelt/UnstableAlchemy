@@ -118,6 +118,10 @@ func _add_gathered_items_entry_to_node(node : Node, interaction : Interaction, t
 		var entry = [display_name, type]
 		if node.gathered_items.keys().is_empty() or item.id not in node.gathered_items.keys():
 			node.gathered_items[item.id] = {entry : 1}
+			if item.type == "Book":
+				continue
+			if "is_camera_focused" not in node or node.is_camera_focused:
+				Global.emit_notification("Log Book Entry Added")
 		elif entry not in node.gathered_items[item.id].keys():
 			node.gathered_items[item.id][entry] = 1
 		else:

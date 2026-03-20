@@ -4,17 +4,20 @@
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="1_mgln8"]
 
 [node name="NotificationNewEntry" type="Panel" unique_id=467150751]
-anchors_preset = -1
+custom_minimum_size = Vector2(400, 60)
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.8
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.8
+anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -62.0
+offset_top = -40.0
 offset_right = 300.0
-offset_bottom = 18.0
+offset_bottom = 40.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_igxre")
 
 [node name="Timer" type="Timer" parent="." unique_id=785980781]

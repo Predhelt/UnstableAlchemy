@@ -104,11 +104,11 @@ position = Vector2(257, -351.99997)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("24_3rbrj")]
-position = Vector2(224, -262)
+position = Vector2(224, -260)
 open_direction = "Left"
 
 [node name="SlidingDoor2" parent="PuzzleNodes" unique_id=495895326 instance=ExtResource("24_3rbrj")]
-position = Vector2(288, -262)
+position = Vector2(288, -260)
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("24_re0vv")]
 position = Vector2(416, -608)

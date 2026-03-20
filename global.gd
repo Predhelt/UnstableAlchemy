@@ -10,6 +10,8 @@ var current_level_path : String
 var is_dragging := false
 ## Keeps reference of the blank texture that is used when another texture is not available.
 var blank_texture := preload("res://art/pack/ui/blank_item.png")
+## Notification effect to be displayed
+var notification_effect := preload("res://art/effects/notification_new_entry.tscn")
 ## Keeps track of the state that the game is in to determine what types of actions are allowed.
 ## Modes are: "default", "menu", "minigame", "dropper", "inspection"(unused), "settings", "options"
 var mode := &"default"
@@ -47,7 +49,13 @@ func change_scene(scene_path : String):
 func _deferred_change_scene(path : String):
 	get_tree().change_scene_to_file(path)
 
-## Save the persistent game informaion to file. Uses dict to store data as JSON.
+## Displays notification in current scene with given [param message].
+func emit_notification(message : String):
+	var new_notification : Panel = Global.notification_effect.instantiate()
+	new_notification.set_text(message)
+	get_tree().current_scene.get_node("UILayer/HUDLayer/Notifications").add_child(new_notification)
+
+## Save the persistent game informaion to file. Uses [Dictionary] to store data in [JSON] format.
 func save_game() -> void:
 	# Remove current (outdated) directories in save location
 	remove_directory("user://save") #TODO: Allow multiple save locations.
