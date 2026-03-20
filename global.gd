@@ -49,6 +49,9 @@ func _deferred_change_scene(path : String):
 
 ## Save the persistent game informaion to file. Uses dict to store data as JSON.
 func save_game() -> void:
+	# Remove current (outdated) directories in save location
+	remove_directory("user://save") #TODO: Allow multiple save locations.
+	
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	
 	# Store global data at top of the file.
@@ -60,9 +63,6 @@ func save_game() -> void:
 	node_data = UserVariables.call("save")
 	json_string = JSON.stringify(node_data)
 	save_file.store_line(json_string)
-	
-	# TODO: Remove current (outdated) directories in save location
-	#DirAccess.remove_absolute("user://save") #FIXME: Does not work if directory is not empty.
 	
 	# Store persistent node data.
 	var save_nodes : Array[Node] = get_tree().get_nodes_in_group("Persist")
@@ -85,6 +85,14 @@ func save_game() -> void:
 
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
+
+## Removes files recursively at given [param directory]. Be careful not to use the wrong directory.
+func remove_directory(directory : String) -> void:
+	for dir_name in DirAccess.get_directories_at(directory):
+		remove_directory(directory.path_join(dir_name))
+	for file_name in DirAccess.get_files_at(directory):
+		DirAccess.remove_absolute(directory.path_join(file_name))
+	DirAccess.remove_absolute(directory)
 
 ## Save the persistent Global variables as a dictionary.
 func save() -> Dictionary:
@@ -169,7 +177,8 @@ func load_game() -> void:
 					for se_name in se_list:
 						var cur_se : StatusEffect = load(node_data[field] + se_name)
 						#new_object.apply_status_effect(cur_se)
-						new_object.active_status_effects.append(cur_se)
+						if cur_se != null:
+							new_object.active_status_effects.append(cur_se)
 		# Set the inventory before setting parent node to scene.
 		field = "inventory_path"
 		if node_data[field] != "":

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b4kqfhdb7xjfl"]
 
+[ext_resource type="Script" uid="uid://cnjybpbdcm45h" path="res://art/effects/notification_new_entry.gd" id="1_igxre"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="1_mgln8"]
 
 [node name="NotificationNewEntry" type="Panel" unique_id=467150751]
@@ -14,9 +15,12 @@ offset_right = 300.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("1_igxre")
 
 [node name="Timer" type="Timer" parent="." unique_id=785980781]
 wait_time = 4.0
+one_shot = true
+autostart = true
 
 [node name="Label" type="Label" parent="." unique_id=253123957]
 layout_mode = 1
@@ -32,5 +36,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_mgln8")
-text = "New Log Book Entry Available"
+text = "New Log Book Entry Added"
 horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

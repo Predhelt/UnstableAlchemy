@@ -19,7 +19,7 @@ func set_levels(path : String) ->  void:
 	var file_name : String = dir.get_next()
 	while file_name != "":
 		if file_name.rsplit(".")[1] == "tscn":
-			print(file_name)
+			#print(file_name)
 			add_level_button("%s/%s" % [dir.get_current_dir(), file_name.replace('.remap','')], 
 				file_name.split(".")[0].replace("_", " "))
 		file_name = dir.get_next()

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="StatusEffect" load_steps=2 format=3 uid="uid://dwu8qjqo5t3tr"]
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://dwu8qjqo5t3tr"]
 
+[ext_resource type="Texture2D" uid="uid://saa6dltakqms" path="res://art/pack/ui/question.png" id="1_crmhl"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_ryu0r"]
 
 [resource]
@@ -7,5 +8,6 @@ script = ExtResource("1_ryu0r")
 id = 101
 name = "Normalize"
 description = "Returns permanent stat changes back to normal"
+icon = ExtResource("1_crmhl")
 effect = "normalize"
 duration = 0.0
