@@ -51,7 +51,7 @@ func select_button(button: Button):
 ## Disables the start button and sets the UI to reflect the start of the minigame,
 ## allowing for user inputs to be tracked for the craft attempt.
 func begin_minigame():
-	%ButtonStart.disabled = true
+	#%ButtonStart.disabled = true
 	cur_motion_index = 0
 	
 	for button in minigame_buttons:
@@ -125,7 +125,7 @@ func matching_recipe() -> Recipe:
 func open_window():
 	## Reset the window before opening
 	cur_craft_procedure = Procedure.new()
-	%ButtonStart.disabled = false
+	#%ButtonStart.disabled = false
 	for button in minigame_buttons:
 		button.disabled = true
 	%MinigameProgressBar/ProgressSlider.value = 0
@@ -140,6 +140,8 @@ func open_window():
 	Global.left_window = self
 	visible = true
 	Global.mode = &"menu"
+	
+	begin_minigame()
 
 
 func _on_button_start_pressed() -> void:
