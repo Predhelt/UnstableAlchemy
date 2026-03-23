@@ -16,7 +16,7 @@ signal npc_shop()
 ## The name of the object that is represented by the interactable and shown by the character.
 @export var interact_label := "none"
 ## The type of interaction of the interactable that determines which signal is sent to the object.
-@export_enum("none", "print_text", "context_menu", "inspect", "talk", "shop") var interact_type
+@export_enum("none", "print_text", "context_menu", "inspect", "talk", "shop") var interact_type : String
 ## An associated string that gets used based on the interaction type.
 @export var interact_value := "none"
 ## Keeps track of if the context menu is open.

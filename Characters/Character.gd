@@ -281,7 +281,15 @@ func update_interactions():
 	if all_interaction_areas:
 		#TODO: Smarter way to choose an interaction near the player.
 		var cur_interaction : Interactable = all_interaction_areas[0]
-		interact_label_ref.text = cur_interaction.interact_label
+		print(cur_interaction.interact_type)
+		if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
+			interact_label_ref.text = "[%s] %s" % [
+				InputMap.action_get_events("interact")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
+		else:
+			interact_label_ref.text = "[%s] %s" % [
+				InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
 		# TODO: Add outline/differentiator to the object that will be interacted with.
 	else:
 		interact_label_ref.text = ""

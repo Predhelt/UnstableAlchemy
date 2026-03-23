@@ -13,7 +13,6 @@ display_name = "Recipe"
 texture = ExtResource("2_emsgg")
 
 [node name="InteractArea" parent="." unique_id=1577246465 instance=ExtResource("7_s4f4p")]
-interact_type = 2
 
 [connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
 [connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
