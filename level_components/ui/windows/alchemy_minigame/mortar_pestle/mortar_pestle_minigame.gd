@@ -23,7 +23,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void: # Override in M&P
 	if Global.mode != window_mode or not visible:
 		return # No input events should catch on wrong mode
-	if is_crafting and recipes[0].tool_used == "Mortar & Pestle":
+	if is_crafting and recipes[0].tool_used == &"Mortar & Pestle":
 		if event.is_action_pressed("minigame_m&p_up") and not minigame_buttons[0].disabled:
 			update_combo_input(&"up")
 			select_button(%ButtonUp)

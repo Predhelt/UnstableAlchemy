@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if Global.mode != window_mode or not visible:
 		return ## No input events should catch on wrong mode or not visible
-	if is_crafting and recipes[0].tool_used == "Cauldron":
+	if is_crafting and recipes[0].tool_used == &"Cauldron":
 		if event.is_action_pressed("minigame_cauldron_action_1") and not minigame_buttons[0].disabled:
 			set_input_action("item", cur_craft_ingredients[0].id, minigame_buttons[0].icon)
 			minigame_buttons[0].disabled = true ## Item is now used in craft, disable button.
@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 			set_input_action("item", cur_craft_ingredients[2].id, minigame_buttons[2].icon)
 			minigame_buttons[2].disabled = true ## Item is now used in craft, disable button.
 		elif event.is_action_pressed("minigame_cauldron_action_4") and not minigame_buttons[3].disabled:
-			set_input_action("equipment", 0, minigame_buttons[3].icon) ## Bellows input
+			set_input_action("equipment", 2, minigame_buttons[3].icon) ## Bellows input
 		return
 
 ## Opens the cauldron minigame window. Assumes that the cur_craft_ingredients was already set.
@@ -117,4 +117,4 @@ func _on_button_item_3_pressed() -> void:
 	set_input_action("item", cur_craft_ingredients[2].id, %Container/GridContainer/ButtonItem3.icon)
 
 func _on_button_bellows_pressed() -> void:
-	set_input_action("equipment", 0, %Container/GridContainer/ButtonBellows.icon)
+	set_input_action("equipment", 2, %Container/GridContainer/ButtonBellows.icon)

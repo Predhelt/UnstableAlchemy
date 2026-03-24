@@ -63,8 +63,8 @@ func _init() -> void:
 		items.append(null)
 	
 
-## Called in inherited function's _ready() procedure. The given folder_name is used
-## to search the file directory for the recipes related to the alchemy tool being used
+## Called in inherited function's _ready() procedure. The given [param recipe_tool] name is used
+## to search the file directory for the [Recipe]s related to the alchemy tool being used
 ## by the child script. Each recipe is then added to the list of recipes
 func set_recipes(recipe_tool : StringName):
 	match recipe_tool:
@@ -78,15 +78,15 @@ func set_recipes(recipe_tool : StringName):
 		return
 	
 	dir.list_dir_begin()
-	var file_name = dir.get_next()
+	var file_name = dir.get_next().replace('.remap','')
 	while file_name != "":
-		var split = file_name.split(".")
-		if split[-1] == "tres":
+		var split = file_name.rsplit(".")
+		if split.size() > 1 and split[1] == "tres":
 			var new_recipe : Recipe = load(recipes_folder_path + tool_name + "/" + file_name)
 			new_recipe.tool_used = recipe_tool
 			if new_recipe and new_recipe.id >= 0: ## Inactive Recipe is -1, do not include those
 				recipes.append(new_recipe)
-		file_name = dir.get_next()
+		file_name = dir.get_next().replace('.remap','')
 	dir.list_dir_end()
 
 

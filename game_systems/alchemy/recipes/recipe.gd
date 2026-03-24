@@ -14,7 +14,7 @@ class_name Recipe extends Resource
 
 # Inputs
 ## The tool used in the craft
-var tool_used : StringName 
+var tool_used : StringName
 ## The ingredients used in the craft
 @export var ingredients : Array[Item] 
 ## The procedure to be followed to create the product

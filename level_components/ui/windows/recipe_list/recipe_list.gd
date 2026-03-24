@@ -251,7 +251,7 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 			var cur_ia = recipe.procedure.input_actions[i]
 			if cur_ia.type == "equipment":
 				match cur_ia.id:
-					0:
+					2:
 						pia_icon.icon = procedure_icon_bellows
 						pia_icon.tooltip_text = "Bellows"
 			elif cur_ia.type == "item":

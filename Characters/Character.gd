@@ -281,7 +281,7 @@ func update_interactions():
 	if all_interaction_areas:
 		#TODO: Smarter way to choose an interaction near the player.
 		var cur_interaction : Interactable = all_interaction_areas[0]
-		print(cur_interaction.interact_type)
+		#print(cur_interaction.interact_type)
 		if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
 			interact_label_ref.text = "[%s] %s" % [
 				InputMap.action_get_events("interact")[0].as_text().replace(' - Physical',''),
