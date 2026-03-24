@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="14_kpwao"]
 [ext_resource type="Resource" uid="uid://bpgnegvcg63o4" path="res://game_systems/status_effects/grow.tres" id="15_4yetv"]
 [ext_resource type="Resource" uid="uid://c8iivm16gu105" path="res://game_systems/items/recipe_books/normalize_potion_book.tres" id="19_t816p"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="25_hf083"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("3_hqcxu")
@@ -136,7 +137,18 @@ y_sort_enabled = true
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("14_kpwao")]
 position = Vector2(417, -800)
-level_path = "res://maps/main/2-1_advanced_puzzle.tscn"
+level_path = "res://maps/main/2-3_beginner_puzzle.tscn"
+
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=518397452]
+script = ExtResource("25_hf083")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -525.0
+offset_top = -108.0
+offset_right = -311.0
+offset_bottom = -33.0
+text = "- Use blue berries
+- More complicated craft"
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
@@ -151,12 +163,3 @@ offset_top = -876.0
 offset_right = 283.0
 offset_bottom = -853.0
 text = "Congratulations!"
-
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
-layout_mode = 0
-offset_left = -869.0
-offset_top = -720.0
-offset_right = -156.0
-offset_bottom = -437.0
-text = "- Use blue berries
-- More complicated craft"

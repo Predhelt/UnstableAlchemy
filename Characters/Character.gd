@@ -411,6 +411,8 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 			return false
 	else:
 		if not is_removing:
+			# Remove and re-add the status effect
+			c.call(-se.value)
 			c.call(se.value)
 		else:
 			c.call(-se.value)

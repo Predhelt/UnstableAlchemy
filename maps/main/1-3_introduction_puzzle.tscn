@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_7mplw"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_n5j6g"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="9_h85rq"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="9_ucbr3"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_2sv4n"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_vgkhd"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_bkrfv"]
@@ -71,7 +72,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
-tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAABAAAAAAABAP7/AAAEAAAAAAD+//7/AAADAAIAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAABAAAAAAAIAP7/AAAEAAAAAAAJAP7/AAAFAAIAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAABAAIAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAAAAAAJAPv/AAACAAEAAAAJAPz/AAAFAAEAAAAJAP3/AAAFAAEAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAAFAAEAAAAIAPj/AAAFAAEAAAAIAPn/AAADAAIAAAAJAPn/AAAFAAAAAAAJAPr/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAD///7/AAAEAAIAAAAAAP7/AAAEAAMAAAABAP7/AAAEAAAAAAD+//7/AAADAAIAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAMAAAAIAP7/AAAEAAAAAAAJAP7/AAAFAAIAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAD+//3/AAAFAAEAAAD+//z/AAAFAAEAAAD+//v/AAADAAAAAAD///v/AAAEAAAAAAAAAPv/AAADAAMAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAAAAAAJAPv/AAAEAAQAAAAJAPz/AAAFAAEAAAAJAP3/AAAFAAEAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAAFAAEAAAAIAPj/AAAFAAEAAAAIAPn/AAADAAIAAAAJAPn/AAAFAAAAAAAJAPr/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAA=")
 tile_set = ExtResource("20_m8sw8")
 metadata/_edit_lock_ = true
 
@@ -100,6 +101,16 @@ position = Vector2(288, -262)
 position = Vector2(416, -608)
 level_path = "res://maps/main/1-4_introduction_puzzle.tscn"
 
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=1945772358]
+script = ExtResource("9_ucbr3")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -328.0
+offset_top = -238.0
+offset_right = -117.0
+offset_bottom = -98.0
+text = "- Learn basic interaction"
+
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
 anchors_preset = 0
@@ -113,16 +124,6 @@ offset_top = -621.0
 offset_right = 328.0
 offset_bottom = -598.0
 text = "Congratulations!"
-
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
-layout_mode = 0
-offset_left = -932.0
-offset_top = -787.0
-offset_right = -219.0
-offset_bottom = -504.0
-text = "- Get used to movement
-- Learn basic interaction
-- M&P Crafting"
 
 [node name="Label3" type="Label" parent="Labels" unique_id=1014220407]
 layout_mode = 0

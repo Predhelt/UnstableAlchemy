@@ -103,8 +103,8 @@ func _process(delta: float) -> void:
 			use_timer -= delta
 			progress_bar.value += delta
 		else:
-			print(str(product.qty) + " of item " + product.display_name + 
-				" added to inventory from successful use of " + tool_name)
+			#print(str(product.qty) + " of item " + product.display_name + 
+				#" added to inventory from successful use of " + tool_name)
 			
 			var effect_instance = items_gained_effect.instantiate()
 			

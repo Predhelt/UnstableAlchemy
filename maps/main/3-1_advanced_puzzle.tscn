@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="25_4nt87"]
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="26_8dxog"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="27_xkn5u"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="28_u0qny"]
 
 [sub_resource type="Resource" id="Resource_gybuj"]
 script = ExtResource("4_bfmfs")
@@ -225,6 +226,26 @@ texture = ExtResource("27_xkn5u")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=828600883]
+script = ExtResource("28_u0qny")
+
+[node name="PuzzleDescription" type="Label" parent="CanvasEditorOnly" unique_id=210446302]
+offset_left = -584.0
+offset_top = 187.0
+offset_right = 129.0
+offset_bottom = 470.0
+text = "Requires knowledge of 6 recipes in order to complete:
+Strength Potion from merchant, traded for green 
+herb grinds, which a book is found on the ground.
+Strength potion requires:
+Yellow Dust, which is part of merchant's book.
+Red Berry Seed, which is learned from a hint on the wall,
+Saturated Stem, which is part of merchant's book. Crafting requires knowledge of:
+Gray Juice, Obtained by description from NPC
+and knowledge on how to cut flowers.
+
+order: Herb Grinds -> Str book + Red Seed + Juice -> Craft Str Pot -> move boulder -> win"
+
 [node name="Control" type="Control" parent="." unique_id=581013744]
 layout_mode = 3
 anchors_preset = 0
@@ -238,24 +259,6 @@ offset_top = -354.0
 offset_right = 669.0
 offset_bottom = -331.0
 text = "Congratulations!"
-
-[node name="PuzzleDescription" type="Label" parent="Control" unique_id=210446302]
-layout_mode = 0
-offset_left = -992.0
-offset_top = -585.0
-offset_right = -279.0
-offset_bottom = -302.0
-text = "Requires knowledge of 6 recipes in order to complete:
-Strength Potion from merchant, traded for green 
-herb grinds, which a book is found on the ground.
-Strength potion requires:
-Yellow Dust, which is part of merchant's book.
-Red Berry Seed, which is learned from a hint on the wall,
-Saturated Stem, which is part of merchant's book. Crafting requires knowledge of:
-Gray Juice, Obtained by description from NPC
-and knowledge on how to cut flowers.
-
-order: Herb Grinds -> Str book + Red Seed + Juice -> Craft Str Pot -> move boulder -> win"
 
 [node name="LabelReset" type="Label" parent="Control" unique_id=1022793771]
 layout_mode = 0

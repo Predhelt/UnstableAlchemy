@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="19_rq8wa"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="20_1eqb0"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="21_clk04"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="22_vw02e"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("3_i76j0")
@@ -131,7 +132,7 @@ y_sort_enabled = true
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("19_rq8wa")]
 position = Vector2(416, -672)
-level_path = "res://maps/main/1-4_introduction_puzzle.tscn"
+level_path = "res://maps/main/2-2_beginner_puzzle.tscn"
 
 [node name="PressurePlate" parent="PuzzleNodes" unique_id=28620858 node_paths=PackedStringArray("door_refs") instance=ExtResource("20_1eqb0")]
 position = Vector2(256, -205)
@@ -151,6 +152,18 @@ position = Vector2(224, -260)
 close_time = 1.0
 open_direction = "Left"
 
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=1915912926]
+script = ExtResource("22_vw02e")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -413.0
+offset_top = -54.0
+offset_right = -199.0
+offset_bottom = 40.0
+text = "- Learn Attributes (Mass)
+- Use Merger
+- Use Cauldron"
+
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
 anchors_preset = 0
@@ -165,23 +178,13 @@ offset_right = 255.0
 offset_bottom = -670.0
 text = "Congratulations!"
 
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
-layout_mode = 0
-offset_left = -869.0
-offset_top = -720.0
-offset_right = -156.0
-offset_bottom = -437.0
-text = "- Learn Attributes (Mass)
-- Use Merger
-- Use Cauldron"
-
 [node name="LabelReset" type="Label" parent="Labels" unique_id=570485978]
 layout_mode = 0
-offset_left = 61.0
-offset_top = 210.0
-offset_right = 454.0
-offset_bottom = 233.0
-text = "Reset by going to level select and back to this level."
+offset_left = -31.0
+offset_top = 213.0
+offset_right = 552.0
+offset_bottom = 236.0
+text = "Reset by going to level select and back to this level. Check log book for help."
 
 [node name="Label" type="Label" parent="Labels" unique_id=407111028]
 layout_mode = 0

@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://bug73xhr5bl3w" path="res://game_systems/status_effects/energized_burst.tres" id="6_jipbs"]
 [ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="7_7mplw"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="8_pwspj"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="14_7mplw"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_2sv4n"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_vgkhd"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_bkrfv"]
@@ -74,7 +75,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
-tile_map_data = PackedByteArray("AAAAAP7/AAABAAQAAAABAP7/AAAEAAAAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAMAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAAAPv/AAADAAQAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAQAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAADAAEAAAAIAPj/AAADAAEAAAAIAPn/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAAAPz/AAAFAAEAAAAAAP3/AAAFAAEAAAAIAPr/AAAFAAEAAAAIAP7/AAAFAAIAAAAIAP3/AAAFAAEAAAAIAPz/AAAFAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAP7/AAADAAQAAAABAP7/AAAEAAAAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAMAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAAAPv/AAADAAQAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAQAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAADAAEAAAAIAPj/AAADAAEAAAAIAPn/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAAAPz/AAAFAAEAAAAAAP3/AAAFAAEAAAAIAPr/AAAFAAEAAAAIAP7/AAAFAAIAAAAIAP3/AAAFAAEAAAAIAPz/AAAFAAEAAAA=")
 tile_set = ExtResource("20_m8sw8")
 metadata/_edit_lock_ = true
 
@@ -107,6 +108,16 @@ close_time = 0.55
 position = Vector2(416, -608)
 level_path = "res://maps/main/1-3_introduction_puzzle.tscn"
 
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=1922192418]
+script = ExtResource("14_7mplw")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -242.0
+offset_top = -239.0
+offset_right = -45.0
+offset_bottom = 41.0
+text = "- Using Items"
+
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
 anchors_preset = 0
@@ -121,18 +132,10 @@ offset_right = 265.0
 offset_bottom = -662.0
 text = "Congratulations!"
 
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
-layout_mode = 0
-offset_left = -1125.0
-offset_top = -773.0
-offset_right = -412.0
-offset_bottom = -490.0
-text = "- Using Items"
-
 [node name="Label2" type="Label" parent="Labels" unique_id=1866495259]
 layout_mode = 0
 offset_left = 330.0
-offset_top = -128.0
+offset_top = -120.0
 offset_right = 553.0
 offset_bottom = -68.0
 text = "Use items in inventory (Tab)

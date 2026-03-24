@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://st3ia4ls4p1o"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_o2wfu"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="14_1gpb7"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_e21mu"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_bo0de"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="18_sx8rp"]
@@ -74,7 +75,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
-tile_map_data = PackedByteArray("AAAAAP7/AAABAAQAAAABAP7/AAAEAAAAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAMAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAAAPv/AAADAAQAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAQAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAADAAEAAAAIAPj/AAADAAEAAAAIAPn/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAAAPz/AAAFAAEAAAAAAP3/AAAFAAEAAAAIAPr/AAAFAAEAAAAIAP7/AAAFAAIAAAAIAP3/AAAFAAEAAAAIAPz/AAAFAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAP7/AAADAAQAAAABAP7/AAAEAAAAAAAAAAEAAAADAAIAAAABAAEAAAAEAAAAAAACAAEAAAAEAAAAAAADAAEAAAAEAAAAAAAFAP7/AAAGAAIAAAAGAP7/AAAEAAAAAAAHAP7/AAAEAAMAAAAHAAEAAAAFAAIAAAAGAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAAAPv/AAADAAQAAAABAPv/AAAEAAAAAAACAPv/AAAHAAIAAAAFAPv/AAAGAAIAAAAGAPv/AAAEAAAAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAQAAAACAP7/AAAHAAIAAAAHAP//AAAFAAEAAAAHAAAAAAADAAEAAAAAAPr/AAADAAEAAAAAAPn/AAAFAAEAAAAAAPj/AAAFAAEAAAAAAPf/AAAFAAEAAAAAAPb/AAADAAAAAAABAPb/AAAFAAIAAAABAPX/AAADAAAAAAACAPX/AAAEAAAAAAADAPX/AAAEAAAAAAAEAPX/AAAEAAIAAAAFAPX/AAAEAAAAAAAGAPX/AAAEAAAAAAAHAPX/AAAFAAAAAAAHAPb/AAADAAIAAAAIAPb/AAAFAAAAAAAIAPf/AAADAAEAAAAIAPj/AAADAAEAAAAIAPn/AAADAAEAAAAAAP//AAADAAEAAAAAAAAAAAADAAEAAAAAAPz/AAAFAAEAAAAAAP3/AAAFAAEAAAAIAPr/AAAFAAEAAAAIAP7/AAAFAAIAAAAIAP3/AAAFAAEAAAAIAPz/AAAFAAEAAAA=")
 tile_set = ExtResource("20_sq2ll")
 metadata/_edit_lock_ = true
 
@@ -117,14 +118,6 @@ offset_right = 265.0
 offset_bottom = -662.0
 text = "Congratulations!"
 
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
-layout_mode = 0
-offset_left = -1125.0
-offset_top = -773.0
-offset_right = -412.0
-offset_bottom = -490.0
-text = "- Get used to movement"
-
 [node name="Label" type="Label" parent="Labels" unique_id=755762151]
 layout_mode = 0
 offset_left = -49.0
@@ -141,3 +134,13 @@ offset_top = -684.0
 offset_right = 501.0
 offset_bottom = -661.0
 text = "Go to next level here:"
+
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=718879271]
+script = ExtResource("14_1gpb7")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -622.0
+offset_top = -522.0
+offset_right = 91.0
+offset_bottom = -239.0
+text = "- Get used to movement"

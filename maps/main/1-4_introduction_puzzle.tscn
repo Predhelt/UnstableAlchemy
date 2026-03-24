@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="12_5k5hu"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="13_ejif0"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="13_wdeqd"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="14_5k5hu"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="14_am6pl"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="14_kpwao"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
@@ -94,6 +96,16 @@ position = Vector2(288, -262)
 position = Vector2(416, -608)
 level_path = "res://maps/main/1-5_introduction_puzzle.tscn"
 
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=1220174364]
+script = ExtResource("14_5k5hu")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -155.0
+offset_top = -139.0
+offset_right = 16.0
+offset_bottom = -55.0
+text = "- M&P Crafting"
+
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
 anchors_preset = 0
@@ -108,15 +120,6 @@ offset_right = 328.0
 offset_bottom = -598.0
 text = "Congratulations!"
 
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
-layout_mode = 0
-offset_left = -932.0
-offset_top = -787.0
-offset_right = -219.0
-offset_bottom = -504.0
-text = "- Use Recipe Book
-- M&P Crafting"
-
 [node name="Label2" type="Label" parent="Labels" unique_id=1866495259]
 layout_mode = 0
 offset_left = 521.0
@@ -128,10 +131,18 @@ text = "Check the recipe book (R) to see how to craft items.
 Drag the leaves in the Inventory (Tab) to the proper tool, then
 click the check mark and follow the steps to complete the craft.
 
-Hover over buttons and items in menus to get descriptions.
-
-
 Can use arrow keys or click the arrows to craft.
 
-Once you craft something once, you can quickly craft it again
-from the recipe book."
+Once you craft something once, you can
+quickly craft it again from the recipe book.
+
+Hover over buttons and items in menus to get descriptions."
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Label2" unique_id=648114782]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 350.0
+offset_top = 119.0
+offset_right = 478.0
+offset_bottom = 247.0
+texture = ExtResource("14_am6pl")

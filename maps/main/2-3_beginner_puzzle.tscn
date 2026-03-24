@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="17_0pcbv"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="18_hfuf7"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="19_vcsld"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="20_1mciq"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("3_o375i")
@@ -121,12 +122,21 @@ position = Vector2(476, 25)
 [node name="YellowFlowers5" parent="Objects" unique_id=972143606 instance=ExtResource("15_urhv0")]
 position = Vector2(604, -43)
 
+[node name="RedBerryBush" parent="Objects" unique_id=1320011023 instance=ExtResource("19_vcsld")]
+position = Vector2(342, -193)
+
+[node name="RedBerryBush2" parent="Objects" unique_id=1960785901 instance=ExtResource("19_vcsld")]
+position = Vector2(540, 126)
+
+[node name="RedBerryBush3" parent="Objects" unique_id=1661084880 instance=ExtResource("19_vcsld")]
+position = Vector2(401.00003, 153)
+
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("16_48xoh")]
 position = Vector2(417, -800)
-level_path = "res://maps/main/2-1_advanced_puzzle.tscn"
+level_path = "res://maps/main/3-1_advanced_puzzle.tscn"
 
 [node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("17_0pcbv")]
 position = Vector2(288, -324)
@@ -143,6 +153,17 @@ open_direction = "Left"
 position = Vector2(97, -289)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=13898743]
+script = ExtResource("20_1mciq")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -499.0
+offset_top = -152.0
+offset_right = -279.0
+offset_bottom = 131.0
+text = "- Speed Potion
+- ?????"
+
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
 anchors_preset = 0
@@ -156,21 +177,3 @@ offset_top = -876.0
 offset_right = 283.0
 offset_bottom = -853.0
 text = "Congratulations!"
-
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
-layout_mode = 0
-offset_left = -869.0
-offset_top = -720.0
-offset_right = -156.0
-offset_bottom = -437.0
-text = "- Use blue berries
-- More complicated craft"
-
-[node name="RedBerryBush" parent="." unique_id=1320011023 instance=ExtResource("19_vcsld")]
-position = Vector2(342, -193)
-
-[node name="RedBerryBush2" parent="." unique_id=1960785901 instance=ExtResource("19_vcsld")]
-position = Vector2(540, 126)
-
-[node name="RedBerryBush3" parent="." unique_id=1661084880 instance=ExtResource("19_vcsld")]
-position = Vector2(401.00003, 153)

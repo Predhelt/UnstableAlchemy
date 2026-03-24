@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper_full.png" id="21_4gjee"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="22_wl68a"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="23_w53eh"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="24_bcy3g"]
 
 [sub_resource type="Resource" id="Resource_qo0cn"]
 script = ExtResource("3_6o0uj")
@@ -220,16 +221,13 @@ offset_right = 365.0
 offset_bottom = -722.0
 text = "Congratulations!"
 
-[node name="MapDescription" type="Label" parent="Labels" unique_id=1978709420]
+[node name="LabelReset2" type="Label" parent="Labels" unique_id=464580011]
 layout_mode = 0
-offset_left = -984.0
-offset_top = -917.0
-offset_right = -271.0
-offset_bottom = -634.0
-text = "- Merging Items
-- Cauldron Crafting
-- Drinking Potions
-- Talking to NPC"
+offset_left = 356.0
+offset_top = -108.0
+offset_right = 386.0
+offset_bottom = -85.0
+text = "WIP"
 
 [node name="LabelReset" type="Label" parent="Labels" unique_id=728117314]
 layout_mode = 0
@@ -238,10 +236,15 @@ offset_right = 525.0
 offset_bottom = 110.0
 text = "If you get stuck, reset by going to level select and back to this level."
 
-[node name="LabelReset" type="Label" parent="Labels/LabelReset" unique_id=464580011]
-layout_mode = 0
-offset_left = 356.0
-offset_top = -195.0
-offset_right = 386.0
-offset_bottom = -172.0
-text = "WIP"
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=831539376]
+script = ExtResource("24_bcy3g")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -319.0
+offset_top = -280.0
+offset_right = -101.0
+offset_bottom = -94.0
+text = "- Merging Items
+- Cauldron Crafting
+- Drinking Potions
+- Talking to NPC"
