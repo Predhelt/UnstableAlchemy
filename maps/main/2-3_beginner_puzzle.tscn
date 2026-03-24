@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_1mciq"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_o375i"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_ath2w"]
-[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://game_systems/items/potions/speed_potion.tres" id="5_akrd4"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_5l46s"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_ifk4n"]
 [ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="8_smo8i"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="9_ttryd"]
@@ -27,7 +25,6 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_etwul"]
 script = ExtResource("7_ifk4n")
-items = Array[ExtResource("4_ath2w")]([ExtResource("5_akrd4"), ExtResource("6_5l46s")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_51mqc"]

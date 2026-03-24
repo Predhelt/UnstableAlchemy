@@ -412,10 +412,10 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 	else:
 		if not is_removing:
 			# Remove and re-add the status effect
-			c.call(-se.value)
+			c.call(-active_status_effects[se_index].value)
 			c.call(se.value)
 		else:
-			c.call(-se.value)
+			c.call(-active_status_effects[se_index].value)
 		update_status_bar(se, se_index, is_removing)
 		return true
 
