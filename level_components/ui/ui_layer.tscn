@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://devoaotbjwrvh" path="res://level_components/ui/windows/log_book/log_book.tscn" id="7_wgl5k"]
 [ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://level_components/ui/windows/npc_shop/npc_shop.tscn" id="8_rphg0"]
 [ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://level_components/ui/windows/npc_dialogue/npc_dialogue.tscn" id="9_lnbc2"]
-[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldro_minigame.tscn" id="10_dqvj8"]
+[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldron_minigame.tscn" id="10_dqvj8"]
 [ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.tscn" id="11_43y5x"]
 [ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://level_components/ui/hud/menu_bar/menu_bar.tscn" id="12_qrsce"]
 [ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://level_components/ui/hud/status_effect/status_effect_bar.tscn" id="13_t5x2k"]
@@ -80,13 +80,14 @@ visible = false
 [node name="Notifications" type="VBoxContainer" parent="HUDLayer" unique_id=295845683]
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.85
+anchor_top = 0.9
 anchor_right = 0.5
-anchor_bottom = 0.85
+anchor_bottom = 0.9
 offset_left = -20.0
 offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="use_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/InventoryMenu" method="_on_hotbar_use_inventory_item"]

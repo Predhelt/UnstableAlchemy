@@ -59,8 +59,9 @@ func open_window():
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
 		tb.texture = Global.blank_texture
 	
-	slider.max_value = 6
+	slider.max_value = 6 * 2 #TODO: Allow max value to be changed based on difficulty/settings
 	slider.tick_count = 7
+	tick_value = slider.max_value / (slider.tick_count-1)
 	
 	%WindowName.text = "Cauldron"
 	Global.left_window = self
@@ -92,7 +93,7 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 func _get_nearest_tick() -> int:
 	var nearest_tick := -1
 	
-	var tick_mod : float = fmod((slider.value + (tick_value / 2.0)), tick_value)
+	var tick_mod : float = fmod(((slider.value) + (tick_value / 2.0)), tick_value)
 	tick_mod = tick_mod / tick_value
 	var lower_bound := (1-input_window_ratio)/2
 	var upper_bound := input_window_ratio+((1-input_window_ratio)/2)

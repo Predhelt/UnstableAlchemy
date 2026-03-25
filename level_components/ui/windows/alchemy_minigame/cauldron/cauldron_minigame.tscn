@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="6_d8kn3"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://level_components/ui/windows/alchemy_minigame/minigame_progress_bar.tscn" id="7_gm5fx"]
 
-[node name="MinigameCauldron" type="Panel"]
+[node name="MinigameCauldron" type="Panel" unique_id=939871601]
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.15
@@ -22,10 +22,10 @@ grow_vertical = 2
 theme = ExtResource("1_cupdn")
 script = ExtResource("1_geiyq")
 
-[node name="StartupDelay" type="Timer" parent="."]
+[node name="StartupDelay" type="Timer" parent="." unique_id=2067469942]
 one_shot = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=914157893]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,11 +33,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="VBoxContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=965429378]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="WindowName" type="Label" parent="VBoxContainer/Panel"]
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel" unique_id=1894699585]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -52,7 +52,7 @@ label_settings = ExtResource("2_u2uge")
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel"]
+[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel" unique_id=1815367427]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 6
@@ -68,7 +68,7 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "X"
 
-[node name="ButtonBack" type="Button" parent="VBoxContainer/Panel"]
+[node name="ButtonBack" type="Button" parent="VBoxContainer/Panel" unique_id=466301480]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 6
@@ -84,12 +84,12 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "<-"
 
-[node name="Container" type="Control" parent="VBoxContainer"]
+[node name="Container" type="Control" parent="VBoxContainer" unique_id=1395815003]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Container"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Container" unique_id=1908741942]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43
@@ -100,7 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="ButtonItem1" type="Button" parent="VBoxContainer/Container/GridContainer"]
+[node name="ButtonItem1" type="Button" parent="VBoxContainer/Container/GridContainer" unique_id=1040745451]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -110,7 +110,7 @@ icon = ExtResource("2_24nro")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ButtonItem2" type="Button" parent="VBoxContainer/Container/GridContainer"]
+[node name="ButtonItem2" type="Button" parent="VBoxContainer/Container/GridContainer" unique_id=686509030]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -120,7 +120,7 @@ icon = ExtResource("3_1ik8m")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ButtonItem3" type="Button" parent="VBoxContainer/Container/GridContainer"]
+[node name="ButtonItem3" type="Button" parent="VBoxContainer/Container/GridContainer" unique_id=1271280468]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -130,7 +130,7 @@ icon = ExtResource("2_24nro")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ButtonBellows" type="Button" parent="VBoxContainer/Container/GridContainer"]
+[node name="ButtonBellows" type="Button" parent="VBoxContainer/Container/GridContainer" unique_id=1540747593]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -143,7 +143,7 @@ icon = ExtResource("4_dqyf7")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ButtonStart" type="Button" parent="VBoxContainer/Container"]
+[node name="ButtonStart" type="Button" parent="VBoxContainer/Container" unique_id=1111134330]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
@@ -159,14 +159,14 @@ icon = ExtResource("4_rks5m")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Control" type="Control" parent="VBoxContainer/Container"]
+[node name="Control" type="Control" parent="VBoxContainer/Container" unique_id=1692098176]
 layout_mode = 1
 anchor_left = 0.6
 anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.6
 
-[node name="ToolIcon" type="TextureRect" parent="VBoxContainer/Container/Control"]
+[node name="ToolIcon" type="TextureRect" parent="VBoxContainer/Container/Control" unique_id=354750044]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,7 +177,7 @@ texture = ExtResource("5_6uy83")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ItemIcon" type="TextureRect" parent="VBoxContainer/Container/Control"]
+[node name="ItemIcon" type="TextureRect" parent="VBoxContainer/Container/Control" unique_id=477822613]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
@@ -190,7 +190,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_d8kn3")
 
-[node name="MinigameProgressBar" parent="VBoxContainer/Container" instance=ExtResource("7_gm5fx")]
+[node name="MinigameProgressBar" parent="VBoxContainer/Container" unique_id=1627693060 instance=ExtResource("7_gm5fx")]
 unique_name_in_owner = true
 layout_mode = 1
 
