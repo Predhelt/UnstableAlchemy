@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_o375i"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_ath2w"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_ifk4n"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="8_smo8i"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="9_ttryd"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="10_c701x"]
 [ext_resource type="Resource" uid="uid://daguy0svx5k7b" path="res://game_systems/items/recipe_books/speed_potion_book.tres" id="11_q4xao"]
@@ -60,11 +59,6 @@ position_smoothing_enabled = true
 [node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
-
-[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
-z_index = -50
-scale = Vector2(2, 2)
-tile_set = ExtResource("8_smo8i")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20

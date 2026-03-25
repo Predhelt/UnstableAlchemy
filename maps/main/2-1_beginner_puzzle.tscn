@@ -6,10 +6,7 @@
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="4_vrfq2"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="5_r0hmm"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_p6bab"]
-[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="7_7c2kq"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="8_2qw1c"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="9_4pw11"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="10_3wl68"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="11_bm324"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="12_lpayp"]
 [ext_resource type="Resource" uid="uid://c3c5x8an0plk1" path="res://game_systems/items/recipe_books/grow_potion_book.tres" id="13_3l4sf"]
@@ -29,7 +26,6 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_uc71n"]
 script = ExtResource("9_4pw11")
-items = Array[ExtResource("6_p6bab")]([ExtResource("7_7c2kq"), ExtResource("8_2qw1c")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_51mqc"]
@@ -65,11 +61,6 @@ position_smoothing_enabled = true
 [node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
-
-[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
-z_index = -50
-scale = Vector2(2, 2)
-tile_set = ExtResource("10_3wl68")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
@@ -152,18 +143,6 @@ position = Vector2(224, -260)
 close_time = 1.0
 open_direction = "Left"
 
-[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=1915912926]
-script = ExtResource("22_vw02e")
-
-[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
-offset_left = -413.0
-offset_top = -54.0
-offset_right = -199.0
-offset_bottom = 40.0
-text = "- Learn Attributes (Mass)
-- Use Merger
-- Use Cauldron"
-
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
 anchors_preset = 0
@@ -193,3 +172,15 @@ offset_top = -299.0
 offset_right = 626.0
 offset_bottom = -276.0
 text = "Plate requires more weight to trigger"
+
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=1915912926]
+script = ExtResource("22_vw02e")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=1978709420]
+offset_left = -413.0
+offset_top = -54.0
+offset_right = -199.0
+offset_bottom = 40.0
+text = "- Learn Attributes (Mass)
+- Use Merger
+- Use Cauldron"

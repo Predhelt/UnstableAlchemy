@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="7_yx5x0"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="8_jt1vk"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="9_gchmb"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="10_ecigc"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="11_67p0v"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="12_r1f1d"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="13_w6yca"]
@@ -81,11 +80,6 @@ passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1147979852]
 metadata/_edit_lock_ = true
-
-[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=483076526]
-z_index = -50
-scale = Vector2(2, 2)
-tile_set = ExtResource("10_ecigc")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=9354243]
 z_index = -20
