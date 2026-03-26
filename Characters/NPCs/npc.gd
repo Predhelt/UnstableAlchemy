@@ -103,9 +103,9 @@ func save() -> Dictionary: #FIXME: Outdated save fields.
 		"known_recipes" : known_recipes,
 		"gathered_items" : var_to_str(gathered_items),
 		"books_read" : books_read,
-		"objects_grab_interacted" : var_to_str(objects_grab_interacted), #FIXME: Not saved/loaded properly
-		"objects_cut_interacted" : var_to_str(objects_cut_interacted), #FIXME: Not saved/loaded properly
-		"objects_combined" : var_to_str(objects_combined), #FIXME: Not saved/loaded properly
+		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
+		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
+		"objects_combined" : var_to_str(objects_combined),
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
