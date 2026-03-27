@@ -96,7 +96,7 @@ close_time = 1.0
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("26_0imah")]
 position = Vector2(416, -608)
-level_path = "res://maps/main/1-2_introduction_puzzle.tscn"
+level_path = "res://maps/training/1-2_introduction_puzzle.tscn"
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3

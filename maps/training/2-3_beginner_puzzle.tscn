@@ -127,7 +127,7 @@ y_sort_enabled = true
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("16_48xoh")]
 position = Vector2(417, -800)
-level_path = "res://maps/main/3-1_advanced_puzzle.tscn"
+level_path = "res://maps/training/3-1_advanced_puzzle.tscn"
 
 [node name="SlidingDoor" parent="PuzzleNodes" unique_id=463050243 instance=ExtResource("17_0pcbv")]
 position = Vector2(288, -324)

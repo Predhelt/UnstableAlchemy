@@ -99,7 +99,7 @@ position = Vector2(288, -262)
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("29_ovyrl")]
 position = Vector2(416, -608)
-level_path = "res://maps/main/1-4_introduction_puzzle.tscn"
+level_path = "res://maps/training/1-4_introduction_puzzle.tscn"
 
 [node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=1945772358]
 script = ExtResource("9_ucbr3")
