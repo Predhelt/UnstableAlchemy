@@ -49,6 +49,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 disabled = true
 text = "Play (WIP)"
+level_path = "uid://o63keldhmysn"
 
 [node name="ButtonTraining" parent="VBoxContainer" unique_id=1356983260 instance=ExtResource("2_12dnu")]
 custom_minimum_size = Vector2(250, 0)
