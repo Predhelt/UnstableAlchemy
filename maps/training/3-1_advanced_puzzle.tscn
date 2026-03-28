@@ -61,6 +61,7 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1220527263 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_u0qny")]
 position = Vector2(469, 370)
 character_camera_ref = NodePath("../PlayerCamera")
+has_blade = true
 inventory = SubResource("Resource_gybuj")
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1211842578]

@@ -55,6 +55,8 @@ metadata/_edit_lock_ = true
 position = Vector2(256, 6)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_qo0cn")
+has_blade = true
+has_dropper = true
 inventory = SubResource("Resource_yiupm")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]

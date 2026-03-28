@@ -4,6 +4,9 @@ signal set_dropper_item()
 
 var selected_tool := ""
 
+var has_blade := false
+var has_dropper := false
+
 var dropper_icon_full := preload("res://art/pack/tools/dropper_full.png")
 var dropper_item : Item:
 	set(item):
@@ -18,12 +21,21 @@ func _ready() -> void:
 	tooltip_text = selected_tool
 	$CurrentTool/HotkeyLabel.text = (
 		InputMap.action_get_events("tool_wheel")[0].as_text().replace(' - Physical',''))
+	_close_tool_selection()
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_close_tool_selection()
 	if event.is_action_pressed("tool_wheel"):
 		toggle_tool_selection()
+
+## Toggle visibility of blade tool slot
+func set_blade_enabled(is_enabled : bool) -> void:
+	has_blade = is_enabled
+
+## Toggle visibility of dropper tool slot
+func set_dropper_enabled(is_enabled : bool) -> void:
+	has_dropper = is_enabled
 
 
 func _on_slot_1_toggled(toggled_on: bool) -> void:
@@ -75,9 +87,14 @@ func _on_current_tool_pressed() -> void:
 	toggle_tool_selection()
 
 func toggle_tool_selection() -> void:
+	if not has_blade and not has_dropper:
+		return
+	
 	$Slot1.visible = not $Slot1.visible
-	$Slot2.visible = not $Slot2.visible
-	$Slot3.visible = not $Slot3.visible
+	if has_blade: $Slot2.visible = not $Slot2.visible
+	else: $Slot2.visible = false
+	if has_dropper: $Slot3.visible = not $Slot3.visible
+	else: $Slot3.visible = false
 
 func _close_tool_selection() -> void:
 	$Slot1.visible = false

@@ -28,6 +28,10 @@ const SIZE_DAMPENER : float = 0.5
 ## track of the character-specific knowledge, not the player's known recipes.
 ## Player-known recipes are stored in UserVariables.
 @export var known_recipes : Array[Recipe]
+## Tracks whether the character has access to the blade tool or not.
+@export var has_blade : bool = false
+## Tracks whether the character has access to the dropper tool or not.
+@export var has_dropper : bool = false
 ## List of books by ID that the character has read
 var books_read : Array[int]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
@@ -136,8 +140,11 @@ func _ready() -> void:
 			if not has_recipe:
 				UserVariables.known_recipes.append(recipe)
 				UserVariables.new_recipes.append(recipe)
+		
+		tool_wheel_ref.set_blade_enabled(has_blade)
+		tool_wheel_ref.set_dropper_enabled(has_dropper)
 	
-	## Initialize character statuses based on attributes
+	# Initialize character statuses based on attributes
 	var cur_se : StatusEffect
 	for i in range(active_status_effects.size()-1, -1, -1):
 		cur_se = active_status_effects[i]
