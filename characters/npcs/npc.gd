@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 				say_random_message()
 
 func init_dialogues():
-	var dialogue_path : String = scene_file_path.rsplit("/", false, 1)[0] + "/Dialogue/Dialogues/"
+	var dialogue_path : String = scene_file_path.rsplit("/", false, 1)[0] + "/dialogue/dialogues/"
 	#print(dialogue_path)
 	var dir := DirAccess.open(dialogue_path)
 	if not dir:
@@ -55,16 +55,17 @@ func init_dialogues():
 		return
 	
 	dir.list_dir_begin()
-	var file_name : String = dir.get_next()
+	var file_name : String = dir.get_next().replace('.remap','')
 	while file_name != "":
 		var split = file_name.rsplit(".", true, 1)
+		print(split[1])
 		if split[1] == "tres":
 			var new_dialogue : Dialogue
 			var file_path : String = dialogue_path+file_name
 			new_dialogue = load(file_path)
 			if new_dialogue:
 				dialogues.append(new_dialogue)
-		file_name = dir.get_next()
+		file_name = dir.get_next().replace('.remap','')
 	dir.list_dir_end()
 
 ## Sets up and returns a dictionary that represents the persistent information
