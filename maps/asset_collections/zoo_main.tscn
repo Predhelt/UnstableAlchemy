@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d2035enlttehf"]
+
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="1_8mkxd"]
+[ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://level_components/objects/collisions/wall_small_hole.tscn" id="2_y2io7"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="3_tybpe"]
+
+[node name="ZooMain" type="Node2D" unique_id=1524417957]
+
+[node name="CollisionObjects" type="Node2D" parent="." unique_id=1251275012]
+
+[node name="BoulderPushable" parent="CollisionObjects" unique_id=1794405496 instance=ExtResource("1_8mkxd")]
+position = Vector2(60, 170)
+
+[node name="StaticBody2D" parent="CollisionObjects" unique_id=1386327662 instance=ExtResource("2_y2io7")]
+position = Vector2(200, 169)
+
+[node name="SlidingDoor" parent="CollisionObjects" unique_id=1074707101 instance=ExtResource("3_tybpe")]
+position = Vector2(351, 168)
+
+[node name="Label" type="Label" parent="CollisionObjects" unique_id=1614891309]
+offset_left = 66.0
+offset_top = 24.0
+offset_right = 194.0
+offset_bottom = 47.0
+text = "Collision Objects"
+
+[node name="Label2" type="Label" parent="CollisionObjects" unique_id=1499177994]
+offset_left = 28.0
+offset_top = 219.0
+offset_right = 390.0
+offset_bottom = 294.0
+text = "Standard object size is 64x64px
+Collision height is 8px
+center of object is in the middle of the collision"

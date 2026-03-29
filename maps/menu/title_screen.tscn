@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://ckgxm2etu6kdm"]
+
+[ext_resource type="Script" uid="uid://rv8tslq5els7" path="res://maps/menu/title_screen.gd" id="1_scg0l"]
+[ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_12dnu"]
+[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
+[ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
+
+[node name="TitleScreen" type="Control" unique_id=2038214120]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_scg0l")
+
+[node name="LabelTitle" type="Label" parent="." unique_id=1430391897]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -284.0
+offset_top = 70.0
+offset_right = 273.0
+offset_bottom = 158.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Unstable Alchemy"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1846484415]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -157.0
+offset_right = 170.0
+offset_bottom = 312.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="ButtonPlay" parent="VBoxContainer" unique_id=1276432221 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Play (WIP)"
+level_path = "uid://o63keldhmysn"
+
+[node name="ButtonTraining" parent="VBoxContainer" unique_id=1356983260 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Training"
+level_path = "uid://bxw8y0udo7u4o"
+
+[node name="ButtonLoad" type="Button" parent="VBoxContainer" unique_id=373167392]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Load"
+
+[node name="ButtonSettings" type="Button" parent="VBoxContainer" unique_id=2133861704]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Settings (WIP)"
+
+[node name="ButtonExit" type="Button" parent="VBoxContainer" unique_id=131960736]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="LabelVersion" type="Label" parent="." unique_id=1604606504]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.97
+anchor_right = 0.02
+anchor_bottom = 0.97
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme = ExtResource("3_3ahgd")
+text = "Version:"
+
+[node name="CompanyLogo" type="TextureRect" parent="." unique_id=656535454]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.99
+anchor_top = 0.98
+anchor_right = 0.99
+anchor_bottom = 0.98
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_kcdp0")
+
+[connection signal="pressed" from="VBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dafig3tdk6up1"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/npcs/dialogue_choice.gd" id="1_a3qbw"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://characters/npcs/dialogue.gd" id="2_mcwcs"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://characters/npcs/dialogue_condition.gd" id="2_yonbd"]
+
+[sub_resource type="Resource" id="Resource_eyj5s"]
+script = ExtResource("1_a3qbw")
+player_response = "Gray Juice?"
+next_dialogue_name = &"gray_juice"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_6yixi"]
+script = ExtResource("1_a3qbw")
+player_response = "Okay, thanks."
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("2_mcwcs")
+dialogue_name = &"saturated_stem"
+text = "If you use your blade to cut the yellow flowers, you can get their stem. You can try crafting the saturated stem yourself from the recipe, or sell a couple of the stems to me with some berries and I can perform the saturation for you.
+
+The gray juice recipe isn't in the book I gave you, but I can describe the process if you ask me."
+choices = Array[ExtResource("1_a3qbw")]([SubResource("Resource_eyj5s"), SubResource("Resource_6yixi")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

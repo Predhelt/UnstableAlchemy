@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://bjy53iyb5qxxw"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/npcs/dialogue_choice.gd" id="1_wrx6n"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://characters/npcs/dialogue_condition.gd" id="2_4r8l4"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://characters/npcs/dialogue.gd" id="3_ndn6q"]
+
+[sub_resource type="Resource" id="Resource_tlhw8"]
+script = ExtResource("1_wrx6n")
+player_response = "\"Could you tell me that advice again?\""
+next_dialogue_name = &"advice"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("3_ndn6q")
+dialogue_name = &"re-greet"
+text = "Oh, hello again. I have a strength potion recipe book if you need it. 
+
+I'm going to try to use some green herb flakes to help with the swelling on my ankle, so if you could grab some of those for me, I'll give you the recipe book."
+choices = Array[ExtResource("1_wrx6n")]([SubResource("Resource_tlhw8")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

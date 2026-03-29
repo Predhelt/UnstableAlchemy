@@ -1,0 +1,212 @@
+[gd_scene format=4 uid="uid://co733h0r4vxsd"]
+
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_8c1i5"]
+[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="15_vqa7y"]
+[ext_resource type="PackedScene" uid="uid://5ru7ywrgkfd3" path="res://characters/npcs/brindan_gcsm/brindan_gcsm.tscn" id="17_loxta"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="18_nyvjr"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="19_jj5vo"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="20_35d2w"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="21_1ohhg"]
+[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="22_3ijoo"]
+[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="23_70kpq"]
+[ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="24_hiyc0"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="25_5anji"]
+[ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="26_poe06"]
+[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="27_ey2lk"]
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="28_6m25f"]
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="30_2m6xo"]
+[ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://level_components/objects/triggers/blockage_area.tscn" id="31_3ummi"]
+[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="32_ho6lh"]
+[ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="33_5ffdm"]
+[ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red_berry_seed.png" id="34_3i3qy"]
+[ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="35_thnog"]
+[ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="36_kf0ri"]
+[ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="37_me1xg"]
+
+[sub_resource type="Resource" id="Resource_fa7q6"]
+script = ExtResource("18_nyvjr")
+items_selling = Array[ExtResource("20_35d2w")]([ExtResource("22_3ijoo")])
+items_selling_amount = Array[int]([1])
+items_buying = Array[ExtResource("20_35d2w")]([ExtResource("21_1ohhg")])
+items_buying_amount = Array[int]([2])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[node name="WorldGCSM" type="Node2D" unique_id=2030811065]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_8c1i5")]
+
+[node name="Player" parent="." unique_id=1461829794 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_vqa7y")]
+unique_name_in_owner = true
+position = Vector2(529, 298)
+character_camera_ref = NodePath("../PlayerCamera")
+
+[node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=592775282]
+remote_path = NodePath("../../PlayerCamera")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1462295190]
+unique_name_in_owner = true
+position = Vector2(529, 298)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="NPCBrindan" parent="." unique_id=1642300450 instance=ExtResource("17_loxta")]
+unique_name_in_owner = true
+position = Vector2(675, 146)
+collision_mask = 57
+transactions = Array[ExtResource("18_nyvjr")]([ExtResource("19_jj5vo"), SubResource("Resource_fa7q6")])
+passive_messages = Array[String](["Hey", "That could've gone worse.."])
+
+[node name="TileMaps" type="Node2D" parent="." unique_id=566419408]
+metadata/_edit_lock_ = true
+
+[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=1876300507]
+z_index = -50
+scale = Vector2(2, 2)
+tile_set = ExtResource("23_70kpq")
+
+[node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=151506991]
+z_index = -20
+tile_map_data = PackedByteArray("AAAOAAEAAgAAAAAAAQAOAAIAAgAAAAAAAQAOAAMAAgAAAAAAAQAOAAQAAgAAAAAAAQAOAAUAAgAAAAAAAQAOAAYAAgAAAAAAAQAOAAcAAgAAAAAAAQAOAAgAAgAAAAAAAQAOAAkAAgAAAAAAAQANAAkAAgAAAAAAAQAMAAkAAgAAAAAAAQALAAkAAgAAAAAAAQAKAAkAAgAAAAAAAQAJAAkAAgAAAAAAAQAIAAkAAgAAAAAAAQAHAAkAAgAAAAAAAQAGAAkAAgAAAAAAAQAFAAkAAgAAAAAAAQAEAAkAAgAAAAAAAQADAAkAAgAAAAAAAQADAAgAAgAAAAAAAQADAAcAAgAAAAAAAQADAAYAAgAAAAAAAQADAAUAAgAAAAAAAQADAAQAAgAAAAAAAQADAAMAAgAAAAAAAQADAAIAAgAAAAAAAQADAAEAAgAAAAAAAQAEAAEAAgAAAAAAAQAFAAEAAgAAAAAAAQAGAAEAAgAAAAAAAQAHAAEAAgAAAAAAAQAIAAEAAgAAAAAAAQAJAAEAAgAAAAAAAQAKAAEAAgAAAAAAAQALAAEAAgAAAAAAAQAMAAEAAgAAAAAAAQANAAEAAgAAAAAAAQANAAIAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQANAAYAAgAAAAAAAQANAAcAAgAAAAAAAQANAAgAAgAAAAAAAQAMAAgAAgAAAAAAAQALAAgAAgAAAAAAAQAKAAgAAgAAAAAAAQAJAAgAAgAAAAAAAQAIAAgAAgAAAAAAAQAHAAgAAgAAAAAAAQAGAAgAAgAAAAAAAQAFAAgAAgAAAAAAAQAEAAgAAgAAAAAAAQAEAAcAAgAAAAAAAQAEAAYAAgAAAAAAAQAEAAUAAgAAAAAAAQAEAAQAAgAAAAAAAQAEAAMAAgAAAAAAAQAEAAIAAgAAAAAAAQAFAAIAAgAAAAAAAQAGAAIAAgAAAAAAAQAHAAIAAgAAAAAAAQAIAAIAAgAAAAAAAQAJAAIAAgAAAAAAAQAKAAIAAgAAAAAAAQALAAIAAgAAAAAAAQAMAAIAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQAMAAYAAgAAAAAAAQALAAYAAgAAAAAAAQALAAcAAgAAAAAAAQAKAAcAAgAAAAAAAQAJAAcAAgAAAAAAAQAIAAcAAgAAAAAAAQAHAAcAAgAAAAAAAQAGAAcAAgAAAAAAAQAFAAcAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAMAAgAAAAAAAQAGAAMAAgAAAAAAAQAHAAMAAgAAAAAAAQAIAAMAAgAAAAAAAQAJAAMAAgAAAAAAAQAKAAMAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQAMAAcAAgAAAAAAAQALAAUAAgAAAAAAAQAKAAUAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAYAAgAAAAAAAQAJAAYAAgAAAAAAAQAJAAUAAgAAAAAAAQAJAAQAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAYAAgAAAAAAAQAIAAUAAgAAAAAAAQAHAAYAAgAAAAAAAQAHAAUAAgAAAAAAAQAHAAQAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAGAAYAAgAAAAAAAQAFAAYAAgAAAAAAAQAFAAUAAgAAAAAAAQAJAAAAAgAAAAAAAQAJAP//AgAAAAAAAAAJAP7/AgAAAAAAAAAIAP7/AgAAAAAAAAAIAP3/AgAAAAAAAAAIAPz/AgAAAAAAAAAJAPz/AgAAAAAAAAAKAPz/AgAAAAAAAAAKAP3/AgAAAAAAAAAKAP7/AgAAAAAAAAAJAP3/AgAAAAAAAAAHAPv/AgAAAAAAAAAIAPv/AgAAAAAAAAAJAPv/AgAAAAAAAAAKAPv/AgAAAAAAAAALAPv/AgAAAAAAAAALAPz/AgAAAAAAAAALAP3/AgAAAAAAAAALAP7/AgAAAAAAAAAHAP7/AgAAAAAAAAAHAP3/AgAAAAAAAAAHAPz/AgAAAAAAAAAFAPr/AgAAAAAAAAAFAPv/AgAAAAAAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAFAP7/AgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgAAAAAAAQAGAPr/AgAAAAAAAAAGAPv/AgAAAAAAAAAGAPz/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAQAHAPr/AgAAAAAAAAAHAP//AgAAAAAAAAAHAAAAAgAAAAAAAQAIAPr/AgAAAAAAAAAIAP//AgAAAAAAAAAIAAAAAgAAAAAAAQAJAPr/AgAAAAAAAAAKAPr/AgAAAAAAAAAKAP//AgAAAAAAAAAKAAAAAgAAAAAAAQALAPr/AgAAAAAAAAALAP//AgAAAAAAAAALAAAAAgAAAAAAAQAMAPr/AgAAAAAAAAAMAPv/AgAAAAAAAAAMAPz/AgAAAAAAAAAMAP3/AgAAAAAAAAAMAP7/AgAAAAAAAAAMAP//AgAAAAAAAAAMAAAAAgAAAAAAAQANAPr/AgAAAAAAAAANAPv/AgAAAAAAAAANAPz/AgAAAAAAAAANAP3/AgAAAAAAAAANAP7/AgAAAAAAAAANAP//AgAAAAAAAAANAAAAAgAAAAAAAQACAAAAAgAAAAAAAQACAAEAAgAAAAAAAQACAAIAAgAAAAAAAQACAAMAAgAAAAAAAQACAAQAAgAAAAAAAQACAAUAAgAAAAAAAQACAAYAAgAAAAAAAQACAAcAAgAAAAAAAQACAAgAAgAAAAAAAQACAAkAAgAAAAAAAQACAAoAAgAAAAAAAQADAAAAAgAAAAAAAQADAAoAAgAAAAAAAQAEAAAAAgAAAAAAAQAEAAoAAgAAAAAAAQAFAAoAAgAAAAAAAQAGAAoAAgAAAAAAAQAHAAoAAgAAAAAAAQAIAAoAAgAAAAAAAQAJAAoAAgAAAAAAAQAKAAoAAgAAAAAAAQALAAoAAgAAAAAAAQAMAAoAAgAAAAAAAQAPAAAAAgAAAAAAAQAPAAEAAgAAAAAAAQAPAAIAAgAAAAAAAQAPAAMAAgAAAAAAAQAPAAQAAgAAAAAAAQAPAAUAAgAAAAAAAQAPAAYAAgAAAAAAAQAPAAcAAgAAAAAAAQAPAAgAAgAAAAAAAQAPAAkAAgAAAAAAAQAPAAoAAgAAAAAAAQANAAoAAgAAAAAAAQAOAAoAAgAAAAAAAQAOAAAAAgAAAAAAAQA=")
+tile_set = ExtResource("24_hiyc0")
+metadata/_edit_lock_ = true
+
+[node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=1029803072]
+z_index = -10
+tile_map_data = PackedByteArray("AAAFAPv/AgADAAAAAAAHAPv/AgABAAAAAAAIAP7/AgAHAAAAAAAIAP//AgAGAAAAAAAJAPr/AgADAAAAAAAKAP3/AgAEAAAAAAAKAP7/AgAEAAAAAAAMAPv/AgACAAAAAAANAPr/AgAGAAAAAAANAP//AgAGAAAAAAADAAIAAgAFAAAAAAADAAkAAgAGAAAAAAAFAAYAAgACAAAAAAAHAAgAAgADAAAAAAAIAAcAAgAGAAAAAAALAAcAAgAFAAAAAAAMAAIAAgACAAAAAAAMAAQAAgACAAAAAAAMAAgAAgAEAAAAAAAOAAIAAgADAAAAAAAGAAIAAgACAAAAAAAIAAIAAgAEAAAAAAAOAAgAAQACAAAAAAANAAgAAQACAAAAAAANAAkAAQACAAAAAAAOAAkAAQADAAAAAAA=")
+tile_set = ExtResource("24_hiyc0")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=2142067697]
+tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAADAAAAAAAEAAIAAAAEAAAAAAAEAAIAAAAFAAAAAAAEAAAAAAAGAAAAAAAEAAIAAAAKAAAAAAAGAAIAAAALAAAAAAAEAAIAAAAMAAAAAAAEAAIAAAANAAAAAAAEAAAAAAAOAAAAAAAEAAAAAAAPAAAAAAAFAAAAAAAPAAEAAAAFAAEAAAAPAAIAAAAFAAEAAAAPAAMAAAADAAEAAAAPAAQAAAAFAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAFAAEAAAAPAAcAAAADAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAADAAEAAAAPAAoAAAAFAAIAAAAOAAoAAAAEAAAAAAANAAoAAAAEAAIAAAAMAAoAAAAEAAIAAAALAAoAAAAEAAAAAAAKAAoAAAAEAAIAAAAJAAoAAAAEAAIAAAAIAAoAAAAEAAAAAAAHAAoAAAAEAAIAAAAGAAoAAAAEAAAAAAAFAAoAAAAEAAAAAAAEAAoAAAAEAAIAAAADAAoAAAAEAAAAAAACAAoAAAADAAIAAAACAAkAAAAFAAEAAAACAAgAAAAFAAEAAAACAAcAAAAFAAEAAAACAAYAAAADAAEAAAACAAUAAAAFAAEAAAACAAQAAAAFAAEAAAACAAMAAAAFAAEAAAACAAIAAAAFAAEAAAACAAEAAAAFAAEAAAAIAAAAAAAHAAIAAAAHAAAAAAAEAAAAAAA=")
+tile_set = ExtResource("24_hiyc0")
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="Node2D" parent="." unique_id=1249147301]
+y_sort_enabled = true
+
+[node name="GreenHerb" parent="Objects" unique_id=1593673738 instance=ExtResource("25_5anji")]
+position = Vector2(365, 227)
+
+[node name="Green_herb" parent="Objects" unique_id=1312871847 instance=ExtResource("25_5anji")]
+position = Vector2(274, 184)
+
+[node name="Green_herb2" parent="Objects" unique_id=232009235 instance=ExtResource("25_5anji")]
+position = Vector2(293, 280)
+
+[node name="RedBerryBush" parent="Objects" unique_id=1925924441 instance=ExtResource("26_poe06")]
+position = Vector2(624, 248)
+
+[node name="RedBerryBush2" parent="Objects" unique_id=105961167 instance=ExtResource("26_poe06")]
+position = Vector2(720, 272)
+
+[node name="RedBerryBush3" parent="Objects" unique_id=53046457 instance=ExtResource("26_poe06")]
+position = Vector2(644, 345)
+
+[node name="YellowFlowers" parent="Objects" unique_id=206882517 instance=ExtResource("27_ey2lk")]
+position = Vector2(384, 484)
+
+[node name="YellowFlowers2" parent="Objects" unique_id=1564625377 instance=ExtResource("27_ey2lk")]
+position = Vector2(550, 536.00006)
+
+[node name="YellowFlowers3" parent="Objects" unique_id=1978847024 instance=ExtResource("27_ey2lk")]
+position = Vector2(677, 463.00003)
+
+[node name="RecipeItem" parent="Objects" unique_id=1664836534 instance=ExtResource("28_6m25f")]
+position = Vector2(361, 134)
+display_name = "\"Green Herbs - An Introduction\""
+description = "Book with a recipe. It's not clear what recipes are in the book from here."
+
+[node name="PuzzleNodes" type="Node2D" parent="." unique_id=1332462067]
+y_sort_enabled = true
+
+[node name="BoulderPushable" parent="PuzzleNodes" unique_id=1732468971 instance=ExtResource("30_2m6xo")]
+position = Vector2(608, 58)
+
+[node name="BlockageArea" parent="PuzzleNodes" unique_id=2208441 instance=ExtResource("31_3ummi")]
+position = Vector2(607, 32.000004)
+
+[node name="DisplayArea" parent="." unique_id=529528564 node_paths=PackedStringArray("display_scene") instance=ExtResource("32_ho6lh")]
+position = Vector2(928, 608)
+display_scene = NodePath("../CraftHint")
+
+[node name="CraftHint" type="Node2D" parent="." unique_id=1875704067]
+
+[node name="Label2" type="Label" parent="CraftHint" unique_id=434943154]
+editor_description = "Displaying the recipe hints on the right side of the screen allows them to be visible while the player is attempting to craft."
+offset_left = 1195.0
+offset_top = 540.0
+offset_right = 1435.0
+offset_bottom = 563.0
+theme_override_constants/outline_size = 5
+text = "You see something on the wall:"
+
+[node name="TextureRect" type="TextureRect" parent="CraftHint" unique_id=1857271253]
+offset_left = 1286.0
+offset_top = 713.0
+offset_right = 1336.0
+offset_bottom = 763.0
+texture = ExtResource("33_5ffdm")
+
+[node name="TextureRect2" type="TextureRect" parent="CraftHint" unique_id=1185273447]
+offset_left = 1280.0
+offset_top = 832.0
+offset_right = 1344.0
+offset_bottom = 896.0
+texture = ExtResource("34_3i3qy")
+
+[node name="Ground2" type="TileMapLayer" parent="CraftHint" unique_id=457631731]
+z_index = -20
+tile_map_data = PackedByteArray("AAAUAAsAAQAAAAEAAAAVAAsAAQAAAAEAAAAWAAsAAQAAAAEAAAAWAAwAAQADAAAAAAAVAA0AAQAAAAEAAAASAAwAAQADAAAAAAATAAwAAQADAAAAAAAUAAwAAQABAAAAAAAVAAwAAQADAAAAAAAWAA0AAQAAAAEAAAASAA0AAQAAAAEAAAATAA0AAQAAAAEAAAAUAA0AAQAAAAEAAAATAAsAAQAAAAEAAAASAAsAAQAAAAEAAAASAAoAAQAAAAEAAAAVAAoAAQABAAAAAAAWAAoAAQAAAAEAAAATAAoAAQADAAAAAAAUAAoAAQAAAAEAAAAXAAoAAQACAAAAAAAXAAsAAQACAAAAAAAXAAwAAQACAAAAAAAXAA0AAQACAAAAAAAXAA4AAQACAAAAAAAWAA4AAQACAAAAAAAVAA4AAQACAAAAAAAUAA4AAQACAAAAAAATAA4AAQACAAAAAAASAA4AAQACAAAAAAARAA4AAQACAAAAAAARAA0AAQACAAAAAAARAAwAAQACAAAAAAARAAsAAQACAAAAAAARAAoAAQACAAAAAAARAAkAAQACAAAAAAASAAkAAQACAAAAAAATAAkAAQACAAAAAAAUAAkAAQACAAAAAAAVAAkAAQACAAAAAAAWAAkAAQACAAAAAAAXAAkAAQACAAAAAAA=")
+tile_set = ExtResource("24_hiyc0")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect3" type="TextureRect" parent="CraftHint" unique_id=2059291526]
+offset_left = 1216.0
+offset_top = 640.0
+offset_right = 1280.0
+offset_bottom = 704.0
+texture = ExtResource("35_thnog")
+
+[node name="TextureRect4" type="TextureRect" parent="CraftHint" unique_id=1005255111]
+offset_left = 1344.0
+offset_top = 640.0
+offset_right = 1408.0
+offset_bottom = 704.0
+texture = ExtResource("36_kf0ri")
+
+[node name="TextureRect5" type="TextureRect" parent="CraftHint" unique_id=246511805]
+offset_left = 1280.0
+offset_top = 640.0
+offset_right = 1344.0
+offset_bottom = 704.0
+texture = ExtResource("37_me1xg")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LabelCongratulations" type="Label" parent="." unique_id=2090378732]
+offset_left = 540.0
+offset_top = -354.0
+offset_right = 669.0
+offset_bottom = -331.0
+text = "Congratulations!"
+
+[node name="PuzzleDescription" type="Label" parent="." unique_id=383208018]
+offset_left = -680.0
+offset_top = -573.0
+offset_right = 33.0
+offset_bottom = -290.0
+text = "Requires knowledge of 6 recipes in order to complete:
+Strength Potion from merchant, traded for green 
+herb grinds, which a book is found on the ground.
+Strength potion requires:
+Yellow Dust, which is part of merchant's book.
+Red Berry Seed, which is learned from a hint on the wall,
+Saturated Stem, which is part of merchant's book. Crafting requires knowledge of:
+Gray Juice, Obtained by description from NPC
+and knowledge on how to cut flowers.
+
+order: Herb Grinds -> Str book + Red Seed + Juice -> Craft Str Pot -> move boulder -> win"
+
+[connection signal="pathway_cleared" from="PuzzleNodes/BlockageArea" to="NPCBrindan" method="_on_pathway_cleared"]

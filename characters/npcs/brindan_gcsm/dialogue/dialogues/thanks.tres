@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://gq6dgrqh5t5m"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/npcs/dialogue_choice.gd" id="1_uj0xs"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://characters/npcs/dialogue.gd" id="2_mquhp"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://characters/npcs/dialogue_condition.gd" id="2_x8o8i"]
+
+[sub_resource type="Resource" id="Resource_ljtk5"]
+script = ExtResource("1_uj0xs")
+player_response = "Will do. Be back shortly."
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("2_mquhp")
+dialogue_name = &"thanks"
+text = "Thank you for the help! Town shouldn't be far, go and get some help, would you? I'll put in a good word for you when this is all done."
+choices = Array[ExtResource("1_uj0xs")]([SubResource("Resource_ljtk5")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"
