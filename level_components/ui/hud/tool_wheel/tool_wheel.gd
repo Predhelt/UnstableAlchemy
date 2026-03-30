@@ -22,6 +22,8 @@ func _ready() -> void:
 	$CurrentTool/HotkeyLabel.text = (
 		InputMap.action_get_events("tool_wheel")[0].as_text().replace(' - Physical',''))
 	_close_tool_selection()
+	if not has_blade and not has_dropper:
+		$CurrentTool/HotkeyLabel.visible = false
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -32,11 +34,18 @@ func _input(event: InputEvent) -> void:
 ## Toggle visibility of blade tool slot
 func set_blade_enabled(is_enabled : bool) -> void:
 	has_blade = is_enabled
+	if is_enabled:
+		$CurrentTool/HotkeyLabel.visible = true
+	elif not has_dropper:
+			$CurrentTool/HotkeyLabel.visible = false
 
 ## Toggle visibility of dropper tool slot
 func set_dropper_enabled(is_enabled : bool) -> void:
 	has_dropper = is_enabled
-
+	if is_enabled:
+		$CurrentTool/HotkeyLabel.visible = true
+	elif not has_blade: # If both tools are not enabled, hide hotkey.
+			$CurrentTool/HotkeyLabel.visible = false
 
 func _on_slot_1_toggled(toggled_on: bool) -> void:
 	if toggled_on:
