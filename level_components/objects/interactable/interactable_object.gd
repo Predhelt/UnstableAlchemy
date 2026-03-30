@@ -24,7 +24,7 @@ var inspection_panel_scene : PackedScene = preload("res://level_components/ui/wi
 ## Temporary effect to show during interaction.
 @export var interact_effect : PackedScene = preload("res://art/effects/object_interacted_effect.tscn")
 ## Show the amount of items gained when added to inventory in the world.
-@export var item_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_world.tscn")
+@export var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_world.tscn")
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -72,12 +72,13 @@ func collect_items(character: Character, interaction: Interaction) -> bool:
 		print("No items to get!")
 		return false
 		
-	var item_gained_effect_instance : Control = item_gained_effect.instantiate()
+	var items_gained_effect_instance : Control = items_gained_effect.instantiate()
+	var is_item_collected : bool = false
 	
 	for i in len(interaction.on_interact_items): # Getting each interactable item
-		var interact_item = interaction.on_interact_items[i]
-		var id = interact_item.id
-		var interact_qty = interaction.on_interact_amounts[i]
+		var interact_item : Item = interaction.on_interact_items[i]
+		var id : int = interact_item.id
+		var interact_qty : int = interaction.on_interact_amounts[i]
 		for j in len(items):
 			if items[j].id != id or item_quantities[j] <= 0:
 				continue # If not the right item or item is empty
@@ -91,15 +92,19 @@ func collect_items(character: Character, interaction: Interaction) -> bool:
 				interaction_item.qty = interact_qty
 				item_quantities[j] -= interact_qty
 			
-			
 			if character.inventory.add_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
-				item_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
+				items_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
 			
 			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
 				item_quantities[j] += interaction_item.qty
+			
+			is_item_collected = true
 	
-	item_gained_effect_instance.position = position
-	get_parent().add_child(item_gained_effect_instance)
+	if not is_item_collected:
+		items_gained_effect_instance.set_no_items_gained()
+	
+	items_gained_effect_instance.position = position
+	get_parent().add_child(items_gained_effect_instance)
 	
 	return true
 

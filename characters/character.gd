@@ -187,10 +187,10 @@ func _input(event: InputEvent) -> void:
 	if not is_player_controlled:
 		return
 	if event.is_action_pressed("interact"):
-		if Global.mode == &"default": ## Only execute interaction in appropriate mode
+		if Global.mode == &"default": # Only execute interaction in appropriate mode
 			execute_interaction()
 	if event.is_action_pressed("use_tool"):
-		if Global.mode == &"default": ## Only execute tool in appropriate mode
+		if Global.mode == &"default": # Only execute tool in appropriate mode
 			execute_tool()
 	if event.is_action_pressed("inspect_object"):
 		if Global.mode == &"default":
