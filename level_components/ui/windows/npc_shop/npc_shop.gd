@@ -66,7 +66,7 @@ func show_back_button(window : Control) -> void:
 func add_shop_transactions() -> void:
 	var cur_transaction_id := 0
 	for transaction in transactions: #NOTE: Transactions are assigned in interacted NPC
-		## Add items UI to a transaction UI, then add each transaction UI to the shop UI.
+		# Add items UI to a transaction UI, then add each transaction UI to the shop UI.
 		transaction.id = cur_transaction_id
 		var cur_transaction_scene : Button = shop_transaction_scene.instantiate()
 		cur_transaction_scene.name = str(transaction.id)
@@ -76,11 +76,14 @@ func add_shop_transactions() -> void:
 		if(not Global.focused_node.inventory.has_item_amounts(transaction.items_buying, transaction.items_buying_amount)
 				and not transaction.items_buying.is_empty()): # If requesting any items (not giving away items)
 			cur_transaction_scene.disabled = true
+		elif not has_stock(transaction.items_selling_stock):
+			cur_transaction_scene.disabled = true
+			cur_transaction_scene.set_out_of_stock(true)
 			
 		%ShopTransactions.add_child(cur_transaction_scene)
 		cur_transaction_id += 1
 
-## Clears the list of transactions from the shop.
+## Clears the [member transactions] from the shop.
 func clear_transactions() -> void:
 	for t in %ShopTransactions.get_children():
 		t.queue_free()
@@ -95,8 +98,8 @@ func _on_button_back_pressed() -> void:
 	close_window()
 	last_window_ref.open_window()
 
-## Triggers when a transaction is pressed at the given id. Removes the requested items from
-## the player's inventory and adds the offered items to the player's inventory.
+## Triggers when a [Transaction] is pressed at the given [param id]. Removes the requested [Item]s
+## from the player's [Inventory] and adds the offered items to the player's inventory.
 func _on_transaction_attempt(id : int) -> void:
 	var cur_transaction : Transaction = null
 	for t in transactions:
@@ -108,16 +111,28 @@ func _on_transaction_attempt(id : int) -> void:
 		print("no transaction found with id " + str(id))
 		return
 	
-	## Remove items from inventory
+	if not has_stock(cur_transaction.items_selling_stock):
+		print("No stock available for transaction with id " + str(id))
+		return
+	
+	# Remove items from inventory
 	var cur_items_buying = cur_transaction.items_buying.duplicate() # "remove_items" changes properties of the transaction. This prevents overwriting transaction quantities.
 	var cur_items_buying_amount = cur_transaction.items_buying_amount.duplicate()
+	
 	if (cur_items_buying.is_empty() or
 		Global.focused_node.inventory.remove_items(cur_items_buying, cur_items_buying_amount)):
-		## Add items to inventory from merchant
+		# Add items to inventory from merchant
 		var effect_instance := item_gained_effect.instantiate()
 		for i in range(cur_transaction.items_selling.size()):
 			var cur_item : Item = cur_transaction.items_selling[i].duplicate()
-			cur_item.qty = cur_transaction.items_selling_amount[i] 
+			if cur_transaction.items_selling_stock[i] == -1:
+				cur_item.qty = cur_transaction.items_selling_amount[i]
+			elif cur_transaction.items_selling_amount[i] <= cur_transaction.items_selling_stock[i]:
+				cur_item.qty = cur_transaction.items_selling_amount[i]
+				cur_transaction.items_selling_stock[i] -= cur_transaction.items_selling_amount[i]
+			else:
+				cur_item.qty = cur_transaction.items_selling_stock[i] 
+				cur_transaction.items_selling_stock[i] = 0
 			# Pickup effect when items are obtained from shop
 			effect_instance.add_item(cur_item) #NOTE: This assumes that the item is successfully added
 			Global.focused_node.inventory.add_item(cur_item)
@@ -125,7 +140,7 @@ func _on_transaction_attempt(id : int) -> void:
 		inventory_menu.update_window()
 		effect_instance.scale = Vector2(1.3, 1.3)
 		self.add_child(effect_instance)
-		## Check if player has enough items for another transaction (disable if not enough items)
+		# Check if player has enough items for another transaction (disable if not enough items)
 		if(not Global.focused_node.inventory.has_item_amounts(cur_transaction.items_buying, cur_transaction.items_buying_amount)
 				and not cur_transaction.items_buying.is_empty()):
 			var cur_transaction_scene : Button = %ShopTransactions.get_child(id) # Transaction ID = scene index due to how the window is opened.
@@ -134,3 +149,16 @@ func _on_transaction_attempt(id : int) -> void:
 				return
 			#print("Transaction being disabled with ID " + %ShopTransactions.get_child(id).name)
 			cur_transaction_scene.disabled = true
+		# Check if the npc has stock for another transaction (disable if not enough items)
+		elif not has_stock(cur_transaction.items_selling_stock):
+			var cur_transaction_scene : Button = %ShopTransactions.get_child(id)
+			cur_transaction_scene.set_out_of_stock(true)
+			cur_transaction_scene.disabled = true
+
+## Checks if the npc has any [Item]s left in stock for the [Transaction].
+## Returns true if any items are found in stock. Else, returns false.
+func has_stock(items_stock : Array[int]) -> bool:
+	for item_stock in items_stock:
+		if item_stock != 0: # Value of -1 counts as infinite, so returns true.
+			return true
+	return false

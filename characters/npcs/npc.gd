@@ -101,20 +101,23 @@ func save() -> Dictionary: #FIXME: Outdated save fields.
 		"npc_name" : npc_name,
 		"attributes_path" : att_path,
 		"inventory_path" : inv_path,
-		"known_recipes" : known_recipes,
+		"has_blade" : has_blade,
+		"has_dropper" : has_dropper,
+		"known_recipes" : var_to_str(known_recipes),
 		"gathered_items" : var_to_str(gathered_items),
-		"books_read" : books_read,
+		"books_read" : var_to_str(books_read),
 		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
+		"items_used" : var_to_str(items_used),
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
-		#"selected_tool" : selected_tool,
+		#"selected_tool" : selected_tool
 		"interaction_type" : interaction_type,
-		"dialogues" : dialogues,
-		"transactions" : transactions,
-		"passive_messages" : passive_messages
+		"dialogues" : var_to_str(dialogues),
+		"transactions" : var_to_str(transactions),
+		"passive_messages" : var_to_str(passive_messages)
 	}
 	return save_dict
 
@@ -124,8 +127,8 @@ func open_dialogue() -> void:
 
 ## Opens the NPC shop window after configuring the transactions on the page
 func open_shop() -> void:
-	if transactions.size(): ## If the npc has shop transactions
-		if npc_shop_ref.transactions.size(): ## If the shop already has populated the transaction UI
+	if transactions.size(): # If the npc has shop transactions
+		if npc_shop_ref.transactions.size(): # If the shop already has populated the transaction UI
 			npc_shop_ref.clear_transactions()
 		npc_shop_ref.transactions = transactions
 		npc_shop_ref.open_window()
@@ -135,18 +138,27 @@ func open_shop_from_dialogue():
 	open_shop()
 	npc_shop_ref.show_back_button(npc_dialogue_ref)
 
-## Adds transaction to npc's shop. #TODO: IDs cannot retrieve item icon from id. Function unusuable.
-## items_buying is an array of items,
-## items_buying_amount is an array of item quantities,
-## items_selling is an array of items,
-## items_selling_amount is an array of item quantities.
+## Adds transaction to npc's shop.
+## [param items_buying] is an array of items,
+## [param items_buying_amount] is an array of item quantities,
+## [param items_selling] is an array of items,
+## [param items_selling_amount] is an array of item quantities,
+## [param items_selling_stock] is the number of items available for each item.
+## A value of null or -1 means infinite stock.
 func add_shop_transaction(items_buying : Array[Item], items_buying_amount : Array[int],
-		items_selling : Array[Item], items_selling_amount : Array[int]):
+		items_selling : Array[Item], items_selling_amount : Array[int], items_selling_stock : Array[int] = []):
 	var new_transaction = Transaction.new()
 	new_transaction.items_buying = items_buying
 	new_transaction.items_buying_amount =  items_buying_amount
 	new_transaction.items_selling =  items_selling
 	new_transaction.items_selling_amount =  items_selling_amount
+	
+	if items_selling_stock == []: # If empty, set stock to -1 (infinite)
+		for i in range(items_selling.size()):
+			new_transaction.items_selling_stock.append(-1)
+	else:
+		new_transaction.items_selling_stock = items_selling_stock
+		
 	new_transaction.id = transactions.size()
 	transactions.append(new_transaction) #NOTE: This method means that if transactions need to be removed, 
 	# it is not guaranteed to be the same ID depending on the order of events.

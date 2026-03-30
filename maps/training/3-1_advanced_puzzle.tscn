@@ -36,6 +36,7 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 script = ExtResource("6_n6rvy")
 items_selling = Array[ExtResource("3_mkjgk")]([ExtResource("9_gchmb")])
 items_selling_amount = Array[int]([1])
+items_selling_stock = Array[int]([1])
 items_buying = Array[ExtResource("3_mkjgk")]([ExtResource("8_jt1vk")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"

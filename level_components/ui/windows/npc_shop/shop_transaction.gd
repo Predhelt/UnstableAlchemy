@@ -38,3 +38,10 @@ func set_transaction(transaction : Transaction):
 ## Triggers when the transaction is pressed, emits signal to npc shop with this transaction's ID.
 func _on_pressed() -> void:
 	attempt_transaction.emit(transaction_id)
+
+## Sets the text of the transaction to say out of stock
+func set_out_of_stock(is_out : bool) -> void:
+	if is_out:
+		$HBoxContainer/VSeparator.text = "OUT OF STOCK"
+	else:
+		$HBoxContainer/VSeparator.text = "->"

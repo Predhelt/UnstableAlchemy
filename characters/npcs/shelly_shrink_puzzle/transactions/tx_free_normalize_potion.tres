@@ -8,4 +8,5 @@
 script = ExtResource("3_dfo85")
 items_selling = Array[ExtResource("1_bpkce")]([ExtResource("2_uuren")])
 items_selling_amount = Array[int]([1])
+items_selling_stock = Array[int]([-1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"

@@ -108,6 +108,8 @@ func save() -> Dictionary:
 		"pos_y" : position.y,
 		"attributes_path" : att_path,
 		"inventory_path" : inv_path,
+		"has_blade" : has_blade,
+		"has_dropper" : has_dropper,
 		"known_recipes" : var_to_str(known_recipes),
 		"gathered_items" : var_to_str(gathered_items),
 		"books_read" : var_to_str(books_read),

@@ -205,18 +205,14 @@ func load_game() -> void:
 		for i in node_data.keys():
 			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" 
 					or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path"):
-				continue
-			#elif(i == "gathered_items" or i == "objects_grab_interacted" or i == "objects_cut_interacted" or i == "objects_combined"
-					#or i == "items_used" or i == "books_read" or i == "known_recipes"):
-			if typeof(node_data[i]) == typeof("String") and i != "name":
+				continue # Variables that were already set can be skipped.
+			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "npc_name" and i != "interaction_type"):
 				new_object.set(i, str_to_var(node_data[i]))
 			else:
 				new_object.set(i, node_data[i])
 			if i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
 				var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
-				#cam.position.x = node_data["pos_x"]
-				#cam.position.y = node_data["pos_y"]
 				
 				focused_camera = cam
 				new_object.character_camera_ref = cam
@@ -229,4 +225,4 @@ func load_game() -> void:
 	mode = &"default"
 
 #TODO: add items and recipes based on the spreadsheet
-#TODO: Remake UI with mobile-first
+#TODO: Remake UI with controller/mobile
