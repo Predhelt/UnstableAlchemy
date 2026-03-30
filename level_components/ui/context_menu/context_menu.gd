@@ -20,7 +20,7 @@ func create_inspect_button():
 func create_button(label : String) -> Button:
 	var button_name = label + "Button"
 	if menu_container.find_child(button_name):
-		print(label + " button already created")
+		print("ERROR: " + label + " button already created")
 		return null
 	var new_button := Button.new()
 	new_button.name = button_name

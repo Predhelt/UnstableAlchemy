@@ -124,7 +124,7 @@ func add_ingredients(recipe: Recipe):
 	var num_ingredients = len(recipe.ingredients)
 	
 	if num_ingredients > 3:
-		print("Error: more than 3 ingredients")
+		print("ERROR: more than 3 ingredients")
 	
 	ingredient_display.get_child(1).texture = recipe.ingredients[0].texture
 	ingredient_display.get_child(1).tooltip_text = recipe.ingredients[0].display_name

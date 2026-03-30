@@ -10,7 +10,7 @@ signal attempt_transaction(id : int)
 ## Sets the information of the transaction to be displayed by the scene
 func set_transaction(transaction : Transaction):
 	if transaction_id >=0:
-		print("transaction already set")
+		print("WARNING: Transaction already set")
 		return
 	
 	transaction_id = transaction.id

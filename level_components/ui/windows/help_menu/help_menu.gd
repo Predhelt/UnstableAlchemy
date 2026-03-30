@@ -19,7 +19,7 @@ func close_window() -> void:
 
 func open_window() -> bool:
 	if Global.center_window or visible:
-		print("Inventory could not be open, " + Global.center_window.name + " window already open")
+		print("ERROR: Inventory could not be open, " + Global.center_window.name + " window already open")
 		return false ## Do not open, there is already a window open in the area.
 	
 	prev_mode = Global.mode

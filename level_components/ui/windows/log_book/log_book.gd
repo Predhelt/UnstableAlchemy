@@ -78,7 +78,7 @@ func close_window() -> void:
 ## Opens the log book to the default "Help: General" page.
 func open_window() -> bool:
 	if Global.center_window or visible:
-		print("Log Book could not be open, " + Global.center_window.name + " window already open")
+		print("ERROR: Log Book could not be open, " + Global.center_window.name + " window already open")
 		return false ## Do not open, there is already a window open in the area.
 	
 	prev_mode = Global.mode

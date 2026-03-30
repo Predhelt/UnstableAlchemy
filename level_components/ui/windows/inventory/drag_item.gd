@@ -32,5 +32,5 @@ func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("droppable"):
 		var i := inside_droppables.find(area)
 		if i == -1:
-			print("Error: Area should be inside the list of droppable objects but was not found.")
+			print("ERROR: Area should be inside the list of droppable objects but was not found.")
 		inside_droppables.remove_at(i)

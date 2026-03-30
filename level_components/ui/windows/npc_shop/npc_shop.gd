@@ -108,11 +108,11 @@ func _on_transaction_attempt(id : int) -> void:
 			break
 	
 	if not cur_transaction:
-		print("no transaction found with id " + str(id))
+		print("ERROR: No transaction found with id " + str(id))
 		return
 	
 	if not has_stock(cur_transaction.items_selling_stock):
-		print("No stock available for transaction with id " + str(id))
+		print("ERROR: No stock available for transaction with id " + str(id))
 		return
 	
 	# Remove items from inventory

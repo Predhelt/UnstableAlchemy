@@ -58,7 +58,6 @@ func init_dialogues():
 	var file_name : String = dir.get_next().replace('.remap','')
 	while file_name != "":
 		var split = file_name.rsplit(".", true, 1)
-		print(split[1])
 		if split[1] == "tres":
 			var new_dialogue : Dialogue
 			var file_path : String = dialogue_path+file_name

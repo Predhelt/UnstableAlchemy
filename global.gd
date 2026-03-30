@@ -77,12 +77,12 @@ func save_game() -> void:
 	for node in save_nodes:
 		# Check the node is an instanced scene so it can be instanced again during load.
 		if node.scene_file_path.is_empty():
-			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+			print("WARNING: Persistent node '%s' is not an instanced scene, skipped" % node.name)
 			continue
 		
 		# Check the node has a save function.
 		if !node.has_method("save"):
-			print("persistent node '%s' is missing a save() function, skipped" % node.name)
+			print("WARNING: Persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
 		
 		# Call the node's save function.
@@ -105,7 +105,7 @@ func remove_directory(directory : String) -> void:
 ## Save the persistent Global variables as a dictionary.
 func save() -> Dictionary:
 	if current_level_path == "": #FIXME: Level path not always set.
-		print("Error: No Level Path Found. Save Failed")
+		print("ERROR: No Level Path Found. Save Failed")
 	return {
 		"focused_camera" : focused_camera,
 		"focused_node" : focused_node,

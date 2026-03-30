@@ -24,4 +24,4 @@ func remove_status(se : StatusEffect):
 		if si.name == str(se.id): # Names of status icons are the status effect ID
 			si.queue_free()
 			return
-	print("No effect with ID " + str(se.id))
+	print("ERROR: No effect with ID " + str(se.id))

@@ -29,7 +29,7 @@ func close_window() -> void:
 ## to get the proper Dialogue and shop information.
 func open_window_as_npc(npc : NPC) -> bool:
 	if not npc:
-		print("Error, no npc found.")
+		print("ERROR: no npc found.")
 		return false
 	if Global.right_window or Global.center_window or visible:
 		return false

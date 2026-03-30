@@ -121,10 +121,10 @@ func _process(delta: float) -> void:
 ## Adds an item to the alchemy tool in the inventory.
 func add_item(item: Item) -> bool:
 	if is_using:
-		print("Please wait for " + tool_name + " to finish")
+		print("WARNING: Please wait for " + tool_name + " to finish")
 		return false
 	if num_items >= MAX_ITEMS:
-		print(tool_name + " already full")
+		print(tool_name + " already full!")
 		return false
 
 	for i in MAX_ITEMS:

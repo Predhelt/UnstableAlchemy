@@ -179,7 +179,7 @@ func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index 
 		var item = Global.focused_node.inventory.get_inventory_item(index)
 		
 		if item == null:
-			print("No items found")
+			print("WARNING: No items found")
 			return
 		
 		match Global.mode:
@@ -191,7 +191,7 @@ func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index 
 		var item = Global.focused_node.inventory.get_inventory_item(index)
 		
 		if item == null:
-			print("No items found")
+			print("WARNING: No items found")
 			return
 		
 		match Global.mode:
