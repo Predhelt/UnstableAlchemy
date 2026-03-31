@@ -3,13 +3,6 @@
 ## controlled by the player.
 class_name Character extends CharacterBody2D
 
-## References to UI [Control]s that the Character may access.
-#@onready var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
-#@onready var status_label_ref : Control = %StatusLabel
-#@onready var interact_label_ref : Control = %InteractLabel
-#@onready var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
-#@onready var attribute_display_ref : Control = $"../UILayer/HUDLayer/AttributeDisplay"
-
 ## Determines the Y-offset of the labels above the character as [float]
 const LABEL_DEFAULT_Y_POS : float = -60.0
 ## [float] value used to reduce the intensity of effects when size is changed
@@ -17,8 +10,6 @@ const SIZE_DAMPENER : float = 0.5
 
 ## The [AnimationTree] determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
-## Path of the file containing the global variables of the current character, if any.
-#@export var global_variables : CharacterVariables
 ## Reference to the [Camera2D] that is being used to follow the character and display the game screen.
 @export var character_camera_ref : Camera2D
 
