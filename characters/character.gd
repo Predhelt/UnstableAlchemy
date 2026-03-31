@@ -4,11 +4,11 @@
 class_name Character extends CharacterBody2D
 
 ## References to UI [Control]s that the Character may access.
-@onready var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
-@onready var status_label_ref : Control = %StatusLabel
-@onready var interact_label_ref : Control = %InteractLabel
-@onready var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
-@onready var attribute_display_ref : Control = $"../UILayer/HUDLayer/AttributeDisplay"
+#@onready var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
+#@onready var status_label_ref : Control = %StatusLabel
+#@onready var interact_label_ref : Control = %InteractLabel
+#@onready var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+#@onready var attribute_display_ref : Control = $"../UILayer/HUDLayer/AttributeDisplay"
 
 ## Determines the Y-offset of the labels above the character as [float]
 const LABEL_DEFAULT_Y_POS : float = -60.0
@@ -126,8 +126,8 @@ func save() -> Dictionary:
 
 ## Set up default UI properties when the character is ready
 func _ready() -> void:
-	status_label_ref.text = ""
-	interact_label_ref.text = ""
+	%StatusLabel.text = ""
+	%InteractLabel.text = ""
 	#%HotkeyLabel.text = ""
 	
 	# Should only be 1 reference to a camera in the scene.
@@ -143,6 +143,7 @@ func _ready() -> void:
 				UserVariables.known_recipes.append(recipe)
 				UserVariables.new_recipes.append(recipe)
 		
+		var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 		tool_wheel_ref.set_blade_enabled(has_blade)
 		tool_wheel_ref.set_dropper_enabled(has_dropper)
 	
@@ -180,7 +181,7 @@ func _physics_process(delta: float) -> void:
 	if status_message_timer > 0:
 		status_message_timer -= delta
 		if status_message_timer <= 0:
-			status_label_ref.text = ""
+			%StatusLabel.text = ""
 
 ## Handles input action events. Only accepts inputs when the player is controlling the character.
 func _input(event: InputEvent) -> void:
@@ -292,16 +293,16 @@ func update_interactions():
 		var cur_interaction : Interactable = all_interaction_areas[0]
 		#print(cur_interaction.interact_type)
 		if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
-			interact_label_ref.text = "[%s] %s" % [
+			%InteractLabel.text = "[%s] %s" % [
 				InputMap.action_get_events("interact")[0].as_text().replace(' - Physical',''),
 				cur_interaction.interact_label]
 		else:
-			interact_label_ref.text = "[%s] %s" % [
+			%InteractLabel.text = "[%s] %s" % [
 				InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical',''),
 				cur_interaction.interact_label]
 		# TODO: Add outline/differentiator to the object that will be interacted with.
 	else:
-		interact_label_ref.text = ""
+		%InteractLabel.text = ""
 		#%HotkeyLabel.text = ""
 
 ## Executes functions on the selected [Interactable] area given the current interaction type
@@ -321,6 +322,7 @@ func tool_updated(tool_name: String) -> void:
 
 ## Executes functions on the selected interaction area given the current tool selected.
 func execute_tool():
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	if all_interaction_areas:
 		match selected_tool: # NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
 			&"hand" : all_interaction_areas[0].grab_object(self)
@@ -364,7 +366,7 @@ func apply_status_effect(se: StatusEffect) -> bool:
 func update_status_message(message: String):
 	if not message:
 		message = "..."
-	status_label_ref.text = "[center]" + message + "[/center]"
+	%StatusLabel.text = "[center]" + message + "[/center]"
 	status_message_timer = 5.0
 
 ## Updates the duration of an active status effect based on the amount of time that has passed.
@@ -390,6 +392,9 @@ func remove_status_effect(se : StatusEffect) -> bool:
 ## Updates the images and progress bars on the status bar UI of the given [StatusEffect].
 ## If [param is_removing_status] is true, the status effect will be removed from the status bar.
 func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false) -> void:
+	if not is_camera_focused:
+		return
+	var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
 	if index != -1:
 		active_status_effects.remove_at(index)
 		if is_removing_status:
@@ -488,6 +493,7 @@ func set_character_scale(size: float):
 
 ## Sets visibility of the attribues panel
 func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
+	var attribute_display_ref : Control = $"../UILayer/HUDLayer/AttributeDisplay"
 	var se_index : int = _get_se_index(se)
 	
 	if is_removing or se.value == 0.0:
