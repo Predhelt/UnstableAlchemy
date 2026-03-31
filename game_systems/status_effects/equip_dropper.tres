@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://d2a43k25fi0hp"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_a4ed7"]
+[ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="1_vx1bl"]
+
+[resource]
+script = ExtResource("1_a4ed7")
+id = 501
+name = "Equip Dropper"
+description = "Dropper is equipped."
+icon = ExtResource("1_vx1bl")
+effect = "equip tool"
+value = 1.0
+duration = -1.0
+metadata/_custom_type_script = "uid://odkkljfrjpee"

@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="7_yx5x0"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="8_jt1vk"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="9_gchmb"]
+[ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="10_ektep"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="11_67p0v"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="12_r1f1d"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="13_w6yca"]
@@ -34,9 +35,9 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_fa7q6"]
 script = ExtResource("6_n6rvy")
-items_selling = Array[ExtResource("3_mkjgk")]([ExtResource("9_gchmb")])
-items_selling_amount = Array[int]([1])
-items_selling_stock = Array[int]([1])
+items_selling = Array[ExtResource("3_mkjgk")]([ExtResource("9_gchmb"), ExtResource("10_ektep")])
+items_selling_amount = Array[int]([1, 1])
+items_selling_stock = Array[int]([1, 1])
 items_buying = Array[ExtResource("3_mkjgk")]([ExtResource("8_jt1vk")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
@@ -62,7 +63,6 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1220527263 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_u0qny")]
 position = Vector2(469, 370)
 character_camera_ref = NodePath("../PlayerCamera")
-has_blade = true
 inventory = SubResource("Resource_gybuj")
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1211842578]

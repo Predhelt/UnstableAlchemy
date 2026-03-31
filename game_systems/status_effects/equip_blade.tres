@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://be2h2vt8jse5b"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_haqq5"]
+[ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://art/pack/tools/blade.png" id="1_ljiqo"]
+
+[resource]
+script = ExtResource("1_haqq5")
+id = 500
+name = "Equip Blade"
+description = "Blade is equipped"
+icon = ExtResource("1_ljiqo")
+effect = "equip tool"
+duration = -1.0
+metadata/_custom_type_script = "uid://odkkljfrjpee"

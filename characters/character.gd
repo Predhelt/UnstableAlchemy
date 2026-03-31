@@ -351,6 +351,7 @@ func apply_status_effect(se: StatusEffect) -> bool:
 		&"normalize" : return _normalize_status_effects()
 		&"grow" : return _grow_character(se)
 		&"self-attunement" : return _attune_self(se)
+		&"equip tool" : return _equip_tool(se)
 	return false
 
 ## Changes the text of the status message and resets the timer for how long the message appears.
@@ -502,6 +503,25 @@ func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
 		if se.duration > active_status_effects[se_index].duration: ## Keep the longer duration
 			update_status_bar(se, se_index)
 		return true
+	return false
+
+## Equips a tool based on the given [param se]'s [member StatusEffect.value].
+## If value is 0, tool is blade. If value is 1, tool is dropper.
+func _equip_tool(se : StatusEffect) -> bool:
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	if se.value == 0:
+		has_blade = true
+		if is_camera_focused:
+			tool_wheel_ref.set_blade_enabled(true)
+			Global.emit_notification("New tool added")
+		return true
+	if se.value == 1:
+		has_dropper = true
+		if is_camera_focused:
+			tool_wheel_ref.set_dropper_enabled(true)
+			Global.emit_notification("New tool added")
+		return true
+	print("ERROR: Invalid tool value: %s." % se.value)
 	return false
 
 ### Collision Functions ###

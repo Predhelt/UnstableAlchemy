@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://8ptdatjmu13q"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_vrqqf"]
+[ext_resource type="Resource" uid="uid://d2a43k25fi0hp" path="res://game_systems/status_effects/equip_dropper.tres" id="2_2d3kk"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_lchtu"]
+[ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="4_lev05"]
+
+[resource]
+script = ExtResource("2_lchtu")
+id = 2001
+display_name = "Dropper"
+description = "When equipped, this can be used to alter plants and other objects."
+texture = ExtResource("4_lev05")
+max_qty = 1
+on_consume_effects = Array[ExtResource("1_vrqqf")]([ExtResource("2_2d3kk")])
+on_consume_message = "Reminder that this dropper is not for eyes."
+metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

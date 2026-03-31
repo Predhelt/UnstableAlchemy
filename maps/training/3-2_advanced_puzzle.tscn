@@ -7,8 +7,11 @@
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="5_vj4lo"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_wlp5u"]
 [ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="7_cq7vc"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="8_6svre"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="9_a2l4l"]
+[ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/npcs/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="9_anm1r"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="10_oamna"]
+[ext_resource type="Resource" uid="uid://8ptdatjmu13q" path="res://game_systems/items/tools/dropper.tres" id="10_ri4js"]
 [ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="11_6oy8b"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="12_xc4n3"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="13_dbj7y"]
@@ -33,6 +36,13 @@ script = ExtResource("6_wlp5u")
 items = Array[ExtResource("4_ssofw")]([ExtResource("5_vj4lo")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
+[sub_resource type="Resource" id="Resource_6ca4l"]
+script = ExtResource("8_6svre")
+items_selling = Array[ExtResource("4_ssofw")]([ExtResource("10_ri4js")])
+items_selling_amount = Array[int]([1])
+items_selling_stock = Array[int]([1])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
 [sub_resource type="Resource" id="Resource_w7xfw"]
 script = ExtResource("13_dbj7y")
 on_interact_items = Array[ExtResource("4_ssofw")]([ExtResource("11_6oy8b")])
@@ -56,7 +66,6 @@ position = Vector2(256, 6)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_qo0cn")
 has_blade = true
-has_dropper = true
 inventory = SubResource("Resource_yiupm")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
@@ -67,6 +76,7 @@ position_smoothing_enabled = true
 
 [node name="NPCShelly" parent="." unique_id=1346242213 instance=ExtResource("7_cq7vc")]
 position = Vector2(395, -213)
+transactions = Array[ExtResource("8_6svre")]([ExtResource("9_anm1r"), SubResource("Resource_6ca4l")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 attributes = null
 
