@@ -8,15 +8,15 @@ extends UIWindow
 ## visual for item when dragging from inventory
 var drag_item_scene := preload("./drag_item_scene.tscn") 
 ## Reference to the Hotbar UI
-@onready var hotbar_ref := $"../../HUDLayer/Hotbar"
+@onready var hotbar_ref := $"../../../HUDLayer/Hotbar"
 ## Reference to the Tool Wheel UI
-@onready var toolwheel_ref := $"../../HUDLayer/ToolWheel"
+@onready var toolwheel_ref := $"../../../HUDLayer/ToolWheel"
 ## Reference to the Recipe List UI
-@onready var recipe_list_ref := $"../RecipeList"
+@onready var recipe_list_ref := $"../../RightWindows/RecipeList"
 ## Reference to Cauldron Minigame UI
-@onready var minigame_cauldron_ref := $"../../MinigameLayer/MinigameCauldron"
+@onready var minigame_cauldron_ref := $"../../../MinigameLayer/MinigameCauldron"
 ## Reference to Mortar Pestle Minigame UI
-@onready var minigame_mp_ref := $"../../MinigameLayer/MinigameMP"
+@onready var minigame_mp_ref := $"../../../MinigameLayer/MinigameMP"
 ## (UNUSED)Item that is currently selected in the inventory (not dragged)
 #var selected_item : Item 
 

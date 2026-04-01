@@ -292,9 +292,9 @@ func _has_craft_items(recipe : Recipe) -> bool:
 ## Returns whether or not the craft was successful.
 func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 	## Do not allow quick craft to occur if a minigame window is open.
-	if $"../../MinigameLayer/MinigameCauldron".visible:
+	if $"../../../MinigameLayer/MinigameCauldron".visible:
 		return false
-	if $"../../MinigameLayer/MinigameMP".visible:
+	if $"../../../MinigameLayer/MinigameMP".visible:
 		return false
 	if recipe.id not in UserVariables.crafted_recipes:
 		print("ERROR: Character has not crafted this recipe before. returning false.")
@@ -320,7 +320,7 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 		return false
 	
 	## Update the inventory window if it is open while the recipe window is open.
-	$"../InventoryMenu".update_window()
+	$"../../LeftWindows/InventoryMenu".update_window()
 	
 	## Create effect in recipe window to show that the item was added successfuly.
 	var effect_instance = items_gained_effect.instantiate()

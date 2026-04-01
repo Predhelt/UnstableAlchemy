@@ -1,7 +1,7 @@
 ## This node allows an npc to trade items with the player.
 extends UIWindow
 ## Reference to the inventory menu to be displayed alongside the shop by default.
-@onready var inventory_menu := $"../InventoryMenu"
+@onready var inventory_menu := $"../../LeftWindows/InventoryMenu"
 ## Scene that sets up the transaction UI for the shop.
 var shop_transaction_scene := preload("./shop_transaction.tscn")
 ## List of shop transactions available to the player.

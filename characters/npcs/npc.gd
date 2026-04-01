@@ -4,9 +4,9 @@ class_name NPC extends Character
 # Flavor text / Hint message : does not lock you into a conversation
 # Other Triggers (scared, runs off / opens a passageway / etc.)
 ## Reference to the shop UI
-@onready var npc_shop_ref = $"../UILayer/MenuLayer/NPCShop"
+@onready var npc_shop_ref = $"../UILayer/MenuLayer/RightWindow/NPCShop"
 ## Reference to NPC dialogue UI
-@onready var npc_dialogue_ref = $"../UILayer/MenuLayer/NPCDialogue"
+@onready var npc_dialogue_ref = $"../UILayer/MenuLayer/RightWindow/NPCDialogue"
 ## Name of the NPC to be dislpayed. Used by the player and dialogue window to show who this NPC is.
 @export var npc_name : String
 ## The type of interaction that occurs upon interacting with the NPC

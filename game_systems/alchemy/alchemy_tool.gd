@@ -199,6 +199,8 @@ func _use_items():
 ## When the confirmation button is pressed,
 ## sends the signal to use the relevant items in crafting.
 func _on_button_confirm_pressed() -> void:
+	if Global.mode != &"menu":
+		return
 	if num_items <= 0 or num_items > MAX_ITEMS:
 		print("Wrong number of items, button should be disabled")
 		return
@@ -207,17 +209,20 @@ func _on_button_confirm_pressed() -> void:
 ## Removes item from the first slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_1_pressed() -> void:
-	inventory_menu_ref.add_produced_item(items[0])
-	remove_item(0)
+	if Global.mode == &"menu":
+		inventory_menu_ref.add_produced_item(items[0])
+		remove_item(0)
 
 ## Removes item from the second slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_2_pressed() -> void:
-	inventory_menu_ref.add_produced_item(items[1])
-	remove_item(1)
+	if Global.mode == &"menu":
+		inventory_menu_ref.add_produced_item(items[1])
+		remove_item(1)
 
 ## Removes item from the third slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_3_pressed() -> void:
-	inventory_menu_ref.add_produced_item(items[2])
-	remove_item(2)
+	if Global.mode == &"menu":
+		inventory_menu_ref.add_produced_item(items[2])
+		remove_item(2)
