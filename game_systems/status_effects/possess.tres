@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://86gwfeffc33r"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_bgbms"]
+
+[resource]
+script = ExtResource("1_bgbms")
+metadata/_custom_type_script = "uid://odkkljfrjpee"

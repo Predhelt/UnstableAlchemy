@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Potion" format=3 uid="uid://vwwc1c2oku6l"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_117ep"]
+[ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="2_6vobf"]
+[ext_resource type="Texture2D" uid="uid://cqrnhmtvb1jl5" path="res://art/pack/alchemy/potions/potion_standard_yellow.png" id="3_6vobf"]
+
+[resource]
+script = ExtResource("2_6vobf")
+id = 508
+display_name = "Possession Potion"
+description = "Allows the imbiber to possess a nearby target that is susceptible to possession."
+texture = ExtResource("3_6vobf")
+on_consume_effects = Array[ExtResource("1_117ep")]([null])
+metadata/_custom_type_script = "uid://cspp6theghsrh"

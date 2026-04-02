@@ -23,6 +23,10 @@ const SIZE_DAMPENER : float = 0.5
 @export var has_blade : bool = false
 ## Tracks whether the character has access to the dropper tool or not.
 @export var has_dropper : bool = false
+## Tracks whether the character can be possessed by a possession potion.
+@export var is_possessable : bool = false
+## Tracks who this character is possessing, if anyone.
+var possessing_character : Character = null
 ## List of books by ID that the character has read
 var books_read : Array[int]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
@@ -109,6 +113,8 @@ func save() -> Dictionary:
 		"objects_combined" : var_to_str(objects_combined),
 		"items_used" : var_to_str(items_used),
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
+		"is_possessable" : is_possessable,
+		"possessing_character" : possessing_character,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
 		#"selected_tool" : selected_tool
@@ -352,6 +358,7 @@ func apply_status_effect(se: StatusEffect) -> bool:
 		&"grow" : return _grow_character(se)
 		&"self-attunement" : return _attune_self(se)
 		&"equip tool" : return _equip_tool(se)
+		&"possess" : return false
 	return false
 
 ## Changes the text of the status message and resets the timer for how long the message appears.
