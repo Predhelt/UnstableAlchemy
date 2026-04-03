@@ -3,10 +3,10 @@ class_name NPC extends Character
 #TODO: Types of interactions with NPCs:
 # Flavor text / Hint message : does not lock you into a conversation
 # Other Triggers (scared, runs off / opens a passageway / etc.)
-## Reference to the shop UI
-@onready var npc_shop_ref = $"../UILayer/MenuLayer/RightWindows/NPCShop"
-## Reference to NPC dialogue UI
-@onready var npc_dialogue_ref = $"../UILayer/MenuLayer/RightWindows/NPCDialogue"
+## Reference to the shop Window
+@onready var npc_shop_ref : Control = $"../UILayer/MenuLayer/RightWindows/NPCShop"
+## Reference to NPC dialogue Window
+@onready var npc_dialogue_ref : Control = $"../UILayer/MenuLayer/RightWindows/NPCDialogue"
 ## Name of the NPC to be dislpayed. Used by the player and dialogue window to show who this NPC is.
 @export var npc_name : String
 ## The type of interaction that occurs upon interacting with the NPC
@@ -27,7 +27,7 @@ var last_message_delta := 0.0
 func _ready() -> void:
 	$InteractArea.interact_type = interaction_type
 	$InteractArea.interact_label = npc_name
-	npc_shop_ref.player = Global.focused_node
+	#npc_shop_ref.player = Global.focused_node
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
 	init_dialogues()
@@ -124,6 +124,9 @@ func save() -> Dictionary: #FIXME: Outdated save fields.
 
 ## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
 func open_dialogue() -> void:
+	if not dialogues:
+		print("ERROR: No dialogues set. Returning...")
+		return
 	npc_dialogue_ref.open_window_as_npc(self)
 
 ## Opens the NPC shop window after configuring the transactions on the page

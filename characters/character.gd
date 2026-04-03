@@ -23,10 +23,16 @@ const SIZE_DAMPENER : float = 0.5
 @export var has_blade : bool = false
 ## Tracks whether the character has access to the dropper tool or not.
 @export var has_dropper : bool = false
-## Tracks whether the character can be possessed by a possession potion.
+
+## Tracks whether the character is susceptible to being possessed.
 @export var is_possessable : bool = false
+## Tracks whether the character can possess others.
+var can_possess_others : bool
+## List of characters that are in range of the character and are possessable.
+var possessable_characters : Array[Character]
 ## Tracks who this character is possessing, if anyone.
 var possessing_character : Character = null
+
 ## List of books by ID that the character has read
 var books_read : Array[int]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
@@ -129,6 +135,7 @@ func _ready() -> void:
 	
 	# Should only be 1 reference to a camera in the scene.
 	if character_camera_ref != null:
+		is_player_controlled = true
 		set_camera()
 		for recipe in known_recipes:
 			var has_recipe : bool = false
@@ -153,7 +160,6 @@ func _ready() -> void:
 
 ## Sets this character as the focus by the camera and sets up the camera's [RemoteTransform2D].
 func set_camera() -> void:
-	is_player_controlled = true
 	is_camera_focused = true
 	Global.focused_node = self
 	Global.focused_camera = character_camera_ref
@@ -184,15 +190,20 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if not is_player_controlled:
 		return
-	if event.is_action_pressed("interact"):
-		if Global.mode == &"default": # Only execute interaction in appropriate mode
+	if Global.mode == &"default":
+		if event.is_action_pressed("interact"):
 			execute_interaction()
-	if event.is_action_pressed("use_tool"):
-		if Global.mode == &"default": # Only execute tool in appropriate mode
+		if event.is_action_pressed("use_tool"):
 			execute_tool()
-	if event.is_action_pressed("inspect_object"):
-		if Global.mode == &"default":
+		if event.is_action_pressed("inspect_object"):
 			inspect_object()
+		if can_possess_others:
+			if event.is_action_pressed("possession_change_target"):
+				pass
+			if event.is_action_pressed("possession_select_target"):
+				possess_target(possessable_characters[0])
+			if event.is_action_pressed("possession_cancel"):
+				pass
 
 ## Every time the character updates, upade the character animations
 func _process(_delta: float) -> void:
@@ -332,6 +343,30 @@ func inspect_object():
 		var cur_interaction := all_interaction_areas[0] #TODO: Function to do smart selection of nearby areas.
 		cur_interaction.inspect_object()
 
+## User controls the target body. All inputs and behavior transfers.
+func possess_target(body: Node2D):
+	possessing_character = body
+	#if is_player_controlled:
+		#body.is_player_controlled = true
+	if is_camera_focused:
+		transfer_camera(body)
+		#TODO
+		
+	
+
+## Transfers the focus of the camera [param body].
+func transfer_camera(body: Node2D):
+	#
+	is_camera_focused = true
+	Global.focused_node = self
+	Global.focused_camera = character_camera_ref
+	# remove camera transform
+	var camera_transform : RemoteTransform2D = load("res://level_components/player_camera_transform.tscn").instantiate()
+	camera_transform.remote_path = character_camera_ref.get_path()
+	add_child(camera_transform)
+	body.set_camera()
+
+
 ## Status Effect Handler Methods ##
 
 ## Goes through the list of statuses given and adds or updates the active status effects.
@@ -358,7 +393,7 @@ func apply_status_effect(se: StatusEffect) -> bool:
 		&"grow" : return _grow_character(se)
 		&"self-attunement" : return _attune_self(se)
 		&"equip tool" : return _equip_tool(se)
-		&"possess" : return false
+		&"possess" : return _set_can_possess(se)
 	return false
 
 ## Changes the text of the status message and resets the timer for how long the message appears.
@@ -531,6 +566,19 @@ func _equip_tool(se : StatusEffect) -> bool:
 	print("ERROR: Invalid tool value: %s." % se.value)
 	return false
 
+## Sets character's state to allow possession of others.
+func _set_can_possess(se : StatusEffect) -> bool:
+	if se.value == 0:
+		$PossessionArea/CollisionShape2D.diabled = true
+		$LabelGroup/PossessionHelpLabel.visible = false
+		can_possess_others = false
+	else:
+		$PossessionArea/CollisionShape2D.diabled = false
+		can_possess_others = true
+		if is_camera_focused:
+			$LabelGroup/PossessionHelpLabel.visible = true
+	return true
+
 ### Collision Functions ###
 
 ## Checks the rigid body that is near the character to see if it is pushable.
@@ -558,7 +606,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		if crawlspace_bodies.is_empty():
 			set_collision_mask_value(6, true)
 
-## Check the mass of the object and compare to the player's strength
+## Check the mass of the object and compare to the player's [member Attributes.strength]
 ## to determine if the player is strong enough to move the body.
 func _push_body(body: PhysicsBody2D) -> bool:
 	if attributes.get_attribute("strength") <= body.mass:
@@ -572,3 +620,11 @@ func _push_body(body: PhysicsBody2D) -> bool:
 		
 	body.linear_velocity = velocity * mult
 	return true
+
+
+func _on_possession_area_body_entered(body: Node2D) -> void:
+	possessable_characters.append(body)
+
+
+func _on_possession_area_body_exited(body: Node2D) -> void:
+	possessable_characters.remove_at(possessable_characters.find(body))

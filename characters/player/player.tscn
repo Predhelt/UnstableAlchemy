@@ -167,6 +167,9 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_16fu4"]
 radius = 46.0109
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dirf7"]
+radius = 250.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5slg2"]
 radius = 14.0
 
@@ -201,7 +204,6 @@ shape = SubResource("CircleShape2D_6e64a")
 [node name="HotkeyLabel" type="Label" parent="LabelGroup" unique_id=289740372]
 unique_name_in_owner = true
 visible = false
-anchors_preset = -1
 grow_horizontal = 2
 theme_override_constants/outline_size = 4
 text = "hotkey"
@@ -260,6 +262,17 @@ linear_damp = 5.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea" unique_id=1961755665]
 shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
+
+[node name="PossessionArea" type="Area2D" parent="." unique_id=1788218671]
+show_behind_parent = true
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionArea" unique_id=1386210821]
+show_behind_parent = true
+shape = SubResource("CircleShape2D_dirf7")
+disabled = true
+debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=784360442]
 collision_layer = 0

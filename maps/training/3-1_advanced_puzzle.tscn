@@ -65,9 +65,6 @@ position = Vector2(469, 370)
 character_camera_ref = NodePath("../PlayerCamera")
 inventory = SubResource("Resource_gybuj")
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1211842578]
-remote_path = NodePath("../../PlayerCamera")
-
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=482421257]
 unique_name_in_owner = true
 position = Vector2(469, 370)

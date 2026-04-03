@@ -163,25 +163,26 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_ae4go"]
 radius = 13.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3mdgu"]
+radius = 250.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
 radius = 14.0
 
-[node name="NPC" type="CharacterBody2D" groups=["Persist"]]
+[node name="NPC" type="CharacterBody2D" unique_id=1465409180 groups=["Persist"]]
 collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_4ofvd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1868916053]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_c1jsh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bkg2i")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=835252021]
+libraries/ = SubResource("AnimationLibrary_bkg2i")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1449532257]
 tree_root = SubResource("AnimationNodeStateMachine_rqa1v")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
@@ -189,12 +190,12 @@ parameters/conditions/is_moving = false
 parameters/Idle/blend_position = Vector2(-0.000867307, 0.99292)
 parameters/Walk/blend_position = Vector2(0, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2002250265]
 shape = SubResource("CircleShape2D_ae4go")
 
-[node name="LabelGroup" type="Node2D" parent="."]
+[node name="LabelGroup" type="Node2D" parent="." unique_id=187045877]
 
-[node name="InteractLabel" type="Label" parent="LabelGroup"]
+[node name="InteractLabel" type="Label" parent="LabelGroup" unique_id=1135478769]
 unique_name_in_owner = true
 z_index = 1
 anchors_preset = 7
@@ -214,7 +215,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup" unique_id=1658524222]
 unique_name_in_owner = true
 clip_contents = false
 anchors_preset = 5
@@ -236,19 +237,29 @@ scroll_following = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="InteractArea" parent="." instance=ExtResource("3_8728q")]
+[node name="InteractArea" parent="." unique_id=725078016 instance=ExtResource("3_8728q")]
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(3.280001, 3.280001)
 interact_label = "NPC"
-interact_type = 3
 interact_value = ""
 
-[node name="RigidArea2D" type="Area2D" parent="."]
+[node name="PossessionArea" type="Area2D" parent="." unique_id=1444931270]
+show_behind_parent = true
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionArea" unique_id=694385958]
+show_behind_parent = true
+shape = SubResource("CircleShape2D_3mdgu")
+disabled = true
+debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
+
+[node name="RigidArea2D" type="Area2D" parent="." unique_id=1015356169]
 position = Vector2(0, -2.38419e-07)
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D" unique_id=332746913]
 shape = SubResource("CircleShape2D_a0pup")
 debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 

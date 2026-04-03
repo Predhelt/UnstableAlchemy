@@ -16,9 +16,6 @@ metadata/_edit_lock_ = true
 position = Vector2(599, 419)
 character_camera_ref = NodePath("../PlayerCamera")
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
-remote_path = NodePath("../../PlayerCamera")
-
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
 position = Vector2(599, 419)
@@ -50,86 +47,42 @@ metadata/_edit_lock_ = true
 [node name="NPC" parent="." unique_id=1703109596 instance=ExtResource("4_bffd5")]
 position = Vector2(1149, 419)
 npc_name = "P2"
-interaction_type = null
-transactions = null
 passive_messages = Array[String](["I can be possessed"])
-known_recipes = null
-has_blade = null
-has_dropper = null
 is_possessable = true
-active_status_effects = null
 
 [node name="NPC2" parent="." unique_id=734531267 instance=ExtResource("4_bffd5")]
 position = Vector2(980, 430)
 npc_name = "P1"
-interaction_type = null
-transactions = null
 passive_messages = Array[String](["I can be possessed"])
-known_recipes = null
-has_blade = null
-has_dropper = null
 is_possessable = true
-active_status_effects = null
 
 [node name="NPC3" parent="." unique_id=1555367955 instance=ExtResource("4_bffd5")]
 position = Vector2(1039, 612)
 npc_name = "P3"
-interaction_type = null
-transactions = null
 passive_messages = Array[String](["I can be possessed"])
-known_recipes = null
-has_blade = null
-has_dropper = null
 is_possessable = true
-active_status_effects = null
 
 [node name="NPC4" parent="." unique_id=512744000 instance=ExtResource("4_bffd5")]
 position = Vector2(244, 744)
 npc_name = "P4"
-interaction_type = null
-transactions = null
 passive_messages = Array[String](["I can be possessed"])
-known_recipes = null
-has_blade = null
-has_dropper = null
 is_possessable = true
-active_status_effects = null
 
 [node name="NPC5" parent="." unique_id=1561180532 instance=ExtResource("4_bffd5")]
 position = Vector2(226, 235)
 npc_name = "P5"
-interaction_type = null
-transactions = null
 passive_messages = Array[String](["I can be possessed"])
-known_recipes = null
-has_blade = null
-has_dropper = null
 is_possessable = true
-active_status_effects = null
 
 [node name="NPC6" parent="." unique_id=472378860 instance=ExtResource("4_bffd5")]
 position = Vector2(870, 130)
 npc_name = "P6"
-interaction_type = null
-transactions = null
-passive_messages = null
-known_recipes = null
-has_blade = null
-has_dropper = null
 is_possessable = true
-active_status_effects = null
 
 [node name="NPC7" parent="." unique_id=1631346532 instance=ExtResource("4_bffd5")]
 position = Vector2(672, 614)
 npc_name = "Normal"
-interaction_type = null
-transactions = null
 passive_messages = Array[String](["I'm normal."])
-known_recipes = null
-has_blade = null
-has_dropper = null
-is_possessable = null
-active_status_effects = null
 
 [node name="Objects" type="Node2D" parent="." unique_id=354937822]
 y_sort_enabled = true
