@@ -26,6 +26,8 @@ const SIZE_DAMPENER : float = 0.5
 
 ## Tracks whether the character is susceptible to being possessed.
 @export var is_possessable : bool = false
+## Tracks the character that is possessing this body, if any.
+var character_possessed_by : Character = null
 ## Tracks whether the character can possess others.
 var can_possess_others : bool
 ## List of characters that are in range of the character and are possessable.
@@ -174,7 +176,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if is_player_controlled:
-		_move_character(Input.get_vector("move_left", "move_right", "move_up", "move_down"))
+		move_character(Input.get_vector("move_left", "move_right", "move_up", "move_down"))
 	
 	for rb in pushing_bodies:
 		_push_body(rb)
@@ -210,8 +212,12 @@ func _process(_delta: float) -> void:
 	update_animation_parameters()
 
 ## Helper function that takes a direction vector and calculates character motion.
-func _move_character(vector : Vector2) -> void:
+## Checks [member possessing_character] to determine if move_character needs to get called in the possessed body.
+func move_character(vector : Vector2) -> void:
 	if Global.mode == &"default":
+		if possessing_character:
+			possessing_character.move_character(vector)
+			return
 		direction = vector
 		velocity = direction * attributes.get_attribute("move speed") * 2 # base speed too slow, doubles it.
 		move_and_slide()
@@ -315,6 +321,9 @@ func update_interactions():
 
 ## Executes functions on the selected [Interactable] area given the current interaction type
 func execute_interaction():
+	if possessing_character:
+		possessing_character.execute_interaction()
+		return
 	if all_interaction_areas:
 		var cur_interaction = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type: # NOTE: When a type is added or updated, it also needs to be changed in Interactable
@@ -330,12 +339,35 @@ func tool_updated(tool_name: String) -> void:
 
 ## Executes functions on the selected interaction area given the current tool selected.
 func execute_tool():
-	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	if all_interaction_areas:
 		match selected_tool: # NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
-			&"hand" : all_interaction_areas[0].grab_object(self)
-			&"blade" : all_interaction_areas[0].cut_object(self)
-			&"dropper" : all_interaction_areas[0].combine_object(self, tool_wheel_ref.dropper_item)
+			&"hand" : grab_object(all_interaction_areas[0])
+			&"blade" : cut_object(all_interaction_areas[0])
+			&"dropper" : combine_object(all_interaction_areas[0]) #FIXME: Dropper item may transfer to possessee if possession is stopped.
+
+## Checks to see who should be grabbing, then executes [method interaction_area.grab_object]
+func grab_object(interaction_area : Interactable) -> void:
+	if possessing_character:
+		possessing_character.grab_object(interaction_area)
+		return
+	interaction_area.grab_object(self)
+
+## Checks to see who should be cutting, then executes [method interaction_area.cut_object]
+func cut_object(interaction_area : Interactable) -> void:
+	if possessing_character:
+		possessing_character.cut_object(interaction_area)
+		return
+	interaction_area.cut_object(self)
+
+## Checks to see who should be combining, then executes [method interaction_area.combine_object]
+func combine_object(interaction_area : Interactable) -> void:
+	if possessing_character:
+		possessing_character.combine_object(interaction_area)
+		return
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	interaction_area.combine_object(self, tool_wheel_ref.dropper)
+
+
 
 ## Open the inspection panel for an object in the interaciton area
 func inspect_object():
@@ -346,8 +378,7 @@ func inspect_object():
 ## User controls the target body. All inputs and behavior transfers.
 func possess_target(body: Node2D):
 	possessing_character = body
-	#if is_player_controlled:
-		#body.is_player_controlled = true
+	body.character_possessed_by = self
 	if is_camera_focused:
 		transfer_camera(body)
 		#TODO
@@ -356,14 +387,15 @@ func possess_target(body: Node2D):
 
 ## Transfers the focus of the camera [param body].
 func transfer_camera(body: Node2D):
-	#
-	is_camera_focused = true
-	Global.focused_node = self
+	# TODO
+	is_camera_focused = false
+	Global.focused_node = body
 	Global.focused_camera = character_camera_ref
 	# remove camera transform
 	var camera_transform : RemoteTransform2D = load("res://level_components/player_camera_transform.tscn").instantiate()
 	camera_transform.remote_path = character_camera_ref.get_path()
 	add_child(camera_transform)
+	# Set up new camera info
 	body.set_camera()
 
 
@@ -567,6 +599,7 @@ func _equip_tool(se : StatusEffect) -> bool:
 	return false
 
 ## Sets character's state to allow possession of others.
+## Shows visuals 
 func _set_can_possess(se : StatusEffect) -> bool:
 	if se.value == 0:
 		$PossessionArea/CollisionShape2D.diabled = true
@@ -627,4 +660,7 @@ func _on_possession_area_body_entered(body: Node2D) -> void:
 
 
 func _on_possession_area_body_exited(body: Node2D) -> void:
+	if possessable_characters.find(body) == -1:
+		print("ERROR: No possessable body found to remove!")
+		return
 	possessable_characters.remove_at(possessable_characters.find(body))
