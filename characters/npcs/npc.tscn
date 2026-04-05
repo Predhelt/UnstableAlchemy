@@ -170,6 +170,7 @@ radius = 250.0
 radius = 14.0
 
 [node name="NPC" type="CharacterBody2D" unique_id=1465409180 groups=["Persist"]]
+collision_layer = 0
 collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_4ofvd")
@@ -237,6 +238,16 @@ scroll_following = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="PossessionHelpLabel" type="Label" parent="LabelGroup" unique_id=1785929251]
+visible = false
+offset_left = -33.0
+offset_top = 16.0
+offset_right = 37.0
+offset_bottom = 65.0
+text = "Select: Q
+Cancel: X"
+horizontal_alignment = 1
+
 [node name="InteractArea" parent="." unique_id=725078016 instance=ExtResource("3_8728q")]
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(3.280001, 3.280001)
@@ -265,5 +276,7 @@ debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
 [connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]
+[connection signal="body_entered" from="PossessionArea" to="." method="_on_possession_area_body_entered"]
+[connection signal="body_exited" from="PossessionArea" to="." method="_on_possession_area_body_exited"]
 [connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
 [connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]

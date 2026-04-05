@@ -255,8 +255,6 @@ horizontal_alignment = 1
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-linear_damp_space_override = 1
-linear_damp = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea" unique_id=1558105940]
 shape = SubResource("CircleShape2D_16fu4")

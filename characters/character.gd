@@ -203,7 +203,10 @@ func _input(event: InputEvent) -> void:
 			if event.is_action_pressed("possession_change_target"):
 				pass
 			if event.is_action_pressed("possession_select_target"):
-				possess_target(possessable_characters[0])
+				if not possessable_characters:
+					print("No possessable targets found!")
+				else:
+					possess_target(possessable_characters[0])
 			if event.is_action_pressed("possession_cancel"):
 				pass
 
@@ -602,11 +605,11 @@ func _equip_tool(se : StatusEffect) -> bool:
 ## Shows visuals 
 func _set_can_possess(se : StatusEffect) -> bool:
 	if se.value == 0:
-		$PossessionArea/CollisionShape2D.diabled = true
+		$PossessionArea/CollisionShape2D.disabled = true
 		$LabelGroup/PossessionHelpLabel.visible = false
 		can_possess_others = false
 	else:
-		$PossessionArea/CollisionShape2D.diabled = false
+		$PossessionArea/CollisionShape2D.disabled = false
 		can_possess_others = true
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = true
@@ -657,6 +660,7 @@ func _push_body(body: PhysicsBody2D) -> bool:
 
 func _on_possession_area_body_entered(body: Node2D) -> void:
 	possessable_characters.append(body)
+	$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
 
 
 func _on_possession_area_body_exited(body: Node2D) -> void:
@@ -664,3 +668,7 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 		print("ERROR: No possessable body found to remove!")
 		return
 	possessable_characters.remove_at(possessable_characters.find(body))
+	if not possessable_characters.is_empty():
+		$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
+	else:
+		$LabelGroup/PossessionHelpLabel.text = ""

@@ -178,7 +178,12 @@ collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_dirf7")
 attributes = ExtResource("2_rpf03")
+known_recipes = null
+has_blade = null
+has_dropper = null
+is_possessable = null
 inventory = ExtResource("3_x5dtk")
+active_status_effects = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1512704566]
 position = Vector2(0, -36)
@@ -250,14 +255,22 @@ scroll_following = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="PossessionHelpLabel" type="Label" parent="LabelGroup" unique_id=128431448]
+visible = false
+offset_left = -33.0
+offset_top = 16.0
+offset_right = 37.0
+offset_bottom = 65.0
+text = "Select: Q
+Cancel: X"
+horizontal_alignment = 1
+
 [node name="InteractionComponents" type="Node2D" parent="." unique_id=293456462]
 
 [node name="InteractionArea" type="Area2D" parent="InteractionComponents" unique_id=1270307319]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-linear_damp_space_override = 1
-linear_damp = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea" unique_id=1961755665]
 shape = SubResource("CircleShape2D_16fu4")
@@ -277,6 +290,7 @@ debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
 [node name="Area2D" type="Area2D" parent="." unique_id=784360442]
 collision_layer = 0
 collision_mask = 40
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1622760643]
 shape = SubResource("CircleShape2D_5slg2")
@@ -284,5 +298,7 @@ debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
+[connection signal="body_entered" from="PossessionArea" to="." method="_on_possession_area_body_entered"]
+[connection signal="body_exited" from="PossessionArea" to="." method="_on_possession_area_body_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -2,9 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_jsjut"]
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_bffd5"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_3vnkn"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="3_5og0b"]
+[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="4_1ol2w"]
 [ext_resource type="PackedScene" uid="uid://ysnbvkn4ogwk" path="res://characters/npcs/npc.tscn" id="4_bffd5"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="4_iic7v"]
+[ext_resource type="Resource" uid="uid://vwwc1c2oku6l" path="res://game_systems/items/potions/possession_potion.tres" id="5_f1te5"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_las48"]
+
+[sub_resource type="Resource" id="Resource_dj8u4"]
+script = ExtResource("6_las48")
+items = Array[ExtResource("3_3vnkn")]([ExtResource("4_1ol2w"), ExtResource("5_f1te5")])
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -15,6 +24,7 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_bffd5")]
 position = Vector2(599, 419)
 character_camera_ref = NodePath("../PlayerCamera")
+inventory = SubResource("Resource_dj8u4")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true

@@ -5,12 +5,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7q33h"]
 radius = 11.0454
 
-[node name="InteractArea" type="Area2D"]
+[node name="InteractArea" type="Area2D" unique_id=655311682]
 collision_layer = 2
-collision_mask = 0
-monitoring = false
+collision_mask = 2
 script = ExtResource("1_dbi6v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1395587159]
 shape = SubResource("CircleShape2D_7q33h")
 debug_color = Color(0, 0.65098, 0.101961, 0.419608)
