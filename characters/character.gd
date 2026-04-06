@@ -222,8 +222,10 @@ func _input(event: InputEvent) -> void:
 			if event.is_action_pressed("possession_select_target"):
 				if not possessing_character and not possessable_characters:
 					print("No possessable targets found!")
+				elif not possessing_character:
+					begin_possession(possessable_characters[0])
 				else:
-					possess_target(possessable_characters[0])
+					end_possession()
 			if event.is_action_pressed("possession_cancel"):
 				pass
 
@@ -399,7 +401,7 @@ func inspect_object():
 		cur_interaction.inspect_object()
 
 ## User controls the target body. All inputs and behavior transfers.
-func possess_target(body: Node2D):
+func begin_possession(body: Node2D):
 	possessing_character = body
 	body.character_possessed_by = self #TODO: Determine if this is necessary
 	
@@ -410,7 +412,19 @@ func possess_target(body: Node2D):
 	
 	if is_camera_focused:
 		transfer_camera(body)
-		#TODO
+
+## Ends the possession on any [member possessing_character].
+## This is not recursive, so of possessee is possessing, this will not work properly.
+func end_possession():
+	possessing_character.character_possessed_by = null #TODO: Determine if this is necessary
+	if possessing_character.is_camera_focused:
+		possessing_character.transfer_camera(self)
+	possessing_character = null
+	
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	tool_wheel_ref.set_blade_enabled(has_blade)
+	tool_wheel_ref.set_dropper_enabled(has_dropper)
+	tool_wheel_ref.set_tool_to_hand()
 
 ## Status Effect Handler Methods ##
 

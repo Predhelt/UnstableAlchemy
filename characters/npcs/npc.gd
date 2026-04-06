@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 		## Checks if enough time has passed since the last message to say another message
 		if last_message_delta > 15:
 			last_message_delta = 0.0
-			if not passive_messages.is_empty():
+			if not passive_messages.is_empty() and not character_possessed_by:
 				say_random_message()
 
 func init_dialogues():
