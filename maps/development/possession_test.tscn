@@ -4,11 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_bffd5"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_3vnkn"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="3_5og0b"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="3_dj8u4"]
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="4_1ol2w"]
 [ext_resource type="PackedScene" uid="uid://ysnbvkn4ogwk" path="res://characters/npcs/npc.tscn" id="4_bffd5"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="4_iic7v"]
+[ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="4_y05ea"]
 [ext_resource type="Resource" uid="uid://vwwc1c2oku6l" path="res://game_systems/items/potions/possession_potion.tres" id="5_f1te5"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_las48"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="10_f1te5"]
+[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="11_las48"]
 
 [sub_resource type="Resource" id="Resource_dj8u4"]
 script = ExtResource("6_las48")
@@ -24,6 +28,7 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_bffd5")]
 position = Vector2(599, 419)
 character_camera_ref = NodePath("../PlayerCamera")
+known_recipes = Array[ExtResource("3_dj8u4")]([ExtResource("4_y05ea")])
 inventory = SubResource("Resource_dj8u4")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
@@ -64,6 +69,7 @@ is_possessable = true
 position = Vector2(980, 430)
 npc_name = "P1"
 passive_messages = Array[String](["I can be possessed"])
+has_blade = true
 is_possessable = true
 
 [node name="NPC3" parent="." unique_id=1555367955 instance=ExtResource("4_bffd5")]
@@ -115,3 +121,18 @@ offset_top = -108.0
 offset_right = -311.0
 offset_bottom = -33.0
 text = "Description"
+
+[node name="GreenHerb" parent="." unique_id=658593362 instance=ExtResource("10_f1te5")]
+position = Vector2(911, 609)
+
+[node name="GreenHerb2" parent="." unique_id=1485773531 instance=ExtResource("10_f1te5")]
+position = Vector2(774, 686)
+
+[node name="GreenHerb3" parent="." unique_id=1171056063 instance=ExtResource("10_f1te5")]
+position = Vector2(960, 712)
+
+[node name="YellowFlowers" parent="." unique_id=687975100 instance=ExtResource("11_las48")]
+position = Vector2(858, 290)
+
+[node name="YellowFlowers2" parent="." unique_id=767460733 instance=ExtResource("11_las48")]
+position = Vector2(997, 285)

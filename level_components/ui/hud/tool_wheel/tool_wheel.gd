@@ -47,6 +47,9 @@ func set_dropper_enabled(is_enabled : bool) -> void:
 	elif not has_blade: # If both tools are not enabled, hide hotkey.
 			$CurrentTool/HotkeyLabel.visible = false
 
+func set_tool_to_hand() -> void:
+	_on_slot_1_toggled(true)
+
 func _on_slot_1_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		if selected_tool == "hand":

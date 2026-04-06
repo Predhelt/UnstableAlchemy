@@ -3,9 +3,15 @@
 [ext_resource type="Script" uid="uid://cyetv8imlnycm" path="res://characters/character.gd" id="1_d1l3k"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="2_2esnv"]
 [ext_resource type="Resource" uid="uid://bmo1romp67ev2" path="res://characters/att_default.tres" id="2_ke030"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_f0775"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="4_vinhn"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_vliyq"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="5_vrmnt"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="6_5qg1d"]
+
+[sub_resource type="Resource" id="Resource_qulg7"]
+script = ExtResource("4_vliyq")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001
@@ -177,6 +183,7 @@ collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_d1l3k")
 attributes = ExtResource("2_ke030")
+inventory = SubResource("Resource_qulg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=349065661]
 position = Vector2(0, -36)

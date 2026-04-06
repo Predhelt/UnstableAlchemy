@@ -220,7 +220,7 @@ func _input(event: InputEvent) -> void:
 			if event.is_action_pressed("possession_change_target"):
 				pass
 			if event.is_action_pressed("possession_select_target"):
-				if not possessable_characters:
+				if not possessing_character and not possessable_characters:
 					print("No possessable targets found!")
 				else:
 					possess_target(possessable_characters[0])
@@ -359,6 +359,9 @@ func tool_updated(tool_name: String) -> void:
 
 ## Executes functions on the selected interaction area given the current tool selected.
 func execute_tool():
+	if possessing_character:
+		possessing_character.execute_tool()
+		return
 	if all_interaction_areas:
 		match selected_tool: # NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
 			&"hand" : grab_object(all_interaction_areas[0])
@@ -399,6 +402,12 @@ func inspect_object():
 func possess_target(body: Node2D):
 	possessing_character = body
 	body.character_possessed_by = self #TODO: Determine if this is necessary
+	
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	tool_wheel_ref.set_blade_enabled(body.has_blade)
+	tool_wheel_ref.set_dropper_enabled(body.has_dropper)
+	tool_wheel_ref.set_tool_to_hand()
+	
 	if is_camera_focused:
 		transfer_camera(body)
 		#TODO
