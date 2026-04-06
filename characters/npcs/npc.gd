@@ -51,7 +51,7 @@ func init_dialogues():
 	#print(dialogue_path)
 	var dir := DirAccess.open(dialogue_path)
 	if not dir:
-		print("ERROR: No path")
+		#print("ERROR: No path")
 		return
 	
 	dir.list_dir_begin()

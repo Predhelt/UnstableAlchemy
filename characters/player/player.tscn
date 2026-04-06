@@ -201,14 +201,6 @@ shape = SubResource("CircleShape2D_6e64a")
 
 [node name="LabelGroup" type="Node2D" parent="." unique_id=917784483]
 
-[node name="HotkeyLabel" type="Label" parent="LabelGroup" unique_id=289740372]
-unique_name_in_owner = true
-visible = false
-grow_horizontal = 2
-theme_override_constants/outline_size = 4
-text = "hotkey"
-horizontal_alignment = 1
-
 [node name="InteractLabel" type="Label" parent="LabelGroup" unique_id=1387437011]
 unique_name_in_owner = true
 z_index = 1

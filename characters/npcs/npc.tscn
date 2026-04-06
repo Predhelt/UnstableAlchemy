@@ -260,6 +260,7 @@ horizontal_alignment = 1
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(3.280001, 3.280001)
 interact_label = "NPC"
+interact_type = "talk"
 interact_value = ""
 
 [node name="PossessionArea" type="Area2D" parent="." unique_id=1444931270]

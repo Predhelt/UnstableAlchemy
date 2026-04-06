@@ -181,7 +181,10 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
 radius = 14.0
 
-[node name="NPCBrindan" type="CharacterBody2D" groups=["Persist"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ji1o7"]
+radius = 250.0
+
+[node name="NPCBrindan" type="CharacterBody2D" unique_id=271735100 groups=["Persist"]]
 collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_aqsvn")
@@ -190,17 +193,15 @@ transactions = Array[ExtResource("3_w12x1")]([ExtResource("4_m0qsu"), ExtResourc
 passive_messages = Array[String](["Hey", "Where are we, anyways?"])
 attributes = ExtResource("9_w12x1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1263212061]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_dc0wm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bkg2i")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=343191348]
+libraries/ = SubResource("AnimationLibrary_bkg2i")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1970922105]
 tree_root = SubResource("AnimationNodeStateMachine_rqa1v")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
@@ -208,12 +209,12 @@ parameters/conditions/is_moving = false
 parameters/Idle/blend_position = Vector2(-0.000867307, 0.99292)
 parameters/Walk/blend_position = Vector2(0, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=841716042]
 shape = SubResource("CircleShape2D_ae4go")
 
-[node name="LabelGroup" type="Node2D" parent="."]
+[node name="LabelGroup" type="Node2D" parent="." unique_id=450050905]
 
-[node name="InteractLabel" type="Label" parent="LabelGroup"]
+[node name="InteractLabel" type="Label" parent="LabelGroup" unique_id=172461974]
 unique_name_in_owner = true
 z_index = 1
 anchors_preset = 7
@@ -233,7 +234,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup"]
+[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup" unique_id=1227984402]
 unique_name_in_owner = true
 clip_contents = false
 anchors_preset = 5
@@ -255,23 +256,35 @@ scroll_following = true
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="InteractArea" parent="." instance=ExtResource("6_pt5j0")]
+[node name="InteractArea" parent="." unique_id=2108006222 instance=ExtResource("6_pt5j0")]
 position = Vector2(0, -2.38419e-07)
 scale = Vector2(3.280001, 3.280001)
 interact_label = "NPC"
-interact_type = 3
 interact_value = ""
 
-[node name="RigidArea2D" type="Area2D" parent="."]
+[node name="RigidArea2D" type="Area2D" parent="." unique_id=1806087672]
 position = Vector2(0, -2.38419e-07)
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D" unique_id=1947296392]
 shape = SubResource("CircleShape2D_a0pup")
 debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
+
+[node name="PossessionArea" type="Area2D" parent="." unique_id=2104944201]
+show_behind_parent = true
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionArea" unique_id=537850949]
+show_behind_parent = true
+shape = SubResource("CircleShape2D_ji1o7")
+disabled = true
+debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
 
 [connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
 [connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]
 [connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
 [connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]
+[connection signal="body_entered" from="PossessionArea" to="." method="_on_possession_area_body_entered"]
+[connection signal="body_exited" from="PossessionArea" to="." method="_on_possession_area_body_exited"]
