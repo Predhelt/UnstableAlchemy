@@ -166,9 +166,26 @@ func set_camera() -> void:
 	Global.focused_node = self
 	Global.focused_camera = character_camera_ref
 	# Set up camera transform
-	var camera_transform : RemoteTransform2D = load("res://level_components/player_camera_transform.tscn").instantiate()
+	var camera_transform := RemoteTransform2D.new()
+	camera_transform.name = "CameraTransform"
 	camera_transform.remote_path = character_camera_ref.get_path()
 	add_child(camera_transform)
+
+## Transfers the focus of the camera [param body].
+func transfer_camera(body: Node2D):
+	# Remove old camera info
+	is_camera_focused = false
+	character_camera_ref = null
+	# Set new camera info
+	Global.focused_node = body
+	body.character_camera_ref = Global.focused_camera
+	body.is_camera_focused = true
+	# Set up camera transform
+	var camera_transform := RemoteTransform2D.new()
+	camera_transform.name = "CameraTransform"
+	camera_transform.remote_path = body.character_camera_ref.get_path()
+	body.add_child(camera_transform)
+	# Set up new camera info
 
 ## Update character position and messages every frame
 func _physics_process(delta: float) -> void:
@@ -381,26 +398,10 @@ func inspect_object():
 ## User controls the target body. All inputs and behavior transfers.
 func possess_target(body: Node2D):
 	possessing_character = body
-	body.character_possessed_by = self
+	body.character_possessed_by = self #TODO: Determine if this is necessary
 	if is_camera_focused:
 		transfer_camera(body)
 		#TODO
-		
-	
-
-## Transfers the focus of the camera [param body].
-func transfer_camera(body: Node2D):
-	# TODO
-	is_camera_focused = false
-	Global.focused_node = body
-	Global.focused_camera = character_camera_ref
-	# remove camera transform
-	var camera_transform : RemoteTransform2D = load("res://level_components/player_camera_transform.tscn").instantiate()
-	camera_transform.remote_path = character_camera_ref.get_path()
-	add_child(camera_transform)
-	# Set up new camera info
-	body.set_camera()
-
 
 ## Status Effect Handler Methods ##
 
@@ -606,6 +607,7 @@ func _equip_tool(se : StatusEffect) -> bool:
 func _set_can_possess(se : StatusEffect) -> bool:
 	if se.value == 0:
 		$PossessionArea/CollisionShape2D.disabled = true
+		#TODO: Set help label dialogue(s)
 		$LabelGroup/PossessionHelpLabel.visible = false
 		can_possess_others = false
 	else:
@@ -659,8 +661,11 @@ func _push_body(body: PhysicsBody2D) -> bool:
 
 
 func _on_possession_area_body_entered(body: Node2D) -> void:
-	possessable_characters.append(body)
-	$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
+	if body == self:
+		return
+	if body.is_possessable:
+		possessable_characters.append(body)
+		$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
 
 
 func _on_possession_area_body_exited(body: Node2D) -> void:

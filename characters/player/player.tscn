@@ -178,12 +178,7 @@ collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_dirf7")
 attributes = ExtResource("2_rpf03")
-known_recipes = null
-has_blade = null
-has_dropper = null
-is_possessable = null
 inventory = ExtResource("3_x5dtk")
-active_status_effects = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1512704566]
 position = Vector2(0, -36)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ysnbvkn4ogwk"]
 
 [ext_resource type="Script" uid="uid://cmarx5wmfetow" path="res://characters/npcs/npc.gd" id="1_4ofvd"]
+[ext_resource type="Resource" uid="uid://bmo1romp67ev2" path="res://characters/att_default.tres" id="2_f4l5k"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="3_8728q"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="3_c1jsh"]
 [ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="3_leq4a"]
@@ -170,10 +171,10 @@ radius = 250.0
 radius = 14.0
 
 [node name="NPC" type="CharacterBody2D" unique_id=1465409180 groups=["Persist"]]
-collision_layer = 0
 collision_mask = 25
 motion_mode = 1
 script = ExtResource("1_4ofvd")
+attributes = ExtResource("2_f4l5k")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1868916053]
 position = Vector2(0, -36)
