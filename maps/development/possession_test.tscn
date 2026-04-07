@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_las48"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="10_f1te5"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="11_las48"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="11_rdpf7"]
+[ext_resource type="Resource" uid="uid://0xjfmhsed3rt" path="res://game_systems/status_effects/self_attunement.tres" id="12_fo1h1"]
 
 [sub_resource type="Resource" id="Resource_dj8u4"]
 script = ExtResource("6_las48")
@@ -71,6 +73,7 @@ npc_name = "P1"
 passive_messages = Array[String](["I can be possessed"])
 has_blade = true
 is_possessable = true
+active_status_effects = Array[ExtResource("11_rdpf7")]([ExtResource("12_fo1h1")])
 
 [node name="NPC3" parent="." unique_id=1555367955 instance=ExtResource("4_bffd5")]
 position = Vector2(1039, 612)

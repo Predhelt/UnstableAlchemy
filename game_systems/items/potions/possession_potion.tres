@@ -12,4 +12,5 @@ display_name = "Possession Potion"
 description = "Allows the imbiber to possess a nearby target that is susceptible to possession."
 texture = ExtResource("3_6vobf")
 on_consume_effects = Array[ExtResource("1_117ep")]([ExtResource("2_tg1ns")])
+on_consume_message = "This is a strange feeling of control."
 metadata/_custom_type_script = "uid://cspp6theghsrh"

@@ -401,26 +401,50 @@ func inspect_object():
 		cur_interaction.inspect_object()
 
 ## User controls the target body. All inputs and behavior transfers.
-func begin_possession(body: Node2D):
+func begin_possession(body: Character):
 	possessing_character = body
-	body.character_possessed_by = self #TODO: Determine if this is necessary
-	
+	body.character_possessed_by = self
+	# Set up UI
+	#clear_status_bar()
+	if is_camera_focused:
+		var self_active_ses : Array[StatusEffect] = active_status_effects.duplicate()
+		var body_active_ses : Array[StatusEffect] = body.active_status_effects.duplicate()
+		for se in active_status_effects:
+			remove_status_effect(se)
+		for se in body.active_status_effects:
+			body.remove_status_effect(se)
+		transfer_camera(body)
+		update_status_effects(self_active_ses, "")
+		body.update_status_effects(body_active_ses, "")
+	# Set up Tool Wheel UI
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	tool_wheel_ref.set_blade_enabled(body.has_blade)
 	tool_wheel_ref.set_dropper_enabled(body.has_dropper)
 	tool_wheel_ref.set_tool_to_hand()
 	
-	if is_camera_focused:
-		transfer_camera(body)
+	
 
-## Ends the possession on any [member possessing_character].
+## Ends the possession on the given [param body].
 ## This is not recursive, so of possessee is possessing, this will not work properly.
 func end_possession():
-	possessing_character.character_possessed_by = null #TODO: Determine if this is necessary
-	if possessing_character.is_camera_focused:
-		possessing_character.transfer_camera(self)
+	var body : Character = possessing_character
+	# Change focused character
+	body.character_possessed_by = null
+	if body.is_camera_focused:
+		var self_active_ses : Array[StatusEffect] = active_status_effects.duplicate()
+		var body_active_ses : Array[StatusEffect] = body.active_status_effects.duplicate()
+		for se in body.active_status_effects:
+			body.remove_status_effect(se)
+		for se in active_status_effects:
+			remove_status_effect(se)
+			
+		body.transfer_camera(self)
+		
+		body.update_status_effects(body_active_ses, "")
+		update_status_effects(self_active_ses, "")
+		
 	possessing_character = null
-	
+	# Reset Tool Wheel
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	tool_wheel_ref.set_blade_enabled(has_blade)
 	tool_wheel_ref.set_dropper_enabled(has_dropper)
@@ -428,8 +452,8 @@ func end_possession():
 
 ## Status Effect Handler Methods ##
 
-## Goes through the list of statuses given and adds or updates the active status effects.
-## Then, the status message is set above the player if any statuses were successfully added.
+## Goes through the list of [param statuses] given and adds or updates the [member active_status_effects].
+## Then, the [param message] is set above the character if any statuses were successfully added.
 func update_status_effects(statuses: Array[StatusEffect], message: String):
 	# Adds and/or updates the given status effects
 	var is_added = false
@@ -480,6 +504,7 @@ func remove_status_effect(se : StatusEffect) -> bool:
 		&"grow" : return _grow_character(se, true)
 		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus, true)
 		&"self-attunement" : return _attune_self(se, true)
+		&"possess" : return _set_can_possess(se, true)
 	return false
 
 ## Updates the images and progress bars on the status bar UI of the given [StatusEffect].
@@ -489,18 +514,28 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 		return
 	var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
 	if index != -1:
-		active_status_effects.remove_at(index)
+		#active_status_effects.remove_at(index)
 		if is_removing_status:
 			se_bar_ref.remove_status(se)
 			return
-		active_status_effects.append(se.duplicate())
+		#active_status_effects.append(se.duplicate())
 		se_bar_ref.update_status(se)
 		return
 	
-	active_status_effects.append(se.duplicate())
+	#active_status_effects.append(se.duplicate())
 	se_bar_ref.generate_status(se)
 
-### Status effect functions ###
+## Clears the status bar of all [StatusEffect] icons.
+## Only works on the character where [member is_camera_focused] is true.
+## @experimental
+func clear_status_bar() -> void:
+	if not is_camera_focused:
+		return
+	var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
+	for se in active_status_effects:
+		se_bar_ref.remove_status(se)
+
+### Status Effect Type Functions ###
 
 ## Takes the status effect and adds its value to the given callable Attributes function.
 ## For instance, [code]attributes.add_move_speed_bonus(se)[/code]
@@ -511,6 +546,7 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 	if  se_index == -1:
 		if not is_removing:
 			c.call(se.value)
+			active_status_effects.append(se.duplicate())
 			update_status_bar(se)
 			return true
 		else:
@@ -523,6 +559,7 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 			c.call(se.value)
 		else:
 			c.call(-active_status_effects[se_index].value)
+		active_status_effects.remove_at(se_index)
 		update_status_bar(se, se_index, is_removing)
 		return true
 
@@ -549,6 +586,7 @@ func _grow_character(se: StatusEffect, is_removing_status := false) -> bool:
 	if se_index == -1: ## If status effect not already applied:
 		attributes.add_size_mult(se.value)
 		set_character_scale(attributes.get_attribute("size"))
+		active_status_effects.append(se.duplicate())
 		update_status_bar(se)
 		return true
 	
@@ -559,11 +597,14 @@ func _grow_character(se: StatusEffect, is_removing_status := false) -> bool:
 	
 	if is_removing_status:
 		set_character_scale(attributes.get_attribute("size"))
+		active_status_effects.remove_at(se_index)
 		update_status_bar(se, se_index, true)
 		return true
 	
 	attributes.add_size_mult(se.value)
 	set_character_scale(attributes.get_attribute("size"))
+	active_status_effects.remove_at(se_index)
+	active_status_effects.append(se.duplicate())
 	update_status_bar(se, se_index)
 	return true
 
@@ -584,7 +625,8 @@ func set_character_scale(size: float):
 	# 
 	character_camera_ref.zoom = Vector2(1.0, 1.0) / ((diff_ratio + 100/base_size) / 2)
 
-## Sets visibility of the attribues panel
+## Adds self-attunement to [member active_status_effects].
+## Sets visibility of the attributes panel if [member is_camera_focused] is true.
 func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
 	var attribute_display_ref : Control = $"../UILayer/HUDLayer/AttributeDisplay"
 	var se_index : int = _get_se_index(se)
@@ -592,17 +634,24 @@ func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
 	if is_removing or se.value == 0.0:
 		if se_index == -1:
 			return false
-		attribute_display_ref.visible = false
-		update_status_bar(se, se_index, true)
+		active_status_effects.remove_at(se_index)
+		if is_camera_focused:
+			attribute_display_ref.visible = false
+			update_status_bar(se, se_index, true)
 		return true
 	
 	if se.value == 1.0: ## add = true
 		if se_index == -1: ## If not already set:
-			attribute_display_ref.visible = true ## Value should be either 1 = true or 0 = false.
-			update_status_bar(se)
+			active_status_effects.append(se.duplicate())
+			if is_camera_focused:
+				attribute_display_ref.visible = true ## Value should be either 1 = true or 0 = false.
+				update_status_bar(se)
 			return true
 		if se.duration > active_status_effects[se_index].duration: ## Keep the longer duration
-			update_status_bar(se, se_index)
+			active_status_effects.remove_at(se_index)
+			active_status_effects.append(se.duplicate())
+			if is_camera_focused:
+				update_status_bar(se, se_index)
 		return true
 	return false
 
@@ -625,19 +674,27 @@ func _equip_tool(se : StatusEffect) -> bool:
 	print("ERROR: Invalid tool value: %s." % se.value)
 	return false
 
-## Sets character's state to allow possession of others.
-## Shows visuals 
-func _set_can_possess(se : StatusEffect) -> bool:
-	if se.value == 0:
-		$PossessionArea/CollisionShape2D.disabled = true
-		#TODO: Set help label dialogue(s)
-		$LabelGroup/PossessionHelpLabel.visible = false
-		can_possess_others = false
-	else:
+## Sets character's state to allow possession of others if [param is_removing] is false.
+## Disallows otherwise. Displays information for possession UI.
+func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
+	if not is_removing and not can_possess_others: # Enable. se.value should be 1, but currently accepts any non-zero value.
 		$PossessionArea/CollisionShape2D.disabled = false
 		can_possess_others = true
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = true
+			update_status_bar(se)
+		active_status_effects.append(se.duplicate())
+		
+	elif is_removing and can_possess_others: # Disable
+		$PossessionArea/CollisionShape2D.disabled = true
+		#TODO: Set help label text(s)
+		if is_camera_focused:
+			$LabelGroup/PossessionHelpLabel.visible = false
+			update_status_bar(se, _get_se_index(se), true)
+		can_possess_others = false
+		active_status_effects.remove_at(_get_se_index(se))
+	else:
+		return false
 	return true
 
 ### Collision Functions ###
@@ -693,7 +750,7 @@ func _on_possession_area_body_entered(body: Node2D) -> void:
 
 func _on_possession_area_body_exited(body: Node2D) -> void:
 	if possessable_characters.find(body) == -1:
-		print("ERROR: No possessable body found to remove!")
+		#print("ERROR: No possessable body found to remove!")
 		return
 	possessable_characters.remove_at(possessable_characters.find(body))
 	if not possessable_characters.is_empty():
