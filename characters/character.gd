@@ -392,8 +392,6 @@ func combine_object(interaction_area : Interactable) -> void:
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	interaction_area.combine_object(self, tool_wheel_ref.dropper)
 
-
-
 ## Open the inspection panel for an object in the interaciton area
 func inspect_object():
 	if all_interaction_areas:
@@ -405,7 +403,6 @@ func begin_possession(body: Character):
 	possessing_character = body
 	body.character_possessed_by = self
 	# Set up UI
-	#clear_status_bar()
 	if is_camera_focused:
 		var self_active_ses : Array[StatusEffect] = active_status_effects.duplicate()
 		var body_active_ses : Array[StatusEffect] = body.active_status_effects.duplicate()
@@ -421,8 +418,6 @@ func begin_possession(body: Character):
 	tool_wheel_ref.set_blade_enabled(body.has_blade)
 	tool_wheel_ref.set_dropper_enabled(body.has_dropper)
 	tool_wheel_ref.set_tool_to_hand()
-	
-	
 
 ## Ends the possession on the given [param body].
 ## This is not recursive, so of possessee is possessing, this will not work properly.
@@ -739,20 +734,24 @@ func _push_body(body: PhysicsBody2D) -> bool:
 	body.linear_velocity = velocity * mult
 	return true
 
-
+## Checks if the body is possessable, and adds it to the list of [member possessable_characters].
+## Updates the Possession label with the current possession target.
 func _on_possession_area_body_entered(body: Node2D) -> void:
 	if body == self:
 		return
 	if body.is_possessable:
 		possessable_characters.append(body)
+		#TODO: Update possession help label to be more descriptive and consistent.
 		$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
 
-
+## Checks if the body is in the list of [member possessable_characters] and removes it.
+## Updates the Possession label with the current possession target.
 func _on_possession_area_body_exited(body: Node2D) -> void:
 	if possessable_characters.find(body) == -1:
 		#print("ERROR: No possessable body found to remove!")
 		return
 	possessable_characters.remove_at(possessable_characters.find(body))
+	#TODO: Update possession help label to be more descriptive and consistent.
 	if not possessable_characters.is_empty():
 		$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
 	else:
