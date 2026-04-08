@@ -28,24 +28,26 @@ func get_attribute(att_name : String) -> float:
 		"size" : return _get_size()
 	return -1
 
-## Attribute getters
+### Attribute getters ###
+
 func _get_size() -> float:
 	return base_size * size_mult
 
 func _get_speed() -> float:
-	var size_dampener := 0.75 # The higher the value, the less that size impacts this
-	return ((_get_size()*(1-size_dampener)+base_move_speed*(size_dampener))*
-		(1+(move_speed_bonus/base_move_speed)))
+	var size_dampener := 0.75 # The higher the value, the less that size impacts this value.
+	return ((_get_size()*(base_move_speed/base_size)*(1-size_dampener)+
+		base_move_speed*size_dampener)*(1+(move_speed_bonus/base_move_speed)))
 
 func _get_strength() -> float:
-	var size_dampener := 0.5 # The higher the value, the less that size impacts this
-	return ((_get_size()*(1-size_dampener)+base_strength*(size_dampener))*
-		(1+(strength_bonus/base_strength)))
+	var size_dampener := 0.5 # The higher the value, the less that size impacts this value.
+	return ((_get_size()*(base_strength/base_size)*(1-size_dampener)+
+		base_strength*size_dampener)*(1+(strength_bonus/base_strength)))
 
 func _get_mass() -> float:
 	return base_mass * (_get_size()/base_size)
 
-## Attribute setters
+### Attribute setters ###
+
 func set_size_mult(mult : float) -> void:
 	size_mult = mult
 
@@ -55,7 +57,8 @@ func set_strength_bonus(bonus : float) -> void:
 func set_move_speed_bonus(bonus : float) -> void:
 	move_speed_bonus = bonus
 	
-## Attribute modifiers
+### Attribute modifiers ###
+
 func add_size_mult(mult : float) -> void:
 	size_mult *= mult
 

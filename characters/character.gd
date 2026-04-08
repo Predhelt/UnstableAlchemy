@@ -695,7 +695,7 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 ### Collision Functions ###
 
 ## Checks the rigid body that is near the character to see if it is pushable.
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_rigid_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Pushable"):
 		if attributes.get_attribute("strength") >= body.mass:
 			pushing_bodies.append(body)
@@ -708,7 +708,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			crawlspace_bodies.append(body)
 
 ## Checks if the body is in an existing list of overlapping bodies to remove it.
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_rigid_area_2d_body_exited(body: Node2D) -> void:
 	var i := pushing_bodies.find(body)
 	if i != -1:
 		pushing_bodies.remove_at(i)
@@ -722,7 +722,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 ## Check the mass of the object and compare to the player's [member Attributes.strength]
 ## to determine if the player is strong enough to move the body.
 func _push_body(body: PhysicsBody2D) -> bool:
-	if attributes.get_attribute("strength") <= body.mass:
+	if attributes.get_attribute("strength") < body.mass:
 		return false
 	## Calculate force based on the strength of the character vs the mass of the body.
 	var mult : float
@@ -730,6 +730,8 @@ func _push_body(body: PhysicsBody2D) -> bool:
 	mult = (attributes.get_attribute("strength") - body.mass) / 50
 	if mult > 1:
 		mult = 1
+	elif mult < 0.2:
+		mult = 0.2
 		
 	body.linear_velocity = velocity * mult
 	return true

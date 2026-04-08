@@ -15,11 +15,18 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="11_las48"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="11_rdpf7"]
 [ext_resource type="Resource" uid="uid://0xjfmhsed3rt" path="res://game_systems/status_effects/self_attunement.tres" id="12_fo1h1"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="13_g10lj"]
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="17_we6vc"]
 
 [sub_resource type="Resource" id="Resource_dj8u4"]
 script = ExtResource("6_las48")
 items = Array[ExtResource("3_3vnkn")]([ExtResource("4_1ol2w"), ExtResource("5_f1te5")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
+
+[sub_resource type="Resource" id="Resource_jyljp"]
+script = ExtResource("13_g10lj")
+base_strength = 150.0
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -96,7 +103,10 @@ is_possessable = true
 [node name="NPC6" parent="." unique_id=472378860 instance=ExtResource("4_bffd5")]
 position = Vector2(870, 130)
 npc_name = "P6"
+passive_messages = Array[String](["I am strong"])
+attributes = SubResource("Resource_jyljp")
 is_possessable = true
+active_status_effects = Array[ExtResource("11_rdpf7")]([ExtResource("12_fo1h1")])
 
 [node name="NPC7" parent="." unique_id=1631346532 instance=ExtResource("4_bffd5")]
 position = Vector2(672, 614)
@@ -139,3 +149,6 @@ position = Vector2(858, 290)
 
 [node name="YellowFlowers2" parent="." unique_id=767460733 instance=ExtResource("11_las48")]
 position = Vector2(997, 285)
+
+[node name="BoulderPushable" parent="." unique_id=794065921 instance=ExtResource("17_we6vc")]
+position = Vector2(928, 249)

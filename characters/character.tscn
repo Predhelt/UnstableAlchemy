@@ -280,11 +280,11 @@ shape = SubResource("CircleShape2D_b1u1o")
 disabled = true
 debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1007725882]
+[node name="RigidArea2D" type="Area2D" parent="." unique_id=1007725882]
 collision_layer = 0
 collision_mask = 40
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1485776007]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D" unique_id=1485776007]
 shape = SubResource("CircleShape2D_5slg2")
 debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
@@ -292,5 +292,5 @@ debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 [connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_exited"]
 [connection signal="body_entered" from="PossessionArea" to="." method="_on_possession_area_body_entered"]
 [connection signal="body_exited" from="PossessionArea" to="." method="_on_possession_area_body_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
+[connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]
