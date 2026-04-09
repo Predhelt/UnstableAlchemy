@@ -424,9 +424,11 @@ func begin_possession(body: Character):
 	tool_wheel_ref.set_tool_to_hand()
 
 ## Ends the possession on the given [param body].
-## This is not recursive, so of possessee is possessing, this will not work properly.
 func end_possession():
 	var body : Character = possessing_character
+	# Recursively end possession
+	if body.possessing_character:
+		body.end_possession()
 	# Change focused character
 	body.character_possessed_by = null
 	if body.is_camera_focused:
@@ -687,8 +689,9 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 			update_status_bar(se)
 		active_status_effects.append(se.duplicate())
 	elif is_removing and can_possess_others: # Disable
+		if possessing_character:
+			end_possession()
 		$PossessionArea.disable_collision()
-		#TODO: Set help label text(s)
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = false
 			$PossessionTargetLabel.text = ""
@@ -750,7 +753,6 @@ func _on_possession_area_body_entered(body: Node2D) -> void:
 		return
 	if body.is_possessable:
 		possessable_characters.append(body)
-		#TODO: Update possession help label to be more descriptive and consistent.
 		if not possessing_character:
 			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 
@@ -761,8 +763,7 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 		#print("ERROR: No possessable body found to remove!")
 		return
 	possessable_characters.remove_at(possessable_characters.find(body))
-	#TODO: Update possession help label to be more descriptive and consistent.
-	if not possessing_character and possessable_characters.is_empty():
+	if not possessing_character and not possessable_characters.is_empty():
 		$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 	else:
 		$PossessionTargetLabel.text = ""
