@@ -204,6 +204,9 @@ func _physics_process(delta: float) -> void:
 		status_message_timer -= delta
 		if status_message_timer <= 0:
 			%StatusLabel.text = ""
+	
+	if can_possess_others and possessable_characters and not possessing_character:
+		$PossessionTargetLabel.global_position = possessable_characters[0].global_position
 
 ## Handles input action events. Only accepts inputs when the player is controlling the character.
 func _input(event: InputEvent) -> void:
@@ -413,6 +416,7 @@ func begin_possession(body: Character):
 		transfer_camera(body)
 		update_status_effects(self_active_ses, "")
 		body.update_status_effects(body_active_ses, "")
+		$PossessionTargetLabel.text = ""
 	# Set up Tool Wheel UI
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	tool_wheel_ref.set_blade_enabled(body.has_blade)
@@ -437,6 +441,9 @@ func end_possession():
 		
 		body.update_status_effects(body_active_ses, "")
 		update_status_effects(self_active_ses, "")
+		
+		if can_possess_others and possessable_characters:
+			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 		
 	possessing_character = null
 	# Reset Tool Wheel
@@ -684,6 +691,7 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 		#TODO: Set help label text(s)
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = false
+			$PossessionTargetLabel.text = ""
 			update_status_bar(se, _get_se_index(se), true)
 		can_possess_others = false
 		active_status_effects.remove_at(_get_se_index(se))
@@ -743,7 +751,8 @@ func _on_possession_area_body_entered(body: Node2D) -> void:
 	if body.is_possessable:
 		possessable_characters.append(body)
 		#TODO: Update possession help label to be more descriptive and consistent.
-		$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
+		if not possessing_character:
+			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 
 ## Checks if the body is in the list of [member possessable_characters] and removes it.
 ## Updates the Possession label with the current possession target.
@@ -753,7 +762,7 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 		return
 	possessable_characters.remove_at(possessable_characters.find(body))
 	#TODO: Update possession help label to be more descriptive and consistent.
-	if not possessable_characters.is_empty():
-		$LabelGroup/PossessionHelpLabel.text = possessable_characters[0].name
+	if not possessing_character and possessable_characters.is_empty():
+		$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 	else:
-		$LabelGroup/PossessionHelpLabel.text = ""
+		$PossessionTargetLabel.text = ""

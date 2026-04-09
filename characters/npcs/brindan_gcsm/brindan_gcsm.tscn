@@ -180,11 +180,11 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_ae4go"]
 radius = 13.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
-radius = 14.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ji1o7"]
 radius = 250.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
+radius = 14.0
 
 [node name="NPCBrindan" type="CharacterBody2D" unique_id=271735100 groups=["Persist"]]
 collision_mask = 25
@@ -264,15 +264,6 @@ scale = Vector2(3.280001, 3.280001)
 interact_label = "NPC"
 interact_value = ""
 
-[node name="RigidArea2D" type="Area2D" parent="." unique_id=1806087672]
-position = Vector2(0, -2.38419e-07)
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D" unique_id=1947296392]
-shape = SubResource("CircleShape2D_a0pup")
-debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
-
 [node name="PossessionArea" type="Area2D" parent="." unique_id=2104944201]
 visible = false
 show_behind_parent = true
@@ -300,9 +291,33 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("14_0hoi0")
 
+[node name="PossessionTargetLabel" type="Label" parent="." unique_id=1752905422]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.7372549, 0.2, 0.9098039, 1)
+horizontal_alignment = 1
+
+[node name="RigidArea2D" type="Area2D" parent="." unique_id=1806087672]
+position = Vector2(0, -2.38419e-07)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D" unique_id=1947296392]
+shape = SubResource("CircleShape2D_a0pup")
+debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
+
 [connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
 [connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]
-[connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
-[connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]
 [connection signal="body_entered" from="PossessionArea" to="." method="_on_possession_area_body_entered"]
 [connection signal="body_exited" from="PossessionArea" to="." method="_on_possession_area_body_exited"]
+[connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
+[connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]
