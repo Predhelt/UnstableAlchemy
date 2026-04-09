@@ -13,6 +13,8 @@
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="8_0j3cm"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="8_w12x1"]
 [ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://characters/npcs/brindan_gcsm/att_brindan_gcsm.tres" id="9_w12x1"]
+[ext_resource type="Texture2D" uid="uid://c6iu2nnlaotcx" path="res://art/pack/ui/circle.png" id="14_0hoi0"]
+[ext_resource type="Script" uid="uid://de3xp8ny6r1x4" path="res://characters/possession_area.gd" id="15_35eau"]
 
 [sub_resource type="Resource" id="Resource_fa7q6"]
 script = ExtResource("3_w12x1")
@@ -272,15 +274,31 @@ shape = SubResource("CircleShape2D_a0pup")
 debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [node name="PossessionArea" type="Area2D" parent="." unique_id=2104944201]
+visible = false
 show_behind_parent = true
 collision_layer = 0
 monitorable = false
+script = ExtResource("15_35eau")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionArea" unique_id=537850949]
 show_behind_parent = true
 shape = SubResource("CircleShape2D_ji1o7")
 disabled = true
 debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
+
+[node name="TextureRect" type="TextureRect" parent="PossessionArea" unique_id=229497568]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -262.0
+offset_right = 262.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_0hoi0")
 
 [connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
 [connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]

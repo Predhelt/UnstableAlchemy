@@ -673,15 +673,14 @@ func _equip_tool(se : StatusEffect) -> bool:
 ## Disallows otherwise. Displays information for possession UI.
 func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 	if not is_removing and not can_possess_others: # Enable. se.value should be 1, but currently accepts any non-zero value.
-		$PossessionArea/CollisionShape2D.disabled = false
+		$PossessionArea.enable_collision()
 		can_possess_others = true
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = true
 			update_status_bar(se)
 		active_status_effects.append(se.duplicate())
-		
 	elif is_removing and can_possess_others: # Disable
-		$PossessionArea/CollisionShape2D.disabled = true
+		$PossessionArea.disable_collision()
 		#TODO: Set help label text(s)
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = false

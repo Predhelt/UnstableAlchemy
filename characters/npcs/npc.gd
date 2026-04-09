@@ -31,6 +31,13 @@ func _ready() -> void:
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
 	init_dialogues()
+	
+	# Initialize character statuses based on attributes
+	var cur_se : StatusEffect
+	for i in range(active_status_effects.size()-1, -1, -1):
+		cur_se = active_status_effects[i]
+		active_status_effects.remove_at(i)
+		apply_status_effect(cur_se)
 
 func _process(delta: float) -> void:
 	if Global.mode == &"default":

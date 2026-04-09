@@ -7,6 +7,8 @@
 [ext_resource type="Resource" uid="uid://c4voe1xwewivt" path="res://characters/player/main_character_inventory.tres" id="3_x5dtk"]
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="4_eve5b"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="5_n5fht"]
+[ext_resource type="Script" uid="uid://de3xp8ny6r1x4" path="res://characters/possession_area.gd" id="8_idpv6"]
+[ext_resource type="Texture2D" uid="uid://c6iu2nnlaotcx" path="res://art/pack/ui/circle.png" id="9_rpf03"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001
@@ -173,17 +175,12 @@ radius = 250.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_5slg2"]
 radius = 14.0
 
-[node name="Player" type="CharacterBody2D" unique_id=693995075 groups=["Persist"]]
+[node name="Character" type="CharacterBody2D" unique_id=693995075 groups=["Persist"]]
 collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_dirf7")
 attributes = ExtResource("2_rpf03")
-known_recipes = null
-has_blade = null
-has_dropper = null
-is_possessable = null
 inventory = ExtResource("3_x5dtk")
-active_status_effects = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1512704566]
 position = Vector2(0, -36)
@@ -269,15 +266,31 @@ shape = SubResource("CircleShape2D_16fu4")
 debug_color = Color(0, 0.650275, 0.102524, 0.42)
 
 [node name="PossessionArea" type="Area2D" parent="." unique_id=1788218671]
+visible = false
 show_behind_parent = true
 collision_layer = 0
 monitorable = false
+script = ExtResource("8_idpv6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionArea" unique_id=1386210821]
 show_behind_parent = true
 shape = SubResource("CircleShape2D_dirf7")
 disabled = true
 debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
+
+[node name="TextureRect" type="TextureRect" parent="PossessionArea" unique_id=325979093]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -262.0
+offset_right = 262.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_rpf03")
 
 [node name="RigidArea2D" type="Area2D" parent="." unique_id=784360442]
 collision_layer = 0

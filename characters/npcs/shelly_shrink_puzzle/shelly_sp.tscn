@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="7_jwohs"]
 [ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="8_xv50t"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="9_61xhi"]
+[ext_resource type="Texture2D" uid="uid://c6iu2nnlaotcx" path="res://art/pack/ui/circle.png" id="10_kuawy"]
+[ext_resource type="Script" uid="uid://de3xp8ny6r1x4" path="res://characters/possession_area.gd" id="11_bwn82"]
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001
@@ -261,15 +263,31 @@ shape = SubResource("CircleShape2D_a0pup")
 debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [node name="PossessionArea" type="Area2D" parent="." unique_id=200043149]
+visible = false
 show_behind_parent = true
 collision_layer = 0
 monitorable = false
+script = ExtResource("11_bwn82")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionArea" unique_id=327559998]
 show_behind_parent = true
 shape = SubResource("CircleShape2D_c24b0")
 disabled = true
 debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
+
+[node name="TextureRect" type="TextureRect" parent="PossessionArea" unique_id=313261392]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -262.0
+offset_right = 262.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_kuawy")
 
 [connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
 [connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]
