@@ -11,5 +11,5 @@ description = "Able to possess a susceptible target."
 icon = ExtResource("1_w4x2h")
 effect = "possess"
 value = 1.0
-duration = -1.0
+duration = 120.0
 metadata/_custom_type_script = "uid://odkkljfrjpee"

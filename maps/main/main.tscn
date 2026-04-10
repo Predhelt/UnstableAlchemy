@@ -1,8 +1,7 @@
 [gd_scene format=4 uid="uid://o63keldhmysn"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_8mwxg"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_isewj"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_od3i0"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="2_isewj"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_vdxbp"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="5_r582c"]
 [ext_resource type="Resource" uid="uid://bug73xhr5bl3w" path="res://game_systems/status_effects/energized_burst.tres" id="6_baaqm"]
@@ -10,10 +9,6 @@
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="8_jjxa0"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="9_7icfq"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="13_3geiq"]
-
-[sub_resource type="Resource" id="Resource_ocdcf"]
-script = ExtResource("3_od3i0")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_sx8rp"]
 script = ExtResource("4_vdxbp")
@@ -40,7 +35,6 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=693995075 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_isewj")]
 position = Vector2(135, 17)
 character_camera_ref = NodePath("../PlayerCamera")
-attributes = SubResource("Resource_ocdcf")
 inventory = SubResource("Resource_bo0de")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]

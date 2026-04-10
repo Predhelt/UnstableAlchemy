@@ -129,7 +129,7 @@ func save() -> Dictionary:
 	}
 	return save_dict
 
-## Set up default UI properties when the character is ready
+## Set up default properties when the character is ready
 func _ready() -> void:
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
@@ -171,17 +171,21 @@ func set_camera() -> void:
 	camera_transform.remote_path = character_camera_ref.get_path()
 	add_child(camera_transform)
 
-## Transfers the focus of the camera [param body].
+## Transfers the focus of the camera to [param body].
 func transfer_camera(body: Node2D):
+	if not is_camera_focused:
+		print("ERROR: Camera not focused for transfer. Returning.")
+		return
 	# Remove old camera info
 	is_camera_focused = false
 	character_camera_ref = null
+	$CameraTransform.queue_free()
 	# Set new camera info
 	Global.focused_node = body
 	body.character_camera_ref = Global.focused_camera
 	body.is_camera_focused = true
 	# Set up camera transform
-	var camera_transform := RemoteTransform2D.new()
+	var camera_transform : RemoteTransform2D = RemoteTransform2D.new()
 	camera_transform.name = "CameraTransform"
 	camera_transform.remote_path = body.character_camera_ref.get_path()
 	body.add_child(camera_transform)
@@ -313,8 +317,8 @@ func read_book(book: Book):
 ## Triggers when an object's [Interactable] area enters the interaction proximity of the player.
 func _on_interaction_area_entered(area: Interactable) -> void:
 	all_interaction_areas.insert(0, area)
-	update_interactions()
-	# Outline the object that will be interacted with
+	if is_camera_focused:
+		update_interaction_text()
 
 ## Triggers when an object's [Interactable] area leaves the interaction proximity of the player
 func _on_interaction_area_exited(area: Interactable) -> void:
@@ -322,11 +326,12 @@ func _on_interaction_area_exited(area: Interactable) -> void:
 		area.close_context_menu()
 	
 	all_interaction_areas.erase(area)
-	update_interactions()
+	if is_camera_focused:
+		update_interaction_text()
 
 ## Checks if there are any overlapping [Interactable] areas with the player and
 ## shows information for an overlapping interaction in [member all_interaction_areas]
-func update_interactions():
+func update_interaction_text():
 	if all_interaction_areas:
 		#TODO: Smarter way to choose an interaction near the player.
 		var cur_interaction : Interactable = all_interaction_areas[0]
@@ -429,6 +434,7 @@ func end_possession():
 	# Recursively end possession
 	if body.possessing_character:
 		body.end_possession()
+	possessing_character = null
 	# Change focused character
 	body.character_possessed_by = null
 	if body.is_camera_focused:
@@ -436,6 +442,7 @@ func end_possession():
 		var body_active_ses : Array[StatusEffect] = body.active_status_effects.duplicate()
 		for se in body.active_status_effects:
 			body.remove_status_effect(se)
+		# FIXME: Should find a way that doesn't require removing and re-adding status effects
 		for se in active_status_effects:
 			remove_status_effect(se)
 			
@@ -447,7 +454,7 @@ func end_possession():
 		if can_possess_others and possessable_characters:
 			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 		
-	possessing_character = null
+	
 	# Reset Tool Wheel
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	tool_wheel_ref.set_blade_enabled(has_blade)
@@ -572,6 +579,8 @@ func _cleanse_status_effects() -> bool:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration != -1:
 			remove_status_effect(active_status_effects[i])
+			if active_status_effects[i].id == 200: # Possess
+				end_possession()
 			
 	return true
 
@@ -689,8 +698,10 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 			update_status_bar(se)
 		active_status_effects.append(se.duplicate())
 	elif is_removing and can_possess_others: # Disable
-		if possessing_character:
-			end_possession()
+		# NOTE: This should be performed outside of _set_can_possess(), as 
+		# ending possession is not guaranteed upon the status effect ending.
+		#if possessing_character:
+			#end_possession()
 		$PossessionArea.disable_collision()
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = false
@@ -767,3 +778,11 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 		$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 	else:
 		$PossessionTargetLabel.text = ""
+
+
+func _on_interaction_area_npc_shop() -> void:
+	pass # Replace with function body.
+
+
+func _on_interaction_area_npc_talk() -> void:
+	pass # Replace with function body.

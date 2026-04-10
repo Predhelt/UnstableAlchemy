@@ -11,22 +11,20 @@ var saturated_stem_ref := preload("res://game_systems/items/merged_ingredients/s
 var red_berries_ref := preload("res://game_systems/items/gatherable/red_berries.tres")
 var flower_stem_ref := preload("res://game_systems/items/gatherable/flower_stem.tres")
 
-
-
 ## Overrides the _ready function from NPC
-func _ready() -> void:
-	$InteractArea.interact_type = interaction_type
-	$InteractArea.interact_label = npc_name
-	%StatusLabel.text = ""
-	%InteractLabel.text = ""
-	init_dialogues()
-	
-	# Initialize character statuses based on attributes
-	var cur_se : StatusEffect
-	for i in range(active_status_effects.size()-1, -1, -1):
-		cur_se = active_status_effects[i]
-		active_status_effects.remove_at(i)
-		apply_status_effect(cur_se)
+#func _ready() -> void:
+	#$InteractionArea.interact_type = interaction_type
+	#$InteractionArea.interact_label = npc_name
+	#%StatusLabel.text = ""
+	#%InteractLabel.text = ""
+	#init_dialogues()
+	#
+	## Initialize character statuses based on attributes
+	#var cur_se : StatusEffect
+	#for i in range(active_status_effects.size()-1, -1, -1):
+		#cur_se = active_status_effects[i]
+		#active_status_effects.remove_at(i)
+		#apply_status_effect(cur_se)
 
 ## Determines dialogue based on context. Returns the name of the dialogue window.
 func get_initial_dialogue_name(speakee : Character) -> String:

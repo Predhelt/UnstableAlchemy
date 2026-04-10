@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://b6x30mscbd1us"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_m4pr1"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_u0qny"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="2_u0qny"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_mkjgk"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_bfmfs"]
-[ext_resource type="PackedScene" uid="uid://5ru7ywrgkfd3" path="res://characters/npcs/brindan_gcsm/brindan_gcsm.tscn" id="5_wxiyx"]
+[ext_resource type="PackedScene" uid="uid://ch7hosojbd5a3" path="res://characters/npcs/brindan_gcsm/brindan_gcsm.tscn" id="5_wxiyx"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="6_n6rvy"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="7_yx5x0"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="8_jt1vk"]
@@ -73,7 +73,6 @@ position_smoothing_enabled = true
 
 [node name="NPCBrindan" parent="." unique_id=293546397 instance=ExtResource("5_wxiyx")]
 position = Vector2(703, 155)
-collision_mask = 57
 transactions = Array[ExtResource("6_n6rvy")]([ExtResource("7_yx5x0"), SubResource("Resource_fa7q6")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 

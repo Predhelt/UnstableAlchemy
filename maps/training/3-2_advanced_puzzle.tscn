@@ -1,12 +1,11 @@
 [gd_scene format=4 uid="uid://cljq0liiwb3o3"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_78sge"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_bcy3g"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_6o0uj"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="2_bcy3g"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_ssofw"]
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="5_vj4lo"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_wlp5u"]
-[ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="7_cq7vc"]
+[ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="7_cq7vc"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="8_6svre"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="9_a2l4l"]
 [ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/npcs/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="9_anm1r"]
@@ -26,10 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="22_wl68a"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="23_w53eh"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="24_bcy3g"]
-
-[sub_resource type="Resource" id="Resource_qo0cn"]
-script = ExtResource("3_6o0uj")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_yiupm"]
 script = ExtResource("6_wlp5u")
@@ -64,7 +59,6 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_bcy3g")]
 position = Vector2(256, 6)
 character_camera_ref = NodePath("../PlayerCamera")
-attributes = SubResource("Resource_qo0cn")
 has_blade = true
 inventory = SubResource("Resource_yiupm")
 
@@ -78,7 +72,6 @@ position_smoothing_enabled = true
 position = Vector2(395, -213)
 transactions = Array[ExtResource("8_6svre")]([ExtResource("9_anm1r"), SubResource("Resource_6ca4l")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
-attributes = null
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
 y_sort_enabled = true

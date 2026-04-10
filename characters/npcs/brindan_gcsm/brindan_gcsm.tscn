@@ -1,26 +1,24 @@
-[gd_scene format=3 uid="uid://5ru7ywrgkfd3"]
+[gd_scene format=3 uid="uid://ch7hosojbd5a3"]
 
-[ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://characters/npcs/brindan_gcsm/brindan_gcsm.gd" id="1_aqsvn"]
-[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="2_dc0wm"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="3_3ykmy"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="3_w12x1"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="4_de2tt"]
-[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="4_m0qsu"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="5_2t8jr"]
-[ext_resource type="Resource" uid="uid://kvhv0o2fyg74" path="res://characters/npcs/brindan_gcsm/transactions/tx_saturated_stem.tres" id="5_m570q"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_57mob"]
-[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="6_pt5j0"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="8_0j3cm"]
-[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="8_w12x1"]
-[ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://characters/npcs/brindan_gcsm/att_brindan_gcsm.tres" id="9_w12x1"]
-[ext_resource type="Texture2D" uid="uid://c6iu2nnlaotcx" path="res://art/pack/ui/circle.png" id="14_0hoi0"]
-[ext_resource type="Script" uid="uid://de3xp8ny6r1x4" path="res://characters/possession_area.gd" id="15_35eau"]
+[ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_eou54"]
+[ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://characters/npcs/brindan_gcsm/brindan_gcsm.gd" id="2_1slxx"]
+[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="2_16goy"]
+[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="3_1slxx"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="3_jm0cw"]
+[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="4_jm0cw"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="4_u2brs"]
+[ext_resource type="Resource" uid="uid://kvhv0o2fyg74" path="res://characters/npcs/brindan_gcsm/transactions/tx_saturated_stem.tres" id="5_30kdh"]
+[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="5_scha5"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_2r47i"]
+[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="7_6ckx5"]
+[ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="8_gotj8"]
+[ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://characters/npcs/brindan_gcsm/att_brindan_gcsm.tres" id="9_cfc6b"]
 
-[sub_resource type="Resource" id="Resource_fa7q6"]
-script = ExtResource("3_w12x1")
-items_selling = Array[ExtResource("6_57mob")]([ExtResource("8_w12x1")])
+[sub_resource type="Resource" id="Resource_7kj37"]
+script = ExtResource("3_jm0cw")
+items_selling = Array[ExtResource("6_2r47i")]([ExtResource("8_gotj8")])
 items_selling_amount = Array[int]([1])
-items_buying = Array[ExtResource("6_57mob")]([ExtResource("8_0j3cm")])
+items_buying = Array[ExtResource("6_2r47i")]([ExtResource("7_6ckx5")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
@@ -36,7 +34,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_dc0wm")]
+"values": [ExtResource("2_16goy")]
 }
 
 [sub_resource type="Animation" id="Animation_cssul"]
@@ -51,7 +49,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_dc0wm")]
+"values": [ExtResource("2_16goy")]
 }
 
 [sub_resource type="Animation" id="Animation_85or5"]
@@ -66,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_3ykmy")]
+"values": [ExtResource("3_1slxx")]
 }
 
 [sub_resource type="Animation" id="Animation_33o0g"]
@@ -81,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_de2tt")]
+"values": [ExtResource("4_jm0cw")]
 }
 
 [sub_resource type="Animation" id="Animation_gvkpy"]
@@ -96,10 +94,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_2t8jr")]
+"values": [ExtResource("5_scha5")]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bkg2i"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eou54"]
 _data = {
 &"RESET": SubResource("Animation_inutq"),
 &"idle_down": SubResource("Animation_cssul"),
@@ -108,51 +106,51 @@ _data = {
 &"idle_up": SubResource("Animation_gvkpy")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhbql"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_16goy"]
 animation = &"idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c1yix"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1slxx"]
 animation = &"idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_juol3"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jm0cw"]
 animation = &"idle_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_haalw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_scha5"]
 animation = &"idle_right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_u1cla"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_mhbql")
+blend_point_0/node = SubResource("AnimationNodeAnimation_16goy")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_c1yix")
+blend_point_1/node = SubResource("AnimationNodeAnimation_1slxx")
 blend_point_1/pos = Vector2(0, 1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_juol3")
+blend_point_2/node = SubResource("AnimationNodeAnimation_jm0cw")
 blend_point_2/pos = Vector2(0, -1.1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_haalw")
+blend_point_3/node = SubResource("AnimationNodeAnimation_scha5")
 blend_point_3/pos = Vector2(1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fhyg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_15v4p"]
 animation = &"idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3xcj"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6d0xy"]
 animation = &"idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6k4ps"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fw5pc"]
 animation = &"idle_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w5d48"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8jgln"]
 animation = &"idle_right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_q7fje"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_0fhyg")
+blend_point_0/node = SubResource("AnimationNodeAnimation_15v4p")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_u3xcj")
+blend_point_1/node = SubResource("AnimationNodeAnimation_6d0xy")
 blend_point_1/pos = Vector2(0, 1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_6k4ps")
+blend_point_2/node = SubResource("AnimationNodeAnimation_fw5pc")
 blend_point_2/pos = Vector2(0, -1.1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_w5d48")
+blend_point_3/node = SubResource("AnimationNodeAnimation_8jgln")
 blend_point_3/pos = Vector2(1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
@@ -169,7 +167,7 @@ advance_condition = &"is_moving"
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rqa1v"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_egjyl"]
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_u1cla")
 states/Idle/position = Vector2(399, 100)
 states/Start/position = Vector2(186, 100)
@@ -177,147 +175,33 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_q7fje")
 states/Walk/position = Vector2(625, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qyell"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_v1316"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cyhdb")]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ae4go"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kq5qp"]
 radius = 13.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ji1o7"]
-radius = 250.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_a0pup"]
-radius = 14.0
-
-[node name="NPCBrindan" type="CharacterBody2D" unique_id=271735100 groups=["Persist"]]
-collision_mask = 25
-motion_mode = 1
-script = ExtResource("1_aqsvn")
+[node name="Character" unique_id=1948548714 instance=ExtResource("1_eou54")]
+script = ExtResource("2_1slxx")
 npc_name = "Brindan"
-transactions = Array[ExtResource("3_w12x1")]([ExtResource("4_m0qsu"), ExtResource("5_m570q"), SubResource("Resource_fa7q6")])
+interaction_type = "talk"
+transactions = Array[ExtResource("3_jm0cw")]([ExtResource("4_u2brs"), ExtResource("5_30kdh"), SubResource("Resource_7kj37")])
 passive_messages = Array[String](["Hey", "Where are we, anyways?"])
-attributes = ExtResource("9_w12x1")
+attributes = ExtResource("9_cfc6b")
+inventory = null
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1263212061]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=346669857]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_dc0wm")
+texture = ExtResource("2_16goy")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=343191348]
-libraries/ = SubResource("AnimationLibrary_bkg2i")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1484536755]
+libraries/ = SubResource("AnimationLibrary_eou54")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1970922105]
-tree_root = SubResource("AnimationNodeStateMachine_rqa1v")
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1340874323]
+tree_root = SubResource("AnimationNodeStateMachine_egjyl")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/Idle/blend_position = Vector2(-0.000867307, 0.99292)
 parameters/Walk/blend_position = Vector2(0, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=841716042]
-shape = SubResource("CircleShape2D_ae4go")
-
-[node name="LabelGroup" type="Node2D" parent="." unique_id=450050905]
-
-[node name="InteractLabel" type="Label" parent="LabelGroup" unique_id=172461974]
-unique_name_in_owner = true
-z_index = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -105.0
-offset_right = 110.0
-offset_bottom = -82.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/outline_size = 4
-text = "Interact"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="StatusLabel" type="RichTextLabel" parent="LabelGroup" unique_id=1227984402]
-unique_name_in_owner = true
-clip_contents = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -125.0
-offset_top = -80.0
-offset_right = 125.0
-offset_bottom = -50.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_constants/outline_size = 3
-bbcode_enabled = true
-text = "status
-"
-fit_content = true
-scroll_active = false
-scroll_following = true
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="InteractArea" parent="." unique_id=2108006222 instance=ExtResource("6_pt5j0")]
-position = Vector2(0, -2.38419e-07)
-scale = Vector2(3.280001, 3.280001)
-interact_label = "NPC"
-interact_value = ""
-
-[node name="PossessionArea" type="Area2D" parent="." unique_id=2104944201]
-visible = false
-show_behind_parent = true
-collision_layer = 0
-monitorable = false
-script = ExtResource("15_35eau")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PossessionArea" unique_id=537850949]
-show_behind_parent = true
-shape = SubResource("CircleShape2D_ji1o7")
-disabled = true
-debug_color = Color(0.6623553, 0.3179506, 1, 0.41960785)
-
-[node name="TextureRect" type="TextureRect" parent="PossessionArea" unique_id=229497568]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -262.0
-offset_top = -262.0
-offset_right = 262.0
-offset_bottom = 262.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("14_0hoi0")
-
-[node name="PossessionTargetLabel" type="Label" parent="." unique_id=1752905422]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.7372549, 0.2, 0.9098039, 1)
-horizontal_alignment = 1
-
-[node name="RigidArea2D" type="Area2D" parent="." unique_id=1806087672]
-position = Vector2(0, -2.38419e-07)
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidArea2D" unique_id=1947296392]
-shape = SubResource("CircleShape2D_a0pup")
-debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
-
-[connection signal="npc_shop" from="InteractArea" to="." method="_on_interact_area_npc_shop"]
-[connection signal="npc_talk" from="InteractArea" to="." method="_on_interact_area_npc_talk"]
-[connection signal="body_entered" from="PossessionArea" to="." method="_on_possession_area_body_entered"]
-[connection signal="body_exited" from="PossessionArea" to="." method="_on_possession_area_body_exited"]
-[connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]
-[connection signal="body_exited" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_exited"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3" unique_id=1034066138]
+shape = SubResource("CircleShape2D_kq5qp")

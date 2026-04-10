@@ -1,27 +1,12 @@
 [gd_scene format=4 uid="uid://mss7rf2jumho"]
 
-[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="1_fabap"]
-[ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://level_components/ui/windows/options/options_menu.tscn" id="2_f43xc"]
-[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_1yiqj"]
-[ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://level_components/ui/windows/help_menu/help_menu.tscn" id="4_2op21"]
-[ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://level_components/ui/windows/inventory/inventory_menu.tscn" id="5_ho7mb"]
-[ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://level_components/ui/windows/recipe_list/recipe_list.tscn" id="6_detnd"]
-[ext_resource type="PackedScene" uid="uid://devoaotbjwrvh" path="res://level_components/ui/windows/log_book/log_book.tscn" id="7_biipd"]
-[ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://level_components/ui/windows/npc_shop/npc_shop.tscn" id="8_2no2m"]
-[ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://level_components/ui/windows/npc_dialogue/npc_dialogue.tscn" id="9_e1r8p"]
-[ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldron_minigame.tscn" id="10_8v7fn"]
-[ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.tscn" id="11_kegp2"]
-[ext_resource type="PackedScene" uid="uid://di1bo8f31ki7b" path="res://level_components/ui/hud/menu_bar/menu_bar.tscn" id="12_yqx7q"]
-[ext_resource type="PackedScene" uid="uid://dgkjljcf8lms4" path="res://level_components/ui/hud/status_effect/status_effect_bar.tscn" id="13_phpm6"]
-[ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://level_components/ui/hud/hotbar/hotbar.tscn" id="14_86ibb"]
-[ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://level_components/ui/hud/tool_wheel/tool_wheel.tscn" id="15_v1mxg"]
-[ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_4jqmy"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_h7t87"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="19_dennm"]
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_ksfjp"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_h7t87"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="17_vq1tr"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_heyse"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="23_hq65m"]
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://level_components/objects/interactable/plants/blue_berry_bush.tscn" id="24_37f5w"]
-[ext_resource type="PackedScene" uid="uid://ysnbvkn4ogwk" path="res://characters/npcs/npc.tscn" id="25_3sjqy"]
+[ext_resource type="PackedScene" uid="uid://db6w6ybnaom17" path="res://characters/npcs/npc.tscn" id="25_3sjqy"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="25_f8sr4"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="26_47dco"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="26_gfu2t"]
@@ -61,72 +46,11 @@ metadata/_custom_type_script = "uid://bv286g1xhvijr"
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="UILayer" type="CanvasLayer" parent="." unique_id=574275547]
-layer = 10
-
-[node name="MenuLayer" type="CanvasLayer" parent="UILayer" unique_id=141501223]
-layer = 3
-
-[node name="SettingsMenu" parent="UILayer/MenuLayer" unique_id=466945984 instance=ExtResource("1_fabap")]
-auto_translate_mode = 1
-visible = false
-
-[node name="OptionsMenu" parent="UILayer/MenuLayer" unique_id=1604190083 instance=ExtResource("2_f43xc")]
-visible = false
-theme = ExtResource("3_1yiqj")
-
-[node name="HelpMenu" parent="UILayer/MenuLayer" unique_id=1997709990 instance=ExtResource("4_2op21")]
-visible = false
-
-[node name="InventoryMenu" parent="UILayer/MenuLayer" unique_id=1209495849 instance=ExtResource("5_ho7mb")]
-visible = false
-
-[node name="RecipeList" parent="UILayer/MenuLayer" unique_id=1868385013 instance=ExtResource("6_detnd")]
-visible = false
-
-[node name="LogBookMenu" parent="UILayer/MenuLayer" unique_id=357727730 instance=ExtResource("7_biipd")]
-visible = false
-
-[node name="NPCShop" parent="UILayer/MenuLayer" unique_id=799670010 instance=ExtResource("8_2no2m")]
-visible = false
-
-[node name="NPCDialogue" parent="UILayer/MenuLayer" unique_id=1831637564 instance=ExtResource("9_e1r8p")]
-visible = false
-
-[node name="MinigameLayer" type="CanvasLayer" parent="UILayer" unique_id=1354987911]
-layer = 2
-
-[node name="MinigameCauldron" parent="UILayer/MinigameLayer" unique_id=1553878062 instance=ExtResource("10_8v7fn")]
-visible = false
-
-[node name="MinigameMP" parent="UILayer/MinigameLayer" unique_id=95134907 instance=ExtResource("11_kegp2")]
-visible = false
-
-[node name="HUDLayer" type="CanvasLayer" parent="UILayer" unique_id=1167861916]
-
-[node name="MenuBar" parent="UILayer/HUDLayer" unique_id=2084920634 instance=ExtResource("12_yqx7q")]
-offset_bottom = 8.0
-
-[node name="StatusEffectBar" parent="UILayer/HUDLayer" unique_id=768429819 instance=ExtResource("13_phpm6")]
-
-[node name="Hotbar" parent="UILayer/HUDLayer" unique_id=1812231048 instance=ExtResource("14_86ibb")]
-visible = false
-
-[node name="ToolWheel" parent="UILayer/HUDLayer" unique_id=2089509891 instance=ExtResource("15_v1mxg")]
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 154.0
-offset_bottom = 154.0
-
-[node name="AttributeDisplay" parent="UILayer/HUDLayer" unique_id=1551514349 instance=ExtResource("16_4jqmy")]
-visible = false
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_ksfjp")]
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_h7t87")]
 position = Vector2(-42, -39)
 character_camera_ref = NodePath("../PlayerCamera")
-
-[node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
-remote_path = NodePath("../../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
 unique_name_in_owner = true
@@ -136,18 +60,12 @@ position_smoothing_enabled = true
 
 [node name="NPC" parent="." unique_id=212838473 instance=ExtResource("25_3sjqy")]
 position = Vector2(92, -14)
-npc_name = "NPC"
 interaction_type = "shop"
 transactions = Array[ExtResource("26_gfu2t")]([ExtResource("27_5eyek"), ExtResource("28_65lo7"), SubResource("Resource_pj1jn"), SubResource("Resource_muiwb"), SubResource("Resource_xmx8x"), SubResource("Resource_fjig6")])
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
-
-[node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
-z_index = -50
-scale = Vector2(2, 2)
-tile_set = ExtResource("19_dennm")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
@@ -213,7 +131,14 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
-[connection signal="use_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_use_inventory_item"]
-[connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
-[connection signal="tool_updated" from="UILayer/HUDLayer/ToolWheel" to="Player" method="_on_tool_updated"]
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=678112048]
+script = ExtResource("17_vq1tr")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=476477099]
+offset_left = -320.0
+offset_top = -284.0
+offset_right = -102.0
+offset_bottom = -98.0
+text = "New:
+- Dropper Tool
+- Shrink Status Effect"

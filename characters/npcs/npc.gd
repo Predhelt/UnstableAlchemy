@@ -25,19 +25,13 @@ var last_message_delta := 0.0
 
 ## Set references to variables and default label text
 func _ready() -> void:
-	$InteractArea.interact_type = interaction_type
-	$InteractArea.interact_label = npc_name
+	super()
+	$InteractionArea.interact_type = interaction_type
+	$InteractionArea.interact_label = npc_name
 	#npc_shop_ref.player = Global.focused_node
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
 	init_dialogues()
-	
-	# Initialize character statuses based on attributes
-	var cur_se : StatusEffect
-	for i in range(active_status_effects.size()-1, -1, -1):
-		cur_se = active_status_effects[i]
-		active_status_effects.remove_at(i)
-		apply_status_effect(cur_se)
 
 func _process(delta: float) -> void:
 	if Global.mode == &"default":
@@ -193,10 +187,10 @@ func update_message(message: String):
 
 ## Called when the player interacts with the NPC when the interaction type is "talk".
 ## Initiates setting up the npc dialogue window.
-func _on_interact_area_npc_talk() -> void:
+func _on_interaction_area_npc_talk() -> void:
 	open_dialogue()
 
 ## Called when the player interacts with the NPC when the interaction type is "shop".
 ## Initiates setting up the npc shop window.
-func _on_interact_area_npc_shop() -> void:
+func _on_interaction_area_npc_shop() -> void:
 	open_shop()
