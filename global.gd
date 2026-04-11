@@ -1,4 +1,7 @@
+## Global variables and functions
 extends Node2D
+#TODO: Add items and recipes based on the spreadsheet
+#TODO: Remake UI with controller/mobile
 
 ## Reference to the main camera used for displaying to the user.
 var focused_camera : Camera2D
@@ -174,6 +177,9 @@ func load_game() -> void:
 		var new_object : Node2D = load(node_data["filename"]).instantiate()
 		new_object.name = node_data["name"]
 		
+		if node_data["is_camera_focused"]: # Important to set early for UI
+			new_object.set("is_camera_focused", node_data["is_camera_focused"])
+		
 		# Add status effects before connecting to parent, if status effects exist.
 		var field : String = "active_status_effects_path"
 		if node_data[field]:
@@ -192,7 +198,7 @@ func load_game() -> void:
 		if node_data[field] != "":
 				new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 				#TODO: Check if replacing cached version is making a difference.
-				#FIXME: Replace the existing inventory instead of loading a new instance.
+				#FIXME: Replace the existing inventory instead of loading a new instance?
 		# Set the attributes before setting parent node to scene.
 		field = "attributes_path"
 		if node_data[field] != "":
@@ -201,15 +207,8 @@ func load_game() -> void:
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		
-		# Go through each node and initialize the stored values..
+		# Go through each node and initialize the stored values.
 		for i in node_data.keys():
-			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y" 
-					or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path"):
-				continue # Variables that were already set can be skipped.
-			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "npc_name" and i != "interaction_type"):
-				new_object.set(i, str_to_var(node_data[i]))
-			else:
-				new_object.set(i, node_data[i])
 			if i == "is_camera_focused" and node_data[i] == true:
 				focused_node = new_object
 				var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
@@ -219,10 +218,12 @@ func load_game() -> void:
 				new_object.set_camera()
 				cam.reset_smoothing()
 				continue
-			
-			
+			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y"
+					or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path"):
+				continue # Variables that were already set can be skipped.
+			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "npc_name" and i != "interaction_type"):
+				new_object.set(i, str_to_var(node_data[i]))
+			else:
+				new_object.set(i, node_data[i])
 			new_object.set(i, node_data[i])
 	mode = &"default"
-
-#TODO: add items and recipes based on the spreadsheet
-#TODO: Remake UI with controller/mobile

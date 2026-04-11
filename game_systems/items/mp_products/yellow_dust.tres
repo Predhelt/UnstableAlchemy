@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("2_etrvr")
 id = 103
-display_name = "yellow dust"
+display_name = "Yellow Dust"
 description = "The ground up dust of petals from a yellow flower"
 texture = ExtResource("3_q11kd")

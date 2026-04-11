@@ -398,7 +398,7 @@ func combine_object(interaction_area : Interactable) -> void:
 		possessing_character.combine_object(interaction_area)
 		return
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
-	interaction_area.combine_object(self, tool_wheel_ref.dropper)
+	interaction_area.combine_object(self, tool_wheel_ref.dropper_item)
 
 ## Open the inspection panel for an object in the interaciton area
 func inspect_object():
@@ -568,9 +568,11 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 			# Remove and re-add the status effect
 			c.call(-active_status_effects[se_index].value)
 			c.call(se.value)
+			active_status_effects.append(se.duplicate())
+			active_status_effects.remove_at(se_index)
 		else:
 			c.call(-active_status_effects[se_index].value)
-		active_status_effects.remove_at(se_index)
+			active_status_effects.remove_at(se_index)
 		update_status_bar(se, se_index, is_removing)
 		return true
 
@@ -698,10 +700,6 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 			update_status_bar(se)
 		active_status_effects.append(se.duplicate())
 	elif is_removing and can_possess_others: # Disable
-		# NOTE: This should be performed outside of _set_can_possess(), as 
-		# ending possession is not guaranteed upon the status effect ending.
-		#if possessing_character:
-			#end_possession()
 		$PossessionArea.disable_collision()
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = false

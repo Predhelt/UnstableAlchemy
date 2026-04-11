@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://cqmeup2f6np5k"]
+
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="1_j4cg7"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_q4a83"]
+[ext_resource type="Script" uid="uid://dd0eo3jjfa8mn" path="res://game_systems/alchemy/recipes/procedure_input_action.gd" id="2_ypr1p"]
+[ext_resource type="Script" uid="uid://c0cgelhbhui2g" path="res://game_systems/alchemy/recipes/pia_item.gd" id="3_hjkpm"]
+[ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://game_systems/alchemy/recipes/cauldron/procedure_input_actions/bellows.tres" id="4_iolbu"]
+[ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://game_systems/alchemy/procedure.gd" id="5_5a48w"]
+[ext_resource type="Resource" uid="uid://vwwc1c2oku6l" path="res://game_systems/items/potions/possession_potion.tres" id="6_4ylb1"]
+
+[sub_resource type="Resource" id="Resource_k12er"]
+script = ExtResource("3_hjkpm")
+metadata/_custom_type_script = "uid://c0cgelhbhui2g"
+
+[sub_resource type="Resource" id="Resource_7a62r"]
+script = ExtResource("5_5a48w")
+input_actions = Array[ExtResource("2_ypr1p")]([null, SubResource("Resource_k12er"), null, ExtResource("4_iolbu"), null])
+metadata/_custom_type_script = "uid://b2d7pi15oxo04"
+
+[resource]
+script = ExtResource("2_q4a83")
+id = 507
+product_item = ExtResource("6_4ylb1")
+product_item_amount = 1
+procedure = SubResource("Resource_7a62r")
+metadata/_custom_type_script = "uid://dmsouatunq2be"

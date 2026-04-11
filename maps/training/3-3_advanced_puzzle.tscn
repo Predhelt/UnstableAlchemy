@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://vpd53ywg8mcr"]
+
+[ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_5i83l"]
+
+[node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
+
+[node name="LabelCongratulations" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=1728121971]
+layout_mode = 0
+offset_left = 224.0
+offset_top = -764.0
+offset_right = 396.0
+offset_bottom = -715.0
+text = "Congratulations!
+Thank you for playing!"
+
+[node name="LabelReset2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=2104477875]
+layout_mode = 0
+offset_left = 349.0
+offset_top = -107.0
+offset_right = 586.0
+offset_bottom = -84.0
+text = "Lesson: Using the dropper tool"
+
+[node name="LabelReset" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="2" unique_id=264796458]
+layout_mode = 0
+offset_top = 87.0
+offset_right = 525.0
+offset_bottom = 110.0
+text = "If you get stuck, reset by going to level select and back to this level."

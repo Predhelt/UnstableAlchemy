@@ -201,19 +201,19 @@ func _on_object_combined(character: Character, item: Item) -> void:
 	
 	character.update_status_message("...")
 
-## Adds the combination record to the node, if not already.
-func _add_combination_to_node(node : Node, combination : ObjectCombination):
+## Adds the [ObjectCombination] record to the node, if not already.
+func _add_combination_to_node(node: Node, combination: ObjectCombination):
 	for object_name in node.objects_combined.keys():
 		if object_name == display_name:
 			var combos = node.objects_combined[display_name]
 			if not combination in combos: #TODO: Test if the combination reference works for matching.
-				combos.append(combination)
+				combos.append([combination, 0])
 			else:
 				# TODO: This is where the count would get added
-				pass
+				combos[1] += 1
 			return
 	## If no combinations for current object stored, set combination.
-	node.objects_combined[display_name] = [combination]
+	node.objects_combined[display_name] = [combination, 0]
 
 ## Changes the current object to the new object based on the combination that occurred.
 func transform_object(new_object_scene: PackedScene):
