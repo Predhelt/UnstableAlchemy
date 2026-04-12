@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Potion" format=3 uid="uid://bea6luvjr7ahf"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_ep4n1"]
+[ext_resource type="Resource" uid="uid://4mbfvcqngnic" path="res://game_systems/status_effects/possess_weak.tres" id="2_ep4n1"]
+[ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="3_jpnjd"]
+[ext_resource type="Texture2D" uid="uid://cqrnhmtvb1jl5" path="res://art/pack/alchemy/potions/potion_standard_yellow.png" id="4_p6h23"]
+
+[resource]
+script = ExtResource("3_jpnjd")
+id = 509
+display_name = "Weak Possession Potion"
+description = "Allows the imbiber to possess a nearby target that is susceptible to possession once."
+texture = ExtResource("4_p6h23")
+on_consume_effects = Array[ExtResource("1_ep4n1")]([ExtResource("2_ep4n1")])
+on_consume_message = "This is a strange feeling of control."
+metadata/_custom_type_script = "uid://cspp6theghsrh"

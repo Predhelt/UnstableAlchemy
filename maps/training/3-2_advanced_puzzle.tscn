@@ -209,7 +209,7 @@ texture = ExtResource("21_4gjee")
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" unique_id=1639851176 instance=ExtResource("25_6svre")]
 position = Vector2(416, -608)
-level_path = "res://maps/training/3-2_advanced_puzzle.tscn"
+level_path = "res://maps/training/3-3_advanced_puzzle.tscn"
 
 [node name="Labels" type="Control" parent="." unique_id=957710452]
 layout_mode = 3
@@ -219,12 +219,11 @@ offset_bottom = 40.0
 
 [node name="LabelCongratulations" type="Label" parent="Labels" unique_id=886711945]
 layout_mode = 0
-offset_left = 224.0
-offset_top = -764.0
-offset_right = 396.0
-offset_bottom = -715.0
-text = "Congratulations!
-Thank you for playing!"
+offset_left = 211.0
+offset_top = -743.0
+offset_right = 383.0
+offset_bottom = -694.0
+text = "Congratulations!"
 
 [node name="LabelReset2" type="Label" parent="Labels" unique_id=464580011]
 layout_mode = 0

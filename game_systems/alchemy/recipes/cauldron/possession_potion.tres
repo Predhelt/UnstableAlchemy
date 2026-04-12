@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://b2d7pi15oxo04"
 
 [resource]
 script = ExtResource("2_q4a83")
-id = 507
+id = 508
 product_item = ExtResource("6_4ylb1")
 product_item_amount = 1
 procedure = SubResource("Resource_7a62r")

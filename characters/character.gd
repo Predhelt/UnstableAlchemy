@@ -776,11 +776,3 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 		$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 	else:
 		$PossessionTargetLabel.text = ""
-
-
-func _on_interaction_area_npc_shop() -> void:
-	pass # Replace with function body.
-
-
-func _on_interaction_area_npc_talk() -> void:
-	pass # Replace with function body.

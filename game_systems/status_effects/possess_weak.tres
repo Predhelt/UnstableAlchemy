@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusEffect" format=3 uid="uid://4mbfvcqngnic"]
+
+[ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://art/pack/characters/grey_pawnman_down.png" id="1_iciy1"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="2_tcw5e"]
+
+[resource]
+script = ExtResource("2_tcw5e")
+id = 201
+name = "Possess (Weak)"
+description = "Able to possess a susceptible target once."
+icon = ExtResource("1_iciy1")
+effect = "possess"
+value = 1.0
+duration = 120.0
+metadata/_custom_type_script = "uid://odkkljfrjpee"
