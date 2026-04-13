@@ -28,8 +28,8 @@ const SIZE_DAMPENER : float = 0.5
 @export var is_possessable : bool = false
 ## Tracks the character that is possessing this body, if any.
 var character_possessed_by : Character = null
-## Tracks whether the character can possess others.
-var can_possess_others : bool
+## Tracks the number of times a possession can be started before the status effect runs out.
+var can_possess_others_count : int
 ## List of characters that are in range of the character and are possessable.
 var possessable_characters : Array[Character]
 ## Tracks who this character is possessing, if anyone.
@@ -209,7 +209,7 @@ func _physics_process(delta: float) -> void:
 		if status_message_timer <= 0:
 			%StatusLabel.text = ""
 	
-	if can_possess_others and possessable_characters and not possessing_character:
+	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
 		$PossessionTargetLabel.global_position = possessable_characters[0].global_position
 
 ## Handles input action events. Only accepts inputs when the player is controlling the character.
@@ -223,9 +223,9 @@ func _input(event: InputEvent) -> void:
 			execute_tool()
 		if event.is_action_pressed("inspect_object"):
 			inspect_object()
-		if can_possess_others:
+		if can_possess_others_count != 0:
 			if event.is_action_pressed("possession_change_target"):
-				pass
+				pass #TODO
 			if event.is_action_pressed("possession_select_target"):
 				if not possessing_character and not possessable_characters:
 					print("No possessable targets found!")
@@ -234,7 +234,7 @@ func _input(event: InputEvent) -> void:
 				else:
 					end_possession()
 			if event.is_action_pressed("possession_cancel"):
-				pass
+				pass #TODO?
 
 ## Every time the character updates, upade the character animations
 func _process(_delta: float) -> void:
@@ -434,6 +434,20 @@ func end_possession():
 	# Recursively end possession
 	if body.possessing_character:
 		body.end_possession()
+	# Update [member can_possess_others_count]. Disable possession if no count left.
+	var poss_se : StatusEffect
+	for se in active_status_effects: # Find possession status effect
+		if se.effect == "possess":
+			poss_se = se
+			break
+	if can_possess_others_count > 0:
+		poss_se.count -= 1 # These two variables should be the same value
+		can_possess_others_count = poss_se.count
+	if can_possess_others_count == 0:
+		_set_can_possess(poss_se, true)
+	else:
+		update_status_bar(poss_se)
+	
 	possessing_character = null
 	# Change focused character
 	body.character_possessed_by = null
@@ -442,7 +456,7 @@ func end_possession():
 		var body_active_ses : Array[StatusEffect] = body.active_status_effects.duplicate()
 		for se in body.active_status_effects:
 			body.remove_status_effect(se)
-		# FIXME: Should find a way that doesn't require removing and re-adding status effects
+		# FIXME: Should maybe find a way that doesn't require removing and re-adding status effects
 		for se in active_status_effects:
 			remove_status_effect(se)
 			
@@ -451,7 +465,7 @@ func end_possession():
 		body.update_status_effects(body_active_ses, "")
 		update_status_effects(self_active_ses, "")
 		
-		if can_possess_others and possessable_characters:
+		if can_possess_others_count != 0 and possessable_characters:
 			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 		
 	
@@ -689,23 +703,25 @@ func _equip_tool(se : StatusEffect) -> bool:
 	print("ERROR: Invalid tool value: %s." % se.value)
 	return false
 
-## Sets character's state to allow possession of others if [param is_removing] is false.
-## Disallows otherwise. Displays information for possession UI.
+## Sets character's state to allow possession of others.
+## [member se.value] Sets the number of times the possession can be executed before expiring.
+## Displays information for possession UI.
+## Disallows possession if [param is_removing] is true.
 func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
-	if not is_removing and not can_possess_others: # Enable. se.value should be 1, but currently accepts any non-zero value.
+	if not is_removing and can_possess_others_count == 0: # Enable
 		$PossessionArea.enable_collision()
-		can_possess_others = true
+		can_possess_others_count = int(se.count)
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = true
 			update_status_bar(se)
 		active_status_effects.append(se.duplicate())
-	elif is_removing and can_possess_others: # Disable
+	elif is_removing: # Disable
 		$PossessionArea.disable_collision()
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = false
 			$PossessionTargetLabel.text = ""
 			update_status_bar(se, _get_se_index(se), true)
-		can_possess_others = false
+		can_possess_others_count = 0
 		active_status_effects.remove_at(_get_se_index(se))
 	else:
 		return false
@@ -776,3 +792,11 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 		$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 	else:
 		$PossessionTargetLabel.text = ""
+
+## Implemented in NPC
+func _on_interaction_area_npc_talk() -> void:
+	pass
+
+## Implemented in NPC
+func _on_interaction_area_npc_shop() -> void:
+	pass

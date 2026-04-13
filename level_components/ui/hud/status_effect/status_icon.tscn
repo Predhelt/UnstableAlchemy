@@ -26,3 +26,17 @@ grow_horizontal = 2
 grow_vertical = 2
 step = 0.001
 show_percentage = false
+
+[node name="Panel" type="Panel" parent="TextureRect" unique_id=1581581821]
+layout_mode = 0
+offset_right = 28.0
+offset_bottom = 28.0
+
+[node name="LabelCount" type="Label" parent="TextureRect/Panel" unique_id=480902516]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 27.0
+offset_bottom = 25.0
+text = "99"
+horizontal_alignment = 1

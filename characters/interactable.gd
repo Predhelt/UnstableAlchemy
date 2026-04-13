@@ -78,8 +78,7 @@ func cut_object(character: Character) -> void:
 func combine_object(character: Character, item: Item) -> void:
 	object_combined.emit(character, item)
 
-## Emits signal to object to start talking if the character is the "main" character.
-## This is because it opens a dialogue window, which should only be for the main character.
+## Emits signal to object to start talking.
 func talk(character: Character) -> void:
 	if character.is_camera_focused:
 		npc_talk.emit()

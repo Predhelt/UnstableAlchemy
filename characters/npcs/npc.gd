@@ -185,6 +185,13 @@ func update_message(message: String):
 	%StatusLabel.text = message
 	message_timer = 5.0
 
+## Determines dialogue based on context. Returns the name of the dialogue window
+## based on information about the [param speakee].
+## By default, it is assumed that there is a "greet" dialogue.
+## Override this in child scene to allow for more dynamic dialogue initialization.
+func get_initial_dialogue_name(_speakee : Character) -> String:
+	return "greet"
+
 ## Called when the player interacts with the NPC when the interaction type is "talk".
 ## Initiates setting up the npc dialogue window.
 func _on_interaction_area_npc_talk() -> void:

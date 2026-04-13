@@ -8,29 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="4_0jpsc"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_k17fm"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="5_bne7j"]
-[ext_resource type="PackedScene" uid="uid://db6w6ybnaom17" path="res://characters/npcs/npc.tscn" id="6_cc213"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="7_quwao"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="10_bupt0"]
+[ext_resource type="PackedScene" uid="uid://bhdc5iq6cr35j" path="res://characters/npcs/tess/tess.tscn" id="5_bupt0"]
+[ext_resource type="PackedScene" uid="uid://5j8n6g2gkxqr" path="res://characters/npcs/cam/cam.tscn" id="6_k17fm"]
+[ext_resource type="PackedScene" uid="uid://3gcyy5eiv4rx" path="res://characters/npcs/lex/lex.tscn" id="7_ix5gr"]
 
 [sub_resource type="Resource" id="Resource_ix5gr"]
 script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
-[sub_resource type="Resource" id="Resource_0jpsc"]
-script = ExtResource("7_quwao")
-base_move_speed = 150.0
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_bne7j"]
-script = ExtResource("7_quwao")
-base_mass = 150.0
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_cc213"]
-script = ExtResource("7_quwao")
-base_strength = 150.0
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
 
@@ -46,6 +31,18 @@ tile_map_data = PackedByteArray("AADv//r/AgABAAAAAADv//v/AgAEAAAAAADv//z/AgAFAAA
 
 [node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
 tile_map_data = PackedByteArray("AAAVAP7/AAAFAAAAAAAUAP7/AAAEAAIAAAATAP7/AAAEAAIAAAASAP7/AAAEAAAAAAARAP7/AAAEAAAAAAAQAP7/AAAEAAAAAAAPAP7/AAAEAAIAAAAOAP7/AAAFAAMAAAANAP7/AAAEAAAAAAAVAA0AAAAFAAIAAAAVAAwAAAADAAEAAAAVAAsAAAADAAEAAAAVAAoAAAADAAEAAAAVAAkAAAADAAEAAAAVAAgAAAAEAAQAAAAVAAcAAAAFAAEAAAAVAAYAAAADAAEAAAAVAAUAAAADAAEAAAAVAAQAAAAEAAQAAAAVAAMAAAAFAAEAAAAVAAIAAAADAAEAAAAVAAEAAAADAAEAAAAVAAAAAAAFAAEAAAAVAP//AAADAAEAAAANAA0AAAAEAAIAAAAOAA0AAAADAAMAAAAPAA0AAAAEAAIAAAAQAA0AAAAEAAIAAAARAA0AAAAEAAAAAAASAA0AAAAEAAAAAAATAA0AAAAEAAIAAAAUAA0AAAAEAAIAAAAOAP//AAADAAEAAAAOAAAAAAADAAEAAAAOAAEAAAAFAAEAAAAOAAIAAAAFAAEAAAAOAAMAAAAFAAEAAAAOAAQAAAADAAIAAAAPAAQAAAAEAAAAAAAQAAQAAAAHAAIAAAASAAQAAAAGAAIAAAATAAQAAAAEAAAAAAAUAAQAAAAEAAAAAAAQAAgAAAAHAAIAAAAPAAgAAAAEAAIAAAAOAAgAAAADAAAAAAAOAAkAAAAFAAEAAAAOAAoAAAADAAEAAAAOAAsAAAADAAEAAAAOAAwAAAADAAEAAAASAAgAAAAGAAIAAAATAAgAAAAEAAAAAAAUAAgAAAAEAAAAAAAEAP7/AAAEAAAAAAAEAAEAAAAEAAAAAAAEAA0AAAAEAAIAAAAFAP7/AAAEAAIAAAAFAA0AAAAEAAAAAAAGAP7/AAADAAMAAAAGAA0AAAAEAAAAAAAHAP7/AAAEAAIAAAAHAA0AAAAEAAAAAAD///7/AAADAAAAAAD/////AAAFAAEAAAD//wAAAAADAAEAAAD//wEAAAAFAAEAAAD//wIAAAAFAAEAAAD//wMAAAAFAAEAAAD//wQAAAADAAEAAAD//wUAAAADAAEAAAD//wYAAAAFAAEAAAD//wcAAAADAAEAAAD//wgAAAAFAAEAAAD//wkAAAADAAQAAAD//woAAAAFAAEAAAD//wsAAAAFAAEAAAD//wwAAAAFAAEAAAD//w0AAAADAAIAAAAAAP7/AAAEAAIAAAAAAAkAAAAHAAIAAAAAAA0AAAAEAAAAAAABAP7/AAAEAAAAAAABAA0AAAAEAAIAAAACAP7/AAAEAAIAAAACAAkAAAAGAAIAAAACAA0AAAAEAAAAAAADAP7/AAAEAAIAAAADAAEAAAADAAAAAAADAAIAAAAFAAEAAAADAAMAAAADAAEAAAADAAQAAAAFAAEAAAADAAUAAAADAAEAAAADAAYAAAADAAEAAAADAAcAAAADAAEAAAADAAgAAAAFAAEAAAADAAkAAAAEAAQAAAADAAoAAAAFAAEAAAADAAsAAAAFAAEAAAADAAwAAAADAAEAAAADAA0AAAADAAMAAAAFAAEAAAAEAAAAAAAGAAEAAAAFAAAAAAAGAAIAAAAFAAEAAAAGAAMAAAADAAEAAAAGAAQAAAAFAAEAAAAGAAUAAAAFAAEAAAAGAAYAAAAFAAEAAAAGAAcAAAADAAEAAAAGAAgAAAADAAEAAAAGAAkAAAAFAAEAAAAGAAoAAAAAAAQAAAAIAP7/AAAEAAAAAAAMAP7/AAAEAAAAAAALAP7/AAAGAAIAAAAJAP7/AAAHAAIAAAAIAA0AAAAEAAAAAAAJAA0AAAAEAAIAAAAMAA0AAAAEAAIAAAALAA0AAAAEAAAAAAAKAA0AAAAEAAAAAAAOAP3/AAAFAAEAAAAOAPz/AAADAAEAAAAOAPv/AAADAAAAAAAGAPv/AAAEAAQAAAAGAPz/AAADAAEAAAAGAP3/AAADAAEAAAAEAPv/AAADAAIAAAAFAPv/AAAEAAIAAAAEAO3/AAADAAEAAAAEAO7/AAAFAAEAAAAEAO//AAADAAEAAAAEAPD/AAADAAEAAAAEAPH/AAAFAAEAAAAEAPL/AAAFAAEAAAAEAPP/AAADAAEAAAAEAPT/AAADAAEAAAAEAPX/AAAFAAEAAAAEAPb/AAADAAEAAAAEAPf/AAADAAEAAAAEAPj/AAADAAEAAAAEAPn/AAAFAAEAAAAEAPr/AAADAAEAAAAQAPv/AAAFAAIAAAAQAPr/AAADAAEAAAAQAPn/AAADAAEAAAAQAPj/AAADAAEAAAAQAPf/AAADAAEAAAAQAPb/AAADAAEAAAAQAPX/AAADAAEAAAAQAPT/AAAFAAEAAAAQAPP/AAAFAAEAAAAQAPL/AAADAAEAAAAQAPH/AAADAAEAAAAQAPD/AAAFAAEAAAAQAO//AAADAAEAAAAQAO7/AAAFAAEAAAAQAO3/AAAFAAEAAAAPAPv/AAAEAAAAAAAEAOr/AAADAAAAAAAEAOv/AAADAAEAAAAEAOz/AAAFAAEAAAAQAOz/AAADAAEAAAAQAOv/AAAFAAEAAAAQAOr/AAAFAAAAAAAPAOr/AAAEAAAAAAAOAOr/AAAEAAIAAAANAOr/AAAEAAIAAAAMAOr/AAAEAAAAAAALAOr/AAAEAAIAAAAKAOr/AAAEAAAAAAAJAOr/AAAEAAIAAAAIAOr/AAAEAAIAAAAHAOr/AAAEAAIAAAAGAOr/AAAEAAAAAAAFAOr/AAAEAAIAAAA=")
+
+[node name="Tess" parent="." index="4" unique_id=1948548714 instance=ExtResource("5_bupt0")]
+position = Vector2(494, 407)
+is_possessable = true
+
+[node name="Cam" parent="." index="5" unique_id=1967664427 instance=ExtResource("6_k17fm")]
+position = Vector2(836, 617)
+is_possessable = true
+
+[node name="Lex" parent="." index="6" unique_id=75307123 instance=ExtResource("7_ix5gr")]
+position = Vector2(836, 216)
+is_possessable = true
 
 [node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1856845390 instance=ExtResource("2_ei7jr")]
 position = Vector2(1052, 43)
@@ -63,6 +60,7 @@ door_refs = [NodePath("../SlidingDoor")]
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1122, 482)
+trigger_weight = 150.0
 door_refs = [NodePath("../SlidingDoor")]
 
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=463050243 instance=ExtResource("5_bne7j")]
@@ -136,21 +134,3 @@ autowrap_mode = 3
 [node name="Label" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="1" unique_id=1956201278]
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="Character" parent="." index="8" unique_id=1948548714 instance=ExtResource("6_cc213")]
-position = Vector2(512, 401)
-npc_name = "Dan"
-transactions = Array[ExtResource("10_bupt0")]([])
-attributes = SubResource("Resource_0jpsc")
-
-[node name="Character2" parent="." index="9" unique_id=1404965110 instance=ExtResource("6_cc213")]
-position = Vector2(806, 621)
-npc_name = "Pat"
-transactions = Array[ExtResource("10_bupt0")]([])
-attributes = SubResource("Resource_bne7j")
-
-[node name="Character3" parent="." index="10" unique_id=146162562 instance=ExtResource("6_cc213")]
-position = Vector2(838, 187)
-npc_name = "Bob"
-transactions = Array[ExtResource("10_bupt0")]([])
-attributes = SubResource("Resource_cc213")
