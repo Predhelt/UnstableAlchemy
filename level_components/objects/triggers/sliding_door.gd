@@ -1,3 +1,4 @@
+## A door that opens and closes when called by external triggers.
 extends StaticBody2D
 
 ## How far the door travels to open/close (px).
@@ -88,6 +89,8 @@ func _move_door_to(pos : float) -> void:
 func close_door():
 	call_deferred("_deferred_close_door")
 
+## Checks at end of frame if [member has_open_call] is true.
+## If not, then changes [member is_moving] to closing.
 func _deferred_close_door():
 	if not has_open_call:
 		if is_open == true:
@@ -96,5 +99,5 @@ func _deferred_close_door():
 ## Begins opening the door
 func open_door():
 	has_open_call = true
-	if is_open == false:
+	if is_open == false or is_moving == 2:
 		is_moving = 1

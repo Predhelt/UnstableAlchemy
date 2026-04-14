@@ -100,6 +100,7 @@ tile_map_data = PackedByteArray("AAAVAP7/AAAFAAAAAAAUAP7/AAAEAAIAAAATAP7/AAAEAAI
 
 [node name="Tess" parent="." index="4" unique_id=1948548714 instance=ExtResource("5_bupt0")]
 position = Vector2(494, 407)
+has_blade = true
 is_possessable = true
 
 [node name="Cam" parent="." index="5" unique_id=1967664427 instance=ExtResource("6_k17fm")]
@@ -151,7 +152,6 @@ mass = 125.0
 
 [node name="PressurePlate4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1122, 635)
-trigger_weight = 1.0
 door_refs = [NodePath("../SlidingDoor")]
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]

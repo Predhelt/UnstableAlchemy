@@ -28,12 +28,16 @@ const SIZE_DAMPENER : float = 0.5
 @export var is_possessable : bool = false
 ## Tracks the character that is possessing this body, if any.
 var character_possessed_by : Character = null
+## Tracks the name of the character that is possessing this body, if any.
+var character_possessed_by_name : StringName = ""
 ## Tracks the number of times a possession can be started before the status effect runs out.
 var can_possess_others_count : int
 ## List of characters that are in range of the character and are possessable.
 var possessable_characters : Array[Character]
 ## Tracks who this character is possessing, if anyone.
 var possessing_character : Character = null
+## Tracks the name of who this character is possessing, if anyone.
+var possessing_character_name : StringName = ""
 
 ## List of books by ID that the character has read
 var books_read : Array[int]
@@ -122,9 +126,11 @@ func save() -> Dictionary:
 		"items_used" : var_to_str(items_used),
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_possessable" : is_possessable,
-		"possessing_character" : possessing_character,
+		"character_possessed_by_name" : character_possessed_by_name,
+		"can_possess_others_count" : can_possess_others_count,
+		"possessing_character_name" : possessing_character_name, #FIXME: Causes program to freeze on save. Also update in NPC.
 		"is_player_controlled" : is_player_controlled,
-		"is_camera_focused" : is_camera_focused,
+		"is_camera_focused" : is_camera_focused
 		#"selected_tool" : selected_tool
 	}
 	return save_dict
@@ -159,6 +165,25 @@ func _ready() -> void:
 		cur_se = active_status_effects[i]
 		active_status_effects.remove_at(i)
 		apply_status_effect(cur_se)
+	
+	# Set possession references, if any
+	_deferred_set_possession_vars.call_deferred()
+
+## Set possession references, if any. Gets deferred so that all [Character]s
+## have a chance to be added to the scene.
+func _deferred_set_possession_vars():
+	#for i in get_tree().current_scene.get_children():
+		#print(i.name)
+	#print("")
+	var character : Character
+	if possessing_character_name != "":
+		character = get_tree().current_scene.find_child(possessing_character_name, true, false)
+		if character:
+			possessing_character = character
+	if character_possessed_by_name != "":
+		character = get_tree().current_scene.find_child(character_possessed_by_name)
+		if character:
+			character_possessed_by = character
 
 ## Sets this character as the focus by the camera and sets up the camera's [RemoteTransform2D].
 func set_camera() -> void:
@@ -406,7 +431,9 @@ func inspect_object():
 
 ## User controls the target body. All inputs and behavior transfers.
 func begin_possession(body: Character):
+	possessing_character_name = body.name
 	possessing_character = body
+	body.character_possessed_by_name = self.name
 	body.character_possessed_by = self
 	# Set up UI
 	if is_camera_focused:
@@ -446,8 +473,10 @@ func end_possession():
 	else:
 		update_status_bar(poss_se)
 	
+	possessing_character_name = ""
 	possessing_character = null
 	# Change focused character
+	body.character_possessed_by_name = ""
 	body.character_possessed_by = null
 	if body.is_camera_focused:
 		var self_active_ses : Array[StatusEffect] = active_status_effects.duplicate()

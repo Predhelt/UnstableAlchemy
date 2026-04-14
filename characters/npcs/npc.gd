@@ -112,7 +112,9 @@ func save() -> Dictionary: #FIXME: Outdated save fields.
 		"items_used" : var_to_str(items_used),
 		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
 		"is_possessable" : is_possessable,
-		"possessing_character" : var_to_str(possessing_character),
+		"character_possessed_by_name" : character_possessed_by_name,
+		"can_possess_others_count" : can_possess_others_count,
+		"possessing_character_name" : possessing_character_name,
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
 		#"selected_tool" : selected_tool

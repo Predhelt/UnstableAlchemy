@@ -219,7 +219,8 @@ func load_game() -> void:
 				cam.reset_smoothing()
 				continue
 			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y"
-					or i == "active_status_effects_path" or i == "inventory_path" or i == "attributes_path"):
+					or i == "active_status_effects_path" or i == "inventory_path"
+					or i == "attributes_path"):
 				continue # Variables that were already set can be skipped.
 			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "npc_name" and i != "interaction_type"):
 				new_object.set(i, str_to_var(node_data[i]))
