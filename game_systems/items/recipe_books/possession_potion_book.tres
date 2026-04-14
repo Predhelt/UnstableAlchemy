@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Book" format=3 uid="uid://c8lydq1ur4lw8"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_i6bkf"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_j48nt"]
+[ext_resource type="Resource" uid="uid://cqmeup2f6np5k" path="res://game_systems/alchemy/recipes/cauldron/possession_potion.tres" id="3_j48nt"]
+[ext_resource type="Script" uid="uid://dvfx56s3nb8gd" path="res://game_systems/items/book.gd" id="3_t25jx"]
+[ext_resource type="Resource" uid="uid://vv03n4lupcdg" path="res://game_systems/alchemy/recipes/mp/yellow_dust.tres" id="4_h0pqd"]
+[ext_resource type="Resource" uid="uid://cnje0lw5h44o8" path="res://game_systems/alchemy/recipes/merger/yellow_paste.tres" id="5_24n18"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="7_24n18"]
+
+[resource]
+script = ExtResource("3_t25jx")
+recipes = Array[ExtResource("2_j48nt")]([ExtResource("3_j48nt"), ExtResource("4_h0pqd"), ExtResource("5_24n18")])
+id = 1007
+display_name = "Possession Potion Recipe"
+description = "Describes the process for creating a possession potion."
+texture = ExtResource("7_24n18")
+metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

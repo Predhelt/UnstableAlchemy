@@ -19,6 +19,8 @@ var is_moving := 0
 var default_pos : Vector2
 ## The distance that the door is currently open
 var open_dist : float 
+## Tracks if there has been a call in the last frame to indicate that the door should be open
+var has_open_call : bool = false
 
 func _ready() -> void:
 	default_pos = position
@@ -41,7 +43,7 @@ func _physics_process(delta : float) -> void:
 		else: # Door finished opening, should have been handled already.
 			print("ERROR: Door should already be opened.")
 	
-	elif is_moving == 2: # Door is closing
+	elif is_moving == 2 and not has_open_call: # Door is closing
 		var dist = MAX_OPEN_DISTANCE * (delta / close_time)
 		if open_dist > 0:
 			open_dist -= dist
@@ -56,6 +58,7 @@ func _physics_process(delta : float) -> void:
 		
 		else: # Door finished closing, should have been handled already.
 			print("ERROR: Door should alread be closed")
+	has_open_call = false
 
 ## Moves the door the given distance based on the open_direction
 func _move_door(dist : float) -> void:
@@ -81,10 +84,17 @@ func _move_door_to(pos : float) -> void:
 				"Left":
 					position.x = default_pos.x - pos
 
-
+## Begins closing the door
 func close_door():
-	is_moving = 2
+	call_deferred("_deferred_close_door")
 
+func _deferred_close_door():
+	if not has_open_call:
+		if is_open == true:
+			is_moving = 2
 
+## Begins opening the door
 func open_door():
-	is_moving = 1
+	has_open_call = true
+	if is_open == false:
+		is_moving = 1

@@ -8,14 +8,80 @@
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="4_0jpsc"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_k17fm"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="5_bne7j"]
-[ext_resource type="PackedScene" uid="uid://bhdc5iq6cr35j" path="res://characters/npcs/tess/tess.tscn" id="5_bupt0"]
-[ext_resource type="PackedScene" uid="uid://5j8n6g2gkxqr" path="res://characters/npcs/cam/cam.tscn" id="6_k17fm"]
-[ext_resource type="PackedScene" uid="uid://3gcyy5eiv4rx" path="res://characters/npcs/lex/lex.tscn" id="7_ix5gr"]
+[ext_resource type="PackedScene" uid="uid://bhdc5iq6cr35j" path="res://characters/npcs/tess_poss/tess.tscn" id="5_bupt0"]
+[ext_resource type="PackedScene" uid="uid://5j8n6g2gkxqr" path="res://characters/npcs/cam_poss/cam.tscn" id="6_k17fm"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="7_f1ifg"]
+[ext_resource type="PackedScene" uid="uid://3gcyy5eiv4rx" path="res://characters/npcs/lex_poss/lex.tscn" id="7_ix5gr"]
+[ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/npcs/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="8_661ml"]
+[ext_resource type="Resource" uid="uid://c8lydq1ur4lw8" path="res://game_systems/items/recipe_books/possession_potion_book.tres" id="9_c7gen"]
+[ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="10_7y012"]
+[ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="10_yqpoj"]
+[ext_resource type="Resource" uid="uid://daguy0svx5k7b" path="res://game_systems/items/recipe_books/speed_potion_book.tres" id="12_yqpoj"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="14_urb74"]
+[ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="15_r1ko1"]
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="16_f1ifg"]
+[ext_resource type="Texture2D" uid="uid://cu1jbdjnxfplf" path="res://art/pack/ingredients/inventory/gray_juice.png" id="17_661ml"]
+[ext_resource type="Resource" uid="uid://dyo76rscy5hss" path="res://game_systems/items/mp_products/gray_juice.tres" id="18_7y012"]
+[ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="19_h7yp8"]
 
 [sub_resource type="Resource" id="Resource_ix5gr"]
 script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
+
+[sub_resource type="Resource" id="Resource_h7yp8"]
+script = ExtResource("7_f1ifg")
+items_selling = Array[ExtResource("2_cc213")]([ExtResource("10_7y012")])
+items_selling_amount = Array[int]([1])
+items_selling_stock = Array[int]([1])
+items_buying = Array[ExtResource("2_cc213")]([ExtResource("18_7y012")])
+items_buying_amount = Array[int]([1])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[sub_resource type="Resource" id="Resource_urb74"]
+script = ExtResource("19_h7yp8")
+on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("9_c7gen")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_r1ko1"]
+script = ExtResource("19_h7yp8")
+on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("9_c7gen")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_f1ifg"]
+script = ExtResource("19_h7yp8")
+on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("12_yqpoj")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_661ml"]
+script = ExtResource("19_h7yp8")
+on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("12_yqpoj")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_qn2he"]
+script = ExtResource("2_cc213")
+id = 101
+display_name = "Gray Juice"
+description = "Juice extracted from a red berry"
+texture = ExtResource("17_661ml")
+qty = 5
+metadata/_custom_type_script = "uid://b7erjwbd5hmhp"
+
+[sub_resource type="Resource" id="Resource_jb56y"]
+script = ExtResource("19_h7yp8")
+on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("18_7y012")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_n18o7"]
+script = ExtResource("19_h7yp8")
+on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("18_7y012")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
 
@@ -38,6 +104,7 @@ is_possessable = true
 
 [node name="Cam" parent="." index="5" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(836, 617)
+transactions = Array[ExtResource("7_f1ifg")]([ExtResource("8_661ml"), SubResource("Resource_h7yp8")])
 is_possessable = true
 
 [node name="Lex" parent="." index="6" unique_id=75307123 instance=ExtResource("7_ix5gr")]
@@ -45,10 +112,38 @@ position = Vector2(836, 216)
 is_possessable = true
 
 [node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1856845390 instance=ExtResource("2_ei7jr")]
-position = Vector2(1052, 43)
+position = Vector2(1014, 195)
+display_name = "\"Possession Potion Recipe\""
+description = "Describes the process for creating a possession potion."
+items = Array[ExtResource("2_cc213")]([ExtResource("9_c7gen")])
+grab_interaction = SubResource("Resource_urb74")
+cut_interaction = SubResource("Resource_r1ko1")
 
 [node name="RecipeItem2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1611816972 instance=ExtResource("2_ei7jr")]
 position = Vector2(1051, 758)
+display_name = "\"Speed Potion Recipe\""
+description = "Describes the recipe for a speed potion."
+items = Array[ExtResource("2_cc213")]([ExtResource("12_yqpoj")])
+grab_interaction = SubResource("Resource_f1ifg")
+cut_interaction = SubResource("Resource_661ml")
+
+[node name="YellowFlowers" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=687975100 instance=ExtResource("10_yqpoj")]
+position = Vector2(576, 197)
+
+[node name="YellowFlowers2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=1833314766 instance=ExtResource("10_yqpoj")]
+position = Vector2(579, 619)
+
+[node name="YellowFlowers3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=222681833 instance=ExtResource("10_yqpoj")]
+position = Vector2(721, 765)
+
+[node name="YellowFlowers4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=158817034 instance=ExtResource("10_yqpoj")]
+position = Vector2(1270, 408)
+
+[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=658593362 instance=ExtResource("14_urb74")]
+position = Vector2(1279, 658)
+
+[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="7" unique_id=1373064972 instance=ExtResource("14_urb74")]
+position = Vector2(1169, 796)
 
 [node name="BoulderPushable" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=794065921 instance=ExtResource("3_quwao")]
 position = Vector2(1120, 316)
@@ -56,6 +151,7 @@ mass = 125.0
 
 [node name="PressurePlate4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1122, 635)
+trigger_weight = 1.0
 door_refs = [NodePath("../SlidingDoor")]
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
@@ -68,7 +164,7 @@ position = Vector2(1120, 572)
 
 [node name="SlidingDoor2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=1732291692 instance=ExtResource("5_bne7j")]
 position = Vector2(96, 636)
-close_time = 4.0
+close_time = 8.0
 
 [node name="SlidingDoor3" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="5" unique_id=990809174 instance=ExtResource("5_bne7j")]
 position = Vector2(672, -68)
@@ -114,7 +210,6 @@ offset_right = -79.0
 offset_bottom = 225.0
 text = "TODO:
 - Figure out Possession Potion Recipes.
-- Add one-time weak possession potion status effect.
 - Set up the recipe book contents.
 - Add plants in appropriate places.
 - Determine which alternate solutions are acceptable, if any.
@@ -134,3 +229,11 @@ autowrap_mode = 3
 [node name="Label" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="1" unique_id=1956201278]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Crate" parent="." index="11" unique_id=402036177 instance=ExtResource("15_r1ko1")]
+position = Vector2(1014, -2)
+display_name = "Gray Juice"
+description = "Contains bottles of gray juice."
+items = Array[ExtResource("2_cc213")]([SubResource("Resource_qn2he")])
+grab_interaction = SubResource("Resource_jb56y")
+cut_interaction = SubResource("Resource_n18o7")

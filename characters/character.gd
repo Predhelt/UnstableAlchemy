@@ -231,10 +231,8 @@ func _input(event: InputEvent) -> void:
 					print("No possessable targets found!")
 				elif not possessing_character:
 					begin_possession(possessable_characters[0])
-				else:
-					end_possession()
-			if event.is_action_pressed("possession_cancel"):
-				pass #TODO?
+		if event.is_action_pressed("possession_cancel") and possessing_character:
+			end_possession()
 
 ## Every time the character updates, upade the character animations
 func _process(_delta: float) -> void:
@@ -776,7 +774,7 @@ func _push_body(body: PhysicsBody2D) -> bool:
 func _on_possession_area_body_entered(body: Node2D) -> void:
 	if body == self:
 		return
-	if body.is_possessable:
+	if body.is_class("CharacterBody2D") and body.is_possessable:
 		possessable_characters.append(body)
 		if not possessing_character:
 			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
@@ -784,6 +782,8 @@ func _on_possession_area_body_entered(body: Node2D) -> void:
 ## Checks if the body is in the list of [member possessable_characters] and removes it.
 ## Updates the Possession label with the current possession target.
 func _on_possession_area_body_exited(body: Node2D) -> void:
+	if not body.is_class("CharacterBody2D"):
+		return # body is likely a rigidbody, like a boulder.
 	if possessable_characters.find(body) == -1:
 		#print("ERROR: No possessable body found to remove!")
 		return

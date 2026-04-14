@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://ccss0v100tuvu"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/npcs/dialogue_choice.gd" id="1_mfoyq"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://characters/npcs/dialogue.gd" id="2_75ffb"]
+
+[resource]
+script = ExtResource("2_75ffb")
+dialogue_name = &"greet"
+text = "Hey, I'm heavy. I also could go for some gray juice right now. If you find any, let me know and I can trade you this blade I have, it looks like you could use it."
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

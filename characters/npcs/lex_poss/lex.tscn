@@ -1,24 +1,25 @@
-[gd_scene format=3 uid="uid://5j8n6g2gkxqr"]
+[gd_scene format=3 uid="uid://3gcyy5eiv4rx"]
 
-[ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_i6263"]
-[ext_resource type="Script" uid="uid://cmarx5wmfetow" path="res://characters/npcs/npc.gd" id="2_8jfku"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="3_0q2bi"]
-[ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/npcs/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="4_1e4l7"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="5_kfhxk"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_ftpj3"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_jjnsg"]
-[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="8_jy1bf"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="9_xqhic"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="10_ffb0b"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="11_s8bsa"]
+[ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_3a52w"]
+[ext_resource type="Script" uid="uid://cmarx5wmfetow" path="res://characters/npcs/npc.gd" id="2_ueyw3"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="3_3x72f"]
+[ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/npcs/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="4_0og17"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="5_7vs05"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_123fs"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_6f8v8"]
+[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="8_3c7t5"]
+[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="9_nhqi8"]
+[ext_resource type="Texture2D" uid="uid://ct22o35nepr0w" path="res://art/pack/characters/character_robe2.png" id="9_njix1"]
+[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="10_0a1h3"]
+[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="11_de7nf"]
 
 [sub_resource type="Resource" id="Resource_of1af"]
-script = ExtResource("5_kfhxk")
-base_mass = 150.0
+script = ExtResource("5_7vs05")
+base_strength = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_yfi76"]
-script = ExtResource("7_jjnsg")
+script = ExtResource("7_6f8v8")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Animation" id="Animation_inutq"]
@@ -33,7 +34,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_jy1bf")]
+"values": [ExtResource("8_3c7t5")]
 }
 
 [sub_resource type="Animation" id="Animation_cssul"]
@@ -48,7 +49,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_jy1bf")]
+"values": [ExtResource("9_njix1")]
 }
 
 [sub_resource type="Animation" id="Animation_85or5"]
@@ -63,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_xqhic")]
+"values": [ExtResource("9_nhqi8")]
 }
 
 [sub_resource type="Animation" id="Animation_33o0g"]
@@ -78,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_ffb0b")]
+"values": [ExtResource("10_0a1h3")]
 }
 
 [sub_resource type="Animation" id="Animation_gvkpy"]
@@ -93,7 +94,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_s8bsa")]
+"values": [ExtResource("11_de7nf")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oovjt"]
@@ -177,11 +178,11 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_kr6xo"]
 radius = 13.0
 
-[node name="Character" unique_id=1948548714 instance=ExtResource("1_i6263")]
-script = ExtResource("2_8jfku")
-npc_name = "Cam"
+[node name="Character" unique_id=1948548714 instance=ExtResource("1_3a52w")]
+script = ExtResource("2_ueyw3")
+npc_name = "Lex"
 interaction_type = "talk"
-transactions = Array[ExtResource("3_0q2bi")]([ExtResource("4_1e4l7")])
+transactions = Array[ExtResource("3_3x72f")]([ExtResource("4_0og17")])
 passive_messages = Array[String](["Hello"])
 attributes = SubResource("Resource_of1af")
 inventory = SubResource("Resource_yfi76")
@@ -189,7 +190,7 @@ inventory = SubResource("Resource_yfi76")
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1029169394]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("8_jy1bf")
+texture = ExtResource("8_3c7t5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=606457454]
 libraries/ = SubResource("AnimationLibrary_oovjt")
