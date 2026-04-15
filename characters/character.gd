@@ -180,6 +180,10 @@ func _deferred_set_possession_vars():
 		character = get_tree().current_scene.find_child(possessing_character_name, true, false)
 		if character:
 			possessing_character = character
+		if is_player_controlled:
+			$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+				InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+			$"../UILayer/HUDLayer/LabelEndPossession".visible = true
 	if character_possessed_by_name != "":
 		character = get_tree().current_scene.find_child(character_possessed_by_name)
 		if character:
@@ -446,7 +450,12 @@ func begin_possession(body: Character):
 		transfer_camera(body)
 		update_status_effects(self_active_ses, "")
 		body.update_status_effects(body_active_ses, "")
+		%StatusLabel.text = ""
+		%InteractLabel.text = ""
 		$PossessionTargetLabel.text = ""
+		$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+			InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+		$"../UILayer/HUDLayer/LabelEndPossession".visible = true
 	# Set up Tool Wheel UI
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
 	tool_wheel_ref.set_blade_enabled(body.has_blade)
@@ -494,7 +503,7 @@ func end_possession():
 		
 		if can_possess_others_count != 0 and possessable_characters:
 			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
-		
+		$"../UILayer/HUDLayer/LabelEndPossession".visible = false
 	
 	# Reset Tool Wheel
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"

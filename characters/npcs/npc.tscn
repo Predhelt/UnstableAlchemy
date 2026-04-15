@@ -203,6 +203,3 @@ parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="CollisionBody" type="CollisionShape2D" parent="." index="3" unique_id=1131222780]
 shape = SubResource("CircleShape2D_kr6xo")
-
-[connection signal="npc_shop" from="InteractionArea" to="." method="_on_interaction_area_npc_shop"]
-[connection signal="npc_talk" from="InteractionArea" to="." method="_on_interaction_area_npc_talk"]

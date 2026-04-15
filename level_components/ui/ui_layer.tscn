@@ -92,6 +92,23 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="LabelEndPossession" type="Label" parent="HUDLayer" unique_id=1987697022]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 78.0
+offset_right = 20.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"X\" to
+end possession"
+horizontal_alignment = 1
+
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="use_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_use_inventory_item"]
 [connection signal="set_dropper_item" from="HUDLayer/ToolWheel" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
