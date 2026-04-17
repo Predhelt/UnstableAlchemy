@@ -31,6 +31,9 @@ offset_top = 70.0
 offset_right = 273.0
 offset_bottom = 158.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.57254905, 0.43137255, 1, 1)
+theme_override_colors/font_outline_color = Color(0.27058825, 0.84313726, 0.8666667, 1)
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
 text = "Unstable Alchemy"
 horizontal_alignment = 1
@@ -91,10 +94,11 @@ anchor_left = 0.02
 anchor_top = 0.97
 anchor_right = 0.02
 anchor_bottom = 0.97
-offset_top = -23.0
-offset_right = 40.0
+offset_top = -45.0
+offset_right = 125.00001
 grow_vertical = 0
 theme = ExtResource("3_3ahgd")
+theme_override_constants/outline_size = 6
 text = "Version:"
 
 [node name="CompanyLogo" type="TextureRect" parent="." unique_id=656535454]
