@@ -14,7 +14,7 @@ anchors_preset = -1
 anchor_left = 0.35
 anchor_top = 0.15
 anchor_right = 0.65
-anchor_bottom = 0.85
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_24o10")
@@ -82,12 +82,6 @@ toggle_mode = true
 button_group = ExtResource("4_o212l")
 text = "Load"
 
-[node name="ButtonLevel" parent="VBoxContainer/Control/VBoxContainer" unique_id=2028205128 instance=ExtResource("6_qrcwd")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Level Select"
-menu_path = "uid://bxw8y0udo7u4o"
-
 [node name="ButtonSettings" type="Button" parent="VBoxContainer/Control/VBoxContainer" unique_id=713809295]
 unique_name_in_owner = true
 layout_mode = 2
@@ -97,13 +91,19 @@ toggle_mode = true
 button_group = ExtResource("4_o212l")
 text = "Settings (WIP)"
 
+[node name="ButtonLevel" parent="VBoxContainer/Control/VBoxContainer" unique_id=2028205128 instance=ExtResource("6_qrcwd")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit to Title"
+menu_path = "uid://ckgxm2etu6kdm"
+
 [node name="ButtonExit" type="Button" parent="VBoxContainer/Control/VBoxContainer" unique_id=207233914]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_ldjf7")
 toggle_mode = true
 button_group = ExtResource("4_o212l")
-text = "Exit"
+text = "Quit Game"
 
 [node name="Popup" type="Popup" parent="." unique_id=2103343794]
 title = "Confirm Exit"

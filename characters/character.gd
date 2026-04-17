@@ -256,10 +256,12 @@ func _input(event: InputEvent) -> void:
 			if event.is_action_pressed("possession_change_target"):
 				pass #TODO
 			if event.is_action_pressed("possession_select_target"):
-				if not possessing_character and not possessable_characters:
-					print("No possessable targets found!")
-				elif not possessing_character:
-					begin_possession(possessable_characters[0])
+				if not possessing_character:
+					if possessable_characters:
+						begin_possession(possessable_characters[0])
+					else:
+						#print("No possessable targets found!")
+						pass
 		if event.is_action_pressed("possession_cancel") and possessing_character:
 			end_possession()
 

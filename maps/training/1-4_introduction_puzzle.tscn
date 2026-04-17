@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="14_5k5hu"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="14_am6pl"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="14_kpwao"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="15_8dm37"]
 
 [sub_resource type="Resource" id="Resource_ovyrl"]
 script = ExtResource("3_hqcxu")
@@ -140,3 +141,9 @@ offset_top = 119.0
 offset_right = 478.0
 offset_bottom = 247.0
 texture = ExtResource("14_am6pl")
+
+[node name="GreenHerb" parent="." unique_id=658593362 instance=ExtResource("15_8dm37")]
+position = Vector2(85, -220)
+
+[node name="GreenHerb2" parent="." unique_id=519910755 instance=ExtResource("15_8dm37")]
+position = Vector2(101, -154)

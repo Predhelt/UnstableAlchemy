@@ -104,7 +104,7 @@ has_blade = true
 is_possessable = true
 
 [node name="Cam" parent="." index="5" unique_id=1967664427 instance=ExtResource("6_k17fm")]
-position = Vector2(836, 617)
+position = Vector2(837, 586)
 transactions = Array[ExtResource("7_f1ifg")]([ExtResource("8_661ml"), SubResource("Resource_h7yp8")])
 is_possessable = true
 

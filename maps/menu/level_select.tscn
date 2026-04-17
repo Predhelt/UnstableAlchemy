@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bxw8y0udo7u4o"]
 
 [ext_resource type="Script" uid="uid://mfft2nnrm265" path="res://maps/menu/level_select.gd" id="1_cido5"]
+[ext_resource type="Texture2D" uid="uid://c6iuademyval" path="res://art/pack/ui/menus/title_background.png" id="2_cm7br"]
 [ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_wjowx"]
 
 [node name="LevelSelect" type="Control" unique_id=1253611101]
@@ -11,6 +12,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cido5")
+
+[node name="BackgroundImage" type="TextureRect" parent="." unique_id=332415499]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_cm7br")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=404084080]
 layout_mode = 1
