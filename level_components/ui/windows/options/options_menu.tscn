@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://do35anfokx1j4" path="res://level_components/ui/windows/options/options_menu.gd" id="1_bw5gs"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_ldjf7"]
 [ext_resource type="ButtonGroup" uid="uid://bo5q05cajm24g" path="res://level_components/ui/windows/options/options_buttons.tres" id="4_o212l"]
-[ext_resource type="LabelSettings" uid="uid://cjvc1ur7pac27" path="res://art/text/description_label.tres" id="5_b017p"]
 [ext_resource type="PackedScene" uid="uid://1yiwmvqku557" path="res://level_components/ui/windows/options/button_options_menu.tscn" id="6_qrcwd"]
+[ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_confirmation.tscn" id="7_qrcwd"]
 
 [node name="OptionsMenu" type="Panel" unique_id=1940597338]
 z_index = 50
@@ -104,15 +104,8 @@ toggle_mode = true
 button_group = ExtResource("4_o212l")
 text = "Quit Game"
 
-[node name="Popup" type="Popup" parent="." unique_id=2103343794]
-title = "Confirm Exit"
-size = Vector2i(350, 100)
-
-[node name="Label" type="Label" parent="Popup" unique_id=1212456002]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Are you sure you want to exit?"
-label_settings = ExtResource("5_b017p")
+[node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_qrcwd")]
+visible = false
 
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_return_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSave" to="." method="_on_button_save_pressed"]

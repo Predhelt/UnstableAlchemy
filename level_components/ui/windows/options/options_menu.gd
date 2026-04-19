@@ -42,7 +42,7 @@ func _on_button_settings_pressed() -> void:
 
 ## Close the game.
 func _on_button_exit_pressed() -> void:
-	get_tree().quit()
+	$PopupConfirmation.popup()
 
 
 func _on_button_save_pressed() -> void:
@@ -51,3 +51,11 @@ func _on_button_save_pressed() -> void:
 
 func _on_button_load_pressed() -> void:
 	Global.load_game()
+
+
+func _on_button_cancel_pressed() -> void:
+	$PopupConfirmation.hide()
+
+
+func _on_button_quit_pressed() -> void:
+	get_tree().quit()

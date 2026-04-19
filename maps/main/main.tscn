@@ -87,36 +87,44 @@ theme_override_font_sizes/font_size = 36
 text = "- Start with access to provided items
 "
 
-[node name="Label" type="Label" parent="CanvasEditorOnly" unique_id=2081649763]
-offset_left = 1634.0
-offset_top = -1619.0
-offset_right = 1850.0
-offset_bottom = -1526.0
-theme_override_font_sizes/font_size = 68
+[node name="LabelVillage" type="Label" parent="CanvasEditorOnly" unique_id=2081649763]
+offset_left = 1481.0
+offset_top = -1674.0
+offset_right = 1861.0
+offset_bottom = -1509.0
+theme_override_font_sizes/font_size = 120
 text = "Village"
 
-[node name="Label2" type="Label" parent="CanvasEditorOnly" unique_id=67364207]
+[node name="LabelSpawn" type="Label" parent="CanvasEditorOnly" unique_id=2122307156]
+offset_left = 1481.0
+offset_top = -1472.0
+offset_right = 1699.0
+offset_bottom = -1379.0
+theme_override_font_sizes/font_size = 68
+text = "Spawn"
+
+[node name="LabelCave" type="Label" parent="CanvasEditorOnly" unique_id=67364207]
 offset_left = 2821.0
 offset_top = -3620.0
 offset_right = 2979.0
 offset_bottom = -3527.0
-theme_override_font_sizes/font_size = 68
+theme_override_font_sizes/font_size = 120
 text = "Cave"
 
-[node name="Label3" type="Label" parent="CanvasEditorOnly" unique_id=1535545196]
-offset_left = -1534.0
-offset_top = -1178.0
-offset_right = -1494.0
-offset_bottom = -1155.0
-theme_override_font_sizes/font_size = 68
+[node name="LabelLake" type="Label" parent="CanvasEditorOnly" unique_id=1535545196]
+offset_left = -1212.0
+offset_top = -1499.0
+offset_right = -1057.0
+offset_bottom = -1406.0
+theme_override_font_sizes/font_size = 120
 text = "Lake"
 
-[node name="Label4" type="Label" parent="CanvasEditorOnly" unique_id=1606162752]
+[node name="LabelForest" type="Label" parent="CanvasEditorOnly" unique_id=1606162752]
 offset_left = -877.0
 offset_top = -77.0
 offset_right = -671.0
 offset_bottom = 16.0
-theme_override_font_sizes/font_size = 68
+theme_override_font_sizes/font_size = 120
 text = "Forest"
 
 [node name="Label5" type="Label" parent="CanvasEditorOnly" unique_id=921820041]
@@ -124,11 +132,5 @@ offset_left = -5514.0
 offset_top = -579.0
 offset_right = -5390.0
 offset_bottom = -486.0
-theme_override_font_sizes/font_size = 68
+theme_override_font_sizes/font_size = 120
 text = "????"
-
-[node name="Label6" type="Label" parent="CanvasEditorOnly" unique_id=1379464031]
-offset_left = 1126.0
-offset_top = -1260.0
-offset_right = 1166.0
-offset_bottom = -1237.0
