@@ -38,7 +38,7 @@ func _on_button_return_pressed() -> void:
 ## Close the options menu and open the settings menu.
 func _on_button_settings_pressed() -> void:
 	close_window()
-	%SettingsMenu.popup()
+	$"../SettingsMenu".popup()
 
 ## Close the game.
 func _on_button_exit_pressed() -> void:

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://rv8tslq5els7" path="res://maps/menu/title_screen.gd" id="1_scg0l"]
 [ext_resource type="Texture2D" uid="uid://c6iuademyval" path="res://art/pack/ui/menus/title_background.png" id="2_1nh0f"]
 [ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_12dnu"]
+[ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="2_v76xe"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
 
@@ -15,6 +16,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_scg0l")
 
+[node name="SettingsMenu" parent="." unique_id=1910452402 instance=ExtResource("2_v76xe")]
+visible = false
+
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=686514125]
 layout_mode = 0
 offset_right = 1280.0
@@ -26,16 +30,33 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -284.0
-offset_top = 70.0
-offset_right = 273.0
-offset_bottom = 158.0
+offset_left = -279.0
+offset_top = 14.0
+offset_right = 278.0
+offset_bottom = 102.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.57254905, 0.43137255, 1, 1)
 theme_override_colors/font_outline_color = Color(0.27058825, 0.84313726, 0.8666667, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
 text = "Unstable Alchemy"
+horizontal_alignment = 1
+
+[node name="LabelTitle2" type="Label" parent="." unique_id=761995547]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -279.0
+offset_top = 115.0
+offset_right = 278.0
+offset_bottom = 203.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.82126004, 0.44207728, 0.05197215, 1)
+theme_override_colors/font_outline_color = Color(0.17459902, 0.90393627, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 64
+text = "(Training Arc)"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1846484415]
@@ -46,14 +67,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.0
-offset_top = -157.0
+offset_top = -109.0
 offset_right = 170.0
 offset_bottom = 312.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 21
+theme_override_constants/separation = 28
 
 [node name="ButtonPlay" parent="VBoxContainer" unique_id=1276432221 instance=ExtResource("2_12dnu")]
+visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
@@ -78,8 +100,7 @@ text = "Load"
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-disabled = true
-text = "Settings (WIP)"
+text = "Settings"
 
 [node name="ButtonExit" type="Button" parent="VBoxContainer" unique_id=131960736]
 custom_minimum_size = Vector2(250, 0)
@@ -99,7 +120,7 @@ offset_right = 125.00001
 grow_vertical = 0
 theme = ExtResource("3_3ahgd")
 theme_override_constants/outline_size = 6
-text = "Version:"
+text = "Version: a.b.c-d (Prototype)"
 
 [node name="CompanyLogo" type="TextureRect" parent="." unique_id=656535454]
 layout_mode = 1

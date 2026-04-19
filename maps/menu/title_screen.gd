@@ -9,7 +9,10 @@ func open_level() -> bool:
 
 
 func _on_button_settings_pressed() -> void:
-	pass # Replace with function body.
+	if not $SettingsMenu.visible:
+		$SettingsMenu.popup()
+	else:
+		$SettingsMenu.hide()
 
 
 func _on_button_exit_pressed() -> void:

@@ -12,3 +12,7 @@ func _on_close_requested() -> void:
 
 func _on_about_to_popup() -> void:
 	Global.mode = &"settings"
+
+
+func _on_h_slider_master_value_changed(value: float) -> void:
+	$TabContainer/Audio/VBoxContainer/Control/LabelMasterDescription.text = str($TabContainer/Audio/VBoxContainer/Control/HSliderMaster.value)

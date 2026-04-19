@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdevkeyb8mdqi"]
+[gd_scene format=3 uid="uid://bdevkeyb8mdqi"]
 
 [ext_resource type="Script" uid="uid://dwg107smfp5f4" path="res://level_components/ui/windows/options/settings_menu.gd" id="1_4bqsf"]
 [ext_resource type="Script" uid="uid://3pt6q5eotxfk" path="res://level_components/ui/windows/options/general_settings.gd" id="2_sva72"]
@@ -8,47 +8,51 @@
 
 [sub_resource type="Theme" id="Theme_qd3n0"]
 
-[node name="SettingsMenu" type="Window"]
+[node name="SettingsMenu" type="Window" unique_id=715063349]
+oversampling_override = 1.0
 title = "Settings"
 initial_position = 1
-size = Vector2i(600, 400)
+size = Vector2i(600, 500)
 transient = true
 popup_window = true
 script = ExtResource("1_4bqsf")
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1023624372]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
+tab_1/disabled = true
+tab_2/disabled = true
+tab_3/disabled = true
+tab_4/disabled = true
 
-[node name="General" type="Control" parent="TabContainer"]
+[node name="General" type="MarginContainer" parent="TabContainer" unique_id=1102424622]
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
 script = ExtResource("2_sva72")
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General" unique_id=775600807]
+layout_mode = 2
 
-[node name="Control" type="Control" parent="TabContainer/General/VBoxContainer"]
+[node name="Control" type="Control" parent="TabContainer/General/VBoxContainer" unique_id=1008668321]
 clip_contents = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/Control"]
+[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/Control" unique_id=676907558]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 6.0
-text = "test setting"
+text = "WIP"
 
-[node name="CheckBox" type="CheckBox" parent="TabContainer/General/VBoxContainer/Control"]
+[node name="CheckBox" type="CheckBox" parent="TabContainer/General/VBoxContainer/Control" unique_id=2132860131]
 layout_direction = 2
 layout_mode = 1
 anchors_preset = 1
@@ -58,32 +62,34 @@ offset_left = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
 
-[node name="Display" type="Control" parent="TabContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/General/VBoxContainer" unique_id=1880064851]
+layout_mode = 2
+
+[node name="Display" type="MarginContainer" parent="TabContainer" unique_id=1468631991]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
 script = ExtResource("3_pyqsg")
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Display"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Display" unique_id=1767344302]
+layout_mode = 2
 
-[node name="Control" type="Control" parent="TabContainer/Display/VBoxContainer"]
+[node name="Control" type="Control" parent="TabContainer/Display/VBoxContainer" unique_id=86735678]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = SubResource("Theme_qd3n0")
 
-[node name="Label" type="Label" parent="TabContainer/Display/VBoxContainer/Control"]
+[node name="Label" type="Label" parent="TabContainer/Display/VBoxContainer/Control" unique_id=1712043243]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 6.0
-text = "Window Size"
+text = "Window Size (WIP)"
 
-[node name="OptionButton" type="OptionButton" parent="TabContainer/Display/VBoxContainer/Control"]
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Display/VBoxContainer/Control" unique_id=21835175]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -99,39 +105,81 @@ popup/item_1/id = 1
 popup/item_2/text = "test"
 popup/item_2/id = 2
 
-[node name="Keybinds" type="Control" parent="TabContainer"]
+[node name="Audio" type="MarginContainer" parent="TabContainer" unique_id=1117195577]
 visible = false
 layout_mode = 2
-script = ExtResource("4_si7xk")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+script = ExtResource("3_pyqsg")
 metadata/_tab_index = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keybinds"]
-custom_minimum_size = Vector2(300, 200)
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Audio" unique_id=891574168]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="TabContainer/Audio/VBoxContainer" unique_id=501868584]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = SubResource("Theme_qd3n0")
+
+[node name="LabelMasterName" type="Label" parent="TabContainer/Audio/VBoxContainer/Control" unique_id=693888773]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 23.0
+text = "Master"
+
+[node name="LabelMasterDescription" type="Label" parent="TabContainer/Audio/VBoxContainer/Control" unique_id=2141510675]
+layout_mode = 0
+offset_left = 311.0
+offset_right = 351.0
+offset_bottom = 23.0
+
+[node name="HSliderMaster" type="HSlider" parent="TabContainer/Audio/VBoxContainer/Control" unique_id=173560733]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
 grow_vertical = 2
+
+[node name="Keybinds" type="MarginContainer" parent="TabContainer" unique_id=1209691072]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+script = ExtResource("4_si7xk")
+metadata/_tab_index = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keybinds" unique_id=1691953646]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
 vertical_scroll_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Keybinds/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Keybinds/ScrollContainer" unique_id=63515800]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SettingNames" type="Control" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer"]
+[node name="SettingNames" type="Control" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer" unique_id=2097128017]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/SettingNames"]
+[node name="Label" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/SettingNames" unique_id=1630474584]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 6.0
 text = "Functon"
 
-[node name="Label2" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/SettingNames"]
+[node name="Label2" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/SettingNames" unique_id=1137711549]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -140,7 +188,7 @@ offset_right = -80.0
 grow_horizontal = 0
 text = "Bind1"
 
-[node name="Label3" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/SettingNames"]
+[node name="Label3" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/SettingNames" unique_id=1574973333]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -149,24 +197,25 @@ offset_right = -6.0
 grow_horizontal = 0
 text = "Bind2"
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer" unique_id=1137894106]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer" unique_id=409778298]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/Control"]
+[node name="Label" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/Control" unique_id=711929157]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 6.0
 text = "Interact"
 
-[node name="Accessibility" type="Control" parent="TabContainer"]
+[node name="Accessibility" type="Control" parent="TabContainer" unique_id=1587524537]
 visible = false
 layout_mode = 2
 script = ExtResource("5_ypet3")
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="value_changed" from="TabContainer/Audio/VBoxContainer/Control/HSliderMaster" to="." method="_on_h_slider_master_value_changed"]
