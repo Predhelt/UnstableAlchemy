@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_o2wfu"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="14_1gpb7"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_e21mu"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_e21mu"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_bo0de"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="18_sx8rp"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="19_bo0de"]
@@ -128,6 +128,16 @@ offset_top = -684.0
 offset_right = 501.0
 offset_bottom = -661.0
 text = "Go to next level here:"
+
+[node name="Label2" type="Label" parent="Labels" unique_id=836275837]
+layout_mode = 0
+offset_left = 46.0
+offset_top = -312.0
+offset_right = 180.0
+offset_bottom = -263.0
+text = "Go through gates
+to progress"
+horizontal_alignment = 1
 
 [node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=718879271]
 script = ExtResource("14_1gpb7")

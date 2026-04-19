@@ -24,6 +24,7 @@ func _ready() -> void:
 	_close_tool_selection()
 	if not has_blade and not has_dropper:
 		$CurrentTool/HotkeyLabel.visible = false
+		$CurrentTool.disabled = true
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -36,16 +37,20 @@ func set_blade_enabled(is_enabled : bool) -> void:
 	has_blade = is_enabled
 	if is_enabled:
 		$CurrentTool/HotkeyLabel.visible = true
+		$CurrentTool.disabled = false
 	elif not has_dropper:
 			$CurrentTool/HotkeyLabel.visible = false
+			$CurrentTool.disabled = true
 
 ## Toggle visibility of dropper tool slot
 func set_dropper_enabled(is_enabled : bool) -> void:
 	has_dropper = is_enabled
 	if is_enabled:
 		$CurrentTool/HotkeyLabel.visible = true
+		$CurrentTool.disabled = false
 	elif not has_blade: # If both tools are not enabled, hide hotkey.
 			$CurrentTool/HotkeyLabel.visible = false
+			$CurrentTool.disabled = true
 
 func set_tool_to_hand() -> void:
 	_on_slot_1_toggled(true)

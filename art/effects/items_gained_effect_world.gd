@@ -31,5 +31,5 @@ func set_no_items_gained():
 		$VBoxContainer.remove_child(child_node)
 		
 	var lbl : Label = Label.new()
-	lbl.text = "No items collected!"
+	lbl.text = "Cannot collect with current tool!"
 	$VBoxContainer.add_child(lbl)

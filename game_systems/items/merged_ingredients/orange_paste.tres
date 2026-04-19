@@ -8,10 +8,6 @@
 script = ExtResource("2_wxcga")
 id = 202
 display_name = "Orange Paste"
-description = ""
+description = "Is said to surpress effects to potions or objects."
 texture = ExtResource("3_k77on")
-max_qty = 10
-qty = 1
-on_consume_effects = Array[ExtResource("1_rywkp")]([])
-on_consume_message = ""
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

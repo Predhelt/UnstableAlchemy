@@ -222,21 +222,15 @@ offset_left = -599.0
 offset_top = -110.0
 offset_right = -79.0
 offset_bottom = 225.0
-text = "TODO:
-- Figure out Possession Potion Recipes.
-- Set up the recipe book contents.
-- Add plants in appropriate places.
-- Determine which alternate solutions are acceptable, if any.
-- Determine if necessary to prevent any soft-locks or just require a reset.
-
-New:
+text = "New:
 Possession Potion
 
 Step 1:
 - Use given possession potion to get possession postion recipe.
 - Use crafted possession potion to get speed potion recipe.
 - Use possession potion to get third person to craft speed potion and use it to access the area with the button used to open the exit path.
-- You CAN skip the steps to get the recipes if you already know the recipes and that is fine."
+- You CAN skip the steps to get the recipes if you already know the recipes and that is fine.
+- You CAN save/load to respawn the plants to cheese the puzzle"
 autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="1" unique_id=1956201278]
@@ -244,6 +238,14 @@ offset_left = 883.0
 offset_top = -878.0
 offset_right = 923.0
 offset_bottom = -855.0
+
+[node name="Label2" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="2" unique_id=1598350203]
+offset_left = 406.0
+offset_top = 648.0
+offset_right = 886.0
+offset_bottom = 697.0
+text = "ANY NPC CAN HOLD THE BUTTON DOWN AND TRIVIALIZE THIS
+once the possession potion is crafted"
 
 [node name="Crate" parent="." index="11" unique_id=402036177 instance=ExtResource("15_r1ko1")]
 position = Vector2(1014, -2)

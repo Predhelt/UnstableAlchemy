@@ -15,7 +15,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_3ahgd")
 script = ExtResource("1_scg0l")
 
 [node name="SettingsMenu" parent="." unique_id=1910452402 instance=ExtResource("2_v76xe")]
@@ -74,6 +73,7 @@ offset_right = 170.0
 offset_bottom = 312.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_3ahgd")
 theme_override_constants/separation = 28
 
 [node name="ButtonPlay" parent="VBoxContainer" unique_id=1276432221 instance=ExtResource("2_12dnu")]

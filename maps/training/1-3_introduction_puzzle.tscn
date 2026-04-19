@@ -4,11 +4,10 @@
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_n5j6g"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="9_h85rq"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="9_ucbr3"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="17_2sv4n"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_2sv4n"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="18_vgkhd"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_m8sw8"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="22_t1nn1"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="23_crubh"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="24_vjxr3"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="25_03p8f"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="27_y833b"]
@@ -21,14 +20,8 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_65xqe"]
 script = ExtResource("25_03p8f")
-on_interact_items = Array[ExtResource("22_t1nn1")]([ExtResource("6_n5j6g"), ExtResource("23_crubh")])
-on_interact_amounts = Array[int]([2, 1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_ucbr3"]
-script = ExtResource("25_03p8f")
-on_interact_items = Array[ExtResource("22_t1nn1")]([ExtResource("6_n5j6g"), ExtResource("23_crubh")])
-on_interact_amounts = Array[int]([2, 1])
+on_interact_items = Array[ExtResource("22_t1nn1")]([ExtResource("6_n5j6g")])
+on_interact_amounts = Array[int]([2])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" type="Node2D" unique_id=1661168125]
@@ -75,9 +68,8 @@ y_sort_enabled = true
 
 [node name="Crate" parent="Objects" unique_id=1856845390 instance=ExtResource("9_h85rq")]
 position = Vector2(344, 3)
-items = Array[ExtResource("22_t1nn1")]([ExtResource("6_n5j6g"), ExtResource("23_crubh")])
+items = Array[ExtResource("22_t1nn1")]([ExtResource("6_n5j6g")])
 grab_interaction = SubResource("Resource_65xqe")
-cut_interaction = SubResource("Resource_ucbr3")
 
 [node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
 y_sort_enabled = true
@@ -119,11 +111,11 @@ offset_bottom = 40.0
 
 [node name="LabelCongratulations" type="Label" parent="Labels" unique_id=886711945]
 layout_mode = 0
-offset_left = 199.0
-offset_top = -621.0
-offset_right = 328.0
-offset_bottom = -598.0
-text = "Congratulations!"
+offset_left = 280.0
+offset_top = -685.0
+offset_right = 409.0
+offset_bottom = -662.0
+text = "Nice!"
 
 [node name="Label3" type="Label" parent="Labels" unique_id=1014220407]
 layout_mode = 0

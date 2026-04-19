@@ -1,5 +1,7 @@
 extends AlchemyMinigame
 
+var empty_slot = preload("res://art/pack/objects/object_gray.png")
+
 func _ready() -> void:
 	minigame_buttons.append(%Container/GridContainer/ButtonItem1)
 	minigame_buttons.append(%Container/GridContainer/ButtonItem2)
@@ -57,7 +59,7 @@ func open_window():
 	
 	#%ItemIcon.texture = items.texture
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
-		tb.texture = Global.blank_texture
+		tb.texture = empty_slot
 	
 	slider.max_value = 6 * 2 #TODO: Allow max value to be changed based on difficulty/settings
 	slider.tick_count = 7

@@ -8,9 +8,5 @@
 script = ExtResource("2_6dmmt")
 id = 200
 display_name = "Green Paste"
-description = ""
+description = "Is said to enhance effects of potions or objects."
 texture = ExtResource("3_uspxp")
-max_qty = 10
-qty = 1
-on_consume_effects = Array[ExtResource("1_rpcqg")]([])
-on_consume_message = ""

@@ -68,6 +68,8 @@ func close_window():
 	visible = false
 	## Return the craft ingredients back to the inventory if not already used.
 	for item in cur_craft_ingredients:
+		if not item:
+			continue
 		item.qty = 1
 		inventory_menu_ref.add_inventory_item(item)
 	cur_craft_ingredients.clear()
