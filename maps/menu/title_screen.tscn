@@ -138,6 +138,7 @@ grow_vertical = 0
 texture = ExtResource("4_kcdp0")
 
 [node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_17jem")]
+visible = false
 
 [connection signal="pressed" from="VBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
