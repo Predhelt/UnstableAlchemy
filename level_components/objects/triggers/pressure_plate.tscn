@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dle8dng5mtld0"]
 
 [ext_resource type="Script" uid="uid://bkjaos0jnpisd" path="res://level_components/objects/triggers/pressure_plate.gd" id="1_x57id"]
-[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/object_pressure_plate_green.png" id="2_qilna"]
+[ext_resource type="Texture2D" uid="uid://cnhakowq1giib" path="res://art/pack/objects/object-pressure-plate_gray.png" id="2_lt068"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un22d"]
 size = Vector2(52, 52)
@@ -10,17 +10,18 @@ size = Vector2(52, 52)
 z_index = -10
 script = ExtResource("1_x57id")
 trigger_weight = 1.0
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=131178806]
-position = Vector2(0, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_qilna")
+texture = ExtResource("2_lt068")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=197250525]
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=579349160]
 shape = SubResource("RectangleShape2D_un22d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=131178806]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lt068")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]

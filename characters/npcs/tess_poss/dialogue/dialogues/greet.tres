@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("3_7xdnw")
 dialogue_name = &"greet"
-text = "Hey, I'm fast."
+text = "Hey, I'm fast. "
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

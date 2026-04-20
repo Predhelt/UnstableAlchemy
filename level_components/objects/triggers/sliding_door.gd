@@ -6,9 +6,13 @@ const MAX_OPEN_DISTANCE := 64.0
 
 ## Tracks whether the door is currently open.
 var is_open := false
-## Total time it takes to open this door.
+## Number of triggers that need to be active on the door for it to open.
+@export var triggers_required : int = 1
+## Current [Node2D]s that are triggering the door to open.
+var cur_trigger_nodes : Array[Node2D]
+## Total time it takes to open this door in seconds.
 @export var open_time : float 
-## Total time it takes to close this door.
+## Total time it takes to close this door in seconds.
 @export var close_time : float 
 ## Tracks the direction that the door opens.
 @export_enum("Left", "Right", "Up", "Down") var open_direction := "Right"
@@ -86,18 +90,26 @@ func _move_door_to(pos : float) -> void:
 					position.x = default_pos.x - pos
 
 ## Begins closing the door
-func close_door():
-	call_deferred("_deferred_close_door")
+func close_door(node : Node2D):
+	if node in cur_trigger_nodes:
+		cur_trigger_nodes.remove_at(cur_trigger_nodes.find(node))
+	if cur_trigger_nodes.size() < triggers_required:
+		call_deferred("_deferred_close_door")
 
 ## Checks at end of frame if [member has_open_call] is true.
 ## If not, then changes [member is_moving] to closing.
 func _deferred_close_door():
+	if cur_trigger_nodes.size() >= triggers_required:
+		return
 	if not has_open_call:
 		if is_open == true:
 			is_moving = 2
 
 ## Begins opening the door
-func open_door():
-	has_open_call = true
-	if is_open == false or is_moving == 2:
-		is_moving = 1
+func open_door(node : Node2D):
+	if node not in cur_trigger_nodes:
+		cur_trigger_nodes.append(node)
+	if cur_trigger_nodes.size() >= triggers_required:
+		has_open_call = true
+		if is_open == false or is_moving == 2:
+			is_moving = 1

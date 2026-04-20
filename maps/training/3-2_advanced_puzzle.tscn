@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_78sge"]
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="2_bcy3g"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_ssofw"]
+[ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="5_anm1r"]
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="5_vj4lo"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_wlp5u"]
 [ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="7_cq7vc"]
@@ -29,7 +30,7 @@
 
 [sub_resource type="Resource" id="Resource_yiupm"]
 script = ExtResource("6_wlp5u")
-items = Array[ExtResource("4_ssofw")]([ExtResource("5_vj4lo")])
+items = Array[ExtResource("4_ssofw")]([ExtResource("5_vj4lo"), ExtResource("5_anm1r")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_6ca4l"]
@@ -60,7 +61,6 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_bcy3g")]
 position = Vector2(256, 6)
 character_camera_ref = NodePath("../PlayerCamera")
-has_blade = true
 inventory = SubResource("Resource_yiupm")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]

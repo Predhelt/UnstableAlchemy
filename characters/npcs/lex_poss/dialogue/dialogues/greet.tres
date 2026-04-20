@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("3_jygbr")
 dialogue_name = &"greet"
-text = "Hey, I'm strong."
+text = "Hey, I'm strong. There is a box behind the wall next to me with some gray juice in it. I also remember seeing a book that has information about a multi-use possession potion."
 metadata/_custom_type_script = "uid://3qs2s64uenyc"
