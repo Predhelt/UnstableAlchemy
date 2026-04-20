@@ -1,9 +1,10 @@
 [gd_scene format=4 uid="uid://cxfbkqxyybu1m"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_57qdn"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="2_1mciq"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="2_1mciq"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_o375i"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_ath2w"]
+[ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="5_5c2vr"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_ifk4n"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="9_ttryd"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="10_c701x"]
@@ -24,6 +25,7 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_etwul"]
 script = ExtResource("7_ifk4n")
+items = Array[ExtResource("4_ath2w")]([ExtResource("5_5c2vr")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_51mqc"]
@@ -48,7 +50,6 @@ metadata/_edit_lock_ = true
 position = Vector2(97, -41)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_ovyrl")
-has_blade = true
 inventory = SubResource("Resource_etwul")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]

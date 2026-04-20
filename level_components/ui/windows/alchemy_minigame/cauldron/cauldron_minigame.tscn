@@ -165,6 +165,10 @@ anchor_left = 0.6
 anchor_top = 0.1
 anchor_right = 0.9
 anchor_bottom = 0.6
+offset_left = 29.599976
+offset_top = 11.0
+offset_right = 29.599976
+offset_bottom = 11.0
 
 [node name="ToolIcon" type="TextureRect" parent="VBoxContainer/Container/Control" unique_id=354750044]
 layout_mode = 1

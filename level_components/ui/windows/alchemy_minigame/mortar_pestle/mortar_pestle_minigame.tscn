@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="4_r2g22"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="5_eoa2f"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="6_1mow8"]
+[ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="8_wkini"]
+[ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="9_88828"]
 
 [node name="MinigameMP" type="Panel" unique_id=542892921]
 anchors_preset = -1
@@ -239,14 +241,39 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 36
 text = ">"
 
-[node name="Label" type="Label" parent="VBoxContainer/Container" unique_id=1261495586]
+[node name="Instructions" type="Control" parent="VBoxContainer/Container" unique_id=1482636619]
+anchors_preset = 0
+offset_left = 304.0
+offset_top = 15.0
+offset_right = 304.0
+offset_bottom = 15.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Container/Instructions" unique_id=1011975147]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 10.0
-offset_right = 234.0
-offset_bottom = 59.0
-text = "Crush: Up, Down, Up, Down
-Grind: Left, Right, Left, Right"
+offset_left = -285.0
+offset_top = -13.0
+offset_right = 180.0
+offset_bottom = 51.0
+
+[node name="TextureCrush" type="TextureRect" parent="VBoxContainer/Container/Instructions/HBoxContainer" unique_id=893884270]
+layout_mode = 2
+texture = ExtResource("8_wkini")
+
+[node name="Label" type="Label" parent="VBoxContainer/Container/Instructions/HBoxContainer" unique_id=1261495586]
+layout_mode = 2
+text = "Crush:
+Up, Down, Up, Down"
+horizontal_alignment = 1
+
+[node name="TextureGrind" type="TextureRect" parent="VBoxContainer/Container/Instructions/HBoxContainer" unique_id=1387197439]
+layout_mode = 2
+texture = ExtResource("9_88828")
+
+[node name="Label2" type="Label" parent="VBoxContainer/Container/Instructions/HBoxContainer" unique_id=388048763]
+layout_mode = 2
+text = "Grind:
+Left, Right, Left, Right"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="StartupDelay" to="." method="_on_startup_delay_timeout"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
