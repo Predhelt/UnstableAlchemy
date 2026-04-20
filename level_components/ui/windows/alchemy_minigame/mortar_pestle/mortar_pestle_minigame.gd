@@ -104,6 +104,14 @@ func set_input_action(type: String, id: int, icon: Texture2D):
 
 ## Overrides inherited function.
 func matching_recipe() -> Recipe:
+	var has_ingredient : bool = false
+	for ing in cur_craft_ingredients:
+		if ing:
+			has_ingredient = true
+			break
+	if not has_ingredient:
+		return
+	
 	for recipe in recipes:
 		if len(recipe.ingredients) != 1:
 			continue
@@ -129,7 +137,10 @@ func open_window():
 	for button in minigame_buttons:
 		button.disabled = true
 	%MinigameProgressBar/ProgressSlider.value = 0
-	%ItemIcon.texture = cur_craft_ingredients[0].texture
+	if cur_craft_ingredients[0]:
+		%ItemIcon.texture = cur_craft_ingredients[0].texture
+	else:
+		%ItemIcon.texture = Global.blank_texture
 	for tb in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
 		tb.texture = Global.blank_texture
 	

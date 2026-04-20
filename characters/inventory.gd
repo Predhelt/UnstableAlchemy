@@ -66,10 +66,15 @@ func add_stackable_item(item : Item) -> bool:
 func remove_items(items_removing : Array[Item], qtys : Array[int], isRemovingStacks : bool = false) -> bool:
 	## Phase 1: Check to see if there are enough of each item. If removing stacks, ignore phase 1
 	var inventory_item_infos : Dictionary = {} ## Key : index, Value : id of items in inventory
-	
+	var has_item_to_remove : bool = false
+	for qty in qtys:
+		if qty > 0:
+			has_item_to_remove = true
+			break
+	if not has_item_to_remove: # No items to remove
+		return true
 	if not isRemovingStacks:
 		inventory_item_infos = get_item_indices(items_removing, qtys)
-		
 		if inventory_item_infos == {}:
 			return false
 			

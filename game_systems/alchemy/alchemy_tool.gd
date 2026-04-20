@@ -2,15 +2,6 @@
 ## their inventory tool and how the associated minigame functions
 class_name AlchemyTool extends UIWindow
 
-### Sent when the item is completed and added to the inventory
-#signal item_produced(item: Item, recipe : Recipe)
-### Sends signal to the inventory to remove items when a craft minigame is completed
-### and the ingredient items are consumed.
-##signal item_removed(item: Item)
-### Sent when the minigame window is opened, the inventory should be closed
-#signal close_inventory()
-
-
 ## Max number of items that can be stored in the tool
 const MAX_ITEMS := 3
 ## The recipe information for a failed craft, used when no other recipe is a match after the crafting process.
@@ -37,9 +28,7 @@ var num_items := 0
 ## Reference to item buttons that represent each item used in the craft.
 ## These items are determined by the items in the corresponding alchemy
 ## tool container in the inventory page.
-@onready var buttons := [$ToolIcon/ItemGrid/Button1,
-$ToolIcon/ItemGrid/Button2,
-$ToolIcon/ItemGrid/Button3] 
+var buttons : Array
 ## Reference to the scene for the confirmation button
 @onready var button_confirm := $ToolIcon/ItemGrid/ButtonConfirm
 ## Reference to the scene for the progress bar used in crafting animations without a minigame.
@@ -61,7 +50,15 @@ func _init() -> void:
 	for i in MAX_ITEMS:
 		buttons.append(null)
 		items.append(null)
-	
+
+func _ready() -> void:
+	if items.size() >= 0 and items.size() < 4:
+		button_confirm.disabled = false
+	else:
+		button_confirm.disabled = true
+	buttons = [$ToolIcon/ItemGrid/Button1,
+		$ToolIcon/ItemGrid/Button2,
+		$ToolIcon/ItemGrid/Button3]
 
 ## Called in inherited function's _ready() procedure. The given [param recipe_tool] name is used
 ## to search the file directory for the [Recipe]s related to the alchemy tool being used
@@ -187,7 +184,7 @@ func remove_item(index: int) -> void:
 	items[index] = null
 	num_items -= 1
 	
-	if num_items < 1:
+	if num_items < 0:
 		button_confirm.disabled = true
 
 ## Abstract function that is implemented in inherited class. Called when Confirm button
@@ -201,7 +198,7 @@ func _use_items():
 func _on_button_confirm_pressed() -> void:
 	if Global.mode != &"menu":
 		return
-	if num_items <= 0 or num_items > MAX_ITEMS:
+	if num_items < 0 or num_items >= MAX_ITEMS:
 		print("Wrong number of items, button should be disabled")
 		return
 	_use_items()

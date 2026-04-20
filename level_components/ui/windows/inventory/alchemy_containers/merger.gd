@@ -2,6 +2,7 @@ extends AlchemyTool
 
 ##
 func _ready() -> void:
+	super()
 	set_recipes(&"Merger")
 
 ## 

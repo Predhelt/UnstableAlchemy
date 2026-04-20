@@ -52,11 +52,6 @@ func _init() -> void:
 func _input(_event: InputEvent) -> void:
 	pass
 
-## Template: Used to determine how the minigame should be set up when the window is opened.
-## Already required by inherited UIWindow.s
-#func open_window():
-	#pass
-
 ## Sets the ingredient values.
 func init_ingredients(ingredients : Array[Item]) -> void:
 	for i in range(ingredients.size()):

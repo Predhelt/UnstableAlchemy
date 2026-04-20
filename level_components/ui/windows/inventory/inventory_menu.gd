@@ -105,10 +105,10 @@ func return_alchemy_items() -> void:
 	for i in range(3):
 		Global.focused_node.inventory.add_item(%Cauldron.items[i])
 		%Cauldron.remove_item(i)
-		Global.focused_node.inventory.add_item(%MortarPestle.items[i])
-		%MortarPestle.remove_item(i)
 		Global.focused_node.inventory.add_item(%Merger.items[i])
 		%Merger.remove_item(i)
+	Global.focused_node.inventory.add_item(%MortarPestle.items[0])
+	%MortarPestle.remove_item(0)
 
 ## Adds an item to the character's inventory, then updates the menu.
 func add_inventory_item(item : Item) -> bool:
@@ -166,7 +166,7 @@ func remove_inventory_items(items_removing : Array[Item], qtys : Array[int], isR
 	return true
 
 ## Removes the given quantity of the item from the inventory.
-## If isRemovingStacks is true, removes any stack that contains the item in the inventory.
+## If [param isRemovingStacks] is true, removes any stack that contains the item in the inventory.
 func remove_inventory_item(item_removing : Item, qty : int, isRemovingStacks : bool = false) -> bool: ## Returns false if not enough items are found for each item in the inventory
 	if not Global.focused_node.inventory.remove_items([item_removing], [qty], isRemovingStacks):
 		return false

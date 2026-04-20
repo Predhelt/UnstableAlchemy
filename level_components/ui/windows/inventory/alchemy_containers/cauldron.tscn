@@ -9,12 +9,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nbwu"]
 size = Vector2(128, 126)
 
-[node name="Cauldron" type="Control"]
+[node name="Cauldron" type="Control" unique_id=1254975742]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2r2ej")
 
-[node name="ToolIcon" type="TextureRect" parent="."]
+[node name="ToolIcon" type="TextureRect" parent="." unique_id=1322765280]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -31,7 +31,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_ot2yn")
 
-[node name="ItemGrid" type="GridContainer" parent="ToolIcon"]
+[node name="ItemGrid" type="GridContainer" parent="ToolIcon" unique_id=2046432944]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,7 +47,7 @@ grow_vertical = 2
 mouse_filter = 2
 columns = 2
 
-[node name="Button1" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button1" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=295537320]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -56,7 +56,7 @@ texture_normal = ExtResource("3_6hx4e")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button2" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button2" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=189888553]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -65,7 +65,7 @@ texture_normal = ExtResource("3_6hx4e")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Button3" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="Button3" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=2102823974]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -74,7 +74,7 @@ texture_normal = ExtResource("3_6hx4e")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ButtonConfirm" type="TextureButton" parent="ToolIcon/ItemGrid"]
+[node name="ButtonConfirm" type="TextureButton" parent="ToolIcon/ItemGrid" unique_id=1242069505]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -83,7 +83,7 @@ texture_normal = ExtResource("4_vsd63")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="ToolIcon"]
+[node name="ProgressBar" type="ProgressBar" parent="ToolIcon" unique_id=1921483205]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -100,14 +100,14 @@ mouse_filter = 2
 step = 0.001
 show_percentage = false
 
-[node name="CauldronArea" type="Area2D" parent="." groups=["droppable"]]
+[node name="CauldronArea" type="Area2D" parent="." unique_id=782251595 groups=["droppable"]]
 collision_layer = 4
 collision_mask = 4
 monitoring = false
 priority = 1
 script = ExtResource("2_os1jy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CauldronArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CauldronArea" unique_id=168033538]
 shape = SubResource("RectangleShape2D_0nbwu")
 debug_color = Color(0.51558965, 0.4210301, 1, 0.41960785)
 
