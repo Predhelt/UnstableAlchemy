@@ -7,7 +7,7 @@
 size = Vector2(52, 52)
 
 [node name="PressurePlate" type="Node2D" unique_id=202554750]
-z_index = -10
+z_index = -9
 script = ExtResource("1_x57id")
 trigger_weight = 1.0
 texture = ExtResource("2_lt068")
