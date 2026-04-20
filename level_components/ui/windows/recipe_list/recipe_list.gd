@@ -6,12 +6,14 @@ extends UIWindow
 #@export var known_recipes : Array[Recipe]
 ## The currently referenced character.
 #@onready var character : Character = Global.focused_node
-## List of product IDs in the recipe list.
+## List of product [member Item.id]s in the recipe list.
 ## Prevents the same item appearing multiple times in the recipe list.
 ## The index of IDs coincide with the indices of items in the recipe list.
 var product_ids : Array[int]
 ## Tracks if a recipe page is open or not for state checks.
 var cur_recipe_item : Item
+## Tracks recent recipe pages to keep track of what to go back to.
+var recent_recipe_items : Array[Item]
 ## Icon(Node)s to be preloaded for use in display
 var recipe_item_icon : PackedScene = preload("./recipe_item_icon.tscn")
 var recipe_tool_icon : PackedScene = preload("./recipe_tool_icon.tscn")
@@ -80,6 +82,7 @@ func open_window() -> bool:
 		%RecipeItems.visible = true
 	
 		%ButtonBack.visible = false
+		%ButtonList.visible = false
 		Global.right_window = self
 		visible = true
 		return true
@@ -108,6 +111,7 @@ func open_recipe_page(item : Item):
 	%RecipeItems.visible = false
 	%WindowName.text = "Item Details"
 	%ButtonBack.visible = true
+	%ButtonList.visible = true
 	%ProductDetails.visible = true
 	cur_recipe_item = item
 
@@ -349,6 +353,7 @@ func _link_ingredient_button_to_item(button : Button, item : Item) -> bool:
 
 ## When an ingredient button in a recipe page is pressed, opens that ingredient's recipe page.
 func _on_ingredient_button_pressed(item : Item):
+	recent_recipe_items.append(cur_recipe_item)
 	cur_recipe_item = item
 	refresh_recipe_page()
 
@@ -362,9 +367,20 @@ func _on_recipe_items_item_clicked(index: int, _at_position: Vector2, _mouse_but
 
 ## Close the window.
 func _on_button_close_pressed() -> void:
+	recent_recipe_items.clear()
 	close_window()
 
 ## Close the current window an reopen the default list of recipes.
 func _on_button_back_pressed() -> void:
+	if recent_recipe_items:
+		cur_recipe_item = recent_recipe_items.pop_back()
+		refresh_recipe_page()
+	else:
+		close_window()
+		open_window()
+
+## Open the product item page
+func _on_button_list_pressed() -> void:
+	recent_recipe_items.clear()
 	close_window()
 	open_window()
