@@ -30,9 +30,11 @@ func set_ui() -> void:
 		InputMap.action_get_events("change_tool")[0].as_text().replace(' - Physical',''))
 	if not has_blade and not has_dropper:
 		$CurrentTool/HotkeyLabel.visible = false
+		$CurrentTool/ChangeLabel.visible = false
 		$CurrentTool.disabled = true
 	else:
 		$CurrentTool/HotkeyLabel.visible = true
+		$CurrentTool/ChangeLabel.visible = true
 		$CurrentTool.disabled = false
 	
 func _input(event: InputEvent) -> void:
@@ -64,9 +66,11 @@ func set_blade_enabled(is_enabled : bool) -> void:
 	has_blade = is_enabled
 	if is_enabled:
 		$CurrentTool/HotkeyLabel.visible = true
+		$CurrentTool/ChangeLabel.visible = true
 		$CurrentTool.disabled = false
 	elif not has_dropper:
 			$CurrentTool/HotkeyLabel.visible = false
+			$CurrentTool/ChangeLabel.visible = false
 			$CurrentTool.disabled = true
 
 ## Toggle visibility of dropper tool slot
@@ -74,10 +78,12 @@ func set_dropper_enabled(is_enabled : bool) -> void:
 	has_dropper = is_enabled
 	if is_enabled:
 		$CurrentTool/HotkeyLabel.visible = true
+		$CurrentTool/ChangeLabel.visible = true
 		$CurrentTool.disabled = false
 	elif not has_blade: # If both tools are not enabled, hide hotkey.
-			$CurrentTool/HotkeyLabel.visible = false
-			$CurrentTool.disabled = true
+		$CurrentTool/HotkeyLabel.visible = false
+		$CurrentTool/ChangeLabel.visible = false
+		$CurrentTool.disabled = true
 
 func set_tool_to_hand() -> void:
 	if selected_tool == "hand":

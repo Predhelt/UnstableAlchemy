@@ -10,3 +10,5 @@ signal ingredient_pressed(i : Item)
 func _on_pressed() -> void:
 	if item:
 		ingredient_pressed.emit(item)
+	else:
+		ingredient_pressed.emit()

@@ -140,6 +140,7 @@ func load_game() -> void:
 		current_level_path = node_data["current_level_path"]
 		var level_node : Node2D = load(current_level_path).instantiate()
 		get_tree().change_scene_to_node(level_node)
+
 		# Wait for the scene to load before continuing.
 		await level_node.ready
 	else:

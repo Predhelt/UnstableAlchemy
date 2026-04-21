@@ -137,10 +137,10 @@ grab_interaction = SubResource("Resource_f1ifg")
 cut_interaction = SubResource("Resource_661ml")
 
 [node name="YellowFlowers" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=687975100 instance=ExtResource("10_yqpoj")]
-position = Vector2(576, 197)
+position = Vector2(508, 195)
 
 [node name="YellowFlowers2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=1833314766 instance=ExtResource("10_yqpoj")]
-position = Vector2(567, 559)
+position = Vector2(499, 557)
 
 [node name="YellowFlowers3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=222681833 instance=ExtResource("10_yqpoj")]
 position = Vector2(736, 413.99997)

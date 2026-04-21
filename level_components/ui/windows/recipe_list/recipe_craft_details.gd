@@ -13,3 +13,6 @@ func set_craft_count(count : int) -> void:
 
 func set_quick_craft_enabled(is_enabled : bool = true):
 	$ButtonQuickCraft.disabled = not is_enabled
+
+func set_quick_craft_tooltip(txt : String):
+	$ButtonQuickCraft.tooltip_text = txt

@@ -2,41 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bhh1u13go071l" path="res://level_components/ui/windows/recipe_list/recipe_craft_details.gd" id="1_bylt6"]
 
-[node name="RecipeCraftDetails" type="Control" unique_id=1916379221]
+[node name="RecipeCraftDetails" type="MarginContainer" unique_id=997908972]
 custom_minimum_size = Vector2(0, 30)
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -850.0
-offset_bottom = -610.0
+offset_bottom = -673.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
 script = ExtResource("1_bylt6")
 
-[node name="ButtonQuickCraft" type="Button" parent="." unique_id=1202431307]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -15.5
-offset_bottom = 15.5
-grow_horizontal = 0
-grow_vertical = 2
-text = "Quick Craft"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1475641612]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 214.0
-offset_bottom = 11.5
-grow_vertical = 2
+layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=1942583427]
 layout_mode = 2
@@ -45,5 +25,12 @@ text = "Successful manual crafts: "
 [node name="LabelCraftCount" type="Label" parent="HBoxContainer" unique_id=388523014]
 layout_mode = 2
 text = "0"
+
+[node name="ButtonQuickCraft" type="Button" parent="." unique_id=1202431307]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Quick Craft"
 
 [connection signal="pressed" from="ButtonQuickCraft" to="." method="_on_button_quick_craft_pressed"]

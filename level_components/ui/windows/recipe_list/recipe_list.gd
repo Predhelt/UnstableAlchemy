@@ -26,6 +26,8 @@ var procedure_icon_bellows := preload("res://art/pack/ui/minigame/bellows.png")
 var recipe_craft_details := preload("./recipe_craft_details.tscn")
 ## Effect for when quick crafting is successful.
 var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_ui.tscn")
+## Effect for adding brief text notification in window.
+var text_effect : PackedScene = preload("res://art/effects/text_effect_ui.tscn")
 
 
 func _ready() -> void:
@@ -164,7 +166,7 @@ func add_procedure(recipe: Recipe):
 			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy_mortar_pestle.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Mortar and Pestle"
 		&"Merger":
-			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy_abstract_container-half_full.png")
+			tool_icon.texture = load("res://art/pack/alchemy/tools/alchemy_merger.png")
 			tool_icon.tooltip_text = "Ingredients are added to the Merger"
 		&"hand": pass
 		&"blade": pass
@@ -217,11 +219,23 @@ func add_procedure(recipe: Recipe):
 	else:
 		cur_cd.set_craft_count(0)
 	
-	if (_has_craft_items(recipe) and has_craft_recipe and 
-			UserVariables.crafted_recipes[recipe.id] > 0):
-		cur_cd.set_quick_craft_enabled(true)
+	if has_craft_recipe:
+		if UserVariables.crafted_recipes[recipe.id] > 0:
+			if _has_craft_items(recipe):
+				cur_cd.set_quick_craft_enabled(true)
+				cur_cd.set_quick_craft_tooltip("Click to auto-craft the using this procedure.")
+			else:
+				cur_cd.set_quick_craft_enabled(false)
+				cur_cd.set_quick_craft_tooltip("Missing ingredients!")
+				#TODO: Add tooltip text on quick craft for which ingredients are missing
+		else:
+			cur_cd.set_quick_craft_enabled(false)
+			cur_cd.set_quick_craft_tooltip("You need to craft this manually first.")
 	else:
 		cur_cd.set_quick_craft_enabled(false)
+		cur_cd.set_quick_craft_tooltip("You need to craft this manually first.")
+		
+		
 	
 	cur_craft_info_container.add_child(cur_cd)
 	
@@ -248,16 +262,19 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 				0: 
 					pia_icon.icon = procedure_icon_crush
 					pia_icon.tooltip_text = "Crush: up, down, up, down"
+					pia_icon.disabled = true
 				1: 
 					pia_icon.icon = procedure_icon_grind
 					pia_icon.tooltip_text = "Grind: left, right, left, right"
+					pia_icon.disabled = true
 		else:
 			var cur_ia = recipe.procedure.input_actions[i]
 			if cur_ia.type == "equipment":
 				match cur_ia.id:
 					2:
 						pia_icon.icon = procedure_icon_bellows
-						pia_icon.tooltip_text = "Bellows"
+						pia_icon.tooltip_text = "Equipment: Bellows"
+						pia_icon.disabled = true
 			elif cur_ia.type == "item":
 				for ingredient in recipe.ingredients:
 					if cur_ia.id == ingredient.id:
@@ -349,7 +366,15 @@ func _link_ingredient_button_to_item(button : Button, item : Item) -> bool:
 			button.connect("ingredient_pressed", _on_ingredient_button_pressed)
 			button.item = item
 			return true
+	button.connect("ingredient_pressed", _emit_no_recipe_known)
 	return false
+
+## Emits notification that the ingredient has no known recipes
+func _emit_no_recipe_known() -> void:
+	var effect_instance = text_effect.instantiate()
+	effect_instance.set_text("No known recipes!")
+	effect_instance.scale = Vector2(1.5, 1.5)
+	add_child(effect_instance)
 
 ## When an ingredient button in a recipe page is pressed, opens that ingredient's recipe page.
 func _on_ingredient_button_pressed(item : Item):

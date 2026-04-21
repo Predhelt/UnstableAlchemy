@@ -5,7 +5,9 @@
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_d4vx4"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://level_components/ui/windows/inventory/inventory_menu.tscn" id="5_topfp"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://level_components/ui/windows/recipe_list/recipe_list.tscn" id="6_s1xy4"]
+[ext_resource type="Script" uid="uid://wlxr2nih62dw" path="res://level_components/ui/hud/label_level_name.gd" id="7_ak53w"]
 [ext_resource type="PackedScene" uid="uid://devoaotbjwrvh" path="res://level_components/ui/windows/log_book/log_book.tscn" id="7_wgl5k"]
+[ext_resource type="Script" uid="uid://dp30swcvgn1rg" path="res://level_components/ui/hud/label_reset_tip.gd" id="8_j83el"]
 [ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://level_components/ui/windows/npc_shop/npc_shop.tscn" id="8_rphg0"]
 [ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://level_components/ui/windows/npc_dialogue/npc_dialogue.tscn" id="9_lnbc2"]
 [ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldron_minigame.tscn" id="10_dqvj8"]
@@ -18,48 +20,6 @@
 
 [node name="UILayer" type="CanvasLayer" unique_id=1075659928]
 layer = 10
-
-[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=630284612]
-layer = 3
-
-[node name="CenterWindows" type="CanvasLayer" parent="MenuLayer" unique_id=429015078]
-layer = 10
-
-[node name="SettingsMenu" parent="MenuLayer/CenterWindows" unique_id=1369104757 instance=ExtResource("1_ak53w")]
-auto_translate_mode = 1
-visible = false
-
-[node name="OptionsMenu" parent="MenuLayer/CenterWindows" unique_id=1940597338 instance=ExtResource("2_j83el")]
-visible = false
-theme = ExtResource("3_d4vx4")
-
-[node name="LogBookMenu" parent="MenuLayer/CenterWindows" unique_id=357727730 instance=ExtResource("7_wgl5k")]
-visible = false
-
-[node name="LeftWindows" type="CanvasLayer" parent="MenuLayer" unique_id=51387662]
-
-[node name="InventoryMenu" parent="MenuLayer/LeftWindows" unique_id=361018792 instance=ExtResource("5_topfp")]
-visible = false
-
-[node name="RightWindows" type="CanvasLayer" parent="MenuLayer" unique_id=1706024564]
-
-[node name="RecipeList" parent="MenuLayer/RightWindows" unique_id=1372707415 instance=ExtResource("6_s1xy4")]
-visible = false
-
-[node name="NPCShop" parent="MenuLayer/RightWindows" unique_id=936594423 instance=ExtResource("8_rphg0")]
-visible = false
-
-[node name="NPCDialogue" parent="MenuLayer/RightWindows" unique_id=512445346 instance=ExtResource("9_lnbc2")]
-visible = false
-
-[node name="MinigameLayer" type="CanvasLayer" parent="." unique_id=452185499]
-layer = 2
-
-[node name="MinigameCauldron" parent="MinigameLayer" unique_id=1792468621 instance=ExtResource("10_dqvj8")]
-visible = false
-
-[node name="MinigameMP" parent="MinigameLayer" unique_id=542892921 instance=ExtResource("11_43y5x")]
-visible = false
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=116782846]
 
@@ -108,6 +68,79 @@ grow_vertical = 2
 text = "Press \"X\" to
 end possession"
 horizontal_alignment = 1
+
+[node name="LabelLevelName" type="Label" parent="HUDLayer" unique_id=2145339529]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -30.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_d4vx4")
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+text = "level name"
+script = ExtResource("7_ak53w")
+
+[node name="LabelResetTip" type="Label" parent="HUDLayer" unique_id=1224796785]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -23.0
+offset_right = 40.0
+offset_bottom = -24.0
+grow_vertical = 0
+theme = ExtResource("3_d4vx4")
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+text = "Press \"Y\" to reset"
+script = ExtResource("8_j83el")
+
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=630284612]
+layer = 3
+
+[node name="CenterWindows" type="CanvasLayer" parent="MenuLayer" unique_id=429015078]
+layer = 10
+
+[node name="SettingsMenu" parent="MenuLayer/CenterWindows" unique_id=1369104757 instance=ExtResource("1_ak53w")]
+auto_translate_mode = 1
+visible = false
+
+[node name="OptionsMenu" parent="MenuLayer/CenterWindows" unique_id=1940597338 instance=ExtResource("2_j83el")]
+visible = false
+theme = ExtResource("3_d4vx4")
+
+[node name="LogBookMenu" parent="MenuLayer/CenterWindows" unique_id=357727730 instance=ExtResource("7_wgl5k")]
+visible = false
+
+[node name="LeftWindows" type="CanvasLayer" parent="MenuLayer" unique_id=51387662]
+
+[node name="InventoryMenu" parent="MenuLayer/LeftWindows" unique_id=361018792 instance=ExtResource("5_topfp")]
+visible = false
+
+[node name="RightWindows" type="CanvasLayer" parent="MenuLayer" unique_id=1706024564]
+
+[node name="RecipeList" parent="MenuLayer/RightWindows" unique_id=1372707415 instance=ExtResource("6_s1xy4")]
+visible = false
+
+[node name="NPCShop" parent="MenuLayer/RightWindows" unique_id=936594423 instance=ExtResource("8_rphg0")]
+visible = false
+
+[node name="NPCDialogue" parent="MenuLayer/RightWindows" unique_id=512445346 instance=ExtResource("9_lnbc2")]
+visible = false
+
+[node name="MinigameLayer" type="CanvasLayer" parent="." unique_id=452185499]
+layer = 2
+
+[node name="MinigameCauldron" parent="MinigameLayer" unique_id=1792468621 instance=ExtResource("10_dqvj8")]
+visible = false
+
+[node name="MinigameMP" parent="MinigameLayer" unique_id=542892921 instance=ExtResource("11_43y5x")]
+visible = false
 
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="use_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_use_inventory_item"]

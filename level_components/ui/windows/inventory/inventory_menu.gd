@@ -282,6 +282,7 @@ func _on_hotbar_add_inventory_item(item: Item) -> void:
 	Global.focused_node.inventory.add_item(item)
 
 ## Uses the item on the hotbar and removes it from the inventory.
+## @deprecated
 func use_hotbar_item(item : Item):
 	use_item(item, Global.focused_node.inventory.get_item_index(item))
 	#var has_more_items := false
@@ -325,6 +326,8 @@ func _on_hotbar_use_inventory_item(item: Item) -> void:
 
 ## Triggers when the item in the dropper item is set, and the currently active tool.
 func _on_tool_wheel_set_dropper_item() -> void:
+	if visible:
+		close_window()
 	Global.mode = "dropper"
 	open_window()
 

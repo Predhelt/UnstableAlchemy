@@ -10,7 +10,7 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 ## Adds the given [param item] to this container with the given [param count].
-## Default count is -1.
+## Default count is -1, which does not show the count.
 func add_item(item : Item, count : int = -1):
 	var new_item_container = item_container.instantiate()
 	new_item_container.icon = item.texture
