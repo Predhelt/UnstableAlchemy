@@ -22,9 +22,15 @@ func _ready() -> void:
 	$CurrentTool/HotkeyLabel.text = (
 		InputMap.action_get_events("tool_wheel")[0].as_text().replace(' - Physical',''))
 	_close_tool_selection()
+	set_ui()
+
+func set_ui() -> void:
 	if not has_blade and not has_dropper:
 		$CurrentTool/HotkeyLabel.visible = false
 		$CurrentTool.disabled = true
+	else:
+		$CurrentTool/HotkeyLabel.visible = true
+		$CurrentTool.disabled = false
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

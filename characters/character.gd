@@ -169,6 +169,17 @@ func _ready() -> void:
 	# Set possession references, if any
 	_deferred_set_possession_vars.call_deferred()
 
+## Sets the UI of the tool wheel in relation to this character's tool's statuses.
+func set_tool_wheel_ui() -> bool:
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	if not tool_wheel_ref:
+		return false
+	tool_wheel_ref.set_blade_enabled(has_blade)
+	tool_wheel_ref.set_dropper_enabled(has_dropper)
+	tool_wheel_ref.set_ui()
+	return true
+	
+
 ## Set possession references, if any. Gets deferred so that all [Character]s
 ## have a chance to be added to the scene.
 func _deferred_set_possession_vars():

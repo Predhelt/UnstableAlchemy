@@ -39,9 +39,11 @@ func _input(event: InputEvent) -> void:
 			right_window.close_window()
 		elif left_window:
 			left_window.close_window()
+	if event.is_action_pressed("reset_level"):
+		reset_level()
 
 ## Changes the root node of the scene. Used for changing levels.
-func change_scene(scene_path : String):
+func change_scene(scene_path : String) -> void:
 	if scene_path == "":
 		return
 	_deferred_change_scene.call_deferred(scene_path)
@@ -51,6 +53,10 @@ func change_scene(scene_path : String):
 ## Defer to pevent errors when signal is called during physics process.
 func _deferred_change_scene(path : String):
 	get_tree().change_scene_to_file(path)
+
+## Resets the current level
+func reset_level() -> void:
+	change_scene(current_level_path)
 
 ## Displays notification in current scene with given [param message].
 func emit_notification(message : String):
@@ -177,8 +183,17 @@ func load_game() -> void:
 		var new_object : Node2D = load(node_data["filename"]).instantiate()
 		new_object.name = node_data["name"]
 		
+		var has_blade : bool = node_data["has_blade"]
+		if has_blade:
+			new_object.set("has_blade", has_blade)
+		var has_dropper : bool = node_data["has_dropper"]
+		if has_dropper:
+			new_object.set("has_dropper", has_dropper)
+		
 		if node_data["is_camera_focused"]: # Important to set early for UI
 			new_object.set("is_camera_focused", node_data["is_camera_focused"])
+			#if has_blade or has_dropper:
+				#new_object.set_tool_wheel_ui()
 		
 		# Add status effects before connecting to parent, if status effects exist.
 		var field : String = "active_status_effects_path"
@@ -217,10 +232,11 @@ func load_game() -> void:
 				new_object.character_camera_ref = cam
 				new_object.set_camera()
 				cam.reset_smoothing()
+				new_object.set_tool_wheel_ui()
 				continue
 			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y"
 					or i == "active_status_effects_path" or i == "inventory_path"
-					or i == "attributes_path"):
+					or i == "attributes_path" or i == "has_blade" or i == "has_dropper"):
 				continue # Variables that were already set can be skipped.
 			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "npc_name" and i != "interaction_type"):
 				new_object.set(i, str_to_var(node_data[i]))
