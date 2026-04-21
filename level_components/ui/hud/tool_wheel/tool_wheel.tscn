@@ -25,15 +25,15 @@ layout_mode = 0
 offset_left = 52.000046
 offset_right = 72.000046
 offset_bottom = 23.0
+theme_override_constants/outline_size = 5
+text = "T"
 
 [node name="AddItemButton" type="Button" parent="CurrentTool" unique_id=440950340]
-visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
-theme_override_font_sizes/font_size = 24
-text = "+"
+text = "Add"
 
 [node name="ItemLabel" type="Label" parent="CurrentTool" unique_id=958133504]
 layout_mode = 1
@@ -49,6 +49,15 @@ grow_horizontal = 2
 grow_vertical = 0
 horizontal_alignment = 1
 text_overrun_behavior = 3
+
+[node name="ChangeLabel" type="Label" parent="CurrentTool" unique_id=866701520]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 21.0
+offset_right = 70.0
+offset_bottom = 44.0
+theme_override_constants/outline_size = 5
+text = "<G>"
 
 [node name="Slot1" type="Button" parent="." unique_id=586437243]
 custom_minimum_size = Vector2(64, 64)
