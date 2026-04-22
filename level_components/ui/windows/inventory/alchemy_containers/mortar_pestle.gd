@@ -26,7 +26,8 @@ func add_item(item: Item) -> bool:
 		print("WARNING: Please wait for " + tool_name + " to finish")
 		return false
 	if num_items >= 1:
-		print(tool_name + " already full!")
+		#print(tool_name + " already full!")
+		inventory_menu_ref.add_inventory_item(item)
 		return false
 
 	if not items[0]:

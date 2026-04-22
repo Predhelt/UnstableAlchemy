@@ -100,9 +100,6 @@ func _process(delta: float) -> void:
 			use_timer -= delta
 			progress_bar.value += delta
 		else:
-			#print(str(product.qty) + " of item " + product.display_name + 
-				#" added to inventory from successful use of " + tool_name)
-			
 			var effect_instance = items_gained_effect.instantiate()
 			
 			effect_instance.add_item(product)
@@ -121,7 +118,8 @@ func add_item(item: Item) -> bool:
 		print("WARNING: Please wait for " + tool_name + " to finish")
 		return false
 	if num_items >= MAX_ITEMS:
-		print(tool_name + " already full!")
+		#print(tool_name + " already full!")
+		inventory_menu_ref.add_inventory_item(item)
 		return false
 
 	for i in MAX_ITEMS:

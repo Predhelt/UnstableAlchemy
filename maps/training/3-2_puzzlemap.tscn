@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b4wv85xwr47cg"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_2n5ag"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_ka0c2"]
 [ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="2_uf06l"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="3_86unq"]
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="3_ulfbs"]
@@ -25,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper_full.png" id="19_yuekm"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="20_ppl63"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="21_0648e"]
+
+[sub_resource type="Resource" id="Resource_y4h61"]
+script = ExtResource("2_ka0c2")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_qwmfv"]
 script = ExtResource("5_ka0c2")
@@ -54,6 +59,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
 position = Vector2(489, 449)
+attributes = SubResource("Resource_y4h61")
 inventory = SubResource("Resource_qwmfv")
 
 [node name="NPCShelly" parent="." index="4" unique_id=1948548714 instance=ExtResource("2_uf06l")]
@@ -69,10 +75,6 @@ tile_map_data = PackedByteArray()
 
 [node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
 tile_map_data = PackedByteArray("AAAMAAMAAgAFAAAAAAAFAAUAAAAEAAMAAAAFAAYAAAADAAEAAAAFAAcAAAADAAEAAAAFAAgAAAADAAIAAAANAAUAAAAEAAAAAAANAAgAAgADAAAAAAADAAIAAAADAAAAAAADAAMAAAAFAAEAAAADAAQAAAAFAAEAAAADAAUAAAADAAIAAAAEAAIAAAAEAAAAAAAEAAUAAAAEAAIAAAAFAP3/AAADAAAAAAAFAP7/AAADAAEAAAAFAP//AAADAAEAAAAFAAAAAAADAAIAAAAFAAIAAAAEAAAAAAAGAPz/AAADAAAAAAAGAP3/AAAFAAIAAAAGAAAAAAAEAAAAAAAGAAIAAAAEAAIAAAAGAAUAAAAEAAAAAAAGAAgAAAAEAAAAAAAHAPz/AAAEAAAAAAAHAAAAAAAEAAAAAAAHAAIAAAAEAAIAAAAHAAUAAAAHAAIAAAAHAAgAAAAEAAAAAAAIAPz/AAAEAAAAAAAIAAAAAAAFAAAAAAAIAAEAAAADAAEAAAAIAAIAAAADAAMAAAAIAAgAAAAEAAAAAAAJAPz/AAAEAAIAAAAJAAgAAAAEAAAAAAAKAPz/AAAEAAAAAAAKAAAAAAADAAAAAAAKAAEAAAADAAEAAAAKAAIAAAAFAAIAAAAKAAUAAAAGAAIAAAAKAAgAAAAEAAAAAAALAPz/AAAEAAAAAAALAAAAAAAEAAAAAAALAAUAAAAEAAAAAAALAAgAAAAEAAAAAAAMAPz/AAAFAAAAAAAMAP3/AAADAAIAAAAMAAAAAAAEAAAAAAAMAAUAAAAEAAMAAAAMAAYAAAAFAAEAAAAMAAcAAAADAAEAAAAMAAgAAAAFAAIAAAANAP3/AAAFAAAAAAANAP7/AAAFAAEAAAANAP//AAAFAAEAAAANAAAAAAADAAMAAAAOAAAAAAAEAAIAAAAOAAUAAAAEAAIAAAAPAAAAAAAEAAAAAAAPAAUAAAAEAAIAAAAQAAAAAAAEAAIAAAAQAAUAAAAEAAIAAAARAAAAAAAFAAAAAAARAAEAAAAFAAEAAAARAAIAAAAFAAEAAAARAAMAAAADAAEAAAARAAQAAAADAAEAAAARAAUAAAAFAAIAAAD3//v/AgAEAAAAAAD3//7/AgAEAAAAAAD3////AgAHAAAAAAD4/wMAAgABAAAAAAD4/wQAAgADAAAAAAD4/wsAAgAEAAAAAAD4/w4AAgACAAAAAAD5/wEAAgADAAAAAAD5/wMAAgADAAAAAAD5/wQAAgAEAAAAAAD6//f/AgADAAAAAAD6//j/AgABAAAAAAD6/wMAAgAHAAAAAAD6/wQAAgAEAAAAAAD6/wkAAgAFAAAAAAD6/woAAgAFAAAAAAD7/wAAAgAFAAAAAAD7/wkAAgACAAAAAAD7/woAAgAEAAAAAAD7/w4AAgAEAAAAAAD7/xAAAgABAAAAAAD8//7/AgAGAAAAAAD8/wsAAgAGAAAAAAD8/w0AAgADAAAAAAD9/w4AAgAEAAAAAAD+//j/AgAEAAAAAAD+/wIAAgAEAAAAAAD///b/AgAHAAAAAAD///f/AgAGAAAAAAD/////AgACAAAAAAD//wcAAgAGAAAAAAD//wwAAgAFAAAAAAAAAAAAAgACAAAAAAAAAAgAAgAEAAAAAAAAAAoAAgAGAAAAAAAAAAsAAgAHAAAAAAABAPf/AgACAAAAAAABAPr/AgAFAAAAAAABAAQAAgABAAAAAAABAAYAAgACAAAAAAABAAoAAgAHAAAAAAABAAsAAgAHAAAAAAABABAAAgAHAAAAAAACAAQAAgADAAAAAAADAPb/AgAGAAAAAAADAP3/AgAEAAAAAAADAA0AAgABAAAAAAADABAAAgACAAAAAAAEAAMAAgAEAAAAAAAEAAoAAgADAAAAAAAFAPf/AgAHAAAAAAAFAPr/AgABAAAAAAAFAA4AAgACAAAAAAAFABAAAgACAAAAAAAGAAoAAgAGAAAAAAAHAAQAAgACAAAAAAAIAPr/AgAHAAAAAAAIAAQAAgAFAAAAAAAJAPj/AgACAAAAAAAJAAsAAgADAAAAAAAKAP7/AgABAAAAAAAKAAQAAgADAAAAAAAKAAYAAgAFAAAAAAALAPj/AgADAAAAAAALAP3/AQACAAAAAAALAAEAAgAGAAAAAAAMAAQAAgAGAAAAAAANAPb/AgACAAAAAAANAA8AAgAHAAAAAAAOAP3/AgAFAAAAAAAOAAkAAgAEAAAAAAAOABAAAgACAAAAAAAQAPv/AgAEAAAAAAAQAAQAAQACAAAAAAAQAAsAAgABAAAAAAAQAA0AAgADAAAAAAARAPn/AgAHAAAAAAARAP3/AgACAAAAAAASAPn/AgAHAAAAAAASAAMAAgAEAAAAAAASAAYAAgAGAAAAAAASAAkAAgAHAAAAAAASAAsAAgAGAAAAAAATAPr/AgACAAAAAAAUAPz/AgACAAAAAAAUAAEAAgAFAAAAAAAUAAQAAgAGAAAAAAAVAAQAAgABAAAAAAAVAA0AAgAGAAAAAAAWAAAAAgAGAAAAAAAWAAwAAgAGAAAAAAAWAA0AAgAEAAAAAAAXAPv/AgABAAAAAAAXAAsAAgABAAAAAAAXAA0AAgAFAAAAAAAXAA4AAgADAAAAAAAYAAAAAgABAAAAAAAYAAUAAgAGAAAAAAAYAAgAAgAEAAAAAAAYAAkAAgAHAAAAAAAYAAwAAgADAAAAAAAYAA0AAgAGAAAAAAAaAAgAAgADAAAAAAAaAA8AAgAFAAAAAAAbAAEAAgAGAAAAAAAbAAcAAgACAAAAAAA=")
-
-[node name="TriggerAreaLevelChange" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="3" unique_id=1639851176 instance=ExtResource("10_6pars")]
-position = Vector2(736, -160)
-level_path = "res://maps/training/3-3_advanced_puzzle.tscn"
 
 [node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1856845390 instance=ExtResource("7_ka0c2")]
 position = Vector2(711, 456)
@@ -109,15 +111,19 @@ position = Vector2(771, 156.99997)
 [node name="RedBerryBush3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="9" unique_id=1827861586 instance=ExtResource("13_i6yha")]
 position = Vector2(1026, 115.99997)
 
-[node name="WallSmallHole" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=1390089359 instance=ExtResource("14_3qjul")]
+[node name="TriggerAreaLevelChange" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=1639851176 instance=ExtResource("10_6pars")]
+position = Vector2(736, -160)
+level_path = "res://maps/training/3-3_advanced_puzzle.tscn"
+
+[node name="WallSmallHole" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=1390089359 instance=ExtResource("14_3qjul")]
 position = Vector2(608, 187)
 gap_size = 50.0
 
-[node name="DisplayArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=1538625706 node_paths=PackedStringArray("display_scene") instance=ExtResource("15_8eo3c")]
+[node name="DisplayArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=1538625706 node_paths=PackedStringArray("display_scene") instance=ExtResource("15_8eo3c")]
 position = Vector2(1056, 288)
 display_scene = NodePath("../CraftHint")
 
-[node name="CraftHint" type="Node2D" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=1248488700]
+[node name="CraftHint" type="Node2D" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=1248488700]
 position = Vector2(1170, 277)
 
 [node name="Label2" type="Label" parent="PuzzleNodes/CraftHint" index="0" unique_id=1073517883]
