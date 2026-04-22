@@ -159,14 +159,14 @@ position = Vector2(608, 58)
 [node name="BlockageArea" parent="PuzzleNodes" unique_id=308727025 instance=ExtResource("21_bd4yg")]
 position = Vector2(607, 32.000004)
 
-[node name="DisplayArea" parent="." unique_id=1332243138 node_paths=PackedStringArray("display_scene") instance=ExtResource("22_ms3ff")]
+[node name="DisplayArea" parent="PuzzleNodes" unique_id=1332243138 node_paths=PackedStringArray("display_scene") instance=ExtResource("22_ms3ff")]
 position = Vector2(928, 608)
 display_scene = NodePath("../CraftHint")
 
-[node name="CraftHint" type="Node2D" parent="." unique_id=1929564048]
+[node name="CraftHint" type="Node2D" parent="PuzzleNodes" unique_id=1929564048]
 position = Vector2(1074, 550)
 
-[node name="Label2" type="Label" parent="CraftHint" unique_id=1190328499]
+[node name="Label2" type="Label" parent="PuzzleNodes/CraftHint" unique_id=1190328499]
 editor_description = "Displaying the recipe hints on the right side of the screen allows them to be visible while the player is attempting to craft."
 offset_left = 107.0
 offset_top = -36.0
@@ -175,41 +175,41 @@ offset_bottom = -13.0
 theme_override_constants/outline_size = 5
 text = "You see something on the wall:"
 
-[node name="TextureRect" type="TextureRect" parent="CraftHint" unique_id=582915281]
+[node name="TextureRect" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=582915281]
 offset_left = 198.0
 offset_top = 137.0
 offset_right = 248.0
 offset_bottom = 187.0
 texture = ExtResource("23_eb05j")
 
-[node name="TextureRect2" type="TextureRect" parent="CraftHint" unique_id=842248826]
+[node name="TextureRect2" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=842248826]
 offset_left = 192.0
 offset_top = 256.0
 offset_right = 256.0
 offset_bottom = 320.0
 texture = ExtResource("24_nvw5r")
 
-[node name="Ground2" type="TileMapLayer" parent="CraftHint" unique_id=2108219750]
+[node name="Ground2" type="TileMapLayer" parent="PuzzleNodes/CraftHint" unique_id=2108219750]
 z_index = -5
 tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAGAAAAAQACAAAAAAAGAAEAAQACAAAAAAAGAAIAAQACAAAAAAAGAAMAAQACAAAAAAAGAAQAAQACAAAAAAAGAAUAAQACAAAAAAAFAAUAAQACAAAAAAAEAAUAAQACAAAAAAADAAUAAQACAAAAAAACAAUAAQACAAAAAAABAAUAAQACAAAAAAAAAAUAAQACAAAAAAAAAAQAAQACAAAAAAAAAAMAAQACAAAAAAAAAAIAAQACAAAAAAAAAAEAAQACAAAAAAABAAEAAQAAAAEAAAABAAIAAQAAAAEAAAACAAIAAQAAAAEAAAADAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAAFAAIAAQAAAAEAAAAFAAEAAQAAAAEAAAADAAEAAQAAAAEAAAABAAQAAQAAAAEAAAACAAQAAQAAAAEAAAADAAQAAQAAAAEAAAAEAAQAAQAAAAEAAAAFAAQAAQAAAAEAAAADAAMAAQABAAAAAAAEAAEAAQABAAAAAAACAAEAAQADAAAAAAABAAMAAQADAAAAAAACAAMAAQADAAAAAAAEAAMAAQADAAAAAAAFAAMAAQADAAAAAAA=")
 tile_set = ExtResource("11_67p0v")
 metadata/_edit_lock_ = true
 
-[node name="TextureRect3" type="TextureRect" parent="CraftHint" unique_id=686157372]
+[node name="TextureRect3" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=686157372]
 offset_left = 128.0
 offset_top = 64.0
 offset_right = 192.0
 offset_bottom = 128.0
 texture = ExtResource("25_4nt87")
 
-[node name="TextureRect4" type="TextureRect" parent="CraftHint" unique_id=566479628]
+[node name="TextureRect4" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=566479628]
 offset_left = 256.0
 offset_top = 64.0
 offset_right = 320.0
 offset_bottom = 128.0
 texture = ExtResource("26_8dxog")
 
-[node name="TextureRect5" type="TextureRect" parent="CraftHint" unique_id=1805181419]
+[node name="TextureRect5" type="TextureRect" parent="PuzzleNodes/CraftHint" unique_id=1805181419]
 offset_left = 192.0
 offset_top = 64.0
 offset_right = 256.0
