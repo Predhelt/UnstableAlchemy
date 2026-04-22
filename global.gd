@@ -60,7 +60,7 @@ func reset_level() -> void:
 
 ## Displays notification in current scene with given [param message].
 func emit_notification(message : String):
-	var new_notification : Panel = Global.notification_effect.instantiate()
+	var new_notification : PanelContainer = Global.notification_effect.instantiate()
 	new_notification.set_text(message)
 	get_tree().current_scene.get_node("UILayer/HUDLayer/Notifications").add_child(new_notification)
 

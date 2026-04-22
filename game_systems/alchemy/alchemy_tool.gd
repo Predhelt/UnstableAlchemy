@@ -198,7 +198,7 @@ func _use_items():
 func _on_button_confirm_pressed() -> void:
 	if Global.mode != &"menu":
 		return
-	if num_items < 0 or num_items >= MAX_ITEMS:
+	if num_items < 0 or num_items > MAX_ITEMS:
 		print("Wrong number of items, button should be disabled")
 		return
 	_use_items()

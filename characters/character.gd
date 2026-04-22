@@ -643,10 +643,9 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 func _cleanse_status_effects() -> bool:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration != -1:
-			remove_status_effect(active_status_effects[i])
 			if active_status_effects[i].id == 200: # Possess
 				end_possession()
-			
+			remove_status_effect(active_status_effects[i])
 	return true
 
 ## Removes all status effects that last indefinitely.

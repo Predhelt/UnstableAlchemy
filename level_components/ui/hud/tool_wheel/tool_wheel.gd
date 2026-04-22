@@ -24,16 +24,16 @@ func _ready() -> void:
 	set_ui()
 
 func set_ui() -> void:
-	$CurrentTool/HotkeyLabel.text = (
-		InputMap.action_get_events("tool_wheel")[0].as_text().replace(' - Physical',''))
+	#$CurrentTool/HotkeyLabel.text = (
+		#InputMap.action_get_events("tool_wheel")[0].as_text().replace(' - Physical',''))
 	$CurrentTool/ChangeLabel.text = ("%s->" %
 		InputMap.action_get_events("change_tool")[0].as_text().replace(' - Physical',''))
 	if not has_blade and not has_dropper:
-		$CurrentTool/HotkeyLabel.visible = false
+		#$CurrentTool/HotkeyLabel.visible = false
 		$CurrentTool/ChangeLabel.visible = false
 		$CurrentTool.disabled = true
 	else:
-		$CurrentTool/HotkeyLabel.visible = true
+		#$CurrentTool/HotkeyLabel.visible = true
 		$CurrentTool/ChangeLabel.visible = true
 		$CurrentTool.disabled = false
 	
@@ -59,17 +59,20 @@ func change_tool() -> void:
 		else:
 			set_tool_to_hand()
 	elif selected_tool == "dropper":
+		dropper_item = null
+		$CurrentTool/AddItemButton.visible = false
+		$CurrentTool/ItemLabel.text = ""
 		set_tool_to_hand() # Next is always hand.
 
 ## Toggle visibility of blade tool slot
 func set_blade_enabled(is_enabled : bool) -> void:
 	has_blade = is_enabled
 	if is_enabled:
-		$CurrentTool/HotkeyLabel.visible = true
+		#$CurrentTool/HotkeyLabel.visible = true
 		$CurrentTool/ChangeLabel.visible = true
 		$CurrentTool.disabled = false
 	elif not has_dropper:
-			$CurrentTool/HotkeyLabel.visible = false
+			#$CurrentTool/HotkeyLabel.visible = false
 			$CurrentTool/ChangeLabel.visible = false
 			$CurrentTool.disabled = true
 
@@ -77,11 +80,11 @@ func set_blade_enabled(is_enabled : bool) -> void:
 func set_dropper_enabled(is_enabled : bool) -> void:
 	has_dropper = is_enabled
 	if is_enabled:
-		$CurrentTool/HotkeyLabel.visible = true
+		#$CurrentTool/HotkeyLabel.visible = true
 		$CurrentTool/ChangeLabel.visible = true
 		$CurrentTool.disabled = false
 	elif not has_blade: # If both tools are not enabled, hide hotkey.
-		$CurrentTool/HotkeyLabel.visible = false
+		#$CurrentTool/HotkeyLabel.visible = false
 		$CurrentTool/ChangeLabel.visible = false
 		$CurrentTool.disabled = true
 

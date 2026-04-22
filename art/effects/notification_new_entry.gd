@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 
 func set_text(message : String) -> void:

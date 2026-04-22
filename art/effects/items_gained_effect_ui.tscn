@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0midbmht7upp"]
 
-[ext_resource type="Script" uid="uid://d2eccbqkferxt" path="res://art/effects/text_effect_ui.gd" id="1_l0ujg"]
+[ext_resource type="Script" uid="uid://bqxyrae74ogh5" path="res://art/effects/items_gained_effect_ui.gd" id="1_56lj1"]
 
 [node name="ItemsGainedEffect" type="Control" unique_id=1523403295]
 z_index = 10
@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_l0ujg")
+script = ExtResource("1_56lj1")
 
 [node name="Timer" type="Timer" parent="." unique_id=716763305]
 autostart = true

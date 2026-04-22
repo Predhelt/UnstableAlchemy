@@ -21,6 +21,7 @@ focus_mode = 0
 icon_alignment = 1
 
 [node name="HotkeyLabel" type="Label" parent="CurrentTool" unique_id=1780934708]
+visible = false
 layout_mode = 0
 offset_left = 52.000046
 offset_right = 72.000046
@@ -31,8 +32,10 @@ text = "T"
 [node name="AddItemButton" type="Button" parent="CurrentTool" unique_id=440950340]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 33.0
+offset_top = 40.0
+offset_right = 72.0
+offset_bottom = 72.0
 text = "Add"
 
 [node name="ItemLabel" type="Label" parent="CurrentTool" unique_id=958133504]
@@ -52,12 +55,11 @@ text_overrun_behavior = 3
 
 [node name="ChangeLabel" type="Label" parent="CurrentTool" unique_id=866701520]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 21.0
-offset_right = 70.0
-offset_bottom = 44.0
+offset_left = 42.0
+offset_right = 72.0
+offset_bottom = 23.0
 theme_override_constants/outline_size = 5
-text = "<G>"
+text = "G->"
 
 [node name="Slot1" type="Button" parent="." unique_id=586437243]
 custom_minimum_size = Vector2(64, 64)

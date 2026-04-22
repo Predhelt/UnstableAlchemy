@@ -16,6 +16,8 @@ var cur_trigger_nodes : Array[Node2D]
 @export var close_time : float 
 ## Tracks the direction that the door opens.
 @export_enum("Left", "Right", "Up", "Down") var open_direction := "Right"
+## Notification message for when the door is opened. If left blank, no notification.
+@export var open_notification : String = ""
 ## 0 = not moving, 1 = opening, 2 = closing.
 var is_moving := 0 
 ## The position of the door when it is closed
@@ -111,5 +113,7 @@ func open_door(node : Node2D):
 		cur_trigger_nodes.append(node)
 	if cur_trigger_nodes.size() >= triggers_required:
 		has_open_call = true
-		if is_open == false or is_moving == 2:
+		if is_moving != 1 and (is_open == false or is_moving == 2 or (is_open == false and is_moving == 0)):
 			is_moving = 1
+			if open_notification != "":
+				Global.emit_notification(open_notification)
