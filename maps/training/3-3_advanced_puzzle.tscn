@@ -133,17 +133,21 @@ position = Vector2(604, 419)
 [node name="Tess" parent="." index="4" unique_id=1948548714 instance=ExtResource("5_bupt0")]
 position = Vector2(330, 347)
 attributes = SubResource("Resource_mfhge")
+has_blade = true
+is_possessable = true
 inventory = SubResource("Resource_qpemt")
 
 [node name="Cam" parent="." index="5" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(652, 555)
 transactions = Array[ExtResource("8_ol6vo")]([ExtResource("9_d432r"), SubResource("Resource_i678b")])
 attributes = SubResource("Resource_nb123")
+is_possessable = true
 inventory = SubResource("Resource_3fmyq")
 
 [node name="Lex" parent="." index="6" unique_id=75307123 instance=ExtResource("7_ix5gr")]
 position = Vector2(659, 219)
 attributes = SubResource("Resource_1dms2")
+is_possessable = true
 inventory = SubResource("Resource_3nfjk")
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
