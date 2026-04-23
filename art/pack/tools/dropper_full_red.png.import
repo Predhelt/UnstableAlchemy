@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0fl1olygkaqb"
-path="res://.godot/imported/object-pressure-plate_dark_blue.png-fd7d2b666517c3b4539112e25697e7da.ctex"
+uid="uid://cava2u0ef1h38"
+path="res://.godot/imported/dropper_full_red.png-05df62fa3f32146bdc8f3fc3a64d670a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pack/objects/object-pressure-plate_dark_blue.png"
-dest_files=["res://.godot/imported/object-pressure-plate_dark_blue.png-fd7d2b666517c3b4539112e25697e7da.ctex"]
+source_file="res://art/pack/tools/dropper_full_red.png"
+dest_files=["res://.godot/imported/dropper_full_red.png-05df62fa3f32146bdc8f3fc3a64d670a.ctex"]
 
 [params]
 

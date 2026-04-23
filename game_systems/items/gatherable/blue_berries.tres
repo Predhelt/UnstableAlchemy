@@ -11,6 +11,7 @@ id = 4
 display_name = "Blue Berries"
 description = "Berries from a blue berry bush. The inside is red."
 texture = ExtResource("3_q5ci8")
+primary_color = "blue"
 max_qty = 32
 qty = 6
 on_consume_effects = Array[ExtResource("1_i3888")]([ExtResource("2_uxkh5")])

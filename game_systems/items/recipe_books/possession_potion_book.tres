@@ -15,4 +15,5 @@ id = 1007
 display_name = "Possession Potion Recipe"
 description = "Describes the process for creating a possession potion."
 texture = ExtResource("7_24n18")
+primary_color = "brown"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

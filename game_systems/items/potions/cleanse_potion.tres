@@ -12,5 +12,6 @@ id = 501
 display_name = "Cleanse Potion"
 description = "A gray potion that cleanses all temporary status effects when consumed."
 texture = ExtResource("4_plpov")
+primary_color = "cyan"
 on_consume_effects = Array[ExtResource("1_plpov")]([ExtResource("2_dh2in")])
 on_consume_message = "That cleared me up"

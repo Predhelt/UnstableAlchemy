@@ -13,6 +13,7 @@ id = 1002
 display_name = "About Red Berry Seeds"
 description = "Description and crafting recipe for red berry seeds."
 texture = ExtResource("5_64srn")
+primary_color = "brown"
 max_qty = 1
 on_consume_message = "That was interesting"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpbw8kji5b20j"
-path="res://.godot/imported/object-pressure-plate_black.png-15d7191f482a6ea148d94fab76daddb3.ctex"
+uid="uid://bo3l8sjhip6tg"
+path="res://.godot/imported/slide_door_red.png-e2ef1adc271ca8597a8a0af50dc8240a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pack/objects/object-pressure-plate_black.png"
-dest_files=["res://.godot/imported/object-pressure-plate_black.png-15d7191f482a6ea148d94fab76daddb3.ctex"]
+source_file="res://art/pack/objects/doors/slide_door_red.png"
+dest_files=["res://.godot/imported/slide_door_red.png-e2ef1adc271ca8597a8a0af50dc8240a.ctex"]
 
 [params]
 

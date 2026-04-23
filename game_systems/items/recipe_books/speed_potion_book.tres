@@ -16,4 +16,5 @@ id = 1006
 display_name = "Recipe: Speed Potion"
 description = "Describes the process of crafting a speed potion."
 texture = ExtResource("8_mn6kc")
+primary_color = "brown"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

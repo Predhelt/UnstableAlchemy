@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://vet5yvxugey6" path="res://art/pack/objects/boulder.png" id="33_gd8cp"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="34_ry02e"]
 [ext_resource type="Texture2D" uid="uid://byrdwsf0sld3f" path="res://art/pack/objects/rock_wall_hole.png" id="35_m16e7"]
-[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/object_pressure_plate_green.png" id="36_tfpcq"]
+[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="36_tfpcq"]
 [ext_resource type="Texture2D" uid="uid://baysd77wlv4ma" path="res://art/pack/tools/hand.png" id="37_rs23k"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="38_swgt7"]
 [ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://art/pack/tools/blade.png" id="39_2mxqo"]

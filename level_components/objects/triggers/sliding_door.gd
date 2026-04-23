@@ -4,6 +4,8 @@ extends StaticBody2D
 ## How far the door travels to open/close (px).
 const MAX_OPEN_DISTANCE := 64.0 
 
+## The texture used for the door
+@export var texture : Texture2D
 ## Tracks whether the door is currently open.
 var is_open := false
 ## Number of triggers that need to be active on the door for it to open.
@@ -31,6 +33,7 @@ var has_open_call : bool = false
 
 func _ready() -> void:
 	default_pos = position
+	$Sprite2D.texture = texture
 	
 ## Open or close the door depending on how the door is moving.
 ## Door cannot open any wider than MAX_OPEN_DISTANCE.

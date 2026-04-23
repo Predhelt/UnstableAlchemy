@@ -8,12 +8,11 @@ var selected_tool := ""
 var has_blade := false
 var has_dropper := false
 
-var dropper_icon_full := preload("res://art/pack/tools/dropper_full.png")
 var dropper_item : Item:
 	set(item):
 		dropper_item = item
 		if item:
-			$CurrentTool.icon = dropper_icon_full
+			$CurrentTool.icon = load("res://art/pack/tools/dropper_full_%s.png" % item.primary_color)
 			$CurrentTool/ItemLabel.text = item.display_name
 
 func _ready() -> void:

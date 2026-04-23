@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://bhrsnkap76smw"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_1ox6g"]
-[ext_resource type="PackedScene" uid="uid://csw57bxt7nvm2" path="res://characters/player/player.tscn" id="16_3no3h"]
-[ext_resource type="TileSet" uid="uid://dxkp51yxc2dcm" path="res://level_components/tile_sets/tileset_GA.tres" id="18_w5tsc"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="16_3no3h"]
+[ext_resource type="TileSet" path="res://level_components/tile_sets/tileset_GA.tres" id="18_w5tsc"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="19_midar"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="20_bmql1"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="22_h8hre"]
@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="26_y47t4"]
 [ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant_blue_berry.png" id="27_owdbl"]
 [ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant_red_berry.png" id="28_4houa"]
-[ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper_full.png" id="29_ljkwa"]
+[ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper_full_green.png" id="29_ljkwa"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="30_led1d"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="31_bdax8"]
-[ext_resource type="PackedScene" uid="uid://dhxsk1ptro6nc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="32_spgur"]
+[ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="32_spgur"]
 
 [node name="WorldGCSM" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true

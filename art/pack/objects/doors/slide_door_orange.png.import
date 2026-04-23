@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl0p4mtsax23e"
-path="res://.godot/imported/dropper_full.png-ebce331342fab9f76c601e7091dacfe6.ctex"
+uid="uid://bqmf08giwjseg"
+path="res://.godot/imported/slide_door_orange.png-44c03d9b71d4776b23c9c1d47a644c4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pack/tools/dropper_full.png"
-dest_files=["res://.godot/imported/dropper_full.png-ebce331342fab9f76c601e7091dacfe6.ctex"]
+source_file="res://art/pack/objects/doors/slide_door_orange.png"
+dest_files=["res://.godot/imported/slide_door_orange.png-44c03d9b71d4776b23c9c1d47a644c4e.ctex"]
 
 [params]
 

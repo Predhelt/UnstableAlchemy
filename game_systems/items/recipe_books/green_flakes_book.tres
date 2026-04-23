@@ -9,11 +9,11 @@
 [resource]
 script = ExtResource("3_bkh15")
 recipes = Array[ExtResource("2_iy3l3")]([ExtResource("3_604rx")])
-content = "green herb lore here"
 id = 1000
 display_name = "Green Herbs - An Introduction"
 description = "Describes basic uses of green herbs as well as a recipe."
 texture = ExtResource("5_vt4mx")
+primary_color = "brown"
 max_qty = 1
 on_consume_message = "Note: Keep herbs away from cats"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

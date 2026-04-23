@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsdygcp7ggkgp"
-path="res://.godot/imported/object_pressure_plate_green.png-db9873e83da280c3ab4b2ba8bdac1ef1.ctex"
+uid="uid://b6ujdk06c8kwk"
+path="res://.godot/imported/object-pressure-plate_cyan.png-c7c49d85dc479e7a0fa6362550ef4689.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pack/objects/object_pressure_plate_green.png"
-dest_files=["res://.godot/imported/object_pressure_plate_green.png-db9873e83da280c3ab4b2ba8bdac1ef1.ctex"]
+source_file="res://art/pack/objects/pressure_plates/object-pressure-plate_cyan.png"
+dest_files=["res://.godot/imported/object-pressure-plate_cyan.png-c7c49d85dc479e7a0fa6362550ef4689.ctex"]
 
 [params]
 

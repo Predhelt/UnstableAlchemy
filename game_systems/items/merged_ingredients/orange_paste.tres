@@ -10,4 +10,5 @@ id = 202
 display_name = "Orange Paste"
 description = "Is said to surpress effects to potions or objects."
 texture = ExtResource("3_k77on")
+primary_color = "orange"
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

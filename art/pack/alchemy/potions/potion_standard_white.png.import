@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmhhto5fw8nka"
-path="res://.godot/imported/object-pressure-plate_white.png-125889321a3d77bd9e5ed701a05163c9.ctex"
+uid="uid://bkj4iqho8w4ra"
+path="res://.godot/imported/potion_standard_white.png-2262ba2ec7d6ff0f2f531aa3526f0ea8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pack/objects/object-pressure-plate_white.png"
-dest_files=["res://.godot/imported/object-pressure-plate_white.png-125889321a3d77bd9e5ed701a05163c9.ctex"]
+source_file="res://art/pack/alchemy/potions/potion_standard_white.png"
+dest_files=["res://.godot/imported/potion_standard_white.png-2262ba2ec7d6ff0f2f531aa3526f0ea8.ctex"]
 
 [params]
 

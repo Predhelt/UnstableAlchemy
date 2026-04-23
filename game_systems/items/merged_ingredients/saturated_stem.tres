@@ -10,4 +10,5 @@ id = 203
 display_name = "Saturated Stem"
 description = "The stem of a yellow flower soaked in gray juice"
 texture = ExtResource("3_emt1r")
+primary_color = "cyan"
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

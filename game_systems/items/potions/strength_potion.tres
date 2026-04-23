@@ -11,6 +11,7 @@ id = 506
 display_name = "Strength Potion"
 description = "Makes it easier to move things around, pick up, or carry."
 texture = ExtResource("3_2alkk")
+primary_color = "red"
 qty = 5
 on_consume_effects = Array[ExtResource("1_jl1nb")]([ExtResource("2_hc6og")])
 on_consume_message = "I feel stronger"

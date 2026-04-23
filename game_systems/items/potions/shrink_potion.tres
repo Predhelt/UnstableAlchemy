@@ -11,6 +11,7 @@ id = 504
 display_name = "Potion of Shrinking"
 description = "Decreases size"
 texture = ExtResource("4_bq5v3")
+primary_color = "blue"
 qty = 5
 on_consume_effects = Array[ExtResource("1_gqg1i")]([ExtResource("2_5hc3n")])
 on_consume_message = "Everything looks bigger"

@@ -10,5 +10,6 @@ id = 201
 display_name = "Yellow Paste"
 description = "Is said to provide unique effects to potions or objects."
 texture = ExtResource("3_ebv0x")
+primary_color = "yellow"
 qty = 5
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"
