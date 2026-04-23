@@ -144,6 +144,7 @@ func _ready() -> void:
 	# Should only be 1 reference to a camera in the scene.
 	if character_camera_ref != null:
 		is_player_controlled = true
+		$CharacterAudioListener.current = true
 		set_camera()
 		for recipe in known_recipes:
 			var has_recipe : bool = false
@@ -296,13 +297,27 @@ func update_animation_parameters() -> void:
 	if(velocity == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false
+		update_character_audio("none")
 	else:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
+		update_character_audio("walking")
+		# TODO: Change walk speed based on move speed.
 	
 	if(direction != Vector2.ZERO):
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Walk/blend_position"] = direction
+
+## Changes the character's [AudioStreamPlayer2D] to play the stream with the given name.
+## if [param audio_name] is "none", stops audio stream.
+func update_character_audio(audio_name: String) -> void:
+	var character_audiostream_ref : AudioStreamPlayer2D = $CharacterAudioStream
+	if audio_name == "none":
+		character_audiostream_ref.stop()
+		character_audiostream_ref["parameters/switch_to_clip"] = null
+	elif audio_name != character_audiostream_ref["parameters/switch_to_clip"]:
+		character_audiostream_ref.play()
+		character_audiostream_ref["parameters/switch_to_clip"] = audio_name
 
 ## Used to call the get_attribute function of [Attributes]
 ## without needing to access the attributes variable.
@@ -395,7 +410,7 @@ func execute_interaction():
 		possessing_character.execute_interaction()
 		return
 	if all_interaction_areas:
-		var cur_interaction = all_interaction_areas[0] # Simple approach
+		var cur_interaction : Interactable = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type: # NOTE: When a type is added or updated, it also needs to be changed in Interactable
 			&"print_text" : print(cur_interaction.interact_value)
 			#&"context_menu" : cur_interaction.toggle_context_menu(self) # DEPRECATED
@@ -443,7 +458,7 @@ func combine_object(interaction_area : Interactable) -> void:
 ## Open the inspection panel for an object in the interaciton area
 func inspect_object():
 	if all_interaction_areas:
-		var cur_interaction := all_interaction_areas[0] #TODO: Function to do smart selection of nearby areas.
+		var cur_interaction : Interactable = all_interaction_areas[0] #TODO: Function to do smart selection of nearby areas.
 		cur_interaction.inspect_object()
 
 ## User controls the target body. All inputs and behavior transfers.
@@ -460,6 +475,8 @@ func begin_possession(body: Character):
 			remove_status_effect(se)
 		for se in body.active_status_effects:
 			body.remove_status_effect(se)
+		$CharacterAudioListener.current = false
+		body.find_child("CharacterAudioListener").current = true
 		transfer_camera(body)
 		update_status_effects(self_active_ses, "")
 		body.update_status_effects(body_active_ses, "")
@@ -508,7 +525,8 @@ func end_possession():
 		# FIXME: Should maybe find a way that doesn't require removing and re-adding status effects
 		for se in active_status_effects:
 			remove_status_effect(se)
-			
+		body.find_child("CharacterAudioListener").current = false
+		$CharacterAudioListener.current = true
 		body.transfer_camera(self)
 		
 		body.update_status_effects(body_active_ses, "")
@@ -844,10 +862,86 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 	else:
 		$PossessionTargetLabel.text = ""
 
-## Implemented in NPC
-func _on_interaction_area_npc_talk() -> void:
-	pass
 
-## Implemented in NPC
-func _on_interaction_area_npc_shop() -> void:
-	pass
+#########################
+### Dialogue and Shop ###
+#########################
+
+## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
+#func open_dialogue() -> void:
+	#if not dialogues:
+		#print("ERROR: No dialogues set. Returning...")
+		#return
+	#npc_dialogue_ref.open_window_as_npc(self)
+#
+### Opens the NPC shop window after configuring the transactions on the page
+#func open_shop() -> void:
+	#if transactions.size(): # If the npc has shop transactions
+		#if npc_shop_ref.transactions.size(): # If the shop already has populated the transaction UI
+			#npc_shop_ref.clear_transactions()
+		#npc_shop_ref.transactions = transactions
+		#npc_shop_ref.open_window()
+#
+### Does additional logic if the shop was opened from the dialogue menu
+#func open_shop_from_dialogue():
+	#open_shop()
+	#npc_shop_ref.show_back_button(npc_dialogue_ref)
+#
+### Adds transaction to npc's shop.
+### [param items_buying] is an array of items,
+### [param items_buying_amount] is an array of item quantities,
+### [param items_selling] is an array of items,
+### [param items_selling_amount] is an array of item quantities,
+### [param items_selling_stock] is the number of items available for each item.
+### A value of null or -1 means infinite stock.
+#func add_shop_transaction(items_buying : Array[Item], items_buying_amount : Array[int],
+		#items_selling : Array[Item], items_selling_amount : Array[int], items_selling_stock : Array[int] = []):
+	#var new_transaction = Transaction.new()
+	#new_transaction.items_buying = items_buying
+	#new_transaction.items_buying_amount =  items_buying_amount
+	#new_transaction.items_selling =  items_selling
+	#new_transaction.items_selling_amount =  items_selling_amount
+	#
+	#if items_selling_stock == []: # If empty, set stock to -1 (infinite)
+		#for i in range(items_selling.size()):
+			#new_transaction.items_selling_stock.append(-1)
+	#else:
+		#new_transaction.items_selling_stock = items_selling_stock
+		#
+	#new_transaction.id = transactions.size()
+	#transactions.append(new_transaction) #NOTE: This method means that if transactions need to be removed, 
+	## it is not guaranteed to be the same ID depending on the order of events.
+#
+### Removes the shop transaction of the NPC at the given index.
+#func remove_shop_transaction(id : int):
+	#for i in transactions.size():
+		#if transactions[i].id == id:
+			#transactions.remove_at(i)
+#
+### Displays a random passive message over the head of the NPC
+#func say_random_message():
+	#update_message(passive_messages.pick_random())
+#
+### Changes the text of the status message and resets the timer for how long the message appears.
+#func update_message(message: String):
+	#if not message:
+		#return
+	#%StatusLabel.text = message
+	#message_timer = 5.0
+#
+### Determines dialogue based on context. Returns the name of the dialogue window
+### based on information about the [param speakee].
+### By default, it is assumed that there is a "greet" dialogue.
+### Override this in child scene to allow for more dynamic dialogue initialization.
+#func get_initial_dialogue_name(_speakee : Character) -> String:
+	#return "greet"
+#
+### Called when the player interacts with the NPC when the interaction type is "talk".
+### Initiates setting up the npc dialogue window.
+#func _on_interaction_area_npc_talk() -> void:
+	#open_dialogue()
+#
+### Called when the player interacts with the NPC when the interaction type is "shop".
+### Initiates setting up the npc shop window.
+#func _on_interaction_area_npc_shop() -> void:
+	#open_shop()

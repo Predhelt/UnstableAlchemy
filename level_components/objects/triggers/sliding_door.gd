@@ -47,6 +47,8 @@ func _physics_process(delta : float) -> void:
 				open_dist = MAX_OPEN_DISTANCE
 				is_moving = false
 				is_open = true
+				$AudioStreamPlayer2D["parameters/switch_to_clip"] = null
+				$AudioStreamPlayer2D.stop()
 				return
 			_move_door(dist)
 		
@@ -118,5 +120,7 @@ func open_door(node : Node2D):
 		has_open_call = true
 		if is_moving != 1 and (is_open == false or is_moving == 2 or (is_open == false and is_moving == 0)):
 			is_moving = 1
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = "sliding"
+			$AudioStreamPlayer2D.play()
 			if open_notification != "":
 				Global.emit_notification(open_notification)
