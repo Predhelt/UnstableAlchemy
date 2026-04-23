@@ -9,9 +9,9 @@ signal object_cut(character: Character)
 ## Sends signal to the parent object when the object is combined
 signal object_combined(character: Character, item: Item)
 ## Sends signal to the parent object when the npc_talk interaction is received
-signal npc_talk()
+signal character_talk()
 ## Sends signal to the parent object when the npc_shop interaction is received
-signal npc_shop()
+signal character_shop()
 
 ## The name of the object that is represented by the interactable and shown by the character.
 @export var interact_label := "none"
@@ -81,8 +81,8 @@ func combine_object(character: Character, item: Item) -> void:
 ## Emits signal to object to start talking.
 func talk(character: Character) -> void:
 	if character.is_camera_focused:
-		npc_talk.emit()
+		character_talk.emit()
 
 ## Emits signal to object to start shopping.
 func shop() -> void:
-	npc_shop.emit()
+	character_shop.emit()

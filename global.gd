@@ -237,7 +237,7 @@ func load_game() -> void:
 					or i == "attributes_path" or i == "has_blade" or i == "has_dropper"
 					or i == "is_camera_focused"):
 				continue # Variables that were already set can be skipped.
-			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "npc_name" and i != "interaction_type"):
+			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "character_name" and i != "interaction_type"):
 				new_object.set(i, str_to_var(node_data[i]))
 			else:
 				new_object.set(i, node_data[i])

@@ -2,17 +2,41 @@
 ## [StatusEffect]s can be applied to the character, and the character may be situationally
 ## controlled by the player.
 class_name Character extends CharacterBody2D
+# TODO: Types of interactions with Characters:
+# Flavor text / Hint message : does not lock you into a conversation
+# Other Triggers (scared, runs off / opens a passageway / etc.)
 
 ## Determines the Y-offset of the labels above the character as [float]
 const LABEL_DEFAULT_Y_POS : float = -60.0
 ## [float] value used to reduce the intensity of effects when size is changed
-const SIZE_DAMPENER : float = 0.5
+## @deprecated
+#const SIZE_DAMPENER : float = 0.5
 
 ## The [AnimationTree] determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
 ## Reference to the [Camera2D] that is being used to follow the character and display the game screen.
 @export var character_camera_ref : Camera2D
-
+## Reference to UI shop Window
+#TODO: No need to store these variables here for every character.
+@onready var shop_ui_ref : Control = $"../UILayer/MenuLayer/RightWindows/CharacterShop"
+## Reference to UI dialogue Window
+@onready var dialogue_ui_ref : Control = $"../UILayer/MenuLayer/RightWindows/CharacterDialogue"
+## Name of the Character to be dislpayed.
+## Used by the player and dialogue window to show who this is.
+@export var character_name : String
+## The type of interaction that occurs upon interacting with the Character
+@export_enum("none", "talk", "shop") var interaction_type : String = "talk" 
+## List of transactions for the Character shop
+@export var transactions : Array[Transaction]
+## List of messages that are displayed above the character
+@export var passive_messages : Array[String]
+## Stores the list of dialogues that the Character uses, as well as the default
+## dialogue window that displays when talked to.
+var dialogues : Array[Dialogue]
+## The time left before the message disappears
+var message_timer := 0.0
+## The time since the last message ended
+var last_message_delta := 0.0
 ## The character's base [Attributes] that determine interactions with the environment
 @export var attributes : Attributes
 ## List of [Recipe]s known by the character. This is mainly used internally for keeping
@@ -128,10 +152,14 @@ func save() -> Dictionary:
 		"is_possessable" : is_possessable,
 		"character_possessed_by_name" : character_possessed_by_name,
 		"can_possess_others_count" : can_possess_others_count,
-		"possessing_character_name" : possessing_character_name, #FIXME: Causes program to freeze on save. Also update in NPC.
+		"possessing_character_name" : possessing_character_name,
 		"is_player_controlled" : is_player_controlled,
-		"is_camera_focused" : is_camera_focused
-		#"selected_tool" : selected_tool
+		"is_camera_focused" : is_camera_focused,
+		#"selected_tool" : selected_tool,
+		"interaction_type" : interaction_type,
+		"dialogues" : var_to_str(dialogues),
+		"transactions" : var_to_str(transactions),
+		"passive_messages" : var_to_str(passive_messages)
 	}
 	return save_dict
 
@@ -140,6 +168,8 @@ func _ready() -> void:
 	%StatusLabel.text = ""
 	%InteractLabel.text = ""
 	#%HotkeyLabel.text = ""
+	$InteractionArea.interact_type = interaction_type
+	$InteractionArea.interact_label = character_name
 	
 	# Should only be 1 reference to a camera in the scene.
 	if character_camera_ref != null:
@@ -167,8 +197,31 @@ func _ready() -> void:
 		active_status_effects.remove_at(i)
 		apply_status_effect(cur_se)
 	
+	init_dialogues()
 	# Set possession references, if any
 	_deferred_set_possession_vars.call_deferred()
+
+## Populationes [member dialogues] if dialogue path exists for this character.
+func init_dialogues():
+	var dialogue_path : String = scene_file_path.rsplit("/", false, 1)[0] + "/dialogue/dialogues/"
+	#print(dialogue_path)
+	var dir := DirAccess.open(dialogue_path)
+	if not dir:
+		#print("ERROR: No path")
+		return
+	
+	dir.list_dir_begin()
+	var file_name : String = dir.get_next().replace('.remap','')
+	while file_name != "":
+		var split = file_name.rsplit(".", true, 1)
+		if split[1] == "tres":
+			var new_dialogue : Dialogue
+			var file_path : String = dialogue_path+file_name
+			new_dialogue = load(file_path)
+			if new_dialogue:
+				dialogues.append(new_dialogue)
+		file_name = dir.get_next().replace('.remap','')
+	dir.list_dir_end()
 
 ## Sets the UI of the tool wheel in relation to this character's tool's statuses.
 func set_tool_wheel_ui() -> bool:
@@ -179,7 +232,6 @@ func set_tool_wheel_ui() -> bool:
 	tool_wheel_ref.set_dropper_enabled(has_dropper)
 	tool_wheel_ref.set_ui()
 	return true
-	
 
 ## Set possession references, if any. Gets deferred so that all [Character]s
 ## have a chance to be added to the scene.
@@ -246,9 +298,18 @@ func _physics_process(delta: float) -> void:
 	_update_status_effect_timers(delta)
 
 	if status_message_timer > 0:
+		if last_message_delta:
+			last_message_delta = 0
 		status_message_timer -= delta
 		if status_message_timer <= 0:
 			%StatusLabel.text = ""
+	else:
+		last_message_delta += delta
+		# Checks if enough time has passed since the last message to say another message
+		if last_message_delta > 15:
+			last_message_delta = 0.0
+			if not passive_messages.is_empty() and not character_possessed_by:
+				say_random_message()
 	
 	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
 		$PossessionTargetLabel.global_position = possessable_characters[0].global_position
@@ -867,81 +928,81 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 ### Dialogue and Shop ###
 #########################
 
-## Open the dialogue window when talked to the current NPC is referenced to configure the dialogues.
-#func open_dialogue() -> void:
-	#if not dialogues:
-		#print("ERROR: No dialogues set. Returning...")
-		#return
-	#npc_dialogue_ref.open_window_as_npc(self)
-#
-### Opens the NPC shop window after configuring the transactions on the page
-#func open_shop() -> void:
-	#if transactions.size(): # If the npc has shop transactions
-		#if npc_shop_ref.transactions.size(): # If the shop already has populated the transaction UI
-			#npc_shop_ref.clear_transactions()
-		#npc_shop_ref.transactions = transactions
-		#npc_shop_ref.open_window()
-#
-### Does additional logic if the shop was opened from the dialogue menu
-#func open_shop_from_dialogue():
-	#open_shop()
-	#npc_shop_ref.show_back_button(npc_dialogue_ref)
-#
-### Adds transaction to npc's shop.
-### [param items_buying] is an array of items,
-### [param items_buying_amount] is an array of item quantities,
-### [param items_selling] is an array of items,
-### [param items_selling_amount] is an array of item quantities,
-### [param items_selling_stock] is the number of items available for each item.
-### A value of null or -1 means infinite stock.
-#func add_shop_transaction(items_buying : Array[Item], items_buying_amount : Array[int],
-		#items_selling : Array[Item], items_selling_amount : Array[int], items_selling_stock : Array[int] = []):
-	#var new_transaction = Transaction.new()
-	#new_transaction.items_buying = items_buying
-	#new_transaction.items_buying_amount =  items_buying_amount
-	#new_transaction.items_selling =  items_selling
-	#new_transaction.items_selling_amount =  items_selling_amount
-	#
-	#if items_selling_stock == []: # If empty, set stock to -1 (infinite)
-		#for i in range(items_selling.size()):
-			#new_transaction.items_selling_stock.append(-1)
-	#else:
-		#new_transaction.items_selling_stock = items_selling_stock
-		#
-	#new_transaction.id = transactions.size()
-	#transactions.append(new_transaction) #NOTE: This method means that if transactions need to be removed, 
-	## it is not guaranteed to be the same ID depending on the order of events.
-#
-### Removes the shop transaction of the NPC at the given index.
-#func remove_shop_transaction(id : int):
-	#for i in transactions.size():
-		#if transactions[i].id == id:
-			#transactions.remove_at(i)
-#
-### Displays a random passive message over the head of the NPC
-#func say_random_message():
-	#update_message(passive_messages.pick_random())
-#
-### Changes the text of the status message and resets the timer for how long the message appears.
-#func update_message(message: String):
-	#if not message:
-		#return
-	#%StatusLabel.text = message
-	#message_timer = 5.0
-#
-### Determines dialogue based on context. Returns the name of the dialogue window
-### based on information about the [param speakee].
-### By default, it is assumed that there is a "greet" dialogue.
-### Override this in child scene to allow for more dynamic dialogue initialization.
-#func get_initial_dialogue_name(_speakee : Character) -> String:
-	#return "greet"
-#
-### Called when the player interacts with the NPC when the interaction type is "talk".
-### Initiates setting up the npc dialogue window.
-#func _on_interaction_area_npc_talk() -> void:
-	#open_dialogue()
-#
-### Called when the player interacts with the NPC when the interaction type is "shop".
-### Initiates setting up the npc shop window.
-#func _on_interaction_area_npc_shop() -> void:
-	#open_shop()
+## Open the dialogue window when talked to the current character is referenced to configure the dialogues.
+func open_dialogue() -> void:
+	if not dialogues:
+		print("ERROR: No dialogues set. Returning...")
+		return
+	dialogue_ui_ref.open_window_as_character(self)
+
+## Opens the character shop window after configuring the transactions on the page
+func open_shop() -> void:
+	if transactions.size(): # If the character has shop transactions
+		if shop_ui_ref.transactions.size(): # If the shop already has populated the transaction UI
+			shop_ui_ref.clear_transactions()
+		shop_ui_ref.transactions = transactions
+		shop_ui_ref.open_window()
+
+## Does additional logic if the shop was opened from the dialogue menu
+func open_shop_from_dialogue():
+	open_shop()
+	shop_ui_ref.show_back_button(dialogue_ui_ref)
+
+## Adds transaction to character's shop.
+## [param items_buying] is an array of items,
+## [param items_buying_amount] is an array of item quantities,
+## [param items_selling] is an array of items,
+## [param items_selling_amount] is an array of item quantities,
+## [param items_selling_stock] is the number of items available for each item.
+## A value of null or -1 means infinite stock.
+func add_shop_transaction(items_buying : Array[Item], items_buying_amount : Array[int],
+		items_selling : Array[Item], items_selling_amount : Array[int], items_selling_stock : Array[int] = []):
+	var new_transaction = Transaction.new()
+	new_transaction.items_buying = items_buying
+	new_transaction.items_buying_amount =  items_buying_amount
+	new_transaction.items_selling =  items_selling
+	new_transaction.items_selling_amount =  items_selling_amount
+	
+	if items_selling_stock == []: # If empty, set stock to -1 (infinite)
+		for i in range(items_selling.size()):
+			new_transaction.items_selling_stock.append(-1)
+	else:
+		new_transaction.items_selling_stock = items_selling_stock
+		
+	new_transaction.id = transactions.size()
+	transactions.append(new_transaction) #NOTE: This method means that if transactions need to be removed, 
+	# it is not guaranteed to be the same ID depending on the order of events.
+
+## Removes the shop transaction of the character at the given index.
+func remove_shop_transaction(id : int):
+	for i in transactions.size():
+		if transactions[i].id == id:
+			transactions.remove_at(i)
+
+## Displays a random passive message over the head of the character
+func say_random_message():
+	update_message(passive_messages.pick_random())
+
+## Changes the text of the status message and resets the timer for how long the message appears.
+func update_message(message: String):
+	if not message:
+		return
+	%StatusLabel.text = message
+	message_timer = 5.0
+
+## Determines dialogue based on context. Returns the name of the dialogue window
+## based on information about the [param speakee].
+## By default, it is assumed that there is a "greet" dialogue.
+## Override this in child scene to allow for more dynamic dialogue initialization.
+func get_initial_dialogue_name(_speakee : Character) -> String:
+	return "greet"
+
+## Called when the player interacts with the character when the interaction type is "talk".
+## Initiates setting up the character dialogue window.
+func _on_interaction_area_character_talk() -> void:
+	open_dialogue()
+
+## Called when the player interacts with the character when the interaction type is "shop".
+## Initiates setting up the character shop window.
+func _on_interaction_area_character_shop() -> void:
+	open_shop()

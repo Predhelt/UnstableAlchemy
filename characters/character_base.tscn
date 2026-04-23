@@ -150,8 +150,8 @@ debug_color = Color(0.73280406, 0.47194624, 1.1551381e-06, 0.41960785)
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_exited"]
-[connection signal="npc_shop" from="InteractionArea" to="." method="_on_interaction_area_npc_shop"]
-[connection signal="npc_talk" from="InteractionArea" to="." method="_on_interaction_area_npc_talk"]
+[connection signal="character_shop" from="InteractionArea" to="." method="_on_interaction_area_character_shop"]
+[connection signal="character_talk" from="InteractionArea" to="." method="_on_interaction_area_character_talk"]
 [connection signal="body_entered" from="PossessionArea" to="." method="_on_possession_area_body_entered"]
 [connection signal="body_exited" from="PossessionArea" to="." method="_on_possession_area_body_exited"]
 [connection signal="body_entered" from="RigidArea2D" to="." method="_on_rigid_area_2d_body_entered"]

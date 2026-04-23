@@ -6,7 +6,6 @@
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="3_5og0b"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="3_dj8u4"]
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="4_1ol2w"]
-[ext_resource type="PackedScene" uid="uid://db6w6ybnaom17" path="res://characters/npcs/npc.tscn" id="4_bffd5"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="4_iic7v"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="4_y05ea"]
 [ext_resource type="Resource" uid="uid://vwwc1c2oku6l" path="res://game_systems/items/potions/possession_potion.tres" id="5_f1te5"]
@@ -16,9 +15,9 @@
 [ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="11_14b7j"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="11_las48"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="11_rdpf7"]
-[ext_resource type="Resource" uid="uid://0xjfmhsed3rt" path="res://game_systems/status_effects/self_attunement.tres" id="12_fo1h1"]
 [ext_resource type="Texture2D" uid="uid://cqrnhmtvb1jl5" path="res://art/pack/alchemy/potions/potion_standard_yellow.png" id="12_yg707"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="13_g10lj"]
+[ext_resource type="PackedScene" uid="uid://c6crxd1b2iewf" path="res://characters/character_default.tscn" id="15_jyljp"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="17_we6vc"]
 
 [sub_resource type="Resource" id="Resource_g10lj"]
@@ -41,62 +40,10 @@ script = ExtResource("6_las48")
 items = Array[ExtResource("3_3vnkn")]([ExtResource("4_1ol2w"), ExtResource("5_f1te5"), SubResource("Resource_jf5yu")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_jyljp"]
-script = ExtResource("13_g10lj")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_7hocs"]
-script = ExtResource("6_las48")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
 [sub_resource type="Resource" id="Resource_3thxg"]
-script = ExtResource("13_g10lj")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_mowgf"]
-script = ExtResource("6_las48")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
-[sub_resource type="Resource" id="Resource_14b7j"]
-script = ExtResource("13_g10lj")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_w0vlx"]
-script = ExtResource("6_las48")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
-[sub_resource type="Resource" id="Resource_yg707"]
-script = ExtResource("13_g10lj")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_6g255"]
-script = ExtResource("6_las48")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
-[sub_resource type="Resource" id="Resource_rne4p"]
-script = ExtResource("13_g10lj")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_iqt4l"]
-script = ExtResource("6_las48")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
-[sub_resource type="Resource" id="Resource_4xnme"]
 script = ExtResource("13_g10lj")
 base_strength = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_yxwhs"]
-script = ExtResource("6_las48")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
-[sub_resource type="Resource" id="Resource_tl613"]
-script = ExtResource("13_g10lj")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_s5yyn"]
-script = ExtResource("6_las48")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -105,7 +52,7 @@ metadata/_edit_lock_ = true
 [node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_jsjut")]
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("2_bffd5")]
-position = Vector2(599, 419)
+position = Vector2(660, 408)
 character_camera_ref = NodePath("../PlayerCamera")
 attributes = SubResource("Resource_g10lj")
 known_recipes = Array[ExtResource("3_dj8u4")]([ExtResource("4_y05ea")])
@@ -139,63 +86,47 @@ tile_map_data = PackedByteArray("AAAMAAAAAAADAAAAAAAMAAEAAAADAAEAAAAMAAIAAAADAAE
 tile_set = ExtResource("3_5og0b")
 metadata/_edit_lock_ = true
 
-[node name="NPC" parent="." unique_id=1703109596 instance=ExtResource("4_bffd5")]
-position = Vector2(1146, 419)
-npc_name = "P2"
+[node name="Character" parent="." unique_id=1948548714 instance=ExtResource("15_jyljp")]
+position = Vector2(1149, 473)
+character_name = "Guy1"
 passive_messages = Array[String](["I can be possessed"])
-attributes = SubResource("Resource_jyljp")
 is_possessable = true
-inventory = SubResource("Resource_7hocs")
 
-[node name="NPC2" parent="." unique_id=734531267 instance=ExtResource("4_bffd5")]
-position = Vector2(980, 430)
-npc_name = "P1"
+[node name="Character2" parent="." unique_id=1409684355 instance=ExtResource("15_jyljp")]
+position = Vector2(980, 473)
+character_name = "Guy2"
+passive_messages = Array[String](["I can be possessed"])
+is_possessable = true
+
+[node name="Character3" parent="." unique_id=1275720525 instance=ExtResource("15_jyljp")]
+position = Vector2(1039, 648)
+character_name = "Guy3"
+passive_messages = Array[String](["I can be possessed"])
+is_possessable = true
+
+[node name="Character4" parent="." unique_id=95105040 instance=ExtResource("15_jyljp")]
+position = Vector2(244, 790)
+character_name = "Guy4"
+passive_messages = Array[String](["I can be possessed"])
+is_possessable = true
+
+[node name="Character5" parent="." unique_id=630119156 instance=ExtResource("15_jyljp")]
+position = Vector2(224, 278)
+character_name = "Guy5"
+passive_messages = Array[String](["I can be possessed"])
+is_possessable = true
+
+[node name="Character6" parent="." unique_id=1365484 instance=ExtResource("15_jyljp")]
+position = Vector2(870, 168)
+character_name = "Guy6"
 passive_messages = Array[String](["I can be possessed"])
 attributes = SubResource("Resource_3thxg")
-has_blade = true
 is_possessable = true
-inventory = SubResource("Resource_mowgf")
-active_status_effects = Array[ExtResource("11_rdpf7")]([ExtResource("12_fo1h1")])
 
-[node name="NPC3" parent="." unique_id=1555367955 instance=ExtResource("4_bffd5")]
-position = Vector2(1039, 612)
-npc_name = "P3"
-passive_messages = Array[String](["I can be possessed"])
-attributes = SubResource("Resource_14b7j")
-is_possessable = true
-inventory = SubResource("Resource_w0vlx")
-
-[node name="NPC4" parent="." unique_id=512744000 instance=ExtResource("4_bffd5")]
-position = Vector2(244, 744)
-npc_name = "P4"
-passive_messages = Array[String](["I can be possessed"])
-attributes = SubResource("Resource_yg707")
-is_possessable = true
-inventory = SubResource("Resource_6g255")
-
-[node name="NPC5" parent="." unique_id=1561180532 instance=ExtResource("4_bffd5")]
-position = Vector2(226, 235)
-npc_name = "P5"
-passive_messages = Array[String](["I can be possessed"])
-attributes = SubResource("Resource_rne4p")
-is_possessable = true
-inventory = SubResource("Resource_iqt4l")
-
-[node name="NPC6" parent="." unique_id=472378860 instance=ExtResource("4_bffd5")]
-position = Vector2(870, 130)
-npc_name = "P6"
-passive_messages = Array[String](["I am strong"])
-attributes = SubResource("Resource_4xnme")
-is_possessable = true
-inventory = SubResource("Resource_yxwhs")
-active_status_effects = Array[ExtResource("11_rdpf7")]([ExtResource("12_fo1h1")])
-
-[node name="NPC7" parent="." unique_id=1631346532 instance=ExtResource("4_bffd5")]
-position = Vector2(672, 614)
-npc_name = "Normal"
-passive_messages = Array[String](["I'm normal."])
-attributes = SubResource("Resource_tl613")
-inventory = SubResource("Resource_s5yyn")
+[node name="Character7" parent="." unique_id=1073571892 instance=ExtResource("15_jyljp")]
+position = Vector2(672, 686)
+character_name = "Guy7"
+passive_messages = Array[String](["I cannot be possessed"])
 
 [node name="Objects" type="Node2D" parent="." unique_id=354937822]
 y_sort_enabled = true

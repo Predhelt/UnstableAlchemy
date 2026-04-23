@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://bohubjk4nidbh"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_saqbn"]
-[ext_resource type="PackedScene" uid="uid://ch7hosojbd5a3" path="res://characters/npcs/brindan_gcsm/brindan_gcsm.tscn" id="2_gpkcb"]
+[ext_resource type="PackedScene" uid="uid://ch7hosojbd5a3" path="res://characters/brindan_gcsm/brindan_gcsm.tscn" id="2_gpkcb"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_se8qd"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="3_se8qd"]
-[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="4_grtol"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/transaction.gd" id="3_se8qd"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="4_grtol"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="5_wxqo7"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_0vii6"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="7_1pps5"]

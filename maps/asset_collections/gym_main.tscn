@@ -1,46 +1,14 @@
 [gd_scene format=4 uid="uid://mss7rf2jumho"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_ksfjp"]
+[ext_resource type="PackedScene" uid="uid://c6crxd1b2iewf" path="res://characters/character_default.tscn" id="3_j1mfy"]
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_h7t87"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="17_vq1tr"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_heyse"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="23_hq65m"]
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://level_components/objects/interactable/plants/blue_berry_bush.tscn" id="24_37f5w"]
-[ext_resource type="PackedScene" uid="uid://db6w6ybnaom17" path="res://characters/npcs/npc.tscn" id="25_3sjqy"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="25_f8sr4"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="26_47dco"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/npcs/transaction.gd" id="26_gfu2t"]
-[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/npcs/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="27_5eyek"]
-[ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/npcs/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="28_65lo7"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="29_yweml"]
-[ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="30_0qpk6"]
-[ext_resource type="Resource" uid="uid://dmmjiexaj27y4" path="res://game_systems/items/potions/strength_potion.tres" id="31_4mwc7"]
-[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="32_7xxgw"]
-[ext_resource type="Resource" uid="uid://db62qwoxlu4p8" path="res://game_systems/items/potions/shrink_potion.tres" id="33_t8gn0"]
-
-[sub_resource type="Resource" id="Resource_pj1jn"]
-script = ExtResource("26_gfu2t")
-items_selling = Array[ExtResource("29_yweml")]([ExtResource("30_0qpk6")])
-items_selling_amount = Array[int]([1])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
-
-[sub_resource type="Resource" id="Resource_muiwb"]
-script = ExtResource("26_gfu2t")
-items_selling = Array[ExtResource("29_yweml")]([ExtResource("31_4mwc7")])
-items_selling_amount = Array[int]([1])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
-
-[sub_resource type="Resource" id="Resource_xmx8x"]
-script = ExtResource("26_gfu2t")
-items_selling = Array[ExtResource("29_yweml")]([ExtResource("32_7xxgw")])
-items_selling_amount = Array[int]([1])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
-
-[sub_resource type="Resource" id="Resource_fjig6"]
-script = ExtResource("26_gfu2t")
-items_selling = Array[ExtResource("29_yweml")]([ExtResource("33_t8gn0")])
-items_selling_amount = Array[int]([1])
-metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -58,10 +26,9 @@ position = Vector2(-42, -39)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="NPC" parent="." unique_id=212838473 instance=ExtResource("25_3sjqy")]
-position = Vector2(92, -14)
-interaction_type = "shop"
-transactions = Array[ExtResource("26_gfu2t")]([ExtResource("27_5eyek"), ExtResource("28_65lo7"), SubResource("Resource_pj1jn"), SubResource("Resource_muiwb"), SubResource("Resource_xmx8x"), SubResource("Resource_fjig6")])
+[node name="Character" parent="." unique_id=1948548714 instance=ExtResource("3_j1mfy")]
+position = Vector2(181, -23)
+character_name = "Guy1"
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
 y_sort_enabled = true

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://kqsbgsx4b3xh"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/dialogue_choice.gd" id="1_0womp"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://characters/dialogue_condition.gd" id="2_1p0m2"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://characters/dialogue.gd" id="2_naugo"]
+
+[sub_resource type="Resource" id="Resource_1iaux"]
+script = ExtResource("1_0womp")
+player_response = "\"Can you give me some advice?\""
+next_dialogue_name = &"advice"
+dialogue_effects = Array[String](["finished_greeting"])
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("2_naugo")
+dialogue_name = &"greet"
+text = "Hey, My name is Brindan. I am known as a senior botanist.
+
+I messed up my ankle trying to get out of the way of the falling rocks. It looks like we are stuck and we need to move that boulder up top to get out.
+
+I can trade you some alchemy supplies or give you some advice. I also have some speed potions available to help you get around quicker."
+choices = Array[ExtResource("1_0womp")]([SubResource("Resource_1iaux")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

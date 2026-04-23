@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper_full_green.png" id="29_ljkwa"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="30_led1d"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="31_bdax8"]
-[ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="32_spgur"]
+[ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/shelly_shrink_puzzle/shelly_sp.tscn" id="32_spgur"]
 
 [node name="WorldGCSM" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true

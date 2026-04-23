@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bcpe4vv1ln1ax" path="res://level_components/ui/windows/help_menu/help_menu.tscn" id="4_5j5wj"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://level_components/ui/windows/inventory/inventory_menu.tscn" id="5_v3o2u"]
 [ext_resource type="PackedScene" uid="uid://dc5d3ocd8w0fu" path="res://level_components/ui/windows/recipe_list/recipe_list.tscn" id="6_lgrco"]
-[ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://level_components/ui/windows/npc_shop/npc_shop.tscn" id="7_ew7dj"]
-[ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://level_components/ui/windows/npc_dialogue/npc_dialogue.tscn" id="8_ibin0"]
+[ext_resource type="PackedScene" uid="uid://bcwfgisnvhr3s" path="res://level_components/ui/windows/character_shop/character_shop.tscn" id="7_ew7dj"]
+[ext_resource type="PackedScene" uid="uid://dhvfevmm005fp" path="res://level_components/ui/windows/character_dialogue/character_dialogue.tscn" id="8_ibin0"]
 [ext_resource type="PackedScene" uid="uid://d24ge55seaobg" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldron_minigame.tscn" id="9_8oxmj"]
 [ext_resource type="PackedScene" uid="uid://devoaotbjwrvh" path="res://level_components/ui/windows/log_book/log_book.tscn" id="9_ibin0"]
 [ext_resource type="PackedScene" uid="uid://bwmnuacpgn38h" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.tscn" id="10_ss2lp"]
@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper_full_green.png" id="28_5j5wj"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="29_v3o2u"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="30_lgrco"]
-[ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/npcs/shelly_shrink_puzzle/shelly_sp.tscn" id="31_5dgm1"]
+[ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/shelly_shrink_puzzle/shelly_sp.tscn" id="31_5dgm1"]
 
 [node name="WorldGCSM" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
