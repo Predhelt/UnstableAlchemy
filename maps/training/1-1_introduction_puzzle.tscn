@@ -42,7 +42,7 @@ close_time = 1.0
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=1639851176 instance=ExtResource("4_vxbux")]
 position = Vector2(416, -416)
-level_path = "res://maps/training/1-2_puzzlemap.tscn"
+level_path = "res://maps/training/1-2_introduction_puzzle.tscn"
 
 [node name="LabelCongratulations" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=2121279644]
 layout_mode = 0

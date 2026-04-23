@@ -20,8 +20,11 @@ func _ready() -> void:
 	$Slot1.button_pressed = true
 	$CurrentTool/AddItemButton.visible = false
 	tooltip_text = selected_tool
+	if Global.focused_node:
+		Global.focused_node.set_tool_wheel_ui()
+	else:
+		set_ui()
 	_close_tool_selection()
-	set_ui()
 
 func set_ui() -> void:
 	#$CurrentTool/HotkeyLabel.text = (

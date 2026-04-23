@@ -112,12 +112,15 @@ func _on_button_start_pressed() -> void:
 
 func _on_button_item_1_pressed() -> void:
 	set_input_action("item", cur_craft_ingredients[0].id, %Container/GridContainer/ButtonItem1.icon)
+	%Container/GridContainer/ButtonItem1.disabled = true
 
 func _on_button_item_2_pressed() -> void:
 	set_input_action("item", cur_craft_ingredients[1].id, %Container/GridContainer/ButtonItem2.icon)
+	%Container/GridContainer/ButtonItem2.disabled = true
 
 func _on_button_item_3_pressed() -> void:
 	set_input_action("item", cur_craft_ingredients[2].id, %Container/GridContainer/ButtonItem3.icon)
+	%Container/GridContainer/ButtonItem3.disabled = true
 
 func _on_button_bellows_pressed() -> void:
 	set_input_action("equipment", 2, %Container/GridContainer/ButtonBellows.icon)

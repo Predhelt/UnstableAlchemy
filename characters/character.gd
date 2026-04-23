@@ -700,7 +700,8 @@ func set_character_scale(size: float):
 	var diff_ratio := size/base_size
 	set_scale(Vector2(diff_ratio, diff_ratio))
 	# 
-	character_camera_ref.zoom = Vector2(1.0, 1.0) / ((diff_ratio + 100/base_size) / 2)
+	if is_camera_focused:
+		character_camera_ref.zoom = Vector2(1.0, 1.0) / diff_ratio#((diff_ratio + 100/base_size) / 2)
 
 ## Adds self-attunement to [member active_status_effects].
 ## Sets visibility of the attributes panel if [member is_camera_focused] is true.

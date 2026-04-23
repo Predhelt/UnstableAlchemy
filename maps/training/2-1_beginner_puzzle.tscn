@@ -85,7 +85,7 @@ position = Vector2(550, -142)
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=1639851176 instance=ExtResource("12_5y0r1")]
 position = Vector2(352, -480)
-level_path = "res://maps/training/2-2_puzzlemap.tscn"
+level_path = "res://maps/training/2-2_beginner_puzzle.tscn"
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("13_dqpvk")]
 position = Vector2(256, -205)

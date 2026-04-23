@@ -372,7 +372,7 @@ func _get_item_uses_as_str(item : Item) -> String:
 	# Find combinations that the item is used in.
 	for obj_name : String in character_ref.objects_combined.keys():
 		for combination : ObjectCombination in character_ref.objects_combined[obj_name]:
-			if combination.input_item.id == item.id:
+			if combination != null and combination.input_item.id == item.id:
 				uses_str += combination.result_object_scene.instantiate().display_name + ", "
 				is_used = true
 	

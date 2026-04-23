@@ -121,7 +121,7 @@ cut_interaction = SubResource("Resource_8yigv")
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=1639851176 instance=ExtResource("16_n6lyu")]
 position = Vector2(736, -224)
-level_path = "res://maps/training/3-2_puzzlemap.tscn"
+level_path = "res://maps/training/3-2_advanced_puzzle.tscn"
 
 [node name="BoulderPushable" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=794065921 instance=ExtResource("17_a1qul")]
 position = Vector2(608, 58)

@@ -195,6 +195,13 @@ func load_game() -> void:
 			new_object.set("is_camera_focused", node_data["is_camera_focused"])
 			#if has_blade or has_dropper:
 				#new_object.set_tool_wheel_ui()
+			
+			focused_node = new_object
+			var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
+			focused_camera = cam
+			new_object.character_camera_ref = cam
+			new_object.set_camera()
+			cam.reset_smoothing()
 		
 		# Add status effects before connecting to parent, if status effects exist.
 		var field : String = "active_status_effects_path"
@@ -225,19 +232,10 @@ func load_game() -> void:
 		
 		# Go through each node and initialize the stored values.
 		for i in node_data.keys():
-			if i == "is_camera_focused" and node_data[i] == true:
-				focused_node = new_object
-				var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
-				
-				focused_camera = cam
-				new_object.character_camera_ref = cam
-				new_object.set_camera()
-				cam.reset_smoothing()
-				new_object.set_tool_wheel_ui()
-				continue
 			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y"
 					or i == "active_status_effects_path" or i == "inventory_path"
-					or i == "attributes_path" or i == "has_blade" or i == "has_dropper"):
+					or i == "attributes_path" or i == "has_blade" or i == "has_dropper"
+					or i == "is_camera_focused"):
 				continue # Variables that were already set can be skipped.
 			if typeof(node_data[i]) == typeof("String") and (i != "name" and i != "npc_name" and i != "interaction_type"):
 				new_object.set(i, str_to_var(node_data[i]))
