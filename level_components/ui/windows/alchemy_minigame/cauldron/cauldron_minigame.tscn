@@ -54,7 +54,6 @@ bus = &"sfx"
 
 [node name="EffectsAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1777367242]
 stream = SubResource("AudioStreamInteractive_mit6k")
-max_polyphony = 2
 bus = &"sfx"
 
 [node name="StartupDelay" type="Timer" parent="." unique_id=2067469942]

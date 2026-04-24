@@ -81,6 +81,8 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	var nearest_tick = _get_nearest_tick()
 	
 	if nearest_tick < 0:
+		$EffectsAudioStream["parameters/switch_to_clip"] = "miss"
+		$EffectsAudioStream.play()
 		return
 
 	var input_action := ProcedureInputAction.new()
@@ -95,9 +97,6 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 		else:
 			$EffectsAudioStream["parameters/switch_to_clip"] = "drop"
 			$EffectsAudioStream.play()
-	else:
-		$EffectsAudioStream["parameters/switch_to_clip"] = "miss"
-		$EffectsAudioStream.play()
 	
 
 ## Used by the cauldron to determine the segment on the progress bar that the
