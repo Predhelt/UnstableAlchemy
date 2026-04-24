@@ -69,6 +69,8 @@ func open_window():
 	Global.left_window = self
 	visible = true
 	Global.mode = window_mode
+	$MinigameAudioStream["parameters/switch_to_clip"] = "idle"
+	$MinigameAudioStream.play()
 
 ## Checks to see if the input is near a tick on the progress bar. If so,
 ## sets the nearest tick image and information equal to the given information.
@@ -87,6 +89,15 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	if not cur_craft_procedure.input_actions[nearest_tick]:
 		cur_craft_procedure.input_actions[nearest_tick] = input_action
 		%MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children()[nearest_tick].texture = icon
+		if input_action.type == "equipment" and input_action.id == 2: # Bellows
+			$EffectsAudioStream["parameters/switch_to_clip"] = "bellows"
+			$EffectsAudioStream.play()
+		else:
+			$EffectsAudioStream["parameters/switch_to_clip"] = "drop"
+			$EffectsAudioStream.play()
+	else:
+		$EffectsAudioStream["parameters/switch_to_clip"] = "miss"
+		$EffectsAudioStream.play()
 	
 
 ## Used by the cauldron to determine the segment on the progress bar that the

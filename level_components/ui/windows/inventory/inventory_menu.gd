@@ -74,12 +74,14 @@ func open_window() -> bool:
 	if Global.mode == &"default":
 		Global.mode = window_mode
 	if Global.mode == window_mode:
+		$AudioStreamPlayer2D.play()
 		update_window()
 		Global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
 		visible = true
 		return true
 	elif Global.mode == &"dropper":
+		$AudioStreamPlayer2D.play()
 		update_window()
 		Global.left_window = self
 		%WindowName.text = "Select an Item for the Dropper"

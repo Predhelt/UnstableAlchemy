@@ -2,18 +2,6 @@
 ## Most functionality is used in the Cauldron with some overlap.
 class_name AlchemyMinigame extends UIWindow
 
-
-
-### Signal connections are made in the inventory script
-#
-### Signal sent when the item is completed and added to the inventory.
-#signal item_produced(item: Item, recipe : Recipe)
-### Sends signal to the inventory to remove items when a craft minigame is completed
-### and the ingredient items are consumed.
-#signal item_removed(item: Item)
-### Sends signal to open the inventory window.
-#signal open_inventory()
-
 ## Reference to the current inventory that the minigame is using
 var inventory_menu_ref
 ## Buttons used during the minigame. Set by inherited class.
@@ -59,6 +47,8 @@ func init_ingredients(ingredients : Array[Item]) -> void:
 
 ## Closes the minigame window and ensures that the menu group is updated.
 func close_window():
+	#$MinigameAudioStream["parameters/switch_to_clip"] = null
+	$MinigameAudioStream.stop() # FIXME: audio not stopping immediately upon window close.
 	is_crafting = false
 	visible = false
 	## Return the craft ingredients back to the inventory if not already used.
@@ -113,6 +103,8 @@ func begin_minigame():
 func _on_startup_delay_timeout() -> void:
 	slider.value = 0
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Start!"
+	$MinigameAudioStream["parameters/switch_to_clip"] = "cooking"
+	$MinigameAudioStream.play()
 	is_crafting = true
 
 ## Upon completion of the minigame, check the user inputs and compare them to the
