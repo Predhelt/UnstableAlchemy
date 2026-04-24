@@ -48,6 +48,7 @@ func _physics_process(delta : float) -> void:
 				open_dist = MAX_OPEN_DISTANCE
 				is_moving = false
 				is_open = true
+				$AudioStreamPlayer2D.play() # Stops sliding sound
 				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "slam_open"
 				return
 			_move_door(dist)
@@ -60,6 +61,7 @@ func _physics_process(delta : float) -> void:
 		if open_dist > 0:
 			open_dist -= dist
 			if open_dist <= 0: # Prevents moving too far
+				$AudioStreamPlayer2D.play() # Stops sliding sound
 				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "slam_closed"
 				_move_door_to(0)
 				open_dist = 0

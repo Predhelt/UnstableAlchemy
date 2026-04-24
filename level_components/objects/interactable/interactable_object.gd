@@ -22,7 +22,7 @@ var context_menu : Control
 var inspection_panel_scene : PackedScene = preload("res://level_components/ui/windows/inspection_panel/inspection_panel.tscn")
 
 ## Temporary effect to show during interaction.
-@export var interact_effect : PackedScene = preload("res://art/effects/object_interacted_effect.tscn")
+@export var interact_effect : PackedScene = preload("res://art/effects/object_destroyed_effect.tscn")
 ## Show the amount of items gained when added to inventory in the world.
 @export var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_world.tscn")
 
@@ -137,6 +137,8 @@ func _on_object_grabbed(character: Character) -> void:
 	if not collect_items(character, grab_interaction):
 		return
 	
+	$EffectAudioStream.play()
+	$EffectAudioStream["parameters/switch_to_clip"] = "grab"
 	_add_interaction_to_node(character.objects_grab_interacted, grab_interaction)
 	_add_gathered_items_entry_to_node(character, grab_interaction, "grab")
 	if character.is_camera_focused:
@@ -153,6 +155,8 @@ func _on_object_cut(character: Character) -> void:
 	if not collect_items(character, cut_interaction):
 		return
 	
+	$EffectAudioStream.play()
+	$EffectAudioStream["parameters/switch_to_clip"] = "cut"
 	_add_interaction_to_node(character.objects_cut_interacted, cut_interaction)
 	_add_gathered_items_entry_to_node(character, cut_interaction, "cut")
 	if character.is_camera_focused:
@@ -220,7 +224,8 @@ func transform_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
 	obj._ready()
 	
-	
+	$EffectAudioStream.play()
+	$EffectAudioStream["parameters/switch_to_clip"] = "transform"
 	#var obj_sprite = obj.find_child("Sprite2D")
 	$Sprite2D.texture = obj.find_child("Sprite2D").texture
 	

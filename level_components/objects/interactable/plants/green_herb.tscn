@@ -1,35 +1,65 @@
 [gd_scene format=3 uid="uid://cjw4k1o1djxtg"]
 
 [ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://art/pack/objects/planted/herb_basic_green.png" id="1_i7iob"]
-[ext_resource type="Script" uid="uid://bskv0ba2e5gal" path="res://level_components/objects/interactable/plants/interactable_plant.gd" id="1_n5xjd"]
+[ext_resource type="Script" uid="uid://bo851nu7tphd7" path="res://level_components/objects/interactable/interactable_object.gd" id="1_yxdtt"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_hyj50"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="2_kx41t"]
 [ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://game_systems/items/gatherable/green_herb_leaf.tres" id="3_l34td"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="4_42k14"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="5_e71ns"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="6_ydke0"]
+[ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="7_ntman"]
+[ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="8_sqvoo"]
+[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="9_5owxu"]
+[ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="10_hyn0g"]
 
 [sub_resource type="Resource" id="Resource_4lm15"]
 script = ExtResource("5_e71ns")
-interaction_type = "grab"
 on_interact_items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
 on_interact_amounts = Array[int]([2])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_h0poe"]
 script = ExtResource("5_e71ns")
-interaction_type = "grab"
 on_interact_items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
 on_interact_amounts = Array[int]([5])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_o4geq"]
+clip_count = 5
+clip_0/name = &"none"
+clip_0/stream = ExtResource("6_ydke0")
+clip_0/auto_advance = 0
+clip_1/name = &"grab"
+clip_1/stream = ExtResource("7_ntman")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"cut"
+clip_2/stream = ExtResource("8_sqvoo")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"destroy"
+clip_3/stream = ExtResource("9_5owxu")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"mutate"
+clip_4/stream = ExtResource("10_hyn0g")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
+
 [node name="GreenHerb" type="Node2D" unique_id=658593362]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_n5xjd")
+script = ExtResource("1_yxdtt")
 display_name = "Green Herb"
 description = "An herb with green leaves"
 items = Array[ExtResource("2_hyj50")]([ExtResource("3_l34td")])
 grab_interaction = SubResource("Resource_4lm15")
 cut_interaction = SubResource("Resource_h0poe")
+
+[node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=667756603]
+scale = Vector2(0.99999994, 0.99999994)
+stream = SubResource("AudioStreamInteractive_o4geq")
+bus = &"sfx"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2106743852]
 position = Vector2(1, -26)
@@ -37,7 +67,6 @@ texture = ExtResource("1_i7iob")
 
 [node name="InteractArea" parent="." unique_id=1959467430 instance=ExtResource("2_kx41t")]
 interact_label = "Green Herb"
-interact_type = 2
 
 [connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
 [connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]

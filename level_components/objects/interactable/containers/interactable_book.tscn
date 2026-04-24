@@ -2,12 +2,44 @@
 
 [ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://level_components/objects/interactable/containers/interactable_book.gd" id="1_emsgg"]
 [ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="2_emsgg"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_s51oi"]
+[ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="3_uuky7"]
+[ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="4_sv1f2"]
+[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="5_bcaw3"]
+[ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="6_an75r"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="7_s4f4p"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2j65f"]
+clip_count = 5
+clip_0/name = &"none"
+clip_0/stream = ExtResource("2_s51oi")
+clip_0/auto_advance = 0
+clip_1/name = &"grab"
+clip_1/stream = ExtResource("3_uuky7")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"cut"
+clip_2/stream = ExtResource("4_sv1f2")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"destroy"
+clip_3/stream = ExtResource("5_bcaw3")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"transform"
+clip_4/stream = ExtResource("6_an75r")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
 
 [node name="RecipeItem" type="Node2D" unique_id=1856845390]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_emsgg")
 display_name = "Recipe"
+
+[node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=76167031]
+scale = Vector2(0.99999994, 0.99999994)
+stream = SubResource("AudioStreamInteractive_2j65f")
+bus = &"sfx"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
 texture = ExtResource("2_emsgg")
