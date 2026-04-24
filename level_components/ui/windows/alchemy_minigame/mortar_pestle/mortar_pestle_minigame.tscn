@@ -4,11 +4,31 @@
 [ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.gd" id="1_vo0bl"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://level_components/ui/windows/alchemy_minigame/minigame_progress_bar.tscn" id="2_70xyk"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_aqc0h"]
+[ext_resource type="AudioStream" uid="uid://cq0jdj4lnn4nm" path="res://art/pack/sounds/bag_open.mp3" id="3_8br1m"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="4_mnwdg"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="4_r2g22"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="5_eoa2f"]
+[ext_resource type="AudioStream" uid="uid://beiqmcfja8yw8" path="res://art/pack/sounds/mp_down.mp3" id="5_mnwdg"]
+[ext_resource type="AudioStream" uid="uid://b6j6phaau01mp" path="res://art/pack/sounds/mp_left.mp3" id="6_0yjep"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="6_1mow8"]
+[ext_resource type="AudioStream" uid="uid://0kmdxudt3o3i" path="res://art/pack/sounds/mp_right.mp3" id="7_8br1m"]
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="8_wkini"]
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="9_88828"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_88828"]
+clip_count = 4
+clip_0/name = &"up"
+clip_0/stream = ExtResource("4_mnwdg")
+clip_0/auto_advance = 0
+clip_1/name = &"down"
+clip_1/stream = ExtResource("5_mnwdg")
+clip_1/auto_advance = 0
+clip_2/name = &"left"
+clip_2/stream = ExtResource("6_0yjep")
+clip_2/auto_advance = 0
+clip_3/name = &"right"
+clip_3/stream = ExtResource("7_8br1m")
+clip_3/auto_advance = 0
 
 [node name="MinigameMP" type="Panel" unique_id=542892921]
 anchors_preset = -1
@@ -20,6 +40,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_85brq")
 script = ExtResource("1_vo0bl")
+
+[node name="MinigameAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=831164798]
+stream = ExtResource("3_8br1m")
+
+[node name="EffectsAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1633683529]
+stream = SubResource("AudioStreamInteractive_88828")
+bus = &"sfx"
 
 [node name="StartupDelay" type="Timer" parent="." unique_id=907235121]
 one_shot = true

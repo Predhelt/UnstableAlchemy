@@ -34,6 +34,7 @@ var has_open_call : bool = false
 func _ready() -> void:
 	default_pos = position
 	$Sprite2D.texture = texture
+	$AudioStreamPlayer2D.play() # Audio stream starts on and stays on.
 	
 ## Open or close the door depending on how the door is moving.
 ## Door cannot open any wider than MAX_OPEN_DISTANCE.
@@ -47,8 +48,7 @@ func _physics_process(delta : float) -> void:
 				open_dist = MAX_OPEN_DISTANCE
 				is_moving = false
 				is_open = true
-				$AudioStreamPlayer2D["parameters/switch_to_clip"] = null
-				$AudioStreamPlayer2D.stop()
+				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "slam_open"
 				return
 			_move_door(dist)
 		
@@ -60,6 +60,7 @@ func _physics_process(delta : float) -> void:
 		if open_dist > 0:
 			open_dist -= dist
 			if open_dist <= 0: # Prevents moving too far
+				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "slam_closed"
 				_move_door_to(0)
 				open_dist = 0
 				is_moving = false
@@ -110,6 +111,7 @@ func _deferred_close_door():
 		return
 	if not has_open_call:
 		if is_open == true:
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = "sliding_closed"
 			is_moving = 2
 
 ## Begins opening the door
@@ -120,7 +122,6 @@ func open_door(node : Node2D):
 		has_open_call = true
 		if is_moving != 1 and (is_open == false or is_moving == 2 or (is_open == false and is_moving == 0)):
 			is_moving = 1
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = "sliding"
-			$AudioStreamPlayer2D.play()
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = "sliding_open"
 			if open_notification != "":
 				Global.emit_notification(open_notification)

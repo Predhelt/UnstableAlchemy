@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://bmo1romp67ev2" path="res://characters/att_default.tres" id="2_2ixeu"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_78rwt"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_u8as0"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="5_pq74r"]
 [ext_resource type="AudioStream" uid="uid://cnwfo6av2s8fn" path="res://art/pack/sounds/grass_step_delay.mp3" id="5_y1w77"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="9_q2yw5"]
 [ext_resource type="Script" uid="uid://de3xp8ny6r1x4" path="res://characters/possession_area.gd" id="10_r2515"]
@@ -14,10 +15,13 @@ script = ExtResource("4_u8as0")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_pq74r"]
-clip_count = 1
-clip_0/name = &"walking"
-clip_0/stream = ExtResource("5_y1w77")
+clip_count = 2
+clip_0/name = &"idle"
+clip_0/stream = ExtResource("5_pq74r")
 clip_0/auto_advance = 0
+clip_1/name = &"walking"
+clip_1/stream = ExtResource("5_y1w77")
+clip_1/auto_advance = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1u1o"]
 radius = 250.0
@@ -35,6 +39,7 @@ inventory = SubResource("Resource_qulg7")
 [node name="CharacterAudioListener" type="AudioListener2D" parent="." unique_id=1655733378]
 
 [node name="CharacterAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=453341369]
+unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_pq74r")
 max_distance = 500.0
 attenuation = 2.0000007

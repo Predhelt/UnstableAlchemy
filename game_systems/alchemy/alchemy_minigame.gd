@@ -48,6 +48,7 @@ func init_ingredients(ingredients : Array[Item]) -> void:
 ## Closes the minigame window and ensures that the menu group is updated.
 func close_window():
 	$MinigameAudioStream.stop()
+	$EffectsAudioStream.stop()
 	is_crafting = false
 	visible = false
 	## Return the craft ingredients back to the inventory if not already used.
@@ -69,6 +70,7 @@ func close_window():
 ## Closes the current window and returns to the inventory menu.
 func previous_window():
 	$MinigameAudioStream.stop()
+	$EffectsAudioStream.stop()
 	is_crafting = false
 	visible = false
 	for item in cur_craft_ingredients:
@@ -104,7 +106,8 @@ func _on_startup_delay_timeout() -> void:
 	slider.value = 0
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Start!"
 	$MinigameAudioStream["parameters/switch_to_clip"] = "cooking"
-	#$MinigameAudioStream.play()
+	$EffectsAudioStream["parameters/switch_to_clip"] = "none"
+	$EffectsAudioStream.play()
 	is_crafting = true
 
 ## Upon completion of the minigame, check the user inputs and compare them to the

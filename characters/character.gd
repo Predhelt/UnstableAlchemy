@@ -358,12 +358,12 @@ func update_animation_parameters() -> void:
 	if(velocity == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false
-		update_character_audio("none")
+		update_character_audio("idle")
 	else:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
 		update_character_audio("walking")
-		# TODO: Change walk speed based on move speed.
+		# TODO: Change sound based on move speed and surface.
 	
 	if(direction != Vector2.ZERO):
 		animation_tree["parameters/Idle/blend_position"] = direction
@@ -372,10 +372,10 @@ func update_animation_parameters() -> void:
 ## Changes the character's [AudioStreamPlayer2D] to play the stream with the given name.
 ## if [param audio_name] is "none", stops audio stream.
 func update_character_audio(audio_name: String) -> void:
-	var character_audiostream_ref : AudioStreamPlayer2D = $CharacterAudioStream
-	if audio_name == "none":
+	var character_audiostream_ref : AudioStreamPlayer2D = %CharacterAudioStream
+	if audio_name == "idle":
 		character_audiostream_ref.stop()
-		character_audiostream_ref["parameters/switch_to_clip"] = null
+		character_audiostream_ref["parameters/switch_to_clip"] = "idle"
 	elif audio_name != character_audiostream_ref["parameters/switch_to_clip"]:
 		character_audiostream_ref.play()
 		character_audiostream_ref["parameters/switch_to_clip"] = audio_name

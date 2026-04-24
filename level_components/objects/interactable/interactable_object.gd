@@ -220,6 +220,7 @@ func transform_object(new_object_scene: PackedScene):
 	var obj = new_object_scene.instantiate()
 	obj._ready()
 	
+	
 	#var obj_sprite = obj.find_child("Sprite2D")
 	$Sprite2D.texture = obj.find_child("Sprite2D").texture
 	

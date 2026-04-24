@@ -1,35 +1,13 @@
 [gd_scene format=3 uid="uid://b8t1hbo8um0bg"]
 
-[ext_resource type="Script" uid="uid://nfaon5fja8pq" path="res://level_components/objects/triggers/sliding_door.gd" id="1_5rpu3"]
-[ext_resource type="Texture2D" uid="uid://uyyshsfxk2ew" path="res://art/pack/objects/doors/slide_door_gray.png" id="2_7i3ww"]
-[ext_resource type="AudioStream" uid="uid://oxqdm58vldsa" path="res://art/pack/sounds/stone_door_slide2.mp3" id="3_p4ivf"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="1_bagbc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m66gg"]
-size = Vector2(12, 64)
+[node name="SlidingDoor" unique_id=463050243 instance=ExtResource("1_bagbc")]
+open_direction = "Down"
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_tb0yn"]
-clip_count = 2
-clip_0/name = &"sliding"
-clip_0/stream = ExtResource("3_p4ivf")
-clip_0/auto_advance = 0
-clip_1/name = &"slam"
-clip_1/auto_advance = 0
-
-[node name="SlidingDoor" type="AnimatableBody2D" unique_id=463050243]
-script = ExtResource("1_5rpu3")
-texture = ExtResource("2_7i3ww")
-open_time = 0.5
-close_time = 0.5
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=564414494]
-position = Vector2(26, 0)
+[node name="Sprite2D" parent="." index="0" unique_id=564414494]
+position = Vector2(28, 0)
 rotation = 1.5707964
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_7i3ww")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782915014]
-shape = SubResource("RectangleShape2D_m66gg")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=290646454]
-stream = SubResource("AudioStreamInteractive_tb0yn")
-bus = &"sfx"
+[node name="CollisionShape2D" parent="." index="1" unique_id=1782915014]
+rotation = 1.5707964

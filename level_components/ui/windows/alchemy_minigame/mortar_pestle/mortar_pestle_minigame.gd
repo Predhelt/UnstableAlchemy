@@ -57,6 +57,8 @@ func begin_minigame():
 	for button in minigame_buttons:
 		button.disabled = false
 	
+	$EffectsAudioStream["parameters/switch_to_clip"] = "up"
+	$EffectsAudioStream.play()
 	slider.value = 0
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Start!"
 	is_crafting = true
@@ -66,7 +68,17 @@ func begin_minigame():
 ## clear the action input buffer then check to see if the procedure is completed. If so,
 ## check the list of recipes to see if the procedure on the given item matches a known recipe.
 func update_combo_input(action: StringName):
+	# Sound Effects
 	combo_buffer.append(action)
+	if action == &"up":
+		$EffectsAudioStream["parameters/switch_to_clip"] = &"up"
+	elif action == &"down":
+		$EffectsAudioStream["parameters/switch_to_clip"] = &"down"
+	elif action == &"left":
+		$EffectsAudioStream["parameters/switch_to_clip"] = &"left"
+	elif action == &"right":
+		$EffectsAudioStream["parameters/switch_to_clip"] = &"right"
+	
 	
 	if len(combo_buffer) < 4:
 		return
@@ -147,6 +159,7 @@ func open_window():
 	slider.max_value = 5
 	slider.tick_count = 6
 	
+	$MinigameAudioStream.play()
 	%WindowName.text = "Mortar and Pestle"
 	Global.left_window = self
 	visible = true

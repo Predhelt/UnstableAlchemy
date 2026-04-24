@@ -3,17 +3,32 @@
 [ext_resource type="Script" uid="uid://nfaon5fja8pq" path="res://level_components/objects/triggers/sliding_door.gd" id="1_b6o5m"]
 [ext_resource type="Texture2D" uid="uid://uyyshsfxk2ew" path="res://art/pack/objects/doors/slide_door_gray.png" id="2_02pl3"]
 [ext_resource type="AudioStream" uid="uid://oxqdm58vldsa" path="res://art/pack/sounds/stone_door_slide2.mp3" id="3_6pke3"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="3_hjqqs"]
+[ext_resource type="AudioStream" uid="uid://0kmdxudt3o3i" path="res://art/pack/sounds/mp_right.mp3" id="5_xo6bq"]
+[ext_resource type="AudioStream" uid="uid://beiqmcfja8yw8" path="res://art/pack/sounds/mp_down.mp3" id="6_r15sb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m66gg"]
 size = Vector2(64, 8)
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ayc7h"]
-clip_count = 2
-clip_0/name = &"sliding"
-clip_0/stream = ExtResource("3_6pke3")
+clip_count = 5
+clip_0/name = &"idle"
+clip_0/stream = ExtResource("3_hjqqs")
 clip_0/auto_advance = 0
-clip_1/name = &"slam"
+clip_1/name = &"sliding_open"
+clip_1/stream = ExtResource("3_6pke3")
 clip_1/auto_advance = 0
+clip_2/name = &"slam_open"
+clip_2/stream = ExtResource("6_r15sb")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"sliding_closed"
+clip_3/stream = ExtResource("3_6pke3")
+clip_3/auto_advance = 0
+clip_4/name = &"slam_closed"
+clip_4/stream = ExtResource("5_xo6bq")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
 
 [node name="SlidingDoor" type="AnimatableBody2D" unique_id=463050243]
 script = ExtResource("1_b6o5m")
