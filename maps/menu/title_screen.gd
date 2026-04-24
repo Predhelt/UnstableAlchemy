@@ -9,6 +9,7 @@ func open_level() -> bool:
 
 
 func _on_button_settings_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	if not $SettingsMenu.visible:
 		$SettingsMenu.popup()
 	else:
@@ -16,8 +17,10 @@ func _on_button_settings_pressed() -> void:
 
 
 func _on_button_exit_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	$PopupConfirmation.popup()
 
 
 func _on_button_load_pressed() -> void:
+	$AudioStreamPlayer2D.play()
 	Global.load_game()

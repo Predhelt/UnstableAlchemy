@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rv8tslq5els7" path="res://maps/menu/title_screen.gd" id="1_scg0l"]
 [ext_resource type="Texture2D" uid="uid://c6iuademyval" path="res://art/pack/ui/menus/title_background.png" id="2_1nh0f"]
+[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/sounds/menu_press.mp3" id="2_8adcj"]
 [ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_12dnu"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="2_v76xe"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
@@ -16,6 +17,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_scg0l")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=956717125]
+stream = ExtResource("2_8adcj")
+bus = &"sfx"
 
 [node name="SettingsMenu" parent="." unique_id=1910452402 instance=ExtResource("2_v76xe")]
 visible = false
@@ -36,7 +41,7 @@ offset_top = 14.0
 offset_right = 278.0
 offset_bottom = 102.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.57254905, 0.43137255, 1, 1)
+theme_override_colors/font_color = Color(0.3490967, 0.0014225525, 0.7631085, 1)
 theme_override_colors/font_outline_color = Color(0.27058825, 0.84313726, 0.8666667, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
@@ -53,7 +58,7 @@ offset_top = 115.0
 offset_right = 278.0
 offset_bottom = 203.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.82126004, 0.44207728, 0.05197215, 1)
+theme_override_colors/font_color = Color(0.6765726, 0.3603092, 0.025225038, 1)
 theme_override_colors/font_outline_color = Color(0.17459902, 0.90393627, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64

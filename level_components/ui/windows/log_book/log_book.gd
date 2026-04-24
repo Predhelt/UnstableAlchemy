@@ -87,10 +87,9 @@ func open_window() -> bool:
 	
 	set_buttons_visibility()
 	
-	#FIXME: Menus in background can prevent tab buttons from being pressed
 	# Open the current page in the current tab
 	open_page_in_tab($VBoxContainer/TabContainer.current_tab)
-	
+	$AudioStreamPlayer2D.play()
 	visible = true
 	return true
 
@@ -546,6 +545,7 @@ func open_page_in_tab(tab: int) -> void:
 func _on_tab_container_tab_changed(tab: int) -> void:
 	if not is_node_ready():
 		return
+	$AudioStreamPlayer2D.play()
 	open_page_in_tab(tab)
 
 ## When close button is pressed, close the log book window.

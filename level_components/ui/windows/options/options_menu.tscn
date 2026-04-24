@@ -3,6 +3,7 @@
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="1_00l5q"]
 [ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_24o10"]
 [ext_resource type="Script" uid="uid://do35anfokx1j4" path="res://level_components/ui/windows/options/options_menu.gd" id="1_bw5gs"]
+[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/sounds/menu_press.mp3" id="3_dxja2"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_ldjf7"]
 [ext_resource type="ButtonGroup" uid="uid://bo5q05cajm24g" path="res://level_components/ui/windows/options/options_buttons.tres" id="4_o212l"]
 [ext_resource type="PackedScene" uid="uid://1yiwmvqku557" path="res://level_components/ui/windows/options/button_options_menu.tscn" id="6_qrcwd"]
@@ -19,6 +20,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_24o10")
 script = ExtResource("1_bw5gs")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1724936298]
+stream = ExtResource("3_dxja2")
+bus = &"sfx"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1046724808]
 layout_mode = 1

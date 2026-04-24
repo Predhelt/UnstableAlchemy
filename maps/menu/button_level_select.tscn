@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bka6k2ui8al12"]
 
 [ext_resource type="Script" uid="uid://dymqeg4nsdn64" path="res://maps/menu/button_level_select.gd" id="1_0h6hx"]
+[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/sounds/menu_press.mp3" id="2_ufwp4"]
 
 [node name="ButtonLevelSelect" type="Button" unique_id=1276432221]
 custom_minimum_size = Vector2(100, 100)
@@ -9,5 +10,9 @@ offset_top = 10.0
 offset_right = 110.0
 offset_bottom = 110.0
 script = ExtResource("1_0h6hx")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1675381403]
+stream = ExtResource("2_ufwp4")
+bus = &"sfx"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

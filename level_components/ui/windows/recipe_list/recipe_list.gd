@@ -86,6 +86,8 @@ func open_window() -> bool:
 		%ButtonBack.visible = false
 		%ButtonList.visible = false
 		Global.right_window = self
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "open"
+		$AudioStreamPlayer2D.play()
 		visible = true
 		return true
 	return false
@@ -110,6 +112,8 @@ func open_recipe_page(item : Item):
 			add_ingredients(r)
 		add_procedure(r)
 	
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "flip"
+	$AudioStreamPlayer2D.play()
 	%RecipeItems.visible = false
 	%WindowName.text = "Item Details"
 	%ButtonBack.visible = true
