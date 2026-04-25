@@ -75,7 +75,7 @@ func open_window() -> bool:
 		Global.mode = window_mode
 	if Global.mode == window_mode:
 		$AudioStreamPlayer2D.play()
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "open"
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"open"
 		update_window()
 		Global.left_window = self
 		%WindowName.text = "Inventory and Crafting"

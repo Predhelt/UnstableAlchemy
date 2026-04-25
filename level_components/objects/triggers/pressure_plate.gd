@@ -24,10 +24,10 @@ func _process(_delta: float) -> void:
 			mass_sum += b.attributes.get_attribute("mass")
 		else:
 			mass_sum += b.mass
-	if mass_sum >= trigger_weight and door_refs[0].is_moving != 1:
+	if mass_sum >= trigger_weight:
 		for door in door_refs:
 			door.open_door(self)
-	if mass_sum < trigger_weight and door_refs[0].is_open and door_refs[0].is_moving != 2:
+	if mass_sum < trigger_weight:
 		for door in door_refs:
 			door.close_door(self)
 

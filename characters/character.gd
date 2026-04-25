@@ -136,7 +136,7 @@ func save() -> Dictionary:
 			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
 		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
 	for se in active_status_effects:
-		print(ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name]))
+		ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name])
 	
 	var save_dict = {
 		"filename" : get_scene_file_path(),
@@ -294,6 +294,8 @@ func transfer_camera(body: Node2D):
 ## Update character position and messages every frame
 func _physics_process(delta: float) -> void:
 	if Global.mode != &"default":
+		if %CharacterAudioStream.playing:
+			update_character_audio("idle")
 		return
 	
 	if is_player_controlled:
@@ -382,7 +384,7 @@ func update_character_audio(audio_name: String) -> void:
 	var character_audiostream_ref : AudioStreamPlayer2D = %CharacterAudioStream
 	if audio_name == "idle":
 		character_audiostream_ref.stop()
-		character_audiostream_ref["parameters/switch_to_clip"] = "idle"
+		character_audiostream_ref["parameters/switch_to_clip"] = &"idle"
 	elif audio_name != character_audiostream_ref["parameters/switch_to_clip"]:
 		character_audiostream_ref.play()
 		character_audiostream_ref["parameters/switch_to_clip"] = audio_name
@@ -534,7 +536,7 @@ func inspect_object():
 ## User controls the target body. All inputs and behavior transfers.
 func begin_possession(body: Character):
 	body.find_child("EffectAudioStream").play()
-	body.find_child("EffectAudioStream")["parameters/switch_to_clip"] = "possess"
+	body.find_child("EffectAudioStream")["parameters/switch_to_clip"] = &"possess"
 	possessing_character_name = body.name
 	possessing_character = body
 	body.character_possessed_by_name = self.name
@@ -567,7 +569,7 @@ func begin_possession(body: Character):
 ## Ends the possession on the given [param body].
 func end_possession():
 	%EffectAudioStream.play()
-	%EffectAudioStream["parameters/switch_to_clip"] = "end_possess"
+	%EffectAudioStream["parameters/switch_to_clip"] = &"end_possess"
 	var body : Character = possessing_character
 	# Recursively end possession
 	if body.possessing_character:
@@ -863,7 +865,11 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 			$PossessionTargetLabel.text = ""
 			update_status_bar(se, _get_se_index(se), true)
 		can_possess_others_count = 0
-		active_status_effects.remove_at(_get_se_index(se))
+		var se_index = _get_se_index(se)
+		if se_index == -1:
+			print("Error: Status Effect %s not in character for removal!")
+		else:
+			active_status_effects.remove_at(se_index)
 	else:
 		return false
 	return true

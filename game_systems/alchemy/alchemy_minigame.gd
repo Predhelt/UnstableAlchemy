@@ -98,7 +98,7 @@ func begin_minigame():
 			minigame_buttons[i].disabled = false
 	minigame_buttons[-1].disabled = false
 	
-	$MinigameAudioStream["parameters/switch_to_clip"] = "begin"
+	$MinigameAudioStream["parameters/switch_to_clip"] = &"begin"
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Ready..."
 	$StartupDelay.start()
 
@@ -106,8 +106,8 @@ func begin_minigame():
 func _on_startup_delay_timeout() -> void:
 	slider.value = 0
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Start!"
-	$MinigameAudioStream["parameters/switch_to_clip"] = "cooking"
-	$EffectsAudioStream["parameters/switch_to_clip"] = "none"
+	$MinigameAudioStream["parameters/switch_to_clip"] = &"cooking"
+	$EffectsAudioStream["parameters/switch_to_clip"] = &"none"
 	$EffectsAudioStream.play()
 	is_crafting = true
 

@@ -50,7 +50,7 @@ func _physics_process(delta : float) -> void:
 				is_moving = false
 				is_open = true
 				$AudioStreamPlayer2D.play() # Stops sliding sound
-				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "slam_open"
+				$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"slam_open"
 				return
 			_move_door(dist)
 		
@@ -63,7 +63,7 @@ func _physics_process(delta : float) -> void:
 			open_dist -= dist
 			if open_dist <= 0: # Prevents moving too far
 				$AudioStreamPlayer2D.play() # Stops sliding sound
-				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "slam_closed"
+				$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"slam_closed"
 				_move_door_to(0)
 				open_dist = 0
 				is_moving = false
@@ -104,7 +104,7 @@ func _move_door_to(pos : float) -> void:
 func close_door(node : Node2D):
 	if node in cur_trigger_nodes:
 		cur_trigger_nodes.remove_at(cur_trigger_nodes.find(node))
-	if cur_trigger_nodes.size() < triggers_required:
+	if is_open and cur_trigger_nodes.size() < triggers_required:
 		call_deferred("_deferred_close_door")
 
 ## Checks at end of frame if [member has_open_call] is true.
@@ -113,8 +113,8 @@ func _deferred_close_door():
 	if cur_trigger_nodes.size() >= triggers_required:
 		return
 	if not has_open_call:
-		if is_open == true:
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = "sliding_closed"
+		if is_open == true and is_moving != 2:
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"sliding_closed"
 			is_moving = 2
 
 ## Begins opening the door
@@ -125,6 +125,6 @@ func open_door(node : Node2D):
 		has_open_call = true
 		if is_moving != 1 and (is_open == false or is_moving == 2 or (is_open == false and is_moving == 0)):
 			is_moving = 1
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = "sliding_open"
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"sliding_open"
 			if open_notification != "":
 				Global.emit_notification(open_notification)

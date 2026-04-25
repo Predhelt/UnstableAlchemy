@@ -57,7 +57,7 @@ func begin_minigame():
 	for button in minigame_buttons:
 		button.disabled = false
 	
-	$EffectsAudioStream["parameters/switch_to_clip"] = "up"
+	$EffectsAudioStream["parameters/switch_to_clip"] = &"up"
 	$EffectsAudioStream.play()
 	slider.value = 0
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Start!"

@@ -56,7 +56,7 @@ func get_cur_folder_path() -> String:
 	return folder_path
 
 ## Check if the object has no items left. If so, free the object from memory.
-## [param sfx_name] is used to determine which sound effect should be played, if any.
+## [param sfx] is used to determine which sound effect should be played, if any.
 ## Default value is "", indicating default sfx.
 func check_empty(sfx : AudioStream = null):
 	var sum = 0
@@ -77,7 +77,7 @@ func emit_effect(sfx : AudioStream = null):
 
 ## Removes items from the object. Adds any items to the character's inventory
 ## based on the interaction. Displays on screen the items that were collected.
-func collect_items(character: Character, interaction: Interaction, sfx_name: String) -> bool:
+func collect_items(character: Character, interaction: Interaction, sfx_name: StringName) -> bool:
 	if not interaction:
 		print("No interaction")
 		return false
@@ -116,7 +116,7 @@ func collect_items(character: Character, interaction: Interaction, sfx_name: Str
 		$EffectAudioStream["parameters/switch_to_clip"] = sfx_name
 	else:
 		$EffectAudioStream.play()
-		$EffectAudioStream["parameters/switch_to_clip"] = "fail"
+		$EffectAudioStream["parameters/switch_to_clip"] = &"fail"
 		items_gained_effect_instance.set_no_items_gained()
 	items_gained_effect_instance.position = position
 	get_parent().add_child(items_gained_effect_instance)
@@ -235,7 +235,7 @@ func transform_object(new_object_scene: PackedScene):
 	obj._ready()
 	
 	$EffectAudioStream.play()
-	$EffectAudioStream["parameters/switch_to_clip"] = "transform"
+	$EffectAudioStream["parameters/switch_to_clip"] = &"transform"
 	#var obj_sprite = obj.find_child("Sprite2D")
 	$Sprite2D.texture = obj.find_child("Sprite2D").texture
 	

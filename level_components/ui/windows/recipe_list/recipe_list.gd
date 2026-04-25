@@ -86,7 +86,7 @@ func open_window() -> bool:
 		%ButtonBack.visible = false
 		%ButtonList.visible = false
 		Global.right_window = self
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "open"
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"open"
 		$AudioStreamPlayer2D.play()
 		visible = true
 		return true
@@ -112,7 +112,7 @@ func open_recipe_page(item : Item):
 			add_ingredients(r)
 		add_procedure(r)
 	
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "flip"
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"flip"
 	$AudioStreamPlayer2D.play()
 	%RecipeItems.visible = false
 	%WindowName.text = "Item Details"
@@ -345,7 +345,7 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 		return false
 	
 	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "quick_craft"
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"quick_craft"
 	## Update the inventory window if it is open while the recipe window is open.
 	$"../../LeftWindows/InventoryMenu".update_window()
 	
