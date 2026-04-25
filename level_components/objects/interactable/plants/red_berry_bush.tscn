@@ -1,22 +1,16 @@
 [gd_scene format=3 uid="uid://ocpfwxtn11ij"]
 
-[ext_resource type="Script" uid="uid://bo851nu7tphd7" path="res://level_components/objects/interactable/interactable_object.gd" id="1_rdkk5"]
+[ext_resource type="PackedScene" uid="uid://bmn5y8yd333yi" path="res://level_components/objects/interactable/interactable_object.tscn" id="1_2v1i6"]
 [ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant_red_berry.png" id="2_brn6a"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_xvjhr"]
 [ext_resource type="Resource" uid="uid://cmskddd1xsq2" path="res://game_systems/items/gatherable/red_berries.tres" id="3_4mvhq"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="4_egyba"]
-[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="5_fkhen"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="5_vrd4a"]
 [ext_resource type="Script" uid="uid://cjv3jm7ko26fl" path="res://level_components/objects/interactable/object_combination.gd" id="6_h3imn"]
 [ext_resource type="Resource" uid="uid://cyyy0xtvgwap3" path="res://game_systems/items/merged_ingredients/yellow_paste.tres" id="7_ekh04"]
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://level_components/objects/interactable/plants/blue_berry_bush.tscn" id="8_momi4"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="9_yo350"]
-[ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="10_kxilp"]
-[ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="11_k8ne0"]
-[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="12_1w1m1"]
-[ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="13_ctpyy"]
 
-[sub_resource type="Resource" id="Resource_odqey"]
+[sub_resource type="Resource" id="Resource_ekh04"]
 script = ExtResource("5_vrd4a")
 on_interact_items = Array[ExtResource("2_xvjhr")]([ExtResource("3_4mvhq")])
 on_interact_amounts = Array[int]([2])
@@ -35,51 +29,18 @@ result_object_scene = ExtResource("8_momi4")
 status_message = "The berries turned blue"
 metadata/_custom_type_script = "uid://cjv3jm7ko26fl"
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_sdvdt"]
-clip_count = 5
-clip_0/name = &"none"
-clip_0/stream = ExtResource("9_yo350")
-clip_0/auto_advance = 0
-clip_1/name = &"grab"
-clip_1/stream = ExtResource("10_kxilp")
-clip_1/auto_advance = 1
-clip_1/next_clip = 0
-clip_2/name = &"cut"
-clip_2/stream = ExtResource("11_k8ne0")
-clip_2/auto_advance = 1
-clip_2/next_clip = 0
-clip_3/name = &"destroy"
-clip_3/stream = ExtResource("12_1w1m1")
-clip_3/auto_advance = 1
-clip_3/next_clip = 0
-clip_4/name = &"transform"
-clip_4/stream = ExtResource("13_ctpyy")
-clip_4/auto_advance = 1
-clip_4/next_clip = 0
-
-[node name="RedBerryBush" type="Node2D" unique_id=1320011023]
+[node name="RedBerryBush" unique_id=1856845390 instance=ExtResource("1_2v1i6")]
 scale = Vector2(0.7, 0.7)
-script = ExtResource("1_rdkk5")
 display_name = "Red Berry Bush"
 description = "A bush full of red berries"
 items = Array[ExtResource("2_xvjhr")]([ExtResource("3_4mvhq")])
-grab_interaction = SubResource("Resource_odqey")
+grab_interaction = SubResource("Resource_ekh04")
 cut_interaction = SubResource("Resource_pf15v")
 combinations = Array[ExtResource("6_h3imn")]([SubResource("Resource_06ehc")])
 
-[node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=346268687]
-scale = Vector2(0.9999998, 0.9999998)
-stream = SubResource("AudioStreamInteractive_sdvdt")
-bus = &"sfx"
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1273907933]
+[node name="Sprite2D" parent="." index="1" unique_id=312684338]
 position = Vector2(0, -25)
 texture = ExtResource("2_brn6a")
 
-[node name="InteractArea" parent="." unique_id=883884215 instance=ExtResource("5_fkhen")]
+[node name="InteractArea" parent="." index="2" unique_id=1577246465]
 interact_label = "Red Berry Bush"
-
-[connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
-[connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
-[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
-[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]

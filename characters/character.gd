@@ -14,8 +14,7 @@ const LABEL_DEFAULT_Y_POS : float = -60.0
 
 ## The [AnimationTree] determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
-## Reference to the [Camera2D] that is being used to follow the character and display the game screen.
-@export var character_camera_ref : Camera2D
+
 ## Reference to UI shop Window
 #TODO: No need to store these variables here for every character.
 @onready var shop_ui_ref : Control = $"../UILayer/MenuLayer/RightWindows/CharacterShop"
@@ -24,30 +23,32 @@ const LABEL_DEFAULT_Y_POS : float = -60.0
 ## Name of the Character to be dislpayed.
 ## Used by the player and dialogue window to show who this is.
 @export var character_name : String
-## The type of interaction that occurs upon interacting with the Character
-@export_enum("none", "talk", "shop") var interaction_type : String = "talk" 
-## List of transactions for the Character shop
-@export var transactions : Array[Transaction]
-## List of messages that are displayed above the character
-@export var passive_messages : Array[String]
-## Stores the list of dialogues that the Character uses, as well as the default
-## dialogue window that displays when talked to.
-var dialogues : Array[Dialogue]
-## The time left before the message disappears
-var message_timer := 0.0
-## The time since the last message ended
-var last_message_delta := 0.0
+
+@export_group("Setup")
 ## The character's base [Attributes] that determine interactions with the environment
 @export var attributes : Attributes
 ## List of [Recipe]s known by the character. This is mainly used internally for keeping
 ## track of the character-specific knowledge, not the player's known recipes.
 ## Player-known recipes are stored in UserVariables.
 @export var known_recipes : Array[Recipe]
+
+@export_group("Equipment")
+## Reference to the [Inventory] of the character(s).
+@export var inventory : Inventory
 ## Tracks whether the character has access to the blade tool or not.
 @export var has_blade : bool = false
 ## Tracks whether the character has access to the dropper tool or not.
 @export var has_dropper : bool = false
 
+@export_group("Conditions")
+## Reference to the [Camera2D] that is being used to follow the character and display the game screen.
+@export var character_camera_ref : Camera2D
+## The list of [StatusEffect]s that are currently active on the character
+@export var active_status_effects : Array[StatusEffect]
+## Tracks whether the character is being controlled by the player
+var is_player_controlled : bool = false
+## Tracks whether the [Camera2D] is focused on the character
+var is_camera_focused : bool = false
 ## Tracks whether the character is susceptible to being possessed.
 @export var is_possessable : bool = false
 ## Tracks the character that is possessing this body, if any.
@@ -84,14 +85,20 @@ var objects_combined: Dictionary[String, Array]
 ## The count of each [Item] with a given item ID
 var items_used: Dictionary[int, int]
 
-## Reference to the [Inventory] of the character(s).
-@export var inventory : Inventory
-## The list of [StatusEffect]s that are currently active on the character
-@export var active_status_effects : Array[StatusEffect]
-## Tracks whether the character is being controlled by the player
-var is_player_controlled : bool = false
-## Tracks whether the [Camera2D] is focused on the character
-var is_camera_focused : bool = false
+@export_group("Auto Actions")
+## The type of interaction that occurs upon interacting with the Character
+@export_enum("none", "talk", "shop") var interaction_type : String = "talk" 
+## List of transactions for the Character shop
+@export var transactions : Array[Transaction]
+## List of messages that are displayed above the character
+@export var passive_messages : Array[String]
+## Stores the list of dialogues that the Character uses, as well as the default
+## dialogue window that displays when talked to.
+var dialogues : Array[Dialogue]
+## The time left before the message disappears
+var message_timer := 0.0
+## The time since the last message ended
+var last_message_delta := 0.0
 
 ## The direction in 2D space that the character is moving
 var direction := Vector2.ZERO

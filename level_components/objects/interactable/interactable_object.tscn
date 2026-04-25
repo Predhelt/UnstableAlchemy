@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bmn5y8yd333yi"]
+
+[ext_resource type="Script" uid="uid://bo851nu7tphd7" path="res://level_components/objects/interactable/interactable_object.gd" id="1_32it0"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_rqt0i"]
+[ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="3_7o47x"]
+[ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="4_w1d08"]
+[ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="6_pongy"]
+[ext_resource type="Texture2D" uid="uid://c14l6r05fe0et" path="res://art/pack/objects/planted/herb_basic_green.png" id="7_32it0"]
+[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="8_6vhb5"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2j65f"]
+clip_count = 5
+clip_0/name = &"none"
+clip_0/stream = ExtResource("2_rqt0i")
+clip_0/auto_advance = 0
+clip_1/name = &"grab"
+clip_1/stream = ExtResource("3_7o47x")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"cut"
+clip_2/stream = ExtResource("4_w1d08")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"transform"
+clip_3/stream = ExtResource("6_pongy")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"fail"
+clip_4/stream = ExtResource("6_pongy")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
+
+[node name="InteractableObject" type="Node2D" unique_id=1856845390]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_32it0")
+
+[node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=76167031]
+scale = Vector2(0.99999994, 0.99999994)
+stream = SubResource("AudioStreamInteractive_2j65f")
+bus = &"sfx"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
+texture = ExtResource("7_32it0")
+
+[node name="InteractArea" parent="." unique_id=1577246465 instance=ExtResource("8_6vhb5")]
+
+[connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
+[connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
+[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
+[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]

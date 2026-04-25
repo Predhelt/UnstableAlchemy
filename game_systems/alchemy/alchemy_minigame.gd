@@ -98,7 +98,7 @@ func begin_minigame():
 			minigame_buttons[i].disabled = false
 	minigame_buttons[-1].disabled = false
 	
-	$MinigameAudioStream["parameters/switch_to_clip"] = "start"
+	$MinigameAudioStream["parameters/switch_to_clip"] = "begin"
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = "Ready..."
 	$StartupDelay.start()
 

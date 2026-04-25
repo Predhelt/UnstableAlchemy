@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtm76oo6aso3r" path="res://art/effects/object_destroyed_effect.gd" id="1_gdqi4"]
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="2_hgv4o"]
-[ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="3_72s4g"]
-[ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="4_em4g4"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="5_go074"]
-[ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/sounds/page_flip.mp3" id="6_74b5o"]
 
 [sub_resource type="Gradient" id="Gradient_nivka"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -26,28 +23,13 @@ scale_max = 7.0
 color_ramp = SubResource("GradientTexture1D_f4hf4")
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_go074"]
-clip_count = 7
+clip_count = 2
 clip_0/name = &"destroy"
 clip_0/stream = ExtResource("2_hgv4o")
 clip_0/auto_advance = 0
-clip_1/name = &"grab_plant"
-clip_1/stream = ExtResource("3_72s4g")
+clip_1/name = &"interact"
+clip_1/stream = ExtResource("5_go074")
 clip_1/auto_advance = 0
-clip_2/name = &"cut_plant"
-clip_2/stream = ExtResource("4_em4g4")
-clip_2/auto_advance = 0
-clip_3/name = &"grab_crate"
-clip_3/stream = ExtResource("5_go074")
-clip_3/auto_advance = 0
-clip_4/name = &"cut_crate"
-clip_4/stream = ExtResource("5_go074")
-clip_4/auto_advance = 0
-clip_5/name = &"grab_book"
-clip_5/stream = ExtResource("6_74b5o")
-clip_5/auto_advance = 0
-clip_6/name = &"cut_book"
-clip_6/stream = ExtResource("6_74b5o")
-clip_6/auto_advance = 0
 
 [node name="ObjectDestroyedEffect" type="GPUParticles2D" unique_id=1143452162]
 position = Vector2(0, -1)
@@ -61,6 +43,7 @@ script = ExtResource("1_gdqi4")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2078521841]
 stream = SubResource("AudioStreamInteractive_go074")
+max_polyphony = 2
 bus = &"sfx"
 
 [node name="Timer" type="Timer" parent="." unique_id=321923057]

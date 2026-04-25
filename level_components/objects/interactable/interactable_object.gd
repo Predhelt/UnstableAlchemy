@@ -6,12 +6,12 @@ class_name InteractableObject extends Node2D
 @export var display_name := ""
 ## Description of the object given to the character .
 @export var description := ""
-## The type of the object as a string. Used for effects. By default, the object type is a plant.
-@export_enum("plant", "crate", "book") var object_type : String = "plant"
 ## The items that the object contains and their initial quantities.
 @export var items : Array[Item]
 ## The current quantities of items in the object since item.qty is referenced and not local.
 var item_quantities : Array[int]
+
+@export_group("Interactions")
 ## The Interaction that is used when the object is grabbed.
 ## Can be left blank if this is handled 
 @export var grab_interaction : Interaction
@@ -19,19 +19,28 @@ var item_quantities : Array[int]
 @export var cut_interaction : Interaction
 ## The list of possible combinations that this object can have with items.
 @export var combinations : Array[ObjectCombination]
-
 var context_menu : Control
 var inspection_panel_scene : PackedScene = preload("res://level_components/ui/windows/inspection_panel/inspection_panel.tscn")
 
+@export_group("Effects")
 ## Temporary effect to show during interaction.
 @export var interact_effect : PackedScene = preload("res://art/effects/object_destroyed_effect.tscn")
 ## Show the amount of items gained when added to inventory in the world.
 @export var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_world.tscn")
+##
+@export var grab_sound : AudioStream = preload("res://art/pack/sounds/pluck.mp3")
+##
+@export var cut_sound : AudioStream = preload("res://art/pack/sounds/plant_cut.mp3")
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for item in items:
 		item_quantities.append(item.qty)
+	
+	$InteractArea.interact_label = display_name
+	
+	$EffectAudioStream.stream.set_clip_stream(1, grab_sound)
+	$EffectAudioStream.stream.set_clip_stream(2, cut_sound)
 
 ## Get the local file path of the current object.
 func get_cur_folder_path() -> String:
@@ -49,30 +58,29 @@ func get_cur_folder_path() -> String:
 ## Check if the object has no items left. If so, free the object from memory.
 ## [param sfx_name] is used to determine which sound effect should be played, if any.
 ## Default value is "", indicating default sfx.
-func check_empty(sfx_name : String = ""):
+func check_empty(sfx : AudioStream = null):
 	var sum = 0
 	for item_qty in item_quantities:
 		sum += item_qty
 	if sum <= 0:
 		#print("No items left in object")
-		emit_effect(sfx_name)
+		emit_effect(sfx)
 		queue_free()
 
 ## Emits a particle effect on top of the object determined by interact_effect.
-func emit_effect(sfx_name : String = ""):
+func emit_effect(sfx : AudioStream = null):
 	var effect_instance : GPUParticles2D = interact_effect.instantiate()
-	effect_instance.sfx_name = sfx_name
+	effect_instance.sfx = sfx
 	effect_instance.position = position
 	get_parent().add_child(effect_instance)
 	effect_instance.emitting = true
 
 ## Removes items from the object. Adds any items to the character's inventory
 ## based on the interaction. Displays on screen the items that were collected.
-func collect_items(character: Character, interaction: Interaction) -> bool:
+func collect_items(character: Character, interaction: Interaction, sfx_name: String) -> bool:
 	if not interaction:
 		print("No interaction")
 		return false
-	
 	if interaction.on_interact_items.is_empty():
 		print("No items to get!")
 		return false
@@ -99,15 +107,17 @@ func collect_items(character: Character, interaction: Interaction) -> bool:
 			
 			if character.inventory.add_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
 				items_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
-			
 			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
 				item_quantities[j] += interaction_item.qty
-			
 			is_item_collected = true
 	
-	if not is_item_collected:
+	if is_item_collected:
+		$EffectAudioStream.play()
+		$EffectAudioStream["parameters/switch_to_clip"] = sfx_name
+	else:
+		$EffectAudioStream.play()
+		$EffectAudioStream["parameters/switch_to_clip"] = "fail"
 		items_gained_effect_instance.set_no_items_gained()
-	
 	items_gained_effect_instance.position = position
 	get_parent().add_child(items_gained_effect_instance)
 	
@@ -139,11 +149,8 @@ func _add_gathered_items_entry_to_node(node : Node, interaction : Interaction, t
 
 
 func _on_object_grabbed(character: Character) -> void:
-	if not collect_items(character, grab_interaction):
+	if not collect_items(character, grab_interaction, "grab"):
 		return
-	
-	$EffectAudioStream.play()
-	$EffectAudioStream["parameters/switch_to_clip"] = "grab"
 	
 	_add_interaction_to_node(character.objects_grab_interacted, grab_interaction)
 	_add_gathered_items_entry_to_node(character, grab_interaction, "grab")
@@ -154,15 +161,12 @@ func _on_object_grabbed(character: Character) -> void:
 	if grab_interaction.on_interact_status_effects:
 		character.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
-	check_empty("grab_%s" % object_type)
+	check_empty(grab_sound)
 
 
 func _on_object_cut(character: Character) -> void:
-	if not collect_items(character, cut_interaction):
+	if not collect_items(character, cut_interaction, "cut"):
 		return
-	
-	$EffectAudioStream.play()
-	$EffectAudioStream["parameters/switch_to_clip"] = "cut"
 	
 	_add_interaction_to_node(character.objects_cut_interacted, cut_interaction)
 	_add_gathered_items_entry_to_node(character, cut_interaction, "cut")
@@ -173,7 +177,7 @@ func _on_object_cut(character: Character) -> void:
 	if cut_interaction.on_interact_status_effects:
 		character.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
 	
-	check_empty("cut_%s" % object_type)
+	check_empty(cut_sound)
 
 
 func _on_object_inspected() -> void:

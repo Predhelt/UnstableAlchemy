@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://jq2f52igbal7"]
 
-[ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://level_components/objects/interactable/containers/interactable_book.gd" id="1_emsgg"]
+[ext_resource type="PackedScene" uid="uid://bmn5y8yd333yi" path="res://level_components/objects/interactable/interactable_object.tscn" id="1_a1xwr"]
 [ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="2_emsgg"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_s51oi"]
 [ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="3_uuky7"]
 [ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="4_sv1f2"]
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="5_bcaw3"]
 [ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="6_an75r"]
-[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="7_s4f4p"]
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2j65f"]
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_a2yg1"]
 clip_count = 5
 clip_0/name = &"none"
 clip_0/stream = ExtResource("2_s51oi")
@@ -31,22 +30,13 @@ clip_4/stream = ExtResource("6_an75r")
 clip_4/auto_advance = 1
 clip_4/next_clip = 0
 
-[node name="RecipeItem" type="Node2D" unique_id=1856845390]
-scale = Vector2(0.5, 0.5)
-script = ExtResource("1_emsgg")
-display_name = "Recipe"
+[node name="InteractableBook" unique_id=1856845390 instance=ExtResource("1_a1xwr")]
+display_name = "\"Recipe Book\""
+description = "A book with recipes"
+object_type = "book"
 
-[node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=76167031]
-scale = Vector2(0.99999994, 0.99999994)
-stream = SubResource("AudioStreamInteractive_2j65f")
-bus = &"sfx"
+[node name="EffectAudioStream" parent="." index="0" unique_id=76167031]
+stream = SubResource("AudioStreamInteractive_a2yg1")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
+[node name="Sprite2D" parent="." index="1" unique_id=312684338]
 texture = ExtResource("2_emsgg")
-
-[node name="InteractArea" parent="." unique_id=1577246465 instance=ExtResource("7_s4f4p")]
-
-[connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
-[connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
-[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
-[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]

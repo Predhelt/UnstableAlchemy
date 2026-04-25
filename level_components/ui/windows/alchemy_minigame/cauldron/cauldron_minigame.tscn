@@ -20,20 +20,21 @@
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jf48d"]
 clip_count = 4
-clip_0/name = &"open"
-clip_0/stream = ExtResource("3_jf48d")
-clip_0/auto_advance = 1
-clip_0/next_clip = 1
-clip_1/name = &"idle"
-clip_1/stream = ExtResource("5_o3m38")
-clip_1/auto_advance = 0
-clip_2/name = &"start"
+clip_0/name = &"idle"
+clip_0/stream = ExtResource("5_o3m38")
+clip_0/auto_advance = 0
+clip_1/name = &"open"
+clip_1/stream = ExtResource("3_jf48d")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"begin"
 clip_2/stream = ExtResource("5_p3fha")
-clip_2/auto_advance = 0
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
 clip_3/name = &"cooking"
 clip_3/stream = ExtResource("3_vhtjl")
-clip_3/auto_advance = 0
-initial_clip = 1
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_mit6k"]
 clip_count = 4

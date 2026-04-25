@@ -1,74 +1,35 @@
 [gd_scene format=3 uid="uid://ckpgxnig808b"]
 
-[ext_resource type="Script" uid="uid://bo851nu7tphd7" path="res://level_components/objects/interactable/interactable_object.gd" id="1_ya6p1"]
+[ext_resource type="PackedScene" uid="uid://bmn5y8yd333yi" path="res://level_components/objects/interactable/interactable_object.tscn" id="1_1ijtk"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_t551g"]
 [ext_resource type="Resource" uid="uid://c26d1xhaienu3" path="res://game_systems/items/gatherable/blue_berries.tres" id="3_43ssr"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="4_rhut3"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="5_5kvaj"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="6_ytb17"]
 [ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant_blue_berry.png" id="7_c5pea"]
-[ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="7_hbrmq"]
-[ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="8_7j465"]
-[ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="8_i30n4"]
-[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="9_g25dh"]
-[ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="10_by3t8"]
 
-[sub_resource type="Resource" id="Resource_24wvq"]
+[sub_resource type="Resource" id="Resource_18lja"]
 script = ExtResource("5_5kvaj")
 on_interact_items = Array[ExtResource("2_t551g")]([ExtResource("3_43ssr")])
 on_interact_amounts = Array[int]([2])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[sub_resource type="Resource" id="Resource_lcwfn"]
+[sub_resource type="Resource" id="Resource_pn8ra"]
 script = ExtResource("5_5kvaj")
 on_interact_items = Array[ExtResource("2_t551g")]([ExtResource("3_43ssr")])
 on_interact_amounts = Array[int]([5])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_vuxih"]
-clip_count = 5
-clip_0/name = &"none"
-clip_0/stream = ExtResource("6_ytb17")
-clip_0/auto_advance = 0
-clip_1/name = &"grab"
-clip_1/stream = ExtResource("7_hbrmq")
-clip_1/auto_advance = 1
-clip_1/next_clip = 0
-clip_2/name = &"cut"
-clip_2/stream = ExtResource("8_i30n4")
-clip_2/auto_advance = 1
-clip_2/next_clip = 0
-clip_3/name = &"destroy"
-clip_3/stream = ExtResource("9_g25dh")
-clip_3/auto_advance = 1
-clip_3/next_clip = 0
-clip_4/name = &"transform"
-clip_4/stream = ExtResource("10_by3t8")
-clip_4/auto_advance = 1
-clip_4/next_clip = 0
-
-[node name="BlueBerryBush" type="Node2D" unique_id=1022518106]
+[node name="BlueBerryBush" unique_id=1856845390 instance=ExtResource("1_1ijtk")]
 scale = Vector2(0.7, 0.7)
-script = ExtResource("1_ya6p1")
 display_name = "Blue Berry Bush"
 description = "A bush with blue berries"
 items = Array[ExtResource("2_t551g")]([ExtResource("3_43ssr")])
-grab_interaction = SubResource("Resource_24wvq")
-cut_interaction = SubResource("Resource_lcwfn")
+grab_interaction = SubResource("Resource_18lja")
+cut_interaction = SubResource("Resource_pn8ra")
 
-[node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1134293241]
-scale = Vector2(0.99999994, 0.99999994)
-stream = SubResource("AudioStreamInteractive_vuxih")
-bus = &"sfx"
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028528064]
+[node name="Sprite2D" parent="." index="1" unique_id=312684338]
 position = Vector2(0, -25)
 texture = ExtResource("7_c5pea")
 
-[node name="InteractArea" parent="." unique_id=315626531 instance=ExtResource("8_7j465")]
+[node name="InteractArea" parent="." index="2" unique_id=1577246465]
 interact_label = "Blue Berry Bush"
-
-[connection signal="object_combined" from="InteractArea" to="." method="_on_object_combined"]
-[connection signal="object_cut" from="InteractArea" to="." method="_on_object_cut"]
-[connection signal="object_grabbed" from="InteractArea" to="." method="_on_object_grabbed"]
-[connection signal="object_inspected" from="InteractArea" to="." method="_on_object_inspected"]

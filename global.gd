@@ -88,12 +88,10 @@ func save_game() -> void:
 		if node.scene_file_path.is_empty():
 			print("WARNING: Persistent node '%s' is not an instanced scene, skipped" % node.name)
 			continue
-		
 		# Check the node has a save function.
 		if !node.has_method("save"):
 			print("WARNING: Persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
-		
 		# Call the node's save function.
 		node_data = node.call("save")
 		
@@ -135,7 +133,7 @@ func load_game() -> void:
 	var parse_result = json.parse(json_string)
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-	var node_data = json.data
+	var node_data : Dictionary = json.data
 	if node_data["current_level_path"]:
 		current_level_path = node_data["current_level_path"]
 		var level_node : Node2D = load(current_level_path).instantiate()
@@ -184,14 +182,16 @@ func load_game() -> void:
 		var new_object : Node2D = load(node_data["filename"]).instantiate()
 		new_object.name = node_data["name"]
 		
-		var has_blade : bool = node_data["has_blade"]
-		if has_blade:
-			new_object.set("has_blade", has_blade)
-		var has_dropper : bool = node_data["has_dropper"]
-		if has_dropper:
-			new_object.set("has_dropper", has_dropper)
+		if node_data.get("has_blade"):
+			var has_blade : bool = node_data["has_blade"]
+			if has_blade:
+				new_object.set("has_blade", has_blade)
+		if node_data.get("has_dropper"):
+			var has_dropper : bool = node_data["has_dropper"]
+			if has_dropper:
+				new_object.set("has_dropper", has_dropper)
 		
-		if node_data["is_camera_focused"]: # Important to set early for UI
+		if node_data.get("is_camera_focused"): # Important to set early for UI
 			new_object.set("is_camera_focused", node_data["is_camera_focused"])
 			#if has_blade or has_dropper:
 				#new_object.set_tool_wheel_ui()
@@ -205,7 +205,7 @@ func load_game() -> void:
 		
 		# Add status effects before connecting to parent, if status effects exist.
 		var field : String = "active_status_effects_path"
-		if node_data[field]:
+		if node_data.get(field):
 			if DirAccess.dir_exists_absolute(node_data[field]):
 				var se_dir : DirAccess = DirAccess.open(node_data[field])
 				if se_dir != null:
@@ -218,13 +218,13 @@ func load_game() -> void:
 							new_object.active_status_effects.append(cur_se)
 		# Set the inventory before setting parent node to scene.
 		field = "inventory_path"
-		if node_data[field] != "":
+		if node_data.get(field) and node_data[field] != "":
 				new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 				#TODO: Check if replacing cached version is making a difference.
 				#FIXME: Replace the existing inventory instead of loading a new instance?
 		# Set the attributes before setting parent node to scene.
 		field = "attributes_path"
-		if node_data[field] != "":
+		if node_data.get(field) and node_data[field] != "":
 			new_object.attributes = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 		
 		get_node(node_data["parent"]).add_child(new_object)

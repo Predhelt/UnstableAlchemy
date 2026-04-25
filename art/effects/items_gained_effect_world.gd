@@ -29,7 +29,7 @@ func add_item(item: Item, count = -1):
 func set_no_items_gained():
 	for child_node in $VBoxContainer.get_children():
 		$VBoxContainer.remove_child(child_node)
-		
+	
 	var lbl : Label = Label.new()
 	lbl.text = "Cannot collect with current tool!"
 	$VBoxContainer.add_child(lbl)
