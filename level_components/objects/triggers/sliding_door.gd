@@ -1,3 +1,4 @@
+@tool
 ## A door that opens and closes when called by external triggers.
 extends StaticBody2D
 

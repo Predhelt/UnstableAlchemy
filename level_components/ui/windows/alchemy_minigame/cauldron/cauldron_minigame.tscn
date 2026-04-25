@@ -12,13 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="4_rks5m"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://art/pack/alchemy/tools/alchemy_cauldron.png" id="5_6uy83"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="5_o3m38"]
+[ext_resource type="AudioStream" uid="uid://c743qa46lvfou" path="res://art/pack/sounds/fire_sparks.mp3" id="5_p3fha"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="6_d8kn3"]
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="6_mit6k"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://level_components/ui/windows/alchemy_minigame/minigame_progress_bar.tscn" id="7_gm5fx"]
 [ext_resource type="AudioStream" uid="uid://b17ldvlswfgfn" path="res://art/pack/sounds/fire_effect.mp3" id="7_mit6k"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jf48d"]
-clip_count = 3
+clip_count = 4
 clip_0/name = &"open"
 clip_0/stream = ExtResource("3_jf48d")
 clip_0/auto_advance = 1
@@ -26,9 +27,12 @@ clip_0/next_clip = 1
 clip_1/name = &"idle"
 clip_1/stream = ExtResource("5_o3m38")
 clip_1/auto_advance = 0
-clip_2/name = &"cooking"
-clip_2/stream = ExtResource("3_vhtjl")
+clip_2/name = &"start"
+clip_2/stream = ExtResource("5_p3fha")
 clip_2/auto_advance = 0
+clip_3/name = &"cooking"
+clip_3/stream = ExtResource("3_vhtjl")
+clip_3/auto_advance = 0
 initial_clip = 1
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_mit6k"]

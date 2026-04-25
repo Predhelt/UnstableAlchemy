@@ -1,11 +1,16 @@
+@tool
+## A pressure plate that when stood on, sends an open command to any [member door_refs].
+## Pressure plates connect to sliding doors to open them. Depending on the
+## door configuration, multiple pressure plates may be needed to trigger a door to open.
 extends Node2D
 
+## The texture for the pressure plate sprite.
+@export var texture : Texture2D
 ## Weight required to trigger the pressure plate.
 @export var trigger_weight : float = 0.0
 ## The list of doors that are effected by the pressure plate.
 @export var door_refs : Array[Node2D]
-## The texture for the pressure plate sprite.
-@export var texture : Texture2D
+
 ## List of [Node2D]'s that are on the pressure plate.
 var bodies : Array[Node2D]
 

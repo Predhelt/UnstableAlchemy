@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b4os8v32yq8rx" path="res://level_components/objects/interactable/containers/interactable_crate.gd" id="1_uf1m6"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_pdeql"]
-[ext_resource type="Texture2D" uid="uid://c0tkqa53cgd8a" path="res://art/pack/objects/crate.png" id="2_uf1m6"]
 [ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="3_3ldih"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="3_p1o4b"]
 [ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="4_fyxj8"]
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="5_uc7i2"]
 [ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="6_atn0d"]
+[ext_resource type="Texture2D" uid="uid://dqnc16v87b7tb" path="res://art/pack/objects/crate_blank.png" id="7_3ldih"]
+[ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="8_fyxj8"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_4iak3"]
 clip_count = 5
@@ -42,7 +43,21 @@ stream = SubResource("AudioStreamInteractive_4iak3")
 bus = &"sfx"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
-texture = ExtResource("2_uf1m6")
+texture = ExtResource("7_3ldih")
+
+[node name="ItemIcon" type="TextureRect" parent="Sprite2D" unique_id=1929870686]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_fyxj8")
 
 [node name="InteractArea" parent="." unique_id=1577246465 instance=ExtResource("3_p1o4b")]
 

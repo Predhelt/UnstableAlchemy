@@ -199,15 +199,15 @@ mass = 125.0
 
 [node name="PressurePlate4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(929, 674)
+texture = ExtResource("21_jb56y")
 trigger_weight = 150.0
 door_refs = [NodePath("../SlidingDoor")]
-texture = ExtResource("21_jb56y")
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1120, 481)
+texture = ExtResource("21_jb56y")
 trigger_weight = 150.0
 door_refs = [NodePath("../SlidingDoor")]
-texture = ExtResource("21_jb56y")
 
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=463050243 instance=ExtResource("5_bne7j")]
 position = Vector2(928, 572)
@@ -234,28 +234,28 @@ texture = ExtResource("25_ol6vo")
 
 [node name="PressurePlate2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="6" unique_id=654390134 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(288, 737)
-door_refs = [NodePath("../SlidingDoor2")]
 texture = ExtResource("23_h7yp8")
+door_refs = [NodePath("../SlidingDoor2")]
 
 [node name="PressurePlate3" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="7" unique_id=2093888755 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(94, 736)
-door_refs = [NodePath("../SlidingDoor3")]
 texture = ExtResource("24_n18o7")
+door_refs = [NodePath("../SlidingDoor3")]
 
 [node name="PressurePlate5" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="8" unique_id=1389967614 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(800, 799)
-door_refs = [NodePath("../SlidingDoor4"), NodePath("../SlidingDoor5")]
 texture = ExtResource("26_7unxe")
+door_refs = [NodePath("../SlidingDoor4"), NodePath("../SlidingDoor5")]
 
 [node name="PressurePlate6" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="9" unique_id=748519523 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(673, 735)
-door_refs = [NodePath("../SlidingDoor4"), NodePath("../SlidingDoor5")]
 texture = ExtResource("26_7unxe")
+door_refs = [NodePath("../SlidingDoor4"), NodePath("../SlidingDoor5")]
 
 [node name="PressurePlate7" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="10" unique_id=495383783 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1121, 224)
-door_refs = [NodePath("../SlidingDoor4"), NodePath("../SlidingDoor5")]
 texture = ExtResource("26_7unxe")
+door_refs = [NodePath("../SlidingDoor4"), NodePath("../SlidingDoor5")]
 
 [node name="SlidingDoor4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="11" unique_id=1974027199 instance=ExtResource("26_jb56y")]
 position = Vector2(378, 864)
@@ -297,6 +297,7 @@ horizontal_alignment = 1
 
 [node name="Crate" parent="." index="11" unique_id=402036177 instance=ExtResource("15_r1ko1")]
 position = Vector2(823, -2)
+contained_item_icon = ExtResource("17_661ml")
 display_name = "Gray Juice"
 description = "Contains bottles of gray juice."
 items = Array[ExtResource("2_cc213")]([SubResource("Resource_qn2he")])
