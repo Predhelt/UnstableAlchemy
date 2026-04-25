@@ -141,10 +141,7 @@ func add_item(item: Item) -> bool:
 			button_confirm.disabled = false
 			num_items += 1
 			break
-	return true
-	
-	print("Error: should never happen. if full of items, should have returned earlier")
-	return false
+	return true	
 
 ## Called from inherited class. closes the inventory then opens the associated 
 ## minigame window using the items from the alchemy tool's container.

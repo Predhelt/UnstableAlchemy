@@ -6,7 +6,7 @@
 open_direction = "Up"
 
 [node name="Sprite2D" parent="." index="0" unique_id=564414494]
-position = Vector2(-28, 0)
+position = Vector2(-30, 0)
 rotation = -1.5707964
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1782915014]

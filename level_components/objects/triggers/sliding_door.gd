@@ -30,7 +30,7 @@ var default_pos : Vector2
 ## The distance that the door is currently open
 var open_dist : float 
 ## Tracks if there has been a call in the last frame to indicate that the door should be open
-var has_open_call : bool = false
+#var has_open_call : bool = false
 
 func _ready() -> void:
 	default_pos = position
@@ -57,7 +57,7 @@ func _physics_process(delta : float) -> void:
 		else: # Door finished opening, should have been handled already.
 			print("ERROR: Door should already be opened.")
 	
-	elif is_moving == 2 and not has_open_call: # Door is closing
+	elif is_moving == 2: # Door is closing
 		var dist = MAX_OPEN_DISTANCE * (delta / close_time)
 		if open_dist > 0:
 			open_dist -= dist
@@ -74,7 +74,7 @@ func _physics_process(delta : float) -> void:
 		
 		else: # Door finished closing, should have been handled already.
 			print("ERROR: Door should alread be closed")
-	has_open_call = false
+	#has_open_call = false
 
 ## Moves the door the given distance based on the open_direction
 func _move_door(dist : float) -> void:
@@ -104,25 +104,15 @@ func _move_door_to(pos : float) -> void:
 func close_door(node : Node2D):
 	if node in cur_trigger_nodes:
 		cur_trigger_nodes.remove_at(cur_trigger_nodes.find(node))
-	if is_open and cur_trigger_nodes.size() < triggers_required:
-		call_deferred("_deferred_close_door")
-
-## Checks at end of frame if [member has_open_call] is true.
-## If not, then changes [member is_moving] to closing.
-func _deferred_close_door():
-	if cur_trigger_nodes.size() >= triggers_required:
-		return
-	if not has_open_call:
-		if is_open == true and is_moving != 2:
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"sliding_closed"
-			is_moving = 2
+	if (is_open or is_moving == 1) and cur_trigger_nodes.size() < triggers_required:
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"sliding_closed"
+		is_moving = 2
 
 ## Begins opening the door
 func open_door(node : Node2D):
 	if node not in cur_trigger_nodes:
 		cur_trigger_nodes.append(node)
 	if cur_trigger_nodes.size() >= triggers_required:
-		has_open_call = true
 		if is_moving != 1 and (is_open == false or is_moving == 2 or (is_open == false and is_moving == 0)):
 			is_moving = 1
 			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"sliding_open"

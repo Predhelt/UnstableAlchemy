@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnc0pm7hhnww"]
 
 [ext_resource type="Script" uid="uid://cyetv8imlnycm" path="res://characters/character.gd" id="1_mx2sf"]
-[ext_resource type="Resource" uid="uid://bmo1romp67ev2" path="res://characters/att_default.tres" id="2_2ixeu"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_2ixeu"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_78rwt"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_u8as0"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="5_pq74r"]
@@ -12,6 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="9_q2yw5"]
 [ext_resource type="Script" uid="uid://de3xp8ny6r1x4" path="res://characters/possession_area.gd" id="10_r2515"]
 [ext_resource type="Texture2D" uid="uid://c6iu2nnlaotcx" path="res://art/pack/ui/circle.png" id="11_5bdh7"]
+
+[sub_resource type="Resource" id="Resource_78rwt"]
+resource_local_to_scene = true
+script = ExtResource("2_2ixeu")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_qulg7"]
 script = ExtResource("4_u8as0")
@@ -51,7 +56,7 @@ radius = 14.0
 collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_mx2sf")
-attributes = ExtResource("2_2ixeu")
+attributes = SubResource("Resource_78rwt")
 inventory = SubResource("Resource_qulg7")
 
 [node name="CharacterAudioListener" type="AudioListener2D" parent="." unique_id=1655733378]

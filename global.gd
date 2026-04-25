@@ -55,7 +55,8 @@ func _deferred_change_scene(path : String):
 
 ## Resets the current level
 func reset_level() -> void:
-	change_scene(current_level_path)
+	get_tree().reload_current_scene()
+	mode = &"default"
 
 ## Displays notification in current scene with given [param message].
 func emit_notification(message : String):

@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://cng3kyu3lh7pn" path="res://level_components/objects/collisions/boulder_pushable_persistent.tscn" id="40_3fmyq"]
 
 [sub_resource type="Resource" id="Resource_u88gc"]
+resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -46,6 +47,7 @@ base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_qpemt"]
+resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 

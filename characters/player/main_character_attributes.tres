@@ -3,5 +3,6 @@
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="1_7cajb"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_7cajb")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
