@@ -16,6 +16,8 @@ var type : String = "Item"
 @export var texture : Texture2D 
 ## The primary color of the item. Used for what color to fill the dropper.
 @export_enum("red", "orange", "green", "yellow", "blue", "cyan", "purple", "brown", "black", "gray", "white") var primary_color : String = "green"
+## Sound when the item is used in the [Inventory].
+@export_enum("eat", "drink", "read", "equip") var use_sound : String = "eat"
 ## The maximum amount of the item that can be stacked in one slot in the inventory.
 @export var max_qty := 10 
 ## Tracks the current amount of the item either in the inventory slot or in the object the item is contained in.

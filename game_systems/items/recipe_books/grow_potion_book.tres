@@ -16,4 +16,5 @@ display_name = "Recipe: Grow Potion"
 description = "Contains recipes for crafting a growth potion."
 texture = ExtResource("7_xdrnw")
 primary_color = "brown"
+use_sound = "read"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

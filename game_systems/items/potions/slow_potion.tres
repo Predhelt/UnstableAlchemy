@@ -12,5 +12,6 @@ display_name = "Slow Potion"
 description = "Move slower"
 texture = ExtResource("4_4gaxh")
 primary_color = "purple"
+use_sound = "drink"
 on_consume_effects = Array[ExtResource("1_dhjbp")]([ExtResource("2_6uoqi")])
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

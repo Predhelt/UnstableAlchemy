@@ -11,4 +11,5 @@ display_name = "Gray Juice"
 description = "Juice extracted from a red berry"
 texture = ExtResource("3_nqw6y")
 primary_color = "gray"
+use_sound = "drink"
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

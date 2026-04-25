@@ -124,7 +124,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 [node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
-position = Vector2(495, 422)
+position = Vector2(495, 421)
 inventory = SubResource("Resource_ix5gr")
 
 [node name="PlayerCamera" parent="." index="3" unique_id=294471714]
@@ -261,7 +261,6 @@ texture = ExtResource("26_7unxe")
 position = Vector2(378, 864)
 texture = ExtResource("30_d432r")
 triggers_required = 3
-open_direction = "Up"
 open_notification = "The cyan door opens."
 
 [node name="SlidingDoor5" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="12" unique_id=1956414628 instance=ExtResource("5_bne7j")]

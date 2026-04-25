@@ -1,3 +1,4 @@
+##@deprecated
 extends UIWindow
 
 var prev_mode : StringName

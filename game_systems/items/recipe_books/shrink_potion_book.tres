@@ -20,6 +20,7 @@ display_name = "Shrink Potion 101"
 description = "Describes the process of making a Shrink Potion and the effects."
 texture = ExtResource("10_j62b7")
 primary_color = "brown"
+use_sound = "read"
 max_qty = 1
 on_consume_message = "This is pretty complicated"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

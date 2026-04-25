@@ -6,6 +6,8 @@ class_name InteractableObject extends Node2D
 @export var display_name := ""
 ## Description of the object given to the character .
 @export var description := ""
+## The type of the object as a string. Used for effects. By default, the object type is a plant.
+@export_enum("plant", "crate", "book") var object_type : String = "plant"
 ## The items that the object contains and their initial quantities.
 @export var items : Array[Item]
 ## The current quantities of items in the object since item.qty is referenced and not local.
@@ -45,18 +47,21 @@ func get_cur_folder_path() -> String:
 	return folder_path
 
 ## Check if the object has no items left. If so, free the object from memory.
-func check_empty():
+## [param sfx_name] is used to determine which sound effect should be played, if any.
+## Default value is "", indicating default sfx.
+func check_empty(sfx_name : String = ""):
 	var sum = 0
 	for item_qty in item_quantities:
 		sum += item_qty
 	if sum <= 0:
 		#print("No items left in object")
-		emit_effect()
+		emit_effect(sfx_name)
 		queue_free()
 
 ## Emits a particle effect on top of the object determined by interact_effect.
-func emit_effect():
+func emit_effect(sfx_name : String = ""):
 	var effect_instance : GPUParticles2D = interact_effect.instantiate()
+	effect_instance.sfx_name = sfx_name
 	effect_instance.position = position
 	get_parent().add_child(effect_instance)
 	effect_instance.emitting = true
@@ -139,6 +144,7 @@ func _on_object_grabbed(character: Character) -> void:
 	
 	$EffectAudioStream.play()
 	$EffectAudioStream["parameters/switch_to_clip"] = "grab"
+	
 	_add_interaction_to_node(character.objects_grab_interacted, grab_interaction)
 	_add_gathered_items_entry_to_node(character, grab_interaction, "grab")
 	if character.is_camera_focused:
@@ -148,7 +154,7 @@ func _on_object_grabbed(character: Character) -> void:
 	if grab_interaction.on_interact_status_effects:
 		character.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
 	
-	check_empty()
+	check_empty("grab_%s" % object_type)
 
 
 func _on_object_cut(character: Character) -> void:
@@ -157,6 +163,7 @@ func _on_object_cut(character: Character) -> void:
 	
 	$EffectAudioStream.play()
 	$EffectAudioStream["parameters/switch_to_clip"] = "cut"
+	
 	_add_interaction_to_node(character.objects_cut_interacted, cut_interaction)
 	_add_gathered_items_entry_to_node(character, cut_interaction, "cut")
 	if character.is_camera_focused:
@@ -166,7 +173,7 @@ func _on_object_cut(character: Character) -> void:
 	if cut_interaction.on_interact_status_effects:
 		character.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
 	
-	check_empty()
+	check_empty("cut_%s" % object_type)
 
 
 func _on_object_inspected() -> void:
@@ -195,7 +202,6 @@ func _on_object_combined(character: Character, item: Item) -> void:
 			_add_combination_to_node(character, c)
 			if character.is_camera_focused:
 				_add_combination_to_node(UserVariables, c)
-			
 			character.update_status_message(c.status_message)
 			transform_object(c.result_object_scene)
 			character._on_interaction_area_exited($InteractArea)
@@ -235,7 +241,7 @@ func transform_object(new_object_scene: PackedScene):
 	
 	item_quantities = []
 	for item in items:
-		item_quantities.append(item.qty)
+		item_quantities.append(item.qty) #FIXME: Get average quantity of old and new object?
 	
 	grab_interaction = obj.grab_interaction
 	cut_interaction = obj.cut_interaction

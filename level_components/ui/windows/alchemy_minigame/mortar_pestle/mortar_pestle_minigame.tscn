@@ -43,6 +43,7 @@ script = ExtResource("1_vo0bl")
 
 [node name="MinigameAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=831164798]
 stream = ExtResource("3_8br1m")
+bus = &"sfx"
 
 [node name="EffectsAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1633683529]
 stream = SubResource("AudioStreamInteractive_88828")

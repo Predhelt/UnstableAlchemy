@@ -11,6 +11,7 @@ id = 500
 display_name = "Speed Potion"
 description = "A potion with a green tint."
 texture = ExtResource("4_xs4j4")
+use_sound = "drink"
 qty = 5
 on_consume_effects = Array[ExtResource("1_xs4j4")]([ExtResource("2_b3il5")])
 on_consume_message = "I feel [color=green]faster[/color]"

@@ -11,4 +11,5 @@ display_name = "Red Juice"
 description = "Juice extracted from a blue berry"
 texture = ExtResource("3_22ttv")
 primary_color = "red"
+use_sound = "drink"
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

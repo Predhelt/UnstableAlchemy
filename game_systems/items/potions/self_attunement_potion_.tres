@@ -12,6 +12,7 @@ display_name = "Potion of Self-Attunement"
 description = "Imbiber gets an absolute understanding of their current status."
 texture = ExtResource("4_lhyi4")
 primary_color = "purple"
+use_sound = "drink"
 on_consume_effects = Array[ExtResource("1_k7gyw")]([ExtResource("2_lhyi4")])
 on_consume_message = "I feel more aware"
 metadata/_custom_type_script = "uid://cspp6theghsrh"

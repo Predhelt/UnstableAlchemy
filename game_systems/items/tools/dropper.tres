@@ -12,6 +12,7 @@ display_name = "Dropper"
 description = "When equipped, this can be used to alter plants and other objects."
 texture = ExtResource("4_lev05")
 primary_color = "black"
+use_sound = "equip"
 max_qty = 1
 on_consume_effects = Array[ExtResource("1_vrqqf")]([ExtResource("2_2d3kk")])
 on_consume_message = "Reminder that this dropper is not for eyes."

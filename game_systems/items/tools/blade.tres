@@ -12,6 +12,7 @@ display_name = "Blade"
 description = "When equipped, can be used to cut plants and other objects."
 texture = ExtResource("3_ycbil")
 primary_color = "white"
+use_sound = "equip"
 max_qty = 1
 on_consume_effects = Array[ExtResource("1_xml1o")]([ExtResource("2_hnhyj")])
 on_consume_message = "This blade will come in handy"

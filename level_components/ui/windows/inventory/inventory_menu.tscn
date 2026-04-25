@@ -4,9 +4,40 @@
 [ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_gie0h"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_tx3c8"]
 [ext_resource type="PackedScene" uid="uid://csbfmvobxgp1o" path="res://level_components/ui/windows/inventory/alchemy_containers/cauldron.tscn" id="3_016ij"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="3_pvlwq"]
 [ext_resource type="AudioStream" uid="uid://cq0jdj4lnn4nm" path="res://art/pack/sounds/bag_open.mp3" id="3_xraym"]
 [ext_resource type="PackedScene" uid="uid://y1067fe07wmf" path="res://level_components/ui/windows/inventory/alchemy_containers/mortar_pestle.tscn" id="4_0n6gb"]
+[ext_resource type="AudioStream" uid="uid://b5fmj3s3anpd7" path="res://art/pack/sounds/drink.mp3" id="5_8rlrl"]
 [ext_resource type="PackedScene" uid="uid://camniccw7m1md" path="res://level_components/ui/windows/inventory/alchemy_containers/merger.tscn" id="5_r3wkv"]
+[ext_resource type="AudioStream" uid="uid://bbcgqrgjvi3rt" path="res://art/pack/sounds/eat.mp3" id="6_uka6c"]
+[ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/sounds/page_flip.mp3" id="7_4d6ga"]
+[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="8_trrur"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2kur6"]
+clip_count = 6
+clip_0/name = &"none"
+clip_0/stream = ExtResource("3_pvlwq")
+clip_0/auto_advance = 0
+clip_1/name = &"open"
+clip_1/stream = ExtResource("3_xraym")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"drink"
+clip_2/stream = ExtResource("5_8rlrl")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"eat"
+clip_3/stream = ExtResource("6_uka6c")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"read"
+clip_4/stream = ExtResource("7_4d6ga")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
+clip_5/name = &"equip"
+clip_5/stream = ExtResource("8_trrur")
+clip_5/auto_advance = 1
+clip_5/next_clip = 0
 
 [node name="InventoryMenu" type="Panel" unique_id=361018792]
 z_index = 1
@@ -21,7 +52,8 @@ theme = ExtResource("1_gie0h")
 script = ExtResource("1_3n8ow")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1924294704]
-stream = ExtResource("3_xraym")
+stream = SubResource("AudioStreamInteractive_2kur6")
+bus = &"sfx"
 
 [node name="CooldownInteract" type="Timer" parent="." unique_id=673854014]
 wait_time = 0.5

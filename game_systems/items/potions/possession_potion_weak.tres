@@ -12,6 +12,7 @@ display_name = "Weak Possession Potion"
 description = "Allows the imbiber to possess a nearby target that is susceptible to possession once."
 texture = ExtResource("4_p6h23")
 primary_color = "yellow"
+use_sound = "drink"
 on_consume_effects = Array[ExtResource("1_ep4n1")]([ExtResource("2_ep4n1")])
 on_consume_message = "This is a strange feeling of control."
 metadata/_custom_type_script = "uid://cspp6theghsrh"

@@ -75,6 +75,7 @@ func open_window() -> bool:
 		Global.mode = window_mode
 	if Global.mode == window_mode:
 		$AudioStreamPlayer2D.play()
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "open"
 		update_window()
 		Global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
@@ -239,6 +240,20 @@ func consume_item(item : Item, index : int) -> void:
 		return
 		
 	Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	
+	match item.use_sound:
+		"eat":
+			$AudioStreamPlayer2D.play()
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"eat"
+		"drink":
+			$AudioStreamPlayer2D.play()
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"drink"
+		"read":
+			$AudioStreamPlayer2D.play()
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"read"
+		"equip":
+			$AudioStreamPlayer2D.play()
+			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"equip"
 	
 	if item.type == "Book": ## If item is a book
 		Global.focused_node.read_book(item)

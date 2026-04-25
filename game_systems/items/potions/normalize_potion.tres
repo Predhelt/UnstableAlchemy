@@ -12,6 +12,7 @@ display_name = "Normalize Potion"
 description = "Removes permanent status effects"
 texture = ExtResource("4_1bli6")
 primary_color = "gray"
+use_sound = "drink"
 qty = 5
 on_consume_effects = Array[ExtResource("1_1bli6")]([ExtResource("2_kpaqe")])
 on_consume_message = "I feel.. normal"

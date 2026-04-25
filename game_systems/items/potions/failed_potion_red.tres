@@ -11,3 +11,4 @@ display_name = "Failed Craft"
 description = "The result of a craft with improper ingredients."
 texture = ExtResource("3_npmdq")
 primary_color = "red"
+use_sound = "drink"

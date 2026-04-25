@@ -344,6 +344,8 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 			" not added successfully to inventory.")
 		return false
 	
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "quick_craft"
 	## Update the inventory window if it is open while the recipe window is open.
 	$"../../LeftWindows/InventoryMenu".update_window()
 	

@@ -20,4 +20,5 @@ display_name = "Recipe: Normalize Potion"
 description = "Contains recipes relevant to crafting a normalizing potion."
 texture = ExtResource("11_hxnry")
 primary_color = "brown"
+use_sound = "read"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

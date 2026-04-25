@@ -493,7 +493,6 @@ func execute_tool():
 			&"hand" : grab_object(all_interaction_areas[0])
 			&"blade" : cut_object(all_interaction_areas[0])
 			&"dropper" : combine_object(all_interaction_areas[0]) #FIXME: Dropper item may transfer to possessee if possession is stopped.
-
 ## Checks to see who should be grabbing, then executes [method interaction_area.grab_object]
 func grab_object(interaction_area : Interactable) -> void:
 	if possessing_character:
@@ -514,7 +513,10 @@ func combine_object(interaction_area : Interactable) -> void:
 		possessing_character.combine_object(interaction_area)
 		return
 	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
-	interaction_area.combine_object(self, tool_wheel_ref.dropper_item)
+	if tool_wheel_ref.dropper_item:
+		$EffectAudioStream.play()
+		$EffectAudioStream["parameters/switch_to_clip"] = "use_dropper"
+		interaction_area.combine_object(self, tool_wheel_ref.dropper_item)
 
 ## Open the inspection panel for an object in the interaciton area
 func inspect_object():
@@ -524,6 +526,8 @@ func inspect_object():
 
 ## User controls the target body. All inputs and behavior transfers.
 func begin_possession(body: Character):
+	body.find_child("EffectAudioStream").play()
+	body.find_child("EffectAudioStream")["parameters/switch_to_clip"] = "possess"
 	possessing_character_name = body.name
 	possessing_character = body
 	body.character_possessed_by_name = self.name
@@ -555,6 +559,8 @@ func begin_possession(body: Character):
 
 ## Ends the possession on the given [param body].
 func end_possession():
+	%EffectAudioStream.play()
+	%EffectAudioStream["parameters/switch_to_clip"] = "end_possess"
 	var body : Character = possessing_character
 	# Recursively end possession
 	if body.possessing_character:

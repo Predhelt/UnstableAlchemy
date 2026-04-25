@@ -16,6 +16,7 @@ display_name = "Strength Potion Recipes"
 description = "A book that contains a recipe for the strength potion as well as recipes for how to craft materials from a yellow flower."
 texture = ExtResource("7_5qxp5")
 primary_color = "brown"
+use_sound = "read"
 max_qty = 1
 on_consume_message = "Weird. It was missing some recipes."
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"
