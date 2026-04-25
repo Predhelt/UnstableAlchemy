@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_acak7"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_acak7"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="4_46fhy"]
+[ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="4_fjd4r"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="5_kx7ex"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="6_jcysl"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="7_grstu"]
@@ -38,6 +39,7 @@ tile_map_data = PackedByteArray("AAD+//v/AAADAAAAAAD+//z/AAAFAAEAAAD+//3/AAAFAAE
 
 [node name="Crate" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1856845390 instance=ExtResource("2_70pn1")]
 position = Vector2(344, 3)
+contained_item_icon = ExtResource("4_fjd4r")
 items = Array[ExtResource("3_acak7")]([ExtResource("4_46fhy")])
 grab_interaction = SubResource("Resource_fcrbm")
 

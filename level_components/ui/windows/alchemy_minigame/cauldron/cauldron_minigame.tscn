@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="6_mit6k"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://level_components/ui/windows/alchemy_minigame/minigame_progress_bar.tscn" id="7_gm5fx"]
 [ext_resource type="AudioStream" uid="uid://b17ldvlswfgfn" path="res://art/pack/sounds/fire_effect.mp3" id="7_mit6k"]
+[ext_resource type="AudioStream" uid="uid://cxg6ejdhx8ss7" path="res://art/pack/sounds/bell_in_c.mp3" id="10_7lipt"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jf48d"]
 clip_count = 4
@@ -37,19 +38,30 @@ clip_3/auto_advance = 1
 clip_3/next_clip = 0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_mit6k"]
-clip_count = 4
+clip_count = 6
 clip_0/name = &"none"
 clip_0/stream = ExtResource("5_o3m38")
 clip_0/auto_advance = 0
 clip_1/name = &"bellows"
 clip_1/stream = ExtResource("7_mit6k")
-clip_1/auto_advance = 0
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
 clip_2/name = &"drop"
 clip_2/stream = ExtResource("4_pxatk")
-clip_2/auto_advance = 0
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
 clip_3/name = &"miss"
 clip_3/stream = ExtResource("6_mit6k")
-clip_3/auto_advance = 0
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"success"
+clip_4/stream = ExtResource("10_7lipt")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
+clip_5/name = &"fail"
+clip_5/stream = ExtResource("5_o3m38")
+clip_5/auto_advance = 1
+clip_5/next_clip = 0
 
 [node name="MinigameCauldron" type="Panel" unique_id=939871601]
 anchors_preset = -1

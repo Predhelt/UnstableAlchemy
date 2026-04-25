@@ -12,23 +12,39 @@
 [ext_resource type="AudioStream" uid="uid://b6j6phaau01mp" path="res://art/pack/sounds/mp_left.mp3" id="6_0yjep"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="6_1mow8"]
 [ext_resource type="AudioStream" uid="uid://0kmdxudt3o3i" path="res://art/pack/sounds/mp_right.mp3" id="7_8br1m"]
+[ext_resource type="AudioStream" uid="uid://cxg6ejdhx8ss7" path="res://art/pack/sounds/bell_in_c.mp3" id="8_0yjep"]
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="8_wkini"]
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="9_88828"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_88828"]
-clip_count = 4
-clip_0/name = &"up"
+clip_count = 7
+clip_0/name = &"none"
 clip_0/stream = ExtResource("4_mnwdg")
 clip_0/auto_advance = 0
-clip_1/name = &"down"
-clip_1/stream = ExtResource("5_mnwdg")
-clip_1/auto_advance = 0
-clip_2/name = &"left"
-clip_2/stream = ExtResource("6_0yjep")
-clip_2/auto_advance = 0
-clip_3/name = &"right"
-clip_3/stream = ExtResource("7_8br1m")
-clip_3/auto_advance = 0
+clip_1/name = &"up"
+clip_1/stream = ExtResource("4_mnwdg")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"down"
+clip_2/stream = ExtResource("5_mnwdg")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"left"
+clip_3/stream = ExtResource("6_0yjep")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"right"
+clip_4/stream = ExtResource("7_8br1m")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
+clip_5/name = &"success"
+clip_5/stream = ExtResource("8_0yjep")
+clip_5/auto_advance = 1
+clip_5/next_clip = 0
+clip_6/name = &"fail"
+clip_6/stream = ExtResource("4_mnwdg")
+clip_6/auto_advance = 1
+clip_6/next_clip = 0
 
 [node name="MinigameMP" type="Panel" unique_id=542892921]
 anchors_preset = -1

@@ -281,15 +281,7 @@ text = "Congratulations!
 Thank you for playing!"
 horizontal_alignment = 1
 
-[node name="LabelReset" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=264796458]
-layout_mode = 0
-offset_left = 207.0
-offset_top = 909.0
-offset_right = 907.0
-offset_bottom = 932.0
-text = "If you get stuck, reset by going to level select and back to this level. You can also save/load."
-
-[node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="2" unique_id=20981134]
+[node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=20981134]
 layout_mode = 0
 offset_left = 320.0
 offset_top = -1205.0

@@ -16,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_just_released("drag_item"):
 		if inside_droppables.is_empty(): ## If not in a droppable, put the item back in the inventory.
-			inventory_menu.add_inventory_item(item)
+			inventory_menu.add_dropped_item(item)
 		else:
 			inside_droppables[0].add_item(item)
 		Global.is_dragging = false

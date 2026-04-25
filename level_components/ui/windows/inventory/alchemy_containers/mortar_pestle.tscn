@@ -2,8 +2,25 @@
 
 [ext_resource type="Script" uid="uid://bcq37w6pbek80" path="res://level_components/ui/windows/inventory/alchemy_containers/mortar_pestle.gd" id="1_a40nq"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="2_0nnx4"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_hwfc4"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="2_m0hp4"]
+[ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/sounds/blender.mp3" id="3_832d1"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_88qmb"]
+[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/sounds/drop_inventory.mp3" id="4_d3pea"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_1hdai"]
+clip_count = 3
+clip_0/name = &"none"
+clip_0/stream = ExtResource("2_hwfc4")
+clip_0/auto_advance = 0
+clip_1/name = &"craft"
+clip_1/stream = ExtResource("3_832d1")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"drop"
+clip_2/stream = ExtResource("4_d3pea")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
 
 [sub_resource type="GDScript" id="GDScript_ailbx"]
 script/source = "extends Area2D
@@ -19,6 +36,10 @@ size = Vector2(126, 124)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_a40nq")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=679705022]
+stream = SubResource("AudioStreamInteractive_1hdai")
+bus = &"sfx"
 
 [node name="ToolIcon" type="TextureRect" parent="." unique_id=878702128]
 unique_name_in_owner = true

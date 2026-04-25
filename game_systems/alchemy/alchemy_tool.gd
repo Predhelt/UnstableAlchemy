@@ -102,6 +102,14 @@ func _process(delta: float) -> void:
 		else:
 			var effect_instance = items_gained_effect.instantiate()
 			
+			if product.id == 999: # Failed Craft ID
+				$AudioStreamPlayer2D.play()
+				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "fail"
+			else:
+				$AudioStreamPlayer2D.play()
+				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "success"
+			
+			
 			effect_instance.add_item(product)
 			effect_instance.scale = Vector2(1.3, 1.3)
 			add_child(effect_instance)
@@ -121,7 +129,10 @@ func add_item(item: Item) -> bool:
 		#print(tool_name + " already full!")
 		inventory_menu_ref.add_inventory_item(item)
 		return false
-
+		
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "drop"
+	
 	for i in MAX_ITEMS:
 		if not items[i]:
 			items[i] = item
@@ -129,7 +140,8 @@ func add_item(item: Item) -> bool:
 			buttons[i].disabled = false
 			button_confirm.disabled = false
 			num_items += 1
-			return true
+			break
+	return true
 	
 	print("Error: should never happen. if full of items, should have returned earlier")
 	return false
@@ -152,11 +164,14 @@ func open_minigame(mg_items: Array[Item]):
 		print("ERROR: Not all items removed from the inventory properly.")
 	minigame_ref.open_window()
 
-## For alchemy tools that do not have a separate minigame window.
+## For alchemy tools that do not have a separate minigame window. Assume to be merger.
 func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using minigame
 	if not result_recipe.product_item:
 		print("Error: No product item for recipe!")
 		return
+	
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "craft"
 	
 	for i in range(items.size()):
 		if items[i]:
@@ -172,6 +187,9 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 	progress_bar.max_value = use_timer
 	progress_bar.visible = true
 	is_using = true
+	
+	
+	
 
 ## Removes an item from the alchemy tool and disables the slot at the given index.
 func remove_item(index: int) -> void:

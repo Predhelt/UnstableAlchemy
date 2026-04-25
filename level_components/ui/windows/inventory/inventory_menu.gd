@@ -120,6 +120,14 @@ func add_inventory_item(item : Item) -> bool:
 	update_window()
 	return true
 
+## Adds an item that was dropped by the player into the inventory.
+func add_dropped_item(item : Item) -> bool:
+	if add_inventory_item(item):
+		$AudioStreamPlayer2D.play()
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "drop"
+		return true
+	return false
+
 ## Adds an item that was produced through crafting to the inventory
 ## And add the recipe to the known recipe book, if not already.
 func add_produced_item(item : Item, recipe : Recipe = null) -> void:
@@ -205,6 +213,8 @@ func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index 
 
 ## Moves the item relative to the mouse position.
 func drag_item(item : Item, index : int):
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "pickup"
 	var drag_item_instance = drag_item_scene.instantiate()
 		
 	var selected_item = item.duplicate()

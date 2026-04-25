@@ -99,7 +99,6 @@ func update_combo_input(action: StringName):
 	if cur_motion_index > 4:
 		is_crafting = false
 		check_results()
-		
 		previous_window()
 
 ## Overrides inherited function. Once a valid input configuration is recognized,

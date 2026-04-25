@@ -196,14 +196,6 @@ offset_right = 669.0
 offset_bottom = -331.0
 text = "Congratulations!"
 
-[node name="LabelReset" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=982964298]
-layout_mode = 0
-offset_left = 321.0
-offset_top = 662.0
-offset_right = 846.0
-offset_bottom = 685.0
-text = "If you get stuck, reset by going to level select and back to this level."
-
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
 offset_left = -558.0
 offset_top = 147.0

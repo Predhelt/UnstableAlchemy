@@ -2,6 +2,23 @@
 
 [ext_resource type="Script" uid="uid://bkjaos0jnpisd" path="res://level_components/objects/triggers/pressure_plate.gd" id="1_x57id"]
 [ext_resource type="Texture2D" uid="uid://cnhakowq1giib" path="res://art/pack/objects/pressure_plates/object-pressure-plate_gray.png" id="2_lt068"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="3_pwura"]
+[ext_resource type="AudioStream" uid="uid://crgmx2s5v0ayt" path="res://art/pack/sounds/creak.mp3" id="4_c8u35"]
+[ext_resource type="AudioStream" uid="uid://dulwjkkl05el8" path="res://art/pack/sounds/click.mp3" id="5_tmnt2"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_uxyvt"]
+clip_count = 3
+clip_0/name = &"none"
+clip_0/stream = ExtResource("3_pwura")
+clip_0/auto_advance = 0
+clip_1/name = &"creak"
+clip_1/stream = ExtResource("4_c8u35")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"press"
+clip_2/stream = ExtResource("5_tmnt2")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un22d"]
 size = Vector2(52, 52)
@@ -9,8 +26,11 @@ size = Vector2(52, 52)
 [node name="PressurePlate" type="Node2D" unique_id=202554750]
 z_index = -9
 script = ExtResource("1_x57id")
-trigger_weight = 1.0
 texture = ExtResource("2_lt068")
+trigger_weight = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1767692086]
+stream = SubResource("AudioStreamInteractive_uxyvt")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=197250525]
 collision_mask = 9

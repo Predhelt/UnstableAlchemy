@@ -48,7 +48,7 @@ func init_ingredients(ingredients : Array[Item]) -> void:
 ## Closes the minigame window and ensures that the menu group is updated.
 func close_window():
 	$MinigameAudioStream.stop()
-	$EffectsAudioStream.stop()
+	#$EffectsAudioStream.stop()
 	is_crafting = false
 	visible = false
 	## Return the craft ingredients back to the inventory if not already used.
@@ -70,7 +70,7 @@ func close_window():
 ## Closes the current window and returns to the inventory menu.
 func previous_window():
 	$MinigameAudioStream.stop()
-	$EffectsAudioStream.stop()
+	#$EffectsAudioStream.stop()
 	is_crafting = false
 	visible = false
 	for item in cur_craft_ingredients:
@@ -117,10 +117,16 @@ func _on_startup_delay_timeout() -> void:
 ## are added to the character's inventory.
 func check_results():
 	var product_recipe := matching_recipe()
-	var product_item : Item = FAILED_CRAFT.product_item.duplicate()
+	var product_item : Item
 	if product_recipe:
+		$EffectsAudioStream.play()
+		$EffectsAudioStream["parameters/switch_to_clip"] = "success"
 		product_item = product_recipe.product_item.duplicate()
 		product_item.qty = product_recipe.product_item_amount
+	else:
+		$EffectsAudioStream.play()
+		$EffectsAudioStream["parameters/switch_to_clip"] = "fail"
+		product_item = FAILED_CRAFT.product_item.duplicate()
 
 	var effect_instance = items_gained_effect.instantiate()
 			

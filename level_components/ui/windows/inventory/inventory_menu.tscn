@@ -12,9 +12,11 @@
 [ext_resource type="AudioStream" uid="uid://bbcgqrgjvi3rt" path="res://art/pack/sounds/eat.mp3" id="6_uka6c"]
 [ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/sounds/page_flip.mp3" id="7_4d6ga"]
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="8_trrur"]
+[ext_resource type="AudioStream" uid="uid://c20f8am40l7e8" path="res://art/pack/sounds/pickup_inventory.mp3" id="9_4d6ga"]
+[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/sounds/drop_inventory.mp3" id="10_trrur"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2kur6"]
-clip_count = 6
+clip_count = 8
 clip_0/name = &"none"
 clip_0/stream = ExtResource("3_pvlwq")
 clip_0/auto_advance = 0
@@ -38,6 +40,14 @@ clip_5/name = &"equip"
 clip_5/stream = ExtResource("8_trrur")
 clip_5/auto_advance = 1
 clip_5/next_clip = 0
+clip_6/name = &"pickup"
+clip_6/stream = ExtResource("9_4d6ga")
+clip_6/auto_advance = 1
+clip_6/next_clip = 0
+clip_7/name = &"drop"
+clip_7/stream = ExtResource("10_trrur")
+clip_7/auto_advance = 1
+clip_7/next_clip = 0
 
 [node name="InventoryMenu" type="Panel" unique_id=361018792]
 z_index = 1

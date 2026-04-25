@@ -1,6 +1,5 @@
 ## Global variables and functions
 extends Node2D
-#TODO: Add items and recipes based on the spreadsheet
 #TODO: Remake UI with controller/mobile
 
 ## Reference to the main camera used for displaying to the user.
