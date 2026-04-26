@@ -53,7 +53,7 @@ func _ready() -> void:
 	%ButtonPeoplePerson1.pressed.emit()
 	%ButtonStatusEnergized.button_pressed = true
 	%ButtonStatusEnergized.pressed.emit()
-	
+	$AudioStreamPlayer2D.stop()
 	$VBoxContainer/TabContainer.current_tab = 0
 
 func _input(event: InputEvent) -> void:
@@ -69,11 +69,14 @@ func toggle_window() -> void:
 
 ## Hides the window after removing it from the appropriate group.
 func close_window() -> void:
-	if Global.mode == window_mode:
-		Global.mode = prev_mode
-		Global.center_window = null
-		prev_mode = ""
-		visible = false
+	if Global.mode != window_mode:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "close"
+	Global.mode = prev_mode
+	Global.center_window = null
+	prev_mode = ""
+	visible = false
 
 ## Opens the log book to the default "Help: General" page.
 func open_window() -> bool:
@@ -90,6 +93,7 @@ func open_window() -> bool:
 	# Open the current page in the current tab
 	open_page_in_tab($VBoxContainer/TabContainer.current_tab)
 	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "open"
 	visible = true
 	return true
 
@@ -317,6 +321,10 @@ func open_page_help_tools():
 
 ## Help pages are already set up,
 func open_help_page(page : MarginContainer) -> void:
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ## Uses template page node to set up the [member current_raw_item] information.
@@ -328,7 +336,10 @@ func open_raw_item_page() -> void:#TODO
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_raw_item.display_name)
 		return
-	
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_raw_item.description
 	# List where you can get the item from
@@ -405,15 +416,16 @@ func open_crafted_item_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_crafted_item.display_name)
 		return
-	
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_crafted_item.description
 	# List where you can get the item from
 	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
 	# List what to use the item in (if any uses were found)
 	page.get_child(0).find_child("LabelUses").text = _get_item_uses_as_str(current_crafted_item)
-	# List the number of times the item has been consumed/used (or y/n)
-	#page.get_child(0).find_child("LabelUseCount").text
 	# Set whether to show the details of using the item & effects
 	page.get_child(0).find_child("LabelUseText").text = _get_item_use_effects_as_str(current_crafted_item)
 	
@@ -421,18 +433,6 @@ func open_crafted_item_page() -> void:
 
 func _get_crafted_item_sources_as_str() -> String:
 	return "Check Recipe Book for how to craft."
-	#var has_known_source : bool = false
-	#var sources_str : String = "Known Sources:\n"
-	# Go through known recipes to see which recipes the item is the product in
-	#for r in character_ref.known_recipes:
-		#if r.product_item.id == current_crafted_item.id:
-			#sources_str + "Use "
-			#for 
-	# Add brief text about each procedure
-	#if has_known_source:
-		#sources_str = sources_str.rsplit(",")[0]
-	#return sources_str
-	
 
 ## Uses template page node to set up the [member current_potion] item information.
 func open_potion_page() -> void:
@@ -443,7 +443,10 @@ func open_potion_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_potion.display_name)
 		return
-	
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	page.get_child(0).find_child("LabelDescription").text = current_potion.description
 	# List where you can get the item from
 	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
@@ -463,7 +466,10 @@ func open_plant_page(page : MarginContainer) -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_plant_scene.display_name)
 		return
-	
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	page.get_child(0).find_child("LabelDescription").text = current_plant_scene.description
 	page.get_child(0).find_child("LabelContainedItems").text = _interaction_object_contained_items_as_str(current_plant_scene)
 	page.get_child(0).find_child("LabelInteractionCounts").text = _interaction_object_counts_as_str(current_plant_scene.display_name)
@@ -479,18 +485,34 @@ func open_plant_page(page : MarginContainer) -> void:
 
 ##
 func open_object_page(page : MarginContainer) -> void:#TODO
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ##
 func open_book_page(page : MarginContainer) -> void:#TODO
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ##
 func open_place_page(page : MarginContainer) -> void:#TODO
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ##
 func open_person_page(page : MarginContainer) -> void:#TODO
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ## Uses template page node to set up the [member current_satus_effect] item information.
@@ -502,6 +524,10 @@ func open_status_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_status_effect.display_name)
 		return
+	if page.visible:
+		return
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	
 	page.get_child(0).find_child("LabelDescription").text = current_status_effect.description
 	# List where you can get the item from
@@ -525,6 +551,8 @@ func open_status_page() -> void:
 
 ## Loads the currently open page in the given tab.
 func open_page_in_tab(tab: int) -> void:
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
 	match tab:
 		0: open_help_page(get_current_page(tab))
 		1: open_raw_item_page()

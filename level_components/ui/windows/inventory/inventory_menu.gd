@@ -48,12 +48,16 @@ func toggle_window() -> void:
 ## Closes the window and removes it from the active window group.
 func close_window() -> void:
 	if Global.mode == window_mode:
+		$AudioStreamPlayer2D.play()
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "close"
 		Global.left_window = null
 		if not Global.right_window and not Global.center_window:
 			Global.mode = &"default"
 		visible = false
 	
 	elif Global.mode == &"dropper":
+		$AudioStreamPlayer2D.play()
+		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "close"
 		Global.left_window = null
 		Global.mode = &"default" ## There should be no other UI windows open
 		visible = false

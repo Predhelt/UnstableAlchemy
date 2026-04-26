@@ -8,6 +8,7 @@
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="4_eo0qk"]
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="4_lxmwx"]
 [ext_resource type="LabelSettings" uid="uid://d03hwvt3eyjax" path="res://art/text/title_label.tres" id="5_eyj61"]
+[ext_resource type="AudioStream" uid="uid://d33moil0mbpb5" path="res://art/pack/sounds/page_flip2.mp3" id="5_sbej8"]
 [ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://art/text/subtitle_label.tres" id="6_xwfla"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lxmwx"]
@@ -20,7 +21,7 @@ clip_1/stream = ExtResource("3_q4q3r")
 clip_1/auto_advance = 1
 clip_1/next_clip = 0
 clip_2/name = &"flip"
-clip_2/stream = ExtResource("3_q4q3r")
+clip_2/stream = ExtResource("5_sbej8")
 clip_2/auto_advance = 1
 clip_2/next_clip = 0
 clip_3/name = &"quick_craft"
