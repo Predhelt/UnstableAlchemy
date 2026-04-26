@@ -51,14 +51,9 @@ columns = 5
 [node name="ButtonLevelSelect" parent="." unique_id=1276432221 instance=ExtResource("2_wjowx")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = 20.0
 offset_top = 33.0
 offset_right = 70.0
 offset_bottom = 83.0
-grow_horizontal = 1
-grow_vertical = 1
 text = "<-"
 level_path = "uid://ckgxm2etu6kdm"

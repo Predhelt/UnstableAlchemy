@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://bka6k2ui8al12"]
 
 [ext_resource type="Script" uid="uid://dymqeg4nsdn64" path="res://maps/menu/button_level_select.gd" id="1_0h6hx"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_4si2u"]
 [ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/sounds/menu_press.mp3" id="2_ufwp4"]
+[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/sounds/menu_hover.mp3" id="3_a8sqb"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_58m5d"]
+clip_count = 3
+clip_0/name = &"none"
+clip_0/stream = ExtResource("2_4si2u")
+clip_0/auto_advance = 0
+clip_1/name = &"hover"
+clip_1/stream = ExtResource("3_a8sqb")
+clip_1/auto_advance = 0
+clip_2/name = &"press"
+clip_2/stream = ExtResource("2_ufwp4")
+clip_2/auto_advance = 0
 
 [node name="ButtonLevelSelect" type="Button" unique_id=1276432221]
 custom_minimum_size = Vector2(100, 100)
@@ -12,7 +26,9 @@ offset_bottom = 110.0
 script = ExtResource("1_0h6hx")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1675381403]
-stream = ExtResource("2_ufwp4")
+stream = SubResource("AudioStreamInteractive_58m5d")
 bus = &"sfx"
 
+[connection signal="focus_entered" from="." to="." method="_on_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cq0jdj4lnn4nm" path="res://art/pack/sounds/bag_open.mp3" id="3_8br1m"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="4_mnwdg"]
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="4_r2g22"]
+[ext_resource type="AudioStream" uid="uid://cx1jyyclb5blp" path="res://art/pack/sounds/mp_up.mp3" id="5_8br1m"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="5_eoa2f"]
 [ext_resource type="AudioStream" uid="uid://beiqmcfja8yw8" path="res://art/pack/sounds/mp_down.mp3" id="5_mnwdg"]
 [ext_resource type="AudioStream" uid="uid://b6j6phaau01mp" path="res://art/pack/sounds/mp_left.mp3" id="6_0yjep"]
@@ -22,7 +23,7 @@ clip_0/name = &"none"
 clip_0/stream = ExtResource("4_mnwdg")
 clip_0/auto_advance = 0
 clip_1/name = &"up"
-clip_1/stream = ExtResource("4_mnwdg")
+clip_1/stream = ExtResource("5_8br1m")
 clip_1/auto_advance = 1
 clip_1/next_clip = 0
 clip_2/name = &"down"

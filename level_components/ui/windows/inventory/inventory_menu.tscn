@@ -11,13 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://camniccw7m1md" path="res://level_components/ui/windows/inventory/alchemy_containers/merger.tscn" id="5_r3wkv"]
 [ext_resource type="AudioStream" uid="uid://bbcgqrgjvi3rt" path="res://art/pack/sounds/eat.mp3" id="6_uka6c"]
 [ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/sounds/page_flip.mp3" id="7_4d6ga"]
-[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="8_trrur"]
+[ext_resource type="AudioStream" uid="uid://ds36x66srfd3q" path="res://art/pack/sounds/equip.mp3" id="8_trrur"]
 [ext_resource type="AudioStream" uid="uid://c20f8am40l7e8" path="res://art/pack/sounds/pickup_inventory.mp3" id="9_4d6ga"]
 [ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/sounds/drop_inventory.mp3" id="10_trrur"]
 [ext_resource type="AudioStream" uid="uid://dl8tm67h6dju2" path="res://art/pack/sounds/bag_close.mp3" id="11_trrur"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2kur6"]
-clip_count = 9
+clip_count = 10
 clip_0/name = &"none"
 clip_0/stream = ExtResource("3_pvlwq")
 clip_0/auto_advance = 0
@@ -49,10 +49,12 @@ clip_7/name = &"drop"
 clip_7/stream = ExtResource("10_trrur")
 clip_7/auto_advance = 1
 clip_7/next_clip = 0
-clip_8/name = &"close"
-clip_8/stream = ExtResource("11_trrur")
-clip_8/auto_advance = 1
-clip_8/next_clip = 0
+clip_8/name = &""
+clip_8/auto_advance = 0
+clip_9/name = &"close"
+clip_9/stream = ExtResource("11_trrur")
+clip_9/auto_advance = 1
+clip_9/next_clip = 0
 
 [node name="InventoryMenu" type="Panel" unique_id=361018792]
 z_index = 1

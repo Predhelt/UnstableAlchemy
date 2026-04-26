@@ -434,6 +434,7 @@ func read_book(book: Book):
 	if not book.id in books_read:
 		books_read.append(book.id)
 	if is_camera_focused and book.id not in UserVariables.books_read:
+		
 		UserVariables.books_read.append(book.id)
 		Global.emit_notification("Log Book Entry Added")
 
@@ -637,14 +638,46 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 ## based on the [member StatusEffect.effect].
 func apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
-		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus)
-		&"cleanse" : return _cleanse_status_effects()
-		&"normalize" : return _normalize_status_effects()
-		&"grow" : return _grow_character(se)
-		&"self-attunement" : return _attune_self(se)
-		&"equip tool" : return _equip_tool(se)
-		&"possess" : return _set_can_possess(se)
+		&"move speed bonus" : 
+			if se.value > 0:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "speed"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "slow"
+			return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
+		&"strength bonus" : 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "strength"
+			return _add_attribute_bonus(se, attributes.add_strength_bonus)
+		&"cleanse" : 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "cleanse"
+			return _cleanse_status_effects()
+		&"normalize" : 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "normalize"
+			return _normalize_status_effects()
+		&"grow" : 
+			if se.value > 1:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "grow"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "shrink"
+			return _grow_character(se)
+		&"self-attunement" : 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "self-attunement"
+			return _attune_self(se)
+		&"equip tool" : 
+			#%StatusAudioStream.play()
+			#%StatusAudioStream["parameters/switch_to_clip"] = "equip"
+			return _equip_tool(se)
+		&"possess" : 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "possess"
+			return _set_can_possess(se)
 	return false
 
 ## Changes the text of the status message and resets the timer for how long the message appears.
@@ -668,11 +701,34 @@ func _update_status_effect_timers(delta : float) -> void:
 ## Returns true if the status effect was successfully removed
 func remove_status_effect(se : StatusEffect) -> bool:
 	match se.effect:
-		&"move speed bonus" : return _add_attribute_bonus(se, attributes.add_move_speed_bonus, true)
-		&"grow" : return _grow_character(se, true)
-		&"strength bonus" : return _add_attribute_bonus(se, attributes.add_strength_bonus, true)
-		&"self-attunement" : return _attune_self(se, true)
-		&"possess" : return _set_can_possess(se, true)
+		&"move speed bonus": 
+			if se.value <= 0:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "speed"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "slow"
+			return _add_attribute_bonus(se, attributes.add_move_speed_bonus, true)
+		&"grow":
+			if se.value > 1:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "grow"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "shrink"
+			return _grow_character(se, true)
+		&"strength bonus":
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "weaken"
+			return _add_attribute_bonus(se, attributes.add_strength_bonus, true)
+		&"self-attunement":
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "end_buff"
+			return _attune_self(se, true)
+		&"possess":
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "end_buff"
+			return _set_can_possess(se, true)
 	return false
 
 ## Updates the images and progress bars on the status bar UI of the given [StatusEffect].

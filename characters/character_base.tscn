@@ -10,8 +10,16 @@
 [ext_resource type="AudioStream" uid="uid://t4b7woyse70r" path="res://art/pack/sounds/possession_warp_reverse.mp3" id="8_2ixeu"]
 [ext_resource type="AudioStream" uid="uid://c1mavocwfhryy" path="res://art/pack/sounds/water_drop.mp3" id="9_2ixeu"]
 [ext_resource type="PackedScene" uid="uid://beud1y2jkll6r" path="res://characters/interact_area.tscn" id="9_q2yw5"]
+[ext_resource type="AudioStream" uid="uid://bh6e4rfjgm14q" path="res://art/pack/sounds/whoosh.mp3" id="10_78rwt"]
 [ext_resource type="Script" uid="uid://de3xp8ny6r1x4" path="res://characters/possession_area.gd" id="10_r2515"]
 [ext_resource type="Texture2D" uid="uid://c6iu2nnlaotcx" path="res://art/pack/ui/circle.png" id="11_5bdh7"]
+[ext_resource type="AudioStream" uid="uid://dbtg51riqcom0" path="res://art/pack/sounds/power_up.mp3" id="11_q2yw5"]
+[ext_resource type="AudioStream" uid="uid://bor6dodcxwxgj" path="res://art/pack/sounds/whoosh_slow.mp3" id="12_r2515"]
+[ext_resource type="AudioStream" uid="uid://bsn15eqoj16gb" path="res://art/pack/sounds/grow.mp3" id="13_5bdh7"]
+[ext_resource type="AudioStream" uid="uid://dtcusegu2re2" path="res://art/pack/sounds/power_down.mp3" id="13_r2515"]
+[ext_resource type="AudioStream" uid="uid://swsejbkt1oen" path="res://art/pack/sounds/shrink.mp3" id="14_8prvj"]
+[ext_resource type="AudioStream" uid="uid://cxg6ejdhx8ss7" path="res://art/pack/sounds/bell_in_c.mp3" id="15_4lqui"]
+[ext_resource type="AudioStream" uid="uid://c20f8am40l7e8" path="res://art/pack/sounds/pickup_inventory.mp3" id="16_155io"]
 
 [sub_resource type="Resource" id="Resource_78rwt"]
 resource_local_to_scene = true
@@ -46,6 +54,59 @@ clip_3/name = &"use_dropper"
 clip_3/stream = ExtResource("9_2ixeu")
 clip_3/auto_advance = 0
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_u8as0"]
+clip_count = 13
+clip_0/name = &"none"
+clip_0/stream = ExtResource("5_pq74r")
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
+clip_1/name = &"speed"
+clip_1/stream = ExtResource("10_78rwt")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"slow"
+clip_2/stream = ExtResource("12_r2515")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"grow"
+clip_3/stream = ExtResource("13_5bdh7")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"shrink"
+clip_4/stream = ExtResource("14_8prvj")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
+clip_5/name = &"strength"
+clip_5/stream = ExtResource("11_q2yw5")
+clip_5/auto_advance = 1
+clip_5/next_clip = 0
+clip_6/name = &"weaken"
+clip_6/stream = ExtResource("13_r2515")
+clip_6/auto_advance = 0
+clip_7/name = &"self-attunement"
+clip_7/stream = ExtResource("11_q2yw5")
+clip_7/auto_advance = 1
+clip_7/next_clip = 0
+clip_8/name = &"cleanse"
+clip_8/stream = ExtResource("15_4lqui")
+clip_8/auto_advance = 1
+clip_8/next_clip = 0
+clip_9/name = &"normalize"
+clip_9/stream = ExtResource("15_4lqui")
+clip_9/auto_advance = 1
+clip_9/next_clip = 0
+clip_10/name = &"equip"
+clip_10/stream = ExtResource("16_155io")
+clip_10/auto_advance = 1
+clip_10/next_clip = 0
+clip_11/name = &"possess"
+clip_11/stream = ExtResource("11_q2yw5")
+clip_11/auto_advance = 1
+clip_11/next_clip = 0
+clip_12/name = &"end_buff"
+clip_12/stream = ExtResource("13_r2515")
+clip_12/auto_advance = 0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1u1o"]
 radius = 250.0
 
@@ -71,6 +132,11 @@ bus = &"sfx"
 [node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1047927553]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_mx2sf")
+bus = &"sfx"
+
+[node name="StatusAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1450898021]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamInteractive_u8as0")
 bus = &"sfx"
 
 [node name="LabelGroup" type="Node2D" parent="." unique_id=1126790412]
