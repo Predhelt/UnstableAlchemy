@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://xhmxjsdkghd"]
+
+[ext_resource type="AudioStream" uid="uid://dh1icux4ycwsg" path="res://art/pack/music/quaint_village.mp3" id="1_y4juv"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_5vx3j"]
+[ext_resource type="Script" uid="uid://diqd3fam1smip" path="res://music_manager.gd" id="3_5vx3j"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wavqy"]
+clip_count = 3
+clip_0/name = &"none"
+clip_0/stream = ExtResource("2_5vx3j")
+clip_0/auto_advance = 0
+clip_1/name = &"title"
+clip_1/stream = ExtResource("1_y4juv")
+clip_1/auto_advance = 0
+clip_2/name = &"forest"
+clip_2/stream = ExtResource("2_5vx3j")
+clip_2/auto_advance = 0
+
+[node name="MusicManager" type="AudioStreamPlayer" unique_id=1009424162]
+stream = SubResource("AudioStreamInteractive_wavqy")
+volume_db = -22.0
+autoplay = true
+bus = &"music"
+script = ExtResource("3_5vx3j")

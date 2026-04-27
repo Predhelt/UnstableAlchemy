@@ -42,7 +42,7 @@ func _input(event: InputEvent) -> void:
 		reset_level()
 
 ## Changes the root node of the scene. Used for changing levels.
-func change_scene(scene_path : String) -> void:
+func change_scene(scene_path: String) -> void:
 	if scene_path == "":
 		return
 	_deferred_change_scene.call_deferred(scene_path)
@@ -50,7 +50,7 @@ func change_scene(scene_path : String) -> void:
 	current_level_path = scene_path
 
 ## Defer to pevent errors when signal is called during physics process.
-func _deferred_change_scene(path : String):
+func _deferred_change_scene(path: String):
 	get_tree().change_scene_to_file(path)
 
 ## Resets the current level
@@ -117,6 +117,7 @@ func save() -> Dictionary:
 		"focused_camera" : focused_camera,
 		"focused_node" : focused_node,
 		"current_level_path" : current_level_path,
+		"current_song" : MusicManager.current_song,
 	}
 
 ## Loads the game state based on the savegame.save file in the user directory.
@@ -134,13 +135,15 @@ func load_game() -> void:
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	var node_data : Dictionary = json.data
-	if node_data["current_level_path"]:
+	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
 		var level_node : Node2D = load(current_level_path).instantiate()
 		get_tree().change_scene_to_node(level_node)
 
 		# Wait for the scene to load before continuing.
 		await level_node.ready
+	if node_data.get("current_song"):
+		MusicManager.change_song(node_data["current_song"])
 	else:
 		print("ERROR: No level data found. Load Failed.")
 		return

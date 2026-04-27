@@ -115,7 +115,8 @@ text = "Settings"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit to Title"
-menu_path = "uid://ckgxm2etu6kdm"
+level_path = "uid://ckgxm2etu6kdm"
+song_name = &"title"
 
 [node name="ButtonExit" type="Button" parent="VBoxContainer/Control/VBoxContainer" unique_id=207233914]
 unique_name_in_owner = true

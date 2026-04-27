@@ -30,4 +30,5 @@ func add_level_button(file_path : String, level_name : String) -> void:
 	var button : Button = BUTTON_LEVEL_SELECT.instantiate()
 	button.level_path = file_path
 	button.text = level_name
+	button.song_name = "forest"
 	%GridContainerButtons.add_child(button)
