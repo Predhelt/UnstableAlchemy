@@ -31,7 +31,7 @@ anchor_bottom = 0.9
 theme = ExtResource("1_546pi")
 script = ExtResource("1_fogeq")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1684914211]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1113516434]
 stream = SubResource("AudioStreamInteractive_yrxkn")
 bus = &"sfx"
 

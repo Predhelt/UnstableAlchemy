@@ -48,16 +48,14 @@ func toggle_window() -> void:
 ## Closes the window and removes it from the active window group.
 func close_window() -> void:
 	if Global.mode == window_mode:
-		$AudioStreamPlayer2D.play()
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "close"
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "close"
 		Global.left_window = null
 		if not Global.right_window and not Global.center_window:
 			Global.mode = &"default"
 		visible = false
 	
 	elif Global.mode == &"dropper":
-		$AudioStreamPlayer2D.play()
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "close"
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "close"
 		Global.left_window = null
 		Global.mode = &"default" ## There should be no other UI windows open
 		visible = false
@@ -78,15 +76,15 @@ func open_window() -> bool:
 	if Global.mode == &"default":
 		Global.mode = window_mode
 	if Global.mode == window_mode:
-		$AudioStreamPlayer2D.play()
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"open"
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = &"open"
 		update_window()
 		Global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
 		visible = true
 		return true
 	elif Global.mode == &"dropper":
-		$AudioStreamPlayer2D.play()
+		$AudioStreamPlayer.play()
 		update_window()
 		Global.left_window = self
 		%WindowName.text = "Select an Item for the Dropper"
@@ -127,8 +125,8 @@ func add_inventory_item(item : Item) -> bool:
 ## Adds an item that was dropped by the player into the inventory.
 func add_dropped_item(item : Item) -> bool:
 	if add_inventory_item(item):
-		$AudioStreamPlayer2D.play()
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "drop"
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "drop"
 		return true
 	return false
 
@@ -217,8 +215,8 @@ func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index 
 
 ## Moves the item relative to the mouse position.
 func drag_item(item : Item, index : int):
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "pickup"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "pickup"
 	var drag_item_instance = drag_item_scene.instantiate()
 		
 	var selected_item = item.duplicate()
@@ -257,17 +255,17 @@ func consume_item(item : Item, index : int) -> void:
 	
 	match item.use_sound:
 		"eat":
-			$AudioStreamPlayer2D.play()
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"eat"
+			$AudioStreamPlayer.play()
+			$AudioStreamPlayer["parameters/switch_to_clip"] = &"eat"
 		"drink":
-			$AudioStreamPlayer2D.play()
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"drink"
+			$AudioStreamPlayer.play()
+			$AudioStreamPlayer["parameters/switch_to_clip"] = &"drink"
 		"read":
-			$AudioStreamPlayer2D.play()
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"read"
+			$AudioStreamPlayer.play()
+			$AudioStreamPlayer["parameters/switch_to_clip"] = &"read"
 		"equip":
-			$AudioStreamPlayer2D.play()
-			$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"equip"
+			$AudioStreamPlayer.play()
+			$AudioStreamPlayer["parameters/switch_to_clip"] = &"equip"
 	
 	if item.type == "Book": ## If item is a book
 		Global.focused_node.read_book(item)

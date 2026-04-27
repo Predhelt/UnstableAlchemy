@@ -10,8 +10,8 @@ func open_level() -> bool:
 
 
 func _on_button_settings_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	if not $SettingsMenu.visible:
 		$SettingsMenu.popup()
 	else:
@@ -19,17 +19,17 @@ func _on_button_settings_pressed() -> void:
 
 
 func _on_button_exit_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$PopupConfirmation.popup()
 
 
 func _on_button_load_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	Global.load_game()
 
 
 func _on_button_entered() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "hover"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"

@@ -74,11 +74,11 @@ grow_vertical = 2
 theme = ExtResource("1_cupdn")
 script = ExtResource("1_geiyq")
 
-[node name="MinigameAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1509001421]
+[node name="MinigameAudioStream" type="AudioStreamPlayer" parent="." unique_id=627316031]
 stream = SubResource("AudioStreamInteractive_jf48d")
 bus = &"sfx"
 
-[node name="EffectsAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1777367242]
+[node name="EffectsAudioStream" type="AudioStreamPlayer" parent="." unique_id=1023636742]
 stream = SubResource("AudioStreamInteractive_mit6k")
 bus = &"sfx"
 

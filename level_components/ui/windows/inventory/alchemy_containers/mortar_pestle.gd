@@ -30,8 +30,8 @@ func add_item(item: Item) -> bool:
 		inventory_menu_ref.add_inventory_item(item)
 		return false
 	
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "drop"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "drop"
 	
 	if not items[0]:
 		items[0] = item

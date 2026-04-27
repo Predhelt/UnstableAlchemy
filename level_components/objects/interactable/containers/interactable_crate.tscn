@@ -3,8 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bmn5y8yd333yi" path="res://level_components/objects/interactable/interactable_object.tscn" id="1_043v8"]
 [ext_resource type="Script" uid="uid://b4os8v32yq8rx" path="res://level_components/objects/interactable/containers/interactable_crate.gd" id="1_uf1m6"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_pdeql"]
-[ext_resource type="AudioStream" uid="uid://ycptin8ifwj2" path="res://art/pack/sounds/pluck.mp3" id="3_3ldih"]
-[ext_resource type="AudioStream" uid="uid://bp5m3cl4bsytl" path="res://art/pack/sounds/plant_cut.mp3" id="4_fyxj8"]
+[ext_resource type="AudioStream" uid="uid://bgt2wia8i4iip" path="res://art/pack/sounds/pickup.mp3" id="3_61vt4"]
 [ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="5_uc7i2"]
 [ext_resource type="AudioStream" uid="uid://cw8el7hrqefcj" path="res://art/pack/sounds/pop.mp3" id="6_atn0d"]
 [ext_resource type="Texture2D" uid="uid://dqnc16v87b7tb" path="res://art/pack/objects/crate_blank.png" id="7_3ldih"]
@@ -15,11 +14,9 @@ clip_0/name = &"none"
 clip_0/stream = ExtResource("2_pdeql")
 clip_0/auto_advance = 0
 clip_1/name = &"grab"
-clip_1/stream = ExtResource("3_3ldih")
 clip_1/auto_advance = 1
 clip_1/next_clip = 0
 clip_2/name = &"cut"
-clip_2/stream = ExtResource("4_fyxj8")
 clip_2/auto_advance = 1
 clip_2/next_clip = 0
 clip_3/name = &"destroy"
@@ -37,9 +34,8 @@ script = ExtResource("1_uf1m6")
 contained_item_icon = null
 display_name = "\"Stuff\""
 description = "Possibly contains an assortment of items."
-object_type = "crate"
-grab_sound = null
-cut_sound = null
+grab_sound = ExtResource("3_61vt4")
+cut_sound = ExtResource("3_61vt4")
 
 [node name="EffectAudioStream" parent="." index="0" unique_id=76167031]
 stream = SubResource("AudioStreamInteractive_pdeql")

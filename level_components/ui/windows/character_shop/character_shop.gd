@@ -47,8 +47,8 @@ func open_window() -> bool:
 	if Global.mode == &"default":
 		Global.mode = window_mode ## Shares mode with inventory, minigame, and help menu
 	if Global.mode == window_mode:
-		$AudioStreamPlayer2D.play()
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"open"
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = &"open"
 		Global.right_window = self
 		add_shop_transactions() # Populate the shop transactions
 		
@@ -156,8 +156,8 @@ func _on_transaction_attempt(id : int) -> void:
 			var cur_transaction_scene : Button = %ShopTransactions.get_child(id)
 			cur_transaction_scene.set_out_of_stock(true)
 			cur_transaction_scene.disabled = true
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"trade"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = &"trade"
 
 ## Checks if the character has any [Item]s left in stock for the [Transaction].
 ## Returns true if any items are found in stock. Else, returns false.

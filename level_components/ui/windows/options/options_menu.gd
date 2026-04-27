@@ -19,8 +19,8 @@ func toggle_window():
 
 func open_window():
 	if not Global.center_window:
-		$AudioStreamPlayer2D.play()
-		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 		prev_mode = Global.mode
 		Global.mode = window_mode
 		Global.center_window = self
@@ -37,48 +37,48 @@ func close_window():
 
 ## Close the options menu and return to the game.
 func _on_button_return_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	close_window()
 
 ## Close the options menu and open the settings menu.
 func _on_button_settings_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	close_window()
 	$"../SettingsMenu".popup()
 
 ## Close the game.
 func _on_button_exit_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$PopupConfirmation.popup()
 
 
 func _on_button_save_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	Global.save_game()
 
 
 func _on_button_load_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	Global.load_game()
 
 
 func _on_button_cancel_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$PopupConfirmation.hide()
 
 
 func _on_button_quit_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	get_tree().quit()
 
 
 func _on_button_entered() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "hover"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"

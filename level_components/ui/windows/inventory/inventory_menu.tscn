@@ -68,8 +68,9 @@ grow_vertical = 2
 theme = ExtResource("1_gie0h")
 script = ExtResource("1_3n8ow")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1924294704]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2091460000]
 stream = SubResource("AudioStreamInteractive_2kur6")
+max_polyphony = 2
 bus = &"sfx"
 
 [node name="CooldownInteract" type="Timer" parent="." unique_id=673854014]

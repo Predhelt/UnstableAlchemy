@@ -53,7 +53,7 @@ func _ready() -> void:
 	%ButtonPeoplePerson1.pressed.emit()
 	%ButtonStatusEnergized.button_pressed = true
 	%ButtonStatusEnergized.pressed.emit()
-	$AudioStreamPlayer2D.stop()
+	$AudioStreamPlayer.stop()
 	$VBoxContainer/TabContainer.current_tab = 0
 
 func _input(event: InputEvent) -> void:
@@ -71,8 +71,8 @@ func toggle_window() -> void:
 func close_window() -> void:
 	if Global.mode != window_mode:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "close"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "close"
 	Global.mode = prev_mode
 	Global.center_window = null
 	prev_mode = ""
@@ -92,8 +92,8 @@ func open_window() -> bool:
 	
 	# Open the current page in the current tab
 	open_page_in_tab($VBoxContainer/TabContainer.current_tab)
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "open"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "open"
 	visible = true
 	return true
 
@@ -323,8 +323,8 @@ func open_page_help_tools():
 func open_help_page(page : MarginContainer) -> void:
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ## Uses template page node to set up the [member current_raw_item] information.
@@ -338,8 +338,8 @@ func open_raw_item_page() -> void:#TODO
 		return
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_raw_item.description
 	# List where you can get the item from
@@ -418,8 +418,8 @@ func open_crafted_item_page() -> void:
 		return
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_crafted_item.description
 	# List where you can get the item from
@@ -445,8 +445,8 @@ func open_potion_page() -> void:
 		return
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.get_child(0).find_child("LabelDescription").text = current_potion.description
 	# List where you can get the item from
 	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
@@ -468,8 +468,8 @@ func open_plant_page(page : MarginContainer) -> void:
 		return
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.get_child(0).find_child("LabelDescription").text = current_plant_scene.description
 	page.get_child(0).find_child("LabelContainedItems").text = _interaction_object_contained_items_as_str(current_plant_scene)
 	page.get_child(0).find_child("LabelInteractionCounts").text = _interaction_object_counts_as_str(current_plant_scene.display_name)
@@ -487,32 +487,32 @@ func open_plant_page(page : MarginContainer) -> void:
 func open_object_page(page : MarginContainer) -> void:#TODO
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ##
 func open_book_page(page : MarginContainer) -> void:#TODO
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ##
 func open_place_page(page : MarginContainer) -> void:#TODO
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ##
 func open_person_page(page : MarginContainer) -> void:#TODO
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.visible = true
 
 ## Uses template page node to set up the [member current_satus_effect] item information.
@@ -526,8 +526,8 @@ func open_status_page() -> void:
 		return
 	if page.visible:
 		return
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	
 	page.get_child(0).find_child("LabelDescription").text = current_status_effect.description
 	# List where you can get the item from
@@ -551,8 +551,8 @@ func open_status_page() -> void:
 
 ## Loads the currently open page in the given tab.
 func open_page_in_tab(tab: int) -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "change_page"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	match tab:
 		0: open_help_page(get_current_page(tab))
 		1: open_raw_item_page()
@@ -573,7 +573,7 @@ func open_page_in_tab(tab: int) -> void:
 func _on_tab_container_tab_changed(tab: int) -> void:
 	if not is_node_ready():
 		return
-	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer.play()
 	open_page_in_tab(tab)
 
 ## When close button is pressed, close the log book window.

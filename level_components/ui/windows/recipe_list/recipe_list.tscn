@@ -39,7 +39,7 @@ anchor_bottom = 0.92
 theme = ExtResource("1_vxomh")
 script = ExtResource("2_2htw0")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=427128831]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1741734327]
 stream = SubResource("AudioStreamInteractive_lxmwx")
 bus = &"sfx"
 

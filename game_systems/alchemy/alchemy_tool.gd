@@ -103,11 +103,11 @@ func _process(delta: float) -> void:
 			var effect_instance = items_gained_effect.instantiate()
 			
 			if product.id == 999: # Failed Craft ID
-				$AudioStreamPlayer2D.play()
-				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "fail"
+				$AudioStreamPlayer.play()
+				$AudioStreamPlayer["parameters/switch_to_clip"] = "fail"
 			else:
-				$AudioStreamPlayer2D.play()
-				$AudioStreamPlayer2D["parameters/switch_to_clip"] = "success"
+				$AudioStreamPlayer.play()
+				$AudioStreamPlayer["parameters/switch_to_clip"] = "success"
 			
 			
 			effect_instance.add_item(product)
@@ -130,8 +130,8 @@ func add_item(item: Item) -> bool:
 		inventory_menu_ref.add_inventory_item(item)
 		return false
 		
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "drop"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "drop"
 	
 	for i in MAX_ITEMS:
 		if not items[i]:
@@ -167,8 +167,8 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 		print("Error: No product item for recipe!")
 		return
 	
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "craft"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "craft"
 	
 	for i in range(items.size()):
 		if items[i]:

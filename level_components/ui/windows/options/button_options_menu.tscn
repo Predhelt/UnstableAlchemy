@@ -29,7 +29,7 @@ grow_vertical = 2
 theme = ExtResource("1_u5phw")
 script = ExtResource("2_te3et")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=927223866]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=480122157]
 stream = SubResource("AudioStreamInteractive_1anc8")
 bus = &"sfx"
 
