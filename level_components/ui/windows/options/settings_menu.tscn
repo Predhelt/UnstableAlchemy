@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://3pt6q5eotxfk" path="res://level_components/ui/windows/options/general_settings.gd" id="2_sva72"]
 [ext_resource type="Script" uid="uid://cr51elvyj45o7" path="res://level_components/ui/windows/options/display_settings.gd" id="3_pyqsg"]
 [ext_resource type="Script" uid="uid://v4egyyhl6wrt" path="res://level_components/ui/windows/options/keybinds_settings.gd" id="4_si7xk"]
+[ext_resource type="PackedScene" uid="uid://by1pq2uwe7dsj" path="res://level_components/ui/windows/options/volume_controller.tscn" id="5_y2dqe"]
 [ext_resource type="Script" uid="uid://dcnpup62q1r8i" path="res://level_components/ui/windows/options/accessibility_settings.gd" id="5_ypet3"]
 
 [sub_resource type="Theme" id="Theme_qd3n0"]
@@ -23,13 +24,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 3
 tab_1/disabled = true
-tab_2/disabled = true
 tab_3/disabled = true
 tab_4/disabled = true
 
 [node name="General" type="MarginContainer" parent="TabContainer" unique_id=1102424622]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
@@ -112,44 +113,24 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 10
-script = ExtResource("3_pyqsg")
 metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Audio" unique_id=891574168]
 layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="Control" type="Control" parent="TabContainer/Audio/VBoxContainer" unique_id=501868584]
-custom_minimum_size = Vector2(0, 24)
+[node name="MasterVolume" parent="TabContainer/Audio/VBoxContainer" unique_id=2022078302 instance=ExtResource("5_y2dqe")]
 layout_mode = 2
-theme = SubResource("Theme_qd3n0")
 
-[node name="LabelMasterName" type="Label" parent="TabContainer/Audio/VBoxContainer/Control" unique_id=693888773]
-layout_mode = 0
-offset_right = 55.0
-offset_bottom = 23.0
-text = "Master"
+[node name="MusicVolume" parent="TabContainer/Audio/VBoxContainer" unique_id=1389207948 instance=ExtResource("5_y2dqe")]
+layout_mode = 2
+audio_channel_name = "Music"
 
-[node name="LabelMasterDescription" type="Label" parent="TabContainer/Audio/VBoxContainer/Control" unique_id=2141510675]
-layout_mode = 0
-offset_left = 311.0
-offset_right = 351.0
-offset_bottom = 23.0
-
-[node name="HSliderMaster" type="HSlider" parent="TabContainer/Audio/VBoxContainer/Control" unique_id=173560733]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -384.0
-offset_top = -8.0
-offset_bottom = 8.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="SFXVolume3" parent="TabContainer/Audio/VBoxContainer" unique_id=163930341 instance=ExtResource("5_y2dqe")]
+layout_mode = 2
+audio_channel_name = "SFX"
 
 [node name="Keybinds" type="MarginContainer" parent="TabContainer" unique_id=1209691072]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
@@ -206,11 +187,16 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="TabContainer/Keybinds/ScrollContainer/VBoxContainer/Control" unique_id=711929157]
 layout_mode = 1
-anchors_preset = -1
-offset_left = 6.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 62.0
+offset_bottom = 11.5
+grow_vertical = 2
 text = "Interact"
 
-[node name="Accessibility" type="Control" parent="TabContainer" unique_id=1587524537]
+[node name="Accessibility" type="MarginContainer" parent="TabContainer" unique_id=114035552]
 visible = false
 layout_mode = 2
 script = ExtResource("5_ypet3")
@@ -218,4 +204,3 @@ metadata/_tab_index = 4
 
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="value_changed" from="TabContainer/Audio/VBoxContainer/Control/HSliderMaster" to="." method="_on_h_slider_master_value_changed"]

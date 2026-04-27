@@ -1,3 +1,3 @@
-extends Control
+extends MarginContainer
 
 # TODO: Add accessibility settings

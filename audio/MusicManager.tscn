@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://xhmxjsdkghd"]
+
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_5vx3j"]
+[ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/music/quaint_ambient.mp3" id="2_34sig"]
+[ext_resource type="Script" uid="uid://diqd3fam1smip" path="res://audio/music_manager.gd" id="3_5vx3j"]
+[ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/music/ambient1.mp3" id="3_34sig"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_irr3v"]
+clip_count = 2
+clip_0/name = &"1"
+clip_0/stream = ExtResource("3_34sig")
+clip_0/auto_advance = 0
+clip_1/name = &"2"
+clip_1/stream = ExtResource("2_5vx3j")
+clip_1/auto_advance = 0
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wavqy"]
+clip_count = 3
+clip_0/name = &"none"
+clip_0/stream = ExtResource("2_5vx3j")
+clip_0/auto_advance = 0
+clip_1/name = &"title"
+clip_1/stream = ExtResource("2_34sig")
+clip_1/auto_advance = 0
+clip_2/name = &"forest"
+clip_2/stream = SubResource("AudioStreamInteractive_irr3v")
+clip_2/auto_advance = 0
+
+[node name="MusicManager" type="AudioStreamPlayer" unique_id=1009424162]
+stream = SubResource("AudioStreamInteractive_wavqy")
+autoplay = true
+bus = &"Music"
+script = ExtResource("3_5vx3j")

@@ -1,27 +1,33 @@
 [gd_scene format=4 uid="uid://cr3i0ndcmeftb"]
 
-[ext_resource type="Script" uid="uid://cd8iqy4gumb81" path="res://audio/world_audio_manager.gd" id="1_6k646"]
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_i03in"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_vojba"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="4_6k646"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_eglba"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="5_uu1qg"]
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_v2wvs"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_a8o7j"]
+
+[sub_resource type="Resource" id="Resource_h0x2c"]
+resource_local_to_scene = true
+script = ExtResource("3_vojba")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_y3thg"]
+resource_local_to_scene = true
+script = ExtResource("5_uu1qg")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="WorldAudioManager" type="Node" parent="." unique_id=781523059]
-script = ExtResource("1_6k646")
-
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager" unique_id=2009756908]
-volume_db = -20.0
-autoplay = true
-bus = &"music"
-
 [node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_i03in")]
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v2wvs")]
 position = Vector2(599, 419)
+attributes = SubResource("Resource_h0x2c")
+inventory = SubResource("Resource_y3thg")
 character_camera_ref = NodePath("../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
