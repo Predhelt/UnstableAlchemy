@@ -553,7 +553,7 @@ func begin_possession(body: Character):
 		$CharacterAudioListener.current = false
 		body.find_child("CharacterAudioListener").current = true
 		transfer_camera(body)
-		update_status_effects(self_active_ses, "")
+		update_status_effects(self_active_ses, "") #FIXME: Initial possess sound plays again.
 		body.update_status_effects(body_active_ses, "")
 		%StatusLabel.text = ""
 		%InteractLabel.text = ""
@@ -638,7 +638,7 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 ## based on the [member StatusEffect.effect].
 func apply_status_effect(se: StatusEffect) -> bool:
 	match se.effect:
-		&"move speed bonus" : 
+		&"move speed bonus": 
 			if se.value > 0:
 				%StatusAudioStream.play()
 				%StatusAudioStream["parameters/switch_to_clip"] = "speed"
@@ -646,19 +646,19 @@ func apply_status_effect(se: StatusEffect) -> bool:
 				%StatusAudioStream.play()
 				%StatusAudioStream["parameters/switch_to_clip"] = "slow"
 			return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
-		&"strength bonus" : 
+		&"strength bonus": 
 			%StatusAudioStream.play()
 			%StatusAudioStream["parameters/switch_to_clip"] = "strength"
 			return _add_attribute_bonus(se, attributes.add_strength_bonus)
-		&"cleanse" : 
+		&"cleanse": 
 			%StatusAudioStream.play()
 			%StatusAudioStream["parameters/switch_to_clip"] = "cleanse"
 			return _cleanse_status_effects()
-		&"normalize" : 
+		&"normalize": 
 			%StatusAudioStream.play()
 			%StatusAudioStream["parameters/switch_to_clip"] = "normalize"
 			return _normalize_status_effects()
-		&"grow" : 
+		&"grow": 
 			if se.value > 1:
 				%StatusAudioStream.play()
 				%StatusAudioStream["parameters/switch_to_clip"] = "grow"
@@ -666,15 +666,15 @@ func apply_status_effect(se: StatusEffect) -> bool:
 				%StatusAudioStream.play()
 				%StatusAudioStream["parameters/switch_to_clip"] = "shrink"
 			return _grow_character(se)
-		&"self-attunement" : 
+		&"self-attunement": 
 			%StatusAudioStream.play()
 			%StatusAudioStream["parameters/switch_to_clip"] = "self-attunement"
 			return _attune_self(se)
-		&"equip tool" : 
+		&"equip tool": 
 			#%StatusAudioStream.play()
 			#%StatusAudioStream["parameters/switch_to_clip"] = "equip"
 			return _equip_tool(se)
-		&"possess" : 
+		&"possess": #FIXME: sound plays during begin_possession due to update call.
 			%StatusAudioStream.play()
 			%StatusAudioStream["parameters/switch_to_clip"] = "possess"
 			return _set_can_possess(se)

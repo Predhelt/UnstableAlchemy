@@ -32,6 +32,8 @@ func get_global_volume() -> float:
 			return Global.music_volume
 		"SFX":
 			return Global.sfx_volume
+		"Ambient":
+			return Global.ambient_volume
 	return -1
 
 ## Sets the global volume value based on the [member bus_name].
@@ -43,6 +45,8 @@ func set_global_volume(volume: float) -> void:
 			Global.music_volume = volume
 		"SFX":
 			Global.sfx_volume = volume
+		"Ambient":
+			Global.ambient_volume = volume
 
 
 func _on_h_slider_value_changed(value: float) -> void:
