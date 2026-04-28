@@ -24,11 +24,10 @@ offset_top = 10.0
 offset_right = 110.0
 offset_bottom = 110.0
 script = ExtResource("1_0h6hx")
-song_name = null
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1675381403]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1386305619]
 stream = SubResource("AudioStreamInteractive_58m5d")
-bus = &"sfx"
+bus = &"SFX"
 
 [connection signal="focus_entered" from="." to="." method="_on_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_entered"]

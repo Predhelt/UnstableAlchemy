@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dwg107smfp5f4" path="res://level_components/ui/windows/options/settings_menu.gd" id="1_4bqsf"]
 [ext_resource type="Script" uid="uid://3pt6q5eotxfk" path="res://level_components/ui/windows/options/general_settings.gd" id="2_sva72"]
 [ext_resource type="Script" uid="uid://cr51elvyj45o7" path="res://level_components/ui/windows/options/display_settings.gd" id="3_pyqsg"]
+[ext_resource type="PackedScene" uid="uid://ffepcd5oh85" path="res://level_components/ui/windows/options/cauldron_input_precision.tscn" id="3_y2dqe"]
+[ext_resource type="PackedScene" uid="uid://yj02b17quwer" path="res://level_components/ui/windows/options/cauldron_craft_speed.tscn" id="4_axiun"]
 [ext_resource type="PackedScene" uid="uid://1e3vf4u3brfm" path="res://addons/maaacks_input_remapping/examples/scenes/menus/options_menu/input/input_options_menu.tscn" id="5_axiun"]
 [ext_resource type="PackedScene" uid="uid://by1pq2uwe7dsj" path="res://level_components/ui/windows/options/volume_controller.tscn" id="5_y2dqe"]
 [ext_resource type="Script" uid="uid://dcnpup62q1r8i" path="res://level_components/ui/windows/options/accessibility_settings.gd" id="5_ypet3"]
@@ -42,26 +44,45 @@ layout_mode = 2
 
 [node name="Control" type="Control" parent="TabContainer/Game/VBoxContainer" unique_id=1008668321]
 clip_contents = true
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="TabContainer/Game/VBoxContainer/Control" unique_id=676907558]
 layout_mode = 1
-anchors_preset = -1
-offset_left = 6.0
-text = "WIP"
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 192.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Cauldron Input Precision"
+vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="TabContainer/Game/VBoxContainer/Control" unique_id=2132860131]
-layout_direction = 2
+[node name="CauldronInputPrecision" parent="TabContainer/Game/VBoxContainer/Control" unique_id=1641258979 instance=ExtResource("3_y2dqe")]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -24.0
-offset_bottom = 24.0
-grow_horizontal = 0
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Game/VBoxContainer" unique_id=1880064851]
+[node name="Control2" type="Control" parent="TabContainer/Game/VBoxContainer" unique_id=658167168]
+clip_contents = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Game/VBoxContainer/Control2" unique_id=1785267349]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 165.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Cauldron Craft Speed"
+vertical_alignment = 1
+
+[node name="CauldronCraftSpeed" parent="TabContainer/Game/VBoxContainer/Control2" unique_id=173476778 instance=ExtResource("4_axiun")]
+layout_mode = 1
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Game/VBoxContainer" unique_id=172025449]
 layout_mode = 2
 
 [node name="Display" type="MarginContainer" parent="TabContainer" unique_id=1468631991]

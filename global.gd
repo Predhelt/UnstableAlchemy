@@ -27,6 +27,11 @@ var right_window : Control
 ## Keeps track of the window in the center of the screen
 var center_window : Control
 
+## The window of acceptable input for each tick of the cauldron minigame.
+## Larger values means tighter timing / harder difficulty
+var cauldron_craft_precision : float = 0.5
+## Multiplier on the base speed of the cauldron's crafting minigame progress bar.
+var cauldron_craft_speed_mult : float = 1.5
 
 ## Checks input action events and closes a window.
 ## Closes the center window, or right, or left, respectively.
@@ -118,6 +123,8 @@ func save() -> Dictionary:
 		"focused_node" : focused_node,
 		"current_level_path" : current_level_path,
 		"current_song" : MusicManager.current_song,
+		"cauldron_craft_precision" : cauldron_craft_precision,
+		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}
 
 ## Loads the game state based on the savegame.save file in the user directory.
@@ -135,11 +142,14 @@ func load_game() -> void:
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	var node_data : Dictionary = json.data
+	if node_data.get("cauldron_craft_precision"):
+		cauldron_craft_precision = node_data["cauldron_craft_precision"]
+	if node_data.get("cauldron_craft_speed_mult"):
+		cauldron_craft_speed_mult =  node_data["cauldron_craft_speed_mult"]
 	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
 		var level_node : Node2D = load(current_level_path).instantiate()
 		get_tree().change_scene_to_node(level_node)
-
 		# Wait for the scene to load before continuing.
 		await level_node.ready
 	if node_data.get("current_song"):
@@ -246,3 +256,5 @@ func load_game() -> void:
 				new_object.set(i, node_data[i])
 			new_object.set(i, node_data[i])
 	mode = &"default"
+	if MusicManager.stream_paused:
+		MusicManager.resume()

@@ -26,9 +26,6 @@ var is_crafting := false
 var last_item_produced : Item
 
 #TODO: Determine if craft difficulty could be set dynamically by the player / circumstance
-## The window of acceptable input for each tick.
-## Smaller values means tighter timing / harder difficulty
-@export var input_window_ratio := 0.5
 ## Recipe that represents the craft item when a craft attempt fails.
 const FAILED_CRAFT : Recipe = preload("res://game_systems/alchemy/recipes/failed_craft.tres") #NOTE: ID for failed craft is 999
 

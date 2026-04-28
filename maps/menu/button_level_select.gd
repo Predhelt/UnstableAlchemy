@@ -8,12 +8,12 @@ class_name LevelSelectButton extends Button
 
 
 func _on_pressed() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	Global.change_scene(level_path)
 	MusicManager.change_song(song_name)
 
 
 func _on_entered() -> void:
-	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D["parameters/switch_to_clip"] = "hover"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"

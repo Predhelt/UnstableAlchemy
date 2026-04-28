@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 				' - Physical','') + ")")	
 	if is_crafting:
 		if slider.value < slider.max_value:
-			slider.value += delta
+			slider.value += (delta * Global.cauldron_craft_speed_mult)
 		else:
 			is_crafting = false
 			check_results()
@@ -97,15 +97,15 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	
 
 ## Used by the cauldron to determine the segment on the progress bar that the
-## progress is closest to, if any. Modifying the input_window_ratio changes
+## progress is closest to, if any. Modifying the [member Global.cauldron_craft_precision] changes
 ## how close the progress bar needs to be from a tick.
 func _get_nearest_tick() -> int:
 	var nearest_tick := -1
 	
 	var tick_mod : float = fmod(((slider.value) + (tick_value / 2.0)), tick_value)
 	tick_mod = tick_mod / tick_value
-	var lower_bound := (1-input_window_ratio)/2
-	var upper_bound := input_window_ratio+((1-input_window_ratio)/2)
+	var lower_bound : float = Global.cauldron_craft_precision/2
+	var upper_bound : float = 0.5+((1-Global.cauldron_craft_precision)/2)
 	if tick_mod < upper_bound and tick_mod > lower_bound:
 		nearest_tick = int((slider.value + (tick_value / 2.0)) / tick_value) - 1
 	else: # Bad input. TODO: Determine if the input for the tick should be locked on bad input.
