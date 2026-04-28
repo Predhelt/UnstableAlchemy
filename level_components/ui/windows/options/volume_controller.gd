@@ -1,7 +1,7 @@
 extends Control
 
 ## The name of the audio bus being controlled.
-@export_enum("Master", "Music", "SFX") var audio_bus_name : String = "Master"
+@export_enum("Master", "Music", "SFX", "Ambient") var audio_bus_name : String = "Master"
 
 
 func _ready() -> void:
@@ -18,6 +18,10 @@ func _ready() -> void:
 			$HSlider.set_value_no_signal(Global.sfx_volume)
 			$SpinBox.set_value_no_signal(Global.sfx_volume)
 			$LabelChannelName.text = "Sound Effects"
+		"Ambient":
+			$HSlider.set_value_no_signal(Global.ambient_volume)
+			$SpinBox.set_value_no_signal(Global.ambient_volume)
+			$LabelChannelName.text = "Ambient"
 
 ## Gets the global volume value based on the [member bus_name].
 func get_global_volume() -> float:

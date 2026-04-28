@@ -101,12 +101,12 @@ level_path = "res://maps/training/3-1_advanced_puzzle.tscn"
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=463050243 instance=ExtResource("13_0othi")]
 position = Vector2(288, -324)
 open_time = 1.0
-close_time = 5.0
+close_time = 5.5
 
 [node name="SlidingDoor2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=175592330 instance=ExtResource("13_0othi")]
 position = Vector2(224, -324)
 open_time = 1.0
-close_time = 5.0
+close_time = 5.5
 open_direction = "Left"
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("14_cnpc0")]

@@ -28,9 +28,9 @@ var inspection_panel_scene : PackedScene = preload("res://level_components/ui/wi
 ## Show the amount of items gained when added to inventory in the world.
 @export var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_world.tscn")
 ##
-@export var grab_sound : AudioStream = preload("res://art/pack/sounds/pluck.mp3")
+@export var grab_sound : AudioStream = preload("res://art/pack/audio/sounds/pluck.mp3")
 ##
-@export var cut_sound : AudioStream = preload("res://art/pack/sounds/plant_cut.mp3")
+@export var cut_sound : AudioStream = preload("res://art/pack/audio/sounds/plant_cut.mp3")
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:

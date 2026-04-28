@@ -2,13 +2,13 @@
 
 [ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_vxomh"]
 [ext_resource type="Script" uid="uid://df82k6p2pmfec" path="res://level_components/ui/windows/recipe_list/recipe_list.gd" id="2_2htw0"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="3_1xr7c"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="3_1xr7c"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://art/pack/alchemy/potions/potion_standard_grey.png" id="3_2hrkg"]
-[ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/sounds/page_flip.mp3" id="3_q4q3r"]
+[ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/audio/sounds/page_flip.mp3" id="3_q4q3r"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="4_eo0qk"]
-[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="4_lxmwx"]
+[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/audio/sounds/pop2.mp3" id="4_lxmwx"]
 [ext_resource type="LabelSettings" uid="uid://d03hwvt3eyjax" path="res://art/text/title_label.tres" id="5_eyj61"]
-[ext_resource type="AudioStream" uid="uid://d33moil0mbpb5" path="res://art/pack/sounds/page_flip2.mp3" id="5_sbej8"]
+[ext_resource type="AudioStream" uid="uid://d33moil0mbpb5" path="res://art/pack/audio/sounds/page_flip2.mp3" id="5_sbej8"]
 [ext_resource type="LabelSettings" uid="uid://dmsx8d0iy7oqc" path="res://art/text/subtitle_label.tres" id="6_xwfla"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_lxmwx"]

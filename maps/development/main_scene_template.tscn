@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://cr3i0ndcmeftb"]
 
+[ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="1_eglba"]
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_i03in"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_vojba"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="4_6k646"]
@@ -8,12 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_v2wvs"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_a8o7j"]
 
-[sub_resource type="Resource" id="Resource_h0x2c"]
+[sub_resource type="Resource" id="Resource_eglba"]
 resource_local_to_scene = true
 script = ExtResource("3_vojba")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_y3thg"]
+[sub_resource type="Resource" id="Resource_uu1qg"]
 resource_local_to_scene = true
 script = ExtResource("5_uu1qg")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -22,12 +23,18 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
+[node name="AmbientAudioStream" type="AudioStreamPlayer" parent="." unique_id=1274652820]
+stream = ExtResource("1_eglba")
+volume_db = -10.0
+autoplay = true
+bus = &"Ambient"
+
 [node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_i03in")]
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v2wvs")]
 position = Vector2(599, 419)
-attributes = SubResource("Resource_h0x2c")
-inventory = SubResource("Resource_y3thg")
+attributes = SubResource("Resource_eglba")
+inventory = SubResource("Resource_uu1qg")
 character_camera_ref = NodePath("../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]

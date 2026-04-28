@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://nfaon5fja8pq" path="res://level_components/objects/triggers/sliding_door.gd" id="1_b6o5m"]
 [ext_resource type="Texture2D" uid="uid://uyyshsfxk2ew" path="res://art/pack/objects/doors/slide_door_gray.png" id="2_02pl3"]
-[ext_resource type="AudioStream" uid="uid://oxqdm58vldsa" path="res://art/pack/sounds/stone_door_slide2.mp3" id="3_6pke3"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="3_hjqqs"]
-[ext_resource type="AudioStream" uid="uid://0kmdxudt3o3i" path="res://art/pack/sounds/mp_right.mp3" id="5_xo6bq"]
-[ext_resource type="AudioStream" uid="uid://beiqmcfja8yw8" path="res://art/pack/sounds/mp_down.mp3" id="6_r15sb"]
+[ext_resource type="AudioStream" uid="uid://oxqdm58vldsa" path="res://art/pack/audio/sounds/stone_door_slide2.mp3" id="3_6pke3"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="3_hjqqs"]
+[ext_resource type="AudioStream" uid="uid://0kmdxudt3o3i" path="res://art/pack/audio/sounds/mp_right.mp3" id="5_xo6bq"]
+[ext_resource type="AudioStream" uid="uid://beiqmcfja8yw8" path="res://art/pack/audio/sounds/mp_down.mp3" id="6_r15sb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m66gg"]
 size = Vector2(64, 4)

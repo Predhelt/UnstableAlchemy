@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bcq37w6pbek80" path="res://level_components/ui/windows/inventory/alchemy_containers/mortar_pestle.gd" id="1_a40nq"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="2_0nnx4"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_hwfc4"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_hwfc4"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="2_m0hp4"]
-[ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/sounds/blender.mp3" id="3_832d1"]
+[ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/audio/sounds/blender.mp3" id="3_832d1"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_88qmb"]
-[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/sounds/drop_inventory.mp3" id="4_d3pea"]
+[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/audio/sounds/drop_inventory.mp3" id="4_d3pea"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_1hdai"]
 clip_count = 3

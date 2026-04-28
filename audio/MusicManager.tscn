@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://xhmxjsdkghd"]
 
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_5vx3j"]
-[ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/music/quaint_ambient.mp3" id="2_34sig"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_5vx3j"]
+[ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/audio/music/quaint_ambient.mp3" id="2_34sig"]
 [ext_resource type="Script" uid="uid://diqd3fam1smip" path="res://audio/music_manager.gd" id="3_5vx3j"]
-[ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/music/ambient1.mp3" id="3_34sig"]
+[ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="3_34sig"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_irr3v"]
 clip_count = 2

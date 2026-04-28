@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dwfusv36qroq0" path="res://level_components/ui/windows/inventory/alchemy_containers/cauldron.gd" id="1_2r2ej"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://art/pack/alchemy/tools/alchemy_cauldron.png" id="1_ot2yn"]
 [ext_resource type="Script" uid="uid://dcclh8ukddg0n" path="res://level_components/ui/windows/inventory/droppable_area.gd" id="2_os1jy"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_wjsv3"]
-[ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/sounds/blender.mp3" id="3_04ii2"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_wjsv3"]
+[ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/audio/sounds/blender.mp3" id="3_04ii2"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="3_6hx4e"]
-[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/sounds/drop_inventory.mp3" id="4_2d2hj"]
+[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/audio/sounds/drop_inventory.mp3" id="4_2d2hj"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_vsd63"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ox3fq"]

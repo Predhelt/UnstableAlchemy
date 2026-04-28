@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bka6k2ui8al12"]
 
 [ext_resource type="Script" uid="uid://dymqeg4nsdn64" path="res://maps/menu/button_level_select.gd" id="1_0h6hx"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_4si2u"]
-[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/sounds/menu_press.mp3" id="2_ufwp4"]
-[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/sounds/menu_hover.mp3" id="3_a8sqb"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_4si2u"]
+[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/audio/sounds/menu_press.mp3" id="2_ufwp4"]
+[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/audio/sounds/menu_hover.mp3" id="3_a8sqb"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_58m5d"]
 clip_count = 3

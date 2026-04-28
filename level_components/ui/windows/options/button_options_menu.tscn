@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="1_u5phw"]
 [ext_resource type="Script" uid="uid://dymqeg4nsdn64" path="res://maps/menu/button_level_select.gd" id="2_te3et"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="3_te3et"]
-[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/sounds/menu_hover.mp3" id="4_2ws8g"]
-[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/sounds/menu_press.mp3" id="5_1tbvj"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="3_te3et"]
+[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/audio/sounds/menu_hover.mp3" id="4_2ws8g"]
+[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/audio/sounds/menu_press.mp3" id="5_1tbvj"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_1anc8"]
 clip_count = 3

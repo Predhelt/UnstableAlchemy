@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://oqf4e3pk8s45"]
 
 [ext_resource type="Script" uid="uid://dtm76oo6aso3r" path="res://art/effects/object_destroyed_effect.gd" id="1_gdqi4"]
-[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/sounds/pop2.mp3" id="2_hgv4o"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="5_go074"]
+[ext_resource type="AudioStream" uid="uid://baiykmuiqufaw" path="res://art/pack/audio/sounds/pop2.mp3" id="2_hgv4o"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="5_go074"]
 
 [sub_resource type="Gradient" id="Gradient_nivka"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)

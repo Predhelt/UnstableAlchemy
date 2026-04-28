@@ -1,0 +1,88 @@
+[gd_scene format=4 uid="uid://cr3i0ndcmeftb"]
+
+[ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="1_eglba"]
+[ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_i03in"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_vojba"]
+[ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="4_6k646"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_eglba"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="5_uu1qg"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_v2wvs"]
+[ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_a8o7j"]
+
+[sub_resource type="Resource" id="Resource_uu1qg"]
+resource_local_to_scene = true
+script = ExtResource("3_vojba")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_h0x2c"]
+resource_local_to_scene = true
+script = ExtResource("5_uu1qg")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
+
+[node name="World" type="Node2D" unique_id=1661168125]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1274652820]
+stream = ExtResource("1_eglba")
+volume_db = -15.0
+autoplay = true
+bus = &"Ambient"
+
+[node name="UILayer" parent="." unique_id=1075659928 instance=ExtResource("1_i03in")]
+
+[node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v2wvs")]
+position = Vector2(599, 419)
+attributes = SubResource("Resource_uu1qg")
+inventory = SubResource("Resource_h0x2c")
+character_camera_ref = NodePath("../PlayerCamera")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
+unique_name_in_owner = true
+position = Vector2(599, 419)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="TileMaps" type="Node2D" parent="." unique_id=852621162]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
+z_index = -20
+tile_map_data = PackedByteArray("AAAFAAMAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAUAAgAAAAAAAQAFAAYAAgAAAAAAAQAFAAcAAgAAAAAAAQAFAAgAAgAAAAAAAQAFAAkAAgAAAAAAAQAGAAMAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAGAAYAAgAAAAAAAQAGAAcAAgAAAAAAAQAGAAgAAgAAAAAAAQAGAAkAAgAAAAAAAQAHAAMAAgAAAAAAAQAHAAQAAgAAAAAAAQAHAAUAAgAAAAAAAQAHAAYAAgAAAAAAAQAHAAcAAgAAAAAAAQAHAAgAAgAAAAAAAQAHAAkAAgAAAAAAAQAIAAMAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAUAAgAAAAAAAQAIAAYAAgAAAAAAAQAIAAcAAgAAAAAAAQAIAAgAAgAAAAAAAQAIAAkAAgAAAAAAAQAJAAMAAgAAAAAAAQAJAAQAAgAAAAAAAQAJAAUAAgAAAAAAAQAJAAYAAgAAAAAAAQAJAAcAAgAAAAAAAQAJAAgAAgAAAAAAAQAJAAkAAgAAAAAAAQAKAAMAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAUAAgAAAAAAAQAKAAYAAgAAAAAAAQAKAAcAAgAAAAAAAQAKAAgAAgAAAAAAAQAKAAkAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQALAAUAAgAAAAAAAQALAAYAAgAAAAAAAQALAAcAAgAAAAAAAQALAAgAAgAAAAAAAQALAAkAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQAMAAYAAgAAAAAAAQAMAAcAAgAAAAAAAQAMAAgAAgAAAAAAAQAMAAkAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQANAAYAAgAAAAAAAQANAAcAAgAAAAAAAQANAAgAAgAAAAAAAQANAAkAAgAAAAAAAQA=")
+tile_set = ExtResource("20_a8o7j")
+metadata/_edit_lock_ = true
+
+[node name="Top" type="TileMapLayer" parent="TileMaps" unique_id=562609937]
+z_index = -10
+tile_map_data = PackedByteArray("AAAFAAgAAgACAAAAAAAGAAMAAgADAAAAAAAHAAQAAgAEAAAAAAAJAAYAAgAGAAAAAAAMAAQAAgAEAAAAAAAMAAcAAgAGAAAAAAANAAUAAgAEAAAAAAANAAcAAgACAAAAAAA=")
+tile_set = ExtResource("20_a8o7j")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
+z_index = -1
+tile_map_data = PackedByteArray("AAAFAAMAAAADAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAEAAIAAAAJAAMAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAMAAAAEAAAAAAAMAAMAAAAEAAIAAAANAAMAAAAFAAAAAAANAAkAAAACAAIAAAAMAAkAAAAEAAIAAAALAAkAAAAEAAIAAAAKAAkAAAAEAAAAAAAJAAkAAAAEAAIAAAAIAAkAAAAEAAIAAAAHAAkAAAAEAAIAAAAGAAkAAAAEAAAAAAAFAAkAAAADAAIAAAAFAAQAAAAFAAEAAAAFAAUAAAADAAEAAAAFAAYAAAAFAAEAAAAFAAcAAAAFAAEAAAAFAAgAAAAFAAEAAAANAAQAAAADAAEAAAANAAUAAAAFAAEAAAANAAYAAAADAAEAAAANAAcAAAADAAEAAAANAAgAAAABAAMAAAA=")
+tile_set = ExtResource("20_a8o7j")
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="Node2D" parent="." unique_id=354937822]
+y_sort_enabled = true
+
+[node name="PuzzleNodes" type="Node2D" parent="." unique_id=175330546]
+y_sort_enabled = true
+
+[node name="Labels" type="Control" parent="." unique_id=957710452]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasEditorOnly" type="CanvasLayer" parent="." unique_id=682310095]
+script = ExtResource("4_6k646")
+
+[node name="MapDescription" type="Label" parent="CanvasEditorOnly" unique_id=789173024]
+offset_left = -525.0
+offset_top = -108.0
+offset_right = -311.0
+offset_bottom = -33.0
+text = "Description"

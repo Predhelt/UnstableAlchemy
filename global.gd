@@ -44,6 +44,8 @@ var master_volume := 80.0
 var music_volume := 80.0
 ## Sound Effects Volume
 var sfx_volume := 80.0
+## Ambient Volume
+var ambient_volume := 80.0
 
 ## Checks input action events and closes a window.
 ## Closes the center window, or right, or left, respectively.

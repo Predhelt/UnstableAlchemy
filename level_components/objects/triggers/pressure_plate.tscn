@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bkjaos0jnpisd" path="res://level_components/objects/triggers/pressure_plate.gd" id="1_x57id"]
 [ext_resource type="Texture2D" uid="uid://cnhakowq1giib" path="res://art/pack/objects/pressure_plates/object-pressure-plate_gray.png" id="2_lt068"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="3_pwura"]
-[ext_resource type="AudioStream" uid="uid://crgmx2s5v0ayt" path="res://art/pack/sounds/creak.mp3" id="4_c8u35"]
-[ext_resource type="AudioStream" uid="uid://dulwjkkl05el8" path="res://art/pack/sounds/click.mp3" id="5_tmnt2"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="3_pwura"]
+[ext_resource type="AudioStream" uid="uid://crgmx2s5v0ayt" path="res://art/pack/audio/sounds/creak.mp3" id="4_c8u35"]
+[ext_resource type="AudioStream" uid="uid://dulwjkkl05el8" path="res://art/pack/audio/sounds/click.mp3" id="5_tmnt2"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_uxyvt"]
 clip_count = 3

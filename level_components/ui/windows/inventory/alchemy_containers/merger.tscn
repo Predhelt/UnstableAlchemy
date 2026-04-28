@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://camniccw7m1md"]
 
 [ext_resource type="Script" uid="uid://cs52w7rkn32c8" path="res://level_components/ui/windows/inventory/alchemy_containers/merger.gd" id="1_nohpg"]
-[ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/sounds/blender.mp3" id="2_5o8ok"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_qg2o0"]
+[ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/audio/sounds/blender.mp3" id="2_5o8ok"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_qg2o0"]
 [ext_resource type="Texture2D" uid="uid://bqm0r3bu3t63h" path="res://art/pack/alchemy/tools/alchemy_merger.png" id="2_wuoly"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="3_8cpav"]
-[ext_resource type="AudioStream" uid="uid://cxg6ejdhx8ss7" path="res://art/pack/sounds/bell_in_c.mp3" id="4_311wa"]
-[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/sounds/drop_inventory.mp3" id="4_e0wkk"]
+[ext_resource type="AudioStream" uid="uid://cxg6ejdhx8ss7" path="res://art/pack/audio/sounds/bell_in_c.mp3" id="4_311wa"]
+[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/audio/sounds/drop_inventory.mp3" id="4_e0wkk"]
 [ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_vejrj"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wuoly"]

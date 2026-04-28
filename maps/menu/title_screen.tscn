@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://rv8tslq5els7" path="res://maps/menu/title_screen.gd" id="1_scg0l"]
 [ext_resource type="Texture2D" uid="uid://c6iuademyval" path="res://art/pack/ui/menus/title_background.png" id="2_1nh0f"]
-[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/sounds/menu_hover.mp3" id="2_5x78w"]
-[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/sounds/menu_press.mp3" id="2_8adcj"]
+[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/audio/sounds/menu_hover.mp3" id="2_5x78w"]
+[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/audio/sounds/menu_press.mp3" id="2_8adcj"]
 [ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_12dnu"]
-[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/sounds/blank.mp3" id="2_u2ya0"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_u2ya0"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="2_v76xe"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]

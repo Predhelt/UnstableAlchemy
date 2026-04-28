@@ -26,12 +26,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 2
 tab_1/disabled = true
 tab_1/hidden = true
 tab_4/disabled = true
 
 [node name="Game" type="MarginContainer" parent="TabContainer" unique_id=1102424622]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
@@ -127,7 +128,6 @@ popup/item_2/text = "test"
 popup/item_2/id = 2
 
 [node name="Audio" type="MarginContainer" parent="TabContainer" unique_id=1117195577]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 10
@@ -146,9 +146,13 @@ layout_mode = 2
 layout_mode = 2
 audio_bus_name = "Music"
 
-[node name="SFXVolume3" parent="TabContainer/Audio/VBoxContainer" unique_id=163930341 instance=ExtResource("5_y2dqe")]
+[node name="SFXVolume" parent="TabContainer/Audio/VBoxContainer" unique_id=163930341 instance=ExtResource("5_y2dqe")]
 layout_mode = 2
 audio_bus_name = "SFX"
+
+[node name="AmbientVolume" parent="TabContainer/Audio/VBoxContainer" unique_id=228301530 instance=ExtResource("5_y2dqe")]
+layout_mode = 2
+audio_bus_name = "Ambient"
 
 [node name="Controls" parent="TabContainer" unique_id=733880495 instance=ExtResource("5_axiun")]
 visible = false
