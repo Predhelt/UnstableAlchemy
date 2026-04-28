@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Unstable Alchemy"
 config/description="Gather, craft, and solve environmental puzzles."
-config/version="0.2.14"
+config/version="0.2.15"
 config/tags=PackedStringArray("deadline", "git")
 run/main_scene="uid://ckgxm2etu6kdm"
 config/features=PackedStringArray("4.6", "Forward Plus")
@@ -31,6 +31,7 @@ buses/default_bus_layout="uid://bkfho6is2m6e"
 Global="*res://global.gd"
 UserVariables="*uid://dts5ftv4as2js"
 MusicManager="*uid://xhmxjsdkghd"
+AppConfig="*uid://cjke6crjg14a0"
 
 [display]
 
@@ -42,6 +43,10 @@ window/stretch/mode="canvas_items"
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/maaacks_input_remapping/plugin.cfg")
 
 [global_group]
 
@@ -217,6 +222,10 @@ change_tool={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_input_remapping/base/translations/menus_translations.en.translation", "res://addons/maaacks_input_remapping/base/translations/menus_translations.fr.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Player"
@@ -226,6 +235,11 @@ change_tool={
 2d_physics/layer_5="Wall"
 2d_physics/layer_6="StaticBody"
 2d_physics/layer_7="Layer 7"
+
+[maaacks_input_remapping]
+
+disable_update_check=false
+disable_install_wizard=true
 
 [physics]
 

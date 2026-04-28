@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://6284ii63hmnd"]
+
+[ext_resource type="Script" uid="uid://bh2u7jux4btek" path="res://keybind_popup.gd" id="1_bftf2"]
+
+[node name="KeybindPopup" type="PopupPanel" unique_id=1070586101]
+oversampling_override = 1.0
+title = "Press a key"
+initial_position = 2
+size = Vector2i(300, 200)
+visible = true
+script = ExtResource("1_bftf2")
+
+[node name="Control" type="Control" parent="." unique_id=474379154]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 296.0
+offset_bottom = 196.0
+
+[node name="Label" type="Label" parent="Control" unique_id=12734651]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+grow_horizontal = 2
+text = "Press a key"
+
+[node name="InputLine" type="LineEdit" parent="Control" unique_id=1290487288]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonCancel" type="Button" parent="Control" unique_id=1250315608]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.667
+anchor_right = 0.3
+anchor_bottom = 0.667
+grow_horizontal = 2
+text = "Cancel"
+
+[node name="ButtonOK" type="Button" parent="Control" unique_id=1815793815]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.667
+anchor_right = 0.7
+anchor_bottom = 0.667
+grow_horizontal = 2
+text = "OK"
+
+[connection signal="text_changed" from="Control/InputLine" to="." method="_on_input_line_text_changed"]
+[connection signal="pressed" from="Control/ButtonCancel" to="." method="_on_button_cancel_pressed"]
+[connection signal="pressed" from="Control/ButtonOK" to="." method="_on_button_ok_pressed"]
