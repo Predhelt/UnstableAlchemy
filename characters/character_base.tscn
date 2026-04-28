@@ -127,17 +127,17 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_pq74r")
 max_distance = 500.0
 attenuation = 2.0000007
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1047927553]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_mx2sf")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="StatusAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=1450898021]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_u8as0")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="LabelGroup" type="Node2D" parent="." unique_id=1126790412]
 

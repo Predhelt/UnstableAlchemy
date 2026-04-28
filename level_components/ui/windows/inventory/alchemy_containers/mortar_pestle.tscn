@@ -39,7 +39,7 @@ script = ExtResource("1_a40nq")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=61127869]
 stream = SubResource("AudioStreamInteractive_1hdai")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="ToolIcon" type="TextureRect" parent="." unique_id=878702128]
 unique_name_in_owner = true

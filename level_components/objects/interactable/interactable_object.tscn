@@ -37,7 +37,7 @@ script = ExtResource("1_32it0")
 [node name="EffectAudioStream" type="AudioStreamPlayer2D" parent="." unique_id=76167031]
 scale = Vector2(0.99999994, 0.99999994)
 stream = SubResource("AudioStreamInteractive_2j65f")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=312684338]
 texture = ExtResource("7_32it0")

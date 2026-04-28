@@ -28,6 +28,7 @@ clip_2/auto_advance = 0
 
 [node name="MusicManager" type="AudioStreamPlayer" unique_id=1009424162]
 stream = SubResource("AudioStreamInteractive_wavqy")
+volume_db = -10.0
 autoplay = true
 bus = &"Music"
 script = ExtResource("3_5vx3j")

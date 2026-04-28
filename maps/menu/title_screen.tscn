@@ -36,7 +36,7 @@ script = ExtResource("1_scg0l")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1224222744]
 stream = SubResource("AudioStreamInteractive_u2ya0")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="SettingsMenu" parent="." unique_id=1910452402 instance=ExtResource("2_v76xe")]
 visible = false

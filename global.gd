@@ -27,11 +27,23 @@ var right_window : Control
 ## Keeps track of the window in the center of the screen
 var center_window : Control
 
+################
+### Settings ###
+################
+
 ## The window of acceptable input for each tick of the cauldron minigame.
 ## Larger values means tighter timing / harder difficulty
 var cauldron_craft_precision : float = 0.5
 ## Multiplier on the base speed of the cauldron's crafting minigame progress bar.
 var cauldron_craft_speed_mult : float = 1.5
+
+#TODO: Save volume settings when set, separate to the game data.
+## Master Volume
+var master_volume := 80.0
+## Music Volume
+var music_volume := 80.0
+## Sound Effects Volume
+var sfx_volume := 80.0
 
 ## Checks input action events and closes a window.
 ## Closes the center window, or right, or left, respectively.

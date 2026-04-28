@@ -71,7 +71,7 @@ script = ExtResource("1_3n8ow")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2091460000]
 stream = SubResource("AudioStreamInteractive_2kur6")
 max_polyphony = 2
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="CooldownInteract" type="Timer" parent="." unique_id=673854014]
 wait_time = 0.5

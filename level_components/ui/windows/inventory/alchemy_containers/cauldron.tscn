@@ -33,7 +33,7 @@ script = ExtResource("1_2r2ej")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="." unique_id=1985366397]
 stream = SubResource("AudioStreamInteractive_ox3fq")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="ToolIcon" type="TextureRect" parent="." unique_id=1322765280]
 unique_name_in_owner = true

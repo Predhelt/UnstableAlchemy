@@ -31,7 +31,7 @@ script = ExtResource("2_te3et")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=480122157]
 stream = SubResource("AudioStreamInteractive_1anc8")
-bus = &"sfx"
+bus = &"SFX"
 
 [connection signal="focus_entered" from="." to="." method="_on_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_entered"]

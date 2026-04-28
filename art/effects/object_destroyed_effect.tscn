@@ -44,7 +44,7 @@ script = ExtResource("1_gdqi4")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2078521841]
 stream = SubResource("AudioStreamInteractive_go074")
 max_polyphony = 2
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="." unique_id=321923057]
 wait_time = 0.3

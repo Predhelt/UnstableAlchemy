@@ -28,6 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
 tab_1/disabled = true
+tab_1/hidden = true
 tab_4/disabled = true
 
 [node name="Game" type="MarginContainer" parent="TabContainer" unique_id=1102424622]
@@ -143,11 +144,11 @@ layout_mode = 2
 
 [node name="MusicVolume" parent="TabContainer/Audio/VBoxContainer" unique_id=1389207948 instance=ExtResource("5_y2dqe")]
 layout_mode = 2
-audio_channel_name = "Music"
+audio_bus_name = "Music"
 
 [node name="SFXVolume3" parent="TabContainer/Audio/VBoxContainer" unique_id=163930341 instance=ExtResource("5_y2dqe")]
 layout_mode = 2
-audio_channel_name = "SFX"
+audio_bus_name = "SFX"
 
 [node name="Controls" parent="TabContainer" unique_id=733880495 instance=ExtResource("5_axiun")]
 visible = false

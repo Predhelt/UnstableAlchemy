@@ -60,11 +60,11 @@ script = ExtResource("1_vo0bl")
 
 [node name="MinigameAudioStream" type="AudioStreamPlayer" parent="." unique_id=1986172305]
 stream = ExtResource("3_8br1m")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="EffectsAudioStream" type="AudioStreamPlayer" parent="." unique_id=1481180524]
 stream = SubResource("AudioStreamInteractive_88828")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="StartupDelay" type="Timer" parent="." unique_id=907235121]
 one_shot = true

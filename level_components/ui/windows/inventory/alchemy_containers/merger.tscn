@@ -46,7 +46,7 @@ script = ExtResource("1_nohpg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1393671314]
 stream = SubResource("AudioStreamInteractive_wuoly")
-bus = &"sfx"
+bus = &"SFX"
 
 [node name="ToolIcon" type="TextureRect" parent="." unique_id=1198254047]
 unique_name_in_owner = true
