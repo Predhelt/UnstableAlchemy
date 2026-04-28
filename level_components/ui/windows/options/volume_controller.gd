@@ -1,8 +1,5 @@
-@tool
 extends Control
 
-## Value of the audio channel (%)
-#@export var audio_value : float = 80.0
 ## The name of the audio bus being controlled.
 @export_enum("Master", "Music", "SFX") var audio_bus_name : String = "Master"
 
@@ -42,6 +39,7 @@ func set_global_volume(volume: float) -> void:
 			Global.music_volume = volume
 		"SFX":
 			Global.sfx_volume = volume
+
 
 func _on_h_slider_value_changed(value: float) -> void:
 	$SpinBox.set_value_no_signal(value)
