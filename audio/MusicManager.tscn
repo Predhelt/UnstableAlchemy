@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/audio/music/quaint_ambient.mp3" id="2_34sig"]
 [ext_resource type="Script" uid="uid://diqd3fam1smip" path="res://audio/music_manager.gd" id="3_5vx3j"]
 [ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="3_34sig"]
+[ext_resource type="AudioStream" uid="uid://dh1icux4ycwsg" path="res://art/pack/audio/music/quaint_village.mp3" id="4_irr3v"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_irr3v"]
 clip_count = 2
@@ -15,7 +16,7 @@ clip_1/stream = ExtResource("2_5vx3j")
 clip_1/auto_advance = 0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wavqy"]
-clip_count = 3
+clip_count = 4
 clip_0/name = &"none"
 clip_0/stream = ExtResource("2_5vx3j")
 clip_0/auto_advance = 0
@@ -25,6 +26,9 @@ clip_1/auto_advance = 0
 clip_2/name = &"forest"
 clip_2/stream = SubResource("AudioStreamInteractive_irr3v")
 clip_2/auto_advance = 0
+clip_3/name = &"village"
+clip_3/stream = ExtResource("4_irr3v")
+clip_3/auto_advance = 0
 
 [node name="MusicManager" type="AudioStreamPlayer" unique_id=1009424162]
 stream = SubResource("AudioStreamInteractive_wavqy")

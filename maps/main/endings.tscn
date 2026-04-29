@@ -1,0 +1,68 @@
+[gd_scene format=4 uid="uid://cua2vssk2464f"]
+
+[ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_74a05"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_sgrvt"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_5iium"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_okgdk"]
+[ext_resource type="PackedScene" uid="uid://ce8wyt8q6nnbr" path="res://level_components/objects/triggers/cutscene_trigger_area.tscn" id="5_3e1va"]
+[ext_resource type="Texture2D" uid="uid://c346j2ugru0bu" path="res://art/pack/cutscenes/alchemy_research.png" id="6_okgdk"]
+[ext_resource type="Texture2D" uid="uid://13fdgmtwv2sr" path="res://art/pack/cutscenes/alchemy_research_incident.png" id="7_3e1va"]
+[ext_resource type="Texture2D" uid="uid://1rb6622lnoa8" path="res://art/pack/cutscenes/alchemy_research_success.png" id="8_k5i8p"]
+
+[sub_resource type="Resource" id="Resource_k5i8p"]
+resource_local_to_scene = true
+script = ExtResource("2_sgrvt")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_e6e85"]
+resource_local_to_scene = true
+script = ExtResource("4_okgdk")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
+
+[node name="World" unique_id=1661168125 instance=ExtResource("1_74a05")]
+
+[node name="Player" parent="." index="2" unique_id=1026458739]
+attributes = SubResource("Resource_k5i8p")
+inventory = SubResource("Resource_e6e85")
+
+[node name="Top" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="1" unique_id=562609937]
+tile_map_data = PackedByteArray("AAAFAAgAAgACAAAAAAAGAAMAAgADAAAAAAAHAAQAAgAEAAAAAAAJAAYAAgAGAAAAAAAMAAQAAgAEAAAAAAAMAAcAAgAGAAAAAAANAAUAAgAEAAAAAAANAAcAAgACAAAAAAAMAAYAAQAAAAAAAAAGAAYAAQABAAAAAAA=")
+
+[node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
+tile_map_data = PackedByteArray("AAAFAAMAAAADAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAEAAAAAAAJAAMAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAMAAAAEAAAAAAAMAAMAAAAEAAAAAAANAAMAAAAFAAAAAAANAAkAAAAFAAIAAAAMAAkAAAAEAAAAAAALAAkAAAAEAAAAAAAKAAkAAAAEAAAAAAAJAAkAAAAEAAAAAAAIAAkAAAAEAAAAAAAHAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAFAAkAAAADAAIAAAAFAAQAAAADAAEAAAAFAAUAAAADAAEAAAAFAAYAAAADAAEAAAAFAAcAAAADAAEAAAAFAAgAAAADAAEAAAANAAQAAAADAAEAAAANAAUAAAADAAEAAAANAAYAAAADAAEAAAANAAcAAAADAAEAAAANAAgAAAADAAEAAAA=")
+
+[node name="CutsceneTriggerArea" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1882614331 instance=ExtResource("5_3e1va")]
+position = Vector2(416, 416)
+images = Array[Texture2D]([ExtResource("6_okgdk"), ExtResource("7_3e1va")])
+
+[node name="CutsceneTriggerArea2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1206473578 instance=ExtResource("5_3e1va")]
+position = Vector2(800, 416)
+images = Array[Texture2D]([ExtResource("6_okgdk"), ExtResource("8_k5i8p")])
+
+[node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=1756290353]
+layout_mode = 0
+offset_left = 385.0
+offset_top = 339.0
+offset_right = 449.0
+offset_bottom = 362.0
+text = "Bad end"
+
+[node name="Label2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=1813855584]
+layout_mode = 0
+offset_left = 752.0
+offset_top = 313.0
+offset_right = 852.0
+offset_bottom = 362.0
+text = "Good End
+(Conditional)"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="2" unique_id=1872139613]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 199.0
+offset_right = 772.0
+offset_bottom = 248.0
+text = "Thank you for playing!
+Here are some proposed endings as a bonus"
+horizontal_alignment = 1

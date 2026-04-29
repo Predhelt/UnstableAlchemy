@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ce8wyt8q6nnbr"]
+
+[ext_resource type="Script" uid="uid://biuq2k4p0mb4n" path="res://level_components/objects/triggers/cutscene_trigger_area.gd" id="1_aybsm"]
+[ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_rk8j4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_op2ux"]
+size = Vector2(64, 64)
+
+[node name="CutsceneTriggerArea" type="Node2D" unique_id=1882614331]
+script = ExtResource("1_aybsm")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=243455289]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=122017672]
+shape = SubResource("RectangleShape2D_op2ux")
+debug_color = Color(0.9459298, 5.679429e-06, 0.57767385, 0.41960785)
+
+[node name="Cutscene" parent="." unique_id=322321605 instance=ExtResource("2_rk8j4")]
+visible = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

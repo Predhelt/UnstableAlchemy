@@ -15,7 +15,7 @@ var blank_texture := preload("res://art/pack/ui/blank_item.png")
 ## Notification effect to be displayed
 var notification_effect := preload("res://art/effects/notification_new_entry.tscn")
 ## Keeps track of the state that the game is in to determine what types of actions are allowed.
-## Modes are: "default", "menu", "minigame", "dropper", "inspection"(unused), "settings", "options"
+## Modes are: "default", "menu", "minigame", "dropper", "inspection"(unused), "settings", "options", "cutscene"
 var mode := &"default"
 ## Tracks the current absolute size and mass of the player.
 var player_scale := Vector2(1.0, 1.0)

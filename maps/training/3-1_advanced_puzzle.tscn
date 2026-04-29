@@ -1,12 +1,15 @@
 [gd_scene format=4 uid="uid://bohubjk4nidbh"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_saqbn"]
+[ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_1nn6w"]
 [ext_resource type="PackedScene" uid="uid://ch7hosojbd5a3" path="res://characters/brindan_gcsm/brindan_gcsm.tscn" id="2_gpkcb"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_se8qd"]
+[ext_resource type="Texture2D" uid="uid://jx2lv24py0fb" path="res://art/pack/cutscenes/cave_entrance.png" id="3_opv7h"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/transaction.gd" id="3_se8qd"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="4_grtol"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="5_wxqo7"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_0vii6"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_rqsop"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="7_1pps5"]
 [ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="8_do8ds"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="9_gc10p"]
@@ -31,6 +34,11 @@
 script = ExtResource("2_se8qd")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
+[sub_resource type="Resource" id="Resource_1nn6w"]
+resource_local_to_scene = true
+script = ExtResource("6_rqsop")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
+
 [sub_resource type="Resource" id="Resource_fa7q6"]
 script = ExtResource("3_se8qd")
 items_selling = Array[ExtResource("5_wxqo7")]([ExtResource("7_1pps5"), ExtResource("8_do8ds")])
@@ -54,11 +62,17 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_saqbn")]
 
-[node name="Player" parent="." index="2" unique_id=1026458739]
+[node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_1nn6w")]
+visible = false
+images = Array[Texture2D]([ExtResource("3_opv7h")])
+auto_play = true
+
+[node name="Player" parent="." index="3" unique_id=1026458739]
 position = Vector2(462, 329)
 attributes = SubResource("Resource_grtol")
+inventory = SubResource("Resource_1nn6w")
 
-[node name="NPCBrindan" parent="." index="4" unique_id=1948548714 instance=ExtResource("2_gpkcb")]
+[node name="NPCBrindan" parent="." index="5" unique_id=1948548714 instance=ExtResource("2_gpkcb")]
 position = Vector2(703, 155)
 transactions = Array[ExtResource("3_se8qd")]([ExtResource("4_grtol"), SubResource("Resource_fa7q6")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])

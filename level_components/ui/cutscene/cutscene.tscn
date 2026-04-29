@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://mjqkoqldx0n5"]
+
+[ext_resource type="Script" uid="uid://divr4baammxx1" path="res://level_components/ui/cutscene/cutscene.gd" id="1_6a5uq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6a5uq"]
+bg_color = Color(0.16206557, 0.1620656, 0.16206548, 1)
+
+[node name="Cutscene" type="CanvasLayer" unique_id=322321605]
+script = ExtResource("1_6a5uq")
+
+[node name="Panel" type="Button" parent="." unique_id=890405108]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6a5uq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6a5uq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6a5uq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6a5uq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_6a5uq")
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=994995148]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=870419517]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Click anywhere to continue"
+
+[connection signal="pressed" from="Panel" to="." method="_on_panel_pressed"]

@@ -9,7 +9,7 @@
 ## People pages for informaion on people that the user has met.
 ## Statuses pages for information on status effects that the player can encounter.
 extends UIWindow
-
+#TODO: Add tab for cutscenes that have been viewed.
 ## Tracks the mode prior to the log book opening.
 var prev_mode : StringName
 ## Reference to the current character/node whose information is being used to display the log book.
