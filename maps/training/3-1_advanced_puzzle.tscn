@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://jx2lv24py0fb" path="res://art/pack/cutscenes/cave_entrance.png" id="3_opv7h"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/transaction.gd" id="3_se8qd"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="4_grtol"]
+[ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="4_opv7h"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="5_wxqo7"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="6_0vii6"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_rqsop"]
@@ -34,7 +35,7 @@
 script = ExtResource("2_se8qd")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_1nn6w"]
+[sub_resource type="Resource" id="Resource_opv7h"]
 resource_local_to_scene = true
 script = ExtResource("6_rqsop")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -67,10 +68,13 @@ visible = false
 images = Array[Texture2D]([ExtResource("3_opv7h")])
 auto_play = true
 
+[node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
+stream = ExtResource("4_opv7h")
+
 [node name="Player" parent="." index="3" unique_id=1026458739]
 position = Vector2(462, 329)
 attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_1nn6w")
+inventory = SubResource("Resource_opv7h")
 
 [node name="NPCBrindan" parent="." index="5" unique_id=1948548714 instance=ExtResource("2_gpkcb")]
 position = Vector2(703, 155)
@@ -135,7 +139,7 @@ cut_interaction = SubResource("Resource_8yigv")
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=1639851176 instance=ExtResource("16_n6lyu")]
 position = Vector2(736, -224)
-level_path = "res://maps/training/3-2_advanced_puzzle.tscn"
+level_path = "uid://b4wv85xwr47cg"
 
 [node name="BoulderPushable" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=794065921 instance=ExtResource("17_a1qul")]
 position = Vector2(608, 58)

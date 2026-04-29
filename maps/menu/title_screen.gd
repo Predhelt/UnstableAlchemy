@@ -2,7 +2,6 @@ extends Control
 
 func _ready() -> void:
 	$LabelVersion.text = "Version: %s (Prototype)" % ProjectSettings.get_setting("application/config/version")
-	MusicManager.change_song("title")
 
 ## Opens the level that was selected. Returns whether or not the level was opened successfuly.
 func open_level() -> bool:
@@ -10,8 +9,8 @@ func open_level() -> bool:
 
 
 func _on_button_settings_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
+	$AudioStreams/AudioStreamPlayer.play()
+	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	if not $SettingsMenu.visible:
 		$SettingsMenu.popup()
 	else:
@@ -19,17 +18,17 @@ func _on_button_settings_pressed() -> void:
 
 
 func _on_button_exit_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
+	$AudioStreams/AudioStreamPlayer.play()
+	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$PopupConfirmation.popup()
 
 
 func _on_button_load_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
+	$AudioStreams/AudioStreamPlayer.play()
+	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	Global.load_game()
 
 
 func _on_button_entered() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"
+	$AudioStreams/AudioStreamPlayer.play()
+	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "hover"

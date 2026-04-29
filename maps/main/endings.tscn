@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cua2vssk2464f"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_74a05"]
+[ext_resource type="AudioStream" uid="uid://dh1icux4ycwsg" path="res://art/pack/audio/music/quaint_village.mp3" id="2_3e1va"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_sgrvt"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_5iium"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_okgdk"]
@@ -20,6 +21,9 @@ script = ExtResource("4_okgdk")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_74a05")]
+
+[node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
+stream = ExtResource("2_3e1va")
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
 attributes = SubResource("Resource_k5i8p")

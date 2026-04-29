@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_2n5ag"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_ka0c2"]
+[ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="2_tji2x"]
 [ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/shelly_shrink_puzzle/shelly_sp.tscn" id="2_uf06l"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/transaction.gd" id="3_86unq"]
 [ext_resource type="Resource" uid="uid://b6f5q4hfar4tj" path="res://game_systems/items/potions/cleanse_potion.tres" id="3_ulfbs"]
@@ -56,6 +57,9 @@ on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_2n5ag")]
+
+[node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
+stream = ExtResource("2_tji2x")
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
 position = Vector2(489, 449)

@@ -70,10 +70,17 @@ func change_scene(scene_path: String) -> void:
 
 ## Defer to pevent errors when signal is called during physics process.
 func _deferred_change_scene(path: String):
+	var current_player : AudioStreamPlayer = get_tree().current_scene.find_child("MusicAudioStream")
+	MusicManager.current_stream = current_player.stream
+	MusicManager.current_song_position = current_player.get_playback_position()
+	current_player.stop()
 	get_tree().change_scene_to_file(path)
 
 ## Resets the current level
 func reset_level() -> void:
+	var current_player : AudioStreamPlayer = get_tree().current_scene.find_child("MusicAudioStream")
+	MusicManager.current_stream = current_player.stream
+	MusicManager.current_song_position = current_player.get_playback_position()
 	get_tree().reload_current_scene()
 	mode = &"default"
 
@@ -136,7 +143,6 @@ func save() -> Dictionary:
 		"focused_camera" : focused_camera,
 		"focused_node" : focused_node,
 		"current_level_path" : current_level_path,
-		"current_song" : MusicManager.current_song,
 		"cauldron_craft_precision" : cauldron_craft_precision,
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}
@@ -166,8 +172,6 @@ func load_game() -> void:
 		get_tree().change_scene_to_node(level_node)
 		# Wait for the scene to load before continuing.
 		await level_node.ready
-	if node_data.get("current_song"):
-		MusicManager.change_song(node_data["current_song"])
 	else:
 		print("ERROR: No level data found. Load Failed.")
 		return
@@ -270,5 +274,3 @@ func load_game() -> void:
 				new_object.set(i, node_data[i])
 			new_object.set(i, node_data[i])
 	mode = &"default"
-	if MusicManager.stream_paused:
-		MusicManager.resume()

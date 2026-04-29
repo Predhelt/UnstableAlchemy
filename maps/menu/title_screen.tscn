@@ -5,8 +5,10 @@
 [ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/audio/sounds/menu_hover.mp3" id="2_5x78w"]
 [ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/audio/sounds/menu_press.mp3" id="2_8adcj"]
 [ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_12dnu"]
+[ext_resource type="Script" uid="uid://cnhp7cgg0ethe" path="res://audio/audio_stream_manager.gd" id="2_612rt"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_u2ya0"]
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="2_v76xe"]
+[ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/audio/music/quaint_ambient.mp3" id="2_wue2l"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
 [ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_confirmation.tscn" id="7_17jem"]
@@ -34,7 +36,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_scg0l")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1224222744]
+[node name="AudioStreams" type="Node" parent="." unique_id=485558118]
+script = ExtResource("2_612rt")
+
+[node name="MusicAudioStream" type="AudioStreamPlayer" parent="AudioStreams" unique_id=107517845]
+stream = ExtResource("2_wue2l")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioStreams" unique_id=1224222744]
 stream = SubResource("AudioStreamInteractive_u2ya0")
 bus = &"SFX"
 

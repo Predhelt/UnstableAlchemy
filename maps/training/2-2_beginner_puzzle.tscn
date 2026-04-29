@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_men8e"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="2_1qdfm"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_4urhj"]
+[ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="2_axffn"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_jrfsq"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="3_4urhj"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_h7ykt"]
@@ -45,7 +46,10 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_men8e")]
 
-[node name="Player" parent="." index="2" unique_id=1026458739]
+[node name="MusicAudioStream" parent="." index="0" unique_id=678083454]
+stream = ExtResource("2_axffn")
+
+[node name="Player" parent="." index="3" unique_id=1026458739]
 position = Vector2(-36, 73)
 attributes = SubResource("Resource_sxipi")
 known_recipes = Array[ExtResource("2_jrfsq")]([ExtResource("3_4urhj"), ExtResource("4_sxipi"), ExtResource("5_g3vrs")])

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bxw8y0udo7u4o"]
 
 [ext_resource type="Script" uid="uid://mfft2nnrm265" path="res://maps/menu/level_select.gd" id="1_cido5"]
+[ext_resource type="Script" uid="uid://cnhp7cgg0ethe" path="res://audio/audio_stream_manager.gd" id="2_800ur"]
+[ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/audio/music/quaint_ambient.mp3" id="2_a3owr"]
 [ext_resource type="Texture2D" uid="uid://c6iuademyval" path="res://art/pack/ui/menus/title_background.png" id="2_cm7br"]
 [ext_resource type="PackedScene" uid="uid://bka6k2ui8al12" path="res://maps/menu/button_level_select.tscn" id="2_wjowx"]
 
@@ -12,6 +14,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cido5")
+
+[node name="AudioStreams" type="Node" parent="." unique_id=1733239103]
+script = ExtResource("2_800ur")
+
+[node name="MusicAudioStream" type="AudioStreamPlayer" parent="AudioStreams" unique_id=1205256344]
+stream = ExtResource("2_a3owr")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
 
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=332415499]
 layout_mode = 0
