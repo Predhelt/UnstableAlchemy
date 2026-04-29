@@ -135,7 +135,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 [node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
-position = Vector2(659, -804)
+position = Vector2(510, 402)
 attributes = SubResource("Resource_qpemt")
 inventory = SubResource("Resource_6u36v")
 
