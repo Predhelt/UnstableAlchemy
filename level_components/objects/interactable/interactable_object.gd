@@ -9,6 +9,7 @@ class_name InteractableObject extends Node2D
 ## The items that the object contains and their initial quantities.
 @export var items : Array[Item]
 ## The current quantities of items in the object since item.qty is referenced and not local.
+## If the quantity is -1, then the quantity is infinite.
 var item_quantities : Array[int]
 
 @export_group("Interactions")
@@ -61,6 +62,8 @@ func get_cur_folder_path() -> String:
 func check_empty(sfx : AudioStream = null):
 	var sum = 0
 	for item_qty in item_quantities:
+		if item_qty == -1:
+			return
 		sum += item_qty
 	if sum <= 0:
 		#print("No items left in object")
@@ -93,21 +96,24 @@ func collect_items(character: Character, interaction: Interaction, sfx_name: Str
 		var id : int = interact_item.id
 		var interact_qty : int = interaction.on_interact_amounts[i]
 		for j in len(items):
-			if items[j].id != id or item_quantities[j] <= 0:
+			if items[j].id != id or item_quantities[j] == 0:
 				continue # If not the right item or item is empty
-			
 			var interaction_item := items[j].duplicate()
-			if item_quantities[j] < interact_qty: # The amount to collect is greater than the amount in object
-				interaction_item.qty = item_quantities[j]
-				interact_qty = item_quantities[j]
-				item_quantities[j] = 0
-			else:
+			if item_quantities[j] == -1: # Infinite quantity
 				interaction_item.qty = interact_qty
-				item_quantities[j] -= interact_qty
-			
+			else:
+				# Reduce item quantity in object
+				if item_quantities[j] < interact_qty: # The amount to collect is greater than the amount in object
+					interaction_item.qty = item_quantities[j]
+					interact_qty = item_quantities[j]
+					item_quantities[j] = 0
+				else:
+					interaction_item.qty = interact_qty
+					item_quantities[j] -= interact_qty
+				
 			if character.inventory.add_item(interaction_item): # Returns boolean. May be partially added if inventory becomes full
 				items_gained_effect_instance.add_item(interaction_item, interact_qty - interaction_item.qty)
-			if interaction_item.qty > 0: # return any items that couldn't fit in inventory back to the object
+			if interaction_item.qty > 0 and item_quantities[j] != -1: # return any items that couldn't fit in inventory back to the object
 				item_quantities[j] += interaction_item.qty
 			is_item_collected = true
 	
