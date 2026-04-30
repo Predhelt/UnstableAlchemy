@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Unstable Alchemy"
 config/description="Gather, craft, and solve environmental puzzles."
-config/version="0.2.17"
+config/version="0.2.18"
 config/tags=PackedStringArray("git")
 run/main_scene="uid://ckgxm2etu6kdm"
 config/features=PackedStringArray("4.6", "Forward Plus")
