@@ -11,12 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_v2wvs"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_a8o7j"]
 
-[sub_resource type="Resource" id="Resource_y3thg"]
+[sub_resource type="Resource" id="Resource_h0x2c"]
 resource_local_to_scene = true
 script = ExtResource("3_vojba")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_ef764"]
+[sub_resource type="Resource" id="Resource_y3thg"]
 resource_local_to_scene = true
 script = ExtResource("5_uu1qg")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -44,8 +44,8 @@ bus = &"Ambient"
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v2wvs")]
 position = Vector2(599, 419)
-attributes = SubResource("Resource_y3thg")
-inventory = SubResource("Resource_ef764")
+attributes = SubResource("Resource_h0x2c")
+inventory = SubResource("Resource_y3thg")
 character_camera_ref = NodePath("../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
@@ -72,7 +72,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wall" type="TileMapLayer" parent="TileMaps" unique_id=1214339347]
 z_index = -1
-tile_map_data = PackedByteArray("AAAFAAMAAAADAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAEAAIAAAAJAAMAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAMAAAAEAAAAAAAMAAMAAAAEAAIAAAANAAMAAAAFAAAAAAANAAkAAAACAAIAAAAMAAkAAAAEAAIAAAALAAkAAAAEAAIAAAAKAAkAAAAEAAAAAAAJAAkAAAAEAAIAAAAIAAkAAAAEAAIAAAAHAAkAAAAEAAIAAAAGAAkAAAAEAAAAAAAFAAkAAAADAAIAAAAFAAQAAAAFAAEAAAAFAAUAAAADAAEAAAAFAAYAAAAFAAEAAAAFAAcAAAAFAAEAAAAFAAgAAAAFAAEAAAANAAQAAAADAAEAAAANAAUAAAAFAAEAAAANAAYAAAADAAEAAAANAAcAAAADAAEAAAANAAgAAAABAAMAAAA=")
+tile_map_data = PackedByteArray("AAAFAAMAAAADAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAEAAAAAAAJAAMAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAMAAAAEAAAAAAAMAAMAAAAEAAAAAAANAAMAAAAFAAAAAAANAAkAAAAFAAIAAAAMAAkAAAAEAAAAAAALAAkAAAAEAAAAAAAKAAkAAAAEAAAAAAAJAAkAAAAEAAAAAAAIAAkAAAAEAAAAAAAHAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAFAAkAAAADAAIAAAAFAAQAAAADAAEAAAAFAAUAAAADAAEAAAAFAAYAAAADAAEAAAAFAAcAAAADAAEAAAAFAAgAAAADAAEAAAANAAQAAAADAAEAAAANAAUAAAADAAEAAAANAAYAAAADAAEAAAANAAcAAAADAAEAAAANAAgAAAADAAEAAAA=")
 tile_set = ExtResource("20_a8o7j")
 metadata/_edit_lock_ = true
 
