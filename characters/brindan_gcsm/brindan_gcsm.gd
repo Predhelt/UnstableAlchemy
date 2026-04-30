@@ -32,7 +32,7 @@ func get_initial_dialogue_name(speakee : Character) -> String:
 				[saturated_stem_ref], [1])
 			has_added_saturated_stem = true
 		return "player_has_strength_potion"
-	if speakee.knows_recipe_id(506): # Strength Potion ID
+	if speakee.knows_recipe_product_id(506): # Strength Potion ID
 		if not has_added_saturated_stem:
 			add_shop_transaction([red_berries_ref, flower_stem_ref], [5,2],
 				[saturated_stem_ref], [1])

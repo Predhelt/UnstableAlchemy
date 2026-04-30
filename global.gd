@@ -66,7 +66,6 @@ func change_scene(scene_path: String) -> void:
 		return
 	_deferred_change_scene.call_deferred(scene_path)
 	mode = &"default"
-	current_level_path = scene_path
 
 ## Defer to pevent errors when signal is called during physics process.
 func _deferred_change_scene(path: String):

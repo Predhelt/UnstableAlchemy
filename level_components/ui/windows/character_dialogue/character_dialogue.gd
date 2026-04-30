@@ -129,7 +129,7 @@ func _are_conditions_met(conditions : Array[DialogueCondition]) -> bool:
 			"player_status_is_active": print("ERROR: Not yet implemented")
 				#return false
 			"player_known_recipe": ## Finds a recipe ID matching the given value
-				if Global.focused_node.knows_recipe_id(condition.value):
+				if Global.focused_node.knows_recipe_product_id(condition.value):
 					return false
 			"event_trigger": print("ERROR: Not yet implemented")
 				#return false

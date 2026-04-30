@@ -95,7 +95,7 @@ var items_used: Dictionary[int, int]
 ## Stores the list of dialogues that the Character uses, as well as the default
 ## dialogue window that displays when talked to.
 var dialogues : Array[Dialogue]
-## The time left before the message disappears
+## The time left (in seconds) before the message disappears
 var message_timer := 0.0
 ## The time since the last message ended
 var last_message_delta := 0.0
@@ -108,67 +108,8 @@ var pushing_bodies : Array[RigidBody2D]
 var crawlspace_bodies : Array[StaticBody2D]
 ## The list of [Interactable] areas that overlap with the character's reach
 var all_interaction_areas : Array[Interactable]
-## The time left, as a [float], before the status message disappears
-var status_message_timer := 0.0
 ## The currently selected tool that the character is holding
 var selected_tool : StringName = &"hand"
-
-## Sets up and returns a [Dictionary] that represents the persistent information
-## of the character to be saved to file in [JSON]-compatible format.
-func save() -> Dictionary:
-	var cur_path : String = "user://save/characters/%s" % name
-	if not DirAccess.dir_exists_absolute(cur_path):
-		DirAccess.make_dir_recursive_absolute(cur_path)
-	
-	var att_path : String = "user://save/characters/%s/attributes.tres" % name
-	if attributes:
-		ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
-	else:
-		att_path = ""
-	
-	var inv_path : String = "user://save/characters/%s/inventory.tres" % name
-	if inventory:
-		ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
-	else:
-		inv_path =  ""
-	
-	if(not active_status_effects.is_empty() and 
-			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
-		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
-	for se in active_status_effects:
-		ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name])
-	
-	var save_dict = {
-		"filename" : get_scene_file_path(),
-		"name" : name,
-		"parent" : get_parent().get_path(),
-		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
-		"pos_y" : position.y,
-		"attributes_path" : att_path,
-		"inventory_path" : inv_path,
-		"has_blade" : has_blade,
-		"has_dropper" : has_dropper,
-		"known_recipes" : var_to_str(known_recipes),
-		"gathered_items" : var_to_str(gathered_items),
-		"books_read" : var_to_str(books_read),
-		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
-		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
-		"objects_combined" : var_to_str(objects_combined),
-		"items_used" : var_to_str(items_used),
-		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
-		"is_possessable" : is_possessable,
-		"character_possessed_by_name" : character_possessed_by_name,
-		"can_possess_others_count" : can_possess_others_count,
-		"possessing_character_name" : possessing_character_name,
-		"is_player_controlled" : is_player_controlled,
-		"is_camera_focused" : is_camera_focused,
-		#"selected_tool" : selected_tool,
-		"interaction_type" : interaction_type,
-		"dialogues" : var_to_str(dialogues),
-		"transactions" : var_to_str(transactions),
-		"passive_messages" : var_to_str(passive_messages)
-	}
-	return save_dict
 
 ## Set up default properties when the character is ready
 func _ready() -> void:
@@ -291,6 +232,63 @@ func transfer_camera(body: Node2D):
 	body.add_child(camera_transform)
 	# Set up new camera info
 
+## Sets up and returns a [Dictionary] that represents the persistent information
+## of the character to be saved to file in [JSON]-compatible format.
+func save() -> Dictionary:
+	var cur_path : String = "user://save/characters/%s" % name
+	if not DirAccess.dir_exists_absolute(cur_path):
+		DirAccess.make_dir_recursive_absolute(cur_path)
+	
+	var att_path : String = "user://save/characters/%s/attributes.tres" % name
+	if attributes:
+		ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
+	else:
+		att_path = ""
+	
+	var inv_path : String = "user://save/characters/%s/inventory.tres" % name
+	if inventory:
+		ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+	else:
+		inv_path =  ""
+	
+	if(not active_status_effects.is_empty() and 
+			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
+		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
+	for se in active_status_effects:
+		ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name])
+	
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"name" : name,
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
+		"pos_y" : position.y,
+		"attributes_path" : att_path,
+		"inventory_path" : inv_path,
+		"has_blade" : has_blade,
+		"has_dropper" : has_dropper,
+		"known_recipes" : var_to_str(known_recipes),
+		"gathered_items" : var_to_str(gathered_items),
+		"books_read" : var_to_str(books_read),
+		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
+		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
+		"objects_combined" : var_to_str(objects_combined),
+		"items_used" : var_to_str(items_used),
+		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
+		"is_possessable" : is_possessable,
+		"character_possessed_by_name" : character_possessed_by_name,
+		"can_possess_others_count" : can_possess_others_count,
+		"possessing_character_name" : possessing_character_name,
+		"is_player_controlled" : is_player_controlled,
+		"is_camera_focused" : is_camera_focused,
+		#"selected_tool" : selected_tool,
+		"interaction_type" : interaction_type,
+		"dialogues" : var_to_str(dialogues),
+		"transactions" : var_to_str(transactions),
+		"passive_messages" : var_to_str(passive_messages)
+	}
+	return save_dict
+
 ## Update character position and messages every frame
 func _physics_process(delta: float) -> void:
 	if Global.mode != &"default":
@@ -306,11 +304,11 @@ func _physics_process(delta: float) -> void:
 	
 	_update_status_effect_timers(delta)
 
-	if status_message_timer > 0:
+	if message_timer > 0:
 		if last_message_delta:
 			last_message_delta = 0
-		status_message_timer -= delta
-		if status_message_timer <= 0:
+		message_timer -= delta
+		if message_timer <= 0:
 			%StatusLabel.text = ""
 	else:
 		last_message_delta += delta
@@ -421,9 +419,17 @@ func knows_recipe(item: Item) -> bool:
 
 ## Returns whether or not the character has a [Recipe] in [member known_recipes]
 ##  with the given [member Item.id] as the recipe product.
-func knows_recipe_id(item_id: int) -> bool:
+func knows_recipe_product_id(item_id: int) -> bool:
 	for r in known_recipes:
 		if r.product_item.id == item_id:
+			return true
+	return false
+
+## Returns whether or not the character has a [Recipe] in [member known_recipes]
+##  with the given [member Recipe.id].
+func knows_recipe_id(item_id: int) -> bool:
+	for r in known_recipes:
+		if r.id == item_id:
 			return true
 	return false
 
@@ -684,8 +690,8 @@ func apply_status_effect(se: StatusEffect) -> bool:
 func update_status_message(message: String):
 	if not message:
 		message = "..."
-	%StatusLabel.text = "[center]" + message + "[/center]"
-	status_message_timer = 5.0
+	%StatusLabel.text = "[center]%s[/center]" % message
+	message_timer = 5.0
 
 ## Updates the duration of an active status effect based on the amount of time that has passed.
 func _update_status_effect_timers(delta : float) -> void:
@@ -1062,7 +1068,7 @@ func say_random_message():
 func update_message(message: String):
 	if not message:
 		return
-	%StatusLabel.text = message
+	%StatusLabel.text = "[center]%s[/center]" % message
 	message_timer = 5.0
 
 ## Determines dialogue based on context. Returns the name of the dialogue window

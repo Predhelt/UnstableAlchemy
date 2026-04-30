@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cr3i0ndcmeftb"]
 
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="1_eglba"]
+[ext_resource type="Script" uid="uid://ci8ehrp5vsamw" path="res://maps/development/level_manager.gd" id="1_h0x2c"]
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_i03in"]
 [ext_resource type="Script" uid="uid://cnhp7cgg0ethe" path="res://audio/audio_stream_manager.gd" id="1_uu1qg"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_vojba"]
@@ -10,18 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_v2wvs"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_a8o7j"]
 
-[sub_resource type="Resource" id="Resource_uu1qg"]
+[sub_resource type="Resource" id="Resource_y3thg"]
 resource_local_to_scene = true
 script = ExtResource("3_vojba")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_h0x2c"]
+[sub_resource type="Resource" id="Resource_ef764"]
 resource_local_to_scene = true
 script = ExtResource("5_uu1qg")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
+script = ExtResource("1_h0x2c")
 metadata/_edit_lock_ = true
 
 [node name="AudioStreams" type="Node" parent="." unique_id=1732733172]
@@ -42,8 +44,8 @@ bus = &"Ambient"
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v2wvs")]
 position = Vector2(599, 419)
-attributes = SubResource("Resource_uu1qg")
-inventory = SubResource("Resource_h0x2c")
+attributes = SubResource("Resource_y3thg")
+inventory = SubResource("Resource_ef764")
 character_camera_ref = NodePath("../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
