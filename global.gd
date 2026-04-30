@@ -5,7 +5,7 @@ extends Node2D
 ## Reference to the main camera used for displaying to the user.
 var focused_camera : Camera2D
 ## Reference to the node that has focus of the window's camera.
-var focused_node : Node
+var focused_node : Character
 ## File path of the current level
 var current_level_path : String
 ## Tracks if an item is being dragged by the mouse / cursor.
