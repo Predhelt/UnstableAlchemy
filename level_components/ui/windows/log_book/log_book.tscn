@@ -240,11 +240,12 @@ text = "Merger
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer" unique_id=2122716912]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 0
+current_tab = 4
 tabs_visible = false
 
 [node name="PageHelpGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=2090489077]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -283,7 +284,9 @@ text_overrun_behavior = 4
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpGeneral/VBoxContainer" unique_id=749361982]
 layout_mode = 2
-text = "Hover the mouse over an item the player has to get information about it"
+text = "Hover over an item in the bag to get information about it.
+
+If you have crafted an item, you can quickly craft it again using \"Quick Craft\" in the recipe's page in the recipe book."
 
 [node name="PageHelpInteractions" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=1830494125]
 unique_name_in_owner = true
@@ -315,6 +318,14 @@ layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
 icon = ExtResource("37_rs23k")
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions/VBoxContainer" unique_id=1003551811]
+layout_mode = 2
+text = "If you can't click on it, you do not have any other tools available."
+
+[node name="LabelToolChange" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions/VBoxContainer" unique_id=1838863708]
+layout_mode = 2
+text = "You can also press \"\" to cycle between equipped tools."
 
 [node name="LabelInspect" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions/VBoxContainer" unique_id=544594974]
 layout_mode = 2
@@ -379,6 +390,40 @@ size_flags_horizontal = 3
 text = "Grab or touch the object. Gives you items that can be easily plucked with little to no risk."
 autowrap_mode = 3
 
+[node name="Label12" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer" unique_id=444873989]
+layout_mode = 2
+text = "For example, grabbing a green herb might give you some leaves:"
+
+[node name="BoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer" unique_id=1017375720]
+layout_mode = 2
+
+[node name="Hand2" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1050785713]
+layout_mode = 2
+texture = ExtResource("37_rs23k")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1726522276]
+layout_mode = 2
+text = "->"
+
+[node name="HerbBasicGreen" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1423021064]
+layout_mode = 2
+texture = ExtResource("30_rj7yf")
+stretch_mode = 5
+
+[node name="Label9" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1571285218]
+layout_mode = 2
+text = "="
+
+[node name="Sprite2D" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=809239906]
+layout_mode = 2
+texture = ExtResource("11_0tc3s")
+stretch_mode = 5
+
+[node name="Label10" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=528647745]
+layout_mode = 2
+text = "+2"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer" unique_id=1971663199]
 layout_mode = 2
 theme_override_constants/separation = 12
@@ -415,42 +460,8 @@ text = "Dropper"
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Use the \"+\" icon when selected to add an item from your inventory to the dropper. Then, use the tool to apply the selected item to an object."
+text = "Use the \"Add\" button when selected to add an item from your inventory to the dropper. Then, use the tool to apply the selected item to an object."
 autowrap_mode = 3
-
-[node name="Label12" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer" unique_id=444873989]
-layout_mode = 2
-text = "For example, grabbing a green herb might give you some leaves:"
-
-[node name="BoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer" unique_id=1017375720]
-layout_mode = 2
-
-[node name="Hand2" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1050785713]
-layout_mode = 2
-texture = ExtResource("37_rs23k")
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1726522276]
-layout_mode = 2
-text = "->"
-
-[node name="HerbBasicGreen" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1423021064]
-layout_mode = 2
-texture = ExtResource("30_rj7yf")
-stretch_mode = 5
-
-[node name="Label9" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=1571285218]
-layout_mode = 2
-text = "="
-
-[node name="Sprite2D" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=809239906]
-layout_mode = 2
-texture = ExtResource("11_0tc3s")
-stretch_mode = 5
-
-[node name="Label10" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpTools/VBoxContainer/BoxContainer" unique_id=528647745]
-layout_mode = 2
-text = "+2"
 
 [node name="PageHelpMP" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=498492735]
 unique_name_in_owner = true
@@ -474,18 +485,20 @@ stretch_mode = 5
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Mortar and Pestle can be accessed from the inventory. drag an item from the inventory onto the mortar to add it to the mortar. Click on an item in the mortar to remove it. When at least one item is in the mortar, you can begin the minigame by pressing the check mark button.
+text = "Mortar and Pestle can be accessed from the inventory. drag an item from the inventory onto the mortar to add it to the mortar. Click on an item in the mortar to remove it. press the check mark button to begin crafting.
 
-The minigame will take the first item in the mortar to use for the minigame. To begin, press the \"Start\" button and use the arrow keys on the screen or the keyboard to input motions.
+To begin the minigame, press the \"Start\" button and use the arrow keys on the screen or the keyboard to input motions.
 
-There are 2 main motions: crush and grind. Crush by going up and down. Grind by going left and right. If you do the inputs correctly, an icon will appear to represent the motion.
+There are 2 main motions: crush and grind.
+Crush by going up and down twice.
+Grind by going left and right twice.
+If you do the inputs correctly, an icon will appear to represent the motion.
 
 When 5 motions are made, if the process matches a possible recipe for the item, a new item will be produced and added to the inventory. "
 autowrap_mode = 3
 
 [node name="PageHelpCauldron" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=921884514]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
@@ -509,9 +522,9 @@ text = "Items can be added to the cauldron from the inventory. Drag an item onto
 
 When at least one item is in the cauldron, the crafting minigame can begin by pressing the check mark button on the cauldron. This opens a minigame window which shows the ingrediends that were added to the cauldron in the inventory as well as a fire icon representing bellows.
 
-The minigame begins by pressing the \"start\" button. there will be a short countdown before the progress bar at the bottom will begin moving. The minigame works by adding an ingredient or using the bellows at a time interval until the process is complete. This can be done by either pressing the icons with the ingredients or bellows or pressing the hotkeys.
+The minigame begins by pressing the \"start\" button. there will be a short countdown before the progress bar at the bottom will begin moving. The minigame works by adding an ingredient or using the bellows at a marked time interval until the process is complete. This can be done by either pressing the icons with the ingredients or bellows or pressing the hotkeys.
 
-Once the minigame is complete, the producet item(s) will be added to the inventory and the minigame window will close."
+Once the progress hits the end of the bar, any produced item(s) will be added to the inventory."
 autowrap_mode = 3
 
 [node name="PageHelpMerger" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=1963941205]

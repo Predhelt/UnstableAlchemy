@@ -307,6 +307,9 @@ func open_page_help_interactions():
 			+"\" to inspect a nearby object and get a description of it.")
 	else:
 		%PageHelpInteractions/VBoxContainer/LabelInspect.text = "(Inspection not currently possible)"
+	%PageHelpInteractions/VBoxContainer/LabelToolChange.text = (
+		"You can also press \"%s\" to cycle between equipped tools.\n" % 
+		InputMap.action_get_events("change_tool")[0].as_text().replace(' - Physical',''))
 	
 	%PageHelpInteractions.visible = true
 
