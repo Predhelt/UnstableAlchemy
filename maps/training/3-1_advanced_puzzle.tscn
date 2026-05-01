@@ -21,7 +21,6 @@
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="14_33a1b"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="15_f74tu"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="16_n6lyu"]
-[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="17_a1qul"]
 [ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://level_components/objects/triggers/blockage_area.tscn" id="18_yk6ro"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="19_m6cdu"]
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="20_ev0gf"]
@@ -30,12 +29,13 @@
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="23_7fk04"]
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="24_dv6uk"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="25_73bvn"]
+[ext_resource type="PackedScene" uid="uid://bj3f6x0vma2ys" path="res://level_components/objects/collisions/boulder_small_pushable.tscn" id="30_opv7h"]
 
 [sub_resource type="Resource" id="Resource_grtol"]
 script = ExtResource("2_se8qd")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_opv7h"]
+[sub_resource type="Resource" id="Resource_rqsop"]
 resource_local_to_scene = true
 script = ExtResource("6_rqsop")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -74,7 +74,7 @@ stream = ExtResource("4_opv7h")
 [node name="Player" parent="." index="3" unique_id=1026458739]
 position = Vector2(462, 329)
 attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_opv7h")
+inventory = SubResource("Resource_rqsop")
 
 [node name="NPCBrindan" parent="." index="5" unique_id=1948548714 instance=ExtResource("2_gpkcb")]
 position = Vector2(703, 155)
@@ -88,7 +88,7 @@ tile_map_data = PackedByteArray("AAAFAAMAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAUAAgAAAAA
 tile_map_data = PackedByteArray("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")
 
 [node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
-tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAACAAEAAAADAAEAAAACAAIAAAADAAEAAAACAAMAAAADAAEAAAACAAQAAAADAAEAAAACAAUAAAADAAEAAAACAAYAAAADAAEAAAACAAcAAAAFAAEAAAACAAgAAAAFAAEAAAACAAkAAAAFAAEAAAACAAoAAAADAAIAAAADAAAAAAAEAAAAAAADAAoAAAAEAAAAAAAEAAAAAAAEAAAAAAAEAAoAAAAEAAIAAAAFAAAAAAAEAAAAAAAFAAoAAAAEAAAAAAAGAPv/AAADAAAAAAAGAPz/AAADAAEAAAAGAP3/AAADAAEAAAAGAP7/AAADAAEAAAAGAP//AAADAAEAAAAGAAAAAAADAAMAAAAGAAoAAAAEAAAAAAAHAPv/AAAEAAAAAAAHAAAAAAAEAAAAAAAHAAoAAAAEAAIAAAAIAPv/AAAEAAAAAAAIAAAAAAAHAAIAAAAIAAoAAAAEAAAAAAAJAPv/AAAEAAAAAAAJAAoAAAAEAAIAAAAKAPv/AAAEAAAAAAAKAAAAAAAGAAIAAAAKAAoAAAAEAAIAAAALAPv/AAAEAAAAAAALAAAAAAAEAAAAAAALAAoAAAAEAAAAAAAMAPv/AAAFAAAAAAAMAPz/AAADAAEAAAAMAP3/AAADAAEAAAAMAP7/AAADAAEAAAAMAP//AAADAAEAAAAMAAAAAAADAAMAAAAMAAoAAAAEAAIAAAANAAAAAAAEAAAAAAANAAoAAAAEAAIAAAAOAAAAAAAEAAAAAAAOAAoAAAAEAAAAAAAPAAAAAAAFAAAAAAAPAAEAAAADAAEAAAAPAAIAAAADAAEAAAAPAAMAAAADAAEAAAAPAAQAAAAFAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAFAAEAAAAPAAcAAAADAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAADAAEAAAAPAAoAAAAFAAIAAAA=")
+tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAACAAEAAAADAAEAAAACAAIAAAADAAEAAAACAAMAAAADAAEAAAACAAQAAAADAAEAAAACAAUAAAADAAEAAAACAAYAAAADAAEAAAACAAcAAAAFAAEAAAACAAgAAAAFAAEAAAACAAkAAAAFAAEAAAACAAoAAAADAAIAAAADAAAAAAAEAAAAAAADAAoAAAAEAAAAAAAEAAAAAAAEAAAAAAAEAAoAAAAEAAIAAAAFAAAAAAAEAAAAAAAFAAoAAAAEAAAAAAAGAPv/AAADAAAAAAAGAPz/AAADAAEAAAAGAP3/AAADAAEAAAAGAP7/AAADAAEAAAAGAP//AAADAAEAAAAGAAAAAAADAAMAAAAGAAoAAAAEAAAAAAAHAAAAAAAEAAAAAAAHAAoAAAAEAAIAAAAIAAAAAAAEAAAAAAAIAAoAAAAEAAAAAAAJAAoAAAAEAAIAAAAKAAAAAAAEAAAAAAAKAAoAAAAEAAIAAAALAAAAAAAEAAAAAAALAAoAAAAEAAAAAAAMAPv/AAAAAAMAAAAMAPz/AAADAAEAAAAMAP3/AAADAAEAAAAMAP7/AAADAAEAAAAMAP//AAADAAEAAAAMAAAAAAADAAMAAAAMAAoAAAAEAAIAAAANAAAAAAAEAAAAAAANAAoAAAAEAAIAAAAOAAAAAAAEAAAAAAAOAAoAAAAEAAAAAAAPAAAAAAAFAAAAAAAPAAEAAAADAAEAAAAPAAIAAAADAAEAAAAPAAMAAAADAAEAAAAPAAQAAAAFAAEAAAAPAAUAAAAFAAEAAAAPAAYAAAAFAAEAAAAPAAcAAAADAAEAAAAPAAgAAAAFAAEAAAAPAAkAAAADAAEAAAAPAAoAAAAFAAIAAAAJAAAAAAAGAAMAAAA=")
 
 [node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=658593362 instance=ExtResource("9_gc10p")]
 position = Vector2(360, 213)
@@ -138,20 +138,18 @@ grab_interaction = SubResource("Resource_3yeoo")
 cut_interaction = SubResource("Resource_8yigv")
 
 [node name="TriggerAreaLevelChange" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=1639851176 instance=ExtResource("16_n6lyu")]
-position = Vector2(608, -224)
+position = Vector2(608, -288)
+scale = Vector2(5.075, 1)
 level_path = "uid://b4wv85xwr47cg"
 
-[node name="BoulderPushable" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=794065921 instance=ExtResource("17_a1qul")]
-position = Vector2(608, 58)
+[node name="BlockageArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=698375174 instance=ExtResource("18_yk6ro")]
+position = Vector2(607, 34.000004)
 
-[node name="BlockageArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=698375174 instance=ExtResource("18_yk6ro")]
-position = Vector2(607, 32.000004)
-
-[node name="DisplayArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=1358393934 node_paths=PackedStringArray("display_scene") instance=ExtResource("19_m6cdu")]
+[node name="DisplayArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=1358393934 node_paths=PackedStringArray("display_scene") instance=ExtResource("19_m6cdu")]
 position = Vector2(928, 608)
 display_scene = NodePath("../CraftHint")
 
-[node name="CraftHint" type="Node2D" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=1936404416]
+[node name="CraftHint" type="Node2D" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=1936404416]
 position = Vector2(1074, 550)
 
 [node name="Label2" type="Label" parent="PuzzleNodes/CraftHint" index="0" unique_id=1729837531]
@@ -206,6 +204,9 @@ texture = ExtResource("25_73bvn")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="BoulderPushable" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=794065921 instance=ExtResource("30_opv7h")]
+position = Vector2(608, 59)
+
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
 offset_left = -558.0
 offset_top = 147.0
@@ -222,3 +223,5 @@ Gray Juice, Obtained by description from NPC
 and knowledge on how to cut flowers.
 
 order: Herb Grinds -> Str book + Red Seed + Juice -> Craft Str Pot -> move boulder -> win"
+
+[connection signal="pathway_cleared" from="PuzzleNodes/BlockageArea" to="NPCBrindan" method="_on_blockage_area_pathway_cleared"]

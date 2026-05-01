@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bj3f6x0vma2ys"]
+
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="1_gwaaw"]
+
+[node name="BoulderPushable" unique_id=794065921 instance=ExtResource("1_gwaaw")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1886348535]
+position = Vector2(0, -16.5)
+scale = Vector2(0.65, 0.65)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1035439861]
+scale = Vector2(0.65, 1)

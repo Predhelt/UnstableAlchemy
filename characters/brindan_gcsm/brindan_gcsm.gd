@@ -49,7 +49,7 @@ func finished_greeting():
 
 ## Triggers when the pathway out of the GCSM area is cleared.
 ## Marks the completion of the level.
-func _on_pathway_cleared():
+func _on_blockage_area_pathway_cleared() -> void:
 	if not is_path_cleared:
 		update_message("Thank you for clearing the path!")
 		is_path_cleared = true
