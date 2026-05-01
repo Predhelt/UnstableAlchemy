@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bmn5y8yd333yi" path="res://level_components/objects/interactable/interactable_object.tscn" id="1_1ovh1"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_fnaup"]
+[ext_resource type="Script" uid="uid://dyb2xqpcho84a" path="res://level_components/objects/interactable/plants/yellow_flowers.gd" id="2_p31p1"]
 [ext_resource type="Resource" uid="uid://cmisle6abqkow" path="res://game_systems/items/gatherable/yellow_petals.tres" id="3_amppn"]
 [ext_resource type="Resource" uid="uid://dtmha6gayo6if" path="res://game_systems/items/gatherable/flower_stem.tres" id="4_b7thv"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="5_qjaiv"]
@@ -25,6 +26,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="YellowFlowers" unique_id=1856845390 instance=ExtResource("1_1ovh1")]
 scale = Vector2(0.7, 0.7)
+script = ExtResource("2_p31p1")
 display_name = "Yellow Flowers"
 description = "Flowers with yellow petals"
 items = Array[ExtResource("2_fnaup")]([ExtResource("3_amppn"), ExtResource("4_b7thv")])
