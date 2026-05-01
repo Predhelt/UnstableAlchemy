@@ -31,7 +31,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2r2ej")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="." unique_id=1985366397]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1985366397]
 stream = SubResource("AudioStreamInteractive_ox3fq")
 bus = &"SFX"
 

@@ -89,7 +89,7 @@ theme_override_colors/font_color = Color(0.6765726, 0.3603092, 0.025225038, 1)
 theme_override_colors/font_outline_color = Color(0.17459902, 0.90393627, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
-text = "(Training Arc)"
+text = "(Training Expedition)"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1846484415]
@@ -109,12 +109,11 @@ theme = ExtResource("3_3ahgd")
 theme_override_constants/separation = 28
 
 [node name="ButtonPlay" parent="VBoxContainer" unique_id=1276432221 instance=ExtResource("2_12dnu")]
-visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-disabled = true
-text = "Play (WIP)"
+text = "Play"
+level_path = "uid://nkld8tcq4n2y"
 
 [node name="ButtonTraining" parent="VBoxContainer" unique_id=1356983260 instance=ExtResource("2_12dnu")]
 custom_minimum_size = Vector2(250, 0)

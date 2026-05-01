@@ -339,8 +339,8 @@ func open_raw_item_page() -> void:#TODO
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_raw_item.display_name)
 		return
-	if page.visible:
-		return
+	#if page.visible:
+		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	# Set Descripion
@@ -419,8 +419,8 @@ func open_crafted_item_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_crafted_item.display_name)
 		return
-	if page.visible:
-		return
+	#if page.visible:
+		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	# Set Descripion
@@ -446,8 +446,8 @@ func open_potion_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_potion.display_name)
 		return
-	if page.visible:
-		return
+	#if page.visible:
+		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	page.get_child(0).find_child("LabelDescription").text = current_potion.description
@@ -527,8 +527,8 @@ func open_status_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_status_effect.display_name)
 		return
-	if page.visible:
-		return
+	#if page.visible:
+		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	
