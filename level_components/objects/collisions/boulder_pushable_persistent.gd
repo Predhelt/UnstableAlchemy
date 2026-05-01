@@ -7,5 +7,6 @@ func save() -> Dictionary:
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
+		"mass" : mass
 	}
 	return save_dict

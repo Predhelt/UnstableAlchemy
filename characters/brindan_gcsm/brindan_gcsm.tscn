@@ -3,17 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_eou54"]
 [ext_resource type="Script" uid="uid://cyqh8tl12ev31" path="res://characters/brindan_gcsm/brindan_gcsm.gd" id="2_1slxx"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="2_16goy"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="3_1slxx"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/transaction.gd" id="3_jm0cw"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="4_jm0cw"]
 [ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="4_u2brs"]
 [ext_resource type="Resource" uid="uid://kvhv0o2fyg74" path="res://characters/brindan_gcsm/transactions/tx_saturated_stem.tres" id="5_30kdh"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="5_scha5"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_2r47i"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="7_6ckx5"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="8_gotj8"]
 [ext_resource type="Resource" uid="uid://d4jm2a2ctvqdo" path="res://characters/brindan_gcsm/att_brindan_gcsm.tres" id="9_cfc6b"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="10_2wvjk"]
+[ext_resource type="Texture2D" uid="uid://cmbdsnnxrip0r" path="res://art/pack/characters/character3_left.png" id="12_2wvjk"]
+[ext_resource type="Texture2D" uid="uid://bd4oi1oo4dwyq" path="res://art/pack/characters/character3_right.png" id="13_cmgrr"]
+[ext_resource type="Texture2D" uid="uid://dr5lw335nxiem" path="res://art/pack/characters/character3_up.png" id="14_7lfai"]
+
+[sub_resource type="Resource" id="Resource_cmgrr"]
+script = ExtResource("10_2wvjk")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_7kj37"]
 script = ExtResource("3_jm0cw")
@@ -22,10 +26,6 @@ items_selling_amount = Array[int]([1])
 items_buying = Array[ExtResource("6_2r47i")]([ExtResource("7_6ckx5")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
-
-[sub_resource type="Resource" id="Resource_cmgrr"]
-script = ExtResource("10_2wvjk")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Animation" id="Animation_inutq"]
 length = 0.001
@@ -69,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_1slxx")]
+"values": [ExtResource("12_2wvjk")]
 }
 
 [sub_resource type="Animation" id="Animation_33o0g"]
@@ -84,7 +84,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_jm0cw")]
+"values": [ExtResource("13_cmgrr")]
 }
 
 [sub_resource type="Animation" id="Animation_gvkpy"]
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_scha5")]
+"values": [ExtResource("14_7lfai")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eou54"]
@@ -186,10 +186,10 @@ radius = 13.0
 [node name="Character" unique_id=1948548714 instance=ExtResource("1_eou54")]
 script = ExtResource("2_1slxx")
 character_name = "Brindan"
-transactions = Array[ExtResource("3_jm0cw")]([ExtResource("4_u2brs"), ExtResource("5_30kdh"), SubResource("Resource_7kj37")])
-passive_messages = Array[String](["Hey", "Where are we, anyways?"])
 attributes = ExtResource("9_cfc6b")
 inventory = SubResource("Resource_cmgrr")
+transactions = Array[ExtResource("3_jm0cw")]([ExtResource("4_u2brs"), ExtResource("5_30kdh"), SubResource("Resource_7kj37")])
+passive_messages = Array[String](["Hey", "Where are we, anyways?"])
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=346669857]
 position = Vector2(0, -36)

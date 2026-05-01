@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_i6263"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="5_kfhxk"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_ftpj3"]
+[ext_resource type="Texture2D" uid="uid://c708meuucrp65" path="res://art/pack/characters/character4_left.png" id="6_hajyn"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_jjnsg"]
+[ext_resource type="Texture2D" uid="uid://4xn70qr3arq0" path="res://art/pack/characters/character4_right.png" id="7_so3qi"]
+[ext_resource type="Texture2D" uid="uid://pwg7x2a2y3ov" path="res://art/pack/characters/character4_up.png" id="8_6stsa"]
 [ext_resource type="Texture2D" uid="uid://bcwf8ib1rr6en" path="res://art/pack/characters/character_robe.png" id="8_o7dlb"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="9_xqhic"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="10_ffb0b"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="11_s8bsa"]
 
 [sub_resource type="Resource" id="Resource_hajyn"]
 script = ExtResource("5_kfhxk")
@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [ExtResource("8_o7dlb")]
 }
 
 [sub_resource type="Animation" id="Animation_cssul"]
@@ -61,7 +61,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_xqhic")]
+"values": [ExtResource("6_hajyn")]
 }
 
 [sub_resource type="Animation" id="Animation_33o0g"]
@@ -76,7 +76,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_ffb0b")]
+"values": [ExtResource("7_so3qi")]
 }
 
 [sub_resource type="Animation" id="Animation_gvkpy"]
@@ -91,7 +91,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_s8bsa")]
+"values": [ExtResource("8_6stsa")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oovjt"]
@@ -184,6 +184,7 @@ inventory = SubResource("Resource_so3qi")
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1029169394]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_o7dlb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=606457454]
 libraries/ = SubResource("AnimationLibrary_oovjt")
