@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cng3kyu3lh7pn"]
-
-[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="1_8ur0y"]
-[ext_resource type="Script" uid="uid://bwmqudgpjopdw" path="res://level_components/objects/collisions/boulder_pushable_persistent.gd" id="2_8un17"]
-
-[node name="BoulderPushable" unique_id=794065921 groups=["Persist"] instance=ExtResource("1_8ur0y")]
-script = ExtResource("2_8un17")

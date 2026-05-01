@@ -1,5 +1,11 @@
 extends RigidBody2D
 
+@export var is_persistent: bool = false
+
+func _ready() -> void:
+	if is_persistent:
+		add_to_group("Persist")
+
 func save() -> Dictionary:
 	var save_dict = {
 		"filename" : get_scene_file_path(),

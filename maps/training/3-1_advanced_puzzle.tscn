@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="24_dv6uk"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="25_73bvn"]
 [ext_resource type="PackedScene" uid="uid://bj3f6x0vma2ys" path="res://level_components/objects/collisions/boulder_small_pushable.tscn" id="30_opv7h"]
-[ext_resource type="Script" uid="uid://bwmqudgpjopdw" path="res://level_components/objects/collisions/boulder_pushable_persistent.gd" id="31_rqsop"]
+[ext_resource type="Script" uid="uid://bwmqudgpjopdw" path="res://level_components/objects/collisions/boulder_pushable.gd" id="31_rqsop"]
 
 [sub_resource type="Resource" id="Resource_grtol"]
 script = ExtResource("2_se8qd")
