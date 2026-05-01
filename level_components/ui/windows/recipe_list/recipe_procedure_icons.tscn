@@ -1,35 +1,58 @@
 [gd_scene format=3 uid="uid://cq7fjcq4ol8qy"]
 
 [ext_resource type="PackedScene" uid="uid://dnl0g6b6pxenh" path="res://level_components/ui/windows/recipe_list/recipe_item_icon.tscn" id="1_4nb40"]
+[ext_resource type="Texture2D" uid="uid://dkjd5la2wsq5s" path="res://art/pack/objects/empty.png" id="2_1r72d"]
+
+[sub_resource type="Theme" id="Theme_0gixx"]
+default_font_size = 0
+HSlider/constants/center_grabber = 1
+HSlider/icons/grabber = ExtResource("2_1r72d")
+HSlider/icons/grabber_disabled = ExtResource("2_1r72d")
 
 [node name="RecipeProcedureIcons" type="Panel" unique_id=828127796]
-custom_minimum_size = Vector2(252, 48)
+clip_contents = true
+custom_minimum_size = Vector2(270, 69)
 anchors_preset = -1
-anchor_right = 0.21
-anchor_bottom = 0.075
-offset_right = -252.0
-offset_bottom = -48.0
+anchor_right = 0.20600002
+anchor_bottom = 0.096
+offset_right = 6.319977
+offset_bottom = -0.12000275
 
-[node name="RecipeItemIcons" type="HBoxContainer" parent="." unique_id=414845120]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1699005058]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.016
-anchor_bottom = 1.0
-offset_right = -0.03201294
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.5
+offset_right = 157.5
+offset_bottom = 94.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_constants/separation = -18
 
-[node name="RecipeItemIcon" parent="RecipeItemIcons" unique_id=1062151229 instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcons" type="HBoxContainer" parent="VBoxContainer" unique_id=414845120]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RecipeItemIcon" parent="VBoxContainer/RecipeItemIcons" unique_id=1062151229 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon2" parent="RecipeItemIcons" unique_id=1650747574 instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon2" parent="VBoxContainer/RecipeItemIcons" unique_id=1650747574 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon3" parent="RecipeItemIcons" unique_id=773320482 instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon3" parent="VBoxContainer/RecipeItemIcons" unique_id=773320482 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon4" parent="RecipeItemIcons" unique_id=600755556 instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon4" parent="VBoxContainer/RecipeItemIcons" unique_id=600755556 instance=ExtResource("1_4nb40")]
 layout_mode = 2
 
-[node name="RecipeItemIcon5" parent="RecipeItemIcons" unique_id=1765270768 instance=ExtResource("1_4nb40")]
+[node name="RecipeItemIcon5" parent="VBoxContainer/RecipeItemIcons" unique_id=1765270768 instance=ExtResource("1_4nb40")]
 layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=735158270]
+custom_minimum_size = Vector2(315, 0)
+layout_mode = 2
+theme = SubResource("Theme_0gixx")
+editable = false
+scrollable = false
+tick_count = 7
+ticks_position = 1

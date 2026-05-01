@@ -255,7 +255,7 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 	
 	for i in len(recipe.procedure.input_actions): #NOTE: Might cause issues if the length of the procedure is not 5
 		## Create new icon for sequence
-		var pia_icon : Button = procedure_icons.get_child(0).get_child(i) 
+		var pia_icon : Button = procedure_icons.get_child(0).get_child(0).get_child(i) 
 		#Icon of procedure index i
 		if not recipe.procedure.input_actions[i]:
 			pia_icon.icon = Global.blank_texture
