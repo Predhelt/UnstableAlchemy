@@ -20,7 +20,7 @@ func play_cutscene():
 		return
 	Global.mode = &"cutscene"
 	$Panel/TextureRect.texture = images[0]
-	cur_image_index = 0
+	cur_image_index = 1
 	visible = true
 
 ## Shows the next panel in [member panels].

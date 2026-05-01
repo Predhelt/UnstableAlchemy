@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://k1iskddykeea" path="res://art/pack/ingredients/inventory/green_paste.png" id="12_80ihe"]
 [ext_resource type="Texture2D" uid="uid://nf7rq681d3ku" path="res://art/pack/ingredients/inventory/orange_paste.png" id="13_t6qy2"]
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="14_luiyi"]
+[ext_resource type="Texture2D" uid="uid://bqm0r3bu3t63h" path="res://art/pack/alchemy/tools/alchemy_merger.png" id="14_oxki8"]
 [ext_resource type="Texture2D" uid="uid://b5mm0hootfp6a" path="res://art/pack/ingredients/inventory/red_juice.png" id="15_b6osi"]
 [ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red_berry_seed.png" id="16_4y6fb"]
 [ext_resource type="Texture2D" uid="uid://bx5pe8o6eontp" path="res://art/pack/ingredients/inventory/flower_stem_saturated.png" id="17_yrnwa"]
@@ -44,7 +45,6 @@
 [ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://art/pack/tools/blade.png" id="39_2mxqo"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="40_8rxm1"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://art/pack/alchemy/tools/alchemy_cauldron.png" id="41_vmjhy"]
-[ext_resource type="Texture2D" uid="uid://40y1vd15nnjx" path="res://art/pack/alchemy/tools/alchemy_abstract_container-half_full.png" id="42_rpebb"]
 [ext_resource type="Texture2D" uid="uid://dd5cw46t72adw" path="res://art/pack/ui/status_effects/status_effect_energized.png" id="43_vjhag"]
 [ext_resource type="Texture2D" uid="uid://bdlclow8newot" path="res://art/pack/alchemy/tools/alchemy_abstract_container-full_blue.png" id="43_x37hv"]
 [ext_resource type="Texture2D" uid="uid://bja2o0mtpv0xw" path="res://art/pack/ui/status_effects/grow.png" id="44_4wpt1"]
@@ -240,12 +240,11 @@ text = "Merger
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer" unique_id=2122716912]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 4
+current_tab = 0
 tabs_visible = false
 
 [node name="PageHelpGeneral" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=2090489077]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -499,6 +498,7 @@ autowrap_mode = 3
 
 [node name="PageHelpCauldron" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=921884514]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
@@ -542,7 +542,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpMerger/HBoxContainer" unique_id=1517580420]
 layout_mode = 2
-texture = ExtResource("42_rpebb")
+texture = ExtResource("14_oxki8")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpMerger/HBoxContainer" unique_id=783800486]
