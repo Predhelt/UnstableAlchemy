@@ -6,6 +6,9 @@ class_name Character extends CharacterBody2D
 # Flavor text / Hint message : does not lock you into a conversation
 # Other Triggers (scared, runs off / opens a passageway / etc.)
 
+## Emits when the character learns a new recipe.
+signal recipe_learned(recipe: Recipe)
+
 ## Determines the Y-offset of the labels above the character as [float]
 const LABEL_DEFAULT_Y_POS : float = -60.0
 ## [float] value used to reduce the intensity of effects when size is changed
@@ -207,6 +210,8 @@ func set_camera() -> void:
 	Global.focused_node = self
 	Global.focused_camera = character_camera_ref
 	# Set up camera transform
+	if find_child("CameraTransform"):
+		return
 	var camera_transform := RemoteTransform2D.new()
 	camera_transform.name = "CameraTransform"
 	camera_transform.remote_path = character_camera_ref.get_path()
@@ -397,8 +402,6 @@ func get_attribute(att_name : String) -> float:
 ## if is_crafted is true, will add to the count of succesful recipe crafts.
 func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
 	if is_camera_focused:
-		if UserVariables.add_recipe(r) and is_camera_focused:
-			Global.emit_notification("New Recipe(s) Learned")
 		if is_crafted:
 			if not UserVariables.crafted_recipes.has(r.id):
 				UserVariables.crafted_recipes[r.id] = 1 ## Add key to dictionary
@@ -406,7 +409,10 @@ func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
 				UserVariables.crafted_recipes[r.id] += 1 ## iterate on key in dictionary
 	if r in known_recipes:
 		return false
+	if is_camera_focused and UserVariables.add_recipe(r):
+		Global.emit_notification("New Recipe(s) Learned")
 	known_recipes.append(r)
+	recipe_learned.emit(r)
 	return true
 
 ## Returns whether or not the character has a [Recipe] in [member known_recipes]
@@ -430,6 +436,14 @@ func knows_recipe_product_id(item_id: int) -> bool:
 func knows_recipe_id(item_id: int) -> bool:
 	for r in known_recipes:
 		if r.id == item_id:
+			return true
+	return false
+
+## Returns whether or not the character has used the [Item] with the given [member Item.id].
+func has_used_item_id(item_id: int) -> bool:
+	#print(items_used.keys())
+	for id in items_used.keys():
+		if id == item_id:
 			return true
 	return false
 

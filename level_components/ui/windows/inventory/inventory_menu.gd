@@ -1,6 +1,9 @@
 ## Menu that represents the inventory of a character.
 extends UIWindow
 
+## Sent when an item is consumed by the character
+signal item_consumed(item: Item)
+
 ## Max number of slots in the inventory.
 @export var max_item_count := 24 
 ## Reference to the currently used inventory. Sets the default referenced character as Player.
@@ -288,9 +291,9 @@ func consume_item(item : Item, index : int) -> void:
 	
 	$CooldownInteract.start()
 	
-	if item.qty <= 1:
+	if item.qty <= 1 and item.qty != -1:
 		remove_inventory_slot(index)
-	else:
+	elif item.qty != -1:
 		item.qty -= 1
 		%ItemList.set_item_text(index, generate_item_text(item))
 	
@@ -305,6 +308,8 @@ func consume_item(item : Item, index : int) -> void:
 		
 		if not has_more_items:
 			hotbar_ref.remove_hotbar_item(item)
+	
+	item_consumed.emit(item)
 
 ## Adds item from the hotbar to the inventory.
 func _on_hotbar_add_inventory_item(item: Item) -> void:

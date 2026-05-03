@@ -30,13 +30,12 @@
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="24_dv6uk"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="25_73bvn"]
 [ext_resource type="PackedScene" uid="uid://bj3f6x0vma2ys" path="res://level_components/objects/collisions/boulder_small_pushable.tscn" id="30_opv7h"]
-[ext_resource type="Script" uid="uid://bwmqudgpjopdw" path="res://level_components/objects/collisions/boulder_pushable.gd" id="31_rqsop"]
 
 [sub_resource type="Resource" id="Resource_grtol"]
 script = ExtResource("2_se8qd")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_nnj0u"]
+[sub_resource type="Resource" id="Resource_opv7h"]
 resource_local_to_scene = true
 script = ExtResource("6_rqsop")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -75,7 +74,7 @@ stream = ExtResource("4_opv7h")
 [node name="Player" parent="." index="3" unique_id=1026458739]
 position = Vector2(462, 329)
 attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_nnj0u")
+inventory = SubResource("Resource_opv7h")
 
 [node name="NPCBrindan" parent="." index="5" unique_id=1948548714 instance=ExtResource("2_gpkcb")]
 position = Vector2(703, 155)
@@ -207,7 +206,6 @@ stretch_mode = 4
 
 [node name="BoulderPushablePersistent" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=794065921 instance=ExtResource("30_opv7h")]
 position = Vector2(608, 59)
-script = ExtResource("31_rqsop")
 
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
 offset_left = -558.0
