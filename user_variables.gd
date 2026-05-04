@@ -28,6 +28,8 @@ var objects_cut_interacted: Dictionary[String, Array]
 var objects_combined: Dictionary[String, Array]
 ## The count of each item with a given item ID
 var items_used: Dictionary[int, int]
+## List of names of pages that have been opened by the user.
+var pages_opened : Array[String]
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
@@ -43,7 +45,8 @@ func save() -> Dictionary:
 		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
-		"items_used" : var_to_str(items_used)
+		"items_used" : var_to_str(items_used),
+		"pages_opened" : var_to_str(pages_opened)
 	}
 	return save_dict
 
@@ -54,4 +57,10 @@ func add_recipe(recipe : Recipe) -> bool:
 	known_recipes.append(recipe)
 	new_recipes.append(recipe)
 	return true
-	
+
+## Returns whether or not the character has used the [Item] with the given [member Item.id].
+func has_used_item_id(item_id : int) -> bool:
+	for id in items_used.keys():
+		if id == item_id:
+			return true
+	return false

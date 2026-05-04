@@ -20,5 +20,7 @@ func set_contextual_message() -> bool:
 			message = "There might be something to help somewhere nearby"
 	elif not player_ref.inventory.has_item_id(100): # Herb flakes item
 		message = "I should be able to use the recipe to craft something useful"
+	elif player_ref.inventory.has_item_id(100) and not player_ref.has_used_item_id(100):
+		message = "I should try eating the flakes to see what happens"
 	else: return false
 	return true

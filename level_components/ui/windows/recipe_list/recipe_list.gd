@@ -210,6 +210,7 @@ func add_procedure(recipe: Recipe):
 	var product_icon : Button = recipe_item_icon.instantiate()
 	product_icon.icon = recipe.product_item.texture
 	product_icon.tooltip_text = recipe.product_item.display_name
+	product_icon.disabled = true
 	cur_procedures_container.add_child(product_icon)
 	
 	## Add the craft details and quick craft button.

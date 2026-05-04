@@ -9,11 +9,15 @@
 ## People pages for informaion on people that the user has met.
 ## Statuses pages for information on status effects that the player can encounter.
 extends UIWindow
+
+## Theme used for buttons whose pages are new.
+var new_button_theme : Theme = preload("res://level_components/ui/windows/log_book/yellow_button_theme.tres")
+
 #TODO: Add tab for cutscenes that have been viewed.
 ## Tracks the mode prior to the log book opening.
 var prev_mode : StringName
 ## Reference to the current character/node whose information is being used to display the log book.
-var character_ref : Node = UserVariables
+var character_ref := UserVariables
 
 # trackers for tabs with dynamic page elements.
 ## Tracks the current item being referenced in the raw items tab.
@@ -110,15 +114,15 @@ func set_buttons_visibility(character : Node = null) -> void:
 	for item_id in character_ref.gathered_items.keys():
 		match item_id:
 			0: # Green Herb Leaf
-				%ButtonItemGreenHerbLeaf.visible = true
+				show_button(%ButtonItemGreenHerbLeaf)
 			1: # Red Berries
-				%ButtonItemRedBerries.visible = true
+				show_button(%ButtonItemRedBerries)
 			2: # Yellow Petals
-				%ButtonItemYellowPetals.visible = true
+				show_button(%ButtonItemYellowPetals)
 			3: # Flower Stem
-				%ButtonItemFlowerStem.visible = true
+				show_button(%ButtonItemFlowerStem)
 			4: # Blue Berries
-				%ButtonItemBlueBerries.visible = true
+				show_button(%ButtonItemBlueBerries)
 	for book_id in character_ref.books_read:
 		match book_id:
 			1000: # Green Flakes Book
@@ -128,83 +132,85 @@ func set_buttons_visibility(character : Node = null) -> void:
 			1002: # Red Berry Seed Book
 				pass
 			1003: # Shrink Potion Book
-				%ButtonBookShrinkPotion.visible = true
+				show_button(%ButtonBookShrinkPotion)
 			1004: # 
 				pass
 			1005:
 				pass
+			2000:
+				show_button(%ButtonBookLetterFromR)
 	for recipe in character_ref.known_recipes:
 		match recipe.id:
 			### M&P ###
 			0: # Green Herb Flakes
-				%ButtonItemGreenFlakes.visible = true
+				show_button(%ButtonItemGreenFlakes)
 			1: # Gray Juice
-				%ButtonItemGrayJuice.visible = true
+				show_button(%ButtonItemGrayJuice)
 			2: # Red Berry Seed
-				%ButtonItemRedSeed.visible = true
+				show_button(%ButtonItemRedSeed)
 			3: # Yellow Dust
-				%ButtonItemYellowDust.visible = true
+				show_button(%ButtonItemYellowDust)
 			4: # Stem Strands
-				%ButtonItemStemStrands.visible = true
+				show_button(%ButtonItemStemStrands)
 			5: # Red Juice
-				%ButtonItemRedJuice.visible = true
+				show_button(%ButtonItemRedJuice)
 			6: # Blue Berry Seed
-				%ButtonItemBlueSeed.visible = true
+				show_button(%ButtonItemBlueSeed)
 			### Merger ###
 			100: # Green Paste
-				%ButtonItemGreenPaste.visible = true
+				show_button(%ButtonItemGreenPaste)
 			101: # Yellow Paste
-				%ButtonItemYellowPaste.visible = true
+				show_button(%ButtonItemYellowPaste)
 			102: # Orange Paste
-				%ButtonItemOrangePaste.visible = true
+				show_button(%ButtonItemOrangePaste)
 			103: # Saturated Stem
-				%ButtonItemSaturatedStem.visible = true
+				show_button(%ButtonItemSaturatedStem)
 			### Cauldron ###
 			500: # Speed Potion
-				%ButtonPotionSpeed.visible = true
+				show_button(%ButtonPotionSpeed)
 			501: # Cleanse Potion
-				%ButtonPotionCleanse.visible = true
+				show_button(%ButtonPotionCleanse)
 			502: # Normalize Potion
-				%ButtonPotionNormalize.visible = true
+				show_button(%ButtonPotionNormalize)
 			503: # Grow Potion
-				%ButtonPotionGrow.visible = true
+				show_button(%ButtonPotionGrow)
 			504: # Shrink Potion
-				%ButtonPotionShrink.visible = true
+				show_button(%ButtonPotionShrink)
 			505: # Speed Potion (2)
 				pass
 			506: # Strength Potion
-				%ButtonPotionStrength.visible = true
+				show_button(%ButtonPotionStrength)
 			### Misc ###
 			999: # Failed Craft
 				pass
 	# Button visibility for Object Pages based on performed interactions
 	for obj_name in character_ref.objects_grab_interacted.keys():
 		if obj_name == "Red Berry Bush":
-			%ButtonPlantRedBerryBush.visible = true
+			show_button(%ButtonPlantRedBerryBush)
 		if obj_name == "Green Herbs":
-			%ButtonPlantGreenHerbs.visible = true
+			show_button(%ButtonPlantGreenHerbs)
 		if obj_name == "Yellow Flowers":
-			%ButtonPlantYellowFlowers.visible = true
+			show_button(%ButtonPlantYellowFlowers)
 		if obj_name == "Blue Berry Bush":
-			%ButtonPlantBlueBerryBush.visible = true
+			show_button(%ButtonPlantBlueBerryBush)
 	for obj_name in character_ref.objects_cut_interacted.keys():
 		if obj_name == "Red Berry Bush":
-			%ButtonPlantRedBerryBush.visible = true
+			show_button(%ButtonPlantRedBerryBush)
 		if obj_name == "Green Herb":
-			%ButtonPlantGreenHerbs.visible = true
+			show_button(%ButtonPlantGreenHerbs)
 		if obj_name == "Yellow Flowers":
-			%ButtonPlantYellowFlowers.visible = true
+			show_button(%ButtonPlantYellowFlowers)
 		if obj_name == "Blue Berry Bush":
-			%ButtonPlantBlueBerryBush.visible = true
+			show_button(%ButtonPlantBlueBerryBush)
 	for obj_name in character_ref.objects_combined.keys():
 		if obj_name == "Red Berry Bush":
-			%ButtonPlantRedBerryBush.visible = true
+			show_button(%ButtonPlantRedBerryBush)
 		if obj_name == "Green Herb":
-			%ButtonPlantGreenHerbs.visible = true
+			show_button(%ButtonPlantGreenHerbs)
 		if obj_name == "Yellow Flowers":
-			%ButtonPlantYellowFlowers.visible = true
+			show_button(%ButtonPlantYellowFlowers)
 		if obj_name == "Blue Berry Bush":
-			%ButtonPlantBlueBerryBush.visible = true
+			show_button(%ButtonPlantBlueBerryBush)
 
 ## Hides all buttons whose visibility is changed dynamically based on the character/user's data.
 func hide_dynamic_buttons() -> void:
@@ -236,6 +242,13 @@ func hide_dynamic_buttons() -> void:
 	# NOTE: Ideally, status pages should only get shown if they have been triggered or relevant
 	# items/potions have been acquired/crafted.
 
+## Shows the given button and changes the display based on conditions.
+func show_button(button : Button):
+	#if button not in UserVariables.pages_opened:
+		#button.theme = new_button_theme
+	#else: button.theme = null
+	button.visible = true
+
 ## Returns the node of the page that is currently open in the given tab index.
 ## If index is -1, gets the currently open tab's open page node.
 func get_current_page(tab_index : int =  -1) -> MarginContainer:
@@ -245,6 +258,13 @@ func get_current_page(tab_index : int =  -1) -> MarginContainer:
 	inner_tab.get_child(inner_tab.current_tab)
 	#print(inner_tab.get_child(inner_tab.current_tab).name)
 	return inner_tab.get_child(inner_tab.current_tab)
+
+## Adds the current page name to the list of opened pages, if not already.
+func add_opened_page_name(page_name: String):
+	for p_name in UserVariables.pages_opened:
+		if p_name == page_name:
+			return
+	UserVariables.pages_opened.append(page_name)
 
 ## Uses the given interaction object to display the amounts of each item contained in the object.
 func _interaction_object_contained_items_as_str(obj : InteractableObject) -> String:
@@ -292,7 +312,9 @@ func open_page_help_general():
 	%PageHelpGeneral/VBoxContainer/LabelInteraction.text = ("You can talk to other characters by pressing \"" +
 		InputMap.action_get_events("interact")[0].as_text().replace(' - Physical','')
 		+ "\".")
-	
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name("PageHelpGeneral")
 	%PageHelpGeneral.visible = true
 
 ## 
@@ -310,7 +332,9 @@ func open_page_help_interactions():
 	%PageHelpInteractions/VBoxContainer/LabelToolChange.text = (
 		"You can also press \"%s\" to cycle between equipped tools.\n" % 
 		InputMap.action_get_events("change_tool")[0].as_text().replace(' - Physical',''))
-	
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name("PageHelpInteractions")
 	%PageHelpInteractions.visible = true
 
 ##
@@ -319,7 +343,9 @@ func open_page_help_tools():
 	%PageHelpTools/VBoxContainer/LabelUse.text = ("Press \""+
 		InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical','')
 		+"\" to use the currently held tool on a nearby object.")
-	
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name("PageHelpTools")
 	%PageHelpTools.visible = true
 
 ## Help pages are already set up,
@@ -328,6 +354,7 @@ func open_help_page(page : MarginContainer) -> void:
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	page.visible = true
 
 ## Uses template page node to set up the [member current_raw_item] information.
@@ -343,6 +370,7 @@ func open_raw_item_page() -> void:#TODO
 		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_raw_item.description
 	# List where you can get the item from
@@ -393,11 +421,14 @@ func _get_item_uses_as_str(item : Item) -> String:
 	if is_used:
 		uses_str = uses_str.rsplit(",")[0]
 	else:
-		uses_str += "None"
+		uses_str += "Unknown"
 	return uses_str
 
 func _get_item_use_effects_as_str(item : Item) -> String:
-	var effects_str : String = "Use Note: \""
+	var effects_str : String = "Note about consuming: \""
+	if not character_ref.has_used_item_id(item.id):
+		effects_str += "No known effects.\""
+		return effects_str
 	if item.on_consume_message:
 		effects_str += item.on_consume_message + "\" | "
 	else:
@@ -423,6 +454,7 @@ func open_crafted_item_page() -> void:
 		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_crafted_item.description
 	# List where you can get the item from
@@ -450,6 +482,7 @@ func open_potion_page() -> void:
 		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	page.get_child(0).find_child("LabelDescription").text = current_potion.description
 	# List where you can get the item from
 	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
@@ -473,6 +506,7 @@ func open_plant_page(page : MarginContainer) -> void:
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	page.get_child(0).find_child("LabelDescription").text = current_plant_scene.description
 	page.get_child(0).find_child("LabelContainedItems").text = _interaction_object_contained_items_as_str(current_plant_scene)
 	page.get_child(0).find_child("LabelInteractionCounts").text = _interaction_object_counts_as_str(current_plant_scene.display_name)
@@ -492,6 +526,7 @@ func open_object_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	page.visible = true
 
 ##
@@ -500,6 +535,7 @@ func open_book_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	page.visible = true
 
 ##
@@ -508,6 +544,7 @@ func open_place_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	page.visible = true
 
 ##
@@ -516,6 +553,7 @@ func open_person_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
 	page.visible = true
 
 ## Uses template page node to set up the [member current_satus_effect] item information.
@@ -531,7 +569,7 @@ func open_status_page() -> void:
 		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	
+	add_opened_page_name(page.name)
 	page.get_child(0).find_child("LabelDescription").text = current_status_effect.description
 	# List where you can get the item from
 	var str_value : String = "Potency: "
@@ -601,14 +639,23 @@ func _on_button_help_tools_pressed() -> void:
 
 func _on_button_help_mortar_pestle_pressed() -> void:
 	#%WindowName.text = "Help: Mortar & Pestle"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name("PageHelpMP")
 	%PageHelpMP.visible = true
 
 func _on_button_help_cauldron_pressed() -> void:
 	#%WindowName.text = "Help: Cauldron"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name("PageHelpCauldron")
 	%PageHelpCauldron.visible = true
 
 func _on_button_help_merger_pressed() -> void:
 	#%WindowName.text = "Help: Merger"
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name("PageHelpMerger")
 	%PageHelpMerger.visible = true
 
 ### Raw Item Tab ###

@@ -19,7 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="14_luiyi"]
 [ext_resource type="Texture2D" uid="uid://bqm0r3bu3t63h" path="res://art/pack/alchemy/tools/alchemy_merger.png" id="14_oxki8"]
 [ext_resource type="Texture2D" uid="uid://b5mm0hootfp6a" path="res://art/pack/ingredients/inventory/red_juice.png" id="15_b6osi"]
+[ext_resource type="Theme" uid="uid://8ifkvvbbjium" path="res://level_components/ui/windows/log_book/yellow_button_theme.tres" id="15_bmcub"]
 [ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red_berry_seed.png" id="16_4y6fb"]
+[ext_resource type="Script" uid="uid://be3mq7xu1wxom" path="res://level_components/ui/windows/log_book/page_button.gd" id="17_kyji0"]
 [ext_resource type="Texture2D" uid="uid://bx5pe8o6eontp" path="res://art/pack/ingredients/inventory/flower_stem_saturated.png" id="17_yrnwa"]
 [ext_resource type="Texture2D" uid="uid://n2yf4o3180f6" path="res://art/pack/ingredients/inventory/stem_strands.png" id="18_yrbgu"]
 [ext_resource type="Texture2D" uid="uid://b2dy15055yv71" path="res://art/pack/ingredients/inventory/yellow_petals_ground.png" id="19_xyuuy"]
@@ -158,7 +160,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 tab_0/title = "Help"
 tab_1/title = "Raw Items"
 tab_2/title = "Crafted Items"
@@ -172,6 +174,7 @@ tab_9/title = "Status Effects"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -191,51 +194,69 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons" unique_id=1244989062]
 layout_mode = 2
 
-[node name="ButtonHelpGeneral" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=1306445496]
+[node name="ButtonHelpGeneral" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=398438587]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_rs23k")
 text = "General"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonHelpInteractions" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=261623297]
+[node name="ButtonHelpInteractions" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=1386043000]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rs23k")
 text = "Interactions"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonHelpTools" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=348258149]
+[node name="ButtonHelpTools" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=846492349]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rs23k")
 text = "Tools"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonHelpMortarPestle" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=2044851229]
+[node name="ButtonHelpMP" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=147182407]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rs23k")
 text = "Mortar & Pestle
 "
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonHelpCauldron" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=845776110]
+[node name="ButtonHelpCauldron" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=2146136880]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rs23k")
 text = "Cauldron
 "
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonHelpMerger" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=593279218]
+[node name="ButtonHelpMerger" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=1349838431]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rs23k")
 text = "Merger
 "
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer" unique_id=2122716912]
 layout_mode = 2
@@ -556,7 +577,6 @@ autowrap_mode = 3
 
 [node name="TabRawItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1613085781]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -585,56 +605,71 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 4
 columns = 3
 
-[node name="ButtonItemBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=190789836]
+[node name="ButtonItemBlueBerries" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=562008528]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Berries"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("4_wuyk7")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1380616477]
+[node name="ButtonItemFlowerStem" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1463959146]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Stem"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("7_welqp")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemGreenHerbLeaf" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=817022746]
+[node name="ButtonItemGreenHerbLeaf" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1621418394]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herb Leaf"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("11_0tc3s")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemRedBerries" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1043223202]
+[node name="ButtonItemRedBerries" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=477430983]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Berries"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("14_luiyi")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1436380443]
+[node name="ButtonItemYellowPetals" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=85604086]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Petals"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("21_0kap8")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer" unique_id=208240892]
 layout_mode = 2
@@ -707,137 +742,176 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 4
 columns = 3
 
-[node name="ButtonItemBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=321425970]
+[node name="ButtonItemBlueJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=317172334]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Juice"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("5_lrrx2")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2076160104]
+[node name="ButtonItemBlueSeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2022712875]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Seed"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("6_vptl1")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1261853127]
+[node name="ButtonItemGrayJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=446894900]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Gray Juice"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("8_555qq")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemGraySeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1240727151]
+[node name="ButtonItemGraySeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2040158142]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Gray Seed"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("9_o6slk")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1068973908]
+[node name="ButtonItemGreenFlakes" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=540855067]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herb Flakes"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("10_y53h3")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=105487582]
+[node name="ButtonItemGreenPaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=896466222]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Paste"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("12_80ihe")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1149686490]
+[node name="ButtonItemOrangePaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1422393028]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Orange Paste"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("13_t6qy2")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1210965709]
+[node name="ButtonItemRedJuice" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1467642189]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Juice"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("15_b6osi")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=2008177175]
+[node name="ButtonItemRedSeed" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=308837848]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Seed"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("16_4y6fb")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=898051407]
+[node name="ButtonItemSaturatedStem" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1542175665]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Saturated Stem"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("17_yrnwa")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1417137024]
+[node name="ButtonItemStemStrands" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1949236894]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Stem Strands"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("18_yrbgu")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1805018482]
+[node name="ButtonItemYellowDust" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=141825368]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flower Dust"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("19_xyuuy")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonItemYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=1533011342]
+[node name="ButtonItemYellowPaste" type="Button" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=515249333]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Paste"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_swgt7")
 icon = ExtResource("20_s8crv")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer" unique_id=899788753]
 layout_mode = 2
@@ -900,76 +974,97 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonPotionCleanse" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=243613671]
+[node name="ButtonPotionCleanse" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1143317881]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_2mxqo")
 text = "Cleanse"
 icon = ExtResource("23_y3hki")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPotionGrow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=708159419]
+[node name="ButtonPotionGrow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=402161023]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2mxqo")
 text = "Grow"
 icon = ExtResource("25_gdb1q")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPotionNormalize" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=609171140]
+[node name="ButtonPotionNormalize" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=494455339]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2mxqo")
 text = "Normalize"
 icon = ExtResource("24_rda33")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPotionShrink" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1623302864]
+[node name="ButtonPotionShrink" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=418412351]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2mxqo")
 text = "Shrink"
 icon = ExtResource("26_2dv36")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPotionSlow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1525145451]
+[node name="ButtonPotionSlow" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1240333928]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2mxqo")
 text = "Slow"
 icon = ExtResource("27_a8fgq")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPotionSpeed" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1704041391]
+[node name="ButtonPotionSpeed" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=621330257]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2mxqo")
 text = "Speed"
 icon = ExtResource("22_nvycw")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPotionStrength" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=993901136]
+[node name="ButtonPotionStrength" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=612526778]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_2mxqo")
 text = "Strength"
 icon = ExtResource("28_51e1v")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer" unique_id=1134312735]
 layout_mode = 2
@@ -1034,46 +1129,58 @@ layout_mode = 2
 size_flags_horizontal = 6
 columns = 3
 
-[node name="ButtonPlantRedBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=1596357552]
+[node name="ButtonPlantRedBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=689122909]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Red Berry Bush"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_8rxm1")
 icon = ExtResource("29_hrbh4")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPlantGreenHerbs" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=225389601]
+[node name="ButtonPlantGreenHerbs" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=395141752]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Green Herbs"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_8rxm1")
 icon = ExtResource("30_rj7yf")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPlantYellowFlowers" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=261273563]
+[node name="ButtonPlantYellowFlowers" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=1698101411]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Yellow Flowers"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_8rxm1")
 icon = ExtResource("31_1jb0j")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPlantBlueBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=342536655]
+[node name="ButtonPlantBlueBerryBush" type="Button" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList" unique_id=1206484768]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Blue Berry Bush"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_8rxm1")
 icon = ExtResource("32_olvlp")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer" unique_id=1895968697]
 layout_mode = 2
@@ -1280,46 +1387,58 @@ layout_mode = 2
 size_flags_horizontal = 6
 columns = 3
 
-[node name="ButtonObjectBoulder" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1703768243]
+[node name="ButtonObjectBoulder" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1642182231]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Boulder"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_vmjhy")
 icon = ExtResource("33_gd8cp")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonObjectSlidingDoor" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1970625925]
+[node name="ButtonObjectSlidingDoor" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=271518084]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Sliding Door"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_vmjhy")
 icon = ExtResource("34_ry02e")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonObjectWallSmallHole" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1958059311]
+[node name="ButtonObjectWallSmallHole" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=1032064697]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Crawlspace"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_vmjhy")
 icon = ExtResource("35_m16e7")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonObjectPressurePlate" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=455355147]
+[node name="ButtonObjectPressurePlate" type="Button" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList" unique_id=2092150469]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Pressure Plate"
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_vmjhy")
 icon = ExtResource("36_tfpcq")
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer" unique_id=1460950125]
 layout_mode = 2
@@ -1426,38 +1545,48 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonBookRawMaterials" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1371375633]
+[node name="ButtonBookRawMaterials" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=925544426]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_rpebb")
 text = "Raw Materials"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookLetterFromR" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=771660860]
+[node name="ButtonBookLetterFromR" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1618016906]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
 text = "Letter from \"R\""
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookShrinkPotion" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1961863231]
+[node name="ButtonBookShrinkPotion" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1142917391]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
 text = "Shrink Potion"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=1263152269]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 0
+current_tab = 2
 tabs_visible = false
 
 [node name="PageBookRawMaterials" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=2075876923]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 100
@@ -1523,7 +1652,6 @@ This place is bizarre and mysterious, but as you grow to understand it, you can 
 
 [node name="PageBookShrinkPotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1130674966]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -1563,21 +1691,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonPlacesBotania" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1614831328]
+[node name="ButtonPlacesBotania" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1404143635]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_vjhag")
 text = "Botania"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPlacesElsewhere" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1084518842]
+[node name="ButtonPlacesElsewhere" type="Button" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList" unique_id=1205906148]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_vjhag")
 text = "Elsewhere"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPlaces/HBoxContainer" unique_id=1546926551]
 layout_mode = 2
@@ -1632,20 +1766,26 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonPeoplePerson1" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1734343491]
+[node name="ButtonPeoplePerson1" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1577655396]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_6jatn")
 text = "Person 1"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonPeoplePerson2" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=1047855317]
+[node name="ButtonPeoplePerson2" type="Button" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList" unique_id=893003729]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_6jatn")
 text = "Person 1"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPeople/HBoxContainer" unique_id=720333832]
 layout_mode = 2
@@ -1695,10 +1835,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonStatusCleanse" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1539810891]
+[node name="ButtonStatusCleanse" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1902873522]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1706,11 +1847,14 @@ text = "Cleanse"
 icon = ExtResource("43_x37hv")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusEnergized" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=2084685705]
+[node name="ButtonStatusEnergized" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=657233490]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1718,11 +1862,14 @@ text = "Energized"
 icon = ExtResource("43_vjhag")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusEnergizedBurst" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=916113807]
+[node name="ButtonStatusEnergizedBurst" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1733195317]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1730,11 +1877,14 @@ text = "Energized Burst"
 icon = ExtResource("43_vjhag")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusGrow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1130861027]
+[node name="ButtonStatusGrow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=699966859]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1743,11 +1893,14 @@ text = "Grow
 icon = ExtResource("44_4wpt1")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusNormalize" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=577414180]
+[node name="ButtonStatusNormalize" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=926416770]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1755,11 +1908,14 @@ text = "Normalize"
 icon = ExtResource("46_fds71")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusSelfAttunement" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=986311952]
+[node name="ButtonStatusSelfAttunement" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=610366998]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1768,11 +1924,14 @@ text = "Self-Attunement
 icon = ExtResource("45_x37hv")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusShrink" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=243309831]
+[node name="ButtonStatusShrink" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=682106144]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1781,11 +1940,14 @@ text = "Shrink
 icon = ExtResource("46_6jatn")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusSlow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1175888700]
+[node name="ButtonStatusSlow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=579949949]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1793,11 +1955,14 @@ text = "Slow"
 icon = ExtResource("47_fds71")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonStatusStrengthen" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=574720329]
+[node name="ButtonStatusStrengthen" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=175063796]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
@@ -1805,6 +1970,8 @@ text = "Strengthen"
 icon = ExtResource("48_oxki8")
 icon_alignment = 1
 expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer" unique_id=1500686523]
 layout_mode = 2
@@ -1839,55 +2006,110 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="tab_changed" from="VBoxContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpGeneral" to="." method="_on_button_help_general_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpGeneral" to="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpGeneral" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpInteractions" to="." method="_on_button_help_interactions_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpInteractions" to="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpInteractions" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpTools" to="." method="_on_button_help_tools_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMortarPestle" to="." method="_on_button_help_mortar_pestle_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpTools" to="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpTools" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMP" to="." method="_on_button_help_mortar_pestle_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMP" to="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMP" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpCauldron" to="." method="_on_button_help_cauldron_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpCauldron" to="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpCauldron" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMerger" to="." method="_on_button_help_merger_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMerger" to="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpMerger" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueBerries" to="." method="_on_button_item_blue_berries_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueBerries" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueBerries" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemFlowerStem" to="." method="_on_button_item_flower_stem_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemFlowerStem" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemFlowerStem" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerbLeaf" to="." method="_on_button_item_green_herb_leaf_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerbLeaf" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenHerbLeaf" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" to="." method="_on_button_item_red_berries_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="." method="_on_button_item_yellow_petals_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="." method="_on_button_item_blue_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueSeed" to="." method="_on_button_item_blue_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueSeed" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueSeed" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGrayJuice" to="." method="_on_button_item_gray_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGrayJuice" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGrayJuice" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGraySeed" to="." method="_on_button_item_gray_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGraySeed" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGraySeed" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenFlakes" to="." method="_on_button_item_green_flakes_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenFlakes" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenFlakes" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenPaste" to="." method="_on_button_item_green_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenPaste" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemGreenPaste" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemOrangePaste" to="." method="_on_button_item_orange_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemOrangePaste" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemOrangePaste" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedJuice" to="." method="_on_button_item_red_juice_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedJuice" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedJuice" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedSeed" to="." method="_on_button_item_red_seed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedSeed" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedSeed" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemSaturatedStem" to="." method="_on_button_item_saturated_stem_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemSaturatedStem" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemSaturatedStem" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemStemStrands" to="." method="_on_button_item_stem_strands_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemStemStrands" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemStemStrands" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowDust" to="." method="_on_button_item_yellow_dust_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowDust" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowDust" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPaste" to="." method="_on_button_item_yellow_paste_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPaste" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPaste" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionCleanse" to="." method="_on_button_potion_cleanse_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionCleanse" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionCleanse" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionGrow" to="." method="_on_button_potion_grow_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionGrow" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionGrow" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionNormalize" to="." method="_on_button_potion_normalize_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionNormalize" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionNormalize" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionShrink" to="." method="_on_button_potion_shrink_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionShrink" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionShrink" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSlow" to="." method="_on_button_potion_slow_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSlow" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSlow" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSpeed" to="." method="_on_button_potion_speed_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSpeed" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSpeed" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionStrength" to="." method="_on_button_potion_strength_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionStrength" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionStrength" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantRedBerryBush" to="." method="_on_button_plant_red_berry_bush_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantRedBerryBush" to="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantRedBerryBush" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantGreenHerbs" to="." method="_on_button_plant_green_herbs_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantGreenHerbs" to="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantGreenHerbs" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantYellowFlowers" to="." method="_on_button_plant_yellow_flowers_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantYellowFlowers" to="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantYellowFlowers" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantBlueBerryBush" to="." method="_on_button_plant_blue_berry_bush_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantBlueBerryBush" to="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantBlueBerryBush" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectBoulder" to="." method="_on_button_object_boulder_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectBoulder" to="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectBoulder" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectSlidingDoor" to="." method="_on_button_object_sliding_door_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectSlidingDoor" to="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectSlidingDoor" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectWallSmallHole" to="." method="_on_button_object_wall_small_hole_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectWallSmallHole" to="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectWallSmallHole" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectPressurePlate" to="." method="_on_button_object_pressure_plate_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectPressurePlate" to="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageButtons/PageButtonList/ButtonObjectPressurePlate" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" to="." method="_on_button_book_raw_materials_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" to="." method="_on_button_book_letter_from_r_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" to="." method="_on_button_people_person_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" to="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson1" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson2" to="VBoxContainer/TabContainer/TabPeople/HBoxContainer/PageButtons/PageButtonList/ButtonPeoplePerson2" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusCleanse" to="." method="_on_button_status_cleanse_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusCleanse" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusCleanse" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergized" to="." method="_on_button_status_energized_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergized" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergized" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergizedBurst" to="." method="_on_button_status_energized_burst_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergizedBurst" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusEnergizedBurst" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusGrow" to="." method="_on_button_status_grow_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusGrow" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusGrow" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusNormalize" to="." method="_on_button_status_normalize_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusNormalize" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusNormalize" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSelfAttunement" to="." method="_on_button_status_self_attunement_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSelfAttunement" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSelfAttunement" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusShrink" to="." method="_on_button_status_shrink_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusShrink" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusShrink" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" to="." method="_on_button_status_slow_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" to="." method="_on_button_status_strengthen_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" method="_on_pressed"]
