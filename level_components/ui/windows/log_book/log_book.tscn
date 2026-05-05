@@ -1871,6 +1871,7 @@ layout_mode = 2
 theme = ExtResource("15_bmcub")
 theme_override_constants/outline_size = 4
 toggle_mode = true
+button_pressed = true
 button_group = SubResource("ButtonGroup_4wpt1")
 text = "Cleanse"
 icon = ExtResource("43_x37hv")
@@ -2063,8 +2064,10 @@ layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatus/VBoxContainer" unique_id=383640647]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "A description of the status effect"
+autowrap_mode = 3
 
 [node name="LabelValue" type="Label" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatus/VBoxContainer" unique_id=299669524]
 layout_mode = 2

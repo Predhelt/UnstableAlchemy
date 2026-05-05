@@ -232,6 +232,8 @@ func set_buttons_visibility(character : Node = null) -> void:
 				show_button(%ButtonStatusNormalize)
 			200: # Possess
 				show_button(%ButtonStatusPossess)
+			201: # Possess (Weak)
+				show_button(%ButtonStatusPossessWeak)
 
 ## Hides all buttons whose visibility is changed dynamically based on the character/user's data.
 func hide_dynamic_buttons() -> void:

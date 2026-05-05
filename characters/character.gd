@@ -145,7 +145,10 @@ func _ready() -> void:
 	for i in range(active_status_effects.size()-1, -1, -1):
 		cur_se = active_status_effects[i]
 		active_status_effects.remove_at(i)
-		apply_status_effect(cur_se)
+		if apply_status_effect(cur_se):
+			if cur_se.id not in UserVariables.learned_status_effects:
+				UserVariables.learned_status_effects.append(cur_se.id)
+				Global.emit_notification("Log Book Entry Added")
 	
 	init_dialogues()
 	# Set possession references, if any
@@ -660,6 +663,9 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 	for se in statuses:
 		if apply_status_effect(se):
 			is_added = true
+			if se.id not in UserVariables.learned_status_effects:
+				UserVariables.learned_status_effects.append(se.id)
+				Global.emit_notification("Log Book Entry Added")
 	if is_added:
 		update_status_message(message)
 	else:
