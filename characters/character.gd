@@ -11,9 +11,6 @@ signal recipe_learned(recipe: Recipe)
 
 ## Determines the Y-offset of the labels above the character as [float]
 const LABEL_DEFAULT_Y_POS : float = -60.0
-## [float] value used to reduce the intensity of effects when size is changed
-## @deprecated
-#const SIZE_DAMPENER : float = 0.5
 
 ## The [AnimationTree] determing how different animations connect and transition between each other 
 @onready var animation_tree : AnimationTree = $AnimationTree
@@ -66,6 +63,8 @@ var possessable_characters : Array[Character]
 var possessing_character : Character = null
 ## Tracks the name of who this character is possessing, if anyone.
 var possessing_character_name : StringName = ""
+## Current target for the possession.
+var cur_possession_target : Character = null
 
 ## List of books by ID that the character has read
 var books_read : Array[int]
@@ -324,7 +323,7 @@ func _physics_process(delta: float) -> void:
 				say_random_message()
 	
 	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
-		$PossessionTargetLabel.global_position = possessable_characters[0].global_position
+		$PossessionTargetLabel.global_position = cur_possession_target.global_position
 
 ## Handles input action events. Only accepts inputs when the player is controlling the character.
 func _input(event: InputEvent) -> void:
@@ -339,11 +338,11 @@ func _input(event: InputEvent) -> void:
 			inspect_object()
 		if can_possess_others_count != 0:
 			if event.is_action_pressed("possession_change_target"):
-				pass #TODO
+				change_possession_target()
 			if event.is_action_pressed("possession_select_target"):
 				if not possessing_character:
 					if possessable_characters:
-						begin_possession(possessable_characters[0])
+						begin_possession(cur_possession_target)
 					else:
 						#print("No possessable targets found!")
 						pass
@@ -554,6 +553,17 @@ func inspect_object():
 		var cur_interaction : Interactable = all_interaction_areas[0] #TODO: Function to do smart selection of nearby areas.
 		cur_interaction.inspect_object()
 
+## Changes the target of possession for the currently focused character.
+func change_possession_target() -> void:
+	if not possessable_characters:
+		return
+	var target_index : int = possessable_characters.find(cur_possession_target)
+	if target_index >= possessable_characters.size()-1:
+		target_index = -1
+	cur_possession_target = possessable_characters[target_index + 1]
+	$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
+	_change_possession_help_label()
+
 ## User controls the target body. All inputs and behavior transfers.
 func begin_possession(body: Character):
 	body.find_child("EffectAudioStream").play()
@@ -629,6 +639,7 @@ func end_possession():
 		body.update_status_effects(body_active_ses, "")
 		update_status_effects(self_active_ses, "")
 		
+		body.find_child("InteractLabel").text = ""
 		if can_possess_others_count != 0 and possessable_characters:
 			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
 		$"../UILayer/HUDLayer/LabelEndPossession".visible = false
@@ -931,6 +942,7 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 		$PossessionArea.enable_collision()
 		can_possess_others_count = int(se.count)
 		if is_camera_focused:
+			_change_possession_help_label()
 			$LabelGroup/PossessionHelpLabel.visible = true
 			update_status_bar(se)
 		active_status_effects.append(se.duplicate())
@@ -949,6 +961,12 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 	else:
 		return false
 	return true
+
+## Changes the label used to give instructions for possession.
+func _change_possession_help_label():
+	$LabelGroup/PossessionHelpLabel.text = ("Possess: %s\nChange Target: %s" %
+		[InputMap.action_get_events("possession_select_target")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("possession_change_target")[0].as_text().replace(' - Physical','')])
 
 ### Collision Functions ###
 
@@ -1002,21 +1020,25 @@ func _on_possession_area_body_entered(body: Node2D) -> void:
 	if body.is_class("CharacterBody2D") and body.is_possessable:
 		possessable_characters.append(body)
 		if not possessing_character:
-			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
+			cur_possession_target = possessable_characters[0]
+			$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
+			_change_possession_help_label()
 
 ## Checks if the body is in the list of [member possessable_characters] and removes it.
 ## Updates the Possession label with the current possession target.
 func _on_possession_area_body_exited(body: Node2D) -> void:
 	if not body.is_class("CharacterBody2D"):
 		return # body is likely a rigidbody, like a boulder.
-	if possessable_characters.find(body) == -1:
-		#print("ERROR: No possessable body found to remove!")
+	if body not in possessable_characters:
 		return
 	possessable_characters.remove_at(possessable_characters.find(body))
 	if not possessing_character and not possessable_characters.is_empty():
-		$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
+		if cur_possession_target not in possessable_characters:
+			cur_possession_target = possessable_characters[0]
+		$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
 	else:
 		$PossessionTargetLabel.text = ""
+	_change_possession_help_label()
 
 
 #########################

@@ -186,12 +186,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PossessionHelpLabel" type="Label" parent="LabelGroup" unique_id=1778354232]
 visible = false
-offset_left = -33.0
-offset_top = 16.0
-offset_right = 37.0
-offset_bottom = 65.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.5
+offset_top = 15.0
+offset_right = 65.5
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 4
 text = "Select: Q
-Cancel: X"
+Change Target: C"
 horizontal_alignment = 1
 
 [node name="InteractionArea" parent="." unique_id=655311682 instance=ExtResource("9_q2yw5")]
