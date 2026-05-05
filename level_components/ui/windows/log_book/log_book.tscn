@@ -55,6 +55,8 @@
 [ext_resource type="Texture2D" uid="uid://dvry72d4fo4md" path="res://art/pack/alchemy/tools/alchemy_abstract_container-full.png" id="46_fds71"]
 [ext_resource type="Texture2D" uid="uid://1l2ovcm2c3fy" path="res://art/pack/ui/status_effects/status_effect_slowed.png" id="47_fds71"]
 [ext_resource type="Texture2D" uid="uid://cr0muadltxmeb" path="res://art/pack/ui/status_effects/strength.png" id="48_oxki8"]
+[ext_resource type="Texture2D" uid="uid://cggj1hxd5kil2" path="res://art/pack/characters/blue_pawnman_down.png" id="56_2g1nq"]
+[ext_resource type="Texture2D" uid="uid://bgirrvhs1almc" path="res://art/pack/characters/grey_pawnman_down.png" id="57_m4t1c"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_bmcub"]
 clip_count = 5
@@ -160,7 +162,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 tab_0/title = "Help"
 tab_1/title = "Raw Items"
 tab_2/title = "Crafted Items"
@@ -174,7 +176,6 @@ tab_9/title = "Status Effects"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -577,6 +578,7 @@ autowrap_mode = 3
 
 [node name="TabRawItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1613085781]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -1578,15 +1580,25 @@ text = "Shrink Potion"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
+[node name="ButtonBookHerbFlakes" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1243457444]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rpebb")
+text = "Herb Flakes"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer" unique_id=1263152269]
 layout_mode = 2
 size_flags_horizontal = 3
-current_tab = 2
+current_tab = 0
 tabs_visible = false
 
 [node name="PageBookRawMaterials" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=2075876923]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 100
@@ -1652,6 +1664,7 @@ This place is bizarre and mysterious, but as you grow to understand it, you can 
 
 [node name="PageBookShrinkPotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1130674966]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
@@ -1666,6 +1679,22 @@ size_flags_vertical = 3
 text = "Changing someone’s size can pose some questions: Do my clothes change with me? Are the changes proportional across all body parts? Is this reversible?
 
 Luckily, the answer to all of these questions is yes, if you follow the procedure properly."
+
+[node name="PageBookHerbFlakes" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1542519705]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 3
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookHerbFlakes" unique_id=1049305632]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Herb flakes are one of the most commonly used materials for herbal remedies.  They give a burst of energy when consumed. There are also very few documented side effects and they are very rare."
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
 unique_name_in_owner = true
@@ -1852,6 +1881,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusEnergized" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=657233490]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1867,6 +1897,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusEnergizedBurst" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1733195317]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1882,6 +1913,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusGrow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=699966859]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1898,6 +1930,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusNormalize" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=926416770]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1913,6 +1946,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusSelfAttunement" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=610366998]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1929,6 +1963,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusShrink" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=682106144]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1945,6 +1980,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusSlow" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=579949949]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1960,6 +1996,7 @@ metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
 [node name="ButtonStatusStrengthen" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=175063796]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme = ExtResource("15_bmcub")
@@ -1968,6 +2005,38 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_4wpt1")
 text = "Strengthen"
 icon = ExtResource("48_oxki8")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonStatusPossess" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1307240034]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+theme_override_constants/outline_size = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Possess"
+icon = ExtResource("56_2g1nq")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonStatusPossessWeak" type="Button" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList" unique_id=1720722068]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+theme_override_constants/outline_size = 4
+toggle_mode = true
+button_group = SubResource("ButtonGroup_4wpt1")
+text = "Possess (Weak)"
+icon = ExtResource("57_m4t1c")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("17_kyji0")
@@ -2089,6 +2158,8 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" to="." method="_on_button_book_herb_flakes_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" method="_on_pressed"]
@@ -2113,3 +2184,7 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusSlow" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" to="." method="_on_button_status_strengthen_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusStrengthen" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossess" to="." method="_on_button_status_possess_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossess" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossess" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossessWeak" to="." method="_on_button_status_possess_weak_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossessWeak" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossessWeak" method="_on_pressed"]

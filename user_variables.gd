@@ -28,6 +28,8 @@ var objects_cut_interacted: Dictionary[String, Array]
 var objects_combined: Dictionary[String, Array]
 ## The count of each item with a given item ID
 var items_used: Dictionary[int, int]
+## List of status effect IDs that have been applied to the user (or learned about)
+var learned_status_effects: Array[int]
 ## List of names of pages that have been opened by the user.
 var pages_opened : Array[String]
 
@@ -46,6 +48,7 @@ func save() -> Dictionary:
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
 		"items_used" : var_to_str(items_used),
+		"learned_status_effects" : var_to_str(learned_status_effects),
 		"pages_opened" : var_to_str(pages_opened)
 	}
 	return save_dict

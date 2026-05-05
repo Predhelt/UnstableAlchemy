@@ -239,7 +239,7 @@ func add_procedure(recipe: Recipe):
 		cur_cd.change_text_color_override(Color(1,0,0))
 	
 	if has_craft_recipe:
-		if UserVariables.crafted_recipes[recipe.id] > 0:
+		if UserVariables.crafted_recipes[recipe.id] > 0 and recipe.id != 999:
 			if _has_craft_items(recipe):
 				cur_cd.set_quick_craft_enabled(true)
 				cur_cd.set_quick_craft_tooltip("Click to auto-craft using this procedure.")

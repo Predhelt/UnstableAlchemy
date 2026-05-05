@@ -1020,7 +1020,8 @@ func _on_possession_area_body_entered(body: Node2D) -> void:
 	if body.is_class("CharacterBody2D") and body.is_possessable:
 		possessable_characters.append(body)
 		if not possessing_character:
-			cur_possession_target = possessable_characters[0]
+			if not cur_possession_target:
+				cur_possession_target = possessable_characters[0]
 			$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
 			_change_possession_help_label()
 

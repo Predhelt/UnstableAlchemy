@@ -138,7 +138,7 @@ func add_dropped_item(item : Item) -> bool:
 func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
-	if recipe != null:
+	if recipe != null and recipe.id != 999:
 		Global.focused_node.learn_recipe(recipe, true)
 		
 		## Update the recipe list if already open.

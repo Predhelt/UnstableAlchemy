@@ -13,7 +13,7 @@ extends UIWindow
 ## Theme used for buttons whose pages are new.
 var new_button_theme : Theme = preload("res://art/styles/red_button_theme.tres")
 
-#TODO: Add tab for cutscenes that have been viewed.
+#TODO: Add tab for cutscenes that have been viewed?
 ## Tracks the mode prior to the log book opening.
 var prev_mode : StringName
 ## Reference to the current character/node whose information is being used to display the log book.
@@ -126,7 +126,7 @@ func set_buttons_visibility(character : Node = null) -> void:
 	for book_id in character_ref.books_read:
 		match book_id:
 			1000: # Green Flakes Book
-				pass
+				show_button(%ButtonBookHerbFlakes)
 			1001: # Strength Potion Book
 				pass
 			1002: # Red Berry Seed Book
@@ -137,7 +137,7 @@ func set_buttons_visibility(character : Node = null) -> void:
 				pass
 			1005:
 				pass
-			2000:
+			2000: # Letter from R
 				show_button(%ButtonBookLetterFromR)
 	for recipe in character_ref.known_recipes:
 		match recipe.id:
@@ -211,6 +211,27 @@ func set_buttons_visibility(character : Node = null) -> void:
 			show_button(%ButtonPlantYellowFlowers)
 		if obj_name == "Blue Berry Bush":
 			show_button(%ButtonPlantBlueBerryBush)
+	# Button visibility for Status Effects
+	for se_id in character_ref.learned_status_effects:
+		match se_id:
+			0: # Energized & Burst NOTE: Same page for burst and energized due to sorting by ID.
+				show_button(%ButtonStatusEnergized)
+			1: # Slow
+				show_button(%ButtonStatusSlow)
+			2: # Shrink
+				show_button(%ButtonStatusShrink)
+			3: # Grow
+				show_button(%ButtonStatusGrow)
+			4: # Strengthen
+				show_button(%ButtonStatusStrengthen)
+			5: # Self-Attunement
+				show_button(%ButtonStatusSelfAttunement)
+			100: # Cleanse
+				show_button(%ButtonStatusCleanse)
+			101: # Normalize
+				show_button(%ButtonStatusNormalize)
+			200: # Possess
+				show_button(%ButtonStatusPossess)
 
 ## Hides all buttons whose visibility is changed dynamically based on the character/user's data.
 func hide_dynamic_buttons() -> void:
@@ -819,6 +840,9 @@ func _on_button_book_shrink_potion_pressed() -> void:
 	#current_book = load("")
 	open_book_page(%PageBookShrinkPotion)
 
+func _on_button_book_herb_flakes_pressed() -> void:
+	open_book_page(%PageBookHerbFlakes)
+
 ### Places Tab ###
 ##################
 func _on_button_places_botania_pressed() -> void:
@@ -865,4 +889,12 @@ func _on_button_status_slow_pressed() -> void:
 
 func _on_button_status_strengthen_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/strengthen.tres")
+	open_status_page()
+
+func _on_button_status_possess_pressed() -> void:
+	current_status_effect = load("res://game_systems/status_effects/possess.tres")
+	open_status_page()
+
+func _on_button_status_possess_weak_pressed() -> void:
+	current_status_effect = load("res://game_systems/status_effects/possess_weak.tres")
 	open_status_page()

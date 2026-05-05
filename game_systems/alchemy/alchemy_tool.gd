@@ -162,7 +162,7 @@ func open_minigame(mg_items: Array[Item]):
 	minigame_ref.open_window()
 
 ## For alchemy tools that do not have a separate minigame window. Assume to be merger.
-func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using minigame
+func begin_craft(result_recipe: Recipe):
 	if not result_recipe.product_item:
 		print("Error: No product item for recipe!")
 		return
@@ -184,9 +184,6 @@ func begin_craft(result_recipe: Recipe): #NOTE: Deprecate when merger is using m
 	progress_bar.max_value = use_timer
 	progress_bar.visible = true
 	is_using = true
-	
-	
-	
 
 ## Removes an item from the alchemy tool and disables the slot at the given index.
 func remove_item(index: int) -> void:

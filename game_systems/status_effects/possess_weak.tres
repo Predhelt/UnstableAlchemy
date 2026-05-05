@@ -7,7 +7,7 @@
 script = ExtResource("2_tcw5e")
 id = 201
 name = "Possess (Weak)"
-description = "Able to possess a susceptible target once."
+description = "Weak version. Able to possess one susceptible target once. You can craft, interact with, and use objects as the possessee, and any knowledge you gain will transfer to the possessor."
 icon = ExtResource("1_iciy1")
 effect = "possess"
 value = 1.0
