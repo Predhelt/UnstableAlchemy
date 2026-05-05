@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bcwfgisnvhr3s"]
 
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_546pi"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_546pi"]
 [ext_resource type="Script" uid="uid://birfxx8f7k7lf" path="res://level_components/ui/windows/character_shop/character_shop.gd" id="1_fogeq"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_lkond"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="3_sc40q"]

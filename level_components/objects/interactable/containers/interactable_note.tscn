@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bii4ap0xms52m"]
+
+[ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="1_mtky7"]
+[ext_resource type="Texture2D" uid="uid://c0bqhjqs8sxd7" path="res://art/pack/objects/page.png" id="2_ier4l"]
+
+[node name="InteractableNote" unique_id=1856845390 instance=ExtResource("1_mtky7")]
+display_name = "\"Recipe page\""
+description = "A page with recipes"
+
+[node name="Sprite2D" parent="." index="1" unique_id=312684338]
+texture = ExtResource("2_ier4l")

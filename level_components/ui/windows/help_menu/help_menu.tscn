@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bcpe4vv1ln1ax"]
 
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_218ff"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_218ff"]
 [ext_resource type="Script" uid="uid://cm00ohcxqvc0v" path="res://level_components/ui/windows/help_menu/help_menu.gd" id="1_fsl5b"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="1_qo1vr"]
 [ext_resource type="Texture2D" uid="uid://baysd77wlv4ma" path="res://art/pack/tools/hand.png" id="3_qopdq"]

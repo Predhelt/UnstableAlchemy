@@ -11,7 +11,7 @@
 extends UIWindow
 
 ## Theme used for buttons whose pages are new.
-var new_button_theme : Theme = preload("res://level_components/ui/windows/log_book/yellow_button_theme.tres")
+var new_button_theme : Theme = preload("res://art/styles/red_button_theme.tres")
 
 #TODO: Add tab for cutscenes that have been viewed.
 ## Tracks the mode prior to the log book opening.

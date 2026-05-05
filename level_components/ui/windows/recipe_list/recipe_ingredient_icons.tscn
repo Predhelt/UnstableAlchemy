@@ -1,30 +1,30 @@
 [gd_scene format=3 uid="uid://dsxukygiu3bf5"]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[ext_resource type="PackedScene" uid="uid://dnl0g6b6pxenh" path="res://level_components/ui/windows/recipe_list/recipe_item_icon.tscn" id="1_cinvx"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1039808034]
 offset_right = 184.0
 offset_bottom = 36.0
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1047760615]
 layout_mode = 2
 text = "Needs:"
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="RecipeItemIcon" parent="." unique_id=611847686 instance=ExtResource("1_cinvx")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="." unique_id=772182840]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1313984803]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 expand_mode = 3
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label3" type="Label" parent="." unique_id=451176896]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 2
-expand_mode = 3
-
-[node name="Label3" type="Label" parent="."]
-layout_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=1520607833]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 expand_mode = 3

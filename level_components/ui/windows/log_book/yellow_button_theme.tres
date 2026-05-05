@@ -1,9 +1,0 @@
-[gd_resource type="Theme" format=3 uid="uid://8ifkvvbbjium"]
-
-[ext_resource type="StyleBox" uid="uid://bgmn5jjybycy0" path="res://level_components/ui/windows/log_book/yellow_style_box.tres" id="1_ghvra"]
-
-[resource]
-Button/styles/focus = ExtResource("1_ghvra")
-Button/styles/hover = ExtResource("1_ghvra")
-Button/styles/normal = ExtResource("1_ghvra")
-Button/styles/pressed = ExtResource("1_ghvra")

@@ -28,6 +28,8 @@ var recipe_craft_details := preload("./recipe_craft_details.tscn")
 var items_gained_effect : PackedScene = preload("res://art/effects/items_gained_effect_ui.tscn")
 ## Effect for adding brief text notification in window.
 var text_effect : PackedScene = preload("res://art/effects/text_effect_ui.tscn")
+## Theme for buttons that represent missing ingredients in a recipe.
+var missing_ingredient_theme : Theme = preload("res://art/styles/red_button_theme.tres")
 
 
 func _ready() -> void:
@@ -136,18 +138,26 @@ func add_ingredients(recipe: Recipe):
 	if num_ingredients > 3:
 		print("ERROR: more than 3 ingredients")
 	
-	ingredient_display.get_child(1).texture = recipe.ingredients[0].texture
-	ingredient_display.get_child(1).tooltip_text = recipe.ingredients[0].display_name
+	var ingredient1: Button = ingredient_display.get_child(1)
+	ingredient1.icon = recipe.ingredients[0].texture
+	ingredient1.tooltip_text = recipe.ingredients[0].display_name
+	_set_button_theme(ingredient1, recipe.ingredients[0])
+	if Global.focused_node.inventory.has_item(recipe.ingredients[0]):
+		_link_ingredient_button_to_item(ingredient1, recipe.ingredients[0])
+		ingredient1.disabled = false
+	else:
+		ingredient1.disabled = true
 	
-	if num_ingredients > 1:
-		ingredient_display.get_child(2).text = ","
-		ingredient_display.get_child(3).texture = recipe.ingredients[1].texture
-		ingredient_display.get_child(3).tooltip_text = recipe.ingredients[1].display_name
 	
-	if num_ingredients > 2:
-		ingredient_display.get_child(4)
-		ingredient_display.get_child(5).texture = recipe.ingredients[2].texture
-		ingredient_display.get_child(5).tooltip_text = recipe.ingredients[2].display_name
+	#if num_ingredients > 1:
+		#ingredient_display.get_child(2).text = ","
+		#ingredient_display.get_child(3).texture = recipe.ingredients[1].texture
+		#ingredient_display.get_child(3).tooltip_text = recipe.ingredients[1].display_name
+	#
+	#if num_ingredients > 2:
+		#ingredient_display.get_child(4)
+		#ingredient_display.get_child(5).texture = recipe.ingredients[2].texture
+		#ingredient_display.get_child(5).tooltip_text = recipe.ingredients[2].display_name
 		
 	%ProcedureList.add_child(ingredient_display)
 
@@ -187,6 +197,7 @@ func add_procedure(recipe: Recipe):
 		var ingredient_icon : Button = recipe_item_icon.instantiate()
 		ingredient_icon.icon = recipe.ingredients[0].texture
 		ingredient_icon.tooltip_text = recipe.ingredients[0].display_name
+		_set_button_theme(ingredient_icon, recipe.ingredients[0])
 		_link_ingredient_button_to_item(ingredient_icon, recipe.ingredients[0])
 		cur_procedures_container.add_child(ingredient_icon)
 		
@@ -197,6 +208,7 @@ func add_procedure(recipe: Recipe):
 		ingredient_icon = recipe_item_icon.instantiate()
 		ingredient_icon.icon = recipe.ingredients[1].texture
 		ingredient_icon.tooltip_text = recipe.ingredients[1].display_name
+		_set_button_theme(ingredient_icon, recipe.ingredients[1])
 		_link_ingredient_button_to_item(ingredient_icon, recipe.ingredients[1])
 		cur_procedures_container.add_child(ingredient_icon)
 	
@@ -221,14 +233,16 @@ func add_procedure(recipe: Recipe):
 	var has_craft_recipe : bool = UserVariables.crafted_recipes.has(recipe.id)
 	if has_craft_recipe:
 		cur_cd.set_craft_count(UserVariables.crafted_recipes[recipe.id])
+		cur_cd.change_text_color_override(null)
 	else:
 		cur_cd.set_craft_count(0)
+		cur_cd.change_text_color_override(Color(1,0,0))
 	
 	if has_craft_recipe:
 		if UserVariables.crafted_recipes[recipe.id] > 0:
 			if _has_craft_items(recipe):
 				cur_cd.set_quick_craft_enabled(true)
-				cur_cd.set_quick_craft_tooltip("Click to auto-craft the using this procedure.")
+				cur_cd.set_quick_craft_tooltip("Click to auto-craft using this procedure.")
 			else:
 				cur_cd.set_quick_craft_enabled(false)
 				cur_cd.set_quick_craft_tooltip("Missing ingredients!")
@@ -283,6 +297,7 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 			elif cur_ia.type == "item":
 				for ingredient in recipe.ingredients:
 					if cur_ia.id == ingredient.id:
+						_set_button_theme(pia_icon, ingredient)
 						pia_icon.icon = ingredient.texture
 						pia_icon.tooltip_text = ingredient.display_name
 						
@@ -313,6 +328,13 @@ func _has_craft_items(recipe : Recipe) -> bool:
 	if not Global.focused_node.inventory.has_item_amounts(ingredients, qtys):
 		return false
 	return true
+
+## Sets the theme of the button based on if the ingredient is in the character's inventory.
+func _set_button_theme(btn: Button, ingredient: Item) -> void:
+	if Global.focused_node.inventory.has_item(ingredient):
+		btn.theme = null
+	else:
+		btn.theme = missing_ingredient_theme
 
 ## Perform the craft, if possible, then add the result to the character's inventory.
 ## Returns whether or not the craft was successful.

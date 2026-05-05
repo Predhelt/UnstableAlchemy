@@ -16,3 +16,10 @@ func set_quick_craft_enabled(is_enabled : bool = true):
 
 func set_quick_craft_tooltip(txt : String):
 	$ButtonQuickCraft.tooltip_text = txt
+
+## Changes the theme of the text.
+func change_text_color_override(c : Color) -> void:
+	if not c:
+		$HBoxContainer/LabelCraftCount.remove_theme_color_override()
+	else:
+		$HBoxContainer/LabelCraftCount.add_theme_color_override("font_color", c)

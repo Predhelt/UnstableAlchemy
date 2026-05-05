@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dc5d3ocd8w0fu"]
 
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_vxomh"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_vxomh"]
 [ext_resource type="Script" uid="uid://df82k6p2pmfec" path="res://level_components/ui/windows/recipe_list/recipe_list.gd" id="2_2htw0"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="3_1xr7c"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://art/pack/alchemy/potions/potion_standard_grey.png" id="3_2hrkg"]

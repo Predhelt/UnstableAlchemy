@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d24ge55seaobg"]
 
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_cupdn"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_cupdn"]
 [ext_resource type="Script" uid="uid://dkxemkd2us7vl" path="res://level_components/ui/windows/alchemy_minigame/cauldron/cauldron_minigame.gd" id="1_geiyq"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="2_24nro"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_u2uge"]

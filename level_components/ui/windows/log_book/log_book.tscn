@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://devoaotbjwrvh"]
 
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_3k5yu"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_3k5yu"]
 [ext_resource type="Script" uid="uid://dtft7r4vn4wk7" path="res://level_components/ui/windows/log_book/log_book.gd" id="2_xtph8"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="3_3ksyy"]
 [ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/audio/sounds/page_flip.mp3" id="3_6jatn"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="14_luiyi"]
 [ext_resource type="Texture2D" uid="uid://bqm0r3bu3t63h" path="res://art/pack/alchemy/tools/alchemy_merger.png" id="14_oxki8"]
 [ext_resource type="Texture2D" uid="uid://b5mm0hootfp6a" path="res://art/pack/ingredients/inventory/red_juice.png" id="15_b6osi"]
-[ext_resource type="Theme" uid="uid://8ifkvvbbjium" path="res://level_components/ui/windows/log_book/yellow_button_theme.tres" id="15_bmcub"]
+[ext_resource type="Theme" uid="uid://8ifkvvbbjium" path="res://art/styles/yellow_button_theme.tres" id="15_bmcub"]
 [ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red_berry_seed.png" id="16_4y6fb"]
 [ext_resource type="Script" uid="uid://be3mq7xu1wxom" path="res://level_components/ui/windows/log_book/page_button.gd" id="17_kyji0"]
 [ext_resource type="Texture2D" uid="uid://bx5pe8o6eontp" path="res://art/pack/ingredients/inventory/flower_stem_saturated.png" id="17_yrnwa"]

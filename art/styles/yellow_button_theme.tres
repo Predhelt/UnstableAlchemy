@@ -1,0 +1,19 @@
+[gd_resource type="Theme" format=3 uid="uid://8ifkvvbbjium"]
+
+[ext_resource type="StyleBox" uid="uid://bgmn5jjybycy0" path="res://art/styles/yellow_style_box.tres" id="1_oynbs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipnbw"]
+bg_color = Color(0.12640712, 0.10349568, 0, 0.48235294)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oynbs"]
+bg_color = Color(0.9910552, 0.85893995, 0, 0.48235294)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd8dd"]
+bg_color = Color(0.33756146, 0.28798163, 0, 0.48235294)
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_ipnbw")
+Button/styles/focus = ExtResource("1_oynbs")
+Button/styles/hover = SubResource("StyleBoxFlat_oynbs")
+Button/styles/normal = ExtResource("1_oynbs")
+Button/styles/pressed = SubResource("StyleBoxFlat_xd8dd")

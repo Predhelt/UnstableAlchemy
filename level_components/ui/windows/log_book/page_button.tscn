@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5kdhleoyh2cu"]
 
-[ext_resource type="Theme" uid="uid://8ifkvvbbjium" path="res://level_components/ui/windows/log_book/yellow_button_theme.tres" id="1_yxlth"]
+[ext_resource type="Theme" uid="uid://8ifkvvbbjium" path="res://art/styles/yellow_button_theme.tres" id="1_yxlth"]
 [ext_resource type="Script" uid="uid://be3mq7xu1wxom" path="res://level_components/ui/windows/log_book/page_button.gd" id="2_5sm8e"]
 
 [node name="PageButton" type="Button" unique_id=62653097]

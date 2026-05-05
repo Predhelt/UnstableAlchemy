@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwmnuacpgn38h"]
 
-[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/ua_default_theme.tres" id="1_85brq"]
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_85brq"]
 [ext_resource type="Script" uid="uid://b172ilt6vpe4b" path="res://level_components/ui/windows/alchemy_minigame/mortar_pestle/mortar_pestle_minigame.gd" id="1_vo0bl"]
 [ext_resource type="PackedScene" uid="uid://cg7gcw1ey7rhj" path="res://level_components/ui/windows/alchemy_minigame/minigame_progress_bar.tscn" id="2_70xyk"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_aqc0h"]
