@@ -253,7 +253,10 @@ func sample_item(item) -> void:
 func consume_item(item : Item, index : int) -> void:
 	if not $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the consuming is disabled
 		return
-		
+	for event in item.on_consume_events.keys():
+		#var param_str: String = ""
+		#for param in item.on_consume_events[event]:
+		EventHandler.callv(event, item.on_consume_events[event])
 	Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
 	
 	match item.use_sound:

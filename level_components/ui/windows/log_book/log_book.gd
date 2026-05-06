@@ -325,6 +325,45 @@ func _interaction_object_counts_as_str(object_name : String) -> String:
 ### Open Pages ###
 ##################
 
+## Open the page with the [param page_name].
+## For instance, "HelpGeneral" opens "PageHelpGeneral".
+func open_page(page_name: String) -> bool:
+	var button_ref : PageButton = find_child("Button%s" % page_name)
+	if not button_ref:
+		return false
+	if page_name.begins_with("Help"):
+		$VBoxContainer/TabContainer.current_tab = 0
+	elif page_name.begins_with("RawItem"):
+		$VBoxContainer/TabContainer.current_tab = 1
+	elif page_name.begins_with("CraftedItem"):
+		$VBoxContainer/TabContainer.current_tab = 2
+	elif page_name.begins_with("Potion"):
+		$VBoxContainer/TabContainer.current_tab = 3
+	elif page_name.begins_with("Plant"):
+		$VBoxContainer/TabContainer.current_tab = 4
+	elif page_name.begins_with("Object"):
+		$VBoxContainer/TabContainer.current_tab = 5
+	elif page_name.begins_with("Book"):
+		$VBoxContainer/TabContainer.current_tab = 6
+	elif page_name.begins_with("Place"):
+		$VBoxContainer/TabContainer.current_tab = 7
+	elif page_name.begins_with("Person"):
+		$VBoxContainer/TabContainer.current_tab = 8
+	elif page_name.begins_with("Status"):
+		$VBoxContainer/TabContainer.current_tab = 9
+	else:
+		return false
+	button_ref.visible = true
+	button_ref.button_pressed = true
+	button_ref.pressed.emit() # NOTE: Emitting because for some reason button_pressed isn't emitting.
+	return true
+
+## Open the tab with the [param tab_index]. Then call the button press for the page to open.
+## In the format: _on_button_"[param button_category_name]"_"[param button_page_name]"_pressed()
+func _open_current_page(tab_index: int, button_category_name: String, button_page_name: String):
+	$VBoxContainer/TabContainer.current_tab = tab_index
+	call("_on_button_%s_%s_pressed" % [button_category_name, button_page_name])
+
 ## 
 func open_page_help_general():
 	#%WindowName.text = "Help: General"
@@ -819,7 +858,7 @@ func _on_button_object_boulder_pressed() -> void:
 func _on_button_object_sliding_door_pressed() -> void:
 	current_object_scene = load("res://level_components/objects/triggers/sliding_door_horizontal.tscn").instantiate()
 	open_object_page(%PageObjectSlidingDoor)
-# FIXME: crawlspace is a script, wall_small_hole is a scene containing it.
+
 func _on_button_object_wall_small_hole_pressed() -> void:
 	current_object_scene = load("res://level_components/objects/collisions/wall_small_hole.tscn").instantiate()
 	open_object_page(%PageObjectWallSmallHole)

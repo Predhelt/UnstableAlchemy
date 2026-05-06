@@ -666,7 +666,7 @@ func update_status_effects(statuses: Array[StatusEffect], message: String):
 			if se.id not in UserVariables.learned_status_effects:
 				UserVariables.learned_status_effects.append(se.id)
 				Global.emit_notification("Log Book Entry Added")
-	if is_added:
+	if is_added or statuses.is_empty():
 		update_status_message(message)
 	else:
 		update_status_message("...")
@@ -720,7 +720,8 @@ func apply_status_effect(se: StatusEffect) -> bool:
 ## Changes the text of the status message and resets the timer for how long the message appears.
 func update_status_message(message: String):
 	if not message:
-		message = "..."
+		pass
+		#message = "..."
 	%StatusLabel.text = "[center]%s[/center]" % message
 	message_timer = 5.0
 
@@ -840,7 +841,6 @@ func _normalize_status_effects() -> bool:
 	for i in range(len(active_status_effects)-1, -1, -1):
 		if active_status_effects[i].duration == -1:
 			remove_status_effect(active_status_effects[i])
-			
 	return true
 
 ## Increases the size of the player, 

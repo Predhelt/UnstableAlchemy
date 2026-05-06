@@ -22,5 +22,8 @@ texture = ExtResource("10_j62b7")
 primary_color = "brown"
 use_sound = "read"
 max_qty = 1
+on_consume_events = Dictionary[String, Array]({
+"open_log_book_page": ["BookShrinkPotion"]
+})
 on_consume_message = "This is pretty complicated"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

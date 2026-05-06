@@ -194,6 +194,8 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons" unique_id=1244989062]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ButtonHelpGeneral" type="Button" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer" unique_id=398438587]
 unique_name_in_owner = true
@@ -1569,17 +1571,6 @@ text = "Letter from \"R\""
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookShrinkPotion" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1142917391]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("15_bmcub")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_rpebb")
-text = "Shrink Potion"
-script = ExtResource("17_kyji0")
-metadata/_custom_type_script = "uid://be3mq7xu1wxom"
-
 [node name="ButtonBookHerbFlakes" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1243457444]
 unique_name_in_owner = true
 visible = false
@@ -1588,6 +1579,17 @@ theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
 text = "Herb Flakes"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonBookShrinkPotion" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1142917391]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rpebb")
+text = "Shrink Potion"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
@@ -1694,7 +1696,9 @@ metadata/_tab_index = 3
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookHerbFlakes" unique_id=1049305632]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Herb flakes are one of the most commonly used materials for herbal remedies.  They give a burst of energy when consumed. There are also very few documented side effects and they are very rare."
+text = "Herb flakes are one of the most commonly used materials for herbal remedies.  They give a burst of energy when consumed. There are also very few documented side effects. The effects last for only a few seconds, sometimes up to a minute for some people.
+
+Prolonged use is not recommended as it is not an easily maintainable level of activity, and longer-term solutions are usually available. Some instances of addiction have been documented, however these seem to be due to lifestyle choices."
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
 unique_name_in_owner = true
@@ -2159,10 +2163,10 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookRawMaterials" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" to="." method="_on_button_book_letter_from_r_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookLetterFromR" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" to="." method="_on_button_book_herb_flakes_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" method="_on_pressed"]

@@ -18,8 +18,8 @@ func set_quick_craft_tooltip(txt : String):
 	$ButtonQuickCraft.tooltip_text = txt
 
 ## Changes the theme of the text.
-func change_text_color_override(c : Color) -> void:
-	if not c:
-		$HBoxContainer/LabelCraftCount.remove_theme_color_override()
+func change_text_color_override(color) -> void:
+	if not color:
+		$HBoxContainer/LabelCraftCount.remove_theme_color_override("font_color")
 	else:
-		$HBoxContainer/LabelCraftCount.add_theme_color_override("font_color", c)
+		$HBoxContainer/LabelCraftCount.add_theme_color_override("font_color", color)

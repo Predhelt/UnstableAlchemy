@@ -22,6 +22,10 @@ var type : String = "Item"
 @export var max_qty := 10 
 ## Tracks the current amount of the item either in the inventory slot or in the object the item is contained in.
 @export var qty := 1 
+## Events that get triggered when the item is consumed.
+## The keys are the strings representing the name of the callable function in the EventHandler
+## and the value array is the list of parameters of the function.
+@export var on_consume_events : Dictionary[String,Array]
 ## Status effects that are emitted to the player when the player samples or consumes the item.
 @export var on_consume_effects : Array[StatusEffect] 
 ## The message that the player emits when the item is consumed, relating to the effects of the item.

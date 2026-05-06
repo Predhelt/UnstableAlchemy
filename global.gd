@@ -1,5 +1,5 @@
 ## Global variables and functions
-extends Node2D
+extends Node
 #TODO: Remake UI with controller/mobile
 
 ## Reference to the main camera used for displaying to the user.

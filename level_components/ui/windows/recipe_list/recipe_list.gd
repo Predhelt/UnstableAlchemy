@@ -236,7 +236,7 @@ func add_procedure(recipe: Recipe):
 		cur_cd.change_text_color_override(null)
 	else:
 		cur_cd.set_craft_count(0)
-		cur_cd.change_text_color_override(Color(1,0,0))
+		cur_cd.change_text_color_override(Color.RED)
 	
 	if has_craft_recipe:
 		if UserVariables.crafted_recipes[recipe.id] > 0 and recipe.id != 999:
