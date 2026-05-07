@@ -1,5 +1,8 @@
+## Boulder that can be pushed by characters if their strength
+## smatches or exceeds the mass of the boulder.
 extends RigidBody2D
 
+## Saves the object information to file on save if true. Else, is reset upon re-loading.
 @export var is_persistent: bool = false
 
 func _ready() -> void:
