@@ -51,7 +51,7 @@ display_name = "Green Herb Leaf"
 description = "A leaf of a green herb. It is mundane in its current state."
 texture = ExtResource("11_v5e0f")
 max_qty = 32
-qty = -1
+qty = 10
 on_consume_message = "That tastes bitter"
 
 [sub_resource type="Resource" id="Resource_lyfyp"]
@@ -142,36 +142,6 @@ tile_map_data = PackedByteArray("AAAQAML/AQAAAAEAAAAQAMP/AQAAAAEAAAAQAMT/AQAAAAE
 position = Vector2(0, 512)
 tile_map_data = PackedByteArray("AAAbAOb/AAADAAAAAAAbAOf/AAADAAEAAAAbAOj/AAADAAEAAAAbAOn/AAAAAAQAAAAbAOv/AAAAAAMAAAAbAOz/AAADAAEAAAAbAO3/AAADAAEAAAAbAO7/AAADAAIAAAAcAOb/AAAEAAAAAAAcAO7/AAAEAAAAAAAdAO7/AAAEAAAAAAAeAOb/AAAEAAAAAAAeAO7/AAAEAAAAAAAfAOb/AAAEAAAAAAAgAOb/AAAEAAAAAAAhAOb/AAAEAAMAAAAGAPL/AAADAAIAAAAHAPL/AAAEAAAAAAAIAPL/AAAEAAAAAAAJAPL/AAAEAAAAAAAKAPL/AAAEAAAAAAALAPL/AAAEAAAAAAAMAPL/AAAEAAAAAAANAPL/AAAEAAAAAAAOAPL/AAAEAAAAAAAPAPL/AAAEAAAAAAAQAPL/AAAEAAAAAAARAPL/AAAEAAAAAAASAPL/AAAEAAAAAAATAPL/AAAEAAAAAAAUAPL/AAAEAAAAAAAVAPL/AAAEAAAAAAAWAPL/AAAEAAAAAAAXAPL/AAAEAAAAAAAYAPL/AAAEAAAAAAAZAPL/AAAEAAAAAAAaAPL/AAAEAAAAAAAbAPL/AAAEAAAAAAAcAPL/AAAEAAAAAAAdAPL/AAAEAAAAAAAeAPL/AAAEAAAAAAAfAPL/AAAEAAAAAAAgAPL/AAAEAAAAAAAhAPL/AAAEAAAAAAAiAPL/AAAEAAAAAAAjAPL/AAAEAAAAAAAkAPL/AAAEAAAAAAAlAPL/AAAEAAAAAAAYANT/AAAEAAMAAAAYANX/AAADAAEAAAAYANb/AAADAAEAAAAYANf/AAADAAQAAAAYANj/AAADAAEAAAAYANn/AAADAAEAAAAYANr/AAADAAEAAAAYANv/AAADAAEAAAAdANT/AAAEAAMAAAAdANX/AAADAAEAAAAdANb/AAADAAEAAAAdANf/AAADAAEAAAAdANn/AAADAAEAAAAdANr/AAAEAAQAAAAdANv/AAADAAEAAAANANT/AAADAAAAAAAOANT/AAAEAAAAAAAPANT/AAAEAAAAAAAQANT/AAAEAAAAAAARANT/AAAEAAAAAAASANT/AAAHAAIAAAAVANT/AAAGAAIAAAAWANT/AAAEAAAAAAAXANT/AAAEAAAAAAAYAN3/AAADAAIAAAAZANT/AAAEAAAAAAAZANf/AAAEAAAAAAAZAN3/AAAEAAAAAAAaANT/AAAEAAAAAAAaANr/AAAGAAIAAAAaAN3/AAAEAAAAAAAbANT/AAAEAAAAAAAbANf/AAAHAAIAAAAbANr/AAAEAAAAAAAbAN3/AAAHAAIAAAAcANT/AAAEAAAAAAAcANr/AAAEAAAAAAAdANz/AAADAAEAAAAdAN3/AAAAAAQAAAAeANT/AAAEAAAAAAAfANT/AAAEAAMAAAAmAPL/AAAEAAAAAAAnAPL/AAAFAAIAAAAnAOP/AAAEAAQAAAAnAOT/AAADAAEAAAAnAOX/AAADAAEAAAAnAOb/AAADAAEAAAAnAOf/AAADAAEAAAAnAOj/AAADAAEAAAAnAOn/AAADAAEAAAAnAOr/AAADAAEAAAAnAOv/AAADAAEAAAAnAOz/AAADAAEAAAAnAO3/AAADAAEAAAAnAO7/AAADAAEAAAAnAO//AAADAAEAAAAnAPD/AAADAAEAAAAnAPH/AAADAAEAAAANAOP/AAAFAAIAAAANAOL/AAADAAEAAAANAOH/AAADAAEAAAANAOD/AAADAAEAAAANAN//AAADAAEAAAANAN7/AAADAAEAAAANAN3/AAADAAEAAAANANz/AAADAAEAAAANANv/AAADAAEAAAANANr/AAADAAEAAAANANn/AAADAAEAAAANANj/AAADAAEAAAANANf/AAADAAEAAAANANb/AAADAAEAAAANANX/AAADAAEAAAAIAOP/AAADAAAAAAAJAOP/AAAEAAAAAAAKAOP/AAAEAAAAAAALAOP/AAAEAAAAAAAMAOP/AAAEAAAAAAAIAOz/AAAFAAIAAAAIAOv/AAADAAEAAAAIAOr/AAADAAEAAAAIAOn/AAADAAEAAAAIAOj/AAADAAEAAAAIAOf/AAADAAEAAAAIAOb/AAADAAEAAAAIAOX/AAADAAEAAAAIAOT/AAADAAEAAAAGAOz/AAADAAAAAAAHAOz/AAAEAAAAAAAGAPH/AAADAAEAAAAGAPD/AAADAAEAAAAGAO//AAADAAEAAAAGAO7/AAADAAEAAAAGAO3/AAADAAEAAAAhAOf/AAADAAEAAAAhAOj/AAADAAEAAAAhAOn/AAADAAEAAAAiAO7/AAAEAAAAAAAjAO7/AAAEAAAAAAAkAO7/AAAFAAIAAAAkAO3/AAADAAEAAAAkAOz/AAADAAEAAAAkAOv/AAADAAEAAAAkAOr/AAADAAEAAAAkAOn/AAADAAEAAAAkAOj/AAADAAEAAAAkAOf/AAADAAEAAAAkAOb/AAAFAAAAAAAjAOb/AAAEAAAAAAAiAOb/AAAEAAAAAAAfAOP/AAADAAIAAAAgAOP/AAAEAAAAAAAhAOP/AAAEAAAAAAAiAOP/AAAEAAAAAAAjAOP/AAAEAAAAAAAkAOP/AAAEAAAAAAAlAOP/AAAEAAAAAAAmAOP/AAAEAAAAAAAfAOL/AAADAAEAAAAfAOH/AAADAAEAAAAfAOD/AAADAAEAAAAfAN//AAADAAEAAAAfAN7/AAADAAEAAAAfAN3/AAADAAEAAAAfANz/AAADAAEAAAAfANv/AAADAAEAAAAfANr/AAADAAEAAAAfANn/AAADAAEAAAAfANj/AAADAAEAAAAfANf/AAADAAEAAAAfANb/AAADAAEAAAAfANX/AAADAAEAAAAhAO7/AAADAAMAAAA=")
 
-[node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=527621418 instance=ExtResource("6_onki7")]
-position = Vector2(1952, -864)
-display_name = "\"Green Herbs - An Introduction\""
-description = "Describes how to make Green Flakes"
-items = Array[ExtResource("4_0k1oq")]([ExtResource("7_yd7uk")])
-grab_interaction = SubResource("Resource_phy1u")
-cut_interaction = SubResource("Resource_ov0fr")
-
-[node name="InteractableCrate2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1856845390 instance=ExtResource("6_se43p")]
-position = Vector2(1149, -2180)
-contained_item_icon = ExtResource("11_v5e0f")
-items = Array[ExtResource("4_0k1oq")]([SubResource("Resource_0k1oq")])
-grab_interaction = SubResource("Resource_lyfyp")
-cut_interaction = SubResource("Resource_onki7")
-
-[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=266748160 instance=ExtResource("10_s8amr")]
-position = Vector2(776, -1094)
-
-[node name="GreenHerb3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=872863301 instance=ExtResource("10_s8amr")]
-position = Vector2(1344, -1496)
-
-[node name="GreenHerb4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=597550431 instance=ExtResource("10_s8amr")]
-position = Vector2(1081, -1780)
-
-[node name="GreenHerb5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=634993617 instance=ExtResource("10_s8amr")]
-position = Vector2(1400, -2046)
-
-[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=2102750017 instance=ExtResource("10_s8amr")]
-position = Vector2(2208, -794)
-
 [node name="DialogueTrigger" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=2142945357 instance=ExtResource("16_vlms1")]
 position = Vector2(1438, -1760.0001)
 scale = Vector2(11.115, 9.645)
@@ -196,6 +166,38 @@ close_time = 5.5
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("16_lyfyp")]
 position = Vector2(1661, -2177)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
+
+[node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=527621418 instance=ExtResource("6_onki7")]
+position = Vector2(1952, -864)
+display_name = "\"Green Herbs - An Introduction\""
+description = "Describes how to make Green Flakes"
+items = Array[ExtResource("4_0k1oq")]([ExtResource("7_yd7uk")])
+grab_interaction = SubResource("Resource_phy1u")
+cut_interaction = SubResource("Resource_ov0fr")
+
+[node name="InteractableCrate2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1856845390 instance=ExtResource("6_se43p")]
+position = Vector2(1149, -2180)
+contained_item_icon = ExtResource("11_v5e0f")
+display_name = "\"Herb Leaves\""
+description = "Seems to contain green herb leaves."
+items = Array[ExtResource("4_0k1oq")]([SubResource("Resource_0k1oq")])
+grab_interaction = SubResource("Resource_lyfyp")
+cut_interaction = SubResource("Resource_onki7")
+
+[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=266748160 instance=ExtResource("10_s8amr")]
+position = Vector2(776, -1094)
+
+[node name="GreenHerb3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=872863301 instance=ExtResource("10_s8amr")]
+position = Vector2(1344, -1496)
+
+[node name="GreenHerb4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=597550431 instance=ExtResource("10_s8amr")]
+position = Vector2(1081, -1780)
+
+[node name="GreenHerb5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=634993617 instance=ExtResource("10_s8amr")]
+position = Vector2(1400, -2046)
+
+[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=2102750017 instance=ExtResource("10_s8amr")]
+position = Vector2(2208, -794)
 
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
 offset_left = 230.0

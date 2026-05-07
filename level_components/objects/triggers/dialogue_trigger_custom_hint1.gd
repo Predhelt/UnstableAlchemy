@@ -1,5 +1,10 @@
 extends DialogueTrigger
 
+## Inherited. Shows message in [member player_ref]
+func show_message() -> void:
+	if set_contextual_message(): # Updated message based on any changes since timer was started.
+		super()
+
 ## Override check to start the timer.
 ## Start the timer if the player enters the area. Message changes depending on
 ## entering the area without the recipe / flakes, etc.
