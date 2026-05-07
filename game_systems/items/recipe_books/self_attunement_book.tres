@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Book" format=3 uid="uid://fo621eth2lsd"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_r0tod"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_61sns"]
+[ext_resource type="Resource" uid="uid://375cq28gqlo0" path="res://game_systems/alchemy/recipes/cauldron/self_attunement.tres" id="3_3cekt"]
+[ext_resource type="Script" uid="uid://dvfx56s3nb8gd" path="res://game_systems/items/book.gd" id="3_sk4ev"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="5_icsr2"]
+
+[resource]
+script = ExtResource("3_sk4ev")
+recipes = Array[ExtResource("2_61sns")]([ExtResource("3_3cekt")])
+id = 1008
+display_name = "Self-Attunement with Potions"
+description = "Contains a recipe for a self-attunement potion"
+texture = ExtResource("5_icsr2")
+primary_color = "brown"
+use_sound = "read"
+metadata/_custom_type_script = "uid://dvfx56s3nb8gd"
