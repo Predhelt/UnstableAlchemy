@@ -42,18 +42,6 @@ offset_bottom = 154.0
 [node name="AttributeDisplay" parent="HUDLayer" unique_id=1551514349 instance=ExtResource("16_72w8f")]
 visible = false
 
-[node name="Notifications" type="VBoxContainer" parent="HUDLayer" unique_id=295845683]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.9
-anchor_right = 0.5
-anchor_bottom = 0.9
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-
 [node name="LabelEndPossession" type="Label" parent="HUDLayer" unique_id=1987697022]
 visible = false
 anchors_preset = 8
@@ -143,6 +131,18 @@ visible = false
 
 [node name="MinigameMP" parent="MinigameLayer" unique_id=542892921 instance=ExtResource("11_43y5x")]
 visible = false
+
+[node name="Notifications" type="VBoxContainer" parent="." unique_id=295845683]
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 0.8
+anchor_bottom = 0.8
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="use_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_use_inventory_item"]

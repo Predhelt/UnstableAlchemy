@@ -87,7 +87,7 @@ func reset_level() -> void:
 func emit_notification(message : String):
 	var new_notification : PanelContainer = Global.notification_effect.instantiate()
 	new_notification.set_text(message)
-	get_tree().current_scene.get_node("UILayer/HUDLayer/Notifications").add_child(new_notification)
+	get_tree().current_scene.get_node("UILayer/Notifications").add_child(new_notification)
 
 ## Save the persistent game informaion to file. Uses [Dictionary] to store data in [JSON] format.
 func save_game() -> void:
