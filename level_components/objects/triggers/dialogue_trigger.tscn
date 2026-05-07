@@ -13,9 +13,12 @@ script = ExtResource("1_o2coy")
 shape = SubResource("RectangleShape2D_1w27s")
 debug_color = Color(0.65457684, 0.5179122, 0, 0.41960785)
 
-[node name="Timer" type="Timer" parent="." unique_id=441949961]
+[node name="TimerInitial" type="Timer" parent="." unique_id=441949961]
 one_shot = true
+
+[node name="TimerRepeat" type="Timer" parent="." unique_id=2041930761]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerInitial" to="." method="_on_timer_initial_timeout"]
+[connection signal="timeout" from="TimerRepeat" to="." method="_on_timer_repeat_timeout"]
