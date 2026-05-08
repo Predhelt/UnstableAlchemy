@@ -9,7 +9,7 @@ func _ready() -> void:
 	if is_persistent:
 		add_to_group("Persist")
 
-func save() -> Dictionary:
+func save(_dir: String) -> Dictionary:
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"name" : name,

@@ -90,19 +90,20 @@ func emit_notification(message : String):
 	get_tree().current_scene.get_node("UILayer/Notifications").add_child(new_notification)
 
 ## Save the persistent game informaion to file. Uses [Dictionary] to store data in [JSON] format.
-func save_game() -> void:
+func save_game(dir : String) -> void:
 	# Remove current (outdated) directories in save location
-	remove_directory("user://save") #TODO: Allow multiple save locations.
+	remove_directory(dir)
 	
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	#DirAccess.open(dir)
+	var save_file = FileAccess.open("%sgame.save" % dir, FileAccess.WRITE)
 	
 	# Store global data at top of the file.
-	var node_data : Dictionary = save()
+	var node_data : Dictionary = save(dir)
 	var json_string : String = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
 	# Store the user data next.
-	node_data = UserVariables.call("save")
+	node_data = UserVariables.call("save", dir)
 	json_string = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
@@ -118,13 +119,14 @@ func save_game() -> void:
 			print("WARNING: Persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
 		# Call the node's save function.
-		node_data = node.call("save")
+		node_data = node.call("save", dir)
 		
 		# JSON provides a static method to serialized JSON string.
 		json_string = JSON.stringify(node_data)
 
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
+	emit_notification("Game Saved")
 
 ## Removes files recursively at given [param directory]. Be careful not to use the wrong directory.
 func remove_directory(directory : String) -> void:
@@ -135,7 +137,7 @@ func remove_directory(directory : String) -> void:
 	DirAccess.remove_absolute(directory)
 
 ## Save the persistent Global variables as a dictionary.
-func save() -> Dictionary:
+func save(_dir: String) -> Dictionary:
 	if current_level_path == "": #FIXME: Level path not always set.
 		print("ERROR: No Level Path Found. Save Failed")
 	return {
@@ -147,12 +149,12 @@ func save() -> Dictionary:
 	}
 
 ## Loads the game state based on the savegame.save file in the user directory.
-func load_game() -> void:
-	if not FileAccess.file_exists("user://savegame.save"):
-		print("ERROR: No save file found!")
+func load_game(dir : String) -> void:
+	if not FileAccess.file_exists("%s/savegame.save" % dir):
+		print("ERROR: No save file \"%s\" found!" % dir)
 		return
 	
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var save_file = FileAccess.open("%s/savegame.save" % dir, FileAccess.READ)
 	
 	# Initialize variables and change the level scene.
 	var json_string = save_file.get_line()

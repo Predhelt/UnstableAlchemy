@@ -58,13 +58,13 @@ func _on_button_exit_pressed() -> void:
 func _on_button_save_pressed() -> void:
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	Global.save_game()
+	Global.save_game("user://save")
 
 
 func _on_button_load_pressed() -> void:
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	Global.load_game()
+	Global.load_game("user://save")
 
 
 func _on_button_cancel_pressed() -> void:

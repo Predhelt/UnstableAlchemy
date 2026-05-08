@@ -241,18 +241,18 @@ func transfer_camera(body: Node2D):
 
 ## Sets up and returns a [Dictionary] that represents the persistent information
 ## of the character to be saved to file in [JSON]-compatible format.
-func save() -> Dictionary:
-	var cur_path : String = "user://save/characters/%s" % name
+func save(dir : String) -> Dictionary:
+	var cur_path : String = "%s/characters/%s" % [dir, name]
 	if not DirAccess.dir_exists_absolute(cur_path):
 		DirAccess.make_dir_recursive_absolute(cur_path)
 	
-	var att_path : String = "user://save/characters/%s/attributes.tres" % name
+	var att_path : String = "%s/characters/%s/attributes.tres" % [dir, name]
 	if attributes:
 		ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
 	else:
 		att_path = ""
 	
-	var inv_path : String = "user://save/characters/%s/inventory.tres" % name
+	var inv_path : String = "%s/characters/%s/inventory.tres" % [dir, name]
 	if inventory:
 		ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
 	else:

@@ -26,7 +26,7 @@ func _on_button_exit_pressed() -> void:
 func _on_button_load_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	Global.load_game()
+	Global.load_game("user://save")
 
 
 func _on_button_entered() -> void:

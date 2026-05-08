@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cxqiv3ih52ard"]
+
+[ext_resource type="Script" uid="uid://c0x3rtpgqgocy" path="res://level_components/objects/triggers/autosave_area_trigger.gd" id="1_ghi8i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaly0"]
+size = Vector2(64, 64)
+
+[node name="AutosaveAreaTrigger" type="Area2D" unique_id=1244985810]
+collision_layer = 0
+script = ExtResource("1_ghi8i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2050194643]
+shape = SubResource("RectangleShape2D_oaly0")
+debug_color = Color(0.82091224, 0.8098191, 0.13748538, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

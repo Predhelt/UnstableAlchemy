@@ -35,7 +35,7 @@ var pages_opened : Array[String]
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
-func save() -> Dictionary:
+func save(_dir: String) -> Dictionary:
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),

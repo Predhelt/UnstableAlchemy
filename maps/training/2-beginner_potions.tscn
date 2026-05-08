@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="9_1xt33"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="10_fmauf"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="11_igldg"]
+[ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/autosave_area_trigger.tscn" id="12_fmauf"]
 [ext_resource type="Resource" uid="uid://c3c5x8an0plk1" path="res://game_systems/items/recipe_books/grow_potion_book.tres" id="12_v0scf"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="13_knha0"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="14_nfju5"]
@@ -33,7 +34,7 @@
 script = ExtResource("6_2nf3c")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_fmauf"]
+[sub_resource type="Resource" id="Resource_knha0"]
 resource_local_to_scene = true
 script = ExtResource("10_fmauf")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -104,7 +105,7 @@ volume_db = 5.0
 position = Vector2(-12, -198)
 attributes = SubResource("Resource_2v5rg")
 known_recipes = Array[ExtResource("7_ogsrs")]([ExtResource("8_5ic14")])
-inventory = SubResource("Resource_fmauf")
+inventory = SubResource("Resource_knha0")
 has_blade = true
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -115,6 +116,21 @@ tile_map_data = PackedByteArray("AAAMAAcAAgAFAAAAAADx//H/AgACAAAAAADx//L/AgAHAAA
 
 [node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
 tile_map_data = PackedByteArray("AAD8/+3/AAADAAQAAAD8/+7/AAADAAEAAAD8/+//AAADAAEAAAD8//D/AAADAAEAAAD8//H/AAADAAEAAAD8//P/AAADAAEAAAD8//T/AAADAAEAAAD8//X/AAADAAEAAAD8//b/AAADAAEAAAD8//f/AAADAAIAAAD9/+3/AAAEAAAAAAD9//f/AAAEAAMAAAD+/+3/AAAEAAAAAAD+//f/AAAEAAAAAAD//+3/AAAEAAAAAAD///f/AAAEAAAAAAAAAO3/AAAEAAAAAAAAAPf/AAAEAAAAAAABAO3/AAAEAAAAAAABAPf/AAAEAAAAAAACAO3/AAAEAAAAAAACAPf/AAAHAAIAAAADAO3/AAAHAAMAAAAEAO3/AAAEAAAAAAAFAO3/AAAEAAAAAAAFAPf/AAAGAAIAAAAGAO3/AAAEAAAAAAAGAPf/AAAEAAAAAAAHAO3/AAAEAAAAAAAHAPf/AAAEAAAAAAAIAO3/AAAEAAAAAAAIAPf/AAAEAAAAAAAJAO3/AAAEAAAAAAAJAPf/AAAEAAAAAAAKAO3/AAAEAAQAAAAKAO7/AAADAAEAAAAKAO//AAADAAEAAAAKAPD/AAADAAEAAAAKAPH/AAADAAEAAAAKAPL/AAADAAEAAAAKAPP/AAADAAEAAAAKAPT/AAADAAEAAAAKAPX/AAADAAEAAAAKAPb/AAADAAEAAAAKAPf/AAAEAAQAAAD9//v/AAADAAEAAAD9//z/AAADAAEAAAD9//3/AAAFAAEAAAD9//7/AAAFAAEAAAD9////AAADAAIAAAAKAPv/AAADAAEAAAAKAPz/AAAFAAEAAAAKAP3/AAADAAEAAAAKAP7/AAAFAAEAAAAKAP//AAAFAAIAAAD9//j/AAADAAEAAAD9//n/AAADAAEAAAD9//r/AAADAAEAAAD+////AAAEAAIAAAD/////AAAEAAIAAAAAAP//AAAEAAAAAAABAP//AAAEAAIAAAACAP//AAAEAAAAAAADAP//AAAEAAAAAAAEAP//AAAEAAAAAAAFAP//AAAEAAAAAAAGAP//AAAEAAIAAAAHAP//AAAEAAAAAAAIAP//AAAEAAIAAAAJAP//AAAEAAIAAAAKAPj/AAAFAAEAAAAKAPn/AAADAAEAAAAKAPr/AAADAAEAAAD8/+T/AAAEAAAAAAD8/+f/AAADAAEAAAD8/+j/AAAEAAQAAAD8/+r/AAADAAEAAAD8/+v/AAADAAEAAAD8/+z/AAADAAEAAAD+/+b/AAADAAAAAAD+/+f/AAADAAEAAAD+/+j/AAAFAAEAAAD+/+n/AAADAAEAAAD+/+r/AAADAAEAAAACAOT/AAAFAAAAAAACAOX/AAADAAEAAAAKAOT/AAAFAAAAAAAKAOX/AAAFAAEAAAAKAOb/AAADAAEAAAAKAOf/AAAFAAEAAAAKAOj/AAAFAAEAAAAKAOn/AAADAAEAAAAKAOr/AAADAAEAAAAKAOv/AAADAAEAAAAKAOz/AAADAAEAAAD9/+T/AAAEAAAAAAD+/+T/AAAEAAAAAAD+/+v/AAADAAIAAAD//+T/AAAEAAAAAAD//+b/AAAEAAAAAAD//+v/AAAEAAAAAAAAAOT/AAAEAAAAAAAAAOb/AAAEAAAAAAAAAOv/AAAEAAAAAAABAOT/AAAEAAAAAAABAOb/AAAEAAAAAAABAOv/AAAEAAAAAAACAOb/AAAFAAIAAAACAOv/AAAEAAIAAAADAOv/AAAHAAIAAAAFAOT/AAAGAAIAAAAGAOT/AAAEAAAAAAAHAOT/AAAEAAAAAAAIAOT/AAAEAAAAAAAJAOT/AAAEAAAAAAD8//L/AAADAAEAAAD8/+n/AAADAAEAAAD8/+b/AAAAAAMAAAD7/+T/AAAEAAAAAAD6/+T/AAAEAAAAAAD5/+T/AAAEAAAAAAD4/+T/AAAEAAAAAAD3/+b/AAADAAEAAAD3/+X/AAADAAEAAAD3/+T/AAADAAAAAAD7/+j/AAAEAAAAAAD6/+j/AAAEAAAAAAD5/+j/AAAEAAAAAAD4/+j/AAAEAAAAAAD3/+j/AAADAAIAAAD3/+f/AAADAAEAAAA=")
+
+[node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="0" unique_id=1639851176 instance=ExtResource("18_ltyin")]
+position = Vector2(256, -1824)
+scale = Vector2(2.5, 1)
+level_path = "res://maps/training/3-1_advanced_puzzle.tscn"
+
+[node name="AutosaveAreaTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1244985810 instance=ExtResource("12_fmauf")]
+position = Vector2(-8, -200)
+
+[node name="AutosaveAreaTrigger2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=389169683 instance=ExtResource("12_fmauf")]
+position = Vector2(256, -608)
+scale = Vector2(2.35, 1)
+
+[node name="AutosaveAreaTrigger3" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=366234980 instance=ExtResource("12_fmauf")]
+position = Vector2(224, -1248)
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
 position = Vector2(256, -456)
@@ -142,25 +158,20 @@ is_persistent = true
 position = Vector2(-194, -1696)
 open_direction = "Down"
 
-[node name="TriggerAreaLevelChange" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="6" unique_id=1639851176 instance=ExtResource("18_ltyin")]
-position = Vector2(256, -1824)
-scale = Vector2(2.5, 1)
-level_path = "res://maps/training/3-1_advanced_puzzle.tscn"
-
-[node name="SlidingDoor4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="7" unique_id=1102512905 instance=ExtResource("20_5jsn0")]
+[node name="SlidingDoor4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="6" unique_id=1102512905 instance=ExtResource("20_5jsn0")]
 position = Vector2(288, -1730)
 texture = ExtResource("16_5ic14")
 open_time = 1.0
 close_time = 5.5
 
-[node name="SlidingDoor5" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="8" unique_id=1332843866 instance=ExtResource("20_5jsn0")]
+[node name="SlidingDoor5" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="7" unique_id=1332843866 instance=ExtResource("20_5jsn0")]
 position = Vector2(224, -1730)
 texture = ExtResource("16_5ic14")
 open_time = 1.0
 close_time = 5.5
 open_direction = "Left"
 
-[node name="PressurePlate2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="9" unique_id=591609956 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
+[node name="PressurePlate2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="8" unique_id=591609956 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
 position = Vector2(97, -1697)
 texture = ExtResource("17_1xt33")
 door_refs = [NodePath("../SlidingDoor4"), NodePath("../SlidingDoor5")]
@@ -276,6 +287,14 @@ position = Vector2(545, -1279.9999)
 [node name="RedBerryBush6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="31" unique_id=1361869711 instance=ExtResource("17_v0bil")]
 position = Vector2(406.00003, -1252.9999)
 
+[node name="InteractableBook" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="32" unique_id=1234964621 instance=ExtResource("11_igldg")]
+position = Vector2(-423, -1625)
+display_name = "\"Self-Attunement with Potions\""
+description = "Contains a recipe for a self-attunement potion"
+items = Array[ExtResource("9_1xt33")]([ExtResource("28_1xt33")])
+grab_interaction = SubResource("Resource_igldg")
+cut_interaction = SubResource("Resource_v0scf")
+
 [node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=999760068]
 layout_mode = 0
 offset_left = -111.0
@@ -325,11 +344,3 @@ offset_bottom = -54.0
 text = "- Learn Attributes (Mass)
 - Use Merger
 - Use Cauldron"
-
-[node name="InteractableBook" parent="." index="10" unique_id=1234964621 instance=ExtResource("11_igldg")]
-position = Vector2(-423, -1625)
-display_name = "\"Self-Attunement with Potions\""
-description = "Contains a recipe for a self-attunement potion"
-items = Array[ExtResource("9_1xt33")]([ExtResource("28_1xt33")])
-grab_interaction = SubResource("Resource_igldg")
-cut_interaction = SubResource("Resource_v0scf")
