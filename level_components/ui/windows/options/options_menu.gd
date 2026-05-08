@@ -4,6 +4,8 @@ extends UIWindow
 ## after the window closes.
 var prev_mode : StringName
 
+var save_select_popup_ref : PackedScene = preload("res://level_components/ui/windows/save_select_popup.tscn")
+
 func _init() -> void:
 	window_mode = &"options"
 
@@ -64,7 +66,9 @@ func _on_button_save_pressed() -> void:
 func _on_button_load_pressed() -> void:
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	Global.load_game("user://save")
+	var save_select : PopupMenu = save_select_popup_ref.instantiate()
+	add_child(save_select)
+	save_select.position = %ButtonLoad.global_position
 
 
 func _on_button_cancel_pressed() -> void:

@@ -126,7 +126,10 @@ func save_game(dir : String) -> void:
 
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
-	emit_notification("Game Saved")
+	if dir.ends_with("autosave"):
+		emit_notification("Game Autosaved")
+	else:
+		emit_notification("Game Saved")
 
 ## Removes files recursively at given [param directory]. Be careful not to use the wrong directory.
 func remove_directory(directory : String) -> void:
@@ -150,11 +153,11 @@ func save(_dir: String) -> Dictionary:
 
 ## Loads the game state based on the savegame.save file in the user directory.
 func load_game(dir : String) -> void:
-	if not FileAccess.file_exists("%s/savegame.save" % dir):
-		print("ERROR: No save file \"%s\" found!" % dir)
+	if not FileAccess.file_exists("%sgame.save" % dir):
+		print("ERROR: No save file \"%sgame.save\" found!" % dir)
 		return
 	
-	var save_file = FileAccess.open("%s/savegame.save" % dir, FileAccess.READ)
+	var save_file = FileAccess.open("%sgame.save" % dir, FileAccess.READ)
 	
 	# Initialize variables and change the level scene.
 	var json_string = save_file.get_line()

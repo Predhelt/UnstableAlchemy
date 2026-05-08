@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://4pbfbvyixdwe"]
+
+[ext_resource type="Script" uid="uid://dj0cxohgvap0n" path="res://level_components/ui/windows/save_select_popup.gd" id="1_2yg0t"]
+
+[node name="SaveSelectPopup" type="PopupMenu" unique_id=2088896767]
+oversampling_override = 1.0
+title = "Select Save"
+position = Vector2i(484, 310)
+size = Vector2i(312, 100)
+visible = true
+theme_override_font_sizes/font_size = 28
+item_count = 2
+item_0/text = "Load from Save"
+item_0/id = 0
+item_1/text = "Load from Autosave"
+item_1/id = 1
+script = ExtResource("1_2yg0t")
+
+[connection signal="index_pressed" from="." to="." method="_on_index_pressed"]
