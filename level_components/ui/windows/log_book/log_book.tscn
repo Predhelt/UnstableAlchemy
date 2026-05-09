@@ -1698,7 +1698,7 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Herb flakes are one of the most commonly used materials for herbal remedies.  They give a burst of energy when consumed. There are also very few documented side effects. The effects last for only a few seconds, sometimes up to a minute for some people.
 
-Prolonged use is not recommended as it is not an easily maintainable level of activity, and longer-term solutions are usually available. Some instances of addiction have been documented, however these seem to be due to lifestyle choices."
+Prolonged use is not recommended as it is not an easily maintainable level of activity, and longer-term stimulants are usually available. Some instances of addiction have been documented, however these seem to be due to lifestyle choices."
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
 unique_name_in_owner = true

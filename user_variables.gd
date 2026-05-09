@@ -53,6 +53,20 @@ func save(_dir: String) -> Dictionary:
 	}
 	return save_dict
 
+## Clears the saved variables.
+func reset_variables():
+	known_recipes.clear()
+	new_recipes.clear()
+	crafted_recipes.clear()
+	books_read.clear()
+	gathered_items.clear()
+	objects_grab_interacted.clear()
+	objects_cut_interacted.clear()
+	objects_combined.clear()
+	items_used.clear()
+	learned_status_effects.clear()
+	pages_opened.clear()
+
 ## Add a recipe to the list of known recipes and new recipes if not already known.
 func add_recipe(recipe : Recipe) -> bool:
 	if recipe in known_recipes:

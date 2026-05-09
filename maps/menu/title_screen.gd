@@ -4,6 +4,7 @@ var save_select_popup_ref : PackedScene = preload("res://level_components/ui/win
 
 func _ready() -> void:
 	$LabelVersion.text = "Version: %s (Prototype)" % ProjectSettings.get_setting("application/config/version")
+	UserVariables.reset_variables()
 
 ## Opens the level that was selected. Returns whether or not the level was opened successfuly.
 func open_level() -> bool:
@@ -36,3 +37,8 @@ func _on_button_load_pressed() -> void:
 func _on_button_entered() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "hover"
+
+## Open the menu buttons for selecting what to play
+func _on_button_play_pressed() -> void:
+	$MainPage.visible = false
+	$PlayTypePage.visible = true

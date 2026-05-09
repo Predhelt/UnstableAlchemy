@@ -75,7 +75,7 @@ theme_override_font_sizes/font_size = 64
 text = "Unstable Alchemy"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1846484415]
+[node name="MainPage" type="VBoxContainer" parent="." unique_id=1846484415]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,45 +83,69 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.0
-offset_top = -169.0
+offset_top = -101.0
 offset_right = 170.0
-offset_bottom = 328.0
+offset_bottom = 187.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_3ahgd")
 theme_override_constants/separation = 28
 
-[node name="ButtonPlay" parent="VBoxContainer" unique_id=1276432221 instance=ExtResource("2_12dnu")]
+[node name="ButtonPlay" type="Button" parent="MainPage" unique_id=1885412449]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play
+"
+
+[node name="ButtonSettings" type="Button" parent="MainPage" unique_id=2133861704]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="ButtonExit" type="Button" parent="MainPage" unique_id=131960736]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="PlayTypePage" type="VBoxContainer" parent="." unique_id=973106764]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -92.0
+offset_right = 172.0
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3ahgd")
+theme_override_constants/separation = 28
+
+[node name="ButtonNewGame" parent="PlayTypePage" unique_id=1276432221 instance=ExtResource("2_12dnu")]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "New Game"
 level_path = "uid://nkld8tcq4n2y"
 
-[node name="ButtonLoad" type="Button" parent="VBoxContainer" unique_id=373167392]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Load"
-
-[node name="ButtonTraining" parent="VBoxContainer" unique_id=1356983260 instance=ExtResource("2_12dnu")]
+[node name="ButtonLevelSelect" parent="PlayTypePage" unique_id=1324963192 instance=ExtResource("2_12dnu")]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Level Select"
 level_path = "uid://bxw8y0udo7u4o"
 
-[node name="ButtonSettings" type="Button" parent="VBoxContainer" unique_id=2133861704]
+[node name="ButtonLoad" type="Button" parent="PlayTypePage" unique_id=1418030786]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Settings"
-
-[node name="ButtonExit" type="Button" parent="VBoxContainer" unique_id=131960736]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Exit"
+text = "Load"
 
 [node name="LabelVersion" type="Label" parent="." unique_id=1604606504]
 layout_mode = 1
@@ -153,12 +177,15 @@ texture = ExtResource("4_kcdp0")
 [node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_17jem")]
 visible = false
 
-[connection signal="focus_entered" from="VBoxContainer/ButtonLoad" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/ButtonLoad" to="." method="_on_button_entered"]
-[connection signal="pressed" from="VBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]
-[connection signal="focus_entered" from="VBoxContainer/ButtonSettings" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/ButtonSettings" to="." method="_on_button_entered"]
-[connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
-[connection signal="focus_entered" from="VBoxContainer/ButtonExit" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/ButtonExit" to="." method="_on_button_entered"]
-[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="focus_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainPage/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="focus_entered" from="MainPage/ButtonSettings" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="MainPage/ButtonSettings" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainPage/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="focus_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainPage/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="focus_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
+[connection signal="pressed" from="PlayTypePage/ButtonLoad" to="." method="_on_button_load_pressed"]
