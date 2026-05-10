@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name Cutscene extends CanvasLayer
 
 ## The list of images that will be shown, in the order provided.
 @export var images : Array[Texture2D]

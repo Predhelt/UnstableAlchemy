@@ -55,8 +55,8 @@ func _ready() -> void:
 	%ButtonPlacesBotania.pressed.emit()
 	%ButtonPeoplePerson1.button_pressed = true
 	%ButtonPeoplePerson1.pressed.emit()
-	%ButtonStatusEnergized.button_pressed = true
-	%ButtonStatusEnergized.pressed.emit()
+	%ButtonStatusCleanse.button_pressed = true
+	%ButtonStatusCleanse.pressed.emit()
 	$AudioStreamPlayer.stop()
 	$VBoxContainer/TabContainer.current_tab = 0
 
@@ -355,7 +355,7 @@ func open_page(page_name: String) -> bool:
 		return false
 	button_ref.visible = true
 	button_ref.button_pressed = true
-	button_ref.pressed.emit() # NOTE: Emitting because for some reason button_pressed isn't emitting.
+	button_ref.pressed.emit() # NOTE: Emitting because for some reason button_pressed isn't emitting on previous line.
 	return true
 
 ## Open the tab with the [param tab_index]. Then call the button press for the page to open.

@@ -15,7 +15,7 @@ var is_open := false
 var cur_trigger_nodes : Array[Node2D]
 ## Total time it takes to open this door in seconds.
 @export var open_time : float 
-## Total time it takes to close this door in seconds.
+## Total time it takes to close this door in seconds. If [param close_time] is -1, door never closes.
 @export var close_time : float 
 ## Tracks the direction that the door opens.
 @export_enum("Left", "Right", "Up", "Down") var open_direction := "Right"
@@ -104,7 +104,8 @@ func _move_door_to(pos : float) -> void:
 func close_door(node : Node2D):
 	if node in cur_trigger_nodes:
 		cur_trigger_nodes.remove_at(cur_trigger_nodes.find(node))
-	if (is_open or is_moving == 1) and cur_trigger_nodes.size() < triggers_required:
+	if ((is_open or is_moving == 1) and cur_trigger_nodes.size() < triggers_required
+		and close_time != -1):
 		$AudioStreamPlayer2D["parameters/switch_to_clip"] = &"sliding_closed"
 		is_moving = 2
 

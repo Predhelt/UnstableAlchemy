@@ -1,11 +1,13 @@
 [gd_scene format=4 uid="uid://nkld8tcq4n2y"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_1v6aw"]
+[ext_resource type="Script" uid="uid://un36ny7sp3yo" path="res://maps/training/1_ruins_entrance.gd" id="2_kfvxj"]
 [ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="2_se43p"]
 [ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_yd7uk"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_v5e0f"]
 [ext_resource type="Texture2D" uid="uid://cosikcjiev8nx" path="res://art/pack/cutscenes/approaching_ruins.png" id="3_vlms1"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_0k1oq"]
+[ext_resource type="Script" uid="uid://caywcyfmywtbl" path="res://level_components/ui/cutscene/cutscene_1-ruins.gd" id="4_tldv4"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="5_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="6_onki7"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="6_se43p"]
@@ -22,28 +24,18 @@
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="16_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://c4v0402ieqqo7" path="res://level_components/objects/triggers/dialogue_trigger.tscn" id="16_vlms1"]
 [ext_resource type="Script" uid="uid://d312pdlqp2ee0" path="res://level_components/objects/triggers/dialogue_trigger_custom_hint1.gd" id="17_xyxgs"]
-[ext_resource type="Script" uid="uid://bhcs16b3wftry" path="res://maps/development/tutorial_level_messages.gd" id="21_s8amr"]
+[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="24_kfvxj"]
+[ext_resource type="PackedScene" uid="uid://cs7l75a5mg1gm" path="res://level_components/objects/triggers/sliding_door_facing_right.tscn" id="25_tldv4"]
+[ext_resource type="Texture2D" uid="uid://crkop74rurk3d" path="res://art/pack/objects/doors/slide_door_green.png" id="26_tc2aj"]
 
 [sub_resource type="Resource" id="Resource_rv537"]
 script = ExtResource("3_v5e0f")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_rut5r"]
+[sub_resource type="Resource" id="Resource_tldv4"]
 resource_local_to_scene = true
 script = ExtResource("5_lyfyp")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
-[sub_resource type="Resource" id="Resource_5p60j"]
-script = ExtResource("9_xyxgs")
-on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_kfvxj"]
-script = ExtResource("9_xyxgs")
-on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_phy1u"]
 script = ExtResource("9_xyxgs")
@@ -78,9 +70,23 @@ on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("12_0k1oq")])
 on_interact_amounts = Array[int]([3])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
+[sub_resource type="Resource" id="Resource_5p60j"]
+script = ExtResource("9_xyxgs")
+on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
+[sub_resource type="Resource" id="Resource_kfvxj"]
+script = ExtResource("9_xyxgs")
+on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
+on_interact_amounts = Array[int]([1])
+metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
+
 [node name="World" unique_id=1661168125 instance=ExtResource("1_1v6aw")]
+script = ExtResource("2_kfvxj")
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_yd7uk")]
+script = ExtResource("4_tldv4")
 images = Array[Texture2D]([ExtResource("3_vlms1")])
 auto_play = true
 
@@ -95,7 +101,6 @@ offset_left = 956.0
 offset_top = -893.0
 offset_right = 996.0
 offset_bottom = -853.0
-script = ExtResource("21_s8amr")
 
 [node name="LabelMovement" type="Label" parent="TutorialMessages" index="0" unique_id=222296958]
 layout_mode = 0
@@ -113,6 +118,7 @@ position = Vector2(599, 419)
 
 [node name="LabelInventory" type="Label" parent="HUDHints" index="0" unique_id=203586143]
 unique_name_in_owner = true
+visible = false
 offset_top = 85.0
 grow_horizontal = 2
 theme_override_constants/outline_size = 5
@@ -123,6 +129,7 @@ horizontal_alignment = 1
 
 [node name="LabelRecipes" type="Label" parent="HUDHints" index="1" unique_id=647590626]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -135,9 +142,9 @@ Check the log book (\"\") to get more info."
 horizontal_alignment = 1
 
 [node name="Player" parent="." index="5" unique_id=1026458739]
-position = Vector2(763, -855)
+position = Vector2(700, -790)
 attributes = SubResource("Resource_rv537")
-inventory = SubResource("Resource_rut5r")
+inventory = SubResource("Resource_tldv4")
 
 [node name="HUDHintRemoteTransform" type="RemoteTransform2D" parent="PlayerCamera" parent_id_path=PackedInt32Array(294471714) index="0" unique_id=128844135]
 remote_path = NodePath("../../HUDHints")
@@ -153,13 +160,6 @@ tile_map_data = PackedByteArray("AAD2/8X/AgAHAAAAAAD2/8r/AgADAAAAAwD2/9L/AgAFAAA
 [node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
 position = Vector2(0, 512)
 tile_map_data = PackedByteArray("AAAYANT/AAAEAAMAAAAYANX/AAADAAEAAAAYANb/AAADAAEAAAAYANf/AAADAAQAAAAYANj/AAADAAEAAAAYANn/AAADAAEAAAAYANr/AAADAAEAAAAYANv/AAADAAEAAAAdANT/AAAEAAMAAAAdANX/AAADAAEAAAAdANb/AAADAAEAAAAdANf/AAADAAEAAAAdANn/AAADAAEAAAAdANr/AAAEAAQAAAAdANv/AAADAAEAAAANANT/AAAEAAAAAAAOANT/AAAEAAAAAAAPANT/AAAEAAAAAAAQANT/AAAEAAAAAAARANT/AAAEAAAAAAASANT/AAAHAAIAAAAVANT/AAAGAAIAAAAWANT/AAAEAAAAAAAXANT/AAAEAAAAAAAYAN3/AAADAAIAAAAZANT/AAAEAAAAAAAZANf/AAAEAAAAAAAZAN3/AAAEAAAAAAAaANT/AAAEAAAAAAAaANr/AAAGAAIAAAAaAN3/AAAEAAAAAAAbANT/AAAEAAAAAAAbANf/AAAHAAIAAAAbANr/AAAEAAAAAAAbAN3/AAAHAAIAAAAcANT/AAAEAAAAAAAcANr/AAAEAAAAAAAdANz/AAADAAEAAAAdAN3/AAAAAAQAAAAeANT/AAAEAAAAAAAfANT/AAAEAAMAAAAfAN7/AAADAAIAAAAfAN3/AAADAAEAAAAfANz/AAADAAEAAAAfANv/AAADAAEAAAAfANr/AAADAAEAAAAfANn/AAADAAEAAAAfANj/AAADAAEAAAAfANf/AAADAAEAAAAfANb/AAADAAEAAAAfANX/AAADAAEAAAAGAOz/AAADAAEAAAAGAO3/AAADAAIAAAAbAOb/AAAAAAMAAAAbAOf/AAADAAEAAAAbAOj/AAADAAEAAAAbAOn/AAADAAIAAAAbAO3/AAAEAAAAAAAfAOH/AAAEAAAAAAAhAOP/AAADAAEAAAAhAOn/AAADAAMAAAAkAOP/AAADAAEAAAAkAOb/AAADAAEAAAAkAOf/AAADAAEAAAAkAOj/AAADAAEAAAAkAOn/AAAFAAIAAAAkAO3/AAAEAAAAAAAnAOP/AAADAAEAAAAnAOT/AAADAAEAAAAnAOX/AAADAAEAAAAnAOb/AAADAAEAAAAnAOf/AAADAAEAAAAnAOj/AAADAAEAAAAnAOn/AAADAAEAAAAnAOr/AAADAAEAAAAnAOv/AAADAAEAAAAnAOz/AAADAAEAAAAnAO3/AAAFAAIAAAAGAOf/AAADAAEAAAAGAOj/AAADAAEAAAAGAOn/AAADAAEAAAAGAOr/AAADAAEAAAAGAOv/AAADAAEAAAAHAO3/AAAEAAAAAAAIAO3/AAAEAAAAAAAJAO3/AAAEAAAAAAAKAO3/AAAEAAAAAAALAO3/AAAEAAAAAAAMAO3/AAAEAAAAAAANAO3/AAAEAAAAAAAOAO3/AAAEAAAAAAAPAO3/AAAEAAAAAAAQAO3/AAAEAAAAAAARAO3/AAAEAAAAAAASAO3/AAAEAAAAAAATAO3/AAAEAAAAAAAUAO3/AAAEAAAAAAAVAO3/AAAEAAAAAAAWAO3/AAAEAAAAAAAXAO3/AAAEAAAAAAAYAO3/AAAEAAAAAAAZAO3/AAAEAAAAAAAaAO3/AAAEAAAAAAAbAOH/AAADAAAAAAAbAOL/AAADAAEAAAAbAOP/AAADAAEAAAAbAOT/AAAAAAQAAAAcAOH/AAAEAAAAAAAcAOn/AAAEAAAAAAAcAO3/AAAEAAAAAAAdAOn/AAAEAAAAAAAdAO3/AAAEAAAAAAAeAOH/AAAEAAAAAAAeAOn/AAAEAAAAAAAeAO3/AAAEAAAAAAAfAO3/AAAEAAAAAAAgAN7/AAAEAAAAAAAgAOH/AAAEAAAAAAAgAO3/AAAEAAAAAAAhAN7/AAAEAAAAAAAhAOH/AAAEAAMAAAAhAOL/AAADAAEAAAAhAOT/AAADAAEAAAAhAO3/AAAEAAAAAAAiAN7/AAAEAAAAAAAiAOH/AAAEAAAAAAAiAOn/AAAEAAAAAAAiAO3/AAAEAAAAAAAjAN7/AAAEAAAAAAAjAOH/AAAEAAAAAAAjAOn/AAAEAAAAAAAjAO3/AAAEAAAAAAAkAN7/AAAEAAAAAAAkAOH/AAAFAAAAAAAkAOL/AAADAAEAAAAkAOT/AAADAAEAAAAkAOX/AAADAAEAAAAlAN7/AAAEAAAAAAAlAO3/AAAEAAAAAAAmAN7/AAAEAAAAAAAmAO3/AAAEAAAAAAAnAN7/AAAEAAQAAAAnAN//AAADAAEAAAAnAOD/AAADAAEAAAAnAOH/AAADAAEAAAAnAOL/AAADAAEAAAAMANT/AAAEAAAAAAALANT/AAAEAAAAAAAKANT/AAADAAAAAAAGAN//AAADAAAAAAAGAOD/AAADAAEAAAAGAOH/AAADAAEAAAAGAOL/AAADAAEAAAAGAOP/AAADAAQAAAAGAOT/AAADAAEAAAAGAOX/AAADAAEAAAAGAOb/AAADAAEAAAAKAN//AAAEAAQAAAAJAN//AAAEAAAAAAAIAN//AAAEAAAAAAAHAN//AAAEAAAAAAAKAOD/AAAAAAQAAAAKAOL/AAAAAAMAAAAKAOP/AAAFAAIAAAAJAOP/AAAEAAAAAAAIAOP/AAAEAAAAAAAHAOP/AAAEAAAAAAAKAN7/AAADAAEAAAAKAN3/AAADAAEAAAAKANz/AAADAAEAAAAKANv/AAADAAEAAAAKANr/AAADAAEAAAAKANn/AAADAAEAAAAKANj/AAADAAEAAAAKANf/AAADAAEAAAAKANb/AAADAAEAAAAKANX/AAADAAEAAAA=")
-
-[node name="InteractableNote" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="3" unique_id=1856845390 instance=ExtResource("9_koixy")]
-position = Vector2(548, -1440)
-display_name = "\"Letter From R\""
-items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
-grab_interaction = SubResource("Resource_5p60j")
-cut_interaction = SubResource("Resource_kfvxj")
 
 [node name="DialogueTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="0" unique_id=2142945357 instance=ExtResource("16_vlms1")]
 position = Vector2(1345.0001, -1916.0001)
@@ -186,6 +186,16 @@ close_time = 5.5
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("16_lyfyp")]
 position = Vector2(1661, -2177)
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
+
+[node name="PressurePlate2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=134152489 node_paths=PackedStringArray("door_refs") instance=ExtResource("16_lyfyp")]
+position = Vector2(1952, -2210)
+texture = ExtResource("24_kfvxj")
+door_refs = [NodePath("../SlidingDoor3")]
+
+[node name="SlidingDoor3" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=913385584 instance=ExtResource("25_tldv4")]
+position = Vector2(702, -1440)
+texture = ExtResource("26_tc2aj")
+close_time = -1.0
 
 [node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=527621418 instance=ExtResource("6_onki7")]
 position = Vector2(1952, -1180)
@@ -219,6 +229,13 @@ position = Vector2(1338, -2003)
 [node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=2102750017 instance=ExtResource("10_s8amr")]
 position = Vector2(2208, -1110)
 
+[node name="InteractableNote" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="7" unique_id=1856845390 instance=ExtResource("9_koixy")]
+position = Vector2(548, -1440)
+display_name = "\"Letter From R\""
+items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
+grab_interaction = SubResource("Resource_5p60j")
+cut_interaction = SubResource("Resource_kfvxj")
+
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
 offset_left = 230.0
 offset_top = -1323.0
@@ -231,3 +248,5 @@ text = "- walk
 - use M&P
 - learn how pressure plate works
 - learn how sliding doors work"
+
+[connection signal="object_grabbed" from="Objects/RecipeItem" to="." method="_on_recipe_item_object_grabbed"]

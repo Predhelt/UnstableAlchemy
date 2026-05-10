@@ -2,6 +2,13 @@
 ## May contain items and different types of interactions with the object produce different results.
 class_name InteractableObject extends Node2D
 
+## Emits when the object is grabbed successfully.
+signal object_grabbed(body: Character)
+## Emits when the object is cut successfully.
+signal object_cut(body: Character)
+## Emits when the object is combined successfully.
+signal object_combined(body: Character, item: Item)
+
 ## Name of the object (also the folder name the object is contained in).
 @export var display_name := ""
 ## Description of the object given to the character .
@@ -166,7 +173,7 @@ func _on_object_grabbed(character: Character) -> void:
 	
 	if grab_interaction.on_interact_status_effects:
 		character.update_status_effects(grab_interaction.on_interact_status_effects, grab_interaction.on_interact_status_message)
-	
+	object_grabbed.emit(character)
 	check_empty(grab_sound)
 
 
@@ -182,7 +189,7 @@ func _on_object_cut(character: Character) -> void:
 	
 	if cut_interaction.on_interact_status_effects:
 		character.update_status_effects(cut_interaction.on_interact_status_effects, cut_interaction.on_interact_status_message)
-	
+	object_cut.emit(character)
 	check_empty(cut_sound)
 
 
@@ -217,6 +224,7 @@ func _on_object_combined(character: Character, item: Item) -> void:
 			character._on_interaction_area_exited($InteractArea)
 			emit_effect()
 			character._on_interaction_area_entered($InteractArea)
+			object_combined.emit(character, item)
 			return
 	
 	character.update_status_message("...")
