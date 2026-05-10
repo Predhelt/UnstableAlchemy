@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b24xtikwci71c"]
+
+[ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="1_p2pab"]
+[ext_resource type="Script" uid="uid://caygnc42oatuh" path="res://level_components/ui/windows/popups/popup_message.gd" id="2_hyl2c"]
+
+[node name="PopupMessage" type="Popup" unique_id=472974043]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(700, 400)
+visible = true
+theme = ExtResource("1_p2pab")
+script = ExtResource("2_hyl2c")
+
+[node name="Panel" type="Panel" parent="." unique_id=1647965410]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelMessage" type="Label" parent="Panel" unique_id=1382151741]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "This is a message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonOK" type="Button" parent="Panel" unique_id=459795640]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -174.5
+offset_top = -95.0
+offset_right = 174.5
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "OK"
+
+[connection signal="pressed" from="Panel/ButtonOK" to="." method="_on_button_ok_pressed"]

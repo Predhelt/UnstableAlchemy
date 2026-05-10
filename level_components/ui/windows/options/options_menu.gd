@@ -4,7 +4,7 @@ extends UIWindow
 ## after the window closes.
 var prev_mode : StringName
 
-var save_select_popup_ref : PackedScene = preload("res://level_components/ui/windows/save_select_popup.tscn")
+var save_select_popup_ref : PackedScene = preload("res://level_components/ui/windows/popups/save_select_popup.tscn")
 
 func _init() -> void:
 	window_mode = &"options"

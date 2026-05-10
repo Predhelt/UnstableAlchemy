@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4pbfbvyixdwe"]
 
-[ext_resource type="Script" uid="uid://dj0cxohgvap0n" path="res://level_components/ui/windows/save_select_popup.gd" id="1_2yg0t"]
+[ext_resource type="Script" uid="uid://dj0cxohgvap0n" path="res://level_components/ui/windows/popups/save_select_popup.gd" id="1_2yg0t"]
 
 [node name="SaveSelectPopup" type="PopupMenu" unique_id=2088896767]
 oversampling_override = 1.0

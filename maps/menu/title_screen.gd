@@ -1,6 +1,6 @@
 extends Control
 
-var save_select_popup_ref : PackedScene = preload("res://level_components/ui/windows/save_select_popup.tscn")
+var save_select_popup_ref : PackedScene = preload("res://level_components/ui/windows/popups/save_select_popup.tscn")
 
 func _ready() -> void:
 	$LabelVersion.text = "Version: %s (Prototype)" % ProjectSettings.get_setting("application/config/version")
