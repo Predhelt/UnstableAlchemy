@@ -163,6 +163,7 @@ func open_window():
 	Global.left_window = self
 	visible = true
 	Global.mode = &"menu"
+	window_opened.emit()
 	
 	begin_minigame()
 

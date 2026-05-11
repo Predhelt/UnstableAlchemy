@@ -56,15 +56,18 @@ func close_window() -> void:
 		if not Global.right_window and not Global.center_window:
 			Global.mode = &"default"
 		visible = false
+		window_closed.emit()
 	
 	elif Global.mode == &"dropper":
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "close"
 		Global.left_window = null
 		Global.mode = &"default" ## There should be no other UI windows open
 		visible = false
+		window_closed.emit()
 	
 	elif Global.mode == &"menu": ## Minigame in progress, do not change groups.
 		visible = false
+		window_closed.emit()
 	
 	return_alchemy_items()
 
@@ -85,6 +88,7 @@ func open_window() -> bool:
 		Global.left_window = self
 		%WindowName.text = "Inventory and Crafting"
 		visible = true
+		window_opened.emit()
 		return true
 	elif Global.mode == &"dropper":
 		$AudioStreamPlayer.play()
@@ -92,6 +96,7 @@ func open_window() -> bool:
 		Global.left_window = self
 		%WindowName.text = "Select an Item for the Dropper"
 		visible = true
+		window_opened.emit()
 		return true
 	return false
 

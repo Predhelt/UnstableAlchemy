@@ -17,6 +17,7 @@ func close_window() -> void:
 		Global.center_window = null
 		prev_mode = ""
 		visible = false
+		window_closed.emit()
 
 func open_window() -> bool:
 	if Global.center_window or visible:
@@ -28,6 +29,7 @@ func open_window() -> bool:
 	Global.center_window = self
 	%WindowName.text = "Help: General"
 	visible = true
+	window_opened.emit()
 	#FIXME: Menus in background can prevent tab buttons from being pressed
 	open_page_general()
 	return true

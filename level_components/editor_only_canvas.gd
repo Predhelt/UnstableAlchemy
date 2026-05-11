@@ -1,4 +1,4 @@
 extends CanvasLayer
 
-func _ready() -> void:
+func _init() -> void:
 	queue_free()

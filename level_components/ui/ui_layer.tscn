@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dn55t54gicprm"]
 
 [ext_resource type="PackedScene" uid="uid://bdevkeyb8mdqi" path="res://level_components/ui/windows/options/settings_menu.tscn" id="1_ak53w"]
+[ext_resource type="Script" uid="uid://dqjwkvgjnbain" path="res://level_components/ui/ui_layer.gd" id="1_d4vx4"]
 [ext_resource type="PackedScene" uid="uid://bj81rrhnwo85j" path="res://level_components/ui/windows/options/options_menu.tscn" id="2_j83el"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_d4vx4"]
 [ext_resource type="PackedScene" uid="uid://cy5h4xq84fujx" path="res://level_components/ui/windows/inventory/inventory_menu.tscn" id="5_topfp"]
@@ -20,6 +21,7 @@
 
 [node name="UILayer" type="CanvasLayer" unique_id=1075659928]
 layer = 10
+script = ExtResource("1_d4vx4")
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=116782846]
 
@@ -147,3 +149,20 @@ grow_vertical = 0
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="use_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_use_inventory_item"]
 [connection signal="set_dropper_item" from="HUDLayer/ToolWheel" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
+[connection signal="window_closed" from="MenuLayer/CenterWindows/OptionsMenu" to="." method="_on_options_menu_window_closed"]
+[connection signal="window_opened" from="MenuLayer/CenterWindows/OptionsMenu" to="." method="_on_options_menu_window_opened"]
+[connection signal="window_closed" from="MenuLayer/CenterWindows/LogBookMenu" to="." method="_on_log_book_menu_window_closed"]
+[connection signal="window_opened" from="MenuLayer/CenterWindows/LogBookMenu" to="." method="_on_log_book_menu_window_opened"]
+[connection signal="item_consumed" from="MenuLayer/LeftWindows/InventoryMenu" to="." method="_on_inventory_menu_item_consumed"]
+[connection signal="window_closed" from="MenuLayer/LeftWindows/InventoryMenu" to="." method="_on_inventory_menu_window_closed"]
+[connection signal="window_opened" from="MenuLayer/LeftWindows/InventoryMenu" to="." method="_on_inventory_menu_window_opened"]
+[connection signal="window_closed" from="MenuLayer/RightWindows/RecipeList" to="." method="_on_recipe_list_window_closed"]
+[connection signal="window_opened" from="MenuLayer/RightWindows/RecipeList" to="." method="_on_recipe_list_window_opened"]
+[connection signal="window_closed" from="MenuLayer/RightWindows/CharacterShop" to="." method="_on_character_shop_window_closed"]
+[connection signal="window_opened" from="MenuLayer/RightWindows/CharacterShop" to="." method="_on_character_shop_window_opened"]
+[connection signal="window_closed" from="MenuLayer/RightWindows/CharacterDialogue" to="." method="_on_character_dialogue_window_closed"]
+[connection signal="window_opened" from="MenuLayer/RightWindows/CharacterDialogue" to="." method="_on_character_dialogue_window_opened"]
+[connection signal="window_closed" from="MinigameLayer/MinigameCauldron" to="." method="_on_minigame_cauldron_window_closed"]
+[connection signal="window_opened" from="MinigameLayer/MinigameCauldron" to="." method="_on_minigame_cauldron_window_opened"]
+[connection signal="window_closed" from="MinigameLayer/MinigameMP" to="." method="_on_minigame_mp_window_closed"]
+[connection signal="window_opened" from="MinigameLayer/MinigameMP" to="." method="_on_minigame_mp_window_opened"]

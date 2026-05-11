@@ -53,6 +53,7 @@ func close_window() -> void:
 		return
 	
 	visible = false
+	window_closed.emit()
 	Global.right_window = null
 	if not Global.left_window and not Global.center_window:
 		Global.mode = &"default"
@@ -91,6 +92,7 @@ func open_window() -> bool:
 		$AudioStreamPlayer["parameters/switch_to_clip"] = &"open"
 		$AudioStreamPlayer.play()
 		visible = true
+		window_opened.emit()
 		return true
 	return false
 

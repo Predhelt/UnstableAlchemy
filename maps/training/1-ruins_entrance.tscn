@@ -249,4 +249,7 @@ text = "- walk
 - learn how pressure plate works
 - learn how sliding doors work"
 
+[connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
+[connection signal="log_book_menu_window_closed" from="UILayer" to="." method="_on_ui_layer_log_book_menu_window_closed"]
+[connection signal="recipe_list_window_opened" from="UILayer" to="." method="_on_ui_layer_recipe_list_window_opened"]
 [connection signal="object_grabbed" from="Objects/RecipeItem" to="." method="_on_recipe_item_object_grabbed"]

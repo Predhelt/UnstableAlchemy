@@ -63,6 +63,7 @@ func close_window():
 		Global.mode = Global.center_window.window_mode
 	elif Global.right_window:
 		Global.mode = Global.right_window.window_mode
+	window_closed.emit()
 
 ## Closes the current window and returns to the inventory menu.
 func previous_window():

@@ -71,6 +71,7 @@ func open_window():
 	Global.mode = window_mode
 	$MinigameAudioStream.play()
 	$MinigameAudioStream["parameters/switch_to_clip"] = &"open"
+	window_opened.emit()
 
 ## Checks to see if the input is near a tick on the progress bar. If so,
 ## sets the nearest tick image and information equal to the given information.

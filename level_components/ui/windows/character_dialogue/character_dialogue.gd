@@ -20,6 +20,7 @@ func close_window() -> void:
 		return
 	
 	visible = false
+	window_closed.emit()
 	Global.right_window = null
 	if not Global.left_window and not Global.center_window:
 		Global.mode = &"default"
@@ -44,6 +45,7 @@ func open_window_as_character(character : Character) -> bool:
 		
 		%ButtonBack.visible = false
 		visible = true
+		window_opened.emit()
 		return true
 	return false
 
@@ -60,6 +62,7 @@ func open_window() -> bool:
 		
 		%ButtonBack.visible = false
 		visible = true
+		window_opened.emit()
 		return true
 	return false
 

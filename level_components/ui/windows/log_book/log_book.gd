@@ -81,6 +81,7 @@ func close_window() -> void:
 	Global.center_window = null
 	prev_mode = ""
 	visible = false
+	window_closed.emit()
 
 ## Opens the log book to the default "Help: General" page.
 func open_window() -> bool:
@@ -99,6 +100,7 @@ func open_window() -> bool:
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "open"
 	visible = true
+	window_opened.emit()
 	return true
 
 ## Initializes which pages are visible in the log book based on character's stored information.
