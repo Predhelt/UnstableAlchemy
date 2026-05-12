@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_v5e0f"]
 [ext_resource type="Texture2D" uid="uid://cosikcjiev8nx" path="res://art/pack/cutscenes/approaching_ruins.png" id="3_vlms1"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_0k1oq"]
-[ext_resource type="Script" uid="uid://caywcyfmywtbl" path="res://level_components/ui/cutscene/cutscene_1-ruins.gd" id="4_tldv4"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="5_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="6_onki7"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="6_se43p"]
@@ -86,7 +85,6 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 script = ExtResource("2_kfvxj")
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_yd7uk")]
-script = ExtResource("4_tldv4")
 images = Array[Texture2D]([ExtResource("3_vlms1")])
 auto_play = true
 
@@ -249,6 +247,7 @@ text = "- walk
 - learn how pressure plate works
 - learn how sliding doors work"
 
+[connection signal="cutscene_closed" from="Cutscene" to="." method="_on_cutscene_cutscene_closed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
 [connection signal="log_book_menu_window_closed" from="UILayer" to="." method="_on_ui_layer_log_book_menu_window_closed"]
 [connection signal="recipe_list_window_opened" from="UILayer" to="." method="_on_ui_layer_recipe_list_window_opened"]

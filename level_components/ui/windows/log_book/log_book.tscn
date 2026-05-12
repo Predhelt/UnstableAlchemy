@@ -1465,8 +1465,11 @@ layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectBoulder/VBoxContainer" unique_id=120017]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-text = "Description and details of Boulder."
+text = "Boulders can be pushed if your strength matches or beats the mass of the boulder.
+Boulders can be used as weights for pressure plates."
+autowrap_mode = 3
 
 [node name="PageObjectSlidingDoor" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=1202119890]
 unique_name_in_owner = true
@@ -1484,8 +1487,13 @@ layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectSlidingDoor/VBoxContainer" unique_id=648785182]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-text = "Description and details of Boulder."
+text = "Sliding doors are opened when enough pressure plates of the same color are pressed down.
+Most sliding doors only require one pressure plate.
+Some sliding doors stay open when you step off of the pressure plate while others begin closing.
+Some sliding doors close or open faster than others."
+autowrap_mode = 3
 
 [node name="PageObjectWallSmallHole" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=1253948399]
 unique_name_in_owner = true
@@ -1503,8 +1511,10 @@ layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectWallSmallHole/VBoxContainer" unique_id=1766699169]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-text = "Description and details of Boulder."
+text = "Small holes can only be passed through by small creatures."
+autowrap_mode = 3
 
 [node name="PageObjectPressurePlate" type="MarginContainer" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer" unique_id=216279840]
 unique_name_in_owner = true
@@ -1522,8 +1532,11 @@ layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabObjects/HBoxContainer/PageContainer/PageObjectPressurePlate/VBoxContainer" unique_id=607300463]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-text = "Description and details of Boulder."
+text = "Pressure plates connect to doors and other mechanisms to open or activate them when pressed down.
+Some pressure plates require a certain amount of weight to trigger."
+autowrap_mode = 3
 
 [node name="TabBooks" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=961548159]
 unique_name_in_owner = true

@@ -43,3 +43,9 @@ func _on_ui_layer_recipe_list_window_opened() -> void:
 		Then click the check mark on the tool to begin crafting."
 		)
 		opened_recipe_menu = true
+
+
+func _on_cutscene_cutscene_closed() -> void:
+	EventHandler.open_popup_message(
+		"Move with WASD keys"
+		)

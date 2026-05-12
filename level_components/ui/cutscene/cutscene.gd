@@ -1,5 +1,7 @@
 class_name Cutscene extends CanvasLayer
 
+signal cutscene_closed
+
 ## The list of images that will be shown, in the order provided.
 @export var images : Array[Texture2D]
 ## The current index of the panel shown.
@@ -34,6 +36,7 @@ func next_image():
 ## Closes the cutscene window by freeing the scene, since it will not be reopened.
 func close_cutscene():
 	Global.mode = &"default"
+	cutscene_closed.emit()
 	queue_free()
 
 
