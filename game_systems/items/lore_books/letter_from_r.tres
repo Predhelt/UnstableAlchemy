@@ -17,5 +17,4 @@ max_qty = 1
 on_consume_events = Dictionary[String, Array]({
 "open_log_book_page": ["BookLetterFromR"]
 })
-on_consume_message = "Someone got here before us?"
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

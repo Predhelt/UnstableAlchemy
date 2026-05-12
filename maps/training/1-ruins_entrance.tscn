@@ -92,6 +92,7 @@ auto_play = true
 stream = ExtResource("2_se43p")
 
 [node name="TutorialMessages" type="Control" parent="." index="3" unique_id=1046553908]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 0

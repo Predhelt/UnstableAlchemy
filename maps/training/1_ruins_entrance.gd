@@ -28,8 +28,8 @@ func _on_ui_layer_item_used(item: Item) -> void:
 func _on_ui_layer_log_book_menu_window_closed() -> void:
 	if grabbed_recipe_book and used_recipe_book and not closed_log_book:
 		EventHandler.open_popup_message(
-		"Open the recipe book with \"%s\".\n
-		Check the log book (\"%s\") to get more info." %
+		"Open the recipe book (%s).\n
+		Check the log book (%s) to get more info." %
 		[InputMap.action_get_events("recipe_book")[0].as_text().replace(' - Physical',''),
 		InputMap.action_get_events("log_book")[0].as_text().replace(' - Physical','')]
 		)
