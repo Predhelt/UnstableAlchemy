@@ -2,20 +2,46 @@
 
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_ixbpm"]
 [ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://art/pack/characters/herbalist_down.png" id="2_23e54"]
-[ext_resource type="Resource" uid="uid://c2p3owaoyxfkl" path="res://characters/player/main_character_attributes.tres" id="2_c6leb"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_sbttr"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_idpv6"]
-[ext_resource type="Texture2D" uid="uid://bswpv7gelkefl" path="res://art/pack/characters/herbalist_left.png" id="3_q5yn3"]
-[ext_resource type="Texture2D" uid="uid://oy0s4ftupf2d" path="res://art/pack/characters/herbalist_right.png" id="4_eve5b"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_rpf03"]
-[ext_resource type="Texture2D" uid="uid://bjkg0jkad6gww" path="res://art/pack/characters/herbalist_up.png" id="5_n5fht"]
+[ext_resource type="Texture2D" uid="uid://ce24j5v566lcc" path="res://art/pack/characters/green_robe/idle_down_frame0000.png" id="5_6pj1p"]
+[ext_resource type="Texture2D" uid="uid://djqh5h5n6m4dx" path="res://art/pack/characters/green_robe/idle_down_frame0003.png" id="6_3a7m8"]
+[ext_resource type="Texture2D" uid="uid://dmxre2ig832bq" path="res://art/pack/characters/green_robe/idle_left_frame0000.png" id="8_y3et5"]
+[ext_resource type="Texture2D" uid="uid://cbhpq0di55ar0" path="res://art/pack/characters/green_robe/idle_left_frame0003.png" id="9_0mbv2"]
+[ext_resource type="Texture2D" uid="uid://bdc51xndurojb" path="res://art/pack/characters/green_robe/idle_right_frame0000.png" id="10_8v65i"]
+[ext_resource type="Texture2D" uid="uid://boyw4k1vpg7xf" path="res://art/pack/characters/green_robe/idle_right_frame0003.png" id="11_jepfe"]
+[ext_resource type="Texture2D" uid="uid://c4ah2ls035a58" path="res://art/pack/characters/green_robe/idle_up_frame0000.png" id="12_iopkm"]
+[ext_resource type="Texture2D" uid="uid://dnxgphdxivisy" path="res://art/pack/characters/green_robe/idle_up_frame0003.png" id="13_pagxt"]
+[ext_resource type="Texture2D" uid="uid://dsmof2lgs7ujq" path="res://art/pack/characters/green_robe/run_down_frame0000.png" id="14_2qgir"]
+[ext_resource type="Texture2D" uid="uid://b1mrs36wetdsm" path="res://art/pack/characters/green_robe/run_down_frame0002.png" id="15_o3aog"]
+[ext_resource type="Texture2D" uid="uid://bqkeqwyfo04iv" path="res://art/pack/characters/green_robe/run_down_frame0004.png" id="16_5rrwf"]
+[ext_resource type="Texture2D" uid="uid://ccx85r8j85452" path="res://art/pack/characters/green_robe/run_down_frame0006.png" id="17_gro5v"]
+[ext_resource type="Texture2D" uid="uid://chx3crppnh18i" path="res://art/pack/characters/green_robe/run_left_frame0000.png" id="18_dwr0q"]
+[ext_resource type="Texture2D" uid="uid://ch01c6caw0f10" path="res://art/pack/characters/green_robe/run_left_frame0002.png" id="19_cosaq"]
+[ext_resource type="Texture2D" uid="uid://etluhur6stbu" path="res://art/pack/characters/green_robe/run_left_frame0004.png" id="20_bakn2"]
+[ext_resource type="Texture2D" uid="uid://cm1a47yo4a2x4" path="res://art/pack/characters/green_robe/run_left_frame0006.png" id="21_2xk8k"]
+[ext_resource type="Texture2D" uid="uid://do57esjsyrj2l" path="res://art/pack/characters/green_robe/run_right_frame0000.png" id="22_qi0sd"]
+[ext_resource type="Texture2D" uid="uid://blfe4nkggea48" path="res://art/pack/characters/green_robe/run_right_frame0002.png" id="23_jysfx"]
+[ext_resource type="Texture2D" uid="uid://cia0m3byifmk1" path="res://art/pack/characters/green_robe/run_right_frame0004.png" id="24_8tbpq"]
+[ext_resource type="Texture2D" uid="uid://fwta5ximbf4c" path="res://art/pack/characters/green_robe/run_right_frame0006.png" id="25_i1mdy"]
+[ext_resource type="Texture2D" uid="uid://dpk81klkuko0" path="res://art/pack/characters/green_robe/run_up_frame0000.png" id="26_4hjhg"]
+[ext_resource type="Texture2D" uid="uid://b3ccbh2fxiukt" path="res://art/pack/characters/green_robe/run_up_frame0002.png" id="27_xvmlt"]
+[ext_resource type="Texture2D" uid="uid://be53wbt3voo4s" path="res://art/pack/characters/green_robe/run_up_frame0004.png" id="28_6d2wq"]
+[ext_resource type="Texture2D" uid="uid://b8cs1knphjnfw" path="res://art/pack/characters/green_robe/run_up_frame0006.png" id="29_kr20l"]
 
-[sub_resource type="Resource" id="Resource_idpv6"]
+[sub_resource type="Resource" id="Resource_bdpt7"]
+resource_local_to_scene = true
+script = ExtResource("2_sbttr")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_di0ei"]
 resource_local_to_scene = true
 script = ExtResource("4_rpf03")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Animation" id="Animation_inutq"]
-length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,14 +49,15 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_23e54")]
+"values": [ExtResource("5_6pj1p"), ExtResource("6_3a7m8"), ExtResource("5_6pj1p")]
 }
 
 [sub_resource type="Animation" id="Animation_cssul"]
 resource_name = "idle_down"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,14 +65,15 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_23e54")]
+"values": [ExtResource("2_23e54"), ExtResource("6_3a7m8"), ExtResource("2_23e54")]
 }
 
 [sub_resource type="Animation" id="Animation_85or5"]
 resource_name = "idle_left"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,14 +81,15 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_q5yn3")]
+"values": [ExtResource("8_y3et5"), ExtResource("9_0mbv2"), ExtResource("8_y3et5")]
 }
 
 [sub_resource type="Animation" id="Animation_33o0g"]
 resource_name = "idle_right"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -68,14 +97,15 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("4_eve5b")]
+"values": [ExtResource("10_8v65i"), ExtResource("11_jepfe"), ExtResource("10_8v65i")]
 }
 
 [sub_resource type="Animation" id="Animation_gvkpy"]
 resource_name = "idle_up"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,10 +113,74 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("5_n5fht")]
+"values": [ExtResource("12_iopkm"), ExtResource("13_pagxt"), ExtResource("12_iopkm")]
+}
+
+[sub_resource type="Animation" id="Animation_apqh1"]
+resource_name = "run_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("14_2qgir"), ExtResource("15_o3aog"), ExtResource("16_5rrwf"), ExtResource("17_gro5v"), ExtResource("14_2qgir")]
+}
+
+[sub_resource type="Animation" id="Animation_f0ap2"]
+resource_name = "run_left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("18_dwr0q"), ExtResource("19_cosaq"), ExtResource("20_bakn2"), ExtResource("21_2xk8k"), ExtResource("18_dwr0q")]
+}
+
+[sub_resource type="Animation" id="Animation_7owf2"]
+resource_name = "run_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("22_qi0sd"), ExtResource("23_jysfx"), ExtResource("24_8tbpq"), ExtResource("25_i1mdy"), ExtResource("22_qi0sd")]
+}
+
+[sub_resource type="Animation" id="Animation_d7nuc"]
+resource_name = "run_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("26_4hjhg"), ExtResource("27_xvmlt"), ExtResource("28_6d2wq"), ExtResource("29_kr20l"), ExtResource("26_4hjhg")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c6leb"]
@@ -95,7 +189,11 @@ _data = {
 &"idle_down": SubResource("Animation_cssul"),
 &"idle_left": SubResource("Animation_85or5"),
 &"idle_right": SubResource("Animation_33o0g"),
-&"idle_up": SubResource("Animation_gvkpy")
+&"idle_up": SubResource("Animation_gvkpy"),
+&"run_down": SubResource("Animation_apqh1"),
+&"run_left": SubResource("Animation_f0ap2"),
+&"run_right": SubResource("Animation_7owf2"),
+&"run_up": SubResource("Animation_d7nuc")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dirf7"]
@@ -124,16 +222,16 @@ max_space = Vector2(1, 1.1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3t07l"]
-animation = &"idle_left"
+animation = &"run_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_on558"]
-animation = &"idle_down"
+animation = &"run_down"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gqopd"]
-animation = &"idle_up"
+animation = &"run_up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_icpky"]
-animation = &"idle_right"
+animation = &"run_right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_q7fje"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_3t07l")
@@ -172,13 +270,13 @@ radius = 13.0
 
 [node name="Character" unique_id=1948548714 instance=ExtResource("1_ixbpm")]
 character_name = "Constance"
-attributes = ExtResource("2_c6leb")
-inventory = SubResource("Resource_idpv6")
+attributes = SubResource("Resource_bdpt7")
+inventory = SubResource("Resource_di0ei")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=988207362]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_23e54")
+texture = ExtResource("5_6pj1p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=2075376416]
 libraries/ = SubResource("AnimationLibrary_c6leb")

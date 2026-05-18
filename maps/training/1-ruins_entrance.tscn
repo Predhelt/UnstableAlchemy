@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="3_v5e0f"]
 [ext_resource type="Texture2D" uid="uid://cosikcjiev8nx" path="res://art/pack/cutscenes/approaching_ruins.png" id="3_vlms1"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_0k1oq"]
+[ext_resource type="Texture2D" uid="uid://dqh1heutddjcv" path="res://art/pack/cutscenes/paper1.png" id="4_tldv4"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="5_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="6_onki7"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="6_se43p"]
@@ -85,7 +86,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 script = ExtResource("2_kfvxj")
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_yd7uk")]
-images = Array[Texture2D]([ExtResource("3_vlms1")])
+images = Array[Texture2D]([ExtResource("4_tldv4"), ExtResource("3_vlms1")])
 auto_play = true
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
@@ -236,10 +237,10 @@ grab_interaction = SubResource("Resource_5p60j")
 cut_interaction = SubResource("Resource_kfvxj")
 
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
-offset_left = 230.0
-offset_top = -1323.0
-offset_right = 483.0
-offset_bottom = -1170.0
+offset_left = 116.0
+offset_top = -1273.0
+offset_right = 369.0
+offset_bottom = -1094.0
 text = "- walk
 - pick up
 - eat

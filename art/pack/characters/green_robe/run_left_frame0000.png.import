@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jx2lv24py0fb"
-path="res://.godot/imported/cave_entrance.png-3edf2df814a8c5ba7216cac987dd8d07.ctex"
+uid="uid://chx3crppnh18i"
+path="res://.godot/imported/run_left_frame0000.png-342853f43fd3d85410c12308e2de4e11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/pack/cutscenes/cave_entrance.png"
-dest_files=["res://.godot/imported/cave_entrance.png-3edf2df814a8c5ba7216cac987dd8d07.ctex"]
+source_file="res://art/pack/characters/green_robe/run_left_frame0000.png"
+dest_files=["res://.godot/imported/run_left_frame0000.png-342853f43fd3d85410c12308e2de4e11.ctex"]
 
 [params]
 

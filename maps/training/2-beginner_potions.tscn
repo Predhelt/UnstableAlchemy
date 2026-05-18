@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_ytod7"]
 [ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_05avq"]
+[ext_resource type="Texture2D" uid="uid://3qarr4nr7qk8" path="res://art/pack/cutscenes/paper2.png" id="3_igldg"]
 [ext_resource type="Texture2D" uid="uid://7hcwwdhlf5f" path="res://art/pack/cutscenes/enter_ruins.png" id="3_oxed2"]
 [ext_resource type="AudioStream" uid="uid://dnbpwplr07ngk" path="res://art/pack/audio/music/still_ruins.mp3" id="4_xy3of"]
 [ext_resource type="AudioStream" uid="uid://doaueds0kkvmv" path="res://art/pack/audio/environment/low_breeze.mp3" id="5_u8d4j"]
@@ -91,7 +92,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_05avq")]
 visible = false
-images = Array[Texture2D]([ExtResource("3_oxed2")])
+images = Array[Texture2D]([ExtResource("3_igldg"), ExtResource("3_oxed2")])
 auto_play = true
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]

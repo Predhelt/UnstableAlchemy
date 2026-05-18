@@ -16,7 +16,7 @@ script = ExtResource("2_naugo")
 dialogue_name = &"greet"
 text = "Hey, My name is Brindan. I am known as a senior botanist.
 
-I messed up my ankle trying to get out of the way of the falling rocks. It looks like we are stuck and we need to move that boulder up top to get out.
+I messed up my ankle trying to get out of the way of the falling rocks. It looks like we are stuck and we need to move that boulder next to me to get out.
 
 I can trade you some alchemy supplies or give you some advice. I also have some speed potions available to help you get around quicker."
 choices = Array[ExtResource("1_0womp")]([SubResource("Resource_1iaux")])
