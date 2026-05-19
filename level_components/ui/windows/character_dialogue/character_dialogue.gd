@@ -106,7 +106,8 @@ func execute_dialogue_effects(dialogue_effects : Array[String]) -> void: #NOTE: 
 ## Uses transaction information from the character to set up the shop window.
 func open_shop() -> void:
 	close_window()
-	character_ref.open_shop_from_dialogue()
+	if not character_ref.open_shop_from_dialogue():
+		Global.emit_notification("No transactions available")
 
 #DEPRECATED: No longer using a default dialogue field or DialogueTree typed.
 ## Set the value for the default dialogue page in the default dialogue tree.

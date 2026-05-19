@@ -10,21 +10,19 @@
 [ext_resource type="Texture2D" uid="uid://dqh1heutddjcv" path="res://art/pack/cutscenes/paper1.png" id="4_tldv4"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="5_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="6_onki7"]
-[ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="6_se43p"]
 [ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="7_yd7uk"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="8_vlms1"]
 [ext_resource type="PackedScene" uid="uid://bii4ap0xms52m" path="res://level_components/objects/interactable/containers/interactable_note.tscn" id="9_koixy"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="9_xyxgs"]
 [ext_resource type="Resource" uid="uid://vobyn33fr34u" path="res://game_systems/items/lore_books/letter_from_r.tres" id="10_6r8pq"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="10_s8amr"]
-[ext_resource type="Texture2D" uid="uid://ci0btg4ghsaty" path="res://art/pack/ingredients/inventory/herb_green_leaf.png" id="11_v5e0f"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="11_xogub"]
-[ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://game_systems/items/gatherable/green_herb_leaf.tres" id="12_0k1oq"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="12_vtuq6"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="16_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://c4v0402ieqqo7" path="res://level_components/objects/triggers/dialogue_trigger.tscn" id="16_vlms1"]
 [ext_resource type="Script" uid="uid://d312pdlqp2ee0" path="res://level_components/objects/triggers/dialogue_trigger_custom_hint1.gd" id="17_xyxgs"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="24_kfvxj"]
+[ext_resource type="PackedScene" uid="uid://dc1cv4w86cxyk" path="res://characters/lex_ruins/lex.tscn" id="25_5p60j"]
 [ext_resource type="PackedScene" uid="uid://cs7l75a5mg1gm" path="res://level_components/objects/triggers/sliding_door_facing_right.tscn" id="25_tldv4"]
 [ext_resource type="Texture2D" uid="uid://crkop74rurk3d" path="res://art/pack/objects/doors/slide_door_green.png" id="26_tc2aj"]
 
@@ -47,27 +45,6 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 script = ExtResource("9_xyxgs")
 on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("7_yd7uk")])
 on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_0k1oq"]
-script = ExtResource("4_0k1oq")
-display_name = "Green Herb Leaf"
-description = "A leaf of a green herb. It is mundane in its current state."
-texture = ExtResource("11_v5e0f")
-max_qty = 32
-qty = 10
-on_consume_message = "That tastes bitter"
-
-[sub_resource type="Resource" id="Resource_lyfyp"]
-script = ExtResource("9_xyxgs")
-on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("12_0k1oq")])
-on_interact_amounts = Array[int]([2])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_onki7"]
-script = ExtResource("9_xyxgs")
-on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("12_0k1oq")])
-on_interact_amounts = Array[int]([3])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [sub_resource type="Resource" id="Resource_5p60j"]
@@ -205,31 +182,22 @@ items = Array[ExtResource("4_0k1oq")]([ExtResource("7_yd7uk")])
 grab_interaction = SubResource("Resource_phy1u")
 cut_interaction = SubResource("Resource_ov0fr")
 
-[node name="InteractableCrate2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1528164000 instance=ExtResource("6_se43p")]
-position = Vector2(1183, -2145)
-contained_item_icon = ExtResource("11_v5e0f")
-display_name = "\"Herb Leaves\""
-description = "Seems to contain green herb leaves."
-items = Array[ExtResource("4_0k1oq")]([SubResource("Resource_0k1oq")])
-grab_interaction = SubResource("Resource_lyfyp")
-cut_interaction = SubResource("Resource_onki7")
-
-[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=266748160 instance=ExtResource("10_s8amr")]
+[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=266748160 instance=ExtResource("10_s8amr")]
 position = Vector2(926, -1436)
 
-[node name="GreenHerb3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=872863301 instance=ExtResource("10_s8amr")]
+[node name="GreenHerb3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=872863301 instance=ExtResource("10_s8amr")]
 position = Vector2(1264, -1609)
 
-[node name="GreenHerb4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=597550431 instance=ExtResource("10_s8amr")]
+[node name="GreenHerb4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=597550431 instance=ExtResource("10_s8amr")]
 position = Vector2(1051, -1867)
 
-[node name="GreenHerb5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=634993617 instance=ExtResource("10_s8amr")]
+[node name="GreenHerb5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=634993617 instance=ExtResource("10_s8amr")]
 position = Vector2(1338, -2003)
 
-[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=2102750017 instance=ExtResource("10_s8amr")]
+[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=2102750017 instance=ExtResource("10_s8amr")]
 position = Vector2(2208, -1110)
 
-[node name="InteractableNote" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="7" unique_id=1856845390 instance=ExtResource("9_koixy")]
+[node name="InteractableNote" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=1856845390 instance=ExtResource("9_koixy")]
 position = Vector2(548, -1440)
 display_name = "\"Letter From R\""
 items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
@@ -248,6 +216,9 @@ text = "- walk
 - use M&P
 - learn how pressure plate works
 - learn how sliding doors work"
+
+[node name="Character" parent="." index="13" unique_id=1948548714 instance=ExtResource("25_5p60j")]
+position = Vector2(1123, -2138)
 
 [connection signal="cutscene_closed" from="Cutscene" to="." method="_on_cutscene_cutscene_closed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]

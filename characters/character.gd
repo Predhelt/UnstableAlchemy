@@ -1060,12 +1060,14 @@ func open_dialogue() -> void:
 	dialogue_ui_ref.open_window_as_character(self)
 
 ## Opens the character shop window after configuring the transactions on the page
-func open_shop() -> void:
+func open_shop() -> bool:
 	if transactions.size(): # If the character has shop transactions
 		if shop_ui_ref.transactions.size(): # If the shop already has populated the transaction UI
 			shop_ui_ref.clear_transactions()
 		shop_ui_ref.transactions = transactions
 		shop_ui_ref.open_window()
+		return true
+	return false
 
 ## Does additional logic if the shop was opened from the dialogue menu
 func open_shop_from_dialogue():

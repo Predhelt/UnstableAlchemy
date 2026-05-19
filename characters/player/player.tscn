@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bavldmbvwom6f"]
 
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_ixbpm"]
-[ext_resource type="Texture2D" uid="uid://brtjfwt8bsen2" path="res://art/pack/characters/herbalist_down.png" id="2_23e54"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_sbttr"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_idpv6"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_rpf03"]
@@ -30,12 +29,12 @@
 [ext_resource type="Texture2D" uid="uid://be53wbt3voo4s" path="res://art/pack/characters/green_robe/run_up_frame0004.png" id="28_6d2wq"]
 [ext_resource type="Texture2D" uid="uid://b8cs1knphjnfw" path="res://art/pack/characters/green_robe/run_up_frame0006.png" id="29_kr20l"]
 
-[sub_resource type="Resource" id="Resource_bdpt7"]
+[sub_resource type="Resource" id="Resource_e0pgg"]
 resource_local_to_scene = true
 script = ExtResource("2_sbttr")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_di0ei"]
+[sub_resource type="Resource" id="Resource_sbttr"]
 resource_local_to_scene = true
 script = ExtResource("4_rpf03")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -68,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_23e54"), ExtResource("6_3a7m8"), ExtResource("2_23e54")]
+"values": [ExtResource("5_6pj1p"), ExtResource("6_3a7m8"), ExtResource("5_6pj1p")]
 }
 
 [sub_resource type="Animation" id="Animation_85or5"]
@@ -270,8 +269,8 @@ radius = 13.0
 
 [node name="Character" unique_id=1948548714 instance=ExtResource("1_ixbpm")]
 character_name = "Constance"
-attributes = SubResource("Resource_bdpt7")
-inventory = SubResource("Resource_di0ei")
+attributes = SubResource("Resource_e0pgg")
+inventory = SubResource("Resource_sbttr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=988207362]
 position = Vector2(0, -36)

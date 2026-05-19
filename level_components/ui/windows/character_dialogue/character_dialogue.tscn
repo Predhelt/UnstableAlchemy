@@ -90,9 +90,14 @@ grow_vertical = 2
 theme_override_constants/separation = 14
 alignment = 1
 
-[node name="DialogueLabel" type="RichTextLabel" parent="VBoxContainer/Container/DialogueBox" unique_id=1711053219]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Container/DialogueBox" unique_id=1529872227]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogueLabel" type="RichTextLabel" parent="VBoxContainer/Container/DialogueBox/HBoxContainer" unique_id=1711053219]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "Sample dialogue.

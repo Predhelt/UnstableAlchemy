@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dsesxxr3ekk04"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/dialogue_choice.gd" id="1_alelr"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://characters/dialogue.gd" id="2_g577a"]
+
+[resource]
+script = ExtResource("2_g577a")
+dialogue_name = &"greet"
+text = "I'm going to rest up a bit before we continue. Feel free to go on ahead if you can get through the door."
+metadata/_custom_type_script = "uid://3qs2s64uenyc"
