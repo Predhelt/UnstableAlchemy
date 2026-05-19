@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://b6ujdk06c8kwk" path="res://art/pack/objects/pressure_plates/object-pressure-plate_cyan.png" id="26_7unxe"]
 [ext_resource type="PackedScene" uid="uid://cs7l75a5mg1gm" path="res://level_components/objects/triggers/sliding_door_facing_right.tscn" id="26_jb56y"]
 [ext_resource type="Texture2D" uid="uid://cex4k0brot70q" path="res://art/pack/objects/doors/slide_door_cyan.png" id="30_d432r"]
+[ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="37_nb123"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="37_qpemt"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="38_i678b"]
 
@@ -137,6 +138,9 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("2_i678b")
+
+[node name="AmbientAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="1" unique_id=1274652820]
+stream = null
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
 position = Vector2(510, 402)
@@ -295,6 +299,12 @@ cut_interaction = SubResource("Resource_n18o7")
 [node name="CutsceneTriggerArea" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="9" unique_id=1882614331 instance=ExtResource("21_d432r")]
 position = Vector2(480, -1248)
 images = Array[Texture2D]([ExtResource("3_mfhge")])
+
+[node name="AudioStreamPlayerAmbientBirds" type="AudioStreamPlayer2D" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="10" unique_id=1192742806]
+position = Vector2(478, -1441)
+stream = ExtResource("37_nb123")
+autoplay = true
+max_distance = 1000.0
 
 [node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=20981134]
 layout_mode = 0

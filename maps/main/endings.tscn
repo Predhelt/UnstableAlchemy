@@ -6,18 +6,24 @@
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_5iium"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_okgdk"]
 [ext_resource type="PackedScene" uid="uid://ce8wyt8q6nnbr" path="res://level_components/objects/triggers/cutscene_trigger_area.tscn" id="5_3e1va"]
+[ext_resource type="Resource" uid="uid://cvvarufagkr1h" path="res://game_systems/items/potions/self_attunement_potion.tres" id="5_eg3ay"]
+[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="6_8h1iv"]
+[ext_resource type="PackedScene" uid="uid://cb1e3wm6l2m4t" path="res://characters/lex_endings/lex.tscn" id="6_k5i8p"]
 [ext_resource type="Texture2D" uid="uid://c346j2ugru0bu" path="res://art/pack/cutscenes/alchemy_research.png" id="6_okgdk"]
 [ext_resource type="Texture2D" uid="uid://13fdgmtwv2sr" path="res://art/pack/cutscenes/alchemy_research_incident.png" id="7_3e1va"]
+[ext_resource type="Resource" uid="uid://db62qwoxlu4p8" path="res://game_systems/items/potions/shrink_potion.tres" id="7_js078"]
+[ext_resource type="Resource" uid="uid://dmmjiexaj27y4" path="res://game_systems/items/potions/strength_potion.tres" id="8_2ov4i"]
 [ext_resource type="Texture2D" uid="uid://1rb6622lnoa8" path="res://art/pack/cutscenes/alchemy_research_success.png" id="8_k5i8p"]
 
-[sub_resource type="Resource" id="Resource_3e1va"]
+[sub_resource type="Resource" id="Resource_e6e85"]
 resource_local_to_scene = true
 script = ExtResource("2_sgrvt")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_k5i8p"]
+[sub_resource type="Resource" id="Resource_q4td8"]
 resource_local_to_scene = true
 script = ExtResource("4_okgdk")
+items = Array[ExtResource("3_5iium")]([ExtResource("5_eg3ay"), ExtResource("6_8h1iv"), ExtResource("7_js078"), ExtResource("8_2ov4i")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_74a05")]
@@ -26,21 +32,31 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 stream = ExtResource("2_3e1va")
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
-attributes = SubResource("Resource_3e1va")
-inventory = SubResource("Resource_k5i8p")
+position = Vector2(520, 416)
+attributes = SubResource("Resource_e6e85")
+inventory = SubResource("Resource_q4td8")
+
+[node name="Character" parent="." index="4" unique_id=1948548714 instance=ExtResource("6_k5i8p")]
+position = Vector2(684, 417)
+
+[node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
+tile_map_data = PackedByteArray("AAAFAAMAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAUAAgAAAAAAAQAFAAYAAgAAAAAAAQAFAAcAAgAAAAAAAQAFAAgAAgAAAAAAAQAFAAkAAgAAAAAAAQAGAAMAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAGAAYAAgAAAAAAAQAGAAcAAgAAAAAAAQAGAAgAAgAAAAAAAQAGAAkAAgAAAAAAAQAHAAMAAgAAAAAAAQAHAAQAAgAAAAAAAQAHAAUAAgAAAAAAAQAHAAYAAgAAAAAAAQAHAAcAAgAAAAAAAQAHAAgAAgAAAAAAAQAHAAkAAgAAAAAAAQAIAAMAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAUAAgAAAAAAAQAIAAYAAgAAAAAAAQAIAAcAAgAAAAAAAQAIAAgAAgAAAAAAAQAIAAkAAgAAAAAAAQAJAAMAAgAAAAAAAQAJAAQAAgAAAAAAAQAJAAUAAgAAAAAAAQAJAAYAAgAAAAAAAQAJAAcAAgAAAAAAAQAJAAgAAgAAAAAAAQAJAAkAAgAAAAAAAQAKAAMAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAUAAgAAAAAAAQAKAAYAAgAAAAAAAQAKAAcAAgAAAAAAAQAKAAgAAgAAAAAAAQAKAAkAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQALAAUAAgAAAAAAAQALAAYAAgAAAAAAAQALAAcAAgAAAAAAAQALAAgAAgAAAAAAAQALAAkAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQAMAAYAAgAAAAAAAQAMAAcAAgAAAAAAAQAMAAgAAgAAAAAAAQAMAAkAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQANAAYAAgAAAAAAAQANAAcAAgAAAAAAAQANAAgAAgAAAAAAAQANAAkAAgAAAAAAAQAGAAoAAgAAAAAAAAAGAAsAAgAAAAAAAAAGAAwAAgAAAAAAAAAGAA0AAgAAAAAAAAAGAA4AAgAAAAAAAAAGAA8AAgAAAAAAAAAGABAAAgAAAAAAAAAGABEAAgAAAAAAAAAHAAoAAgAAAAAAAAAHAAsAAgAAAAAAAAAHAAwAAgAAAAAAAAAHAA0AAgAAAAAAAAAHAA4AAgAAAAAAAAAHAA8AAgAAAAAAAAAHABAAAgAAAAAAAAAHABEAAgAAAAAAAAAIAAoAAgAAAAAAAAAIAAsAAgAAAAAAAAAIAAwAAgAAAAAAAAAIAA0AAgAAAAAAAAAIAA4AAgAAAAAAAAAIAA8AAgAAAAAAAAAIABAAAgAAAAAAAAAIABEAAgAAAAAAAAAJAAoAAQABAAEAAAAJAAsAAQABAAEAAAAJAAwAAQABAAEAAAAJAA0AAQABAAEAAAAJAA4AAQABAAEAAAAJAA8AAQABAAEAAAAJABAAAQABAAEAAAAJABEAAQABAAEAAAAKAAoAAgAAAAAAAAAKAAsAAgAAAAAAAAAKAAwAAgAAAAAAAAAKAA0AAgAAAAAAAAAKAA4AAgAAAAAAAAAKAA8AAgAAAAAAAAAKABAAAgAAAAAAAAAKABEAAgAAAAAAAAALAAoAAgAAAAAAAAALAAsAAgAAAAAAAAALAAwAAgAAAAAAAAALAA0AAgAAAAAAAAALAA4AAgAAAAAAAAALAA8AAgAAAAAAAAALABAAAgAAAAAAAAALABEAAgAAAAAAAAAMAAoAAgAAAAAAAAAMAAsAAgAAAAAAAAAMAAwAAgAAAAAAAAAMAA0AAgAAAAAAAAAMAA4AAgAAAAAAAAAMAA8AAgAAAAAAAAAMABAAAgAAAAAAAAAMABEAAgAAAAAAAAA=")
 
 [node name="Top" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="1" unique_id=562609937]
-tile_map_data = PackedByteArray("AAAFAAgAAgACAAAAAAAGAAMAAgADAAAAAAAHAAQAAgAEAAAAAAAJAAYAAgAGAAAAAAAMAAQAAgAEAAAAAAAMAAcAAgAGAAAAAAANAAUAAgAEAAAAAAANAAcAAgACAAAAAAAMAAYAAQAAAAAAAAAGAAYAAQABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAFAAgAAgACAAAAAAAGAAMAAgADAAAAAAAHAAQAAgAEAAAAAAAJAAYAAgAGAAAAAAAMAAQAAgAEAAAAAAAMAAcAAgAGAAAAAAANAAUAAgAEAAAAAAANAAcAAgACAAAAAAAHAA8AAgAEAAAAAAAIAAoAAgABAAAAAAAIAAsAAgAEAAAAAAAIABEAAgACAAAAAAAKAA4AAgACAAAAAAALAA8AAgAEAAAAAAAMAAsAAgADAAAAAAAMABEAAgACAAAAAAA=")
 
 [node name="CutsceneTriggerArea" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1882614331 instance=ExtResource("5_3e1va")]
+visible = false
 position = Vector2(416, 416)
 images = Array[Texture2D]([ExtResource("6_okgdk"), ExtResource("7_3e1va")])
 
 [node name="CutsceneTriggerArea2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1206473578 instance=ExtResource("5_3e1va")]
+visible = false
 position = Vector2(800, 416)
 images = Array[Texture2D]([ExtResource("6_okgdk"), ExtResource("8_k5i8p")])
 
 [node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=1756290353]
+visible = false
 layout_mode = 0
 offset_left = 329.0
 offset_top = 327.0
@@ -51,6 +67,7 @@ text = "Bad end
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=1813855584]
+visible = false
 layout_mode = 0
 offset_left = 712.0
 offset_top = 331.0
@@ -66,6 +83,5 @@ offset_left = 429.0
 offset_top = 199.0
 offset_right = 772.0
 offset_bottom = 248.0
-text = "Thank you for playing!
-Here are some proposed endings as a bonus"
+text = "Thank you for playing!"
 horizontal_alignment = 1

@@ -141,6 +141,16 @@ func set_buttons_visibility(character : Node = null) -> void:
 				pass
 			2000: # Letter from R
 				show_button(%ButtonBookLetterFromR)
+			2001: # Geode Hint 1
+				show_button(%ButtonBookGeodeHint1)
+			2002: # Geode Hint 2
+				show_button(%ButtonBookGeodeHint2)
+			2003: # Geode Hint 3
+				show_button(%ButtonBookGeodeHint3)
+			2004: # Geode Hint 4
+				show_button(%ButtonBookGeodeHint4)
+			2005: # Geode Hint 5
+				show_button(%ButtonBookGeodeHint5)
 	for recipe in character_ref.known_recipes:
 		match recipe.id:
 			### M&P ###
@@ -885,6 +895,21 @@ func _on_button_book_shrink_potion_pressed() -> void:
 
 func _on_button_book_herb_flakes_pressed() -> void:
 	open_book_page(%PageBookHerbFlakes)
+
+func _on_button_book_geode_hint_1_pressed() -> void:
+	open_book_page(%PageBookGeodeHint1)
+
+func _on_button_book_geode_hint_2_pressed() -> void:
+	open_book_page(%PageBookGeodeHint2)
+
+func _on_button_book_geode_hint_3_pressed() -> void:
+	open_book_page(%PageBookGeodeHint3)
+
+func _on_button_book_geode_hint_4_pressed() -> void:
+	open_book_page(%PageBookGeodeHint4)
+
+func _on_button_book_geode_hint_5_pressed() -> void:
+	open_book_page(%PageBookGeodeHint5)
 
 ### Places Tab ###
 ##################

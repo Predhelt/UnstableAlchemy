@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://2cbj70lip77v"]
+
+[ext_resource type="Script" uid="uid://b1i4fy1b1r0pv" path="res://level_components/ui/windows/character_dialogue/character_portrait.gd" id="1_qextl"]
+[ext_resource type="Texture2D" uid="uid://saa6dltakqms" path="res://art/pack/ui/question.png" id="2_qextl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5oce"]
+bg_color = Color(0.099985994, 0.099985994, 0.099985994, 0.95686275)
+
+[node name="CharacterPortrait" type="Panel" unique_id=1294201059]
+custom_minimum_size = Vector2(136, 196)
+theme_override_styles/panel = SubResource("StyleBoxFlat_y5oce")
+script = ExtResource("1_qextl")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1761351314]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=502273211]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1981614402]
+layout_mode = 2
+texture = ExtResource("2_qextl")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=49919796]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Name overflows"
+horizontal_alignment = 1
+autowrap_mode = 3
+clip_text = true

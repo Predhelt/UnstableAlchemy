@@ -31,7 +31,7 @@ func _on_button_load_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	var save_select : PopupMenu = save_select_popup_ref.instantiate()
 	add_child(save_select)
-	save_select.position = $VBoxContainer/ButtonLoad.global_position
+	save_select.position = $PlayTypePage/ButtonLoad.global_position
 
 
 func _on_button_entered() -> void:

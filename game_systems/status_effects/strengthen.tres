@@ -11,4 +11,5 @@ description = "Allows easier manipulation of heavier objects."
 icon = ExtResource("1_jmmwj")
 effect = "strength bonus"
 value = 100.0
+duration = 60.0
 metadata/_custom_type_script = "uid://odkkljfrjpee"

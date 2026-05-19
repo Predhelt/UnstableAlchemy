@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bavldmbvwom6f"]
 
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_ixbpm"]
+[ext_resource type="Texture2D" uid="uid://dfvka6viy4n5o" path="res://art/pack/characters/portraits/constance.png" id="2_6pj1p"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_sbttr"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_idpv6"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_rpf03"]
@@ -269,6 +270,7 @@ radius = 13.0
 
 [node name="Character" unique_id=1948548714 instance=ExtResource("1_ixbpm")]
 character_name = "Constance"
+portrait = ExtResource("2_6pj1p")
 attributes = SubResource("Resource_e0pgg")
 inventory = SubResource("Resource_sbttr")
 

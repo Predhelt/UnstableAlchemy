@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Book" format=3 uid="uid://rwr7h11b2ey8"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_ep1sw"]
+[ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_gehf4"]
+[ext_resource type="Script" uid="uid://dvfx56s3nb8gd" path="res://game_systems/items/book.gd" id="3_5ntex"]
+[ext_resource type="Texture2D" uid="uid://c0bqhjqs8sxd7" path="res://art/pack/objects/page.png" id="4_gehf4"]
+
+[resource]
+script = ExtResource("3_5ntex")
+id = 2001
+display_name = "Geode Hint #1"
+description = "Describes aspects of a myserious geode."
+texture = ExtResource("4_gehf4")
+primary_color = "white"
+use_sound = "read"
+max_qty = 1
+on_consume_events = Dictionary[String, Array]({
+"open_log_book_page": ["BookGeodeHint1"]
+})
+metadata/_custom_type_script = "uid://dvfx56s3nb8gd"

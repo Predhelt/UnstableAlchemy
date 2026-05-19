@@ -41,6 +41,13 @@ func open_window_as_character(character : Character) -> bool:
 		character_ref = character
 		#Global.focused_node = player
 		%WindowName.text = character_ref.character_name
+		
+		# Set portrait details
+		%CharacterPortrait.set_portrait(character_ref.portrait)
+		%CharacterPortrait.set_portrait_name(character_ref.character_name)
+		%PlayerPortrait.set_portrait(Global.focused_node.portrait)
+		%PlayerPortrait.set_portrait_name(Global.focused_node.character_name)
+		
 		set_dialogue(character_ref.get_initial_dialogue_name(Global.focused_node))
 		
 		%ButtonBack.visible = false

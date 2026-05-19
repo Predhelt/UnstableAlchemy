@@ -11,5 +11,5 @@ description = "This creature has an absolute understanding of its status"
 icon = ExtResource("1_rv81l")
 effect = "self-attunement"
 value = 1.0
-duration = 60.0
+duration = 240.0
 metadata/_custom_type_script = "uid://odkkljfrjpee"

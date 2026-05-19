@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dc1cv4w86cxyk"]
 
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_vhc5s"]
+[ext_resource type="Texture2D" uid="uid://pyti8qq5etl8" path="res://art/pack/characters/portraits/lex.png" id="2_ny8b1"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_s5bfy"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_ny8b1"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_wb2km"]
@@ -176,6 +177,7 @@ radius = 13.0
 
 [node name="Character" unique_id=1948548714 instance=ExtResource("1_vhc5s")]
 character_name = "Lex"
+portrait = ExtResource("2_ny8b1")
 attributes = SubResource("Resource_fcb51")
 inventory = SubResource("Resource_wub86")
 

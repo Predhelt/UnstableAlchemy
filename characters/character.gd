@@ -23,6 +23,10 @@ const LABEL_DEFAULT_Y_POS : float = -60.0
 ## Name of the Character to be dislpayed.
 ## Used by the player and dialogue window to show who this is.
 @export var character_name : String
+## The portrait of the character that is displayed during dialogue by default.
+## Dynamic portraits based on context are not currently supported.
+@export var portrait : Texture2D
+
 
 @export_group("Setup")
 ## The character's base [Attributes] that determine interactions with the environment

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://c0cgelhbhui2g" path="res://game_systems/alchemy/recipes/pia_item.gd" id="6_8l44j"]
 [ext_resource type="Resource" uid="uid://b2x174wylo173" path="res://game_systems/alchemy/recipes/cauldron/procedure_input_actions/bellows.tres" id="7_8ggo5"]
 [ext_resource type="Script" uid="uid://b2d7pi15oxo04" path="res://game_systems/alchemy/procedure.gd" id="8_1i5vt"]
-[ext_resource type="Resource" uid="uid://cvvarufagkr1h" path="res://game_systems/items/potions/self_attunement_potion_.tres" id="9_tam5i"]
+[ext_resource type="Resource" uid="uid://cvvarufagkr1h" path="res://game_systems/items/potions/self_attunement_potion.tres" id="9_tam5i"]
 
 [sub_resource type="Resource" id="Resource_r1rvv"]
 script = ExtResource("6_8l44j")

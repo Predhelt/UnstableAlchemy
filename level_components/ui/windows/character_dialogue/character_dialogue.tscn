@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://di7udn24lejc1" path="res://level_components/ui/windows/character_dialogue/character_dialogue.gd" id="1_iho3e"]
 [ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_j7ds4"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_buk1c"]
+[ext_resource type="PackedScene" uid="uid://2cbj70lip77v" path="res://level_components/ui/windows/character_dialogue/character_portrait.tscn" id="4_xnem4"]
 
 [node name="NPCDialogue" type="Panel" unique_id=864341110]
 clip_contents = true
@@ -113,6 +114,11 @@ and enough text to cause it to scroll.
 4
 like this."
 
+[node name="CharacterPortrait" parent="VBoxContainer/Container/DialogueBox/HBoxContainer" unique_id=1294201059 instance=ExtResource("4_xnem4")]
+unique_name_in_owner = true
+layout_mode = 2
+is_facing_left = true
+
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/Container/DialogueBox" unique_id=715486978]
 layout_mode = 2
 
@@ -126,15 +132,25 @@ custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 text = "Trade"
 
-[node name="DialogueOptions" type="ItemList" parent="VBoxContainer/Container/DialogueBox/VBoxContainer" unique_id=1919821257]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Container/DialogueBox/VBoxContainer" unique_id=1683980493]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerPortrait" parent="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer" unique_id=222308661 instance=ExtResource("4_xnem4")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="DialogueOptions" type="ItemList" parent="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer" unique_id=1919821257]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_constants/v_separation = 10
 allow_search = false
+scroll_hint_mode = 1
 item_count = 5
-item_0/text = "Option 1"
+item_0/text = "Option 1. This text is long to see how it wraps when multiple lines of dialogue need to be shown."
 item_1/text = "Option 2"
 item_2/text = "Option 3"
 item_3/text = "Option 4"
@@ -143,4 +159,4 @@ item_4/text = "Option 5"
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/Container/DialogueBox/VBoxContainer/TradeButton" to="." method="_on_trade_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer/Container/DialogueBox/VBoxContainer/DialogueOptions" to="." method="_on_dialogue_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer/DialogueOptions" to="." method="_on_dialogue_options_item_selected"]
