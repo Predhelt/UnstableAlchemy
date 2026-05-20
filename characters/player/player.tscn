@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_ixbpm"]
 [ext_resource type="Texture2D" uid="uid://dfvka6viy4n5o" path="res://art/pack/characters/portraits/constance.png" id="2_6pj1p"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_sbttr"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="2_sbttr"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_idpv6"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_rpf03"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="4_rpf03"]
 [ext_resource type="Texture2D" uid="uid://ce24j5v566lcc" path="res://art/pack/characters/green_robe/idle_down_frame0000.png" id="5_6pj1p"]
 [ext_resource type="Texture2D" uid="uid://djqh5h5n6m4dx" path="res://art/pack/characters/green_robe/idle_down_frame0003.png" id="6_3a7m8"]
 [ext_resource type="Texture2D" uid="uid://dmxre2ig832bq" path="res://art/pack/characters/green_robe/idle_left_frame0000.png" id="8_y3et5"]

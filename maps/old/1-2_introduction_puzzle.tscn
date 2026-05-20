@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://c38lp67te30k2"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_cvhub"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_5fhqt"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="2_5fhqt"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="2_d42dm"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_wqapg"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="3_5fhqt"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="4_66foa"]
 [ext_resource type="Resource" uid="uid://bug73xhr5bl3w" path="res://game_systems/status_effects/energized_burst.tres" id="4_sgquv"]
 [ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="5_qjk18"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_p063e"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="6_p063e"]
 
 [sub_resource type="Resource" id="Resource_sgquv"]
 script = ExtResource("2_5fhqt")

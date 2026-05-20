@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Attributes" format=3 uid="uid://bmo1romp67ev2"]
 
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="1_35rpj"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="1_35rpj"]
 
 [resource]
 resource_local_to_scene = true

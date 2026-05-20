@@ -23,6 +23,7 @@ signal minigame_cauldron_window_closed()
 signal minigame_cauldron_window_opened()
 signal minigame_mp_window_closed()
 signal minigame_mp_window_opened()
+signal craft_completed(result: Item, recipe: Recipe)
 
 
 func _on_options_menu_window_closed() -> void:
@@ -87,3 +88,11 @@ func _on_minigame_mp_window_closed() -> void:
 
 func _on_minigame_mp_window_opened() -> void:
 	minigame_mp_window_opened.emit()
+
+
+func _on_minigame_cauldron_craft_completed(result: Item, recipe: Recipe) -> void:
+	craft_completed.emit(result, recipe)
+
+
+func _on_minigame_mp_craft_completed(result: Item, recipe: Recipe) -> void:
+	craft_completed.emit(result, recipe)

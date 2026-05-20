@@ -23,6 +23,7 @@ clip_2/stream = ExtResource("4_311wa")
 clip_2/auto_advance = 1
 clip_2/next_clip = 0
 clip_3/name = &"fail"
+clip_3/stream = ExtResource("2_qg2o0")
 clip_3/auto_advance = 0
 clip_4/name = &"drop"
 clip_4/stream = ExtResource("4_e0wkk")

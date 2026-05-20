@@ -33,6 +33,8 @@ var last_item_produced : Item
 #TODO: Determine if craft difficulty could be set dynamically by the player / circumstance
 ## Recipe that represents the craft item when a craft attempt fails.
 const FAILED_CRAFT : Recipe = preload("res://game_systems/alchemy/recipes/failed_craft.tres") #NOTE: ID for failed craft is 999
+## Recipe that represents the craft item when a craft attempt fails using the mysterious crystal.
+const FAILED_CRYSTAL_CRAFT : Recipe = preload("res://game_systems/alchemy/recipes/failed_cystal_craft.tres") # ID 998
 
 ## Sets the window mode
 func _init() -> void:
@@ -121,7 +123,7 @@ func _on_startup_delay_timeout() -> void:
 ## are added to the character's inventory.
 func check_results():
 	var product_recipe := matching_recipe()
-	var product_item : Item
+	var product_item : Item = null
 	if product_recipe:
 		$EffectsAudioStream.play()
 		$EffectsAudioStream["parameters/switch_to_clip"] = "success"
@@ -130,7 +132,12 @@ func check_results():
 	else:
 		$EffectsAudioStream.play()
 		$EffectsAudioStream["parameters/switch_to_clip"] = "fail"
-		product_item = FAILED_CRAFT.product_item.duplicate()
+		for item in cur_craft_ingredients:
+			if item and item.id == 10: # Mysterious Crystal
+				product_item = FAILED_CRYSTAL_CRAFT.product_item.duplicate()
+				break
+		if not product_item:
+			product_item = FAILED_CRAFT.product_item.duplicate()
 
 	var effect_instance = items_gained_effect.instantiate()
 			

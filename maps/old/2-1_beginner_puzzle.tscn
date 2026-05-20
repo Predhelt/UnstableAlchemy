@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_qeoma"]
 [ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_agfwc"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_kjxxc"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="2_kjxxc"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="2_yur1s"]
 [ext_resource type="Texture2D" uid="uid://7hcwwdhlf5f" path="res://art/pack/cutscenes/enter_ruins.png" id="3_frycr"]
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="3_kjxxc"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dnbpwplr07ngk" path="res://art/pack/audio/music/still_ruins.mp3" id="4_frycr"]
 [ext_resource type="AudioStream" uid="uid://doaueds0kkvmv" path="res://art/pack/audio/environment/low_breeze.mp3" id="5_m5kcg"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="5_sf5h6"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_dlj1c"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="6_dlj1c"]
 [ext_resource type="Resource" uid="uid://c3c5x8an0plk1" path="res://game_systems/items/recipe_books/grow_potion_book.tres" id="6_p5118"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="7_8ki3g"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="8_jpeu7"]

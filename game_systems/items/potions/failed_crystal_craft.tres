@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Potion" format=3 uid="uid://ci6b6vt1ewfor"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_xsldq"]
+[ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="2_t4ci5"]
+[ext_resource type="Texture2D" uid="uid://bdlclow8newot" path="res://art/pack/alchemy/tools/alchemy_abstract_container-full_blue.png" id="3_l5ibu"]
+
+[resource]
+script = ExtResource("2_t4ci5")
+id = 998
+display_name = "Failed Crystal Craft"
+texture = ExtResource("3_l5ibu")
+primary_color = "cyan"
+use_sound = "drink"
+max_qty = 1
+metadata/_custom_type_script = "uid://cspp6theghsrh"

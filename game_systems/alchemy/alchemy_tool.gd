@@ -12,6 +12,8 @@ const MAX_ITEMS := 3
 ## The recipe information for a failed craft, used when no other recipe is a match after the crafting process.
 ## The Item ID for failed craft is 999
 const FAILED_CRAFT : Recipe = preload("res://game_systems/alchemy/recipes/failed_craft.tres")
+## Recipe that represents the craft item when a craft attempt fails using the mysterious crystal.
+const FAILED_CRYSTAL_CRAFT : Recipe = preload("res://game_systems/alchemy/recipes/failed_cystal_craft.tres") # ID 998
 ## Effect that occurs when the craft completes and an item is sent to the inventory.
 ## The effect displays when the inventory is opened.
 @export var items_gained_effect := preload("res://art/effects/items_gained_effect_ui.tscn")
@@ -107,7 +109,7 @@ func _process(delta: float) -> void:
 		else:
 			var effect_instance = items_gained_effect.instantiate()
 			
-			if product.id == 999: # Failed Craft ID
+			if product.id == 999 or product.id == 998: # Failed Craft ID
 				$AudioStreamPlayer.play()
 				$AudioStreamPlayer["parameters/switch_to_clip"] = "fail"
 			else:

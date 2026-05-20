@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_pr3if"]
 [ext_resource type="Texture2D" uid="uid://cosikcjiev8nx" path="res://art/pack/cutscenes/approaching_ruins.png" id="3_8ih04"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="3_ds7mh"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="4_gl3y2"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="4_gl3y2"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="4_vxbux"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="5_upyeb"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="6_3yjpm"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="6_3yjpm"]
 
 [sub_resource type="Resource" id="Resource_pr3if"]
 resource_local_to_scene = true

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bhdc5iq6cr35j"]
 
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_dsf4g"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="5_0imwd"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="5_0imwd"]
 [ext_resource type="Texture2D" uid="uid://cmbdsnnxrip0r" path="res://art/pack/characters/character3_left.png" id="6_2xg5v"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="6_xgw4i"]
 [ext_resource type="Texture2D" uid="uid://bd4oi1oo4dwyq" path="res://art/pack/characters/character3_right.png" id="7_32a71"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="7_myt14"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="7_myt14"]
 [ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="8_4c0dc"]
 [ext_resource type="Texture2D" uid="uid://dr5lw335nxiem" path="res://art/pack/characters/character3_up.png" id="8_vn6af"]
 

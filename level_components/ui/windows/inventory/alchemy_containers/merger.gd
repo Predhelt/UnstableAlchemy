@@ -28,5 +28,11 @@ func _use_items(): # Overrides the _use_items() function in AlchemyTool
 		if ingredient_ids == item_ids:
 			result_recipe = recipe
 	
+	if result_recipe == FAILED_CRAFT:
+		for item_id in item_ids:
+			if item_id == 10: # Mysterious Crystal
+				result_recipe = FAILED_CRYSTAL_CRAFT
+				break
+	
 	begin_craft(result_recipe)
 	#open_minigame(items)

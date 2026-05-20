@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_4p3fp"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="2_labo1"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_qrujs"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="2_qrujs"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="3_2f1wk"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_5tpt4"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="3_w315s"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="4_qrujs"]
 [ext_resource type="Resource" uid="uid://b13qs5535aosc" path="res://game_systems/items/gatherable/green_herb_leaf.tres" id="4_wx7kb"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="5_pf6wa"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="5_w315s"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="5_w315s"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="6_2f1wk"]
 
 [sub_resource type="Resource" id="Resource_pf6wa"]
