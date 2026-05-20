@@ -10,4 +10,8 @@ id = 10
 display_name = "Mysterious Crystal"
 texture = ExtResource("3_am5on")
 primary_color = "cyan"
+on_consume_events = Dictionary[String, Array]({
+"crystal_consumed": []
+})
+on_consume_message = "Did I just.. Eat the crystal?"
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"

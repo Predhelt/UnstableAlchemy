@@ -1,11 +1,15 @@
 [gd_scene format=4 uid="uid://cua2vssk2464f"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_74a05"]
+[ext_resource type="Script" uid="uid://puyv2isnev2g" path="res://maps/main/endings.gd" id="2_4626m"]
 [ext_resource type="AudioStream" uid="uid://dnbpwplr07ngk" path="res://art/pack/audio/music/still_ruins.mp3" id="2_k5i8p"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/attributes.gd" id="2_sgrvt"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_5iium"]
+[ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="4_eg3ay"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/inventory.gd" id="4_okgdk"]
 [ext_resource type="PackedScene" uid="uid://ce8wyt8q6nnbr" path="res://level_components/objects/triggers/trigger_area_cutscene.tscn" id="5_3e1va"]
+[ext_resource type="Resource" uid="uid://7jyc7kpstbx4" path="res://game_systems/items/gatherable/mysterious_crystal.tres" id="5_e6e85"]
+[ext_resource type="Texture2D" uid="uid://c0tkqa53cgd8a" path="res://art/pack/objects/crate.png" id="5_eg3ay"]
 [ext_resource type="PackedScene" uid="uid://cb1e3wm6l2m4t" path="res://characters/lex_endings/lex.tscn" id="6_k5i8p"]
 [ext_resource type="Texture2D" uid="uid://c346j2ugru0bu" path="res://art/pack/cutscenes/alchemy_research.png" id="6_okgdk"]
 [ext_resource type="Texture2D" uid="uid://13fdgmtwv2sr" path="res://art/pack/cutscenes/alchemy_research_incident.png" id="7_3e1va"]
@@ -19,19 +23,28 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 [sub_resource type="Resource" id="Resource_q4td8"]
 resource_local_to_scene = true
 script = ExtResource("4_okgdk")
+items = Array[ExtResource("3_5iium")]([ExtResource("5_e6e85")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_74a05")]
+script = ExtResource("2_4626m")
+
+[node name="CutsceneDelay" type="Timer" parent="." index="0" unique_id=310185907]
+wait_time = 5.0
+one_shot = true
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("2_k5i8p")
 
-[node name="Player" parent="." index="2" unique_id=1026458739]
+[node name="CutsceneCrystalConsumed" parent="." index="3" unique_id=322321605 instance=ExtResource("4_eg3ay")]
+images = Array[Texture2D]([ExtResource("5_eg3ay")])
+
+[node name="Player" parent="." index="4" unique_id=1026458739]
 position = Vector2(534, 418)
 attributes = SubResource("Resource_e6e85")
 inventory = SubResource("Resource_q4td8")
 
-[node name="Character" parent="." index="4" unique_id=1948548714 instance=ExtResource("6_k5i8p")]
+[node name="Character" parent="." index="6" unique_id=1948548714 instance=ExtResource("6_k5i8p")]
 position = Vector2(684, 417)
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -78,3 +91,6 @@ offset_right = 772.0
 offset_bottom = 248.0
 text = "Thank you for playing!"
 horizontal_alignment = 1
+
+[connection signal="timeout" from="CutsceneDelay" to="." method="_on_cutscene_delay_timeout"]
+[connection signal="end_scene" from="CutsceneCrystalConsumed" to="." method="_on_cutscene_crystal_consumed_end_scene"]
