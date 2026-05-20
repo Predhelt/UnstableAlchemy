@@ -1606,58 +1606,58 @@ text = "Shrink Potion"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookGeodeHint1" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=586712041]
+[node name="ButtonBookCrystalHint1" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=586712041]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
-text = "Geode Hint #1"
+text = "Crystal Hint #1"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookGeodeHint2" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1805085228]
+[node name="ButtonBookCrystalHint2" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1805085228]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
-text = "Geode Hint #2"
+text = "Crystal Hint #2"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookGeodeHint3" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=929578836]
+[node name="ButtonBookCrystalHint3" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=929578836]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
-text = "Geode Hint #3"
+text = "Crystal Hint #3"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookGeodeHint4" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1338976635]
+[node name="ButtonBookCrystalHint4" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=1338976635]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
-text = "Geode Hint #4"
+text = "Crystal Hint #4"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
-[node name="ButtonBookGeodeHint5" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=32612425]
+[node name="ButtonBookCrystalHint5" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=32612425]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_rpebb")
-text = "Geode Hint #5"
+text = "Crystal Hint #5"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
@@ -1768,7 +1768,7 @@ text = "Herb flakes are one of the most commonly used materials for herbal remed
 
 Prolonged use is not recommended as it is not an easily maintainable level of activity, and longer-term stimulants are usually available. Some instances of addiction have been documented, however these seem to be due to lifestyle choices."
 
-[node name="PageBookGeodeHint1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1235813475]
+[node name="PageBookCrystalHint1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1235813475]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1779,13 +1779,13 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 4
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookGeodeHint1" unique_id=1270114488]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint1" unique_id=1270114488]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Geode Hint #1
+text = "Crystal Hint #1
 ..."
 
-[node name="PageBookGeodeHint2" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=732607709]
+[node name="PageBookCrystalHint2" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=732607709]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1796,13 +1796,13 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 5
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookGeodeHint2" unique_id=1243965136]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint2" unique_id=1243965136]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Geode Hint #2
+text = "Crystal Hint #2
 ..."
 
-[node name="PageBookGeodeHint3" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1829883587]
+[node name="PageBookCrystalHint3" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1829883587]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1813,13 +1813,13 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 6
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookGeodeHint3" unique_id=6970910]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint3" unique_id=6970910]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Geode Hint #3
+text = "Crystal Hint #3
 ..."
 
-[node name="PageBookGeodeHint4" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1071099889]
+[node name="PageBookCrystalHint4" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1071099889]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1830,13 +1830,13 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 7
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookGeodeHint4" unique_id=2143057732]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint4" unique_id=2143057732]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Geode Hint #4
+text = "Crystal Hint #4
 ..."
 
-[node name="PageBookGeodeHint5" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=765261614]
+[node name="PageBookCrystalHint5" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=765261614]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1847,10 +1847,10 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 8
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookGeodeHint5" unique_id=901107321]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint5" unique_id=901107321]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Geode Hint #5
+text = "Crystal Hint #5
 ..."
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
@@ -2320,16 +2320,16 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint1" to="." method="_on_button_book_geode_hint_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint1" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint1" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint2" to="." method="_on_button_book_geode_hint_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint2" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint2" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint3" to="." method="_on_button_book_geode_hint_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint3" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint3" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint4" to="." method="_on_button_book_geode_hint_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint4" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint4" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint5" to="." method="_on_button_book_geode_hint_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint5" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookGeodeHint5" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint1" to="." method="_on_button_book_crystal_hint_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint1" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint1" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint2" to="." method="_on_button_book_crystal_hint_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint2" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint2" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint3" to="." method="_on_button_book_crystal_hint_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint3" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint3" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint4" to="." method="_on_button_book_crystal_hint_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint4" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint4" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint5" to="." method="_on_button_book_crystal_hint_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint5" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint5" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="." method="_on_button_places_botania_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesBotania" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" to="VBoxContainer/TabContainer/TabPlaces/HBoxContainer/PageButtons/PageButtonList/ButtonPlacesElsewhere" method="_on_pressed"]

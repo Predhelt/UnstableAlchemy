@@ -40,12 +40,12 @@
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="37_qpemt"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="38_i678b"]
 
-[sub_resource type="Resource" id="Resource_6u36v"]
+[sub_resource type="Resource" id="Resource_dehpf"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_77ox4"]
+[sub_resource type="Resource" id="Resource_jd8qc"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -56,7 +56,7 @@ script = ExtResource("6_60y0b")
 base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_0ue1g"]
+[sub_resource type="Resource" id="Resource_xhjwn"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -134,7 +134,7 @@ on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("18_7y012")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[node name="World2" unique_id=1661168125 instance=ExtResource("1_5i83l")]
+[node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("2_i678b")
@@ -144,8 +144,8 @@ stream = null
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
 position = Vector2(510, 402)
-attributes = SubResource("Resource_6u36v")
-inventory = SubResource("Resource_77ox4")
+attributes = SubResource("Resource_dehpf")
+inventory = SubResource("Resource_jd8qc")
 
 [node name="PlayerCamera" parent="." index="3" unique_id=294471714]
 position = Vector2(604, 419)
@@ -153,7 +153,7 @@ position = Vector2(604, 419)
 [node name="Tess" parent="." index="4" unique_id=1948548714 instance=ExtResource("5_bupt0")]
 position = Vector2(330, 347)
 attributes = SubResource("Resource_mfhge")
-inventory = SubResource("Resource_0ue1g")
+inventory = SubResource("Resource_xhjwn")
 has_blade = true
 is_possessable = true
 

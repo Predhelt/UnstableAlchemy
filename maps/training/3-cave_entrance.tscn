@@ -43,7 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="35_5wcll"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="36_xmviu"]
 [ext_resource type="PackedScene" uid="uid://bii4ap0xms52m" path="res://level_components/objects/interactable/containers/interactable_note.tscn" id="37_5wcll"]
-[ext_resource type="Resource" uid="uid://b4jutr1xir7s7" path="res://game_systems/items/lore_books/geode_hint3.tres" id="38_xmviu"]
+[ext_resource type="Resource" uid="uid://b4jutr1xir7s7" path="res://game_systems/items/lore_books/crystal_hint3.tres" id="38_xmviu"]
 [ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="43_eooy1"]
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="44_r1a14"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/autosave_area_trigger.tscn" id="45_6vueu"]
@@ -292,8 +292,8 @@ texture = ExtResource("34_lq8bo")
 
 [node name="InteractableNote" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="8" unique_id=1856845390 instance=ExtResource("37_5wcll")]
 position = Vector2(84, -440)
-display_name = "Geode Hint #3"
-description = "Describes aspects of a myserious geode."
+display_name = "Crystal Hint #3"
+description = "Describes aspects of a myserious crystal"
 items = Array[ExtResource("3_0ue13")]([ExtResource("38_xmviu")])
 grab_interaction = SubResource("Resource_xmviu")
 cut_interaction = SubResource("Resource_xmviu")

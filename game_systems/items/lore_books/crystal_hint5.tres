@@ -8,13 +8,13 @@
 [resource]
 script = ExtResource("3_pb8qw")
 id = 2005
-display_name = "Geode Hint #5"
-description = "Describes aspects of a myserious geode."
+display_name = "Crystal Hint #5"
+description = "Describes aspects of a myserious Crystal."
 texture = ExtResource("4_a00ph")
 primary_color = "white"
 use_sound = "read"
 max_qty = 1
 on_consume_events = Dictionary[String, Array]({
-"open_log_book_page": ["BookGeodeHint5"]
+"open_log_book_page": ["BookCrystalHint5"]
 })
 metadata/_custom_type_script = "uid://dvfx56s3nb8gd"
