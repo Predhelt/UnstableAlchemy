@@ -107,6 +107,8 @@ func execute_dialogue_effects(dialogue_effects : Array[String]) -> void: #NOTE: 
 			"finished_greeting":
 				character_ref.finished_greeting() #NOTE: This is not a built-in function for character and must be manually declared in child.
 				continue
+			"go_home":
+				EventHandler.go_home()
 		print("No Dialogue Effect with name " + effect)
 
 ## Opens the shop window and closes the current dialogue window.

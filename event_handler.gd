@@ -23,3 +23,10 @@ func open_popup_message(message: String):
 ## Assumed that the current level is "endings".
 func crystal_consumed() -> void:
 	get_tree().current_scene.crystal_consumed()
+
+## Player made decision to go home. Plays cutscene for leaving.
+## NOTE: Assumes the map has a CutsceneLeave node.
+func go_home() -> void:
+	var cutscene := get_tree().current_scene.find_child("CutsceneLeave")
+	if cutscene:
+		cutscene.play_cutscene()

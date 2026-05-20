@@ -17,13 +17,14 @@
 [ext_resource type="Texture2D" uid="uid://h5w3fyijvq1g" path="res://art/pack/ui/backpack.png" id="7_m7rkf"]
 [ext_resource type="Texture2D" uid="uid://c0bqhjqs8sxd7" path="res://art/pack/objects/page.png" id="8_6vy0y"]
 [ext_resource type="Texture2D" uid="uid://1rb6622lnoa8" path="res://art/pack/cutscenes/alchemy_research_success.png" id="8_k5i8p"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="18_m7rkf"]
 
-[sub_resource type="Resource" id="Resource_eg3ay"]
+[sub_resource type="Resource" id="Resource_6vy0y"]
 resource_local_to_scene = true
 script = ExtResource("2_sgrvt")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_8h1iv"]
+[sub_resource type="Resource" id="Resource_n8vsm"]
 resource_local_to_scene = true
 script = ExtResource("4_okgdk")
 items = Array[ExtResource("3_5iium")]([ExtResource("5_e6e85")])
@@ -44,27 +45,33 @@ visible = false
 images = Array[Texture2D]([ExtResource("5_eg3ay")])
 
 [node name="CutsceneCrystalFailed" parent="." index="4" unique_id=1385112950 instance=ExtResource("4_eg3ay")]
+visible = false
 images = Array[Texture2D]([ExtResource("6_2ov4i")])
 
 [node name="CutsceneCrystalSuccess" parent="." index="5" unique_id=780663890 instance=ExtResource("4_eg3ay")]
+visible = false
 images = Array[Texture2D]([ExtResource("7_m7rkf")])
 
 [node name="CutsceneLeave" parent="." index="6" unique_id=1732414428 instance=ExtResource("4_eg3ay")]
+visible = false
 images = Array[Texture2D]([ExtResource("8_6vy0y")])
 
 [node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(534, 418)
-attributes = SubResource("Resource_eg3ay")
-inventory = SubResource("Resource_8h1iv")
+attributes = SubResource("Resource_6vy0y")
+inventory = SubResource("Resource_n8vsm")
 
 [node name="Character" parent="." index="9" unique_id=1948548714 instance=ExtResource("6_k5i8p")]
-position = Vector2(684, 417)
+position = Vector2(692, 519)
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
 tile_map_data = PackedByteArray("AAAFAAMAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAUAAgAAAAAAAQAFAAYAAgAAAAAAAQAFAAcAAgAAAAAAAQAFAAgAAgAAAAAAAQAFAAkAAgAAAAAAAQAGAAMAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAGAAYAAgAAAAAAAQAGAAcAAgAAAAAAAQAGAAgAAgAAAAAAAQAGAAkAAgAAAAAAAQAHAAMAAgAAAAAAAQAHAAQAAgAAAAAAAQAHAAUAAgAAAAAAAQAHAAYAAgAAAAAAAQAHAAcAAgAAAAAAAQAHAAgAAgAAAAAAAQAHAAkAAgAAAAAAAQAIAAMAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAUAAgAAAAAAAQAIAAYAAgAAAAAAAQAIAAcAAgAAAAAAAQAIAAgAAgAAAAAAAQAIAAkAAgAAAAAAAQAJAAMAAgAAAAAAAQAJAAQAAgAAAAAAAQAJAAUAAgAAAAAAAQAJAAYAAgAAAAAAAQAJAAcAAgAAAAAAAQAJAAgAAgAAAAAAAQAJAAkAAgAAAAAAAQAKAAMAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAUAAgAAAAAAAQAKAAYAAgAAAAAAAQAKAAcAAgAAAAAAAQAKAAgAAgAAAAAAAQAKAAkAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQALAAUAAgAAAAAAAQALAAYAAgAAAAAAAQALAAcAAgAAAAAAAQALAAgAAgAAAAAAAQALAAkAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQAMAAYAAgAAAAAAAQAMAAcAAgAAAAAAAQAMAAgAAgAAAAAAAQAMAAkAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQANAAYAAgAAAAAAAQANAAcAAgAAAAAAAQANAAgAAgAAAAAAAQANAAkAAgAAAAAAAQAGAAoAAgAAAAAAAAAGAAsAAgAAAAAAAAAGAAwAAgAAAAAAAAAGAA0AAgAAAAAAAAAGAA4AAgAAAAAAAAAGAA8AAgAAAAAAAAAGABAAAgAAAAAAAAAGABEAAgAAAAAAAAAHAAoAAgAAAAAAAAAHAAsAAgAAAAAAAAAHAAwAAgAAAAAAAAAHAA0AAgAAAAAAAAAHAA4AAgAAAAAAAAAHAA8AAgAAAAAAAAAHABAAAgAAAAAAAAAHABEAAgAAAAAAAAAIAAoAAgAAAAAAAAAIAAsAAgAAAAAAAAAIAAwAAgAAAAAAAAAIAA0AAgAAAAAAAAAIAA4AAgAAAAAAAAAIAA8AAgAAAAAAAAAIABAAAgAAAAAAAAAIABEAAgAAAAAAAAAJAAoAAQABAAEAAAAJAAsAAQABAAEAAAAJAAwAAQABAAEAAAAJAA0AAQABAAEAAAAJAA4AAQABAAEAAAAJAA8AAQABAAEAAAAJABAAAQABAAEAAAAJABEAAQABAAEAAAAKAAoAAgAAAAAAAAAKAAsAAgAAAAAAAAAKAAwAAgAAAAAAAAAKAA0AAgAAAAAAAAAKAA4AAgAAAAAAAAAKAA8AAgAAAAAAAAAKABAAAgAAAAAAAAAKABEAAgAAAAAAAAALAAoAAgAAAAAAAAALAAsAAgAAAAAAAAALAAwAAgAAAAAAAAALAA0AAgAAAAAAAAALAA4AAgAAAAAAAAALAA8AAgAAAAAAAAALABAAAgAAAAAAAAALABEAAgAAAAAAAAAMAAoAAgAAAAAAAAAMAAsAAgAAAAAAAAAMAAwAAgAAAAAAAAAMAA0AAgAAAAAAAAAMAA4AAgAAAAAAAAAMAA8AAgAAAAAAAAAMABAAAgAAAAAAAAAMABEAAgAAAAAAAAA=")
 
 [node name="Top" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="1" unique_id=562609937]
 tile_map_data = PackedByteArray("AAAFAAgAAgACAAAAAAAGAAMAAgADAAAAAAAHAAQAAgAEAAAAAAAJAAYAAgAGAAAAAAAMAAQAAgAEAAAAAAAMAAcAAgAGAAAAAAANAAUAAgAEAAAAAAANAAcAAgACAAAAAAAHAA8AAgAEAAAAAAAIAAoAAgABAAAAAAAIAAsAAgAEAAAAAAAIABEAAgACAAAAAAAKAA4AAgACAAAAAAALAA8AAgAEAAAAAAAMAAsAAgADAAAAAAAMABEAAgACAAAAAAA=")
+
+[node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
+tile_map_data = PackedByteArray("AAAFAAMAAAADAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAEAAAAAAAJAAMAAAAEAAAAAAAKAAMAAAAEAAAAAAALAAMAAAAEAAAAAAAMAAMAAAAEAAAAAAANAAMAAAAFAAAAAAANAAkAAAAFAAIAAAAMAAkAAAAEAAAAAAALAAkAAAAEAAAAAAAKAAkAAAAEAAAAAAAIAAkAAAAEAAAAAAAHAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAFAAkAAAADAAIAAAAFAAQAAAADAAEAAAAFAAUAAAADAAEAAAAFAAYAAAADAAEAAAAFAAcAAAADAAEAAAAFAAgAAAADAAEAAAANAAQAAAADAAEAAAANAAUAAAADAAEAAAANAAYAAAADAAEAAAANAAcAAAADAAEAAAANAAgAAAADAAEAAAA=")
 
 [node name="CutsceneTriggerArea" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1882614331 instance=ExtResource("5_3e1va")]
 position = Vector2(285, 409)
@@ -105,6 +112,9 @@ offset_right = 772.0
 offset_bottom = 248.0
 text = "Thank you for playing!"
 horizontal_alignment = 1
+
+[node name="SlidingDoor" parent="." index="16" unique_id=463050243 instance=ExtResource("18_m7rkf")]
+position = Vector2(608, 639)
 
 [connection signal="timeout" from="CutsceneDelay" to="." method="_on_cutscene_delay_timeout"]
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
