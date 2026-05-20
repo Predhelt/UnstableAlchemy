@@ -145,7 +145,7 @@ stream = ExtResource("2_i678b")
 stream = null
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
-position = Vector2(510, 402)
+position = Vector2(515, 387)
 attributes = SubResource("Resource_jd8qc")
 inventory = SubResource("Resource_xhjwn")
 

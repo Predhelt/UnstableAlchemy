@@ -125,6 +125,8 @@ func set_buttons_visibility(character : Node = null) -> void:
 				show_button(%ButtonItemFlowerStem)
 			4: # Blue Berries
 				show_button(%ButtonItemBlueBerries)
+			10: # Mysterious Crystal
+				show_button(%ButtonItemCrystal)
 	for book_id in character_ref.books_read:
 		match book_id:
 			1000: # Green Flakes Book
@@ -501,7 +503,7 @@ func _get_item_uses_as_str(item : Item) -> String:
 func _get_item_use_effects_as_str(item : Item) -> String:
 	var effects_str : String = "Note about consuming: \""
 	if not character_ref.has_used_item_id(item.id):
-		effects_str += "No known effects.\""
+		effects_str += "Item not used yet, no known effects.\""
 		return effects_str
 	if item.on_consume_message:
 		effects_str += item.on_consume_message + "\" | "
@@ -752,6 +754,10 @@ func _on_button_item_red_berries_pressed() -> void:
 
 func _on_button_item_yellow_petals_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/yellow_petals.tres")
+	open_raw_item_page()
+
+func _on_button_item_crystal_pressed() -> void:
+	current_raw_item = load("res://game_systems/items/gatherable/mysterious_crystal.tres")
 	open_raw_item_page()
 
 ### Crafted Item Tab ###

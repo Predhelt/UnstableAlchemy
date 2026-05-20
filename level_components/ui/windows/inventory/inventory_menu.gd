@@ -298,6 +298,7 @@ func consume_item(item : Item, index : int) -> void:
 	
 	if item.id not in UserVariables.items_used.keys():
 		UserVariables.items_used[item.id] = 1
+		Global.emit_notification("Log Book Updated")
 	else:
 		UserVariables.items_used[item.id] += 1
 	

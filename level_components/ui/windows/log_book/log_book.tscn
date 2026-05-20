@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://b2dy15055yv71" path="res://art/pack/ingredients/inventory/yellow_petals_ground.png" id="19_xyuuy"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="20_s8crv"]
 [ext_resource type="Texture2D" uid="uid://clun0l8tflfr1" path="res://art/pack/ingredients/inventory/yellow_petals.png" id="21_0kap8"]
+[ext_resource type="Texture2D" uid="uid://rvb8583e166r" path="res://art/pack/ingredients/inventory/mysterious_crystal.png" id="21_m4t1c"]
 [ext_resource type="Texture2D" uid="uid://cyottad4fs3dy" path="res://art/pack/alchemy/potions/potion_standard_green.png" id="22_nvycw"]
 [ext_resource type="Texture2D" uid="uid://dycwpig3a48tr" path="res://art/pack/alchemy/potions/potion_standard_cyan.png" id="23_y3hki"]
 [ext_resource type="Texture2D" uid="uid://dc5snv7uy5mqi" path="res://art/pack/alchemy/potions/potion_standard_grey.png" id="24_rda33"]
@@ -162,7 +163,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 tab_0/title = "Help"
 tab_1/title = "Raw Items"
 tab_2/title = "Crafted Items"
@@ -176,6 +177,7 @@ tab_9/title = "Status Effects"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -580,7 +582,6 @@ autowrap_mode = 3
 
 [node name="TabRawItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1613085781]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -671,6 +672,19 @@ theme = ExtResource("15_bmcub")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_x37hv")
 icon = ExtResource("21_0kap8")
+expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonItemCrystal" type="Button" parent="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList" unique_id=3542792]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Yellow Petals"
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_x37hv")
+icon = ExtResource("21_m4t1c")
 expand_icon = true
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
@@ -2256,6 +2270,8 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemRedBerries" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="." method="_on_button_item_yellow_petals_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemYellowPetals" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemCrystal" to="." method="_on_button_item_crystal_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemCrystal" to="VBoxContainer/TabContainer/TabRawItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemCrystal" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="." method="_on_button_item_blue_juice_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" to="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueJuice" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabCraftedItems/HBoxContainer/PageButtons/MarginContainer/PageButtonList/ButtonItemBlueSeed" to="." method="_on_button_item_blue_seed_pressed"]
