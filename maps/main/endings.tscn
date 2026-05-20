@@ -10,9 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://ce8wyt8q6nnbr" path="res://level_components/objects/triggers/trigger_area_cutscene.tscn" id="5_3e1va"]
 [ext_resource type="Resource" uid="uid://7jyc7kpstbx4" path="res://game_systems/items/gatherable/mysterious_crystal.tres" id="5_e6e85"]
 [ext_resource type="Texture2D" uid="uid://c0tkqa53cgd8a" path="res://art/pack/objects/crate.png" id="5_eg3ay"]
+[ext_resource type="Texture2D" uid="uid://blbtrshc6rf2h" path="res://art/pack/ingredients/inventory/blue_berries_ground.png" id="6_2ov4i"]
 [ext_resource type="PackedScene" uid="uid://cb1e3wm6l2m4t" path="res://characters/lex_endings/lex.tscn" id="6_k5i8p"]
 [ext_resource type="Texture2D" uid="uid://c346j2ugru0bu" path="res://art/pack/cutscenes/alchemy_research.png" id="6_okgdk"]
 [ext_resource type="Texture2D" uid="uid://13fdgmtwv2sr" path="res://art/pack/cutscenes/alchemy_research_incident.png" id="7_3e1va"]
+[ext_resource type="Texture2D" uid="uid://h5w3fyijvq1g" path="res://art/pack/ui/backpack.png" id="7_m7rkf"]
+[ext_resource type="Texture2D" uid="uid://c0bqhjqs8sxd7" path="res://art/pack/objects/page.png" id="8_6vy0y"]
 [ext_resource type="Texture2D" uid="uid://1rb6622lnoa8" path="res://art/pack/cutscenes/alchemy_research_success.png" id="8_k5i8p"]
 
 [sub_resource type="Resource" id="Resource_eg3ay"]
@@ -40,12 +43,21 @@ stream = ExtResource("2_k5i8p")
 visible = false
 images = Array[Texture2D]([ExtResource("5_eg3ay")])
 
-[node name="Player" parent="." index="4" unique_id=1026458739]
+[node name="CutsceneCrystalFailed" parent="." index="4" unique_id=1385112950 instance=ExtResource("4_eg3ay")]
+images = Array[Texture2D]([ExtResource("6_2ov4i")])
+
+[node name="CutsceneCrystalSuccess" parent="." index="5" unique_id=780663890 instance=ExtResource("4_eg3ay")]
+images = Array[Texture2D]([ExtResource("7_m7rkf")])
+
+[node name="CutsceneLeave" parent="." index="6" unique_id=1732414428 instance=ExtResource("4_eg3ay")]
+images = Array[Texture2D]([ExtResource("8_6vy0y")])
+
+[node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(534, 418)
 attributes = SubResource("Resource_eg3ay")
 inventory = SubResource("Resource_8h1iv")
 
-[node name="Character" parent="." index="6" unique_id=1948548714 instance=ExtResource("6_k5i8p")]
+[node name="Character" parent="." index="9" unique_id=1948548714 instance=ExtResource("6_k5i8p")]
 position = Vector2(684, 417)
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -95,4 +107,8 @@ text = "Thank you for playing!"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="CutsceneDelay" to="." method="_on_cutscene_delay_timeout"]
+[connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="end_scene" from="CutsceneCrystalConsumed" to="." method="_on_cutscene_crystal_consumed_end_scene"]
+[connection signal="end_scene" from="CutsceneCrystalFailed" to="." method="_on_cutscene_crystal_failed_end_scene"]
+[connection signal="end_scene" from="CutsceneCrystalSuccess" to="." method="_on_cutscene_crystal_success_end_scene"]
+[connection signal="end_scene" from="CutsceneLeave" to="." method="_on_cutscene_leave_end_scene"]

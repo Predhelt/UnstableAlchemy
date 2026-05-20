@@ -90,9 +90,5 @@ func _on_minigame_mp_window_opened() -> void:
 	minigame_mp_window_opened.emit()
 
 
-func _on_minigame_cauldron_craft_completed(result: Item, recipe: Recipe) -> void:
-	craft_completed.emit(result, recipe)
-
-
-func _on_minigame_mp_craft_completed(result: Item, recipe: Recipe) -> void:
+func _on_inventory_menu_craft_item_added(result: Item, recipe: Recipe) -> void:
 	craft_completed.emit(result, recipe)

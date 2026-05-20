@@ -1,8 +1,11 @@
 ## Menu that represents the inventory of a character.
 extends UIWindow
 
-## Sent when an item is consumed by the character
+## Sent when an item is consumed by the character.
 signal item_consumed(item: Item)
+## Sent when an item from a craft is added to the inventory.
+signal craft_item_added(result: Item, recipe: Recipe)
+#signal craft_completed(result: Item, recipe: Recipe)
 
 ## Max number of slots in the inventory.
 @export var max_item_count := 24 
@@ -143,6 +146,7 @@ func add_dropped_item(item : Item) -> bool:
 func add_produced_item(item : Item, recipe : Recipe = null) -> void:
 	if item:
 		add_inventory_item(item)
+		craft_item_added.emit(item, recipe)
 	if recipe != null and recipe.id != 999:
 		Global.focused_node.learn_recipe(recipe, true)
 		

@@ -170,7 +170,6 @@ anchor_top = 0.2
 anchor_right = 0.5
 anchor_bottom = 0.2
 grow_horizontal = 2
-items_gained_effect = null
 
 [node name="Merger" parent="VBoxContainer/Control/AlchemyActivity/Panel" unique_id=302613995 instance=ExtResource("5_r3wkv")]
 unique_name_in_owner = true
