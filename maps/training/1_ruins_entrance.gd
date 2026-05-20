@@ -45,7 +45,7 @@ func _on_ui_layer_recipe_list_window_opened() -> void:
 		opened_recipe_menu = true
 
 
-func _on_cutscene_cutscene_closed() -> void:
+func _on_cutscene_end_scene() -> void:
 	EventHandler.open_popup_message(
 		"Move with WASD keys"
 		)

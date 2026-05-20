@@ -170,6 +170,7 @@ anchor_top = 0.2
 anchor_right = 0.5
 anchor_bottom = 0.2
 grow_horizontal = 2
+items_gained_effect = null
 
 [node name="Merger" parent="VBoxContainer/Control/AlchemyActivity/Panel" unique_id=302613995 instance=ExtResource("5_r3wkv")]
 unique_name_in_owner = true
@@ -182,3 +183,9 @@ anchor_bottom = 0.8
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="item_clicked" from="VBoxContainer/Control/ItemList" to="." method="_on_inventory_item_clicked"]
+[connection signal="craft_completed" from="VBoxContainer/Control/AlchemyActivity/Panel/Cauldron" to="." method="_on_craft_completed"]
+[connection signal="minigame_opened" from="VBoxContainer/Control/AlchemyActivity/Panel/Cauldron" to="." method="_on_tool_minigame_opened"]
+[connection signal="craft_completed" from="VBoxContainer/Control/AlchemyActivity/Panel/MortarPestle" to="." method="_on_craft_completed"]
+[connection signal="minigame_opened" from="VBoxContainer/Control/AlchemyActivity/Panel/MortarPestle" to="." method="_on_tool_minigame_opened"]
+[connection signal="craft_completed" from="VBoxContainer/Control/AlchemyActivity/Panel/Merger" to="." method="_on_craft_completed"]
+[connection signal="minigame_opened" from="VBoxContainer/Control/AlchemyActivity/Panel/Merger" to="." method="_on_tool_minigame_opened"]

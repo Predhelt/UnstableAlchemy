@@ -37,6 +37,7 @@ one_shot = true
 stream = ExtResource("2_k5i8p")
 
 [node name="CutsceneCrystalConsumed" parent="." index="3" unique_id=322321605 instance=ExtResource("4_eg3ay")]
+visible = false
 images = Array[Texture2D]([ExtResource("5_eg3ay")])
 
 [node name="Player" parent="." index="4" unique_id=1026458739]
@@ -84,6 +85,7 @@ text = "Good End
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="2" unique_id=1872139613]
+visible = false
 layout_mode = 0
 offset_left = 429.0
 offset_top = 199.0

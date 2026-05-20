@@ -2,6 +2,11 @@
 ## their inventory tool and how the associated minigame functions
 class_name AlchemyTool extends UIWindow
 
+## When craft is completed, emits resulting item with the recipe used.
+signal craft_completed(result: Item, recipe: Recipe)
+## Sends signal when minigame window is opened.
+signal minigame_opened
+
 ## Max number of items that can be stored in the tool
 const MAX_ITEMS := 3
 ## The recipe information for a failed craft, used when no other recipe is a match after the crafting process.
@@ -13,7 +18,7 @@ const FAILED_CRAFT : Recipe = preload("res://game_systems/alchemy/recipes/failed
 ## Reference to the minigame scene. Gets set by inventory menu since it has proper scope
 var minigame_ref : Control
 ## Reference to the inventory that the tool is using items from. Set by inventory menu.
-var inventory_menu_ref
+#var inventory_menu_ref
 ## Folder path used as a starting point to search for the list of related recipes
 var recipes_folder_path := "res://game_systems/alchemy/recipes/"
 ## The name of the alchemy tool being used. Values can be cauldron, m&p, and merger.
@@ -114,7 +119,8 @@ func _process(delta: float) -> void:
 			effect_instance.scale = Vector2(1.3, 1.3)
 			add_child(effect_instance)
 			
-			inventory_menu_ref.add_produced_item(product, cur_recipe)
+			#inventory_menu_ref.add_produced_item(product, cur_recipe)
+			craft_completed.emit(product, cur_recipe)
 			
 			cur_recipe = null
 			progress_bar.visible = false
@@ -127,7 +133,7 @@ func add_item(item: Item) -> bool:
 		return false
 	if num_items >= MAX_ITEMS:
 		#print(tool_name + " already full!")
-		inventory_menu_ref.add_inventory_item(item)
+		$"../../../../../".add_inventory_item(item)
 		return false
 		
 	$AudioStreamPlayer.play()
@@ -147,8 +153,9 @@ func add_item(item: Item) -> bool:
 ## minigame window using the items from the alchemy tool's container.
 func open_minigame(mg_items: Array[Item]):
 	minigame_ref.init_ingredients(mg_items)
-	minigame_ref.inventory_menu_ref = inventory_menu_ref
-	inventory_menu_ref.close_window()
+	#minigame_ref.inventory_menu_ref = inventory_menu_ref
+	#inventory_menu_ref.close_window()
+	minigame_opened.emit()
 	## Remove the items being used by the alchemy tool from the inventory
 	## while the minigame is in progress
 	var mg_qtys : Array[int] = []
@@ -157,7 +164,7 @@ func open_minigame(mg_items: Array[Item]):
 			mg_qtys.append(1)
 		else: # If no item exists in slot:
 			mg_qtys.append(0)
-	if not inventory_menu_ref.remove_inventory_items(mg_items,mg_qtys):
+	if not $"../../../../../".remove_inventory_items(mg_items,mg_qtys):
 		print("ERROR: Not all items removed from the inventory properly.")
 	minigame_ref.open_window()
 
@@ -217,19 +224,22 @@ func _on_button_confirm_pressed() -> void:
 ## and puts the item back in the inventory.
 func _on_button_1_pressed() -> void:
 	if Global.mode == &"menu":
-		inventory_menu_ref.add_produced_item(items[0])
+		#inventory_menu_ref.add_produced_item(items[0])
+		craft_completed.emit(items[0],null)
 		remove_item(0)
 
 ## Removes item from the second slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_2_pressed() -> void:
 	if Global.mode == &"menu":
-		inventory_menu_ref.add_produced_item(items[1])
+		#inventory_menu_ref.add_produced_item(items[1])
+		craft_completed.emit(items[1],null)
 		remove_item(1)
 
 ## Removes item from the third slot in the alchemy tool when it is pressed on
 ## and puts the item back in the inventory.
 func _on_button_3_pressed() -> void:
 	if Global.mode == &"menu":
-		inventory_menu_ref.add_produced_item(items[2])
+		#inventory_menu_ref.add_produced_item(items[2])
+		craft_completed.emit(items[2],null)
 		remove_item(2)

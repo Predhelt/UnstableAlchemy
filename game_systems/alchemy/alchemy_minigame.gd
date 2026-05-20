@@ -2,8 +2,13 @@
 ## Most functionality is used in the Cauldron with some overlap.
 class_name AlchemyMinigame extends UIWindow
 
+## When minigame is completed, emits resulting item with the recipe used.
+signal craft_completed(result: Item, recipe: Recipe)
+## Sends signal when call to open the previous window is made.
+signal previous_called
+
 ## Reference to the current inventory that the minigame is using
-var inventory_menu_ref
+#var inventory_menu_ref
 ## Buttons used during the minigame. Set by inherited class.
 var minigame_buttons : Array[Button]
 ## Reference to associated inventory tool. Set by Inventory.
@@ -53,7 +58,7 @@ func close_window():
 		if not item:
 			continue
 		item.qty = 1
-		inventory_menu_ref.add_inventory_item(item)
+		$"../../MenuLayer/LeftWindows/InventoryMenu/".add_inventory_item(item)
 	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	Global.left_window = null ## This window shows up in the center of the screen
@@ -74,7 +79,7 @@ func previous_window():
 	for item in cur_craft_ingredients:
 		if item:
 			item.qty = 1
-			inventory_menu_ref.add_inventory_item(item)
+			$"../../MenuLayer/LeftWindows/InventoryMenu/".add_inventory_item(item)
 	cur_craft_ingredients.clear()
 	%MinigameProgressBar/ProgressSlider/StartupLabel.text = ""
 	Global.left_window = null
@@ -85,7 +90,8 @@ func previous_window():
 	elif Global.right_window:
 		Global.mode = Global.right_window.window_mode
 	
-	inventory_menu_ref.open_window()
+	previous_called.emit()
+	#inventory_menu_ref.open_window()
 
 ## Initiates the start of an alchemy minigame.
 func begin_minigame():
@@ -133,7 +139,8 @@ func check_results():
 	tool_ref.add_child(effect_instance)
 	
 	cur_craft_ingredients = [] ## Consider the ingredients as used, clear the list.
-	inventory_menu_ref.add_produced_item(product_item, product_recipe)
+	craft_completed.emit(product_item, product_recipe)
+	#inventory_menu_ref.add_produced_item(product_item, product_recipe)
 	last_item_produced = product_item
 	
 

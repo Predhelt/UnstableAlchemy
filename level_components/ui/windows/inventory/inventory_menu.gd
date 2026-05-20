@@ -28,13 +28,13 @@ func _ready() -> void:
 	window_mode = &"menu"
 	%Cauldron.minigame_ref = minigame_cauldron_ref
 	%Cauldron.minigame_ref.recipes = %Cauldron.recipes
-	%Cauldron.inventory_menu_ref = self
+	#%Cauldron.inventory_menu_ref = self
 	minigame_cauldron_ref.tool_ref = %Cauldron
 	%MortarPestle.minigame_ref = minigame_mp_ref
 	%MortarPestle.minigame_ref.recipes = %MortarPestle.recipes
-	%MortarPestle.inventory_menu_ref = self
+	#%MortarPestle.inventory_menu_ref = self
 	minigame_mp_ref.tool_ref = %MortarPestle
-	%Merger.inventory_menu_ref = self
+	#%Merger.inventory_menu_ref = self
 
 ## Controls functions executed when input actions are pressed
 func _input(event: InputEvent) -> void:
@@ -381,3 +381,15 @@ func _set_dropper_item(item: Item):
 ## Triggers when the button used to close the window is pressed, which closes the window.
 func _on_button_close_pressed() -> void:
 	close_window()
+
+## When a craft is completed, receives signal and begins processing the results.
+func _on_craft_completed(result: Item, recipe: Recipe) -> void:
+	add_produced_item(result, recipe)
+
+
+func _on_tool_minigame_opened() -> void:
+	close_window()
+
+
+func _on_minigame_previous_called() -> void:
+	open_window()
