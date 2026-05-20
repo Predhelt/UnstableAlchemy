@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://byw18f1rhg2tq"]
+[gd_scene format=3 uid="uid://byw18f1rhg2tq"]
 
-[ext_resource type="Script" uid="uid://qpssrv6jpdtx" path="res://level_components/objects/triggers/display_area_trigger.gd" id="1_rxios"]
+[ext_resource type="Script" uid="uid://qpssrv6jpdtx" path="res://level_components/objects/triggers/trigger_area_display.gd" id="1_rxios"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwdmt"]
 
-[node name="DisplayArea" type="Node2D"]
+[node name="TriggerAreaDisplay" type="Node2D" unique_id=465442774]
 script = ExtResource("1_rxios")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1791193541]
 scale = Vector2(3.16, 3.16)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1667986534]
 shape = SubResource("RectangleShape2D_lwdmt")
 debug_color = Color(0.94835514, 1.6364455e-06, 0.58106637, 0.41960785)
 

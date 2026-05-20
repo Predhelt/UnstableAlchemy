@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/shelly_shrink_puzzle/shelly_sp.tscn" id="16_vu3vs"]
 [ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="17_1umpp"]
 [ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://level_components/objects/triggers/blockage_area.tscn" id="17_r1a14"]
-[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="18_6vueu"]
+[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/trigger_area_display.tscn" id="18_6vueu"]
 [ext_resource type="Resource" uid="uid://8ptdatjmu13q" path="res://game_systems/items/tools/dropper.tres" id="18_54nbq"]
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="19_lq8bo"]
 [ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red_berry_seed.png" id="20_5wcll"]
@@ -46,7 +46,7 @@
 [ext_resource type="Resource" uid="uid://b4jutr1xir7s7" path="res://game_systems/items/lore_books/crystal_hint3.tres" id="38_xmviu"]
 [ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="43_eooy1"]
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="44_r1a14"]
-[ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/autosave_area_trigger.tscn" id="45_6vueu"]
+[ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="45_6vueu"]
 
 [sub_resource type="Resource" id="Resource_grtol"]
 script = ExtResource("2_a28fu")

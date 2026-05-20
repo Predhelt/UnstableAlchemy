@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_cc213"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="2_ei7jr"]
 [ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="2_i678b"]
+[ext_resource type="Script" uid="uid://cvfw512ryrio7" path="res://maps/training/4_advanced_puzzle.gd" id="2_jd8qc"]
 [ext_resource type="Resource" uid="uid://bea6luvjr7ahf" path="res://game_systems/items/potions/possession_potion_weak.tres" id="3_bupt0"]
 [ext_resource type="Texture2D" uid="uid://cvxxbvq0l06th" path="res://art/pack/cutscenes/discovery.png" id="3_mfhge"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="4_0jpsc"]
@@ -26,7 +27,7 @@
 [ext_resource type="Resource" uid="uid://dyo76rscy5hss" path="res://game_systems/items/mp_products/gray_juice.tres" id="18_7y012"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="19_h7yp8"]
 [ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://level_components/objects/interactable/containers/interactable_book.gd" id="20_77ox4"]
-[ext_resource type="PackedScene" uid="uid://ce8wyt8q6nnbr" path="res://level_components/objects/triggers/cutscene_trigger_area.tscn" id="21_d432r"]
+[ext_resource type="PackedScene" uid="uid://ce8wyt8q6nnbr" path="res://level_components/objects/triggers/trigger_area_cutscene.tscn" id="21_d432r"]
 [ext_resource type="Texture2D" uid="uid://dls8br8cftr5t" path="res://art/pack/objects/pressure_plates/object-pressure-plate_orange.png" id="21_jb56y"]
 [ext_resource type="Texture2D" uid="uid://bqmf08giwjseg" path="res://art/pack/objects/doors/slide_door_orange.png" id="23_bsgwj"]
 [ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://art/pack/objects/pressure_plates/object_pressure_plate_red.png" id="23_h7yp8"]
@@ -135,6 +136,7 @@ on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
+script = ExtResource("2_jd8qc")
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("2_i678b")
@@ -178,6 +180,16 @@ tile_map_data = PackedByteArray("AAABAPn/AgAHAAAAAAACAPj/AgADAAAAAAADAP3/AgADAAA
 
 [node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
 tile_map_data = PackedByteArray("AAALAAMAAAADAAEAAAALAAkAAAADAAEAAAANAAQAAAAHAAIAAAANAAgAAAAHAAIAAAAEAP7/AAAEAAAAAAAFAP7/AAAEAAAAAAAGAP7/AAAHAAIAAAD///7/AAAEAAAAAAD//wAAAAAAAAMAAAD//wEAAAADAAEAAAD//wIAAAADAAEAAAD//wMAAAADAAEAAAD//wQAAAADAAEAAAD//wUAAAADAAEAAAD//wYAAAADAAEAAAD//wcAAAADAAQAAAD//wgAAAADAAEAAAD//wkAAAADAAQAAAD//woAAAADAAEAAAD//wsAAAADAAEAAAD//wwAAAADAAEAAAD//w0AAAADAAIAAAAAAP7/AAAEAAAAAAAAAAkAAAAHAAIAAAAAAA0AAAAEAAAAAAABAP7/AAAEAAAAAAABAA0AAAAEAAAAAAACAP7/AAAEAAAAAAACAAkAAAAGAAIAAAACAA0AAAAEAAAAAAADAP7/AAADAAMAAAADAAEAAAAAAAMAAAADAAIAAAAFAAEAAAADAAMAAAADAAEAAAADAAQAAAAFAAEAAAADAAUAAAADAAEAAAADAAYAAAADAAEAAAADAAcAAAAEAAQAAAADAAgAAAADAAEAAAADAAkAAAAEAAQAAAADAAoAAAADAAQAAAADAAsAAAADAAEAAAADAAwAAAADAAQAAAADAA0AAAAEAAQAAAAGAAoAAAAHAAIAAAAIAP7/AAAGAAIAAAAJAP7/AAAEAAAAAAAJAA4AAAAEAAAAAAAIAA4AAAAGAAIAAAAGAA4AAAAHAAIAAAAFAA4AAAAEAAAAAAAEAA4AAAAEAAAAAAADAA4AAAADAAIAAAAFAAoAAAAEAAMAAAAEAAoAAAAEAAAAAAAKAAoAAAAEAAAAAAAKAA4AAAAEAAAAAAALAP7/AAAFAAMAAAALAAoAAAAEAAQAAAALAA4AAAAFAAIAAAAMAP7/AAAEAAAAAAAMAAsAAAAGAAMAAAANAP7/AAAEAAAAAAANAAwAAAADAAEAAAAOAP7/AAAEAAAAAAAOAA0AAAAEAAAAAAAPAP7/AAAEAAAAAAAPAAQAAAAGAAIAAAAPAAgAAAAGAAIAAAAPAA0AAAAEAAAAAAAQAAQAAAADAAMAAAAQAAgAAAADAAMAAAAQAA0AAAAEAAAAAAARAA0AAAAEAAAAAAASAAQAAAAFAAIAAAASAAgAAAAEAAQAAAASAA0AAAAFAAIAAAAIAAoAAAAGAAIAAAAJAAoAAAAEAAMAAAAJAAsAAAADAAEAAAAJAAwAAAADAAIAAAAKAP7/AAAEAAAAAAAKAAwAAAAGAAMAAAALAP//AAADAAEAAAALAAAAAAADAAEAAAALAAEAAAADAAEAAAALAAIAAAADAAEAAAALAAQAAAADAAIAAAALAAgAAAADAAAAAAALAAsAAAADAAQAAAALAAwAAAAEAAQAAAALAA0AAAADAAQAAAAMAAQAAAAEAAAAAAAMAAgAAAAEAAAAAAAMAA0AAAAEAAAAAAANAAsAAAAFAAAAAAANAA0AAAADAAMAAAAQAAIAAAADAAAAAAAQAAMAAAADAAEAAAARAAAAAAAEAAAAAAARAAIAAAAGAAMAAAARAAQAAAAEAAAAAAARAAgAAAAEAAAAAAASAAAAAAAFAAAAAAASAAEAAAADAAEAAAASAAIAAAAEAAQAAAASAAMAAAADAAEAAAASAAYAAAAFAAAAAAASAAcAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAASAAsAAAADAAEAAAASAAwAAAADAAEAAAABAPb/AAADAAEAAAABAPf/AAADAAEAAAABAPj/AAADAAEAAAABAPn/AAADAAEAAAABAPr/AAADAAEAAAABAPv/AAADAAIAAAACAPv/AAAEAAAAAAADAPv/AAAFAAAAAAADAPz/AAADAAEAAAADAP3/AAADAAEAAAALAPv/AAADAAAAAAALAPz/AAADAAEAAAALAP3/AAADAAEAAAAMAPv/AAAEAAAAAAANAPb/AAAFAAEAAAANAPf/AAADAAEAAAANAPj/AAADAAEAAAANAPn/AAADAAEAAAANAPr/AAADAAEAAAANAPv/AAAFAAIAAAAFAAsAAAADAAEAAAAFAAwAAAAFAAIAAAAEAAwAAAAGAAMAAAAQAAcAAAADAAEAAAARAAYAAAAGAAMAAAAQAAYAAAADAAAAAAAAAAcAAAAHAAIAAAACAAcAAAAGAAIAAAAQAAAAAAADAAIAAAAQAP//AAADAAEAAAASAP7/AAAEAAAAAAATAP7/AAAEAAAAAAAUAP7/AAAFAAAAAAAUAP//AAADAAEAAAAUAAAAAAADAAEAAAAUAAEAAAADAAEAAAAUAAIAAAADAAEAAAAUAAMAAAADAAEAAAAUAAQAAAADAAEAAAAUAAUAAAADAAEAAAAUAAYAAAADAAEAAAAUAAcAAAADAAEAAAAUAAgAAAADAAEAAAAUAAkAAAADAAEAAAAUAAoAAAADAAEAAAAUAAsAAAADAAEAAAAUAAwAAAADAAEAAAAUAA0AAAADAAEAAAAUAA4AAAADAAEAAAAUAA8AAAAFAAIAAAATAA8AAAAEAAAAAAASAA8AAAAEAAAAAAARAA8AAAAEAAAAAAAQAA8AAAAEAAAAAAAPAA8AAAAEAAAAAAAOAA8AAAAEAAAAAAANAA8AAAADAAAAAAABAA8AAAAFAAAAAAAAAA8AAAAEAAAAAAD//w8AAAAEAAAAAAD+/w8AAAAEAAAAAAD9/w8AAAADAAIAAAD9/w4AAAADAAEAAAD9/w0AAAADAAEAAAD9/wwAAAADAAEAAAD9/wsAAAADAAEAAAD9/woAAAADAAEAAAD9/wkAAAADAAEAAAD9/wgAAAADAAEAAAD9/wcAAAADAAEAAAD9/wYAAAADAAEAAAD9/wUAAAADAAEAAAD9/wQAAAADAAEAAAD9/wMAAAADAAEAAAD9/wIAAAADAAEAAAD9/wEAAAADAAEAAAD9/wAAAAADAAEAAAD9////AAADAAEAAAD9//7/AAADAAAAAAD+//7/AAAEAAAAAAABABAAAAADAAIAAAACABAAAAAEAAAAAAADABAAAAAEAAAAAAAEABAAAAAEAAAAAAAFABAAAAAEAAAAAAAGABAAAAAEAAAAAAAHABAAAAAEAAAAAAAIABAAAAAEAAAAAAAJABAAAAAEAAAAAAAKABAAAAAEAAAAAAALABAAAAAEAAAAAAAMABAAAAAEAAAAAAANABAAAAAFAAIAAAARAP7/AAAEAAAAAAAQAP7/AAAEAAMAAAABAPD/AAADAAAAAAABAPH/AAADAAEAAAABAPL/AAADAAEAAAABAPP/AAADAAEAAAABAPT/AAADAAEAAAABAPX/AAADAAEAAAANAPD/AAAFAAAAAAANAPH/AAAFAAEAAAANAPL/AAADAAEAAAANAPP/AAAFAAEAAAANAPT/AAAFAAEAAAANAPX/AAADAAEAAAACAPD/AAAEAAAAAAADAPD/AAAEAAAAAAAEAOv/AAADAAAAAAAEAOz/AAADAAEAAAAEAO3/AAADAAIAAAAEAPD/AAAEAAAAAAAFAOv/AAAEAAAAAAAFAO3/AAAFAAAAAAAFAO7/AAADAAIAAAAFAPD/AAAEAAAAAAAGAOv/AAAHAAIAAAAGAO7/AAAFAAAAAAAGAO//AAADAAEAAAAGAPD/AAAFAAIAAAAIAOv/AAAGAAIAAAAIAO7/AAADAAAAAAAIAO//AAADAAEAAAAIAPD/AAADAAIAAAAJAOv/AAAEAAAAAAAJAO3/AAADAAAAAAAJAO7/AAAFAAIAAAAJAPD/AAAEAAAAAAAKAOv/AAAFAAAAAAAKAOz/AAADAAEAAAAKAO3/AAAFAAIAAAAKAPD/AAAEAAAAAAALAPD/AAAEAAAAAAAMAPD/AAAEAAAAAAA=")
+
+[node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="0" unique_id=1639851176 instance=ExtResource("37_qpemt")]
+visible = false
+position = Vector2(480, -1376)
+scale = Vector2(1.645, 1)
+level_path = "uid://cua2vssk2464f"
+
+[node name="TriggerAreaCutsceneCrystal" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1882614331 instance=ExtResource("21_d432r")]
+position = Vector2(480, -1248)
+images = Array[Texture2D]([ExtResource("3_mfhge")])
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1120, 481)
@@ -249,6 +261,11 @@ position = Vector2(96, 510)
 texture = ExtResource("30_d432r")
 triggers_required = 3
 
+[node name="BoulderPushable" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="12" unique_id=794065921 instance=ExtResource("38_i678b")]
+position = Vector2(928, 315)
+mass = 125.0
+is_persistent = true
+
 [node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1856845390 instance=ExtResource("2_ei7jr")]
 position = Vector2(814, 108)
 script = ExtResource("20_77ox4")
@@ -296,17 +313,14 @@ items = Array[ExtResource("2_cc213")]([SubResource("Resource_qn2he")])
 grab_interaction = SubResource("Resource_jb56y")
 cut_interaction = SubResource("Resource_n18o7")
 
-[node name="CutsceneTriggerArea" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="9" unique_id=1882614331 instance=ExtResource("21_d432r")]
-position = Vector2(480, -1248)
-images = Array[Texture2D]([ExtResource("3_mfhge")])
-
-[node name="AudioStreamPlayerAmbientBirds" type="AudioStreamPlayer2D" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="10" unique_id=1192742806]
+[node name="AudioStreamPlayerAmbientBirds" type="AudioStreamPlayer2D" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="9" unique_id=1192742806]
 position = Vector2(478, -1441)
 stream = ExtResource("37_nb123")
 autoplay = true
 max_distance = 1000.0
 
 [node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=20981134]
+visible = false
 layout_mode = 0
 offset_left = 201.0
 offset_top = -1016.0
@@ -315,16 +329,6 @@ offset_bottom = -967.0
 text = "This is the end of the demo.
 Claim your reward"
 horizontal_alignment = 1
-
-[node name="TriggerAreaLevelChange" parent="." index="12" unique_id=1639851176 instance=ExtResource("37_qpemt")]
-position = Vector2(480, -1376)
-scale = Vector2(1.645, 1)
-level_path = "uid://cua2vssk2464f"
-
-[node name="BoulderPushable" parent="." index="13" unique_id=794065921 instance=ExtResource("38_i678b")]
-position = Vector2(928, 315)
-mass = 125.0
-is_persistent = true
 
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
 offset_left = -599.0
@@ -347,3 +351,5 @@ offset_left = 883.0
 offset_top = -878.0
 offset_right = 923.0
 offset_bottom = -855.0
+
+[connection signal="end_scene" from="TriggerAreas/TriggerAreaCutsceneCrystal" to="." method="_on_trigger_area_cutscene_crystal_end_scene"]

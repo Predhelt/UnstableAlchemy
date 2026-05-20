@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cxqiv3ih52ard"]
 
-[ext_resource type="Script" uid="uid://c0x3rtpgqgocy" path="res://level_components/objects/triggers/autosave_area_trigger.gd" id="1_ghi8i"]
+[ext_resource type="Script" uid="uid://c0x3rtpgqgocy" path="res://level_components/objects/triggers/trigger_area_autosave.gd" id="1_ghi8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oaly0"]
 size = Vector2(64, 64)
 
-[node name="AutosaveAreaTrigger" type="Area2D" unique_id=1244985810]
+[node name="TriggerAreaAutosave" type="Area2D" unique_id=1244985810]
 collision_layer = 0
 script = ExtResource("1_ghi8i")
 

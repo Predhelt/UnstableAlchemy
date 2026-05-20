@@ -24,7 +24,7 @@
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="15_f74tu"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="16_n6lyu"]
 [ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://level_components/objects/triggers/blockage_area.tscn" id="18_yk6ro"]
-[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/display_area_trigger.tscn" id="19_m6cdu"]
+[ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/trigger_area_display.tscn" id="19_m6cdu"]
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="20_ev0gf"]
 [ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red_berry_seed.png" id="21_wjwk1"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="22_q0r6b"]

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal end_scene
+
 ## Images to be passed to the cutscene for display.
 @export var images: Array[Texture2D]
 
@@ -15,3 +17,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_camera_focused and not has_watched:
 		$Cutscene.play_cutscene()
 		has_watched = true
+
+
+func _on_cutscene_end_scene() -> void:
+	end_scene.emit()

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://7jyc7kpstbx4"]
+
+[ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_44r78"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_am5on"]
+[ext_resource type="Texture2D" uid="uid://rvb8583e166r" path="res://art/pack/ingredients/inventory/mysterious_crystal.png" id="3_am5on"]
+
+[resource]
+script = ExtResource("2_am5on")
+id = 10
+display_name = "Mysterious Crystal"
+texture = ExtResource("3_am5on")
+primary_color = "cyan"
+metadata/_custom_type_script = "uid://b7erjwbd5hmhp"
