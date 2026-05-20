@@ -6,13 +6,15 @@ class_name DialogueCondition extends Resource
 ## "player_att_lt": If certain player attribute is at most at threshold,
 ## "player_buff_is_active": If certain buff is active on the player,
 ## "player_known_recipe": If certain recipe is known by the player,
-## "event_trigger": If certain triggers have been activated (Ex: Quest objective)
+## "event_trigger": If certain triggers have been activated (Ex: Quest objective),
+## "has_looped": If the player has experiened a "loop"
 @export_enum(
 	"player_att_gte",
 	"player_att_lte",
 	"player_status_is_active",
 	"player_known_recipe",
-	"event_trigger"
+	"event_trigger",
+	"has_looped"
 	) var type : String
 
 ## The descriptor related to the type of the condition that has to be met.
@@ -21,6 +23,7 @@ class_name DialogueCondition extends Resource
 ## "player_status_is_active": StatusEffect ID
 ## "player_known_recipe": Recipe ID
 ## "event_trigger": If certain triggers have been activated (Ex: Quest objective)
+## "has_looped": None
 @export var descriptor : String
 
 ## The value of the condition to be met, under the given descriptor, if any.

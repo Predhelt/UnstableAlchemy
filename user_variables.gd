@@ -2,19 +2,19 @@
 extends Node
 
 ## List of recipes known by the user.
-var known_recipes : Array[Recipe]
+var known_recipes: Array[Recipe]
 ## Recipes that have not been viewed yet in the recipe page
 var new_recipes: Array[Recipe]
 ## Keys: IDs of [Recipe]s that have been crafted by the user.
 ## Values: the number of times the recipe has been crafted.
-var crafted_recipes : Dictionary[int, int]
+var crafted_recipes: Dictionary[int, int]
 ## List of books the user has read/used
 var books_read: Array[int]
 ## Keys: IDs of items that have been gathered from interactable objects like plants.
 ## Values: Dictionary containing names of objects that the item was gathered from and the interaction type.
 ## Internal dictionary returns the count for number of times the interaction was performed.
 ## Ex: {item_id : {[obj1_name, interaction_type1] : 1, [obj1_name, interaction_type2] : 5, [obj2_name, interaction_type1] : 15}
-var gathered_items : Dictionary[int, Dictionary]
+var gathered_items: Dictionary[int, Dictionary]
 ## List of grab interactions that the user has performed.
 ## String is the name of the object, Array is the list of grab interactions of the object and their count.
 ## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
@@ -31,7 +31,9 @@ var items_used: Dictionary[int, int]
 ## List of status effect IDs that have been applied to the user (or learned about)
 var learned_status_effects: Array[int]
 ## List of names of pages that have been opened by the user.
-var pages_opened : Array[String]
+var pages_opened: Array[String]
+## Whether or not the player has exerienced a "loop".
+var has_looped: bool = false
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
@@ -49,7 +51,8 @@ func save(_dir: String) -> Dictionary:
 		"objects_combined" : var_to_str(objects_combined),
 		"items_used" : var_to_str(items_used),
 		"learned_status_effects" : var_to_str(learned_status_effects),
-		"pages_opened" : var_to_str(pages_opened)
+		"pages_opened" : var_to_str(pages_opened),
+		"has_looped" : has_looped
 	}
 	return save_dict
 
@@ -66,6 +69,7 @@ func reset_variables():
 	items_used.clear()
 	learned_status_effects.clear()
 	pages_opened.clear()
+	has_looped = false
 
 ## Add a recipe to the list of known recipes and new recipes if not already known.
 func add_recipe(recipe : Recipe) -> bool:

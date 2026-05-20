@@ -10,6 +10,7 @@ func _on_cutscene_delay_timeout() -> void:
 
 ## Changes the scene to the first level when the "crystal consumed" cutscene ends.
 func _on_cutscene_crystal_consumed_end_scene() -> void:
+	UserVariables.has_looped = 1
 	Global.change_scene("res://maps/training/1-ruins_entrance.tscn")
 
 
@@ -21,12 +22,14 @@ func _on_ui_layer_craft_completed(result: Item, _recipe: Recipe) -> void:
 
 ## Changes the scene to the first level when the "crystal failed" cutscene ends.
 func _on_cutscene_crystal_failed_end_scene() -> void:
+	UserVariables.has_looped = 1
 	Global.change_scene("res://maps/training/1-ruins_entrance.tscn")
 
 
 func _on_cutscene_leave_end_scene() -> void:
+	UserVariables.has_looped = 1
 	Global.change_scene("res://maps/training/1-ruins_entrance.tscn")
 
 
 func _on_cutscene_crystal_success_end_scene() -> void:
-	pass # Replace with function body.
+	$CutsceneCrystalSuccess.play_cutscene()

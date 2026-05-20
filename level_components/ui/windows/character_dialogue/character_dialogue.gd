@@ -146,6 +146,9 @@ func _are_conditions_met(conditions : Array[DialogueCondition]) -> bool:
 					return false
 			"event_trigger": print("ERROR: Not yet implemented")
 				#return false
+			"has_looped":
+				if not UserVariables.has_looped:
+					return false
 	return true
 
 ## Sets the dialogue text
