@@ -331,6 +331,9 @@ func _physics_process(delta: float) -> void:
 	
 	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
 		$PossessionTargetLabel.global_position = cur_possession_target.global_position
+		$PossessionTargetLabel.visible = true
+	else:
+		$PossessionTargetLabel.visible = false
 
 ## Handles input action events. Only accepts inputs when the player is controlling the character.
 func _input(event: InputEvent) -> void:
@@ -960,7 +963,6 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 		$PossessionArea.disable_collision()
 		if is_camera_focused:
 			$LabelGroup/PossessionHelpLabel.visible = false
-			$PossessionTargetLabel.text = ""
 			update_status_bar(se, _get_se_index(se), true)
 		can_possess_others_count = 0
 		var se_index = _get_se_index(se)
@@ -1043,12 +1045,12 @@ func _on_possession_area_body_exited(body: Node2D) -> void:
 	if body not in possessable_characters:
 		return
 	possessable_characters.remove_at(possessable_characters.find(body))
-	if not possessing_character and not possessable_characters.is_empty():
+	if not possessable_characters.is_empty():
 		if cur_possession_target not in possessable_characters:
 			cur_possession_target = possessable_characters[0]
 		$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
 	else:
-		$PossessionTargetLabel.text = ""
+		cur_possession_target = null
 	_change_possession_help_label()
 
 
