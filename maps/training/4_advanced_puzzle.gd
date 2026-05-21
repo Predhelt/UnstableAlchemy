@@ -2,6 +2,18 @@ extends LevelManager
 
 var mysterious_crystal : Item = preload("res://game_systems/items/gatherable/mysterious_crystal.tres")
 
+
+func _ready() -> void:
+	super()
+	Global.mode = &"default"
+	EventHandler.open_popup_message(
+		"This is the final puzzle of the demo.
+		This represents one of the later puzzles.
+		Check your inventory and use what you know to proceed.
+		Don't forget to reset if you get stuck.
+		Good luck!"
+		)
+
 func add_crystal_to_gathered_items(node : Node) -> void:
 	var entry = ["world", "grab"]
 	if node.gathered_items.keys().is_empty() or mysterious_crystal.id not in node.gathered_items.keys():

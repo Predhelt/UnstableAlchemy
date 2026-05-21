@@ -141,10 +141,8 @@ func set_buttons_visibility(character : Node = null) -> void:
 				pass
 			1003: # Shrink Potion Book
 				show_button(%ButtonBookShrinkPotion)
-			1004: # 
-				pass
-			1005:
-				pass
+			1007: # Possession Potion Book
+				show_button(%ButtonBookPossessionPotion)
 			2000: # Letter from R
 				show_button(%ButtonBookLetterFromR)
 			2001: # Crystal Hint 1
@@ -951,6 +949,9 @@ func _on_button_book_shrink_potion_pressed() -> void:
 
 func _on_button_book_herb_flakes_pressed() -> void:
 	open_book_page(%PageBookHerbFlakes)
+
+func _on_button_book_possession_potion_pressed() -> void:
+	open_book_page(%PageBookPossessionPotion)
 
 func _on_button_book_crystal_hint_1_pressed() -> void:
 	open_book_page(%PageBookCrystalHint1)

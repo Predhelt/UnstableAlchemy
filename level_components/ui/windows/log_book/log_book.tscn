@@ -1621,6 +1621,17 @@ text = "Shrink Potion"
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
+[node name="ButtonBookPossessionPotion" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=125083029]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_rpebb")
+text = "Possession Potion"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
 [node name="ButtonBookCrystalHint1" type="Button" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList" unique_id=586712041]
 unique_name_in_owner = true
 visible = false
@@ -1783,7 +1794,7 @@ text = "Herb flakes are one of the most commonly used materials for herbal remed
 
 Prolonged use is not recommended as it is not an easily maintainable level of activity, and longer-term stimulants are usually available. Some instances of addiction have been documented, however these seem to be due to lifestyle choices."
 
-[node name="PageBookCrystalHint1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1235813475]
+[node name="PageBookPossessionPotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=2005479230]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -1793,6 +1804,32 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 4
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookPossessionPotion" unique_id=2083759547]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "The use of possession potions is sometimes considered divisive in certain tribes. However, most criticism is nullified by the fact that the possessee must consent to the possession in order for the effect to work. The feeling is often described as getting a knock on the door and needing to invite someone in.
+
+[b]Scholars occasionally cooperate with workers to use the knowledge of the scholar in the body of the worker to perform certain tasks directly without concern for miscommunication.[/b]
+
+Most refrain from using possession in favor of improving communications, as the intrusive nature of possession can be unsettling."
+
+[node name="PageBookCrystalHint1" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1235813475]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 5
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint1" unique_id=1270114488]
 layout_mode = 2
@@ -1810,7 +1847,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 5
+metadata/_tab_index = 6
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint2" unique_id=1243965136]
 layout_mode = 2
@@ -1828,7 +1865,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 6
+metadata/_tab_index = 7
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint3" unique_id=6970910]
 layout_mode = 2
@@ -1851,7 +1888,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 7
+metadata/_tab_index = 8
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint4" unique_id=2143057732]
 layout_mode = 2
@@ -1869,7 +1906,7 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 8
+metadata/_tab_index = 9
 
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint5" unique_id=901107321]
 layout_mode = 2
@@ -2546,6 +2583,8 @@ stretch_mode = 5
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookHerbFlakes" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="." method="_on_button_book_shrink_potion_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookShrinkPotion" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookPossessionPotion" to="." method="_on_button_book_possession_potion_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookPossessionPotion" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookPossessionPotion" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint1" to="." method="_on_button_book_crystal_hint_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint1" to="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint1" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageButtons/PageButtonList/ButtonBookCrystalHint2" to="." method="_on_button_book_crystal_hint_2_pressed"]

@@ -122,7 +122,7 @@ tile_map_data = PackedByteArray("AAD8/+3/AAADAAQAAAD8/+7/AAADAAEAAAD8/+//AAADAAE
 [node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="0" unique_id=1639851176 instance=ExtResource("18_ltyin")]
 position = Vector2(256, -1824)
 scale = Vector2(2.5, 1)
-level_path = "res://maps/training/3-1_advanced_puzzle.tscn"
+level_path = "uid://boi0y4f3ntxrd"
 
 [node name="AutosaveAreaTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1244985810 instance=ExtResource("12_fmauf")]
 position = Vector2(-8, -200)
