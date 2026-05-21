@@ -163,7 +163,7 @@ text = "X"
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1843626353]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 tab_0/title = "Help"
 tab_1/title = "Raw Items"
 tab_2/title = "Crafted Items"
@@ -174,10 +174,10 @@ tab_6/title = "Books"
 tab_7/title = "Places"
 tab_8/title = "People"
 tab_9/title = "Status Effects"
+tab_10/title = "Cutscenes"
 
 [node name="TabHelp" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1767813055]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -582,6 +582,7 @@ autowrap_mode = 3
 
 [node name="TabRawItems" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1613085781]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 4
 metadata/_tab_index = 1
@@ -2246,6 +2247,205 @@ layout_mode = 2
 [node name="LabelDuration" type="Label" parent="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageContainer/PageStatus/VBoxContainer" unique_id=1278732573]
 layout_mode = 2
 
+[node name="TabCutscenes" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1721774895]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 10
+metadata/_tab_name = "Cutscenes"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/TabCutscenes" unique_id=777198246]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageButtons" type="ScrollContainer" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer" unique_id=124386231]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="PageButtonList" type="VBoxContainer" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons" unique_id=351715675]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonCutsceneMap1" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=487173747]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Map 1"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneApproachingRuins" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=1072939769]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Approaching Ruins"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneMap2" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=998641994]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Map 2"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneEnterRuins" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=1637124270]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Enter Ruins"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneMap3" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=1474501686]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Map 3"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneCaveEntrance1" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=141790571]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Cave Entrance 1"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneCaveEntrance2" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=1768571145]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Cave Entrance 2"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneDiscovery" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=1140726718]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Map 3"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneGoHome" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=2136523022]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Go Home"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneFailedCrystalCraft" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=819617550]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Failed Crystal Craft"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneConsumedCrystal" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=447827260]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Consumed Crystal"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneRewind1" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=1306173714]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Rewind 1"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneRewind2" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=1593210725]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Rewind 2"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonCutsceneCrystalStabilized" type="Button" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList" unique_id=2111676748]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_6jatn")
+text = "Crystal Stabilized"
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer" unique_id=1939143766]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="PageCutscene" type="MarginContainer" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageContainer" unique_id=1308234147]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="CutsceneImage" type="TextureRect" parent="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageContainer/PageCutscene" unique_id=2127522050]
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 3
+stretch_mode = 5
+
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="tab_changed" from="VBoxContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabButtons/VBoxContainer/ButtonHelpGeneral" to="." method="_on_button_help_general_pressed"]
@@ -2374,3 +2574,31 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossess" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossess" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossessWeak" to="." method="_on_button_status_possess_weak_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossessWeak" to="VBoxContainer/TabContainer/TabStatuses/HBoxContainer/PageButtons/PageButtonList/ButtonStatusPossessWeak" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap1" to="." method="_on_button_cutscene_map_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap1" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap1" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneApproachingRuins" to="." method="_on_button_cutscene_approaching_ruins_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneApproachingRuins" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneApproachingRuins" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap2" to="." method="_on_button_cutscene_map_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap2" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap2" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneEnterRuins" to="." method="_on_button_cutscene_enter_ruins_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneEnterRuins" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneEnterRuins" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap3" to="." method="_on_button_cutscene_map_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap3" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneMap3" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCaveEntrance1" to="." method="_on_button_cutscene_cave_entrance_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCaveEntrance1" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCaveEntrance1" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCaveEntrance2" to="." method="_on_button_cutscene_cave_entrance_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCaveEntrance2" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCaveEntrance2" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneDiscovery" to="." method="_on_button_cutscene_discovery_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneDiscovery" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneDiscovery" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneGoHome" to="." method="_on_button_cutscene_go_home_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneGoHome" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneGoHome" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneFailedCrystalCraft" to="." method="_on_button_cutscene_failed_crystal_craft_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneFailedCrystalCraft" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneFailedCrystalCraft" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneConsumedCrystal" to="." method="_on_button_cutscene_consumed_crystal_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneConsumedCrystal" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneConsumedCrystal" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneRewind1" to="." method="_on_button_cutscene_rewind_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneRewind1" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneRewind1" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneRewind2" to="." method="_on_button_cutscene_rewind_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneRewind2" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneRewind2" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCrystalStabilized" to="." method="_on_button_cutscene_crystal_stabilized_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCrystalStabilized" to="VBoxContainer/TabContainer/TabCutscenes/HBoxContainer/PageButtons/PageButtonList/ButtonCutsceneCrystalStabilized" method="_on_pressed"]

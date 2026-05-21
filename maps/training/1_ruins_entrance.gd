@@ -2,8 +2,9 @@
 extends LevelManager
 
 
-## Tracks different stages of tutorial messaging
+signal call_open_inventory
 
+# Tracks different stages of tutorial messaging
 var grabbed_recipe_book: bool = false
 var used_recipe_book: bool = false
 ## Closed log book after using recipe book
@@ -41,6 +42,7 @@ func _on_ui_layer_log_book_menu_window_closed() -> void:
 func _on_ui_layer_recipe_list_window_opened() -> void:
 	if not opened_recipe_menu and closed_log_book and Global.focused_node.inventory.has_item_id(0):
 		if not UserVariables.has_looped:
+			call_open_inventory.emit()
 			EventHandler.open_popup_message(
 				"Drag items from the inventory onto the tools in the middle.
 				Then click the check mark on the tool to begin crafting."

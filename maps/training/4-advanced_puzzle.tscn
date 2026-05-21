@@ -190,6 +190,7 @@ level_path = "uid://cua2vssk2464f"
 [node name="TriggerAreaCutsceneCrystal" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1882614331 instance=ExtResource("21_d432r")]
 position = Vector2(480, -1248)
 images = Array[Texture2D]([ExtResource("3_mfhge")])
+cutscene_ids = Array[int]([7])
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1120, 481)

@@ -24,6 +24,7 @@ signal minigame_cauldron_window_opened()
 signal minigame_mp_window_closed()
 signal minigame_mp_window_opened()
 signal craft_completed(result: Item, recipe: Recipe)
+signal call_open_inventory
 
 
 func _on_options_menu_window_closed() -> void:
@@ -92,3 +93,7 @@ func _on_minigame_mp_window_opened() -> void:
 
 func _on_inventory_menu_craft_item_added(result: Item, recipe: Recipe) -> void:
 	craft_completed.emit(result, recipe)
+
+
+func _on_world_call_open_inventory() -> void:
+	call_open_inventory.emit()

@@ -93,6 +93,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_05avq")]
 visible = false
 images = Array[Texture2D]([ExtResource("3_igldg"), ExtResource("3_oxed2")])
+cutscene_ids = Array[int]([2, 3])
 auto_play = true
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]

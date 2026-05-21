@@ -398,3 +398,7 @@ func _on_tool_minigame_opened() -> void:
 
 func _on_minigame_previous_called() -> void:
 	open_window()
+
+
+func _on_ui_layer_call_open_inventory() -> void:
+	open_window()

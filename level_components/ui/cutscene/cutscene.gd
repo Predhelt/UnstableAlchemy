@@ -4,6 +4,9 @@ signal end_scene
 
 ## The list of images that will be shown, in the order provided.
 @export var images : Array[Texture2D]
+## The list of cutscene IDs to use to track which cutscenes have been watched.
+## References to which cutscene IDs refer to which images can be found in the log book script.
+@export var cutscene_ids : Array[int]
 ## The current index of the panel shown.
 var cur_image_index : int
 ## Play the cutscene when the level loads.
@@ -35,6 +38,9 @@ func next_image():
 
 ## Closes the cutscene window by freeing the scene, since it will not be reopened.
 func close_cutscene():
+	for id in cutscene_ids:
+		if id not in UserVariables.cutscenes_watched:
+			UserVariables.cutscenes_watched.append(id)
 	Global.mode = &"default"
 	end_scene.emit()
 	queue_free()

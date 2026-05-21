@@ -12,21 +12,18 @@
 [ext_resource type="Texture2D" uid="uid://dfwgf7ilub3j2" path="res://art/pack/cutscenes/consumed_crystal.png" id="5_n8vsm"]
 [ext_resource type="PackedScene" uid="uid://cb1e3wm6l2m4t" path="res://characters/lex_endings/lex.tscn" id="6_k5i8p"]
 [ext_resource type="Texture2D" uid="uid://drhl55shoqp4u" path="res://art/pack/cutscenes/rewind1.png" id="6_noc5j"]
-[ext_resource type="Texture2D" uid="uid://c346j2ugru0bu" path="res://art/pack/cutscenes/alchemy_research.png" id="6_okgdk"]
-[ext_resource type="Texture2D" uid="uid://13fdgmtwv2sr" path="res://art/pack/cutscenes/alchemy_research_incident.png" id="7_3e1va"]
 [ext_resource type="Texture2D" uid="uid://gvgdu1c3gafo" path="res://art/pack/cutscenes/rewind2.png" id="7_ohjpk"]
-[ext_resource type="Texture2D" uid="uid://1rb6622lnoa8" path="res://art/pack/cutscenes/alchemy_research_success.png" id="8_k5i8p"]
 [ext_resource type="Texture2D" uid="uid://heinhcu3ufwa" path="res://art/pack/cutscenes/failed_crystal_craft.png" id="8_oqixu"]
 [ext_resource type="Texture2D" uid="uid://b2wfu235uyjij" path="res://art/pack/cutscenes/successful_crystal_craft.png" id="9_kh1g1"]
 [ext_resource type="Texture2D" uid="uid://dgn3wowgk03uf" path="res://art/pack/cutscenes/go_home.png" id="10_x0n8b"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="18_m7rkf"]
 
-[sub_resource type="Resource" id="Resource_n8vsm"]
+[sub_resource type="Resource" id="Resource_2ov4i"]
 resource_local_to_scene = true
 script = ExtResource("2_sgrvt")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_noc5j"]
+[sub_resource type="Resource" id="Resource_m7rkf"]
 resource_local_to_scene = true
 script = ExtResource("4_okgdk")
 items = Array[ExtResource("3_5iium")]([ExtResource("5_e6e85")])
@@ -45,23 +42,27 @@ stream = ExtResource("2_k5i8p")
 [node name="CutsceneCrystalConsumed" parent="." index="3" unique_id=322321605 instance=ExtResource("4_eg3ay")]
 visible = false
 images = Array[Texture2D]([ExtResource("5_n8vsm"), ExtResource("6_noc5j"), ExtResource("7_ohjpk")])
+cutscene_ids = Array[int]([10, 11, 12])
 
 [node name="CutsceneCrystalFailed" parent="." index="4" unique_id=1385112950 instance=ExtResource("4_eg3ay")]
 visible = false
 images = Array[Texture2D]([ExtResource("8_oqixu"), ExtResource("6_noc5j"), ExtResource("7_ohjpk")])
+cutscene_ids = Array[int]([9, 11, 12])
 
 [node name="CutsceneCrystalSuccess" parent="." index="5" unique_id=780663890 instance=ExtResource("4_eg3ay")]
 visible = false
 images = Array[Texture2D]([ExtResource("9_kh1g1")])
+cutscene_ids = Array[int]([13])
 
 [node name="CutsceneLeave" parent="." index="6" unique_id=1732414428 instance=ExtResource("4_eg3ay")]
 visible = false
 images = Array[Texture2D]([ExtResource("10_x0n8b"), ExtResource("6_noc5j"), ExtResource("7_ohjpk")])
+cutscene_ids = Array[int]([8, 11, 12])
 
 [node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(534, 418)
-attributes = SubResource("Resource_n8vsm")
-inventory = SubResource("Resource_noc5j")
+attributes = SubResource("Resource_2ov4i")
+inventory = SubResource("Resource_m7rkf")
 
 [node name="Character" parent="." index="9" unique_id=1948548714 instance=ExtResource("6_k5i8p")]
 position = Vector2(692, 519)
@@ -77,11 +78,9 @@ tile_map_data = PackedByteArray("AAAFAAMAAAADAAAAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAA
 
 [node name="CutsceneTriggerArea" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1882614331 instance=ExtResource("5_3e1va")]
 position = Vector2(285, 409)
-images = Array[Texture2D]([ExtResource("6_okgdk"), ExtResource("7_3e1va")])
 
 [node name="CutsceneTriggerArea2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1206473578 instance=ExtResource("5_3e1va")]
 position = Vector2(935, 417)
-images = Array[Texture2D]([ExtResource("6_okgdk"), ExtResource("8_k5i8p")])
 
 [node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=1756290353]
 visible = false

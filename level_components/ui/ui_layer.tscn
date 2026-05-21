@@ -146,6 +146,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[connection signal="call_open_inventory" from="." to="MenuLayer/LeftWindows/InventoryMenu" method="_on_ui_layer_call_open_inventory"]
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="use_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_use_inventory_item"]
 [connection signal="set_dropper_item" from="HUDLayer/ToolWheel" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]

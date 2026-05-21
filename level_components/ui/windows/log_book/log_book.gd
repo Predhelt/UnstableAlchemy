@@ -34,6 +34,8 @@ var current_object_scene : Node2D
 #var current_book : Book
 ## Tracks the current status effect being referenced in the statuses tab.
 var current_status_effect : StatusEffect
+## Tracks the current cutscene image being referenced in the cutscenes tab.
+var current_cutscene : Texture2D
 
 func _ready() -> void:
 	# Default pages on each tab
@@ -57,6 +59,8 @@ func _ready() -> void:
 	%ButtonPeoplePerson1.pressed.emit()
 	%ButtonStatusCleanse.button_pressed = true
 	%ButtonStatusCleanse.pressed.emit()
+	%ButtonCutsceneMap1.button_pressed = true
+	%ButtonCutsceneMap1.pressed.emit()
 	$AudioStreamPlayer.stop()
 	$VBoxContainer/TabContainer.current_tab = 0
 
@@ -248,6 +252,37 @@ func set_buttons_visibility(character : Node = null) -> void:
 				show_button(%ButtonStatusPossess)
 			201: # Possess (Weak)
 				show_button(%ButtonStatusPossessWeak)
+	# Button visibility for Cutscenes based on ID
+	for scene_id in UserVariables.cutscenes_watched:
+		match scene_id:
+			0: # Map 1
+				show_button(%ButtonCutsceneMap1)
+			1: # Approaching Ruins
+				show_button(%ButtonCutsceneApproachingRuins)
+			2: # Map 2
+				show_button(%ButtonCutsceneMap2)
+			3: # Enter Ruins
+				show_button(%ButtonCutsceneEnterRuins)
+			4: # Map 3
+				show_button(%ButtonCutsceneMap3)
+			5: # Cave Entrance 1
+				show_button(%ButtonCutsceneCaveEntrance1)
+			6: # Cave Entrance 2
+				show_button(%ButtonCutsceneCaveEntrance2)
+			7: # Discovery
+				show_button(%ButtonCutsceneDiscovery)
+			8: # Go Home
+				show_button(%ButtonCutsceneGoHome)
+			9: # Failed Crystal Craft
+				show_button(%ButtonCutsceneFailedCrystalCraft)
+			10: # Consumed Crystal
+				show_button(%ButtonCutsceneConsumedCrystal)
+			11: # Rewind 1
+				show_button(%ButtonCutsceneRewind1)
+			12: # Rewind 2
+				show_button(%ButtonCutsceneRewind2)
+			13: # Crystal Stabilized
+				show_button(%ButtonCutsceneCrystalStabilized)
 
 ## Hides all buttons whose visibility is changed dynamically based on the character/user's data.
 func hide_dynamic_buttons() -> void:
@@ -635,7 +670,7 @@ func open_person_page(page : MarginContainer) -> void:#TODO
 ## Uses template page node to set up the [member current_satus_effect] item information.
 func open_status_page() -> void:
 	if not current_status_effect:
-		print("ERROR: No scene currently referenced for plant page.")
+		print("ERROR: No scene currently referenced for status effect page.")
 		return
 	var page : MarginContainer = %PageStatus
 	if not page:
@@ -664,6 +699,21 @@ func open_status_page() -> void:
 		str_duration += str(current_status_effect.duration) + "s."
 	page.get_child(0).find_child("LabelDuration").text = str_duration
 	
+	page.visible = true
+
+##
+func open_cutscene_page() -> void:
+	if not current_cutscene:
+		print("ERROR: No scene currently referenced for cutscene page.")
+		return
+	var page : MarginContainer = %PageCutscene
+	if not page:
+		print("ERROR: No page '%s' exists, cannot be opened." % current_cutscene.display_name)
+		return
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	add_opened_page_name(page.name)
+	page.get_child(0).texture = current_cutscene
 	page.visible = true
 
 ## Loads the currently open page in the given tab.
@@ -972,3 +1022,61 @@ func _on_button_status_possess_pressed() -> void:
 func _on_button_status_possess_weak_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/possess_weak.tres")
 	open_status_page()
+
+### Cutscenes Tab ###
+#####################
+func _on_button_cutscene_map_1_pressed() -> void: # Cutscene ID 0
+	current_cutscene = load("res://art/pack/cutscenes/paper1.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_approaching_ruins_pressed() -> void: # Cutscene 1
+	current_cutscene = load("res://art/pack/cutscenes/approaching_ruins.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_map_2_pressed() -> void: # Cutscene 2
+	current_cutscene = load("res://art/pack/cutscenes/paper2.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_enter_ruins_pressed() -> void: # Cutscene 3
+	current_cutscene = load("res://art/pack/cutscenes/enter_ruins.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_map_3_pressed() -> void: # Cutscene 4
+	current_cutscene = load("res://art/pack/cutscenes/paper3.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_cave_entrance_1_pressed() -> void: # Cutscene 5
+	current_cutscene = load("res://art/pack/cutscenes/cave_entrance0.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_cave_entrance_2_pressed() -> void: # Cutscene 6
+	current_cutscene = load("res://art/pack/cutscenes/cave_entrance1.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_discovery_pressed() -> void: # Cutscene 7
+	current_cutscene = load("res://art/pack/cutscenes/discovery.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_go_home_pressed() -> void: # Cutscene 8
+	current_cutscene = load("res://art/pack/cutscenes/go_home.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_failed_crystal_craft_pressed() -> void: # Cutscene 9
+	current_cutscene = load("res://art/pack/cutscenes/failed_crystal_craft.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_consumed_crystal_pressed() -> void: # Cutscene 10
+	current_cutscene = load("res://art/pack/cutscenes/consumed_crystal.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_rewind_1_pressed() -> void: # Cutscene 11
+	current_cutscene = load("res://art/pack/cutscenes/rewind1.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_rewind_2_pressed() -> void: # Cutscene 12
+	current_cutscene = load("res://art/pack/cutscenes/rewind2.png")
+	open_cutscene_page()
+
+func _on_button_cutscene_crystal_stabilized_pressed() -> void: # Cutscene 13
+	current_cutscene = load("res://art/pack/cutscenes/successful_crystal_craft.png")
+	open_cutscene_page()

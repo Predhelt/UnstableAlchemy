@@ -32,6 +32,8 @@ var items_used: Dictionary[int, int]
 var learned_status_effects: Array[int]
 ## List of names of pages that have been opened by the user.
 var pages_opened: Array[String]
+## List of cutscenes by ID that have been watched by the user.
+var cutscenes_watched: Array[int]
 ## Whether or not the player has exerienced a "loop".
 var has_looped: bool = false
 
@@ -52,6 +54,7 @@ func save(_dir: String) -> Dictionary:
 		"items_used" : var_to_str(items_used),
 		"learned_status_effects" : var_to_str(learned_status_effects),
 		"pages_opened" : var_to_str(pages_opened),
+		"cutscenes_watched" : var_to_str(cutscenes_watched),
 		"has_looped" : has_looped
 	}
 	return save_dict
@@ -69,6 +72,7 @@ func reset_variables():
 	items_used.clear()
 	learned_status_effects.clear()
 	pages_opened.clear()
+	cutscenes_watched.clear()
 	has_looped = false
 
 ## Add a recipe to the list of known recipes and new recipes if not already known.
