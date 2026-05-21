@@ -15,10 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://5j8n6g2gkxqr" path="res://characters/cam_poss/cam.tscn" id="6_k17fm"]
 [ext_resource type="PackedScene" uid="uid://3gcyy5eiv4rx" path="res://characters/lex_poss/lex.tscn" id="7_ix5gr"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/components/transaction.gd" id="8_ol6vo"]
+[ext_resource type="Texture2D" uid="uid://ib2gm5x453ue" path="res://art/pack/characters/portraits/char5.png" id="9_42850"]
 [ext_resource type="Resource" uid="uid://c8lydq1ur4lw8" path="res://game_systems/items/recipe_books/possession_potion_book.tres" id="9_c7gen"]
 [ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="9_d432r"]
 [ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="10_7y012"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="10_yqpoj"]
+[ext_resource type="Texture2D" uid="uid://gb8d44m0qtds" path="res://art/pack/characters/portraits/char1.png" id="11_h4eu7"]
 [ext_resource type="Resource" uid="uid://daguy0svx5k7b" path="res://game_systems/items/recipe_books/speed_potion_book.tres" id="12_yqpoj"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="14_urb74"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="15_r1ko1"]
@@ -154,6 +156,7 @@ position = Vector2(604, 419)
 
 [node name="Tess" parent="." index="4" unique_id=1948548714 instance=ExtResource("5_bupt0")]
 position = Vector2(330, 347)
+portrait = ExtResource("9_42850")
 attributes = SubResource("Resource_mfhge")
 inventory = SubResource("Resource_42850")
 has_blade = true
@@ -161,6 +164,7 @@ is_possessable = true
 
 [node name="Cam" parent="." index="5" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(652, 555)
+portrait = ExtResource("11_h4eu7")
 attributes = SubResource("Resource_nb123")
 inventory = SubResource("Resource_3fmyq")
 is_possessable = true
