@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 [sub_resource type="Resource" id="Resource_4tawm"]
 script = ExtResource("1_cqrba")
 player_response = "Okay, let's leave this place."
-dialogue_effects = Array[String](["go_home"])
+dialogue_effects = Array[String](["open_dialogue_door"])
 metadata/_custom_type_script = "uid://dh4lmouiihra8"
 
 [resource]

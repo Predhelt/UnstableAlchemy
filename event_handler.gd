@@ -30,3 +30,9 @@ func go_home() -> void:
 	var cutscene := get_tree().current_scene.find_child("CutsceneLeave")
 	if cutscene:
 		cutscene.play_cutscene()
+
+## Opens the designated sliding door in the scene with name "SlidingDoorDialogue"
+func open_dialogue_door() -> void:
+	var sliding_door := get_tree().current_scene.find_child("SlidingDoorDialogue")
+	if sliding_door:
+		sliding_door.open_door(Global.focused_node)

@@ -23,6 +23,13 @@ func _ready() -> void:
 func play_cutscene():
 	if not images.size() > 0:
 		return
+	#var has_watched_cutscene: bool = true
+	#for id in cutscene_ids:
+		#if id not in UserVariables.cutscenes_watched:
+			#has_watched_cutscene = false
+	#if has_watched_cutscene:
+		#return
+	
 	Global.mode = &"cutscene"
 	$Panel/TextureRect.texture = images[0]
 	cur_image_index = 1
