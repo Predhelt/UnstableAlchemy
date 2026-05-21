@@ -1797,8 +1797,9 @@ metadata/_tab_index = 4
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint1" unique_id=1270114488]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Crystal Hint #1
-..."
+text = "(THIS HINT IS FOR A PROCEDURE THAT IS NOT IMPLEMENTED)
+Crystal Hint #1:
+It is important to make sure you have the proper strength before attempting to grind or crush the crystal. Too much strength or too little, and the crystal is sure to break. And you will have to start all over again. I was able to confirm that having 87.5 units of strength was ideal for this procedure..."
 
 [node name="PageBookCrystalHint2" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=732607709]
 unique_name_in_owner = true
@@ -1814,8 +1815,9 @@ metadata/_tab_index = 5
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint2" unique_id=1243965136]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Crystal Hint #2
-..."
+text = "(THIS HINT IS FOR A PROCEDURE THAT IS NOT IMPLEMENTED)
+Crystal Hint #2
+...Before trying to break apart the crystal, it should be merged with a cleanse potion to reduce any buildup of residual energy..."
 
 [node name="PageBookCrystalHint3" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1829883587]
 unique_name_in_owner = true
@@ -1831,8 +1833,14 @@ metadata/_tab_index = 6
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint3" unique_id=6970910]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Crystal Hint #3
-..."
+text = "(THIS HINT IS FOR A PROCEDURE THAT IS NOT IMPLEMENTED)
+Crystal Hint #3
+...Once you have the proper strength, take the crystal and do the following:
+Grind.
+Crush.
+Crush.
+Grind.
+Crush..."
 
 [node name="PageBookCrystalHint4" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1071099889]
 unique_name_in_owner = true
@@ -1848,8 +1856,9 @@ metadata/_tab_index = 7
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint4" unique_id=2143057732]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Crystal Hint #4
-..."
+text = "(THIS HINT IS FOR A PROCEDURE THAT IS NOT IMPLEMENTED)
+Crystal Hint #4
+...Orange paste should be added as soon as the cauldron is prepared, and the bellows should be used immediately afterwards..."
 
 [node name="PageBookCrystalHint5" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=765261614]
 unique_name_in_owner = true
@@ -1865,8 +1874,9 @@ metadata/_tab_index = 8
 [node name="Label" type="RichTextLabel" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer/PageBookCrystalHint5" unique_id=901107321]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Crystal Hint #5
-..."
+text = "(THIS HINT IS FOR A PROCEDURE THAT IS NOT IMPLEMENTED)
+Crystal Hint #5
+...Right after you get the cauldron boiling from bellows, drop the crystal in and it will bind with the paste. Wait a few seconds before adding the yellow dust."
 
 [node name="TabPlaces" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=605919455]
 unique_name_in_owner = true
