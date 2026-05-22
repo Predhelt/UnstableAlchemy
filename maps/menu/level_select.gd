@@ -7,10 +7,10 @@ const BUTTON_LEVEL_SELECT = preload("res://maps/menu/button_level_select.tscn")
 @export_dir var dir_levels_path : String = "res://maps/training/"
 
 
-func _ready() -> void:
-	set_levels(dir_levels_path)
+#func _ready() -> void:
+	#set_levels(dir_levels_path)
 
-
+## @deprecated
 func set_levels(path : String) ->  void:
 	var dir := DirAccess.open(path)
 	if not dir:
@@ -25,6 +25,7 @@ func set_levels(path : String) ->  void:
 		file_name = dir.get_next()
 	dir.list_dir_end()
 
+## @deprecated
 ## Creates and adds the button representing the level at the given [param file_path].
 func add_level_button(file_path : String, level_name : String) -> void:
 	var button : Button = BUTTON_LEVEL_SELECT.instantiate()

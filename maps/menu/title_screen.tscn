@@ -134,12 +134,11 @@ theme_override_font_sizes/font_size = 50
 text = "New Game"
 level_path = "uid://nkld8tcq4n2y"
 
-[node name="ButtonLevelSelect" parent="PlayTypePage" unique_id=1324963192 instance=ExtResource("2_12dnu")]
+[node name="ButtonLevelSelect" type="Button" parent="PlayTypePage" unique_id=1348568028]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Level Select"
-level_path = "uid://bxw8y0udo7u4o"
 
 [node name="ButtonLoad" type="Button" parent="PlayTypePage" unique_id=1418030786]
 custom_minimum_size = Vector2(250, 0)
@@ -159,7 +158,7 @@ offset_right = 125.00001
 grow_vertical = 0
 theme = ExtResource("3_3ahgd")
 theme_override_constants/outline_size = 6
-text = "Version: a.b.c-d (Prototype)"
+text = "Version: a.b.c-d (Demo)"
 
 [node name="CompanyLogo" type="TextureRect" parent="." unique_id=656535454]
 layout_mode = 1
@@ -168,8 +167,8 @@ anchor_left = 0.99
 anchor_top = 0.98
 anchor_right = 0.99
 anchor_bottom = 0.98
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -256.0
+offset_top = -256.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("4_kcdp0")
@@ -186,6 +185,9 @@ visible = false
 [connection signal="focus_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainPage/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="focus_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
+[connection signal="pressed" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_level_select_pressed"]
 [connection signal="focus_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
 [connection signal="pressed" from="PlayTypePage/ButtonLoad" to="." method="_on_button_load_pressed"]

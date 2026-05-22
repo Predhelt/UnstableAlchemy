@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_cc213"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="2_ei7jr"]
 [ext_resource type="AudioStream" uid="uid://bhdti8pgs3ve1" path="res://art/pack/audio/music/ambient1.mp3" id="2_i678b"]
-[ext_resource type="Script" uid="uid://cvfw512ryrio7" path="res://maps/training/4_advanced_puzzle.gd" id="2_jd8qc"]
+[ext_resource type="Script" uid="uid://cvfw512ryrio7" path="res://maps/training/4_inner_cave.gd" id="2_jd8qc"]
 [ext_resource type="Resource" uid="uid://bea6luvjr7ahf" path="res://game_systems/items/potions/possession_potion_weak.tres" id="3_bupt0"]
 [ext_resource type="Texture2D" uid="uid://cvxxbvq0l06th" path="res://art/pack/cutscenes/discovery.png" id="3_mfhge"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="4_0jpsc"]
@@ -43,12 +43,12 @@
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="37_qpemt"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="38_i678b"]
 
-[sub_resource type="Resource" id="Resource_jd8qc"]
+[sub_resource type="Resource" id="Resource_42850"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_xhjwn"]
+[sub_resource type="Resource" id="Resource_h4eu7"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -59,7 +59,7 @@ script = ExtResource("6_60y0b")
 base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_42850"]
+[sub_resource type="Resource" id="Resource_c1rrm"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -148,8 +148,8 @@ stream = null
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
 position = Vector2(515, 387)
-attributes = SubResource("Resource_jd8qc")
-inventory = SubResource("Resource_xhjwn")
+attributes = SubResource("Resource_42850")
+inventory = SubResource("Resource_h4eu7")
 
 [node name="PlayerCamera" parent="." index="3" unique_id=294471714]
 position = Vector2(604, 419)
@@ -158,7 +158,7 @@ position = Vector2(604, 419)
 position = Vector2(330, 347)
 portrait = ExtResource("9_42850")
 attributes = SubResource("Resource_mfhge")
-inventory = SubResource("Resource_42850")
+inventory = SubResource("Resource_c1rrm")
 has_blade = true
 is_possessable = true
 

@@ -278,3 +278,31 @@ func load_game(dir : String) -> void:
 				new_object.set(i, node_data[i])
 			new_object.set(i, node_data[i])
 	mode = &"default"
+
+
+## Loads just the user data to UserVariables based on the savegame.save file in the user directory.
+func load_user_variables(dir: String) -> void:
+	if not FileAccess.file_exists("%sgame.save" % dir):
+		print("ERROR: No save file \"%sgame.save\" found!" % dir)
+		return
+	
+	var save_file = FileAccess.open("%sgame.save" % dir, FileAccess.READ)
+	
+	# Initialize variables and change the level scene.
+	var json_string = save_file.get_line()
+	
+	# Set User Variables. Should be the second line in the save file.
+	json_string = save_file.get_line()
+	var json = JSON.new()
+	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+	var node_data = json.data
+	for i in node_data.keys():
+		if i == "filename" or i == "parent":
+			UserVariables.set(i, node_data[i])
+		else:
+			if typeof(node_data[i]) == typeof("String"):
+				UserVariables.set(i, str_to_var(node_data[i]))
+			else:
+				UserVariables.set(i, node_data[i])

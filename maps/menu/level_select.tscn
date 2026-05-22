@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bxw8y0udo7u4o"]
 
-[ext_resource type="Script" uid="uid://mfft2nnrm265" path="res://maps/menu/level_select.gd" id="1_cido5"]
 [ext_resource type="Script" uid="uid://cnhp7cgg0ethe" path="res://audio/audio_stream_manager.gd" id="2_800ur"]
 [ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/audio/music/quaint_ambient.mp3" id="2_a3owr"]
 [ext_resource type="Texture2D" uid="uid://c6iuademyval" path="res://art/pack/ui/menus/title_background.png" id="2_cm7br"]
@@ -13,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cido5")
 
 [node name="AudioStreams" type="Node" parent="." unique_id=1733239103]
 script = ExtResource("2_800ur")
@@ -44,6 +42,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1457951657]
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1121056905]
 layout_mode = 2
@@ -57,9 +56,45 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
-columns = 5
+columns = 2
 
-[node name="ButtonLevelSelect" parent="." unique_id=1276432221 instance=ExtResource("2_wjowx")]
+[node name="ButtonLevelSelect" parent="MarginContainer/VBoxContainer/GridContainerButtons" unique_id=1276432221 instance=ExtResource("2_wjowx")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "1: Ruins Entrance"
+level_path = "uid://nkld8tcq4n2y"
+
+[node name="ButtonLevelSelect2" parent="MarginContainer/VBoxContainer/GridContainerButtons" unique_id=1792505170 instance=ExtResource("2_wjowx")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "2: Inner Ruins"
+level_path = "uid://cjnnyjrqk6rsl"
+
+[node name="ButtonLevelSelect3" parent="MarginContainer/VBoxContainer/GridContainerButtons" unique_id=116930681 instance=ExtResource("2_wjowx")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "3: Cave Entrance"
+level_path = "uid://boi0y4f3ntxrd"
+
+[node name="ButtonLevelSelect4" parent="MarginContainer/VBoxContainer/GridContainerButtons" unique_id=356924137 instance=ExtResource("2_wjowx")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "4: Inner Cave
+(Advanced)"
+level_path = "uid://vpd53ywg8mcr"
+
+[node name="ButtonLevelSelect5" parent="MarginContainer/VBoxContainer/GridContainerButtons" unique_id=1855029095 instance=ExtResource("2_wjowx")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Endings..?"
+level_path = "uid://cua2vssk2464f"
+
+[node name="ButtonBack" parent="." unique_id=991568124 instance=ExtResource("2_wjowx")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 20.0

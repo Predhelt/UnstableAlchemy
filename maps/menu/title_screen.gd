@@ -1,6 +1,7 @@
 extends Control
 
 var save_select_popup_ref : PackedScene = preload("res://level_components/ui/windows/popups/save_select_popup.tscn")
+var save_select_uv_popup_ref : PackedScene = preload("res://level_components/ui/windows/popups/save_select_uv_popup.tscn")
 
 func _ready() -> void:
 	$LabelVersion.text = "Version: %s (Prototype)" % ProjectSettings.get_setting("application/config/version")
@@ -42,3 +43,9 @@ func _on_button_entered() -> void:
 func _on_button_play_pressed() -> void:
 	$MainPage.visible = false
 	$PlayTypePage.visible = true
+
+
+func _on_button_level_select_pressed() -> void:
+	var save_uv_select : PopupMenu = save_select_uv_popup_ref.instantiate()
+	add_child(save_uv_select)
+	save_uv_select.position = $PlayTypePage/ButtonLevelSelect.global_position
