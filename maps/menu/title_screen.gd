@@ -1,6 +1,5 @@
 extends Control
 
-var save_select_popup_ref : PackedScene = preload("res://level_components/ui/windows/popups/save_select_popup.tscn")
 ## Which page is currently being displayed.
 var current_page_ref: Control
 ## Which page of the title screen the back button will lead to.
@@ -9,7 +8,6 @@ var previous_page_ref: Control
 func _ready() -> void:
 	$LabelVersion.text = "Version: %s (Demo)" % ProjectSettings.get_setting("application/config/version")
 	UserVariables.reset_variables()
-	$PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup.position = $PlayTypePage/ButtonLevelSelect.global_position
 
 ## Opens the level that was selected. Returns whether or not the level was opened successfuly.
 func open_level() -> bool:
@@ -34,9 +32,7 @@ func _on_button_exit_pressed() -> void:
 func _on_button_load_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	var save_select : PopupMenu = save_select_popup_ref.instantiate()
-	add_child(save_select)
-	save_select.position = $PlayTypePage/ButtonLoad.global_position
+	$PlayTypePage/ButtonLoad/SaveSelectPopup.show()
 
 
 func _on_button_entered() -> void:

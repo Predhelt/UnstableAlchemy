@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
 [ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_confirmation.tscn" id="7_17jem"]
 [ext_resource type="PackedScene" uid="uid://cqynjrx3pw1gi" path="res://level_components/ui/windows/popups/save_select_uv_popup.tscn" id="11_mh60s"]
+[ext_resource type="PackedScene" uid="uid://4pbfbvyixdwe" path="res://level_components/ui/windows/popups/save_select_popup.tscn" id="12_u5f4f"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_u2ya0"]
 clip_count = 3
@@ -142,6 +143,7 @@ theme_override_font_sizes/font_size = 50
 text = "Level Select"
 
 [node name="SaveSelectUVPopup" parent="PlayTypePage/ButtonLevelSelect" unique_id=2088896767 instance=ExtResource("11_mh60s")]
+position = Vector2i(484, 366)
 visible = false
 
 [node name="ButtonLoad" type="Button" parent="PlayTypePage" unique_id=1418030786]
@@ -149,6 +151,10 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Load"
+
+[node name="SaveSelectPopup" parent="PlayTypePage/ButtonLoad" unique_id=2044775981 instance=ExtResource("12_u5f4f")]
+position = Vector2i(486, 471)
+visible = false
 
 [node name="LevelSelectPage" type="MarginContainer" parent="." unique_id=404084080]
 visible = false
