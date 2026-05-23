@@ -2,12 +2,15 @@ extends Control
 
 ## Which page is currently being displayed.
 var current_page_ref: Control
-## Which page of the title screen the back button will lead to.
-var previous_page_ref: Control
 
 func _ready() -> void:
 	$LabelVersion.text = "Version: %s (Demo)" % ProjectSettings.get_setting("application/config/version")
 	UserVariables.reset_variables()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if $ButtonBack.visible:
+			_on_button_back_pressed()
 
 ## Opens the level that was selected. Returns whether or not the level was opened successfuly.
 func open_level() -> bool:
@@ -44,7 +47,6 @@ func _on_button_play_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$MainPage.visible = false
-	previous_page_ref = $MainPage
 	current_page_ref = $PlayTypePage
 	$ButtonBack.visible = true
 	$PlayTypePage.visible = true
@@ -60,7 +62,6 @@ func _on_save_select_uv_popup_index_pressed(_index: int) -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$PlayTypePage.visible = false
-	previous_page_ref = $PlayTypePage
 	current_page_ref = $LevelSelectPage
 	$ButtonBack.visible = true
 	$LevelSelectPage.visible = true
@@ -69,7 +70,13 @@ func _on_save_select_uv_popup_index_pressed(_index: int) -> void:
 func _on_button_back_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	current_page_ref.visible = false
-	if previous_page_ref == $MainPage:
+	
+	if current_page_ref == $PlayTypePage:
+		current_page_ref.visible = false
+		$MainPage.visible = true
 		$ButtonBack.visible = false
-	previous_page_ref.visible = true
+	else: # Assumeed the page is LevelSelectPage
+		current_page_ref.visible = false
+		current_page_ref = $PlayTypePage
+		current_page_ref.visible = true
+		
