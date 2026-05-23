@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
 [ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_confirmation.tscn" id="7_17jem"]
+[ext_resource type="PackedScene" uid="uid://cqynjrx3pw1gi" path="res://level_components/ui/windows/popups/save_select_uv_popup.tscn" id="11_mh60s"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_u2ya0"]
 clip_count = 3
@@ -127,7 +128,7 @@ grow_vertical = 2
 theme = ExtResource("3_3ahgd")
 theme_override_constants/separation = 28
 
-[node name="ButtonNewGame" parent="PlayTypePage" unique_id=1276432221 instance=ExtResource("2_12dnu")]
+[node name="ButtonNewGame" parent="PlayTypePage" unique_id=944362697 instance=ExtResource("2_12dnu")]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
@@ -140,11 +141,82 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Level Select"
 
+[node name="SaveSelectUVPopup" parent="PlayTypePage/ButtonLevelSelect" unique_id=2088896767 instance=ExtResource("11_mh60s")]
+visible = false
+
 [node name="ButtonLoad" type="Button" parent="PlayTypePage" unique_id=1418030786]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Load"
+
+[node name="LevelSelectPage" type="MarginContainer" parent="." unique_id=404084080]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectPage" unique_id=1457951657]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="LevelSelectPage/VBoxContainer" unique_id=1121056905]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Level Select"
+horizontal_alignment = 1
+
+[node name="GridContainerButtons" type="GridContainer" parent="LevelSelectPage/VBoxContainer" unique_id=1525412753]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="ButtonLevelSelect" parent="LevelSelectPage/VBoxContainer/GridContainerButtons" unique_id=1276432221 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "1: Ruins Entrance"
+level_path = "uid://nkld8tcq4n2y"
+
+[node name="ButtonLevelSelect2" parent="LevelSelectPage/VBoxContainer/GridContainerButtons" unique_id=1792505170 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "2: Inner Ruins"
+level_path = "uid://cjnnyjrqk6rsl"
+
+[node name="ButtonLevelSelect3" parent="LevelSelectPage/VBoxContainer/GridContainerButtons" unique_id=116930681 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "3: Cave Entrance"
+level_path = "uid://boi0y4f3ntxrd"
+
+[node name="ButtonLevelSelect4" parent="LevelSelectPage/VBoxContainer/GridContainerButtons" unique_id=356924137 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "4: Inner Cave
+(Advanced)"
+level_path = "uid://vpd53ywg8mcr"
+
+[node name="ButtonLevelSelect5" parent="LevelSelectPage/VBoxContainer/GridContainerButtons" unique_id=1855029095 instance=ExtResource("2_12dnu")]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Endings..?"
+level_path = "uid://cua2vssk2464f"
 
 [node name="LabelVersion" type="Label" parent="." unique_id=1604606504]
 layout_mode = 1
@@ -173,6 +245,16 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("4_kcdp0")
 
+[node name="ButtonBack" type="Button" parent="." unique_id=991568124]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 33.0
+offset_right = 70.0
+offset_bottom = 83.0
+text = "<-"
+
 [node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_17jem")]
 visible = false
 
@@ -188,6 +270,10 @@ visible = false
 [connection signal="focus_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
 [connection signal="pressed" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_level_select_pressed"]
+[connection signal="index_pressed" from="PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup" to="." method="_on_save_select_uv_popup_index_pressed"]
 [connection signal="focus_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
 [connection signal="pressed" from="PlayTypePage/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="focus_entered" from="ButtonBack" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="ButtonBack" to="." method="_on_button_entered"]
+[connection signal="pressed" from="ButtonBack" to="." method="_on_button_back_pressed"]
