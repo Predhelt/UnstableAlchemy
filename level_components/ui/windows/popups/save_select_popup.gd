@@ -4,9 +4,9 @@ var save_index: int = -1
 var autosave_index: int = -1
 
 func _on_index_pressed(index: int) -> void:
-	if index == 0:
+	if index == save_index:
 		Global.load_game("save")
-	elif index == 1:
+	elif index == autosave_index:
 		Global.load_game("autosave")
 
 

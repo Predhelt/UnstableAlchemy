@@ -9,7 +9,7 @@
 script = ExtResource("2_6vobf")
 id = 508
 display_name = "Possession Potion"
-description = "Allows the imbiber to possess nearby targets that is susceptible to possession."
+description = "Allows the imbiber to possess any number of nearby targets, one at a time, for a certain amount of time. Only works on targets susceptible to possession."
 texture = ExtResource("3_6vobf")
 primary_color = "yellow"
 use_sound = "drink"

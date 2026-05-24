@@ -133,7 +133,6 @@ allow_reselect = true
 allow_rmb_select = true
 allow_search = false
 max_text_lines = 2
-auto_width = true
 scroll_hint_mode = 2
 fixed_icon_size = Vector2i(32, 32)
 

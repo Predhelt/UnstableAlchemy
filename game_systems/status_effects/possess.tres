@@ -11,5 +11,5 @@ description = "Able to possess one susceptible target at a time. You can craft, 
 icon = ExtResource("1_w4x2h")
 effect = "possess"
 value = 1.0
-duration = 120.0
+duration = 300.0
 metadata/_custom_type_script = "uid://odkkljfrjpee"

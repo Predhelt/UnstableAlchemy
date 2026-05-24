@@ -12,18 +12,18 @@
 [ext_resource type="PackedScene" uid="uid://ch7hosojbd5a3" path="res://characters/brindan_gcsm/brindan_gcsm.tscn" id="10_54nbq"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/components/transaction.gd" id="11_7v03r"]
 [ext_resource type="Texture2D" uid="uid://btcuenk4g4x8q" path="res://art/pack/characters/portraits/char4.png" id="11_eooy1"]
-[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="12_a2lj6"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="13_42qb0"]
+[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://game_systems/items/potions/speed_potion.tres" id="13_v40p3"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="14_npw8n"]
 [ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="15_u3de4"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="16_3u314"]
 [ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://characters/shelly_shrink_puzzle/shelly_sp.tscn" id="16_vu3vs"]
-[ext_resource type="Resource" uid="uid://deasiajs7l0jy" path="res://characters/shelly_shrink_puzzle/transactions/tx_free_normalize_potion.tres" id="17_1umpp"]
 [ext_resource type="PackedScene" uid="uid://c5xttykhpc45r" path="res://level_components/objects/triggers/blockage_area.tscn" id="17_r1a14"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/trigger_area_display.tscn" id="18_6vueu"]
 [ext_resource type="Resource" uid="uid://8ptdatjmu13q" path="res://game_systems/items/tools/dropper.tres" id="18_54nbq"]
 [ext_resource type="Texture2D" uid="uid://b6sfatpelt8eq" path="res://art/pack/characters/portraits/char3.png" id="18_suusu"]
 [ext_resource type="Texture2D" uid="uid://dnurroiocuqgc" path="res://art/pack/ingredients/inventory/red_berries.png" id="19_lq8bo"]
+[ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="19_oeqek"]
 [ext_resource type="Texture2D" uid="uid://up6j6wahk4ts" path="res://art/pack/ingredients/inventory/red_berry_seed.png" id="20_5wcll"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="21_xmviu"]
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="22_eooy1"]
@@ -54,12 +54,21 @@
 script = ExtResource("2_a28fu")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_5wcll"]
+[sub_resource type="Resource" id="Resource_3bsik"]
 resource_local_to_scene = true
 script = ExtResource("4_6s6o1")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_fa7q6"]
+[sub_resource type="Resource" id="Resource_wdxed"]
+resource_local_to_scene = true
+script = ExtResource("11_7v03r")
+items_selling = Array[ExtResource("3_0ue13")]([ExtResource("13_v40p3")])
+items_selling_amount = Array[int]([1])
+items_selling_stock = Array[int]([-1])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[sub_resource type="Resource" id="Resource_or0wd"]
+resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("14_npw8n"), ExtResource("15_u3de4")])
 items_selling_amount = Array[int]([1, 1])
@@ -68,7 +77,16 @@ items_buying = Array[ExtResource("3_0ue13")]([ExtResource("13_42qb0")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_6ca4l"]
+[sub_resource type="Resource" id="Resource_38ufo"]
+resource_local_to_scene = true
+script = ExtResource("11_7v03r")
+items_selling = Array[ExtResource("3_0ue13")]([ExtResource("19_oeqek")])
+items_selling_amount = Array[int]([1])
+items_selling_stock = Array[int]([-1])
+metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[sub_resource type="Resource" id="Resource_wgx8k"]
+resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("18_54nbq")])
 items_selling_amount = Array[int]([1])
@@ -123,7 +141,7 @@ autoplay = false
 [node name="Player" parent="." index="3" unique_id=1026458739]
 position = Vector2(-86, -840)
 attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_5wcll")
+inventory = SubResource("Resource_3bsik")
 
 [node name="PlayerCamera" parent="." index="4" unique_id=294471714]
 position = Vector2(252, -1013)
@@ -131,13 +149,13 @@ position = Vector2(252, -1013)
 [node name="NPCBrindan" parent="." index="5" unique_id=1948548714 instance=ExtResource("10_54nbq")]
 position = Vector2(99, -719)
 portrait = ExtResource("11_eooy1")
-transactions = Array[ExtResource("11_7v03r")]([ExtResource("12_a2lj6"), SubResource("Resource_fa7q6")])
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_wdxed"), SubResource("Resource_or0wd")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
 [node name="NPCShelly" parent="." index="6" unique_id=1961644270 instance=ExtResource("16_vu3vs")]
 position = Vector2(-225, -1280)
 portrait = ExtResource("18_suusu")
-transactions = Array[ExtResource("11_7v03r")]([ExtResource("17_1umpp"), SubResource("Resource_6ca4l")])
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_38ufo"), SubResource("Resource_wgx8k")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -157,6 +175,10 @@ level_path = "uid://vpd53ywg8mcr"
 
 [node name="AutosaveAreaTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1244985810 instance=ExtResource("45_6vueu")]
 position = Vector2(-88, -838)
+
+[node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1885369948 instance=ExtResource("45_6vueu")]
+position = Vector2(84, -440)
+scale = Vector2(1.5, 1.5)
 
 [node name="BlockageArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=698375174 instance=ExtResource("17_r1a14")]
 position = Vector2(-32, -672.00006)
