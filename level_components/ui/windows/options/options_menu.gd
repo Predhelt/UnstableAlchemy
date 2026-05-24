@@ -26,7 +26,6 @@ func open_window():
 		Global.center_window = self
 		visible = true
 		window_opened.emit()
-		get_tree().current_scene.find_child("AudioStreams").pause_music()
 
 func close_window():
 	if Global.mode == window_mode:
@@ -35,7 +34,6 @@ func close_window():
 		prev_mode = ""
 		visible = false
 		window_closed.emit()
-		get_tree().current_scene.find_child("AudioStreams").resume_music()
 
 ## Close the options menu and return to the game.
 func _on_button_return_pressed() -> void:
