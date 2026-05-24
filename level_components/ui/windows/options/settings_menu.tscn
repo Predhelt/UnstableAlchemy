@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://yj02b17quwer" path="res://level_components/ui/windows/options/cauldron_craft_speed.tscn" id="4_axiun"]
 [ext_resource type="PackedScene" uid="uid://1e3vf4u3brfm" path="res://addons/maaacks_input_remapping/examples/scenes/menus/options_menu/input/input_options_menu.tscn" id="5_axiun"]
 [ext_resource type="PackedScene" uid="uid://by1pq2uwe7dsj" path="res://level_components/ui/windows/options/volume_controller.tscn" id="5_y2dqe"]
+[ext_resource type="Script" uid="uid://dcnpup62q1r8i" path="res://level_components/ui/windows/options/accessibility_settings.gd" id="5_ypet3"]
 
 [sub_resource type="Theme" id="Theme_qd3n0"]
 
@@ -27,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
 tab_1/disabled = true
-tab_1/hidden = true
+tab_4/disabled = true
 
 [node name="Game" type="MarginContainer" parent="TabContainer" unique_id=1102424622]
 layout_mode = 2
@@ -98,7 +99,6 @@ metadata/_tab_index = 1
 layout_mode = 2
 
 [node name="Control" type="Control" parent="TabContainer/Display/VBoxContainer" unique_id=86735678]
-visible = false
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = SubResource("Theme_qd3n0")
@@ -157,6 +157,12 @@ audio_bus_name = "Ambient"
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
+
+[node name="Accessibility" type="MarginContainer" parent="TabContainer" unique_id=114035552]
+visible = false
+layout_mode = 2
+script = ExtResource("5_ypet3")
+metadata/_tab_index = 4
 
 [connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
