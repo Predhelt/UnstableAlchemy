@@ -11,7 +11,7 @@ script = ExtResource("1_o2coy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1368838947]
 shape = SubResource("RectangleShape2D_1w27s")
-debug_color = Color(0.65457684, 0.5179122, 0, 0.41960785)
+debug_color = Color(0.33261725, 0.59222436, 0.5451949, 0.41960785)
 
 [node name="TimerInitial" type="Timer" parent="." unique_id=441949961]
 one_shot = true

@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="10_s8amr"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="11_xogub"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="12_vtuq6"]
+[ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="14_q28il"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="16_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://c4v0402ieqqo7" path="res://level_components/objects/triggers/dialogue_trigger.tscn" id="16_vlms1"]
 [ext_resource type="Script" uid="uid://d312pdlqp2ee0" path="res://level_components/objects/triggers/dialogue_trigger_custom_hint1.gd" id="17_xyxgs"]
@@ -30,7 +31,7 @@
 script = ExtResource("3_v5e0f")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_khxdg"]
+[sub_resource type="Resource" id="Resource_a1g57"]
 resource_local_to_scene = true
 script = ExtResource("5_lyfyp")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -97,7 +98,7 @@ position = Vector2(1112, -2136)
 [node name="Player" parent="." index="5" unique_id=1026458739]
 position = Vector2(768, -857)
 attributes = SubResource("Resource_rv537")
-inventory = SubResource("Resource_khxdg")
+inventory = SubResource("Resource_a1g57")
 
 [node name="HUDHintRemoteTransform" type="RemoteTransform2D" parent="PlayerCamera" parent_id_path=PackedInt32Array(294471714) index="0" unique_id=128844135]
 remote_path = NodePath("../HUDHints")
@@ -141,10 +142,7 @@ tile_map_data = PackedByteArray("AAD2/8X/AgAHAAAAAAD2/8r/AgADAAAAAwD2/9L/AgAFAAA
 position = Vector2(0, 512)
 tile_map_data = PackedByteArray("AAAYANT/AAAEAAMAAAAYANX/AAADAAEAAAAYANb/AAADAAEAAAAYANf/AAADAAQAAAAYANj/AAADAAEAAAAYANn/AAADAAEAAAAYANr/AAADAAEAAAAYANv/AAADAAEAAAAdANT/AAAEAAMAAAAdANX/AAADAAEAAAAdANb/AAADAAEAAAAdANf/AAADAAEAAAAdANn/AAADAAEAAAAdANr/AAAEAAQAAAAdANv/AAADAAEAAAANANT/AAAEAAAAAAAOANT/AAAEAAAAAAAPANT/AAAEAAAAAAAQANT/AAAEAAAAAAARANT/AAAEAAAAAAASANT/AAAHAAIAAAAVANT/AAAGAAIAAAAWANT/AAAEAAAAAAAXANT/AAAEAAAAAAAYAN3/AAADAAIAAAAZANT/AAAEAAAAAAAZANf/AAAEAAAAAAAZAN3/AAAEAAAAAAAaANT/AAAEAAAAAAAaANr/AAAGAAIAAAAaAN3/AAAEAAAAAAAbANT/AAAEAAAAAAAbANf/AAAHAAIAAAAbANr/AAAEAAAAAAAbAN3/AAAHAAIAAAAcANT/AAAEAAAAAAAcANr/AAAEAAAAAAAdANz/AAADAAEAAAAdAN3/AAAAAAQAAAAeANT/AAAEAAAAAAAfANT/AAAEAAMAAAAfAN7/AAADAAIAAAAfAN3/AAADAAEAAAAfANz/AAADAAEAAAAfANv/AAADAAEAAAAfANr/AAADAAEAAAAfANn/AAADAAEAAAAfANj/AAADAAEAAAAfANf/AAADAAEAAAAfANb/AAADAAEAAAAfANX/AAADAAEAAAAGAOz/AAADAAEAAAAGAO3/AAADAAIAAAAbAOb/AAAAAAMAAAAbAOf/AAADAAEAAAAbAOj/AAADAAEAAAAbAOn/AAADAAIAAAAbAO3/AAAEAAAAAAAfAOH/AAAEAAAAAAAhAOP/AAADAAEAAAAhAOn/AAADAAMAAAAkAOP/AAADAAEAAAAkAOb/AAADAAEAAAAkAOf/AAADAAEAAAAkAOj/AAADAAEAAAAkAOn/AAAFAAIAAAAkAO3/AAAEAAAAAAAnAOP/AAADAAEAAAAnAOT/AAADAAEAAAAnAOX/AAADAAEAAAAnAOb/AAADAAEAAAAnAOf/AAADAAEAAAAnAOj/AAADAAEAAAAnAOn/AAADAAEAAAAnAOr/AAADAAEAAAAnAOv/AAADAAEAAAAnAOz/AAADAAEAAAAnAO3/AAAFAAIAAAAGAOf/AAADAAEAAAAGAOj/AAADAAEAAAAGAOn/AAADAAEAAAAGAOr/AAADAAEAAAAGAOv/AAADAAEAAAAHAO3/AAAEAAAAAAAIAO3/AAAEAAAAAAAJAO3/AAAEAAAAAAAKAO3/AAAEAAAAAAALAO3/AAAEAAAAAAAMAO3/AAAEAAAAAAANAO3/AAAEAAAAAAAOAO3/AAAEAAAAAAAPAO3/AAAEAAAAAAAQAO3/AAAEAAAAAAARAO3/AAAEAAAAAAASAO3/AAAEAAAAAAATAO3/AAAEAAAAAAAUAO3/AAAEAAAAAAAVAO3/AAAEAAAAAAAWAO3/AAAEAAAAAAAXAO3/AAAEAAAAAAAYAO3/AAAEAAAAAAAZAO3/AAAEAAAAAAAaAO3/AAAEAAAAAAAbAOH/AAADAAAAAAAbAOL/AAADAAEAAAAbAOP/AAADAAEAAAAbAOT/AAAAAAQAAAAcAOH/AAAEAAAAAAAcAOn/AAAEAAAAAAAcAO3/AAAEAAAAAAAdAOn/AAAEAAAAAAAdAO3/AAAEAAAAAAAeAOH/AAAEAAAAAAAeAOn/AAAEAAAAAAAeAO3/AAAEAAAAAAAfAO3/AAAEAAAAAAAgAN7/AAAEAAAAAAAgAOH/AAAEAAAAAAAgAO3/AAAEAAAAAAAhAN7/AAAEAAAAAAAhAOH/AAAEAAMAAAAhAOL/AAADAAEAAAAhAOT/AAADAAEAAAAhAO3/AAAEAAAAAAAiAN7/AAAEAAAAAAAiAOH/AAAEAAAAAAAiAOn/AAAEAAAAAAAiAO3/AAAEAAAAAAAjAN7/AAAEAAAAAAAjAOH/AAAEAAAAAAAjAOn/AAAEAAAAAAAjAO3/AAAEAAAAAAAkAN7/AAAEAAAAAAAkAOH/AAAFAAAAAAAkAOL/AAADAAEAAAAkAOT/AAADAAEAAAAkAOX/AAADAAEAAAAlAN7/AAAEAAAAAAAlAO3/AAAEAAAAAAAmAN7/AAAEAAAAAAAmAO3/AAAEAAAAAAAnAN7/AAAEAAQAAAAnAN//AAADAAEAAAAnAOD/AAADAAEAAAAnAOH/AAADAAEAAAAnAOL/AAADAAEAAAAMANT/AAAEAAAAAAALANT/AAAEAAAAAAAKANT/AAADAAAAAAAGAN//AAADAAAAAAAGAOD/AAADAAEAAAAGAOH/AAADAAEAAAAGAOL/AAADAAEAAAAGAOP/AAADAAQAAAAGAOT/AAADAAEAAAAGAOX/AAADAAEAAAAGAOb/AAADAAEAAAAKAN//AAAEAAQAAAAJAN//AAAEAAAAAAAIAN//AAAEAAAAAAAHAN//AAAEAAAAAAAKAOD/AAAAAAQAAAAKAOL/AAAAAAMAAAAKAOP/AAAFAAIAAAAJAOP/AAAEAAAAAAAIAOP/AAAEAAAAAAAHAOP/AAAEAAAAAAAKAN7/AAADAAEAAAAKAN3/AAADAAEAAAAKANz/AAADAAEAAAAKANv/AAADAAEAAAAKANr/AAADAAEAAAAKANn/AAADAAEAAAAKANj/AAADAAEAAAAKANf/AAADAAEAAAAKANb/AAADAAEAAAAKANX/AAADAAEAAAA=")
 
-[node name="TriggerAreas" parent="." index="8" unique_id=1507198505]
-visible = false
-
-[node name="DialogueTrigger" parent="TriggerAreas" index="0" unique_id=2142945357 instance=ExtResource("16_vlms1")]
+[node name="DialogueTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="0" unique_id=2142945357 instance=ExtResource("16_vlms1")]
 position = Vector2(1345.0001, -1916.0001)
 scale = Vector2(12.765, 6.5)
 script = ExtResource("17_xyxgs")
@@ -152,10 +150,14 @@ message = "There might be something I can craft to help"
 initial_wait_time = 20.0
 repeat_wait_time = 40.0
 
-[node name="TriggerAreaLevelChange" parent="TriggerAreas" index="1" unique_id=1639851176 instance=ExtResource("11_xogub")]
+[node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1639851176 instance=ExtResource("11_xogub")]
 position = Vector2(1280, -2336)
 scale = Vector2(2.845, 1)
 level_path = "uid://cjnnyjrqk6rsl"
+
+[node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1244985810 groups=["Persist"] instance=ExtResource("14_q28il")]
+position = Vector2(2016, -1184.0001)
+scale = Vector2(7, 7)
 
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=463050243 instance=ExtResource("12_vtuq6")]
 position = Vector2(1248, -2242)
