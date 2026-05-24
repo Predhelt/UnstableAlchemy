@@ -285,7 +285,7 @@ func save(dir : String) -> Dictionary:
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
 		"items_used" : var_to_str(items_used),
-		"active_status_effects_path" : "user://save/characters/%s/status_effects/" % name,
+		"active_status_effects_path" : "%s/characters/%s/status_effects/" % [dir, name],
 		"is_possessable" : is_possessable,
 		"character_possessed_by_name" : character_possessed_by_name,
 		"can_possess_others_count" : can_possess_others_count,

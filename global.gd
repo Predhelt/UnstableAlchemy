@@ -87,10 +87,19 @@ func reset_level() -> void:
 func emit_notification(message : String):
 	var new_notification : PanelContainer = Global.notification_effect.instantiate()
 	new_notification.set_text(message)
-	get_tree().current_scene.get_node("UILayer/Notifications").add_child(new_notification)
+	var notification_container = get_tree().current_scene.find_child("UILayer", false)
+	if not notification_container:
+		notification_container = get_tree().current_scene
+		new_notification.position = Vector2(-128,256)
+	else:
+		notification_container = notification_container.find_child("Notifications", false)
+	notification_container.add_child.call_deferred(new_notification)
 
 ## Save the persistent game informaion to file. Uses [Dictionary] to store data in [JSON] format.
-func save_game(dir : String) -> void:
+func save_game(save_name : String) -> void:
+	if not DirAccess.dir_exists_absolute("user://saves"):
+		DirAccess.make_dir_absolute("user://saves")
+	var dir: String = "user://saves/%s" % save_name
 	# Remove current (outdated) directories in save location
 	remove_directory(dir)
 	
@@ -133,6 +142,8 @@ func save_game(dir : String) -> void:
 
 ## Removes files recursively at given [param directory]. Be careful not to use the wrong directory.
 func remove_directory(directory : String) -> void:
+	if not DirAccess.dir_exists_absolute(directory):
+		return
 	for dir_name in DirAccess.get_directories_at(directory):
 		remove_directory(directory.path_join(dir_name))
 	for file_name in DirAccess.get_files_at(directory):
@@ -140,7 +151,7 @@ func remove_directory(directory : String) -> void:
 	DirAccess.remove_absolute(directory)
 
 ## Save the persistent Global variables as a dictionary.
-func save(_dir: String) -> Dictionary:
+func save(_dir: String = "") -> Dictionary:
 	if current_level_path == "": #FIXME: Level path not always set.
 		print("ERROR: No Level Path Found. Save Failed")
 	return {
@@ -151,8 +162,9 @@ func save(_dir: String) -> Dictionary:
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}
 
-## Loads the game state based on the savegame.save file in the user directory.
-func load_game(dir : String) -> void:
+## Loads the game state based on the name of the save file in the user directory.
+func load_game(save_name : String) -> void:
+	var dir = "user://saves/%s" % save_name
 	if not FileAccess.file_exists("%sgame.save" % dir):
 		print("ERROR: No save file \"%sgame.save\" found!" % dir)
 		return

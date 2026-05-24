@@ -35,7 +35,10 @@ func _on_button_exit_pressed() -> void:
 func _on_button_load_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	$PlayTypePage/ButtonLoad/SaveSelectPopup.show()
+	if $PlayTypePage/ButtonLoad/SaveSelectPopup.item_count == 0:
+		Global.emit_notification("No save data found.")
+	else:
+		$PlayTypePage/ButtonLoad/SaveSelectPopup.show()
 
 
 func _on_button_entered() -> void:
@@ -55,7 +58,10 @@ func _on_button_play_pressed() -> void:
 func _on_button_level_select_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	$PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup.show()
+	if $PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup.item_count == 1:
+		_on_save_select_uv_popup_index_pressed(0)
+	else:
+		$PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup.show()
 
 
 func _on_save_select_uv_popup_index_pressed(_index: int) -> void:

@@ -43,12 +43,12 @@
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="37_qpemt"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="38_i678b"]
 
-[sub_resource type="Resource" id="Resource_42850"]
+[sub_resource type="Resource" id="Resource_586nt"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_h4eu7"]
+[sub_resource type="Resource" id="Resource_j4d6t"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -59,7 +59,7 @@ script = ExtResource("6_60y0b")
 base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_c1rrm"]
+[sub_resource type="Resource" id="Resource_dxvh4"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -148,8 +148,8 @@ stream = null
 
 [node name="Player" parent="." index="2" unique_id=1026458739]
 position = Vector2(515, 387)
-attributes = SubResource("Resource_42850")
-inventory = SubResource("Resource_h4eu7")
+attributes = SubResource("Resource_586nt")
+inventory = SubResource("Resource_j4d6t")
 
 [node name="PlayerCamera" parent="." index="3" unique_id=294471714]
 position = Vector2(604, 419)
@@ -158,7 +158,7 @@ position = Vector2(604, 419)
 position = Vector2(330, 347)
 portrait = ExtResource("9_42850")
 attributes = SubResource("Resource_mfhge")
-inventory = SubResource("Resource_c1rrm")
+inventory = SubResource("Resource_dxvh4")
 has_blade = true
 is_possessable = true
 

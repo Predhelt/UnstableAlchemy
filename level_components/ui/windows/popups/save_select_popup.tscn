@@ -16,4 +16,6 @@ item_1/text = "Load from Autosave"
 item_1/id = 1
 script = ExtResource("1_2yg0t")
 
+[connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]
 [connection signal="index_pressed" from="." to="." method="_on_index_pressed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
