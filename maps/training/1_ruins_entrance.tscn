@@ -31,7 +31,7 @@
 script = ExtResource("3_v5e0f")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_a1g57"]
+[sub_resource type="Resource" id="Resource_q28il"]
 resource_local_to_scene = true
 script = ExtResource("5_lyfyp")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -98,7 +98,7 @@ position = Vector2(1112, -2136)
 [node name="Player" parent="." index="5" unique_id=1026458739]
 position = Vector2(768, -857)
 attributes = SubResource("Resource_rv537")
-inventory = SubResource("Resource_a1g57")
+inventory = SubResource("Resource_q28il")
 
 [node name="HUDHintRemoteTransform" type="RemoteTransform2D" parent="PlayerCamera" parent_id_path=PackedInt32Array(294471714) index="0" unique_id=128844135]
 remote_path = NodePath("../HUDHints")

@@ -9,10 +9,10 @@
 
 [node name="MenuBar" type="HBoxContainer" unique_id=518947890]
 anchors_preset = -1
-anchor_right = 0.25
 anchor_bottom = 0.1
 offset_left = 8.0
 offset_top = 8.0
+offset_right = -44.0
 script = ExtResource("1_w6cvk")
 
 [node name="ButtonInventory" parent="." unique_id=1739458031 instance=ExtResource("2_50tiv")]

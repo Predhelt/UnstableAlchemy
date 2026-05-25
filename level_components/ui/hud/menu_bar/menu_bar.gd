@@ -34,6 +34,10 @@ func open_pressed_window(ui : Control):
 			if cur_window != ui:
 				ui.open_window()
 
+## Sets whether the button with the given [param button_name] is hidden.
+func set_button_name_visibility(button_name: String, visibility: bool):
+	find_child(button_name).visible = visibility
+
 
 func _on_button_inventory_pressed() -> void:
 	open_pressed_window($"../../MenuLayer/LeftWindows/InventoryMenu")

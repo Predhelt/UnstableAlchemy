@@ -97,3 +97,14 @@ func _on_inventory_menu_craft_item_added(result: Item, recipe: Recipe) -> void:
 
 func _on_world_call_open_inventory() -> void:
 	call_open_inventory.emit()
+
+## Changes whether the tab at the given index in the log book is hidden or not.
+func set_log_book_tab_hidden(tab_idx: int, is_hidden: bool = true) -> void:
+	%LogBookMenu.set_tab_hidden(tab_idx, is_hidden)
+
+## Propagates down the function to se
+func set_log_book_button_name_visibility(button_name: String, visibility: bool):
+	%LogBookMenu.set_button_name_visibility(button_name, visibility)
+
+func set_menu_bar_button_name_visibility(button_name: String, visibility: bool):
+	%MenuBar.set_button_name_visibility(button_name, visibility)

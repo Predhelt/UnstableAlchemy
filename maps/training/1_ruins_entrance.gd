@@ -11,8 +11,32 @@ var used_recipe_book: bool = false
 var closed_log_book: bool = false
 var opened_recipe_menu: bool = false
 
+## Hide UI and disable hotkeys that are not necessary on scene start.
+func _ready() -> void:
+	super()
+	if UserVariables.has_looped:
+		return
+	$UILayer.set_menu_bar_button_name_visibility("ButtonInventory", false)
+	$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", false)
+	$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", false)
+	
+	Global.is_inventory_disabled = true
+	Global.is_log_book_disabled = true
+	Global.is_recipe_book_disabled = true
+	
+	for i in range(1, 11):
+		$UILayer.set_log_book_tab_hidden(i)
+	$UILayer.set_log_book_button_name_visibility("ButtonHelpInteractions", false)
+	$UILayer.set_log_book_button_name_visibility("ButtonHelpTools", false)
+	$UILayer.set_log_book_button_name_visibility("ButtonHelpMP", false)
+	$UILayer.set_log_book_button_name_visibility("ButtonHelpCauldron", false)
+	$UILayer.set_log_book_button_name_visibility("ButtonHelpMerger", false)
+
+
 func _on_recipe_item_object_grabbed(_body: Character) -> void:
 	if not UserVariables.has_looped:
+		$UILayer.set_menu_bar_button_name_visibility("ButtonInventory", true)
+		Global.is_inventory_disabled = false
 		%LabelInventory.text = (
 			"Open your bag with %s.
 			
@@ -25,6 +49,7 @@ func _on_recipe_item_object_grabbed(_body: Character) -> void:
 
 func _on_ui_layer_item_used(item: Item) -> void:
 	if item.id == 1000:
+		$UILayer.set_log_book_tab_hidden(6, false)
 		%LabelInventory.visible = false
 		used_recipe_book = true
 
@@ -32,6 +57,10 @@ func _on_ui_layer_item_used(item: Item) -> void:
 func _on_ui_layer_log_book_menu_window_closed() -> void:
 	if grabbed_recipe_book and used_recipe_book and not closed_log_book:
 		if not UserVariables.has_looped:
+			$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", true)
+			Global.is_recipe_book_disabled = false
+			$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
+			Global.is_log_book_disabled = false
 			%LabelRecipes.text = (
 				"Open the recipe book (%s).\n
 				Check the log book (%s) to get more info." %

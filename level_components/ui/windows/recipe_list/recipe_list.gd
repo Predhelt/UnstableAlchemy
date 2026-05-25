@@ -64,7 +64,7 @@ func close_window() -> void:
 
 
 func open_window() -> bool:
-	if Global.right_window or Global.center_window:
+	if Global.right_window or Global.center_window or Global.is_inventory_disabled:
 		return false
 	if Global.mode == &"default" or Global.mode == &"menu":
 		Global.mode = window_mode # Shares mode with inventory, minigame, and help menu

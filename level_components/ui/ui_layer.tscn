@@ -26,6 +26,7 @@ script = ExtResource("1_d4vx4")
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=116782846]
 
 [node name="MenuBar" parent="HUDLayer" unique_id=518947890 instance=ExtResource("12_qrsce")]
+unique_name_in_owner = true
 offset_bottom = 8.0
 
 [node name="StatusEffectBar" parent="HUDLayer" unique_id=327600044 instance=ExtResource("13_t5x2k")]
@@ -99,42 +100,52 @@ layer = 3
 layer = 10
 
 [node name="SettingsMenu" parent="MenuLayer/CenterWindows" unique_id=1369104757 instance=ExtResource("1_ak53w")]
+unique_name_in_owner = true
 auto_translate_mode = 1
 visible = false
 
 [node name="OptionsMenu" parent="MenuLayer/CenterWindows" unique_id=1940597338 instance=ExtResource("2_j83el")]
+unique_name_in_owner = true
 visible = false
 theme = ExtResource("3_d4vx4")
 
 [node name="LogBookMenu" parent="MenuLayer/CenterWindows" unique_id=357727730 instance=ExtResource("7_wgl5k")]
+unique_name_in_owner = true
 visible = false
 
 [node name="LeftWindows" type="CanvasLayer" parent="MenuLayer" unique_id=51387662]
 
 [node name="InventoryMenu" parent="MenuLayer/LeftWindows" unique_id=361018792 instance=ExtResource("5_topfp")]
+unique_name_in_owner = true
 visible = false
 
 [node name="RightWindows" type="CanvasLayer" parent="MenuLayer" unique_id=1706024564]
 
 [node name="RecipeList" parent="MenuLayer/RightWindows" unique_id=1372707415 instance=ExtResource("6_s1xy4")]
+unique_name_in_owner = true
 visible = false
 
 [node name="CharacterShop" parent="MenuLayer/RightWindows" unique_id=936594423 instance=ExtResource("8_rphg0")]
+unique_name_in_owner = true
 visible = false
 
 [node name="CharacterDialogue" parent="MenuLayer/RightWindows" unique_id=512445346 instance=ExtResource("9_lnbc2")]
+unique_name_in_owner = true
 visible = false
 
 [node name="MinigameLayer" type="CanvasLayer" parent="." unique_id=452185499]
 layer = 2
 
 [node name="MinigameCauldron" parent="MinigameLayer" unique_id=1792468621 instance=ExtResource("10_dqvj8")]
+unique_name_in_owner = true
 visible = false
 
 [node name="MinigameMP" parent="MinigameLayer" unique_id=542892921 instance=ExtResource("11_43y5x")]
+unique_name_in_owner = true
 visible = false
 
 [node name="Notifications" type="VBoxContainer" parent="." unique_id=295845683]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.8
 anchor_top = 0.8

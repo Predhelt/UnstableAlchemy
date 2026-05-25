@@ -89,9 +89,11 @@ func close_window() -> void:
 
 ## Opens the log book to the default "Help: General" page.
 func open_window() -> bool:
+	if  Global.is_inventory_disabled:
+		return false
 	if Global.center_window or visible:
 		print("ERROR: Log Book could not be open, " + Global.center_window.name + " window already open")
-		return false ## Do not open, there is already a window open in the area.
+		return false ## Do not open, there is already a window open in the area or inventory is disabled.
 	
 	prev_mode = Global.mode
 	Global.mode = window_mode
@@ -318,6 +320,14 @@ func show_button(button : Button):
 		#button.theme = new_button_theme
 	#else: button.theme = null
 	button.visible = true
+
+## Sets the visibility of the tab at the given index.
+func set_tab_hidden(tab_idx: int, is_hidden: bool = true):
+	$VBoxContainer/TabContainer.set_tab_hidden(tab_idx, is_hidden)
+
+## Sets whether the button with the given [param button_name] is hidden.
+func set_button_name_visibility(button_name: String, visibility: bool):
+	find_child(button_name).visible = visibility
 
 ## Returns the node of the page that is currently open in the given tab index.
 ## If index is -1, gets the currently open tab's open page node.

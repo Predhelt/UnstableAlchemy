@@ -27,6 +27,10 @@ var right_window : Control
 ## Keeps track of the window in the center of the screen
 var center_window : Control
 
+var is_recipe_book_disabled: bool = false
+var is_log_book_disabled: bool = false
+var is_inventory_disabled: bool = false
+
 ################
 ### Settings ###
 ################
