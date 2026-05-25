@@ -5,7 +5,10 @@ extends UIWindow
 signal item_consumed(item: Item)
 ## Sent when an item from a craft is added to the inventory.
 signal craft_item_added(result: Item, recipe: Recipe)
-#signal craft_completed(result: Item, recipe: Recipe)
+## Sent when an item is picked up in the inventory
+signal item_mouse_grabbed(item: Item)
+## Sent when an item is dropped, that was being dragged.
+signal item_mouse_dropped(item: Item)
 
 ## Max number of slots in the inventory.
 @export var max_item_count := 24 
@@ -135,6 +138,7 @@ func add_inventory_item(item : Item) -> bool:
 
 ## Adds an item that was dropped by the player into the inventory.
 func add_dropped_item(item : Item) -> bool:
+	item_mouse_dropped.emit(item)
 	if add_inventory_item(item):
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "drop"
@@ -229,6 +233,7 @@ func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index 
 func drag_item(item : Item, index : int):
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "pickup"
+	item_mouse_grabbed.emit(item)
 	var drag_item_instance = drag_item_scene.instantiate()
 		
 	var selected_item = item.duplicate()
