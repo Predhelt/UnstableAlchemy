@@ -91,6 +91,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 22
 text = "Move with
 wasd keys"
+horizontal_alignment = 1
 
 [node name="Lex" parent="." index="4" unique_id=1948548714 instance=ExtResource("25_5p60j")]
 position = Vector2(1112, -2136)
@@ -226,6 +227,7 @@ text = "- walk
 - learn how sliding doors work"
 
 [connection signal="call_open_inventory" from="." to="UILayer" method="_on_world_call_open_inventory"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
 [connection signal="log_book_menu_window_closed" from="UILayer" to="." method="_on_ui_layer_log_book_menu_window_closed"]

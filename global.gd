@@ -164,6 +164,9 @@ func save(_dir: String = "") -> Dictionary:
 		"current_level_path" : current_level_path,
 		"cauldron_craft_precision" : cauldron_craft_precision,
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
+		"is_inventory_disabled" : is_inventory_disabled,
+		"is_recipe_book_disabled" : is_recipe_book_disabled,
+		"is_log_book_disabled" : is_log_book_disabled,
 	}
 
 ## Loads the game state based on the name of the save file in the user directory.
@@ -186,6 +189,12 @@ func load_game(save_name : String) -> void:
 		cauldron_craft_precision = node_data["cauldron_craft_precision"]
 	if node_data.get("cauldron_craft_speed_mult"):
 		cauldron_craft_speed_mult =  node_data["cauldron_craft_speed_mult"]
+	if node_data.get("is_inventory_disabled"):
+		is_inventory_disabled =  node_data["is_inventory_disabled"]
+	if node_data.get("is_recipe_book_disabled"):
+		is_recipe_book_disabled =  node_data["is_recipe_book_disabled"]
+	if node_data.get("is_log_book_disabled"):
+		is_log_book_disabled =  node_data["is_log_book_disabled"]
 	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
 		var level_node : Node2D = load(current_level_path).instantiate()

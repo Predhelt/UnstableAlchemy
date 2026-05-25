@@ -11,18 +11,23 @@ var used_recipe_book: bool = false
 var closed_log_book: bool = false
 var opened_recipe_menu: bool = false
 
+## Initialize HUD UI functionality before load potentially overrides this.
+func _init() -> void:
+	Global.is_inventory_disabled = true
+	Global.is_log_book_disabled = true
+	Global.is_recipe_book_disabled = true
+
 ## Hide UI and disable hotkeys that are not necessary on scene start.
 func _ready() -> void:
 	super()
 	if UserVariables.has_looped:
 		return
-	$UILayer.set_menu_bar_button_name_visibility("ButtonInventory", false)
-	$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", false)
-	$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", false)
-	
-	Global.is_inventory_disabled = true
-	Global.is_log_book_disabled = true
-	Global.is_recipe_book_disabled = true
+	if Global.is_inventory_disabled:
+		$UILayer.set_menu_bar_button_name_visibility("ButtonInventory", false)
+	if Global.is_log_book_disabled:
+		$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", false)
+	if Global.is_recipe_book_disabled:
+		$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", false)
 	
 	for i in range(1, 11):
 		$UILayer.set_log_book_tab_hidden(i)
@@ -31,6 +36,16 @@ func _ready() -> void:
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpMP", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpCauldron", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpMerger", false)
+	
+	$TutorialMessages/LabelMovement.text = (
+		"Move with 
+		%s %s %s %s
+		keys" %
+		[InputMap.action_get_events("move_up")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("move_left")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("move_down")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("move_right")[0].as_text().replace(' - Physical','')]
+	)
 
 
 func _on_recipe_item_object_grabbed(_body: Character) -> void:
@@ -90,3 +105,9 @@ func _on_cutscene_end_scene() -> void:
 		$TutorialMessages/LabelMovement.visible = false
 		return
 	$TutorialMessages/LabelMovement.visible = true
+
+
+func _on_tree_exiting() -> void:
+	Global.is_inventory_disabled = false
+	Global.is_log_book_disabled = false
+	Global.is_recipe_book_disabled = false
