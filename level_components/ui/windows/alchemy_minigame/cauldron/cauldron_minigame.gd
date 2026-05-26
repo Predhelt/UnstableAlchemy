@@ -65,6 +65,9 @@ func open_window():
 	slider.tick_count = 7
 	tick_value = slider.max_value / (slider.tick_count-1)
 	
+	set_progress_slider_precision_window_width(Global.cauldron_craft_precision*104)
+	set_progress_slider_precision_window_visibilities(true)
+	
 	%WindowName.text = "Cauldron"
 	Global.left_window = self
 	visible = true
@@ -81,10 +84,12 @@ func open_window():
 func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	var nearest_tick = _get_nearest_tick()
 	
-	if nearest_tick < 0:
+	if nearest_tick < 0 or nearest_tick >= cur_craft_procedure.input_actions.size():
 		$EffectsAudioStream["parameters/switch_to_clip"] = &"miss"
 		return
-
+	
+	set_progress_slider_precision_window_visibility(nearest_tick, false)
+	
 	var input_action := ProcedureInputAction.new()
 	input_action.type = type
 	input_action.id = id
@@ -95,7 +100,6 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 			$EffectsAudioStream["parameters/switch_to_clip"] = &"bellows"
 		else:
 			$EffectsAudioStream["parameters/switch_to_clip"] = &"drop"
-	
 
 ## Used by the cauldron to determine the segment on the progress bar that the
 ## progress is closest to, if any. Modifying the [member Global.cauldron_craft_precision] changes

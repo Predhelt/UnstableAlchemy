@@ -2,7 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="2_omqdo"]
 
-[node name="MinigameProgressBar" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbgmv"]
+bg_color = Color(0.1254902, 0.9372549, 0.09803922, 0.5529412)
+
+[node name="MinigameProgressBar" type="Control" unique_id=309920239]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -12,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ProgressSlider" type="HSlider" parent="."]
+[node name="ProgressSlider" type="HSlider" parent="." unique_id=9614409]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(650, 10)
 layout_mode = 1
@@ -30,7 +33,7 @@ editable = false
 scrollable = false
 tick_count = 7
 
-[node name="ProcedureIcons" type="HBoxContainer" parent="ProgressSlider"]
+[node name="ProcedureIcons" type="HBoxContainer" parent="ProgressSlider" unique_id=683749925]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -46,37 +49,112 @@ grow_vertical = 0
 theme_override_constants/separation = 38
 alignment = 1
 
-[node name="TextureRect1" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+[node name="TextureRect1" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=959600236]
 layout_mode = 2
 texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect1" unique_id=1914119338]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 15.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="TextureRect2" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1934302426]
 layout_mode = 2
 texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect2" unique_id=406476449]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 15.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="TextureRect3" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1252038197]
 layout_mode = 2
 texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect4" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect3" unique_id=1951220449]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 15.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="TextureRect4" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1774679759]
 layout_mode = 2
 texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect5" type="TextureRect" parent="ProgressSlider/ProcedureIcons"]
+[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect4" unique_id=960052595]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 15.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="TextureRect5" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1064864259]
 layout_mode = 2
 texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="StartupLabel" type="Label" parent="ProgressSlider"]
+[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect5" unique_id=1788987500]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 15.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="StartupLabel" type="Label" parent="ProgressSlider" unique_id=1958058739]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = -60.0

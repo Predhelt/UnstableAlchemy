@@ -18,6 +18,7 @@ func _ready() -> void:
 	minigame_buttons.append(%ButtonDown)
 	minigame_buttons.append(%ButtonLeft)
 	minigame_buttons.append(%ButtonRight)
+	set_progress_slider_precision_window_visibilities(false)
 
 
 func _input(event: InputEvent) -> void: # Override in M&P

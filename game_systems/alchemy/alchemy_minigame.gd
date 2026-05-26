@@ -149,7 +149,6 @@ func check_results():
 	craft_completed.emit(product_item, product_recipe)
 	#inventory_menu_ref.add_produced_item(product_item, product_recipe)
 	last_item_produced = product_item
-	
 
 ## Goes through the list of recipes and returns a recipe that
 ## matches the current procedure, if any.
@@ -161,6 +160,23 @@ func matching_recipe() -> Recipe:
 			if recipe.procedure.compare(cur_craft_procedure):
 				return recipe
 	return null
+
+
+func set_progress_slider_precision_window_visibilities(visibility: bool):
+	for tex in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
+		tex.get_child(0).visible = visibility # PrecisionWindow
+
+func set_progress_slider_precision_window_visibility(idx: int, visibility: bool):
+	var tex = %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_child(idx)
+	tex.get_child(0).visible = visibility # PrecisionWindow
+
+## Sets the width of all of the precision windows in the minigame.
+## Max width is 104px. The visuals should perfectly align with math
+## assuming the slider width stays the same.
+func set_progress_slider_precision_window_width(width: float):
+	for tex in %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children():
+		tex.get_child(0).offset_left = -width/2 # PrecisionWindow
+		tex.get_child(0).offset_right = width/2
 
 ## Closes the current minigame window. Crafting items were already returned
 ## back to the inventory when the inventory window was closed.
