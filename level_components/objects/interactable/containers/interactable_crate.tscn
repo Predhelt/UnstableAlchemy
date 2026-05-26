@@ -61,3 +61,16 @@ grow_vertical = 2
 [node name="InteractArea" parent="." index="2" unique_id=1577246465]
 scale = Vector2(1.9, 1.9)
 interact_label = "\"Stuff\""
+
+[node name="LabelCount" type="Label" parent="." index="3" unique_id=1476655856]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -28.0
+offset_right = -1.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+text = "99"
