@@ -3,6 +3,9 @@
 ## ingredients, and procedure of the recipe.
 extends UIWindow
 
+## Sent after a recipe page is opened with information about [param item].
+signal recipe_page_opened(item: Item)
+
 #@export var known_recipes : Array[Recipe]
 ## The currently referenced character.
 #@onready var character : Character = Global.focused_node
@@ -124,6 +127,7 @@ func open_recipe_page(item : Item):
 	%ButtonList.visible = true
 	%ProductDetails.visible = true
 	cur_recipe_item = item
+	recipe_page_opened.emit(item)
 
 ## Refreshes the display on the recipe page
 ## NOTE: Approach is general-purpose and not optimized.

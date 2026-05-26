@@ -25,6 +25,7 @@ signal minigame_mp_window_closed()
 signal minigame_mp_window_opened()
 signal craft_completed(result: Item, recipe: Recipe)
 signal call_open_inventory
+signal recipe_list_page_opened(item: Item)
 
 
 func _on_options_menu_window_closed() -> void:
@@ -108,3 +109,7 @@ func set_log_book_button_name_visibility(button_name: String, visibility: bool):
 
 func set_menu_bar_button_name_visibility(button_name: String, visibility: bool):
 	%MenuBar.set_button_name_visibility(button_name, visibility)
+
+
+func _on_recipe_list_recipe_page_opened(item: Item) -> void:
+	recipe_list_page_opened.emit(item)

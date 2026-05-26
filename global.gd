@@ -190,7 +190,7 @@ func load_game(save_name : String) -> void:
 	if node_data.get("cauldron_craft_speed_mult"):
 		cauldron_craft_speed_mult =  node_data["cauldron_craft_speed_mult"]
 	if node_data.get("is_inventory_disabled"):
-		is_inventory_disabled =  node_data["is_inventory_disabled"]
+		is_inventory_disabled = node_data["is_inventory_disabled"]
 	if node_data.get("is_recipe_book_disabled"):
 		is_recipe_book_disabled =  node_data["is_recipe_book_disabled"]
 	if node_data.get("is_log_book_disabled"):

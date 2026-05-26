@@ -169,6 +169,7 @@ grow_vertical = 0
 [connection signal="item_consumed" from="MenuLayer/LeftWindows/InventoryMenu" to="." method="_on_inventory_menu_item_consumed"]
 [connection signal="window_closed" from="MenuLayer/LeftWindows/InventoryMenu" to="." method="_on_inventory_menu_window_closed"]
 [connection signal="window_opened" from="MenuLayer/LeftWindows/InventoryMenu" to="." method="_on_inventory_menu_window_opened"]
+[connection signal="recipe_page_opened" from="MenuLayer/RightWindows/RecipeList" to="." method="_on_recipe_list_recipe_page_opened"]
 [connection signal="window_closed" from="MenuLayer/RightWindows/RecipeList" to="." method="_on_recipe_list_window_closed"]
 [connection signal="window_opened" from="MenuLayer/RightWindows/RecipeList" to="." method="_on_recipe_list_window_opened"]
 [connection signal="window_closed" from="MenuLayer/RightWindows/CharacterShop" to="." method="_on_character_shop_window_closed"]

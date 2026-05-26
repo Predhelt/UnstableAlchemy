@@ -86,19 +86,6 @@ func _on_ui_layer_log_book_menu_window_closed() -> void:
 		closed_log_book = true
 
 
-func _on_ui_layer_recipe_list_window_opened() -> void:
-	%LabelRecipes.visible = false
-	if not opened_recipe_menu and closed_log_book and Global.focused_node.inventory.has_item_id(0):
-		if not UserVariables.has_looped:
-			call_open_inventory.emit()
-			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
-				"Drag items from the inventory onto the tools in the middle.
-				Then click the check mark on the tool to begin crafting."
-				)
-			
-		opened_recipe_menu = true
-
-
 func _on_cutscene_end_scene() -> void:
 	if UserVariables.has_looped:
 		$Player.update_status_message("What just happened...")
@@ -111,3 +98,17 @@ func _on_tree_exiting() -> void:
 	Global.is_inventory_disabled = false
 	Global.is_log_book_disabled = false
 	Global.is_recipe_book_disabled = false
+
+
+func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
+	if not item.id == 100: # Herb Flakes ID
+		return
+	%LabelRecipes.visible = false
+	if not opened_recipe_menu and closed_log_book and Global.focused_node.inventory.has_item_id(0):
+		if not UserVariables.has_looped:
+			call_open_inventory.emit()
+			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
+				"Drag items from the inventory onto the tools in the middle.
+				Then click the check mark on the tool to begin crafting."
+				)
+		opened_recipe_menu = true
