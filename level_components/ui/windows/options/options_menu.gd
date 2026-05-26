@@ -18,7 +18,7 @@ func toggle_window():
 		open_window()
 
 func open_window():
-	if not Global.center_window:
+	if not Global.center_window and not Global.left_window and not Global.right_window:
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 		prev_mode = Global.mode

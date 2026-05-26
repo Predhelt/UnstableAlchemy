@@ -10,6 +10,10 @@ func apply_status_effect(character: Character, se: StatusEffect):
 ## Opens the log book to the [param page_name].
 ## For instance, "HelpGeneral" opens "PageHelpGeneral".
 func open_log_book_page(page_name: String):
+	if Global.left_window:
+		Global.left_window.close_window()
+	if Global.right_window:
+		Global.right_window.close_window()
 	get_tree().current_scene.find_child("LogBookMenu").open_window()
 	get_tree().current_scene.find_child("LogBookMenu").open_page(page_name)
 

@@ -136,16 +136,6 @@ theme_override_font_sizes/font_size = 50
 text = "New Game"
 level_path = "uid://nkld8tcq4n2y"
 
-[node name="ButtonLevelSelect" type="Button" parent="PlayTypePage" unique_id=1348568028]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Level Select"
-
-[node name="SaveSelectUVPopup" parent="PlayTypePage/ButtonLevelSelect" unique_id=2088896767 instance=ExtResource("11_mh60s")]
-position = Vector2i(484, 441)
-visible = false
-
 [node name="ButtonLoad" type="Button" parent="PlayTypePage" unique_id=1418030786]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -153,7 +143,17 @@ theme_override_font_sizes/font_size = 50
 text = "Load"
 
 [node name="SaveSelectPopup" parent="PlayTypePage/ButtonLoad" unique_id=2044775981 instance=ExtResource("12_u5f4f")]
-position = Vector2i(486, 545)
+position = Vector2i(486, 440)
+visible = false
+
+[node name="ButtonLevelSelect" type="Button" parent="PlayTypePage" unique_id=1348568028]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Level Select"
+
+[node name="SaveSelectUVPopup" parent="PlayTypePage/ButtonLevelSelect" unique_id=2088896767 instance=ExtResource("11_mh60s")]
+position = Vector2i(484, 545)
 visible = false
 
 [node name="LevelSelectPage" type="MarginContainer" parent="." unique_id=404084080]
@@ -273,15 +273,15 @@ visible = false
 [connection signal="focus_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainPage/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="focus_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
+[connection signal="pressed" from="PlayTypePage/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="about_to_popup" from="PlayTypePage/ButtonLoad/SaveSelectPopup" to="." method="_on_save_select_popup_about_to_popup"]
 [connection signal="focus_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
 [connection signal="pressed" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_level_select_pressed"]
 [connection signal="index_pressed" from="PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup" to="." method="_on_save_select_uv_popup_index_pressed"]
 [connection signal="visibility_changed" from="PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup" to="PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup" method="_on_visibility_changed"]
-[connection signal="focus_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
-[connection signal="pressed" from="PlayTypePage/ButtonLoad" to="." method="_on_button_load_pressed"]
-[connection signal="about_to_popup" from="PlayTypePage/ButtonLoad/SaveSelectPopup" to="." method="_on_save_select_popup_about_to_popup"]
 [connection signal="focus_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="pressed" from="ButtonBack" to="." method="_on_button_back_pressed"]

@@ -9,7 +9,7 @@ var grabbed_recipe_book: bool = false
 var used_recipe_book: bool = false
 ## Closed log book after using recipe book
 var closed_log_book: bool = false
-var opened_recipe_menu: bool = false
+var opened_recipe_flakes: bool = false
 
 ## Initialize HUD UI functionality before load potentially overrides this.
 func _init() -> void:
@@ -66,6 +66,8 @@ func _on_ui_layer_item_used(item: Item) -> void:
 	if item.id == 1000:
 		$UILayer.set_log_book_tab_hidden(6, false)
 		%LabelInventory.visible = false
+		$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
+		Global.is_log_book_disabled = false
 		used_recipe_book = true
 
 
@@ -74,8 +76,6 @@ func _on_ui_layer_log_book_menu_window_closed() -> void:
 		if not UserVariables.has_looped:
 			$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", true)
 			Global.is_recipe_book_disabled = false
-			$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
-			Global.is_log_book_disabled = false
 			%LabelRecipes.text = (
 				"Open the recipe book (%s).\n
 				Check the log book (%s) to get more info." %
@@ -104,11 +104,11 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 	if not item.id == 100: # Herb Flakes ID
 		return
 	%LabelRecipes.visible = false
-	if not opened_recipe_menu and closed_log_book and Global.focused_node.inventory.has_item_id(0):
+	if not opened_recipe_flakes and closed_log_book and Global.focused_node.inventory.has_item_id(0):
 		if not UserVariables.has_looped:
 			call_open_inventory.emit()
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Drag items from the inventory onto the tools in the middle.
 				Then click the check mark on the tool to begin crafting."
 				)
-		opened_recipe_menu = true
+		opened_recipe_flakes = true

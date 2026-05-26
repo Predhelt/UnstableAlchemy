@@ -91,9 +91,9 @@ func close_window() -> void:
 func open_window() -> bool:
 	if  Global.is_inventory_disabled:
 		return false
-	if Global.center_window or visible:
-		print("ERROR: Log Book could not be open, " + Global.center_window.name + " window already open")
-		return false ## Do not open, there is already a window open in the area or inventory is disabled.
+	if Global.center_window or Global.left_window or Global.right_window or visible:
+		#print("ERROR: Log Book could not be open, " + Global.center_window.name + " window already open")
+		return false ## Do not open, there is already a window open in the area.
 	
 	prev_mode = Global.mode
 	Global.mode = window_mode
