@@ -1,7 +1,11 @@
 [gd_resource type="Theme" format=3 uid="uid://daximm23ww82"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je0f3"]
-bg_color = Color(0.18000486, 0.18000486, 0.18000486, 0.89411765)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxwi1"]
+bg_color = Color(0.35356298, 0.23412618, 0.107610025, 0.72156864)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [resource]
-Panel/styles/panel = SubResource("StyleBoxFlat_je0f3")
+Panel/styles/panel = SubResource("StyleBoxFlat_cxwi1")
