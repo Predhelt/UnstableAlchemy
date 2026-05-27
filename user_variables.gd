@@ -26,6 +26,8 @@ var objects_cut_interacted: Dictionary[String, Array]
 ## List of combinations that the user has performed.
 ## String is the name of the object, Array is the list of combinations of the object.
 var objects_combined: Dictionary[String, Array]
+## The objects (by name) that have been received during a trade, and the amount.
+var items_trade_received: Dictionary[String, int]
 ## The count of each item with a given item ID
 var items_used: Dictionary[int, int]
 ## List of status effect IDs that have been applied to the user (or learned about)
@@ -51,6 +53,7 @@ func save(_dir: String) -> Dictionary:
 		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
+		"items_trade_received" : var_to_str(items_trade_received),
 		"items_used" : var_to_str(items_used),
 		"learned_status_effects" : var_to_str(learned_status_effects),
 		"pages_opened" : var_to_str(pages_opened),

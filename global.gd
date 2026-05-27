@@ -212,24 +212,25 @@ func load_game(save_name : String) -> void:
 			else:
 				level_node.set(i, node_data[i])
 		
+		# Set User Variables
+		json_string = save_file.get_line()
+		parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		node_data = json.data
+		for i in node_data.keys():
+			if typeof(node_data[i]) == typeof("String"):
+				UserVariables.set(i, str_to_var(node_data[i]))
+			else:
+				UserVariables.set(i, node_data[i])
+		
 		# Wait for the scene to load before continuing.
 		await level_node.ready
 	else:
 		print("ERROR: No level data found. Load Failed.")
 		return
 	
-	# Set User Variables
-	json_string = save_file.get_line()
-	#json = JSON.new()
-	parse_result = json.parse(json_string)
-	if not parse_result == OK:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-	node_data = json.data
-	for i in node_data.keys():
-		if typeof(node_data[i]) == typeof("String"):
-			UserVariables.set(i, str_to_var(node_data[i]))
-		else:
-			UserVariables.set(i, node_data[i])
+	
 	
 	# Free the nodes in the persistent group to revert game state without cloning.
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -323,6 +324,7 @@ func load_user_variables(dir: String) -> void:
 	
 	# Initialize variables and change the level scene.
 	var json_string = save_file.get_line()
+	json_string = save_file.get_line()
 	
 	# Set User Variables. Should be the second line in the save file.
 	json_string = save_file.get_line()

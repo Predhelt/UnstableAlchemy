@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://8y37ldnww3wd" path="res://art/pack/tools/blade.png" id="39_2mxqo"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="40_8rxm1"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://art/pack/alchemy/tools/alchemy_cauldron.png" id="41_vmjhy"]
+[ext_resource type="Texture2D" uid="uid://cqrnhmtvb1jl5" path="res://art/pack/alchemy/potions/potion_standard_yellow.png" id="42_y2y46"]
 [ext_resource type="Texture2D" uid="uid://dd5cw46t72adw" path="res://art/pack/ui/status_effects/status_effect_energized.png" id="43_vjhag"]
 [ext_resource type="Texture2D" uid="uid://bdlclow8newot" path="res://art/pack/alchemy/tools/alchemy_abstract_container-full_blue.png" id="43_x37hv"]
 [ext_resource type="Texture2D" uid="uid://bja2o0mtpv0xw" path="res://art/pack/ui/status_effects/grow.png" id="44_4wpt1"]
@@ -1085,6 +1086,45 @@ expand_icon = true
 script = ExtResource("17_kyji0")
 metadata/_custom_type_script = "uid://be3mq7xu1wxom"
 
+[node name="ButtonPotionPossessionWeak" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1138781404]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
+text = "Possession (Weak)"
+icon = ExtResource("25_gdb1q")
+expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonPotionPossession" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1028608162]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
+text = "Possession"
+icon = ExtResource("42_y2y46")
+expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
+[node name="ButtonPotionSelfAttunement" type="Button" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList" unique_id=1277502403]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme = ExtResource("15_bmcub")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_2mxqo")
+text = "Self-Attunement"
+icon = ExtResource("27_a8fgq")
+expand_icon = true
+script = ExtResource("17_kyji0")
+metadata/_custom_type_script = "uid://be3mq7xu1wxom"
+
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer" unique_id=1134312735]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1108,8 +1148,10 @@ layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="LabelDescription" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PagePotion/VBoxContainer" unique_id=746636258]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "description"
+autowrap_mode = 3
 
 [node name="LabelSources" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PagePotion/VBoxContainer" unique_id=2000606852]
 layout_mode = 2
@@ -1121,6 +1163,7 @@ text = "\"message\""
 fit_content = true
 
 [node name="LabelMaxUses" type="Label" parent="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageContainer/PagePotion/VBoxContainer" unique_id=1161687974]
+visible = false
 layout_mode = 2
 text = "max uses"
 
@@ -2559,6 +2602,12 @@ stretch_mode = 5
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSpeed" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSpeed" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionStrength" to="." method="_on_button_potion_strength_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionStrength" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionStrength" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionPossessionWeak" to="." method="_on_button_potion_possession_weak_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionPossessionWeak" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionPossessionWeak" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionPossession" to="." method="_on_button_potion_possession_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionPossession" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionPossession" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSelfAttunement" to="." method="_on_button_potion_self_attunement_pressed"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSelfAttunement" to="VBoxContainer/TabContainer/TabPotions/HBoxContainer/PageButtons/PageButtonList/ButtonPotionSelfAttunement" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantRedBerryBush" to="." method="_on_button_plant_red_berry_bush_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantRedBerryBush" to="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantRedBerryBush" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageButtons/PageButtonList/ButtonPlantGreenHerbs" to="." method="_on_button_plant_green_herbs_pressed"]

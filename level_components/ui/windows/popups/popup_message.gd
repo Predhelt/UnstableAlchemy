@@ -15,7 +15,10 @@ func _ready() -> void:
 
 func close() -> void:
 	Global.mode = previous_mode
-	Global.center_window = previous_center_window
+	if previous_center_window:
+		Global.center_window = previous_center_window
+	else:
+		Global.center_window = null
 	queue_free()
 
 func _on_button_ok_pressed() -> void:

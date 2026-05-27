@@ -88,6 +88,8 @@ var objects_cut_interacted: Dictionary[String, Array]
 ## List of combinations that the user has performed.
 ## String is the name of the object, Array is the list of [ObjectCombination]s of the object.
 var objects_combined: Dictionary[String, Array]
+## The items (by ID) that have been received during trades, and the amounts.
+var items_trade_received: Dictionary[int, int]
 ## The count of each [Item] with a given item ID
 var items_used: Dictionary[int, int]
 
@@ -284,6 +286,7 @@ func save(dir : String) -> Dictionary:
 		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
 		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
 		"objects_combined" : var_to_str(objects_combined),
+		"items_trade_received" : var_to_str(items_trade_received),
 		"items_used" : var_to_str(items_used),
 		"active_status_effects_path" : "%s/characters/%s/status_effects/" % [dir, name],
 		"is_possessable" : is_possessable,
@@ -562,6 +565,14 @@ func inspect_object():
 	if all_interaction_areas:
 		var cur_interaction : Interactable = all_interaction_areas[0] #TODO: Function to do smart selection of nearby areas.
 		cur_interaction.inspect_object()
+
+
+func add_traded_item(item: Item):
+	inventory.add_item(item)
+	if item.id not in items_trade_received.keys():
+		items_trade_received[item.id] = item.qty
+	else:
+		items_trade_received[item.id] += item.qty
 
 ## Changes the target of possession for the currently focused character.
 func change_possession_target() -> void:

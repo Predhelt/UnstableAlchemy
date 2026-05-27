@@ -30,6 +30,7 @@ anchor_right = 0.98
 anchor_bottom = 0.9
 theme = ExtResource("1_546pi")
 script = ExtResource("1_fogeq")
+item_gained_effect = null
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1113516434]
 stream = SubResource("AudioStreamInteractive_yrxkn")

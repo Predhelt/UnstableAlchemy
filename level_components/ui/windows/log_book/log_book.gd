@@ -198,37 +198,56 @@ func set_buttons_visibility(character : Node = null) -> void:
 				pass
 			506: # Strength Potion
 				show_button(%ButtonPotionStrength)
+			508: # Possession Potion
+				show_button(%ButtonPotionPossession)
+			509: # Possession Potion (Weak)
+				show_button(%ButtonPotionPossessionWeak)
+			510: # Self-Attunement
+				show_button(%ButtonPotionSelfAttunement)
 			### Misc ###
 			999: # Failed Craft
 				pass
+	# Check shop transactions for alternate way of acquiring items.
+	for trade_item_id in character_ref.items_trade_received.keys():
+		match trade_item_id:
+			509: # Weak Possession Potion
+				show_button(%ButtonPotionPossessionWeak)
+	# Check used items
+	for used_item_id in character_ref.items_used.keys():
+		match used_item_id:
+			509: # Weak Possession Potion
+				show_button(%ButtonPotionPossessionWeak)
 	# Button visibility for Object Pages based on performed interactions
 	for obj_name in character_ref.objects_grab_interacted.keys():
-		if obj_name == "Red Berry Bush":
-			show_button(%ButtonPlantRedBerryBush)
-		if obj_name == "Green Herbs":
-			show_button(%ButtonPlantGreenHerbs)
-		if obj_name == "Yellow Flowers":
-			show_button(%ButtonPlantYellowFlowers)
-		if obj_name == "Blue Berry Bush":
-			show_button(%ButtonPlantBlueBerryBush)
+		match obj_name:
+			"Red Berry Bush":
+				show_button(%ButtonPlantRedBerryBush)
+			"Green Herbs":
+				show_button(%ButtonPlantGreenHerbs)
+			"Yellow Flowers":
+				show_button(%ButtonPlantYellowFlowers)
+			"Blue Berry Bush":
+				show_button(%ButtonPlantBlueBerryBush)
 	for obj_name in character_ref.objects_cut_interacted.keys():
-		if obj_name == "Red Berry Bush":
-			show_button(%ButtonPlantRedBerryBush)
-		if obj_name == "Green Herb":
-			show_button(%ButtonPlantGreenHerbs)
-		if obj_name == "Yellow Flowers":
-			show_button(%ButtonPlantYellowFlowers)
-		if obj_name == "Blue Berry Bush":
-			show_button(%ButtonPlantBlueBerryBush)
+		match obj_name:
+			"Red Berry Bush":
+				show_button(%ButtonPlantRedBerryBush)
+			"Green Herb":
+				show_button(%ButtonPlantGreenHerbs)
+			"Yellow Flowers":
+				show_button(%ButtonPlantYellowFlowers)
+			"Blue Berry Bush":
+				show_button(%ButtonPlantBlueBerryBush)
 	for obj_name in character_ref.objects_combined.keys():
-		if obj_name == "Red Berry Bush":
-			show_button(%ButtonPlantRedBerryBush)
-		if obj_name == "Green Herb":
-			show_button(%ButtonPlantGreenHerbs)
-		if obj_name == "Yellow Flowers":
-			show_button(%ButtonPlantYellowFlowers)
-		if obj_name == "Blue Berry Bush":
-			show_button(%ButtonPlantBlueBerryBush)
+		match obj_name:
+			"Red Berry Bush":
+				show_button(%ButtonPlantRedBerryBush)
+			"Green Herb":
+				show_button(%ButtonPlantGreenHerbs)
+			"Yellow Flowers":
+				show_button(%ButtonPlantYellowFlowers)
+			"Blue Berry Bush":
+				show_button(%ButtonPlantBlueBerryBush)
 	# Button visibility for Status Effects
 	for se_id in character_ref.learned_status_effects:
 		match se_id:
@@ -903,6 +922,18 @@ func _on_button_potion_speed_pressed() -> void:
 
 func _on_button_potion_strength_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/strength_potion.tres")
+	open_potion_page()
+
+func _on_button_potion_possession_weak_pressed() -> void:
+	current_potion = load("res://game_systems/items/potions/possession_potion_weak.tres")
+	open_potion_page()
+
+func _on_button_potion_possession_pressed() -> void:
+	current_potion = load("res://game_systems/items/potions/possession_potion.tres")
+	open_potion_page()
+
+func _on_button_potion_self_attunement_pressed() -> void:
+	current_potion = load("res://game_systems/items/potions/self_attunement_potion.tres")
 	open_potion_page()
 
 ### Plant Tab ###

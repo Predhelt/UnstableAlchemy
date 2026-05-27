@@ -139,7 +139,7 @@ func _on_transaction_attempt(id : int) -> void:
 				cur_transaction.items_selling_stock[i] = 0
 			# Pickup effect when items are obtained from shop
 			effect_instance.add_item(cur_item) #NOTE: This assumes that the item is successfully added
-			Global.focused_node.inventory.add_item(cur_item)
+			Global.focused_node.add_traded_item(cur_item)
 			
 		inventory_menu.update_window()
 		effect_instance.scale = Vector2(1.3, 1.3)
