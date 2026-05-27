@@ -11,7 +11,7 @@ func _on_index_pressed(index: int) -> void:
 
 
 func _on_visibility_changed() -> void:
-	if visible == false:
+	if not visible:
 		return
 	var has_save_data: bool = FileAccess.file_exists("user://saves/savegame.save")
 	var has_autosave_data: bool = FileAccess.file_exists("user://saves/autosavegame.save")
