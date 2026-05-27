@@ -230,8 +230,6 @@ func load_game(save_name : String) -> void:
 		print("ERROR: No level data found. Load Failed.")
 		return
 	
-	
-	
 	# Free the nodes in the persistent group to revert game state without cloning.
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
