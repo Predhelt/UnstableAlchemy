@@ -65,7 +65,7 @@ func open_window():
 	slider.tick_count = 7
 	tick_value = slider.max_value / (slider.tick_count-1)
 	
-	set_progress_slider_precision_window_width(Global.cauldron_craft_precision*104)
+	set_progress_slider_precision_window_width((1.0-Global.cauldron_craft_precision)*104)
 	set_progress_slider_precision_window_visibilities(true)
 	
 	%WindowName.text = "Cauldron"

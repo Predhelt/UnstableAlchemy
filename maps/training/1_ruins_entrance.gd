@@ -28,6 +28,8 @@ func _init() -> void:
 ## Uses global and level variables from save data to determine state.
 func _ready() -> void:
 	super()
+	if watched_cutscene:
+		$Cutscene.hide()
 	if UserVariables.has_looped:
 		return
 	if Global.is_inventory_disabled:
@@ -56,8 +58,6 @@ func _ready() -> void:
 		InputMap.action_get_events("move_down")[0].as_text().replace(' - Physical',''),
 		InputMap.action_get_events("move_right")[0].as_text().replace(' - Physical','')]
 	)
-	if watched_cutscene:
-		$Cutscene.hide()
 
 
 func save(_dir: String) -> Dictionary:
@@ -87,11 +87,12 @@ func _on_recipe_item_object_grabbed(_body: Character) -> void:
 
 func _on_ui_layer_item_used(item: Item) -> void:
 	if item.id == 1000:
-		$UILayer.set_log_book_tab_hidden(6, false)
-		%LabelInventory.visible = false
-		$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
-		Global.is_log_book_disabled = false
-		EventHandler.open_log_book_page("ButtonHerbFlakes")
+		if not UserVariables.has_looped:
+			$UILayer.set_log_book_tab_hidden(6, false)
+			%LabelInventory.visible = false
+			$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
+			Global.is_log_book_disabled = false
+			EventHandler.open_log_book_page("ButtonHerbFlakes")
 		used_recipe_book = true
 
 
