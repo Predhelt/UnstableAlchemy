@@ -3,16 +3,20 @@ extends PopupMenu
 
 var save_index: int = -1
 var autosave_index: int = -1
-#var no_save_index: int = 2
-
+@onready var save_data_type = get_tree().current_scene.find_child("LabelSaveDataType")
 
 func _on_index_pressed(index: int) -> void:
 	if index == save_index: # Manual save data
 		Global.load_user_variables("user://saves/save")
+		save_data_type.text = "Save Data: Manual Save"
+		save_data_type.visible = true
 	elif index == autosave_index: # Autosave data
 		Global.load_user_variables("user://saves/autosave")
-	#elif index == no_save_index: # No save data
-		#pass
+		save_data_type.text = "Save Data: Autosave"
+		save_data_type.visible = true
+	else:
+		save_data_type.text = "Save Data: None"
+		save_data_type.visible = true
 
 
 func _on_visibility_changed() -> void:

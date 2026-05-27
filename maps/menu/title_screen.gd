@@ -77,6 +77,7 @@ func _on_button_back_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	
+	$LabelSaveDataType.visible = false
 	if current_page_ref == $PlayTypePage:
 		current_page_ref.visible = false
 		$MainPage.visible = true
