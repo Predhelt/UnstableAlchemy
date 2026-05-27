@@ -31,6 +31,7 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_74a05")]
 script = ExtResource("2_4626m")
+level_index = 4
 
 [node name="CutsceneDelay" type="Timer" parent="." index="0" unique_id=310185907]
 wait_time = 5.0

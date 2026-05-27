@@ -124,6 +124,7 @@ on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_8deul")]
+level_index = 2
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_sdtw5")]
 visible = false
@@ -172,6 +173,7 @@ tile_map_data = PackedByteArray("AAD+//r/AAAHAAIAAAD9//r/AAAEAAAAAAD8//r/AAADAAI
 position = Vector2(-31.999998, -1696)
 scale = Vector2(3, 1)
 level_path = "uid://vpd53ywg8mcr"
+is_level_cleared = true
 
 [node name="AutosaveAreaTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1244985810 instance=ExtResource("45_6vueu")]
 position = Vector2(-88, -838)

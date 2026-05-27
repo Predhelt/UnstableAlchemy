@@ -27,6 +27,7 @@ var right_window : Control
 ## Keeps track of the window in the center of the screen
 var center_window : Control
 
+## Track whether different UI windows are disabled by user input.
 var is_recipe_book_disabled: bool = false
 var is_log_book_disabled: bool = false
 var is_inventory_disabled: bool = false
@@ -185,16 +186,9 @@ func load_game(save_name : String) -> void:
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	var node_data : Dictionary = json.data
-	if node_data.get("cauldron_craft_precision"):
-		cauldron_craft_precision = node_data["cauldron_craft_precision"]
-	if node_data.get("cauldron_craft_speed_mult"):
-		cauldron_craft_speed_mult =  node_data["cauldron_craft_speed_mult"]
-	if node_data.get("is_inventory_disabled"):
-		is_inventory_disabled = node_data["is_inventory_disabled"]
-	if node_data.get("is_recipe_book_disabled"):
-		is_recipe_book_disabled =  node_data["is_recipe_book_disabled"]
-	if node_data.get("is_log_book_disabled"):
-		is_log_book_disabled =  node_data["is_log_book_disabled"]
+	for i in node_data.keys():
+		if i != "current_level_path":
+			set(i, node_data[i])
 	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
 		var level_node : Node2D = load(current_level_path).instantiate()

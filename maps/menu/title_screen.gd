@@ -68,6 +68,15 @@ func _on_save_select_uv_popup_index_pressed(_index: int) -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$PlayTypePage.visible = false
+	
+	var c: int = UserVariables.level_highest_cleared_index
+	for level_button in %GridContainerButtons.get_children():
+		if c >= 0:
+			level_button.visible = true
+			c -= 1
+		else:
+			level_button.visible = false
+	
 	current_page_ref = $LevelSelectPage
 	$ButtonBack.visible = true
 	$LevelSelectPage.visible = true

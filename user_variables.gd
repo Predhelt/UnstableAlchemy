@@ -34,6 +34,8 @@ var learned_status_effects: Array[int]
 var pages_opened: Array[String]
 ## List of cutscenes by ID that have been watched by the user.
 var cutscenes_watched: Array[int]
+## The index of the level that was cleared the furthest into the game.
+var level_highest_cleared_index: int = 0
 ## Whether or not the player has exerienced a "loop".
 var has_looped: bool = false
 
@@ -55,7 +57,8 @@ func save(_dir: String) -> Dictionary:
 		"learned_status_effects" : var_to_str(learned_status_effects),
 		"pages_opened" : var_to_str(pages_opened),
 		"cutscenes_watched" : var_to_str(cutscenes_watched),
-		"has_looped" : has_looped
+		"level_highest_cleared_index" : level_highest_cleared_index,
+		"has_looped" : has_looped,
 	}
 	return save_dict
 
@@ -73,6 +76,7 @@ func reset_variables():
 	learned_status_effects.clear()
 	pages_opened.clear()
 	cutscenes_watched.clear()
+	level_highest_cleared_index = 0
 	has_looped = false
 
 ## Add a recipe to the list of known recipes and new recipes if not already known.

@@ -154,7 +154,7 @@ repeat_wait_time = 40.0
 [node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1639851176 instance=ExtResource("11_xogub")]
 position = Vector2(1280, -2336)
 scale = Vector2(2.845, 1)
-level_path = "uid://cjnnyjrqk6rsl"
+is_level_cleared = true
 
 [node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1244985810 groups=["Persist"] instance=ExtResource("14_q28il")]
 position = Vector2(2016, -1184.0001)
