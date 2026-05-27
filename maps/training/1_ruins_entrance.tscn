@@ -233,3 +233,8 @@ text = "- walk
 [connection signal="log_book_menu_window_closed" from="UILayer" to="." method="_on_ui_layer_log_book_menu_window_closed"]
 [connection signal="recipe_list_page_opened" from="UILayer" to="." method="_on_ui_layer_recipe_list_page_opened"]
 [connection signal="object_grabbed" from="Objects/RecipeItem" to="." method="_on_recipe_item_object_grabbed"]
+[connection signal="object_grabbed" from="Objects/GreenHerb" to="." method="_on_green_herb_object_grabbed"]
+[connection signal="object_grabbed" from="Objects/GreenHerb3" to="." method="_on_green_herb_object_grabbed"]
+[connection signal="object_grabbed" from="Objects/GreenHerb4" to="." method="_on_green_herb_object_grabbed"]
+[connection signal="object_grabbed" from="Objects/GreenHerb5" to="." method="_on_green_herb_object_grabbed"]
+[connection signal="object_grabbed" from="Objects/GreenHerb2" to="." method="_on_green_herb_object_grabbed"]

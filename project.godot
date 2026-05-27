@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Unstable Alchemy"
 config/description="Gather, craft, and solve environmental puzzles."
-config/version="0.2.45"
+config/version="0.2.46"
 config/tags=PackedStringArray("git")
 run/main_scene="uid://ckgxm2etu6kdm"
 config/features=PackedStringArray("4.6", "Forward Plus")
@@ -52,10 +52,10 @@ enabled=PackedStringArray("res://addons/maaacks_input_remapping/plugin.cfg")
 
 [global_group]
 
-Pushable=""
-Droppable="areas that you can drag and drop into"
+Pushable="Objects that can be pushed by Characters"
+Droppable="Areas that you can drag and drop into"
 Persist="Persistent Scenes between loads"
-Crawlspace=""
+Crawlspace="Areas that check Character size to determine if the tile is passable"
 
 [input]
 
