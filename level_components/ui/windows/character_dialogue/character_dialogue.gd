@@ -111,7 +111,8 @@ func execute_dialogue_effects(dialogue_effects : Array[String]) -> void: #NOTE: 
 				EventHandler.go_home()
 			"open_dialogue_door":
 				EventHandler.open_dialogue_door()
-		print("No Dialogue Effect with name " + effect)
+			_:
+				print("No Dialogue Effect with name " + effect)
 
 ## Opens the shop window and closes the current dialogue window.
 ## Uses transaction information from the character to set up the shop window.
