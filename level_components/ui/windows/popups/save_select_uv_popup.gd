@@ -8,14 +8,14 @@ var autosave_index: int = -1
 func _on_index_pressed(index: int) -> void:
 	if index == save_index: # Manual save data
 		Global.load_user_variables("user://saves/save")
-		save_data_type_ref.text = "Save Data: Manual Save"
+		save_data_type_ref.text = "Save Data: Manual Save" #TODO: Make progression summary
 		save_data_type_ref.visible = true
 	elif index == autosave_index: # Autosave data
 		Global.load_user_variables("user://saves/autosave")
 		save_data_type_ref.text = "Save Data: Autosave"
 		save_data_type_ref.visible = true
 	else:
-		save_data_type_ref.text = "Save Data: None"
+		save_data_type_ref.text = "Save Data: Unchanged"
 		save_data_type_ref.visible = true
 
 

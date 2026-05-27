@@ -43,8 +43,6 @@ var has_looped: bool = false
 ## of the user to be saved to file.
 func save(_dir: String) -> Dictionary:
 	var save_dict = {
-		"filename" : get_scene_file_path(),
-		"parent" : get_parent().get_path(),
 		"known_recipes" : var_to_str(known_recipes),
 		"new_recipes" : var_to_str(new_recipes),
 		"crafted_recipes" : var_to_str(crafted_recipes),

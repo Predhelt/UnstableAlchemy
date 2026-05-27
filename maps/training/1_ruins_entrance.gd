@@ -5,11 +5,13 @@ extends LevelManager
 signal call_open_inventory
 
 # Tracks different stages of tutorial messaging
+var watched_cutscene: bool = false
 var grabbed_recipe_book: bool = false
 var used_recipe_book: bool = false
 ## Closed log book after using recipe book
 var closed_log_book: bool = false
 var opened_recipe_flakes: bool = false
+var plate_pressed: bool = false
 
 ## Initialize HUD UI functionality before load potentially overrides this.
 func _init() -> void:
@@ -18,6 +20,7 @@ func _init() -> void:
 	Global.is_recipe_book_disabled = true
 
 ## Hide UI and disable hotkeys that are not necessary on scene start.
+## Uses global and level variables from save data to determine state.
 func _ready() -> void:
 	super()
 	if UserVariables.has_looped:
@@ -31,6 +34,8 @@ func _ready() -> void:
 	
 	for i in range(1, 11):
 		$UILayer.set_log_book_tab_hidden(i)
+	if used_recipe_book:
+		$UILayer.set_log_book_tab_hidden(6, false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpInteractions", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpTools", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpMP", false)
@@ -46,7 +51,20 @@ func _ready() -> void:
 		InputMap.action_get_events("move_down")[0].as_text().replace(' - Physical',''),
 		InputMap.action_get_events("move_right")[0].as_text().replace(' - Physical','')]
 	)
+	if watched_cutscene:
+		$Cutscene.hide()
 
+
+func save(_dir: String) -> Dictionary:
+	var save_dict = {
+		"watched_cutscene" : watched_cutscene,
+		"grabbed_recipe_book" : grabbed_recipe_book,
+		"used_recipe_book" : used_recipe_book,
+		"closed_log_book" : closed_log_book,
+		"opened_recipe_flakes" : opened_recipe_flakes,
+		"plate_pressed" : plate_pressed,
+	}
+	return save_dict
 
 func _on_recipe_item_object_grabbed(_body: Character) -> void:
 	if not UserVariables.has_looped:
@@ -57,7 +75,7 @@ func _on_recipe_item_object_grabbed(_body: Character) -> void:
 			
 			Right-click items in your bag to use them." %
 			InputMap.action_get_events("inventory")[0].as_text().replace(' - Physical','')
-			)
+		)
 		%LabelInventory.visible = true
 	grabbed_recipe_book = true
 
@@ -80,12 +98,13 @@ func _on_ui_layer_log_book_menu_window_closed() -> void:
 			%LabelRecipes.text = (
 				"Open the recipe book (%s)." %
 				InputMap.action_get_events("recipe_book")[0].as_text().replace(' - Physical','')
-				)
+			)
 			%LabelRecipes.visible = true
 		closed_log_book = true
 
 
 func _on_cutscene_end_scene() -> void:
+	watched_cutscene = true
 	if UserVariables.has_looped:
 		$Player.update_status_message("What just happened...")
 		$TutorialMessages/LabelMovement.visible = false
@@ -108,15 +127,26 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 		if not opened_recipe_flakes and not Global.focused_node.inventory.has_item_id(0):
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Find the missing ingredient to be able to craft."
-				)
+			)
 		elif Global.focused_node.inventory.has_item_id(0):
 			call_open_inventory.emit()
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Drag items from the inventory onto the tools in the middle.
 				Then click the check mark on the tool to begin crafting."
-				)
+			)
 		opened_recipe_flakes = true
 
 
 func _on_green_herb_object_grabbed(_body: Character) -> void:
 	$UILayer.set_log_book_tab_hidden(1, false)
+
+
+func _on_pressure_plate_plate_pressed() -> void:
+	if not plate_pressed:
+		EventHandler.open_popup_message(
+			"Pressure plates can open doors of the same color.
+			Some doors stay open when you step off of the plate.
+			Others close slowly, or quickly.
+			Some doors require multiple plates to open."
+		)
+		plate_pressed = true

@@ -1,5 +1,6 @@
 class_name Cutscene extends CanvasLayer
 
+signal begin_scene
 signal end_scene
 
 ## The list of images that will be shown, in the order provided.
@@ -34,6 +35,8 @@ func play_cutscene():
 	$Panel/TextureRect.texture = images[0]
 	cur_image_index = 1
 	visible = true
+	begin_scene.emit()
+	
 
 ## Shows the next panel in [member panels].
 func next_image():

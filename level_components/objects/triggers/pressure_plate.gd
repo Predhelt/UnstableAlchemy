@@ -18,6 +18,12 @@ var is_triggered : bool = false
 ## List of [Node2D]'s that are on the pressure plate.
 var bodies : Array[Node2D]
 
+
+signal body_entered(body: Node2D)
+signal body_exited(body: Node2D)
+signal plate_pressed()
+signal plate_released()
+
 func _ready() -> void:
 	$Sprite2D.texture = texture
 
@@ -36,6 +42,7 @@ func _process(_delta: float) -> void:
 		$AudioStreamPlayer2D.play()
 		$AudioStreamPlayer2D["parameters/switch_to_clip"] = "press"
 		is_triggered = true
+		plate_pressed.emit()
 	
 	if cur_mass != mass_sum:
 		if not is_triggered and mass_sum > cur_mass:
@@ -47,11 +54,13 @@ func _process(_delta: float) -> void:
 		for door in door_refs:
 			door.close_door(self)
 		is_triggered = false
-
+		plate_released.emit()
 
 
 func _on_body_entered(body: Node2D) -> void:
 	bodies.append(body)
+	body_entered.emit(body)
 
 func _on_body_exited(body: Node2D) -> void:
 	bodies.remove_at(bodies.find(body))
+	body_exited.emit(body)

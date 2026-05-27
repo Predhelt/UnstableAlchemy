@@ -116,6 +116,11 @@ func save_game(save_name : String) -> void:
 	var json_string : String = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
+	# Store level data next.
+	node_data = get_tree().current_scene.call("save", dir)
+	json_string = JSON.stringify(node_data)
+	save_file.store_line(json_string)
+	
 	# Store the user data next.
 	node_data = UserVariables.call("save", dir)
 	json_string = JSON.stringify(node_data)
@@ -193,6 +198,20 @@ func load_game(save_name : String) -> void:
 		current_level_path = node_data["current_level_path"]
 		var level_node : Node2D = load(current_level_path).instantiate()
 		get_tree().change_scene_to_node(level_node)
+		
+		# Set level variables
+		json_string = save_file.get_line()
+		#json = JSON.new()
+		parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		node_data = json.data
+		for i in node_data.keys():
+			if typeof(node_data[i]) == typeof("String"):
+				level_node.set(i, str_to_var(node_data[i]))
+			else:
+				level_node.set(i, node_data[i])
+		
 		# Wait for the scene to load before continuing.
 		await level_node.ready
 	else:
@@ -201,19 +220,16 @@ func load_game(save_name : String) -> void:
 	
 	# Set User Variables
 	json_string = save_file.get_line()
-	json = JSON.new()
+	#json = JSON.new()
 	parse_result = json.parse(json_string)
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	node_data = json.data
 	for i in node_data.keys():
-		if i == "filename" or i == "parent":
-			UserVariables.set(i, node_data[i])
+		if typeof(node_data[i]) == typeof("String"):
+			UserVariables.set(i, str_to_var(node_data[i]))
 		else:
-			if typeof(node_data[i]) == typeof("String"):
-				UserVariables.set(i, str_to_var(node_data[i]))
-			else:
-				UserVariables.set(i, node_data[i])
+			UserVariables.set(i, node_data[i])
 	
 	# Free the nodes in the persistent group to revert game state without cloning.
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -247,8 +263,6 @@ func load_game(save_name : String) -> void:
 		
 		if node_data.get("is_camera_focused"): # Important to set early for UI
 			new_object.set("is_camera_focused", node_data["is_camera_focused"])
-			#if has_blade or has_dropper:
-				#new_object.set_tool_wheel_ui()
 			
 			focused_node = new_object
 			var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
@@ -318,10 +332,7 @@ func load_user_variables(dir: String) -> void:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	var node_data = json.data
 	for i in node_data.keys():
-		if i == "filename" or i == "parent":
-			UserVariables.set(i, node_data[i])
+		if typeof(node_data[i]) == typeof("String"):
+			UserVariables.set(i, str_to_var(node_data[i]))
 		else:
-			if typeof(node_data[i]) == typeof("String"):
-				UserVariables.set(i, str_to_var(node_data[i]))
-			else:
-				UserVariables.set(i, node_data[i])
+			UserVariables.set(i, node_data[i])
