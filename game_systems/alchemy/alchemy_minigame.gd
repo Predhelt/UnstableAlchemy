@@ -87,8 +87,9 @@ func previous_window():
 	Global.left_window = null
 	if not Global.center_window and not Global.right_window:
 		Global.mode = &"default"
-	elif Global.center_window:
-		Global.mode = Global.center_window.window_mode
+	#elif Global.center_window:
+		#var mode : StringName = Global.center_window.get("window_mode")
+		#Global.mode = Global.center_window.window_mode
 	elif Global.right_window:
 		Global.mode = Global.right_window.window_mode
 	

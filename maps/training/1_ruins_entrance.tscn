@@ -154,6 +154,7 @@ repeat_wait_time = 40.0
 [node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1639851176 instance=ExtResource("11_xogub")]
 position = Vector2(1280, -2336)
 scale = Vector2(2.845, 1)
+level_path = "uid://cjnnyjrqk6rsl"
 is_level_cleared = true
 
 [node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1244985810 groups=["Persist"] instance=ExtResource("14_q28il")]
@@ -229,6 +230,7 @@ text = "- walk
 [connection signal="call_open_inventory" from="." to="UILayer" method="_on_world_call_open_inventory"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
+[connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
 [connection signal="log_book_menu_window_closed" from="UILayer" to="." method="_on_ui_layer_log_book_menu_window_closed"]
 [connection signal="recipe_list_page_opened" from="UILayer" to="." method="_on_ui_layer_recipe_list_page_opened"]

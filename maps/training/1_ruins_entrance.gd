@@ -11,6 +11,7 @@ var used_recipe_book: bool = false
 ## Closed log book after using recipe book
 var closed_log_book: bool = false
 var opened_recipe_flakes: bool = false
+var crafted_flakes: bool = false
 var plate_pressed: bool = false
 
 ## Initialize HUD UI functionality before load potentially overrides this.
@@ -133,7 +134,7 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Find the missing ingredient to be able to craft."
 			)
-		elif Global.focused_node.inventory.has_item_id(0):
+		elif Global.focused_node.inventory.has_item_id(0) and not crafted_flakes:
 			call_open_inventory.emit()
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Drag items from the inventory onto the tools in the middle.
@@ -155,3 +156,10 @@ func _on_pressure_plate_plate_pressed() -> void:
 			Some doors require multiple plates to open."
 		)
 		plate_pressed = true
+
+
+func _on_ui_layer_craft_completed(result: Item, _recipe: Recipe) -> void:
+	if result.id == 100: # Green Flakes
+		crafted_flakes = true
+		
+		
