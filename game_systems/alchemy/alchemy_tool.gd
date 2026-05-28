@@ -146,7 +146,6 @@ func add_item(item: Item) -> bool:
 			items[i] = item
 			buttons[i].texture_normal = item.texture
 			buttons[i].disabled = false
-			button_confirm.disabled = false
 			num_items += 1
 			break
 	return true	
@@ -226,7 +225,6 @@ func _on_button_confirm_pressed() -> void:
 ## and puts the item back in the inventory.
 func _on_button_1_pressed() -> void:
 	if Global.mode == &"menu":
-		#inventory_menu_ref.add_produced_item(items[0])
 		craft_completed.emit(items[0],null)
 		remove_item(0)
 
@@ -234,7 +232,6 @@ func _on_button_1_pressed() -> void:
 ## and puts the item back in the inventory.
 func _on_button_2_pressed() -> void:
 	if Global.mode == &"menu":
-		#inventory_menu_ref.add_produced_item(items[1])
 		craft_completed.emit(items[1],null)
 		remove_item(1)
 
@@ -242,6 +239,9 @@ func _on_button_2_pressed() -> void:
 ## and puts the item back in the inventory.
 func _on_button_3_pressed() -> void:
 	if Global.mode == &"menu":
-		#inventory_menu_ref.add_produced_item(items[2])
 		craft_completed.emit(items[2],null)
 		remove_item(2)
+
+
+func _on_area_item_added(_item: Item) -> void:
+	button_confirm.disabled = false

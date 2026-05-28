@@ -5,8 +5,10 @@
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_hwfc4"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="2_m0hp4"]
 [ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/audio/sounds/blender.mp3" id="3_832d1"]
-[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_88qmb"]
 [ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/audio/sounds/drop_inventory.mp3" id="4_d3pea"]
+[ext_resource type="Texture2D" uid="uid://cmw0f0rpw6ygx" path="res://art/pack/ui/menus/right_arrow.png" id="7_hwfc4"]
+[ext_resource type="Texture2D" uid="uid://c1ige06c4bbe0" path="res://art/pack/ui/menus/right_arrow_hovered.png" id="8_832d1"]
+[ext_resource type="Script" uid="uid://c67qchebjfhj2" path="res://level_components/ui/windows/inventory/alchemy_containers/item_drop_area.gd" id="9_d3pea"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_1hdai"]
 clip_count = 3
@@ -21,13 +23,6 @@ clip_2/name = &"drop"
 clip_2/stream = ExtResource("4_d3pea")
 clip_2/auto_advance = 1
 clip_2/next_clip = 0
-
-[sub_resource type="GDScript" id="GDScript_ailbx"]
-script/source = "extends Area2D
-
-func add_item(item: Item):
-	get_parent().add_item(item)
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nbwu"]
 size = Vector2(126, 124)
@@ -87,7 +82,8 @@ stretch_mode = 5
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
-texture_normal = ExtResource("4_88qmb")
+texture_normal = ExtResource("7_hwfc4")
+texture_hover = ExtResource("8_832d1")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -113,7 +109,7 @@ collision_layer = 4
 collision_mask = 4
 monitoring = false
 priority = 1
-script = SubResource("GDScript_ailbx")
+script = ExtResource("9_d3pea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MortarPestleArea" unique_id=82524870]
 shape = SubResource("RectangleShape2D_0nbwu")
@@ -121,3 +117,4 @@ debug_color = Color(0.5137255, 0.41960785, 1, 0.41960785)
 
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/ButtonConfirm" to="." method="_on_button_confirm_pressed"]
+[connection signal="item_added" from="MortarPestleArea" to="." method="_on_area_item_added"]

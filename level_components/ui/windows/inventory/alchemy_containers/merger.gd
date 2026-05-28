@@ -4,6 +4,10 @@ extends AlchemyTool
 func _ready() -> void:
 	super()
 	set_recipes(&"Merger")
+	if has_enough_craft_items():
+		button_confirm.disabled = false
+	else:
+		button_confirm.disabled = true
 
 ## 
 func _use_items(): # Overrides the _use_items() function in AlchemyTool
@@ -36,3 +40,36 @@ func _use_items(): # Overrides the _use_items() function in AlchemyTool
 	
 	begin_craft(result_recipe)
 	#open_minigame(items)
+
+
+func has_enough_craft_items() -> bool:
+	var count: int = 0
+	for i in items:
+		if i:
+			count += 1
+	if count >= 2:
+		return true
+	return false
+
+
+func _on_button_1_pressed() -> void:
+	super()
+	if has_enough_craft_items():
+		return
+	button_confirm.disabled = true
+
+func _on_button_2_pressed() -> void:
+	super()
+	if has_enough_craft_items():
+		return
+	button_confirm.disabled = true
+
+func _on_button_3_pressed() -> void:
+	super()
+	if has_enough_craft_items():
+		return
+	button_confirm.disabled = true
+
+func _on_area_item_added(_item: Item) -> void:
+	if has_enough_craft_items():
+		button_confirm.disabled = false

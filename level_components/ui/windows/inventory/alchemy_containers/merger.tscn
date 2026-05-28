@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="3_8cpav"]
 [ext_resource type="AudioStream" uid="uid://cxg6ejdhx8ss7" path="res://art/pack/audio/sounds/bell_in_c.mp3" id="4_311wa"]
 [ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/audio/sounds/drop_inventory.mp3" id="4_e0wkk"]
-[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_vejrj"]
+[ext_resource type="Texture2D" uid="uid://c3m5jvr7b22am" path="res://art/pack/ui/menus/anvil.png" id="8_e0wkk"]
+[ext_resource type="Texture2D" uid="uid://dshwn2d84d6af" path="res://art/pack/ui/menus/anvil_hovered.png" id="9_311wa"]
+[ext_resource type="Texture2D" uid="uid://modobsfcfssm" path="res://art/pack/ui/menus/anvil_disabled.png" id="10_nxa8k"]
+[ext_resource type="Script" uid="uid://c67qchebjfhj2" path="res://level_components/ui/windows/inventory/alchemy_containers/item_drop_area.gd" id="11_2a7ko"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wuoly"]
 clip_count = 5
@@ -29,13 +32,6 @@ clip_4/name = &"drop"
 clip_4/stream = ExtResource("4_e0wkk")
 clip_4/auto_advance = 1
 clip_4/next_clip = 0
-
-[sub_resource type="GDScript" id="GDScript_18djl"]
-script/source = "extends Area2D
-
-func add_item(item: Item):
-	get_parent().add_item(item)
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p613h"]
 size = Vector2(126, 124)
@@ -114,7 +110,9 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 disabled = true
-texture_normal = ExtResource("4_vejrj")
+texture_normal = ExtResource("8_e0wkk")
+texture_hover = ExtResource("9_311wa")
+texture_disabled = ExtResource("10_nxa8k")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -140,7 +138,7 @@ collision_layer = 4
 collision_mask = 4
 monitoring = false
 priority = 1
-script = SubResource("GDScript_18djl")
+script = ExtResource("11_2a7ko")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MergerArea" unique_id=2108714880]
 shape = SubResource("RectangleShape2D_p613h")
@@ -150,3 +148,4 @@ debug_color = Color(0.5137255, 0.41960785, 1, 0.41960785)
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/ButtonConfirm" to="." method="_on_button_confirm_pressed"]
+[connection signal="item_added" from="MergerArea" to="." method="_on_area_item_added"]

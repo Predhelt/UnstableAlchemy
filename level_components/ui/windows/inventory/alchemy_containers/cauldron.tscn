@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dwfusv36qroq0" path="res://level_components/ui/windows/inventory/alchemy_containers/cauldron.gd" id="1_2r2ej"]
 [ext_resource type="Texture2D" uid="uid://dwdipkapjcew4" path="res://art/pack/alchemy/tools/alchemy_cauldron.png" id="1_ot2yn"]
-[ext_resource type="Script" uid="uid://dcclh8ukddg0n" path="res://level_components/ui/windows/inventory/droppable_area.gd" id="2_os1jy"]
 [ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_wjsv3"]
 [ext_resource type="AudioStream" uid="uid://dctgw3xip6bhv" path="res://art/pack/audio/sounds/blender.mp3" id="3_04ii2"]
 [ext_resource type="Texture2D" uid="uid://dej5q35ec47wj" path="res://art/pack/ui/blank_item.png" id="3_6hx4e"]
 [ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/audio/sounds/drop_inventory.mp3" id="4_2d2hj"]
-[ext_resource type="Texture2D" uid="uid://b27y16tkpl1dt" path="res://art/pack/ui/check_mark.png" id="4_vsd63"]
+[ext_resource type="Texture2D" uid="uid://cmw0f0rpw6ygx" path="res://art/pack/ui/menus/right_arrow.png" id="7_wjsv3"]
+[ext_resource type="Texture2D" uid="uid://c1ige06c4bbe0" path="res://art/pack/ui/menus/right_arrow_hovered.png" id="8_04ii2"]
+[ext_resource type="Script" uid="uid://c67qchebjfhj2" path="res://level_components/ui/windows/inventory/alchemy_containers/item_drop_area.gd" id="9_04ii2"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ox3fq"]
 clip_count = 3
@@ -100,7 +101,8 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 disabled = true
-texture_normal = ExtResource("4_vsd63")
+texture_normal = ExtResource("7_wjsv3")
+texture_hover = ExtResource("8_04ii2")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -126,7 +128,7 @@ collision_layer = 4
 collision_mask = 4
 monitoring = false
 priority = 1
-script = ExtResource("2_os1jy")
+script = ExtResource("9_04ii2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CauldronArea" unique_id=168033538]
 shape = SubResource("RectangleShape2D_0nbwu")
@@ -136,3 +138,4 @@ debug_color = Color(0.51558965, 0.4210301, 1, 0.41960785)
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ToolIcon/ItemGrid/ButtonConfirm" to="." method="_on_button_confirm_pressed"]
+[connection signal="item_added" from="CauldronArea" to="." method="_on_area_item_added"]
