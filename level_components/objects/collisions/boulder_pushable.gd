@@ -16,6 +16,7 @@ func save(_dir: String) -> Dictionary:
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
-		"mass" : mass
+		"mass" : mass,
+		"is_persistent" : is_persistent,
 	}
 	return save_dict

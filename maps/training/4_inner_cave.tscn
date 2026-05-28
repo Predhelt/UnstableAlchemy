@@ -299,7 +299,7 @@ position = Vector2(480, -66)
 texture = ExtResource("25_ol6vo")
 
 [node name="SlidingDoor4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="10" unique_id=1974027199 instance=ExtResource("26_jb56y")]
-position = Vector2(446, 864)
+position = Vector2(445, 864)
 texture = ExtResource("30_d432r")
 triggers_required = 3
 

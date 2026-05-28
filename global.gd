@@ -297,6 +297,9 @@ func load_game(save_name : String) -> void:
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		
+		if not new_object.is_in_group("Persist"):
+			new_object.add_to_group("Persist")
+		
 		# Go through each node and initialize the stored values.
 		for i in node_data.keys():
 			if(i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y"
