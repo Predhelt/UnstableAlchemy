@@ -488,10 +488,9 @@ func open_page_help_tools():
 
 ## Help pages are already set up,
 func open_help_page(page : MarginContainer) -> void:
-	if page.visible:
-		return
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	if not page.visible:
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	add_opened_page_name(page.name)
 	page.visible = true
 
@@ -504,10 +503,9 @@ func open_raw_item_page() -> void:#TODO
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_raw_item.display_name)
 		return
-	#if page.visible:
-		#return
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	if not page.visible:
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	add_opened_page_name(page.name)
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_raw_item.description
@@ -588,10 +586,9 @@ func open_crafted_item_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_crafted_item.display_name)
 		return
-	#if page.visible:
-		#return
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	if not page.visible:
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	add_opened_page_name(page.name)
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_crafted_item.description
@@ -616,10 +613,9 @@ func open_potion_page() -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_potion.display_name)
 		return
-	#if page.visible:
-		#return
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	if not page.visible:
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	add_opened_page_name(page.name)
 	page.get_child(0).find_child("LabelDescription").text = current_potion.description
 	# List where you can get the item from
@@ -640,10 +636,9 @@ func open_plant_page(page : MarginContainer) -> void:
 	if not page:
 		print("ERROR: No page '%s' exists, cannot be opened." % current_plant_scene.display_name)
 		return
-	if page.visible:
-		return
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
+	if not page.visible:
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	add_opened_page_name(page.name)
 	page.get_child(0).find_child("LabelDescription").text = current_plant_scene.description
 	page.get_child(0).find_child("LabelContainedItems").text = _interaction_object_contained_items_as_str(current_plant_scene)

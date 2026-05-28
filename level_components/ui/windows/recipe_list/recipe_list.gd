@@ -132,6 +132,8 @@ func open_recipe_page(item : Item):
 ## Refreshes the display on the recipe page
 ## NOTE: Approach is general-purpose and not optimized.
 func refresh_recipe_page():
+	if not visible or not cur_recipe_item:
+		return
 	var cur_item = cur_recipe_item
 	close_window()
 	open_window()
@@ -444,3 +446,11 @@ func _on_button_list_pressed() -> void:
 	recent_recipe_items.clear()
 	close_window()
 	open_window()
+
+
+func _on_inventory_menu_item_consumed(_item: Item) -> void:
+	refresh_recipe_page()
+
+
+func _on_inventory_menu_craft_item_added(_result: Item, _recipe: Recipe) -> void:
+	refresh_recipe_page()

@@ -1281,17 +1281,17 @@ layout_mode = 2
 [node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=1683094039]
 visible = false
 layout_mode = 2
-text = "Grab description."
+text = "Grab description(WIP)."
 
 [node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=393585713]
 visible = false
 layout_mode = 2
-text = "Cut Description"
+text = "Cut Description(WIP)"
 
 [node name="LabelCombine" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantRedBerryBush/VBoxContainer" unique_id=1338176085]
 visible = false
 layout_mode = 2
-text = "Combination description."
+text = "Combination description(WIP)."
 
 [node name="PagePlantGreenHerbs" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=2007907375]
 unique_name_in_owner = true
@@ -1325,17 +1325,17 @@ layout_mode = 2
 [node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantGreenHerbs/VBoxContainer" unique_id=1950515163]
 visible = false
 layout_mode = 2
-text = "Grab description."
+text = "Grab description(WIP)."
 
 [node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantGreenHerbs/VBoxContainer" unique_id=2147215850]
 visible = false
 layout_mode = 2
-text = "Cut Description"
+text = "Cut Description(WIP)"
 
 [node name="LabelCombine" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantGreenHerbs/VBoxContainer" unique_id=1116576578]
 visible = false
 layout_mode = 2
-text = "Combination description."
+text = "Combination description(WIP)."
 
 [node name="PagePlantYellowFlowers" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=754562837]
 unique_name_in_owner = true
@@ -1369,17 +1369,17 @@ layout_mode = 2
 [node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantYellowFlowers/VBoxContainer" unique_id=2075819888]
 visible = false
 layout_mode = 2
-text = "Grab description."
+text = "Grab description(WIP)."
 
 [node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantYellowFlowers/VBoxContainer" unique_id=92657806]
 visible = false
 layout_mode = 2
-text = "Cut Description"
+text = "Cut Description(WIP)"
 
 [node name="LabelCombine" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantYellowFlowers/VBoxContainer" unique_id=1926180756]
 visible = false
 layout_mode = 2
-text = "Combination description."
+text = "Combination description(WIP)."
 
 [node name="PagePlantBlueBerryBush" type="MarginContainer" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer" unique_id=1822368033]
 unique_name_in_owner = true
@@ -1413,17 +1413,17 @@ layout_mode = 2
 [node name="LabelGrab" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=1302625575]
 visible = false
 layout_mode = 2
-text = "Grab description."
+text = "Grab description(WIP)."
 
 [node name="LabelCut" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=1697408775]
 visible = false
 layout_mode = 2
-text = "Cut Description"
+text = "Cut Description(WIP)"
 
 [node name="LabelCombine" type="Label" parent="VBoxContainer/TabContainer/TabPlants/HBoxContainer/PageContainer/PagePlantBlueBerryBush/VBoxContainer" unique_id=280536048]
 visible = false
 layout_mode = 2
-text = "Combination description."
+text = "Combination description(WIP)."
 
 [node name="TabObjects" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=508245017]
 unique_name_in_owner = true
