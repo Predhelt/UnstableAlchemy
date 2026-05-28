@@ -93,7 +93,7 @@ text = "Move with
 wasd keys"
 horizontal_alignment = 1
 
-[node name="Lex" parent="." index="4" unique_id=1948548714 instance=ExtResource("25_5p60j")]
+[node name="Lex" parent="." index="5" unique_id=1948548714 instance=ExtResource("25_5p60j")]
 position = Vector2(1112, -2136)
 
 [node name="Player" parent="." index="6" unique_id=1026458739]

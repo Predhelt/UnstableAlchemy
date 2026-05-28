@@ -50,15 +50,6 @@
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="44_r1a14"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="45_6vueu"]
 
-[sub_resource type="Resource" id="Resource_grtol"]
-script = ExtResource("2_a28fu")
-metadata/_custom_type_script = "uid://ctfdopu68mcmr"
-
-[sub_resource type="Resource" id="Resource_v40p3"]
-resource_local_to_scene = true
-script = ExtResource("4_6s6o1")
-metadata/_custom_type_script = "uid://cd5xw28biljd0"
-
 [sub_resource type="Resource" id="Resource_oeqek"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
@@ -92,6 +83,15 @@ items_selling = Array[ExtResource("3_0ue13")]([ExtResource("18_54nbq")])
 items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
+
+[sub_resource type="Resource" id="Resource_grtol"]
+script = ExtResource("2_a28fu")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_v40p3"]
+resource_local_to_scene = true
+script = ExtResource("4_6s6o1")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_xmviu"]
 script = ExtResource("32_6s87q")
@@ -139,22 +139,22 @@ stream = ExtResource("6_1umpp")
 stream = null
 autoplay = false
 
-[node name="Player" parent="." index="4" unique_id=1026458739]
-position = Vector2(-86, -840)
-attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_v40p3")
-
-[node name="NPCBrindan" parent="." index="5" unique_id=1948548714 instance=ExtResource("10_54nbq")]
+[node name="NPCBrindan" parent="." index="4" unique_id=1948548714 instance=ExtResource("10_54nbq")]
 position = Vector2(99, -719)
 portrait = ExtResource("11_eooy1")
 transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_oeqek"), SubResource("Resource_3bsik")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
-[node name="NPCShelly" parent="." index="6" unique_id=1961644270 instance=ExtResource("16_vu3vs")]
+[node name="NPCShelly" parent="." index="5" unique_id=1961644270 instance=ExtResource("16_vu3vs")]
 position = Vector2(-225, -1280)
 portrait = ExtResource("18_suusu")
 transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_wdxed"), SubResource("Resource_or0wd")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
+
+[node name="Player" parent="." index="6" unique_id=1026458739]
+position = Vector2(-86, -840)
+attributes = SubResource("Resource_grtol")
+inventory = SubResource("Resource_v40p3")
 
 [node name="PlayerCamera" parent="." index="7" unique_id=294471714]
 position = Vector2(252, -1013)
