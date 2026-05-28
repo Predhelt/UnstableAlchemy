@@ -379,6 +379,10 @@ func move_character(vector : Vector2) -> void:
 
 # TODO: Change animations when certain criteria are met
 func update_animation_parameters() -> void:
+	if Global.mode != &"default":
+		animation_tree.active = false
+	else:
+		animation_tree.active = true
 	if(velocity == Vector2.ZERO):
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false

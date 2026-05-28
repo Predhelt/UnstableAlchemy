@@ -161,5 +161,3 @@ func _on_pressure_plate_plate_pressed() -> void:
 func _on_ui_layer_craft_completed(result: Item, _recipe: Recipe) -> void:
 	if result.id == 100: # Green Flakes
 		crafted_flakes = true
-		
-		

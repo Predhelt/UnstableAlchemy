@@ -30,12 +30,12 @@
 [ext_resource type="Texture2D" uid="uid://be53wbt3voo4s" path="res://art/pack/characters/green_robe/run_up_frame0004.png" id="28_6d2wq"]
 [ext_resource type="Texture2D" uid="uid://b8cs1knphjnfw" path="res://art/pack/characters/green_robe/run_up_frame0006.png" id="29_kr20l"]
 
-[sub_resource type="Resource" id="Resource_e0pgg"]
+[sub_resource type="Resource" id="Resource_sbttr"]
 resource_local_to_scene = true
 script = ExtResource("2_sbttr")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_sbttr"]
+[sub_resource type="Resource" id="Resource_6pj1p"]
 resource_local_to_scene = true
 script = ExtResource("4_rpf03")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -271,8 +271,8 @@ radius = 13.0
 [node name="Character" unique_id=1948548714 instance=ExtResource("1_ixbpm")]
 character_name = "Constance"
 portrait = ExtResource("2_6pj1p")
-attributes = SubResource("Resource_e0pgg")
-inventory = SubResource("Resource_sbttr")
+attributes = SubResource("Resource_sbttr")
+inventory = SubResource("Resource_6pj1p")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=988207362]
 position = Vector2(0, -36)
