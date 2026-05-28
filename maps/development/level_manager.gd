@@ -15,3 +15,9 @@ func save(_dir: String) -> Dictionary:
 func level_cleared() -> void:
 	if level_index > UserVariables.level_highest_cleared_index:
 		UserVariables.level_highest_cleared_index = level_index
+
+
+func change_level_and_fade(path: String):
+	$SceneTransitionAnimPlayer.play("fade")
+	await $SceneTransitionAnimPlayer.animation_finished
+	Global.change_scene(path)

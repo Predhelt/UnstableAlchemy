@@ -16,6 +16,6 @@ func _on_body_entered(_body: Node2D) -> void:
 	if level_path:
 		if is_level_cleared:
 			get_tree().current_scene.level_cleared()
-		Global.change_scene(level_path)
+		get_tree().current_scene.change_level_and_fade(level_path)
 	else:
 		print("ERROR: No level path set for scene change.")
