@@ -28,7 +28,7 @@ step = 0.001
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="TextureRect" unique_id=1581581821]
-layout_mode = 0
+layout_mode = 1
 offset_right = 28.0
 offset_bottom = 28.0
 
@@ -40,3 +40,23 @@ offset_right = 27.0
 offset_bottom = 25.0
 text = "99"
 horizontal_alignment = 1
+
+[node name="ControlTimer" type="Control" parent="TextureRect" unique_id=1826727421]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 28.0
+grow_vertical = 0
+
+[node name="LabelTimeRemaining" type="Label" parent="TextureRect/ControlTimer" unique_id=10230903]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+text = "99"
+vertical_alignment = 2

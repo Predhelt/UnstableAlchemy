@@ -9,6 +9,9 @@ func _process(delta: float) -> void:
 		return
 	if has_duration and $TextureRect/ProgressBar.value < $TextureRect/ProgressBar.max_value:
 		$TextureRect/ProgressBar.value += delta
+		$TextureRect/ControlTimer/LabelTimeRemaining.text = "%d" % (
+			$TextureRect/ProgressBar.max_value - $TextureRect/ProgressBar.value
+		)
 
 ## Uses [param se] info to set up the status icon information.
 func reset_effect(se: StatusEffect):
@@ -19,9 +22,11 @@ func reset_effect(se: StatusEffect):
 			$TextureRect/ProgressBar.max_value = se.duration
 			$TextureRect/ProgressBar.value = se.cur_duration
 			$TextureRect/ProgressBar.visible = true
+			$TextureRect/ControlTimer/LabelTimeRemaining.visible = true
 		else:
 			has_duration = false
 			$TextureRect/ProgressBar.visible = false
+			$TextureRect/ControlTimer/LabelTimeRemaining.visible = false
 		if se.count == -1:
 			$TextureRect/Panel.visible = false
 		else:
