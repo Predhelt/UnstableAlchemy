@@ -735,6 +735,12 @@ func apply_status_effect(se: StatusEffect) -> bool:
 			return _set_can_possess(se)
 	return false
 
+## Add the given [param se] to the list of active status effects.
+func add_to_active_status_effects(se: StatusEffect):
+	var cur_se : StatusEffect = se.duplicate()
+	#cur_se.resource_local_to_scene = true
+	active_status_effects.append(cur_se)
+
 ## Changes the text of the status message and resets the timer for how long the message appears.
 func update_status_message(message: String):
 	if not message:
@@ -748,8 +754,8 @@ func _update_status_effect_timers(delta : float) -> void:
 	for i in range(active_status_effects.size()-1, -1, -1):
 		var se = active_status_effects[i]
 		if se.duration != -1:
-			se.duration -= delta
-			if se.duration <= 0:
+			se.cur_duration += delta
+			if se.cur_duration >= se.duration:
 				remove_status_effect(se)
 
 ## Removes a given [StatusEffect] at the given index in [member active_status_effects] 
@@ -798,11 +804,11 @@ func update_status_bar(se: StatusEffect, index := -1, is_removing_status := fals
 		if is_removing_status:
 			se_bar_ref.remove_status(se)
 			return
-		#active_status_effects.append(se.duplicate())
+		#add_to_active_status_effects(se)
 		se_bar_ref.update_status(se)
 		return
 	
-	#active_status_effects.append(se.duplicate())
+	#add_to_active_status_effects(se)
 	se_bar_ref.generate_status(se)
 
 ## Clears the status bar of all [StatusEffect] icons.
@@ -826,7 +832,7 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 	if  se_index == -1:
 		if not is_removing:
 			c.call(se.value)
-			active_status_effects.append(se.duplicate())
+			add_to_active_status_effects(se)
 			update_status_bar(se)
 			return true
 		else:
@@ -837,7 +843,7 @@ func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = 
 			# Remove and re-add the status effect
 			c.call(-active_status_effects[se_index].value)
 			c.call(se.value)
-			active_status_effects.append(se.duplicate())
+			add_to_active_status_effects(se)
 			active_status_effects.remove_at(se_index)
 		else:
 			c.call(-active_status_effects[se_index].value)
@@ -868,7 +874,7 @@ func _grow_character(se: StatusEffect, is_removing_status := false) -> bool:
 	if se_index == -1: ## If status effect not already applied:
 		attributes.add_size_mult(se.value)
 		set_character_scale(attributes.get_attribute("size"))
-		active_status_effects.append(se.duplicate())
+		add_to_active_status_effects(se)
 		update_status_bar(se)
 		return true
 	
@@ -886,7 +892,7 @@ func _grow_character(se: StatusEffect, is_removing_status := false) -> bool:
 	attributes.add_size_mult(se.value)
 	set_character_scale(attributes.get_attribute("size"))
 	active_status_effects.remove_at(se_index)
-	active_status_effects.append(se.duplicate())
+	add_to_active_status_effects(se)
 	update_status_bar(se, se_index)
 	return true
 
@@ -925,14 +931,14 @@ func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
 	
 	if se.value == 1.0: ## add = true
 		if se_index == -1: ## If not already set:
-			active_status_effects.append(se.duplicate())
+			add_to_active_status_effects(se)
 			if is_camera_focused:
 				attribute_display_ref.visible = true ## Value should be either 1 = true or 0 = false.
 				update_status_bar(se)
 			return true
 		if se.duration > active_status_effects[se_index].duration: ## Keep the longer duration
 			active_status_effects.remove_at(se_index)
-			active_status_effects.append(se.duplicate())
+			add_to_active_status_effects(se)
 			if is_camera_focused:
 				update_status_bar(se, se_index)
 		return true
@@ -969,7 +975,7 @@ func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
 			_change_possession_help_label()
 			$LabelGroup/PossessionHelpLabel.visible = true
 			update_status_bar(se)
-		active_status_effects.append(se.duplicate())
+		add_to_active_status_effects(se)
 	elif is_removing: # Disable
 		$PossessionArea.disable_collision()
 		if is_camera_focused:

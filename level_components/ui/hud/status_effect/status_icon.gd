@@ -17,7 +17,7 @@ func reset_effect(se: StatusEffect):
 		if se.duration != -1:
 			has_duration = true
 			$TextureRect/ProgressBar.max_value = se.duration
-			$TextureRect/ProgressBar.value = 0
+			$TextureRect/ProgressBar.value = se.cur_duration
 			$TextureRect/ProgressBar.visible = true
 		else:
 			has_duration = false

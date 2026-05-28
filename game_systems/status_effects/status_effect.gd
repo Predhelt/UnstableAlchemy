@@ -1,19 +1,21 @@
 class_name StatusEffect extends Resource
 
-## Unique ID of the status effect
+## Unique ID of the status effect.
 @export var id : int
-## Name of the status effect to be given to the player
+## Name of the status effect to be given to the player.
 @export var name : String
-## Description to be given to the player
+## Description to be given to the player.
 @export var description := ""
-## Icon to be shown when the status effect is active
+## Icon to be shown when the status effect is active.
 @export var icon := Global.blank_texture
-## Identifier for the effect
+## Identifier for the effect.
 @export_enum("move speed bonus", "strength bonus", "grow", "cleanse", "normalize",
 	"self-attunement", "equip tool", "possess") var effect : String
-## Amount/Mult to change the player's stat by. use negative value for stat reduction
+## Amount/Mult to change the player's stat by. use negative value for stat reduction.
 @export var value := 0.0
-## Duration of status effect in seconds (-1 means permanent)
+## Duration of status effect in seconds (-1 means permanent).
 @export var duration := 10.0
+## How long the status effect has been active for.
+@export var cur_duration : float = 0.0
 ## The Stack/Count of the number of times the status effect is / can be applied.
 @export var count := -1
