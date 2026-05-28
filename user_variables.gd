@@ -32,8 +32,8 @@ var items_trade_received: Dictionary[String, int]
 var items_used: Dictionary[int, int]
 ## List of status effect IDs that have been applied to the user (or learned about)
 var learned_status_effects: Array[int]
-## List of names of pages that have been opened by the user.
-var pages_opened: Array[String]
+## List of names of log book buttons that have been pressed by the user.
+var log_book_buttons_pressed: Array[String]
 ## List of cutscenes by ID that have been watched by the user.
 var cutscenes_watched: Array[int]
 ## The index of the level that was cleared the furthest into the game.
@@ -56,7 +56,7 @@ func save(_dir: String) -> Dictionary:
 		"items_trade_received" : var_to_str(items_trade_received),
 		"items_used" : var_to_str(items_used),
 		"learned_status_effects" : var_to_str(learned_status_effects),
-		"pages_opened" : var_to_str(pages_opened),
+		"log_book_buttons_pressed" : var_to_str(log_book_buttons_pressed),
 		"cutscenes_watched" : var_to_str(cutscenes_watched),
 		"level_highest_cleared_index" : level_highest_cleared_index,
 		"has_looped" : has_looped,
@@ -75,7 +75,7 @@ func reset_variables():
 	objects_combined.clear()
 	items_used.clear()
 	learned_status_effects.clear()
-	pages_opened.clear()
+	log_book_buttons_pressed.clear()
 	cutscenes_watched.clear()
 	level_highest_cleared_index = 0
 	has_looped = false

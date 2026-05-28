@@ -358,12 +358,12 @@ func get_current_page(tab_index : int =  -1) -> MarginContainer:
 	#print(inner_tab.get_child(inner_tab.current_tab).name)
 	return inner_tab.get_child(inner_tab.current_tab)
 
-## Adds the current page name to the list of opened pages, if not already.
-func add_opened_page_name(page_name: String):
-	for p_name in UserVariables.pages_opened:
-		if p_name == page_name:
+## Adds the current button name to the list of buttons that have been pressed, if not already.
+func add_pressed_button_name(button_name: String):
+	for b_name in UserVariables.log_book_buttons_pressed:
+		if b_name == button_name:
 			return
-	UserVariables.pages_opened.append(page_name)
+	UserVariables.log_book_buttons_pressed.append(button_name)
 
 ## Uses the given interaction object to display the amounts of each item contained in the object.
 func _interaction_object_contained_items_as_str(obj : InteractableObject) -> String:
@@ -452,7 +452,7 @@ func open_page_help_general():
 		+ "\".")
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name("PageHelpGeneral")
+	add_pressed_button_name("ButtonHelpGeneral")
 	%PageHelpGeneral.visible = true
 
 ## 
@@ -472,7 +472,7 @@ func open_page_help_interactions():
 		InputMap.action_get_events("change_tool")[0].as_text().replace(' - Physical',''))
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name("PageHelpInteractions")
+	add_pressed_button_name("ButtonHelpInteractions")
 	%PageHelpInteractions.visible = true
 
 ##
@@ -483,7 +483,7 @@ func open_page_help_tools():
 		+"\" to use the currently held tool on a nearby object.")
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name("PageHelpTools")
+	add_pressed_button_name("ButtonHelpTools")
 	%PageHelpTools.visible = true
 
 ## Help pages are already set up,
@@ -491,11 +491,11 @@ func open_help_page(page : MarginContainer) -> void:
 	if not page.visible:
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(page.name.replace("Page", "Button"))
 	page.visible = true
 
 ## Uses template page node to set up the [member current_raw_item] information.
-func open_raw_item_page() -> void:#TODO
+func open_raw_item_page(button_name : String) -> void:#TODO
 	if not current_raw_item:
 		print("ERROR: No scene currently referenced for plant page.")
 		return
@@ -506,7 +506,7 @@ func open_raw_item_page() -> void:#TODO
 	if not page.visible:
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(button_name)
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_raw_item.description
 	# List where you can get the item from
@@ -519,6 +519,10 @@ func open_raw_item_page() -> void:#TODO
 	page.get_child(0).find_child("LabelUseText").text = _get_item_use_effects_as_str(current_raw_item)
 	
 	page.visible = true
+
+
+func open_raw_item_page_index(idx: int):
+	open_raw_item_page(%TabRawItems.find_child("PageButtonList").get_child(idx).name)
 
 ##
 func _get_raw_item_sources_as_str() -> String:
@@ -578,7 +582,7 @@ func _get_item_use_effects_as_str(item : Item) -> String:
 	return effects_str
 
 ## Uses template page node to set up the [member current_crafted_item] item information.
-func open_crafted_item_page() -> void:
+func open_crafted_item_page(button_name : String) -> void:
 	if not current_crafted_item:
 		print("ERROR: No scene currently referenced for plant page.")
 		return
@@ -589,7 +593,7 @@ func open_crafted_item_page() -> void:
 	if not page.visible:
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(button_name)
 	# Set Descripion
 	page.get_child(0).find_child("LabelDescription").text = current_crafted_item.description
 	# List where you can get the item from
@@ -601,11 +605,16 @@ func open_crafted_item_page() -> void:
 	
 	page.visible = true
 
+
+func open_crafted_item_page_index(idx: int):
+	open_crafted_item_page(%TabCraftedItems.find_child("PageButtonList").get_child(idx).name)
+
+
 func _get_crafted_item_sources_as_str() -> String:
 	return "Check Recipe Book for how to craft."
 
 ## Uses template page node to set up the [member current_potion] item information.
-func open_potion_page() -> void:
+func open_potion_page(button_name : String) -> void:
 	if not current_potion:
 		print("ERROR: No scene currently referenced for plant page.")
 		return
@@ -616,7 +625,7 @@ func open_potion_page() -> void:
 	if not page.visible:
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(button_name)
 	page.get_child(0).find_child("LabelDescription").text = current_potion.description
 	# List where you can get the item from
 	page.get_child(0).find_child("LabelSources").text = _get_crafted_item_sources_as_str()
@@ -626,6 +635,11 @@ func open_potion_page() -> void:
 	page.get_child(0).find_child("LabelMaxUses").text = "Max Uses: " + str(current_potion.max_uses)
 	
 	page.visible = true
+
+
+func open_potion_page_index(idx: int):
+	open_potion_page(%TabPotions.find_child("PageButtonList").get_child(idx).name)
+
 
 ## Opens the provided page that exists under the plant tab.
 ## Assumes only one Combine label.
@@ -639,7 +653,7 @@ func open_plant_page(page : MarginContainer) -> void:
 	if not page.visible:
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(page.name.replace("Page", "Button"))
 	page.get_child(0).find_child("LabelDescription").text = current_plant_scene.description
 	page.get_child(0).find_child("LabelContainedItems").text = _interaction_object_contained_items_as_str(current_plant_scene)
 	page.get_child(0).find_child("LabelInteractionCounts").text = _interaction_object_counts_as_str(current_plant_scene.display_name)
@@ -659,7 +673,7 @@ func open_object_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(page.name.replace("Page", "Button"))
 	page.visible = true
 
 ##
@@ -668,7 +682,7 @@ func open_book_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(page.name.replace("Page", "Button"))
 	page.visible = true
 
 ##
@@ -677,7 +691,7 @@ func open_place_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(page.name.replace("Page", "Button"))
 	page.visible = true
 
 ##
@@ -686,11 +700,11 @@ func open_person_page(page : MarginContainer) -> void:#TODO
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(page.name.replace("Page", "Button"))
 	page.visible = true
 
 ## Uses template page node to set up the [member current_satus_effect] item information.
-func open_status_page() -> void:
+func open_status_page(button_name : String) -> void:
 	if not current_status_effect:
 		print("ERROR: No scene currently referenced for status effect page.")
 		return
@@ -702,7 +716,7 @@ func open_status_page() -> void:
 		#return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(button_name)
 	page.get_child(0).find_child("LabelDescription").text = current_status_effect.description
 	# List where you can get the item from
 	var str_value : String = "Potency: "
@@ -723,8 +737,13 @@ func open_status_page() -> void:
 	
 	page.visible = true
 
+
+func open_status_page_index(idx: int):
+	open_status_page(%TabStatuses.find_child("PageButtonList").get_child(idx).name)
+
+
 ##
-func open_cutscene_page() -> void:
+func open_cutscene_page(button_name : String) -> void:
 	if not current_cutscene:
 		print("ERROR: No scene currently referenced for cutscene page.")
 		return
@@ -734,9 +753,14 @@ func open_cutscene_page() -> void:
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name(page.name)
+	add_pressed_button_name(button_name)
 	page.get_child(0).texture = current_cutscene
 	page.visible = true
+
+
+func open_cutscene_page_index(idx: int):
+	open_cutscene_page(%TabCutscenes.find_child("PageButtonList").get_child(idx).name)
+
 
 ## Loads the currently open page in the given tab.
 func open_page_in_tab(tab: int) -> void:
@@ -744,15 +768,16 @@ func open_page_in_tab(tab: int) -> void:
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
 	match tab:
 		0: open_help_page(get_current_page(tab))
-		1: open_raw_item_page()
-		2: open_crafted_item_page()
-		3: open_potion_page()
+		1: open_raw_item_page_index(0)
+		2: open_crafted_item_page_index(0)
+		3: open_potion_page_index(0)
 		4: open_plant_page(get_current_page(tab))
 		5: open_object_page(get_current_page(tab))
 		6: open_book_page(get_current_page(tab))
 		7: open_place_page(get_current_page(tab))
 		8: open_person_page(get_current_page(tab))
-		9: open_status_page()
+		9: open_status_page_index(0)
+		10: open_cutscene_page_index(0)
 
 #####################
 ### Other Signals ###
@@ -789,48 +814,48 @@ func _on_button_help_mortar_pestle_pressed() -> void:
 	#%WindowName.text = "Help: Mortar & Pestle"
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name("PageHelpMP")
+	add_pressed_button_name("ButtonHelpMP")
 	%PageHelpMP.visible = true
 
 func _on_button_help_cauldron_pressed() -> void:
 	#%WindowName.text = "Help: Cauldron"
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name("PageHelpCauldron")
+	add_pressed_button_name("ButtonHelpCauldron")
 	%PageHelpCauldron.visible = true
 
 func _on_button_help_merger_pressed() -> void:
 	#%WindowName.text = "Help: Merger"
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "change_page"
-	add_opened_page_name("PageHelpMerger")
+	add_pressed_button_name("ButtonHelpMerger")
 	%PageHelpMerger.visible = true
 
 ### Raw Item Tab ###
 ####################
 func _on_button_item_blue_berries_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/blue_berries.tres")
-	open_raw_item_page()
+	open_raw_item_page("ButtonItemBlueBerries")
 
 func _on_button_item_flower_stem_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/flower_stem.tres")
-	open_raw_item_page()
+	open_raw_item_page("ButtonItemFlowerStem")
 
 func _on_button_item_green_herb_leaf_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/green_herb_leaf.tres")
-	open_raw_item_page()
+	open_raw_item_page("ButtonItemGreenHerbLeaf")
 
 func _on_button_item_red_berries_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/red_berries.tres")
-	open_raw_item_page()
+	open_raw_item_page("ButtonItemRedBerries")
 
 func _on_button_item_yellow_petals_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/yellow_petals.tres")
-	open_raw_item_page()
+	open_raw_item_page("ButtonItemYellowPetals")
 
 func _on_button_item_crystal_pressed() -> void:
 	current_raw_item = load("res://game_systems/items/gatherable/mysterious_crystal.tres")
-	open_raw_item_page()
+	open_raw_item_page("ButtonItemCrystal")
 
 ### Crafted Item Tab ###
 ########################
@@ -842,11 +867,11 @@ func _on_button_item_blue_juice_pressed() -> void:
 
 func _on_button_item_blue_seed_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/blue_berry_seed.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemBlueSeed")
 
 func _on_button_item_gray_juice_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/gray_juice.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemGrayJuice")
 #FIXME: gray seed item does not exist, will throw error.
 func _on_button_item_gray_seed_pressed() -> void:
 	#current_crafted_item = load("res://game_systems/items/mp_products/gray_berry_seed.tres")
@@ -855,81 +880,81 @@ func _on_button_item_gray_seed_pressed() -> void:
 
 func _on_button_item_green_flakes_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/green_flakes.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemGreenFlakes")
 
 func _on_button_item_green_paste_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/green_paste.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemGreenPaste")
 
 func _on_button_item_orange_paste_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/orange_paste.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemOrangePaste")
 
 func _on_button_item_red_juice_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/red_juice.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemRedJuice")
 
 func _on_button_item_red_seed_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/red_berry_seed.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemRedSeed")
 
 func _on_button_item_saturated_stem_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/saturated_stem.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemSaturatedStem")
 
 func _on_button_item_stem_strands_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/stem_strands.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemStemStrands")
 
 func _on_button_item_yellow_dust_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/mp_products/yellow_dust.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemYellowDust")
 
 func _on_button_item_yellow_paste_pressed() -> void:
 	current_crafted_item = load("res://game_systems/items/merged_ingredients/yellow_paste.tres")
-	open_crafted_item_page()
+	open_crafted_item_page("ButtonItemYellowPaste")
 
 ### Potion Tab ###
 ##################
 func _on_button_potion_cleanse_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/cleanse_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionCleanse")
 
 func _on_button_potion_grow_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/grow_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionGrow")
 
 func _on_button_potion_normalize_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/normalize_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionNormalize")
 
 func _on_button_potion_shrink_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/shrink_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionShrink")
 
 func _on_button_potion_slow_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/slow_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionSlow")
 
 func _on_button_potion_speed_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/speed_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionSpeed")
 
 func _on_button_potion_strength_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/strength_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionStrength")
 
 func _on_button_potion_possession_weak_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/possession_potion_weak.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionPossessionWeak")
 
 func _on_button_potion_possession_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/possession_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionPossession")
 
 func _on_button_potion_self_attunement_pressed() -> void:
 	current_potion = load("res://game_systems/items/potions/self_attunement_potion.tres")
-	open_potion_page()
+	open_potion_page("ButtonPotionSelfAttunement")
 
 ### Plant Tab ###
 #################
@@ -1018,102 +1043,102 @@ func _on_button_people_person_1_pressed() -> void: #Placeholder
 ##########################
 func _on_button_status_cleanse_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/cleanse.tres")
-	open_status_page()
+	open_status_page("ButtonStatusCleanse")
 
 func _on_button_status_energized_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/energized.tres")
-	open_status_page()
+	open_status_page("ButtonStatusEnergized")
 
 func _on_button_status_energized_burst_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/energized_burst.tres")
-	open_status_page()
+	open_status_page("ButtonStatusEnergizedBurst")
 
 func _on_button_status_grow_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/grow.tres")
-	open_status_page()
+	open_status_page("ButtonStatusGrow")
 
 func _on_button_status_normalize_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/normalize.tres")
-	open_status_page()
+	open_status_page("ButtonStatusNormalize")
 
 func _on_button_status_self_attunement_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/self_attunement.tres")
-	open_status_page()
+	open_status_page("ButtonStatusSelfAttunement")
 
 func _on_button_status_shrink_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/shrink.tres")
-	open_status_page()
+	open_status_page("ButtonStatusShrink")
 
 func _on_button_status_slow_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/slow.tres")
-	open_status_page()
+	open_status_page("ButtonStatusSlow")
 
 func _on_button_status_strengthen_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/strengthen.tres")
-	open_status_page()
+	open_status_page("ButtonStatusStrengthen")
 
 func _on_button_status_possess_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/possess.tres")
-	open_status_page()
+	open_status_page("ButtonStatusPossess")
 
 func _on_button_status_possess_weak_pressed() -> void:
 	current_status_effect = load("res://game_systems/status_effects/possess_weak.tres")
-	open_status_page()
+	open_status_page("ButtonStatusPossessWeak")
 
 ### Cutscenes Tab ###
 #####################
 func _on_button_cutscene_map_1_pressed() -> void: # Cutscene ID 0
 	current_cutscene = load("res://art/pack/cutscenes/paper1.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneMap1")
 
 func _on_button_cutscene_approaching_ruins_pressed() -> void: # Cutscene 1
 	current_cutscene = load("res://art/pack/cutscenes/approaching_ruins.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneApproachingRuins")
 
 func _on_button_cutscene_map_2_pressed() -> void: # Cutscene 2
 	current_cutscene = load("res://art/pack/cutscenes/paper2.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneMap2")
 
 func _on_button_cutscene_enter_ruins_pressed() -> void: # Cutscene 3
 	current_cutscene = load("res://art/pack/cutscenes/enter_ruins.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneEnterRuins")
 
 func _on_button_cutscene_map_3_pressed() -> void: # Cutscene 4
 	current_cutscene = load("res://art/pack/cutscenes/paper3.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneMap3")
 
 func _on_button_cutscene_cave_entrance_1_pressed() -> void: # Cutscene 5
 	current_cutscene = load("res://art/pack/cutscenes/cave_entrance0.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneCaveEntrance1")
 
 func _on_button_cutscene_cave_entrance_2_pressed() -> void: # Cutscene 6
 	current_cutscene = load("res://art/pack/cutscenes/cave_entrance1.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneCaveEntrance2")
 
 func _on_button_cutscene_discovery_pressed() -> void: # Cutscene 7
 	current_cutscene = load("res://art/pack/cutscenes/discovery.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneDiscovery")
 
 func _on_button_cutscene_go_home_pressed() -> void: # Cutscene 8
 	current_cutscene = load("res://art/pack/cutscenes/go_home.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneGoHome")
 
 func _on_button_cutscene_failed_crystal_craft_pressed() -> void: # Cutscene 9
 	current_cutscene = load("res://art/pack/cutscenes/failed_crystal_craft.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneFailedCrystalCraft")
 
 func _on_button_cutscene_consumed_crystal_pressed() -> void: # Cutscene 10
 	current_cutscene = load("res://art/pack/cutscenes/consumed_crystal.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneConsumedCrystal")
 
 func _on_button_cutscene_rewind_1_pressed() -> void: # Cutscene 11
 	current_cutscene = load("res://art/pack/cutscenes/rewind1.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneRewind1")
 
 func _on_button_cutscene_rewind_2_pressed() -> void: # Cutscene 12
 	current_cutscene = load("res://art/pack/cutscenes/rewind2.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneRewind2")
 
 func _on_button_cutscene_crystal_stabilized_pressed() -> void: # Cutscene 13
 	current_cutscene = load("res://art/pack/cutscenes/successful_crystal_craft.png")
-	open_cutscene_page()
+	open_cutscene_page("ButtonCutsceneCrystalStabilized")
