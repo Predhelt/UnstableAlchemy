@@ -1097,9 +1097,11 @@ func open_shop() -> bool:
 	return false
 
 ## Does additional logic if the shop was opened from the dialogue menu
-func open_shop_from_dialogue():
-	open_shop()
+func open_shop_from_dialogue() -> bool:
+	if not open_shop():
+		return false
 	shop_ui_ref.show_back_button(dialogue_ui_ref)
+	return true
 
 ## Adds transaction to character's shop.
 ## [param items_buying] is an array of items,
