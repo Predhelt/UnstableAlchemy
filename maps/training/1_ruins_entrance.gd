@@ -37,7 +37,7 @@ func _ready() -> void:
 	if Global.is_recipe_book_disabled:
 		$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", false)
 	
-	for i in range(1, 11):
+	for i in range(1, 10):
 		$UILayer.set_log_book_tab_hidden(i)
 	if used_recipe_book:
 		$UILayer.set_log_book_tab_hidden(6, false)
@@ -87,6 +87,7 @@ func _on_ui_layer_item_used(item: Item) -> void:
 	if item.id == 1000:
 		if not UserVariables.has_looped:
 			$UILayer.set_log_book_tab_hidden(6, false)
+			$UILayer.set_log_book_tab_hidden(2, false)
 			%LabelInventory.visible = false
 			$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
 			Global.is_log_book_disabled = false
