@@ -1,6 +1,8 @@
 @tool
 extends Control
 
+signal keybind_changed
+
 const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
@@ -32,9 +34,11 @@ func _add_action_event() -> void:
 			%InputActionsList.add_action_event(last_input_readable_name, last_input_event)
 		1:
 			%InputActionsTree.add_action_event(last_input_readable_name, last_input_event)
+	keybind_changed.emit()
 
 func _remove_action_event(item : TreeItem) -> void:
 	%InputActionsTree.remove_action_event(item)
+	keybind_changed.emit()
 
 func _on_reset_button_pressed() -> void:
 	$ResetConfirmation.show()
@@ -90,3 +94,4 @@ func _on_reset_confirmation_confirmed() -> void:
 			%InputActionsList.reset()
 		1:
 			%InputActionsTree.reset()
+	keybind_changed.emit()

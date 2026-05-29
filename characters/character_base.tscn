@@ -113,7 +113,7 @@ radius = 250.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_5slg2"]
 radius = 14.0
 
-[node name="Character" type="CharacterBody2D" unique_id=1948548714 groups=["Persist"]]
+[node name="Character" type="CharacterBody2D" unique_id=1948548714 groups=["KeybindMessageHandler", "Persist"]]
 collision_mask = 57
 motion_mode = 1
 script = ExtResource("1_mx2sf")

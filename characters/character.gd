@@ -366,6 +366,30 @@ func _input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	update_animation_parameters()
 
+
+func refresh_input_messages() -> void:
+	if all_interaction_areas.size() > 0 and not possessing_character:
+		var cur_interaction : Interactable = all_interaction_areas[0]
+		if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
+			%InteractLabel.text = "[%s] %s" % [
+				InputMap.action_get_events("interact")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
+		else:
+			%InteractLabel.text = "[%s] %s" % [
+				InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
+	
+	if can_possess_others_count != 0:
+		_change_possession_help_label()
+	
+	if possessing_character:
+		$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+			InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+	
+	if is_player_controlled:
+		$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+			InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+
 ## Helper function that takes a direction vector and calculates character motion.
 ## Checks [member possessing_character] to determine if move_character needs to get called in the possessed body.
 func move_character(vector : Vector2) -> void:
@@ -497,7 +521,6 @@ func update_interaction_text():
 	if all_interaction_areas:
 		#TODO: Smarter way to choose an interaction near the player.
 		var cur_interaction : Interactable = all_interaction_areas[0]
-		#print(cur_interaction.interact_type)
 		if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
 			%InteractLabel.text = "[%s] %s" % [
 				InputMap.action_get_events("interact")[0].as_text().replace(' - Physical',''),

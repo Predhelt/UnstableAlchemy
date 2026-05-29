@@ -25,11 +25,13 @@ func _ready() -> void:
 		set_ui()
 	_close_tool_selection()
 
-func set_ui() -> void:
-	#$CurrentTool/HotkeyLabel.text = (
-		#InputMap.action_get_events("tool_wheel")[0].as_text().replace(' - Physical',''))
+
+func refresh_input_messages() -> void:
 	$CurrentTool/ChangeLabel.text = ("%s->" %
 		InputMap.action_get_events("change_tool")[0].as_text().replace(' - Physical',''))
+
+func set_ui() -> void:
+	refresh_input_messages()
 	if not has_blade and not has_dropper:
 		#$CurrentTool/HotkeyLabel.visible = false
 		$CurrentTool/ChangeLabel.visible = false

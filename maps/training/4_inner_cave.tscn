@@ -50,12 +50,12 @@ script = ExtResource("6_60y0b")
 base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_s78oa"]
+[sub_resource type="Resource" id="Resource_dxvh4"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_x8qjh"]
+[sub_resource type="Resource" id="Resource_6vuwb"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -73,7 +73,7 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_d8uxn"]
+[sub_resource type="Resource" id="Resource_s78oa"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("13_j4d6t")])
@@ -81,7 +81,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([-1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_olp5p"]
+[sub_resource type="Resource" id="Resource_x8qjh"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("10_7y012")])
@@ -107,12 +107,12 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([-1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_dxvh4"]
+[sub_resource type="Resource" id="Resource_d8uxn"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_6vuwb"]
+[sub_resource type="Resource" id="Resource_olp5p"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -178,10 +178,10 @@ stream = null
 position = Vector2(330, 347)
 portrait = ExtResource("9_42850")
 attributes = SubResource("Resource_mfhge")
-inventory = SubResource("Resource_s78oa")
+inventory = SubResource("Resource_dxvh4")
 has_blade = true
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_x8qjh")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_6vuwb")])
 
 [node name="Cam" parent="." index="4" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(637.00006, 555)
@@ -189,7 +189,7 @@ portrait = ExtResource("11_h4eu7")
 attributes = SubResource("Resource_nb123")
 inventory = SubResource("Resource_3fmyq")
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_d8uxn"), SubResource("Resource_olp5p")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_s78oa"), SubResource("Resource_x8qjh")])
 
 [node name="Lex" parent="." index="5" unique_id=75307123 instance=ExtResource("7_ix5gr")]
 position = Vector2(650, 219)
@@ -200,8 +200,8 @@ transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_vd4af")])
 
 [node name="Player" parent="." index="6" unique_id=1026458739]
 position = Vector2(515, 387)
-attributes = SubResource("Resource_dxvh4")
-inventory = SubResource("Resource_6vuwb")
+attributes = SubResource("Resource_d8uxn")
+inventory = SubResource("Resource_olp5p")
 
 [node name="PlayerCamera" parent="." index="7" unique_id=294471714]
 position = Vector2(604, 419)

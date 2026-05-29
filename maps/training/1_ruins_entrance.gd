@@ -56,15 +56,7 @@ func _ready() -> void:
 	$UILayer.set_log_book_button_name_visibility("ButtonObjectBoulder", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonObjectWallSmallHole", false)
 	
-	$TutorialMessages/LabelMovement.text = (
-		"Move with 
-		%s %s %s %s
-		keys" %
-		[InputMap.action_get_events("move_up")[0].as_text().replace(' - Physical',''),
-		InputMap.action_get_events("move_left")[0].as_text().replace(' - Physical',''),
-		InputMap.action_get_events("move_down")[0].as_text().replace(' - Physical',''),
-		InputMap.action_get_events("move_right")[0].as_text().replace(' - Physical','')]
-	)
+	refresh_input_messages()
 
 
 func save(_dir: String) -> Dictionary:
@@ -78,16 +70,33 @@ func save(_dir: String) -> Dictionary:
 	}
 	return save_dict
 
+
+func refresh_input_messages() -> void:
+	$TutorialMessages/LabelMovement.text = (
+		"Move with 
+		%s %s %s %s
+		keys" %
+		[InputMap.action_get_events("move_up")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("move_left")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("move_down")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("move_right")[0].as_text().replace(' - Physical','')]
+	)
+	%LabelInventory.text = (
+		"Open your bag with %s.
+		
+		Right-click items in your bag to use them." %
+		InputMap.action_get_events("inventory")[0].as_text().replace(' - Physical','')
+	)
+	%LabelRecipes.text = (
+		"Open the recipe book (%s)." %
+			InputMap.action_get_events("recipe_book")[0].as_text().replace(' - Physical','')
+	)
+
+
 func _on_recipe_item_object_grabbed(_body: Character) -> void:
 	if not UserVariables.has_looped:
 		$UILayer.set_menu_bar_button_name_visibility("ButtonInventory", true)
 		Global.is_inventory_disabled = false
-		%LabelInventory.text = (
-			"Open your bag with %s.
-			
-			Right-click items in your bag to use them." %
-			InputMap.action_get_events("inventory")[0].as_text().replace(' - Physical','')
-		)
 		%LabelInventory.visible = true
 	grabbed_recipe_book = true
 
@@ -109,10 +118,6 @@ func _on_ui_layer_log_book_menu_window_closed() -> void:
 		if not UserVariables.has_looped:
 			$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", true)
 			Global.is_recipe_book_disabled = false
-			%LabelRecipes.text = (
-				"Open the recipe book (%s)." %
-				InputMap.action_get_events("recipe_book")[0].as_text().replace(' - Physical','')
-			)
 			%LabelRecipes.visible = true
 		closed_log_book = true
 

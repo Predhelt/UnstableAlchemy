@@ -1,5 +1,7 @@
 extends Window
 
+signal keybind_changed
+
 func _ready() -> void:
 	# Tabs are not hidden or disabled when exported if only set in editor, so this is to confirm.
 	$TabContainer.set_tab_hidden(1, true)
@@ -17,3 +19,11 @@ func _on_close_requested() -> void:
 
 func _on_about_to_popup() -> void:
 	Global.mode = &"settings"
+
+
+func update_keybind_messages():
+	get_tree().call_group("KeybindMessageHandler", "refresh_input_messages")
+
+
+func _on_controls_keybind_changed() -> void:
+	update_keybind_messages()

@@ -61,7 +61,7 @@ on_interact_items = Array[ExtResource("4_0k1oq")]([ExtResource("10_6r8pq")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
-[node name="World" unique_id=1661168125 instance=ExtResource("1_1v6aw")]
+[node name="World" unique_id=1661168125 groups=["KeybindMessageHandler"] instance=ExtResource("1_1v6aw")]
 script = ExtResource("2_kfvxj")
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_yd7uk")]

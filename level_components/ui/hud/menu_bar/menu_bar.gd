@@ -4,9 +4,13 @@ extends HBoxContainer
 	&"options" : $"../../MenuLayer/CenterWindows/OptionsMenu",
 }
 
-#TODO: Update the keyboard shortcut when the keybinds change or input device changes
+#TODO: Update the keyboard shortcut when the input device changes
 
 func _ready() -> void:
+	refresh_input_messages()
+
+
+func refresh_input_messages() -> void:
 	var cur_action : String = InputMap.action_get_events("inventory")[0].as_text().replace(' - Physical','')
 	$ButtonInventory.set_btn_text(cur_action)
 	$ButtonInventory.tooltip_text = ("Inventory (" + cur_action + ")")

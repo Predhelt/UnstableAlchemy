@@ -25,7 +25,7 @@ script = ExtResource("1_d4vx4")
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=116782846]
 
-[node name="MenuBar" parent="HUDLayer" unique_id=518947890 instance=ExtResource("12_qrsce")]
+[node name="MenuBar" parent="HUDLayer" unique_id=518947890 groups=["KeybindMessageHandler"] instance=ExtResource("12_qrsce")]
 unique_name_in_owner = true
 offset_bottom = 8.0
 
@@ -36,7 +36,7 @@ anchor_bottom = 0.9
 [node name="Hotbar" parent="HUDLayer" unique_id=635247042 instance=ExtResource("14_a2ryk")]
 visible = false
 
-[node name="ToolWheel" parent="HUDLayer" unique_id=1159411071 instance=ExtResource("15_vy3bo")]
+[node name="ToolWheel" parent="HUDLayer" unique_id=1159411071 groups=["KeybindMessageHandler"] instance=ExtResource("15_vy3bo")]
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 154.0
