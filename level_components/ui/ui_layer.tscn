@@ -62,37 +62,6 @@ text = "Press \"X\" to
 end possession"
 horizontal_alignment = 1
 
-[node name="LabelLevelName" type="Label" parent="HUDLayer" unique_id=2145339529]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -30.0
-offset_bottom = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("3_d4vx4")
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 26
-text = "level name"
-script = ExtResource("7_ak53w")
-
-[node name="LabelResetTip" type="Label" parent="HUDLayer" unique_id=1224796785]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -23.0
-offset_right = 40.0
-offset_bottom = -24.0
-grow_vertical = 0
-theme = ExtResource("3_d4vx4")
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 26
-text = "Press \"Y\" to reset"
-script = ExtResource("8_j83el")
-
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=630284612]
 layer = 3
 
@@ -108,6 +77,42 @@ visible = false
 unique_name_in_owner = true
 visible = false
 theme = ExtResource("3_d4vx4")
+
+[node name="LabelLevelName" type="Label" parent="MenuLayer/CenterWindows/OptionsMenu" unique_id=2145339529]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 282.0
+offset_top = 69.599976
+offset_right = 418.0
+offset_bottom = 105.599976
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_d4vx4")
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+text = "level name"
+script = ExtResource("7_ak53w")
+
+[node name="LabelResetTip" type="Label" parent="MenuLayer/CenterWindows/OptionsMenu" unique_id=1224796785]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -418.0
+offset_top = 69.599976
+offset_right = -201.0
+offset_bottom = 105.599976
+grow_vertical = 0
+theme = ExtResource("3_d4vx4")
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+text = "Press \"Y\" to reset"
+script = ExtResource("8_j83el")
 
 [node name="LogBookMenu" parent="MenuLayer/CenterWindows" unique_id=357727730 instance=ExtResource("7_wgl5k")]
 unique_name_in_owner = true

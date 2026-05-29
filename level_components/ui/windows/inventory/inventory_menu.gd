@@ -118,6 +118,16 @@ func update_window():
 		if items[i]:
 			%ItemList.add_item(generate_item_text(items[i]), items[i].texture)
 
+
+func set_mortar_pestle_visibility(visibility: bool) -> void:
+	%MortarPestle.visible = visibility
+
+func set_cauldron_visibility(visibility: bool) -> void:
+	%Cauldron.visible = visibility
+
+func set_merger_visibility(visibility: bool) -> void:
+	%Merger.visible = visibility
+
 ## Goes through each slot in the alchemy tools in the inventory and
 ## returns the items back to the inventory.
 func return_alchemy_items() -> void:

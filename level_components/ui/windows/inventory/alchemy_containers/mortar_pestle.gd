@@ -27,7 +27,7 @@ func add_item(item: Item) -> bool:
 		return false
 	if num_items >= 1:
 		#print(tool_name + " already full!")
-		$"../MenuLayer/LeftWindows/Inventory/".add_inventory_item(item)
+		$"../../../../../".add_inventory_item(item)
 		return false
 	
 	$AudioStreamPlayer.play()

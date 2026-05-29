@@ -4,6 +4,8 @@ extends LevelManager
 
 signal call_open_inventory
 
+@onready var inventory_menu_ref = $UILayer/MenuLayer/LeftWindows/InventoryMenu
+
 # Tracks different stages of tutorial messaging
 var watched_cutscene: bool = false
 var grabbed_recipe_book: bool = false
@@ -38,15 +40,21 @@ func _ready() -> void:
 	if Global.is_recipe_book_disabled:
 		$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", false)
 	
+	inventory_menu_ref.set_mortar_pestle_visibility(false)
+	inventory_menu_ref.set_cauldron_visibility(false)
+	inventory_menu_ref.set_merger_visibility(false)
+	
 	for i in range(1, 10):
 		$UILayer.set_log_book_tab_hidden(i)
 	if used_recipe_book:
 		$UILayer.set_log_book_tab_hidden(6, false)
-	$UILayer.set_log_book_button_name_visibility("ButtonHelpInteractions", false)
+	#$UILayer.set_log_book_button_name_visibility("ButtonHelpInteractions", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpTools", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpMP", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpCauldron", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpMerger", false)
+	$UILayer.set_log_book_button_name_visibility("ButtonObjectBoulder", false)
+	$UILayer.set_log_book_button_name_visibility("ButtonObjectWallSmallHole", false)
 	
 	$TutorialMessages/LabelMovement.text = (
 		"Move with 
@@ -136,9 +144,10 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 			)
 		elif Global.focused_node.inventory.has_item_id(0) and not crafted_flakes:
 			call_open_inventory.emit()
+			inventory_menu_ref.set_mortar_pestle_visibility(true)
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
-				"Drag items from the inventory onto the tools in the middle.
-				Then click the check mark on the tool to begin crafting."
+				"Drag items from the inventory onto the tool in the middle.
+				Then click the arrow on the tool to begin crafting."
 			)
 		opened_recipe_flakes = true
 
@@ -149,6 +158,7 @@ func _on_green_herb_object_grabbed(_body: Character) -> void:
 
 func _on_pressure_plate_plate_pressed() -> void:
 	if not plate_pressed:
+		$UILayer.set_log_book_tab_hidden(5, false)
 		EventHandler.open_popup_message(
 			"Pressure plates can open doors of the same color.
 			Some doors stay open when you step off of the plate.
