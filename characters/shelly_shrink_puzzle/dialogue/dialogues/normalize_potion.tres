@@ -12,6 +12,6 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 [resource]
 script = ExtResource("3_mslpi")
 dialogue_name = &"normalize potion"
-text = "The normalizing potion will help you change back to normal if you are stuck feeling different."
+text = "The normalizing potion I have will help you change back to normal if you are stuck feeling different."
 choices = Array[ExtResource("1_bkm13")]([SubResource("Resource_5f8mc")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

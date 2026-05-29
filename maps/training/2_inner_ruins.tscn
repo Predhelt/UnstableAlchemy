@@ -18,9 +18,11 @@
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="14_nfju5"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="14_u8d4j"]
 [ext_resource type="PackedScene" uid="uid://cs7l75a5mg1gm" path="res://level_components/objects/triggers/sliding_door_facing_right.tscn" id="15_2nf3c"]
+[ext_resource type="Texture2D" uid="uid://bbts8fn0eurxq" path="res://art/pack/objects/pressure_plates/object_pressure_plate_red.png" id="15_5khqp"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="15_upebu"]
 [ext_resource type="Texture2D" uid="uid://crkop74rurk3d" path="res://art/pack/objects/doors/slide_door_green.png" id="16_5ic14"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="16_6n8p7"]
+[ext_resource type="Texture2D" uid="uid://bo3l8sjhip6tg" path="res://art/pack/objects/doors/slide_door_red.png" id="16_10a7h"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="17_1xt33"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="17_v0bil"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="18_ltyin"]
@@ -35,7 +37,7 @@
 script = ExtResource("6_2nf3c")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_in6mo"]
+[sub_resource type="Resource" id="Resource_5khqp"]
 resource_local_to_scene = true
 script = ExtResource("10_fmauf")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -104,11 +106,11 @@ stream = ExtResource("4_xy3of")
 stream = ExtResource("5_u8d4j")
 volume_db = 5.0
 
-[node name="Player" parent="." index="3" unique_id=1026458739]
+[node name="Player" parent="." index="4" unique_id=1026458739]
 position = Vector2(-12, -198)
 attributes = SubResource("Resource_2v5rg")
 known_recipes = Array[ExtResource("7_ogsrs")]([ExtResource("8_5ic14")])
-inventory = SubResource("Resource_in6mo")
+inventory = SubResource("Resource_5khqp")
 has_blade = true
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -138,15 +140,18 @@ position = Vector2(224, -1248)
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
 position = Vector2(256, -456)
+texture = ExtResource("15_5khqp")
 trigger_weight = 150.0
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2"), NodePath("../SlidingDoor3")]
 
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=463050243 instance=ExtResource("20_5jsn0")]
 position = Vector2(288, -514)
+texture = ExtResource("16_10a7h")
 close_time = 2.0
 
 [node name="SlidingDoor2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=1108007647 instance=ExtResource("20_5jsn0")]
 position = Vector2(224, -514)
+texture = ExtResource("16_10a7h")
 close_time = 2.0
 open_direction = "Left"
 
@@ -160,6 +165,7 @@ is_persistent = true
 
 [node name="SlidingDoor3" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="5" unique_id=174333624 instance=ExtResource("15_2nf3c")]
 position = Vector2(-194, -608)
+texture = ExtResource("16_10a7h")
 open_direction = "Down"
 
 [node name="SlidingDoor4" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="6" unique_id=1102512905 instance=ExtResource("20_5jsn0")]
@@ -309,11 +315,13 @@ text = "Plate requires more weight to trigger"
 
 [node name="Label2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=585655333]
 layout_mode = 0
-offset_left = -138.0
-offset_top = -40.0
-offset_right = 634.0
-offset_bottom = -17.0
-text = "Tip: You can quick craft recipes that have already been crafted if you have the necessary ingredients"
+offset_left = -135.0
+offset_top = -53.0
+offset_right = 637.0
+offset_bottom = -30.0
+text = "Tip: You can quick craft recipes that have already been crafted if you have the necessary ingredients
+In the recipe book"
+horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="2" unique_id=1490802375]
 layout_mode = 0

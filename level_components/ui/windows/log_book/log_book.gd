@@ -210,11 +210,15 @@ func set_buttons_visibility(character : Node = null) -> void:
 	# Check shop transactions for alternate way of acquiring items.
 	for trade_item_id in character_ref.items_trade_received.keys():
 		match trade_item_id:
+			502: # Normalize Potion
+				show_button(%ButtonPotionNormalize)
 			509: # Weak Possession Potion
 				show_button(%ButtonPotionPossessionWeak)
 	# Check used items
 	for used_item_id in character_ref.items_used.keys():
 		match used_item_id:
+			502: # Normalize Potion
+				show_button(%ButtonPotionNormalize)
 			509: # Weak Possession Potion
 				show_button(%ButtonPotionPossessionWeak)
 	# Button visibility for Object Pages based on performed interactions
@@ -335,9 +339,6 @@ func hide_dynamic_buttons() -> void:
 
 ## Shows the given button and changes the display based on conditions.
 func show_button(button : Button):
-	#if button not in UserVariables.pages_opened:
-		#button.theme = new_button_theme
-	#else: button.theme = null
 	button.visible = true
 
 ## Sets the visibility of the tab at the given index.

@@ -25,6 +25,8 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 [resource]
 script = ExtResource("2_g577a")
 dialogue_name = &"greet"
-text = "I'm going to rest up a bit before we continue. Feel free to go on ahead if you can get through the door."
+text = "I'm going to rest up a bit before we continue. There's a door further up the road behind me. Feel free to go on ahead if you can get through it.
+
+If you get stuck, make sure to look around. Touch stuff. Taste stuff if you have to. And remember to write down any findings in your log book."
 choices = Array[ExtResource("1_alelr")]([SubResource("Resource_4tawm"), SubResource("Resource_inpug")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

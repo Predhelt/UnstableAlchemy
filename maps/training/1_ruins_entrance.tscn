@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="11_xogub"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="12_vtuq6"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="14_q28il"]
+[ext_resource type="Texture2D" uid="uid://bqmf08giwjseg" path="res://art/pack/objects/doors/slide_door_orange.png" id="16_a1g57"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="16_lyfyp"]
 [ext_resource type="PackedScene" uid="uid://c4v0402ieqqo7" path="res://level_components/objects/triggers/dialogue_trigger.tscn" id="16_vlms1"]
 [ext_resource type="Texture2D" uid="uid://b0fl1olygkaqb" path="res://art/pack/objects/pressure_plates/object-pressure-plate_dark_blue.png" id="17_q28il"]
@@ -31,7 +32,7 @@
 script = ExtResource("3_v5e0f")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_q28il"]
+[sub_resource type="Resource" id="Resource_a1g57"]
 resource_local_to_scene = true
 script = ExtResource("5_lyfyp")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -94,12 +95,12 @@ wasd keys"
 horizontal_alignment = 1
 
 [node name="Lex" parent="." index="5" unique_id=1948548714 instance=ExtResource("25_5p60j")]
-position = Vector2(1112, -2136)
+position = Vector2(1211, -1329)
 
 [node name="Player" parent="." index="6" unique_id=1026458739]
 position = Vector2(768, -857)
 attributes = SubResource("Resource_rv537")
-inventory = SubResource("Resource_q28il")
+inventory = SubResource("Resource_a1g57")
 
 [node name="HUDHintRemoteTransform" type="RemoteTransform2D" parent="PlayerCamera" parent_id_path=PackedInt32Array(294471714) index="0" unique_id=128844135]
 remote_path = NodePath("../HUDHints")
@@ -163,15 +164,18 @@ scale = Vector2(7, 7)
 
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=463050243 instance=ExtResource("12_vtuq6")]
 position = Vector2(1248, -2242)
+texture = ExtResource("16_a1g57")
 close_time = 5.5
 open_direction = "Left"
 
 [node name="SlidingDoor2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=2070359738 instance=ExtResource("12_vtuq6")]
 position = Vector2(1312, -2242)
+texture = ExtResource("16_a1g57")
 close_time = 5.5
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("16_lyfyp")]
 position = Vector2(1661, -2177)
+texture = ExtResource("16_a1g57")
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="PressurePlate2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=134152489 node_paths=PackedStringArray("door_refs") instance=ExtResource("16_lyfyp")]
