@@ -309,10 +309,10 @@ cut_interaction = SubResource("Resource_v0scf")
 
 [node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=999760068]
 layout_mode = 0
-offset_left = -111.0
-offset_top = -552.0
-offset_right = 175.0
-offset_bottom = -529.0
+offset_left = 348.0
+offset_top = -557.0
+offset_right = 634.0
+offset_bottom = -534.0
 text = "Plate requires more weight to trigger"
 
 [node name="Label2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=585655333]
@@ -350,14 +350,25 @@ offset_right = 619.0
 offset_bottom = -1677.0
 text = "Change tool in top-right of screen"
 
+[node name="Label6" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="5" unique_id=984755361]
+visible = false
+layout_mode = 0
+offset_left = -563.0
+offset_top = -812.0
+offset_right = -195.0
+offset_bottom = -789.0
+text = "Acquire certain kowledge to access some areas."
+
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
-offset_left = -471.0
-offset_top = -129.0
-offset_right = -257.0
-offset_bottom = -54.0
+offset_left = -611.0
+offset_top = -449.0
+offset_right = -194.0
+offset_bottom = -322.0
 text = "- Learn Attributes (Mass)
 - Use Merger
-- Use Cauldron"
+- Use Cauldron
+
+Determine how to indicate that the side room is optional."
 
 [connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
