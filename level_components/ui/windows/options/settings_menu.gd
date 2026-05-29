@@ -1,7 +1,5 @@
 extends Window
 
-signal keybind_changed
-
 func _ready() -> void:
 	# Tabs are not hidden or disabled when exported if only set in editor, so this is to confirm.
 	$TabContainer.set_tab_hidden(1, true)

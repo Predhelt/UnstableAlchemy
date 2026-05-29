@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cr3i0ndcmeftb"]
 
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="1_eglba"]
-[ext_resource type="Script" uid="uid://ci8ehrp5vsamw" path="res://maps/development/level_manager.gd" id="1_h0x2c"]
+[ext_resource type="Script" uid="uid://ci8ehrp5vsamw" path="res://maps/main/level_manager.gd" id="1_h0x2c"]
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_i03in"]
 [ext_resource type="Script" uid="uid://cnhp7cgg0ethe" path="res://audio/audio_stream_manager.gd" id="1_uu1qg"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="3_vojba"]
@@ -47,12 +47,12 @@ _data = {
 &"fade": SubResource("Animation_y3thg")
 }
 
-[sub_resource type="Resource" id="Resource_bsd21"]
+[sub_resource type="Resource" id="Resource_h0x2c"]
 resource_local_to_scene = true
 script = ExtResource("3_vojba")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_cgll6"]
+[sub_resource type="Resource" id="Resource_y3thg"]
 resource_local_to_scene = true
 script = ExtResource("5_uu1qg")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -83,8 +83,8 @@ bus = &"Ambient"
 
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("17_v2wvs")]
 position = Vector2(599, 419)
-attributes = SubResource("Resource_bsd21")
-inventory = SubResource("Resource_cgll6")
+attributes = SubResource("Resource_h0x2c")
+inventory = SubResource("Resource_y3thg")
 character_camera_ref = NodePath("../PlayerCamera")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=294471714]
