@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cjnnyjrqk6rsl"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_ytod7"]
+[ext_resource type="Script" uid="uid://cen5bj0mgg4rb" path="res://maps/training/2_inner_ruins.gd" id="2_0c7lo"]
 [ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_05avq"]
 [ext_resource type="Texture2D" uid="uid://3qarr4nr7qk8" path="res://art/pack/cutscenes/paper2.png" id="3_igldg"]
 [ext_resource type="Texture2D" uid="uid://7hcwwdhlf5f" path="res://art/pack/cutscenes/enter_ruins.png" id="3_oxed2"]
@@ -37,7 +38,7 @@
 script = ExtResource("6_2nf3c")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_5khqp"]
+[sub_resource type="Resource" id="Resource_0c7lo"]
 resource_local_to_scene = true
 script = ExtResource("10_fmauf")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -91,6 +92,7 @@ on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_ytod7")]
+script = ExtResource("2_0c7lo")
 level_index = 1
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_05avq")]
@@ -110,7 +112,7 @@ volume_db = 5.0
 position = Vector2(-12, -198)
 attributes = SubResource("Resource_2v5rg")
 known_recipes = Array[ExtResource("7_ogsrs")]([ExtResource("8_5ic14")])
-inventory = SubResource("Resource_5khqp")
+inventory = SubResource("Resource_0c7lo")
 has_blade = true
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -356,3 +358,7 @@ offset_bottom = -54.0
 text = "- Learn Attributes (Mass)
 - Use Merger
 - Use Cauldron"
+
+[connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
+[connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
+[connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]

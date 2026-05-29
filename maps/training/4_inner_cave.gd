@@ -14,6 +14,7 @@ func _ready() -> void:
 		Good luck!"
 		)
 
+
 func add_crystal_to_gathered_items(node : Node) -> void:
 	var entry = ["world", "grab"]
 	if node.gathered_items.keys().is_empty() or mysterious_crystal.id not in node.gathered_items.keys():

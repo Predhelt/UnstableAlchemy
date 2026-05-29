@@ -143,6 +143,9 @@ func set_buttons_visibility(character : Node = null) -> void:
 				pass
 			1003: # Shrink Potion Book
 				show_button(%ButtonBookShrinkPotion)
+			1004: # Grow Potion Book
+				pass
+				#show_button(%ButtonBookGrowPotion)
 			1007: # Possession Potion Book
 				show_button(%ButtonBookPossessionPotion)
 			2000: # Letter from R

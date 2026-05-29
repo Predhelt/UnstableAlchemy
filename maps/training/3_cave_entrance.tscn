@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_8deul"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="2_a28fu"]
+[ext_resource type="Script" uid="uid://bam5hhqdcw17r" path="res://maps/training/3_cave_entrance.gd" id="2_oeqek"]
 [ext_resource type="PackedScene" uid="uid://mjqkoqldx0n5" path="res://level_components/ui/cutscene/cutscene.tscn" id="2_sdtw5"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_0ue13"]
 [ext_resource type="Texture2D" uid="uid://daluoy41m5xn5" path="res://art/pack/cutscenes/paper3.png" id="3_dxvhx"]
@@ -50,7 +51,7 @@
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="44_r1a14"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="45_6vueu"]
 
-[sub_resource type="Resource" id="Resource_v40p3"]
+[sub_resource type="Resource" id="Resource_oeqek"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("13_v40p3")])
@@ -58,7 +59,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([-1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_oeqek"]
+[sub_resource type="Resource" id="Resource_3bsik"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("14_npw8n"), ExtResource("15_u3de4")])
@@ -68,7 +69,7 @@ items_buying = Array[ExtResource("3_0ue13")]([ExtResource("13_42qb0")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_3bsik"]
+[sub_resource type="Resource" id="Resource_wdxed"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("19_oeqek")])
@@ -76,7 +77,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([-1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_wdxed"]
+[sub_resource type="Resource" id="Resource_or0wd"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("18_54nbq")])
@@ -88,7 +89,7 @@ metadata/_custom_type_script = "uid://bv286g1xhvijr"
 script = ExtResource("2_a28fu")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_or0wd"]
+[sub_resource type="Resource" id="Resource_38ufo"]
 resource_local_to_scene = true
 script = ExtResource("4_6s6o1")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -124,6 +125,7 @@ on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_8deul")]
+script = ExtResource("2_oeqek")
 level_index = 2
 
 [node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_sdtw5")]
@@ -142,19 +144,19 @@ autoplay = false
 [node name="NPCBrindan" parent="." index="4" unique_id=1948548714 instance=ExtResource("10_54nbq")]
 position = Vector2(99, -719)
 portrait = ExtResource("11_eooy1")
-transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_v40p3"), SubResource("Resource_oeqek")])
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_oeqek"), SubResource("Resource_3bsik")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
 [node name="NPCShelly" parent="." index="5" unique_id=1961644270 instance=ExtResource("16_vu3vs")]
 position = Vector2(-225, -1280)
 portrait = ExtResource("18_suusu")
-transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_3bsik"), SubResource("Resource_wdxed")])
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_wdxed"), SubResource("Resource_or0wd")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 
 [node name="Player" parent="." index="6" unique_id=1026458739]
 position = Vector2(-86, -840)
 attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_or0wd")
+inventory = SubResource("Resource_38ufo")
 
 [node name="PlayerCamera" parent="." index="7" unique_id=294471714]
 position = Vector2(252, -1013)
@@ -417,4 +419,5 @@ and knowledge on how to cut flowers.
 
 order: Herb Grinds -> Str book + Red Seed + Juice -> Craft Str Pot -> move boulder -> win"
 
+[connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
 [connection signal="pathway_cleared" from="PuzzleNodes/BlockageArea" to="NPCBrindan" method="_on_blockage_area_pathway_cleared"]
