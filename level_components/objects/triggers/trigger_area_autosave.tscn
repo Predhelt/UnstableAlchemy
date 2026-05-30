@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oaly0"]
 size = Vector2(64, 64)
 
-[node name="TriggerAreaAutosave" type="Area2D" unique_id=1244985810]
+[node name="TriggerAreaAutosave" type="Area2D" unique_id=1244985810 groups=["Persist"]]
 collision_layer = 0
 script = ExtResource("1_ghi8i")
 

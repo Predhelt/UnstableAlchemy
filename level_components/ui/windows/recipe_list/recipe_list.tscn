@@ -161,7 +161,7 @@ offset_right = 226.19995
 offset_bottom = 35.600006
 text = "(Click items to go to recipe pages)"
 
-[node name="ProcedureList" type="GridContainer" parent="VBoxContainer/Container/ProductDetails" unique_id=409876766]
+[node name="ProcedureList" type="VBoxContainer" parent="VBoxContainer/Container/ProductDetails" unique_id=1792090946]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2

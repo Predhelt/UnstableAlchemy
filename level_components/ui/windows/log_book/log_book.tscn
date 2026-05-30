@@ -343,11 +343,12 @@ by clicking on the selected tool icon. It looks like this:"
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
+disabled = true
 icon = ExtResource("37_rs23k")
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions/VBoxContainer" unique_id=1003551811]
 layout_mode = 2
-text = "If you can't click on it, you do not have any other tools available."
+text = "If you can't click on it in the corner, you do not have any other tools available."
 
 [node name="LabelToolChange" type="Label" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer/PageHelpInteractions/VBoxContainer" unique_id=1838863708]
 layout_mode = 2

@@ -130,15 +130,16 @@ scale = Vector2(2.5, 1)
 level_path = "uid://boi0y4f3ntxrd"
 is_level_cleared = true
 
-[node name="AutosaveAreaTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1244985810 groups=["Persist"] instance=ExtResource("12_fmauf")]
-position = Vector2(-8, -200)
-
-[node name="AutosaveAreaTrigger2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=389169683 groups=["Persist"] instance=ExtResource("12_fmauf")]
+[node name="AutosaveAreaTrigger2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=389169683 instance=ExtResource("12_fmauf")]
 position = Vector2(256, -608)
 scale = Vector2(2.35, 1)
 
-[node name="AutosaveAreaTrigger3" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=366234980 groups=["Persist"] instance=ExtResource("12_fmauf")]
+[node name="AutosaveAreaTrigger3" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=366234980 instance=ExtResource("12_fmauf")]
 position = Vector2(224, -1248)
+
+[node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=107033594 instance=ExtResource("12_fmauf")]
+position = Vector2(256, -1792)
+scale = Vector2(2, 1)
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
 position = Vector2(256, -456)
@@ -313,7 +314,7 @@ offset_left = 348.0
 offset_top = -557.0
 offset_right = 634.0
 offset_bottom = -534.0
-text = "Plate requires more weight to trigger"
+text = "This plate requires more weight to trigger"
 
 [node name="Label2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=585655333]
 layout_mode = 0
@@ -360,10 +361,10 @@ offset_bottom = -789.0
 text = "Acquire certain kowledge to access some areas."
 
 [node name="MapDescription" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="0" unique_id=789173024]
-offset_left = -611.0
-offset_top = -449.0
-offset_right = -194.0
-offset_bottom = -322.0
+offset_left = -666.0
+offset_top = -448.0
+offset_right = -223.0
+offset_bottom = -321.0
 text = "- Learn Attributes (Mass)
 - Use Merger
 - Use Cauldron

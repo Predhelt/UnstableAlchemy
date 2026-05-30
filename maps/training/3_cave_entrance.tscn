@@ -148,8 +148,9 @@ transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_oeqek"), Su
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
 [node name="NPCShelly" parent="." index="5" unique_id=1961644270 instance=ExtResource("16_vu3vs")]
-position = Vector2(-225, -1280)
+position = Vector2(20, -1119)
 portrait = ExtResource("18_suusu")
+interaction_type = "talk"
 transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_wdxed"), SubResource("Resource_or0wd")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 
@@ -178,7 +179,7 @@ level_path = "uid://vpd53ywg8mcr"
 is_level_cleared = true
 
 [node name="AutosaveAreaTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1244985810 instance=ExtResource("45_6vueu")]
-position = Vector2(-88, -838)
+position = Vector2(-32, -1504)
 
 [node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1885369948 instance=ExtResource("45_6vueu")]
 position = Vector2(84, -440)

@@ -14,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_behavior_recursive = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_6a5uq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_6a5uq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6a5uq")
@@ -36,8 +37,13 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="Panel" unique_id=870419517]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Click anywhere to continue"
+offset_left = 20.0
+offset_top = 41.0
+offset_right = 235.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 28
+text = "Click anywhere
+to continue"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Panel" to="." method="_on_panel_pressed"]

@@ -158,9 +158,13 @@ scale = Vector2(2.845, 1)
 level_path = "uid://cjnnyjrqk6rsl"
 is_level_cleared = true
 
-[node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1244985810 groups=["Persist"] instance=ExtResource("14_q28il")]
+[node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1244985810 instance=ExtResource("14_q28il")]
 position = Vector2(2016, -1184.0001)
 scale = Vector2(7, 7)
+
+[node name="TriggerAreaAutosave2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=957782379 instance=ExtResource("14_q28il")]
+position = Vector2(1280, -2304)
+scale = Vector2(2, 1)
 
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=463050243 instance=ExtResource("12_vtuq6")]
 position = Vector2(1248, -2242)

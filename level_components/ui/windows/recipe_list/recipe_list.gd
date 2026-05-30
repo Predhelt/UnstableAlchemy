@@ -230,7 +230,7 @@ func add_procedure(recipe: Recipe):
 	var product_icon : Button = recipe_item_icon.instantiate()
 	product_icon.icon = recipe.product_item.texture
 	product_icon.tooltip_text = recipe.product_item.display_name
-	product_icon.disabled = true
+	#product_icon.disabled = true
 	cur_procedures_container.add_child(product_icon)
 	
 	## Add the craft details and quick craft button.
@@ -289,11 +289,11 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 				0: 
 					pia_icon.icon = procedure_icon_crush
 					pia_icon.tooltip_text = "Crush: up, down, up, down"
-					pia_icon.disabled = true
+					#pia_icon.disabled = true
 				1: 
 					pia_icon.icon = procedure_icon_grind
 					pia_icon.tooltip_text = "Grind: left, right, left, right"
-					pia_icon.disabled = true
+					#pia_icon.disabled = true
 		else:
 			var cur_ia = recipe.procedure.input_actions[i]
 			if cur_ia.type == "equipment":
@@ -349,8 +349,16 @@ func _set_button_theme(btn: Button, ingredient: Item) -> void:
 func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 	## Do not allow quick craft to occur if a minigame window is open.
 	if $"../../../MinigameLayer/MinigameCauldron".visible:
+		var effect_instance = text_effect.instantiate()
+		effect_instance.set_text("Minigame is Open!")
+		effect_instance.scale = Vector2(1.5, 1.5)
+		add_child(effect_instance)
 		return false
 	if $"../../../MinigameLayer/MinigameMP".visible:
+		var effect_instance = text_effect.instantiate()
+		effect_instance.set_text("Minigame is Open!")
+		effect_instance.scale = Vector2(1.5, 1.5)
+		add_child(effect_instance)
 		return false
 	if recipe.id not in UserVariables.crafted_recipes:
 		print("ERROR: Character has not crafted this recipe before. returning false.")
@@ -381,10 +389,10 @@ func _on_quick_craft_pressed(recipe : Recipe) -> bool:
 	$"../../LeftWindows/InventoryMenu".update_window()
 	
 	## Create effect in recipe window to show that the item was added successfuly.
-	var effect_instance = items_gained_effect.instantiate()
-	effect_instance.add_item(product_item, recipe.product_item_amount)
-	effect_instance.scale = Vector2(1.3, 1.3)
-	add_child(effect_instance)
+	var effect_instance_item = items_gained_effect.instantiate()
+	effect_instance_item.add_item(product_item, recipe.product_item_amount)
+	effect_instance_item.scale = Vector2(1.3, 1.3)
+	add_child(effect_instance_item)
 	## Check if has the ingredients to craft the item again.
 	if not _has_craft_items(recipe):
 		refresh_recipe_page()
