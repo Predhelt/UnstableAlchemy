@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="11_igldg"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="12_fmauf"]
 [ext_resource type="Resource" uid="uid://c3c5x8an0plk1" path="res://game_systems/items/recipe_books/grow_potion_book.tres" id="12_v0scf"]
+[ext_resource type="PackedScene" uid="uid://draggf5f76up" path="res://characters/tutorial_helper/tutorial_helper.tscn" id="13_i1mdp"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="13_knha0"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="14_nfju5"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="14_u8d4j"]
@@ -33,12 +34,13 @@
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://level_components/objects/interactable/plants/blue_berry_bush.tscn" id="22_xy3of"]
 [ext_resource type="Resource" uid="uid://daguy0svx5k7b" path="res://game_systems/items/recipe_books/speed_potion_book.tres" id="25_2nf3c"]
 [ext_resource type="Resource" uid="uid://fo621eth2lsd" path="res://game_systems/items/recipe_books/self_attunement_book.tres" id="28_1xt33"]
+[ext_resource type="PackedScene" uid="uid://c4v0402ieqqo7" path="res://level_components/objects/triggers/dialogue_trigger.tscn" id="34_kcotk"]
 
 [sub_resource type="Resource" id="Resource_2v5rg"]
 script = ExtResource("6_2nf3c")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_0c7lo"]
+[sub_resource type="Resource" id="Resource_i1mdp"]
 resource_local_to_scene = true
 script = ExtResource("10_fmauf")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -95,12 +97,6 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 script = ExtResource("2_0c7lo")
 level_index = 1
 
-[node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_05avq")]
-visible = false
-images = Array[Texture2D]([ExtResource("3_igldg"), ExtResource("3_oxed2")])
-cutscene_ids = Array[int]([2, 3])
-auto_play = true
-
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("4_xy3of")
 
@@ -108,11 +104,20 @@ stream = ExtResource("4_xy3of")
 stream = ExtResource("5_u8d4j")
 volume_db = 5.0
 
-[node name="Player" parent="." index="4" unique_id=1026458739]
+[node name="Cutscene" parent="." index="3" unique_id=322321605 instance=ExtResource("2_05avq")]
+visible = false
+images = Array[Texture2D]([ExtResource("3_igldg"), ExtResource("3_oxed2")])
+cutscene_ids = Array[int]([2, 3])
+auto_play = true
+
+[node name="TutorialHelper" parent="." index="4" unique_id=1948548714 instance=ExtResource("13_i1mdp")]
+position = Vector2(353, -294)
+
+[node name="Player" parent="." index="5" unique_id=1026458739]
 position = Vector2(-12, -198)
 attributes = SubResource("Resource_2v5rg")
 known_recipes = Array[ExtResource("7_ogsrs")]([ExtResource("8_5ic14")])
-inventory = SubResource("Resource_0c7lo")
+inventory = SubResource("Resource_i1mdp")
 has_blade = true
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -140,6 +145,9 @@ position = Vector2(224, -1248)
 [node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=107033594 instance=ExtResource("12_fmauf")]
 position = Vector2(256, -1792)
 scale = Vector2(2, 1)
+
+[node name="TriggerAreaAutosave2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="4" unique_id=1244985810 instance=ExtResource("12_fmauf")]
+position = Vector2(-12, -196)
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
 position = Vector2(256, -456)
@@ -308,25 +316,7 @@ items = Array[ExtResource("9_1xt33")]([ExtResource("28_1xt33")])
 grab_interaction = SubResource("Resource_igldg")
 cut_interaction = SubResource("Resource_v0scf")
 
-[node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=999760068]
-layout_mode = 0
-offset_left = 348.0
-offset_top = -557.0
-offset_right = 634.0
-offset_bottom = -534.0
-text = "This plate requires more weight to trigger"
-
-[node name="Label2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=585655333]
-layout_mode = 0
-offset_left = -135.0
-offset_top = -53.0
-offset_right = 637.0
-offset_bottom = -30.0
-text = "Tip: You can quick craft recipes that have already been crafted if you have the necessary ingredients
-In the recipe book"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="2" unique_id=1490802375]
+[node name="Label3" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=1490802375]
 layout_mode = 0
 offset_left = 288.0
 offset_top = -1196.0
@@ -334,7 +324,7 @@ offset_right = 628.0
 offset_bottom = -1173.0
 text = "You can save/load your game in the settings"
 
-[node name="Label4" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="3" unique_id=392498589]
+[node name="Label4" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=392498589]
 layout_mode = 0
 offset_left = -111.0
 offset_top = -1336.0
@@ -343,7 +333,7 @@ offset_bottom = -1287.0
 text = "Different tools get different items from plants.
 Be careful for any adverse reactions!"
 
-[node name="Label5" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="4" unique_id=1769132661]
+[node name="Label5" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="2" unique_id=1769132661]
 layout_mode = 0
 offset_left = 360.0
 offset_top = -1700.0
@@ -351,7 +341,7 @@ offset_right = 619.0
 offset_bottom = -1677.0
 text = "Change tool in top-right of screen"
 
-[node name="Label6" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="5" unique_id=984755361]
+[node name="Label6" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="3" unique_id=984755361]
 visible = false
 layout_mode = 0
 offset_left = -563.0
@@ -371,6 +361,13 @@ text = "- Learn Attributes (Mass)
 
 Determine how to indicate that the side room is optional."
 
-[connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
+[node name="DialogueTrigger" parent="." index="13" unique_id=2142945357 instance=ExtResource("34_kcotk")]
+position = Vector2(-141, -676.00006)
+scale = Vector2(1, 2)
+message = "I might need to come back later"
+initial_wait_time = 2.5
+
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
+[connection signal="minigame_cauldron_window_opened" from="UILayer" to="." method="_on_ui_layer_minigame_cauldron_window_opened"]
+[connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]

@@ -36,7 +36,6 @@
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="28_7v03r"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="28_qh66j"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="29_ark5y"]
-[ext_resource type="Resource" uid="uid://b4r42orem8r1r" path="res://game_systems/items/recipe_books/green_flakes_book.tres" id="30_ka6j0"]
 [ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://level_components/objects/collisions/wall_small_hole.tscn" id="31_3u314"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="31_5hkkw"]
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="32_6s87q"]
@@ -51,7 +50,7 @@
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="44_r1a14"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="45_6vueu"]
 
-[sub_resource type="Resource" id="Resource_oeqek"]
+[sub_resource type="Resource" id="Resource_v40p3"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("13_v40p3")])
@@ -59,7 +58,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([-1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_3bsik"]
+[sub_resource type="Resource" id="Resource_oeqek"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("14_npw8n"), ExtResource("15_u3de4")])
@@ -69,7 +68,7 @@ items_buying = Array[ExtResource("3_0ue13")]([ExtResource("13_42qb0")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_wdxed"]
+[sub_resource type="Resource" id="Resource_3bsik"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("19_oeqek")])
@@ -77,7 +76,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([-1])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_or0wd"]
+[sub_resource type="Resource" id="Resource_wdxed"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("18_54nbq")])
@@ -89,7 +88,7 @@ metadata/_custom_type_script = "uid://bv286g1xhvijr"
 script = ExtResource("2_a28fu")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_38ufo"]
+[sub_resource type="Resource" id="Resource_or0wd"]
 resource_local_to_scene = true
 script = ExtResource("4_6s6o1")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -97,18 +96,6 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 [sub_resource type="Resource" id="Resource_xmviu"]
 script = ExtResource("32_6s87q")
 on_interact_items = Array[ExtResource("3_0ue13")]([ExtResource("38_xmviu")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_3yeoo"]
-script = ExtResource("32_6s87q")
-on_interact_items = Array[ExtResource("3_0ue13")]([ExtResource("30_ka6j0")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_8yigv"]
-script = ExtResource("32_6s87q")
-on_interact_items = Array[ExtResource("3_0ue13")]([ExtResource("30_ka6j0")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
@@ -128,12 +115,6 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 script = ExtResource("2_oeqek")
 level_index = 2
 
-[node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_sdtw5")]
-visible = false
-images = Array[Texture2D]([ExtResource("3_dxvhx"), ExtResource("4_visj7"), ExtResource("5_vu3vs")])
-cutscene_ids = Array[int]([4, 5, 6])
-auto_play = true
-
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("6_1umpp")
 
@@ -141,23 +122,32 @@ stream = ExtResource("6_1umpp")
 stream = null
 autoplay = false
 
+[node name="Cutscene" parent="." index="3" unique_id=322321605 instance=ExtResource("2_sdtw5")]
+visible = false
+images = Array[Texture2D]([ExtResource("3_dxvhx"), ExtResource("4_visj7"), ExtResource("5_vu3vs")])
+cutscene_ids = Array[int]([4, 5, 6])
+auto_play = true
+
 [node name="NPCBrindan" parent="." index="4" unique_id=1948548714 instance=ExtResource("10_54nbq")]
 position = Vector2(99, -719)
 portrait = ExtResource("11_eooy1")
-transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_oeqek"), SubResource("Resource_3bsik")])
+has_blade = true
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_v40p3"), SubResource("Resource_oeqek")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
 [node name="NPCShelly" parent="." index="5" unique_id=1961644270 instance=ExtResource("16_vu3vs")]
 position = Vector2(20, -1119)
 portrait = ExtResource("18_suusu")
+has_blade = true
+has_dropper = true
 interaction_type = "talk"
-transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_wdxed"), SubResource("Resource_or0wd")])
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_3bsik"), SubResource("Resource_wdxed")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 
 [node name="Player" parent="." index="6" unique_id=1026458739]
 position = Vector2(-86, -840)
 attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_38ufo")
+inventory = SubResource("Resource_or0wd")
 
 [node name="PlayerCamera" parent="." index="7" unique_id=294471714]
 position = Vector2(252, -1013)
@@ -182,7 +172,11 @@ is_level_cleared = true
 position = Vector2(-32, -1504)
 
 [node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1885369948 instance=ExtResource("45_6vueu")]
-position = Vector2(84, -440)
+position = Vector2(84, -438)
+scale = Vector2(1.5, 1.5)
+
+[node name="TriggerAreaAutosave2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=1064681139 instance=ExtResource("45_6vueu")]
+position = Vector2(-85, -841)
 scale = Vector2(1.5, 1.5)
 
 [node name="BlockageArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=698375174 instance=ExtResource("17_r1a14")]
@@ -370,15 +364,7 @@ position = Vector2(70.00006, -871.99976)
 [node name="YellowFlowers3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="12" unique_id=1015796265 instance=ExtResource("28_qh66j")]
 position = Vector2(325, -982.9998)
 
-[node name="RecipeItem" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="13" unique_id=1320504899 instance=ExtResource("29_ark5y")]
-position = Vector2(-304, -902)
-display_name = "\"Green Herbs - An Introduction\""
-description = "Book with a recipe. It's not clear what recipes are in the book from here."
-items = Array[ExtResource("3_0ue13")]([ExtResource("30_ka6j0")])
-grab_interaction = SubResource("Resource_3yeoo")
-cut_interaction = SubResource("Resource_8yigv")
-
-[node name="RecipeItem2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="14" unique_id=492922135 instance=ExtResource("29_ark5y")]
+[node name="RecipeItem2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="13" unique_id=492922135 instance=ExtResource("29_ark5y")]
 position = Vector2(353, -1179)
 display_name = "\"Shrink Potion 101\""
 description = "Describes how to make a potion of shrinking."
@@ -386,13 +372,13 @@ items = Array[ExtResource("3_0ue13")]([ExtResource("43_eooy1")])
 grab_interaction = SubResource("Resource_suusu")
 cut_interaction = SubResource("Resource_dcuki")
 
-[node name="RedBerryBush5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="15" unique_id=12697176 instance=ExtResource("27_jrb65")]
+[node name="RedBerryBush5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="14" unique_id=12697176 instance=ExtResource("27_jrb65")]
 position = Vector2(-141, -1349)
 
-[node name="RedBerryBush6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="16" unique_id=1836356769 instance=ExtResource("27_jrb65")]
+[node name="RedBerryBush6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="15" unique_id=1836356769 instance=ExtResource("27_jrb65")]
 position = Vector2(-338, -1201)
 
-[node name="AudioStreamPlayerAmbientBirds" type="AudioStreamPlayer2D" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="17" unique_id=1203268989]
+[node name="AudioStreamPlayerAmbientBirds" type="AudioStreamPlayer2D" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="16" unique_id=1203268989]
 position = Vector2(-29, -89)
 stream = ExtResource("44_r1a14")
 autoplay = true

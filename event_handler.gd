@@ -14,8 +14,10 @@ func open_log_book_page(page_name: String):
 		Global.left_window.close_window()
 	if Global.right_window:
 		Global.right_window.close_window()
-	get_tree().current_scene.find_child("LogBookMenu").open_window()
-	get_tree().current_scene.find_child("LogBookMenu").open_page(page_name)
+	if get_tree().current_scene.find_child("LogBookMenu").has_page(page_name):
+		get_tree().current_scene.find_child("LogBookMenu").open_page(page_name)
+		get_tree().current_scene.find_child("LogBookMenu").open_window()
+	
 
 ## Opens a popup showing the [param message].
 func open_popup_message(message: String):

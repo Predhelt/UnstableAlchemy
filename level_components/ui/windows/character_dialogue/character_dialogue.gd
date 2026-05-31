@@ -149,6 +149,13 @@ func _are_conditions_met(conditions : Array[DialogueCondition]) -> bool:
 					return false
 			"event_trigger": print("ERROR: Not yet implemented")
 				#return false
+			"level_trigger":
+				if condition.value > 0:
+					if not get_tree().current_scene.get(condition.descriptor):
+						return false
+				else:
+					if get_tree().current_scene.get(condition.descriptor):
+						return false
 			"has_looped":
 				if not UserVariables.has_looped:
 					return false

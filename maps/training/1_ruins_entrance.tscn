@@ -64,15 +64,10 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 [node name="World" unique_id=1661168125 groups=["KeybindMessageHandler"] instance=ExtResource("1_1v6aw")]
 script = ExtResource("2_kfvxj")
 
-[node name="Cutscene" parent="." index="0" unique_id=322321605 instance=ExtResource("2_yd7uk")]
-images = Array[Texture2D]([ExtResource("4_tldv4"), ExtResource("3_vlms1")])
-cutscene_ids = Array[int]([0, 1])
-auto_play = true
-
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("2_se43p")
 
-[node name="TutorialMessages" type="Control" parent="." index="3" unique_id=1046553908]
+[node name="TutorialMessages" type="Control" parent="." index="2" unique_id=1046553908]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -93,6 +88,11 @@ theme_override_font_sizes/font_size = 22
 text = "Move with
 wasd keys"
 horizontal_alignment = 1
+
+[node name="Cutscene" parent="." index="4" unique_id=322321605 instance=ExtResource("2_yd7uk")]
+images = Array[Texture2D]([ExtResource("4_tldv4"), ExtResource("3_vlms1")])
+cutscene_ids = Array[int]([0, 1])
+auto_play = true
 
 [node name="Lex" parent="." index="5" unique_id=1948548714 instance=ExtResource("25_5p60j")]
 position = Vector2(1211, -1329)
@@ -166,6 +166,9 @@ scale = Vector2(7, 7)
 position = Vector2(1280, -2304)
 scale = Vector2(2, 1)
 
+[node name="TriggerAreaAutosave3" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="4" unique_id=12346843 instance=ExtResource("14_q28il")]
+position = Vector2(608, -1440)
+
 [node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=463050243 instance=ExtResource("12_vtuq6")]
 position = Vector2(1248, -2242)
 texture = ExtResource("16_a1g57")
@@ -237,11 +240,11 @@ text = "- walk
 
 [connection signal="call_open_inventory" from="." to="UILayer" method="_on_world_call_open_inventory"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
 [connection signal="log_book_menu_window_closed" from="UILayer" to="." method="_on_ui_layer_log_book_menu_window_closed"]
 [connection signal="recipe_list_page_opened" from="UILayer" to="." method="_on_ui_layer_recipe_list_page_opened"]
+[connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
 [connection signal="plate_pressed" from="PuzzleNodes/PressurePlate" to="." method="_on_pressure_plate_plate_pressed"]
 [connection signal="plate_pressed" from="PuzzleNodes/PressurePlate2" to="." method="_on_pressure_plate_plate_pressed"]
 [connection signal="object_grabbed" from="Objects/RecipeItem" to="." method="_on_recipe_item_object_grabbed"]

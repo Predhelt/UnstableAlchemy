@@ -405,6 +405,12 @@ func _interaction_object_counts_as_str(object_name : String) -> String:
 ### Open Pages ###
 ##################
 
+func has_page(page_name: String) -> bool:
+	var button_ref : PageButton = find_child("Button%s" % page_name)
+	if not button_ref:
+		return false
+	return true
+
 ## Open the page with the [param page_name].
 ## For instance, "HelpGeneral" opens "PageHelpGeneral".
 func open_page(page_name: String) -> bool:

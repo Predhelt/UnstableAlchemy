@@ -102,16 +102,19 @@ func _on_recipe_item_object_grabbed(_body: Character) -> void:
 
 
 func _on_ui_layer_item_used(item: Item) -> void:
-	if item.id == 1000:
+	if item.id == 1000: # Herb Flakes Book
 		if not UserVariables.has_looped:
 			$UILayer.set_log_book_tab_hidden(6, false)
 			$UILayer.set_log_book_tab_hidden(2, false)
 			%LabelInventory.visible = false
 			$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
 			Global.is_log_book_disabled = false
-			EventHandler.open_log_book_page("ButtonHerbFlakes")
+			EventHandler.open_log_book_page("BookHerbFlakes")
 		used_recipe_book = true
-
+	elif item.id == 100: # Herb Flakes
+		if not UserVariables.has_looped:
+			$UILayer.set_log_book_tab_hidden(9, false)
+			EventHandler.open_log_book_page("StatusEnergizedBurst")
 
 func _on_ui_layer_log_book_menu_window_closed() -> void:
 	if grabbed_recipe_book and used_recipe_book and not closed_log_book:
@@ -142,12 +145,12 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 		return
 	%LabelRecipes.visible = false
 	
-	if closed_log_book and not UserVariables.has_looped:
-		if not opened_recipe_flakes and not Global.focused_node.inventory.has_item_id(0):
+	if closed_log_book and not opened_recipe_flakes and not UserVariables.has_looped:
+		if not Global.focused_node.inventory.has_item_id(0):
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Find the missing ingredient to be able to craft."
 			)
-		elif Global.focused_node.inventory.has_item_id(0) and not crafted_flakes:
+		elif not crafted_flakes:
 			call_open_inventory.emit()
 			inventory_menu_ref.set_mortar_pestle_visibility(true)
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.

@@ -40,17 +40,17 @@ one_shot = true
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("2_k5i8p")
 
-[node name="CutsceneCrystalConsumed" parent="." index="3" unique_id=322321605 instance=ExtResource("4_eg3ay")]
+[node name="CutsceneCrystalConsumed" parent="." index="4" unique_id=322321605 instance=ExtResource("4_eg3ay")]
 visible = false
 images = Array[Texture2D]([ExtResource("5_n8vsm"), ExtResource("6_noc5j"), ExtResource("7_ohjpk")])
 cutscene_ids = Array[int]([10, 11, 12])
 
-[node name="CutsceneCrystalFailed" parent="." index="4" unique_id=1385112950 instance=ExtResource("4_eg3ay")]
+[node name="CutsceneCrystalFailed" parent="." index="5" unique_id=1385112950 instance=ExtResource("4_eg3ay")]
 visible = false
 images = Array[Texture2D]([ExtResource("8_oqixu"), ExtResource("6_noc5j"), ExtResource("7_ohjpk")])
 cutscene_ids = Array[int]([9, 11, 12])
 
-[node name="CutsceneCrystalSuccess" parent="." index="5" unique_id=780663890 instance=ExtResource("4_eg3ay")]
+[node name="CutsceneCrystalSuccess" parent="." index="6" unique_id=780663890 instance=ExtResource("4_eg3ay")]
 visible = false
 images = Array[Texture2D]([ExtResource("9_kh1g1")])
 cutscene_ids = Array[int]([13])
@@ -91,8 +91,8 @@ There are currently 3 cutscenes you can get."
 horizontal_alignment = 1
 
 [connection signal="timeout" from="CutsceneDelay" to="." method="_on_cutscene_delay_timeout"]
+[connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="end_scene" from="CutsceneCrystalConsumed" to="." method="_on_cutscene_crystal_consumed_end_scene"]
 [connection signal="end_scene" from="CutsceneCrystalFailed" to="." method="_on_cutscene_crystal_failed_end_scene"]
 [connection signal="end_scene" from="CutsceneCrystalSuccess" to="." method="_on_cutscene_crystal_success_end_scene"]
-[connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="end_scene" from="TriggerAreas/CutsceneTriggerLeave" to="." method="_on_cutscene_leave_end_scene"]

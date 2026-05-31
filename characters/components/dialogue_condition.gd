@@ -14,6 +14,7 @@ class_name DialogueCondition extends Resource
 	"player_status_is_active",
 	"player_known_recipe",
 	"event_trigger",
+	"level_trigger",
 	"has_looped"
 	) var type : String
 

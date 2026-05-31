@@ -241,6 +241,9 @@ position = Vector2(94, 736)
 [node name="TriggerAreaAutosave5" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="6" unique_id=1564326654 instance=ExtResource("20_dxvh4")]
 position = Vector2(480, -1184)
 
+[node name="TriggerAreaAutosave6" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="7" unique_id=1178482887 instance=ExtResource("20_dxvh4")]
+position = Vector2(511, 385)
+
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1120, 481)
 texture = ExtResource("21_jb56y")

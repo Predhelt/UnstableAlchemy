@@ -5,6 +5,7 @@ extends LevelManager
 var watched_cutscene: bool = false
 var read_grow_book: bool = false
 var crafted_green_paste: bool = false
+var minigame_opened: bool = false
 
 func _ready() -> void:
 	super()
@@ -41,3 +42,11 @@ func _on_ui_layer_craft_completed(result: Item, _recipe: Recipe) -> void:
 
 func _on_cutscene_end_scene() -> void:
 	watched_cutscene = true
+
+
+func _on_ui_layer_minigame_cauldron_window_opened() -> void:
+	minigame_opened = true
+	EventHandler.open_popup_message(
+		"put the ingredients in the cauldron at the right time.\n
+		Match up a procedure from the recipe book."
+	)
