@@ -186,7 +186,13 @@ func _on_dialogue_options_item_selected(index: int) -> void:
 	if not cur_dialogue:
 		print("ERROR: No current dialogue set")
 		return
-	var choice : DialogueChoice = cur_dialogue.choices[index]
+	# Remove choices that do not have conditions met.
+	var cur_choices : Array[DialogueChoice] = cur_dialogue.choices
+	for i in range(cur_choices.size()-1, -1, -1):
+		if not _are_conditions_met(cur_choices[i].conditions):
+			cur_choices.remove_at(i)
+	var choice : DialogueChoice = cur_choices[index]
+	
 	execute_dialogue_effects(choice.dialogue_effects)
 	
 	next_dialogue(choice)

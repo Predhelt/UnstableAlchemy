@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://cs4eqlh32ijde"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://characters/components/dialogue_choice.gd" id="1_3i63p"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://characters/components/dialogue_condition.gd" id="2_5lr0x"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://characters/components/dialogue.gd" id="3_6hn8i"]
+
+[sub_resource type="Resource" id="Resource_l18ks"]
+script = ExtResource("1_3i63p")
+player_response = "The door won't open."
+next_dialogue_name = &"plate tip"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_7dc5j"]
+script = ExtResource("2_5lr0x")
+type = "level_trigger"
+descriptor = "crafted_green_paste"
+value = 1
+metadata/_custom_type_script = "uid://bq526lawjvyos"
+
+[sub_resource type="Resource" id="Resource_k3x5y"]
+script = ExtResource("1_3i63p")
+conditions = Array[ExtResource("2_5lr0x")]([SubResource("Resource_7dc5j")])
+player_response = "How do i use the cauldron?"
+next_dialogue_name = &"cauldron tip"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_lm1vo"]
+script = ExtResource("1_3i63p")
+player_response = "Okay."
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("3_6hn8i")
+dialogue_name = &"greet"
+text = "Hello! Hopefully I won't exist in the future, but this should work for now.
+
+Here's a tip: You can get certain effects by eating raw ingredients, but brewing potions is usually more efficient or potent."
+choices = Array[ExtResource("1_3i63p")]([SubResource("Resource_l18ks"), SubResource("Resource_k3x5y"), SubResource("Resource_lm1vo")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

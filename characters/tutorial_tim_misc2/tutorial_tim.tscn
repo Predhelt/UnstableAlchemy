@@ -1,21 +1,21 @@
-[gd_scene format=3 uid="uid://draggf5f76up"]
+[gd_scene format=3 uid="uid://cy5sy4ja5u3t8"]
 
-[ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_x420e"]
-[ext_resource type="Texture2D" uid="uid://btcuenk4g4x8q" path="res://art/pack/characters/portraits/char4.png" id="2_eutff"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="2_imxow"]
-[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_ycwrn"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="4_x375q"]
-[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="5_055xt"]
-[ext_resource type="Texture2D" uid="uid://cmbdsnnxrip0r" path="res://art/pack/characters/character3_left.png" id="6_ub6kc"]
-[ext_resource type="Texture2D" uid="uid://bd4oi1oo4dwyq" path="res://art/pack/characters/character3_right.png" id="7_00k7l"]
-[ext_resource type="Texture2D" uid="uid://dr5lw335nxiem" path="res://art/pack/characters/character3_up.png" id="8_5aqtr"]
+[ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_uhtt4"]
+[ext_resource type="Texture2D" uid="uid://btcuenk4g4x8q" path="res://art/pack/characters/portraits/char4.png" id="2_y0o33"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="3_1f4dy"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_qj7o3"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="5_ei4or"]
+[ext_resource type="Texture2D" uid="uid://2a5awtjrot6o" path="res://art/pack/characters/npc_robe.png" id="6_okn7m"]
+[ext_resource type="Texture2D" uid="uid://cmbdsnnxrip0r" path="res://art/pack/characters/character3_left.png" id="7_on0ha"]
+[ext_resource type="Texture2D" uid="uid://bd4oi1oo4dwyq" path="res://art/pack/characters/character3_right.png" id="8_3jgf8"]
+[ext_resource type="Texture2D" uid="uid://dr5lw335nxiem" path="res://art/pack/characters/character3_up.png" id="9_ttw2s"]
 
 [sub_resource type="Resource" id="Resource_oovjt"]
-script = ExtResource("2_imxow")
+script = ExtResource("3_1f4dy")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
 [sub_resource type="Resource" id="Resource_eieqp"]
-script = ExtResource("4_x375q")
+script = ExtResource("5_ei4or")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Animation" id="Animation_inutq"]
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("5_055xt"), ExtResource("5_055xt"), ExtResource("5_055xt")]
+"values": [ExtResource("6_okn7m"), ExtResource("6_okn7m"), ExtResource("6_okn7m")]
 }
 
 [sub_resource type="Animation" id="Animation_cssul"]
@@ -46,7 +46,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("5_055xt"), ExtResource("5_055xt"), ExtResource("5_055xt")]
+"values": [ExtResource("6_okn7m"), ExtResource("6_okn7m"), ExtResource("6_okn7m")]
 }
 
 [sub_resource type="Animation" id="Animation_85or5"]
@@ -62,7 +62,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("6_ub6kc"), ExtResource("6_ub6kc"), ExtResource("6_ub6kc")]
+"values": [ExtResource("7_on0ha"), ExtResource("7_on0ha"), ExtResource("7_on0ha")]
 }
 
 [sub_resource type="Animation" id="Animation_33o0g"]
@@ -78,7 +78,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("7_00k7l"), ExtResource("7_00k7l"), ExtResource("7_00k7l")]
+"values": [ExtResource("8_3jgf8"), ExtResource("8_3jgf8"), ExtResource("8_3jgf8")]
 }
 
 [sub_resource type="Animation" id="Animation_gvkpy"]
@@ -94,7 +94,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("8_5aqtr"), ExtResource("8_5aqtr"), ExtResource("8_5aqtr")]
+"values": [ExtResource("9_ttw2s"), ExtResource("9_ttw2s"), ExtResource("9_ttw2s")]
 }
 
 [sub_resource type="Animation" id="Animation_htkn4"]
@@ -110,7 +110,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("5_055xt"), ExtResource("5_055xt"), ExtResource("5_055xt"), ExtResource("5_055xt"), ExtResource("5_055xt")]
+"values": [ExtResource("6_okn7m"), ExtResource("6_okn7m"), ExtResource("6_okn7m"), ExtResource("6_okn7m"), ExtResource("6_okn7m")]
 }
 
 [sub_resource type="Animation" id="Animation_eieqp"]
@@ -126,7 +126,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("6_ub6kc"), ExtResource("6_ub6kc"), ExtResource("6_ub6kc"), ExtResource("6_ub6kc"), ExtResource("6_ub6kc")]
+"values": [ExtResource("7_on0ha"), ExtResource("7_on0ha"), ExtResource("7_on0ha"), ExtResource("7_on0ha"), ExtResource("7_on0ha")]
 }
 
 [sub_resource type="Animation" id="Animation_oovjt"]
@@ -142,7 +142,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("7_00k7l"), ExtResource("7_00k7l"), ExtResource("7_00k7l"), ExtResource("7_00k7l"), ExtResource("7_00k7l")]
+"values": [ExtResource("8_3jgf8"), ExtResource("8_3jgf8"), ExtResource("8_3jgf8"), ExtResource("8_3jgf8"), ExtResource("8_3jgf8")]
 }
 
 [sub_resource type="Animation" id="Animation_estjh"]
@@ -158,7 +158,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("8_5aqtr"), ExtResource("8_5aqtr"), ExtResource("8_5aqtr"), ExtResource("8_5aqtr"), ExtResource("8_5aqtr")]
+"values": [ExtResource("9_ttw2s"), ExtResource("9_ttw2s"), ExtResource("9_ttw2s"), ExtResource("9_ttw2s"), ExtResource("9_ttw2s")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oovjt"]
@@ -246,9 +246,9 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_kr6xo"]
 radius = 13.0
 
-[node name="TutorialHelper" unique_id=1948548714 instance=ExtResource("1_x420e")]
+[node name="TutorialHelper" unique_id=1948548714 instance=ExtResource("1_uhtt4")]
 character_name = "Tutorial Helper"
-portrait = ExtResource("2_eutff")
+portrait = ExtResource("2_y0o33")
 attributes = SubResource("Resource_oovjt")
 inventory = SubResource("Resource_eieqp")
 has_blade = true
@@ -257,7 +257,7 @@ has_dropper = true
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1029169394]
 position = Vector2(0, -36)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("5_055xt")
+texture = ExtResource("6_okn7m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=606457454]
 libraries/ = SubResource("AnimationLibrary_oovjt")

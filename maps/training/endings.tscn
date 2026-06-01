@@ -82,12 +82,12 @@ position = Vector2(608, 639)
 
 [node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=1756290353]
 layout_mode = 0
-offset_left = 449.0
-offset_top = 198.0
-offset_right = 790.0
-offset_bottom = 247.0
+offset_left = 436.0
+offset_top = 199.0
+offset_right = 785.0
+offset_bottom = 248.0
 text = "This room is placeholder.
-There are currently 3 cutscenes you can get."
+There are currently 3 cutscenes you discover."
 horizontal_alignment = 1
 
 [connection signal="timeout" from="CutsceneDelay" to="." method="_on_cutscene_delay_timeout"]

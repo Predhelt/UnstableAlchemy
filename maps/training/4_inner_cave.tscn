@@ -20,7 +20,6 @@
 [ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="10_7y012"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="10_yqpoj"]
 [ext_resource type="Texture2D" uid="uid://gb8d44m0qtds" path="res://art/pack/characters/portraits/char1.png" id="11_h4eu7"]
-[ext_resource type="Resource" uid="uid://daguy0svx5k7b" path="res://game_systems/items/recipe_books/speed_potion_book.tres" id="12_yqpoj"]
 [ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="13_j4d6t"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="14_urb74"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="15_r1ko1"]
@@ -44,18 +43,19 @@
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="37_nb123"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="37_qpemt"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="38_i678b"]
+[ext_resource type="PackedScene" uid="uid://ckhuxt33vqjb3" path="res://characters/tutorial_tim_poss/tutorial_tim.tscn" id="47_x8qjh"]
 
 [sub_resource type="Resource" id="Resource_mfhge"]
 script = ExtResource("6_60y0b")
 base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_dxvh4"]
+[sub_resource type="Resource" id="Resource_d8uxn"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_6vuwb"]
+[sub_resource type="Resource" id="Resource_olp5p"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -73,15 +73,15 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_s78oa"]
+[sub_resource type="Resource" id="Resource_ebuod"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("13_j4d6t")])
 items_selling_amount = Array[int]([1])
-items_selling_stock = Array[int]([-1])
+items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_x8qjh"]
+[sub_resource type="Resource" id="Resource_8d7xh"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("10_7y012")])
@@ -104,15 +104,15 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("17_dxvh4")])
 items_selling_amount = Array[int]([1])
-items_selling_stock = Array[int]([-1])
+items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_d8uxn"]
+[sub_resource type="Resource" id="Resource_iw3wy"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_olp5p"]
+[sub_resource type="Resource" id="Resource_noh5w"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -126,18 +126,6 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 [sub_resource type="Resource" id="Resource_r1ko1"]
 script = ExtResource("19_h7yp8")
 on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("9_c7gen")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_f1ifg"]
-script = ExtResource("19_h7yp8")
-on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("12_yqpoj")])
-on_interact_amounts = Array[int]([1])
-metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
-
-[sub_resource type="Resource" id="Resource_661ml"]
-script = ExtResource("19_h7yp8")
-on_interact_items = Array[ExtResource("2_cc213")]([ExtResource("12_yqpoj")])
 on_interact_amounts = Array[int]([1])
 metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
@@ -178,10 +166,10 @@ stream = null
 position = Vector2(330, 347)
 portrait = ExtResource("9_42850")
 attributes = SubResource("Resource_mfhge")
-inventory = SubResource("Resource_dxvh4")
+inventory = SubResource("Resource_d8uxn")
 has_blade = true
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_6vuwb")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_olp5p")])
 
 [node name="Cam" parent="." index="4" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(637.00006, 555)
@@ -189,7 +177,7 @@ portrait = ExtResource("11_h4eu7")
 attributes = SubResource("Resource_nb123")
 inventory = SubResource("Resource_3fmyq")
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_s78oa"), SubResource("Resource_x8qjh")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_ebuod"), SubResource("Resource_8d7xh")])
 
 [node name="Lex" parent="." index="5" unique_id=75307123 instance=ExtResource("7_ix5gr")]
 position = Vector2(650, 219)
@@ -200,8 +188,8 @@ transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_vd4af")])
 
 [node name="Player" parent="." index="6" unique_id=1026458739]
 position = Vector2(515, 387)
-attributes = SubResource("Resource_d8uxn")
-inventory = SubResource("Resource_olp5p")
+attributes = SubResource("Resource_iw3wy")
+inventory = SubResource("Resource_noh5w")
 
 [node name="PlayerCamera" parent="." index="7" unique_id=294471714]
 position = Vector2(604, 419)
@@ -328,36 +316,27 @@ items = Array[ExtResource("2_cc213")]([ExtResource("9_c7gen")])
 grab_interaction = SubResource("Resource_urb74")
 cut_interaction = SubResource("Resource_r1ko1")
 
-[node name="RecipeItem2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1611816972 instance=ExtResource("2_ei7jr")]
-position = Vector2(809, 617)
-script = ExtResource("20_77ox4")
-display_name = "\"Speed Potion Recipe\""
-description = "Describes the recipe for a speed potion."
-items = Array[ExtResource("2_cc213")]([ExtResource("12_yqpoj")])
-grab_interaction = SubResource("Resource_f1ifg")
-cut_interaction = SubResource("Resource_661ml")
-
-[node name="YellowFlowers" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=687975100 instance=ExtResource("10_yqpoj")]
+[node name="YellowFlowers" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=687975100 instance=ExtResource("10_yqpoj")]
 position = Vector2(508, 195)
 
-[node name="YellowFlowers2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=1833314766 instance=ExtResource("10_yqpoj")]
+[node name="YellowFlowers2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=1833314766 instance=ExtResource("10_yqpoj")]
 position = Vector2(499, 557)
 
-[node name="YellowFlowers3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=222681833 instance=ExtResource("10_yqpoj")]
+[node name="YellowFlowers3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=222681833 instance=ExtResource("10_yqpoj")]
 position = Vector2(736, 413.99997)
 
-[node name="YellowFlowers4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=158817034 instance=ExtResource("10_yqpoj")]
+[node name="YellowFlowers4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=158817034 instance=ExtResource("10_yqpoj")]
 position = Vector2(990.99994, 418)
 
-[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=658593362 instance=ExtResource("14_urb74")]
+[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=658593362 instance=ExtResource("14_urb74")]
 position = Vector2(762, 781)
 script = ExtResource("20_77ox4")
 
-[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="7" unique_id=1373064972 instance=ExtResource("14_urb74")]
+[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=1373064972 instance=ExtResource("14_urb74")]
 position = Vector2(1086, 778)
 script = ExtResource("20_77ox4")
 
-[node name="Crate" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="8" unique_id=402036177 instance=ExtResource("15_r1ko1")]
+[node name="Crate" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="7" unique_id=402036177 instance=ExtResource("15_r1ko1")]
 position = Vector2(816, 216)
 contained_item_icon = ExtResource("17_661ml")
 display_name = "Gray Juice"
@@ -366,7 +345,7 @@ items = Array[ExtResource("2_cc213")]([SubResource("Resource_j4d6t")])
 grab_interaction = SubResource("Resource_jb56y")
 cut_interaction = SubResource("Resource_n18o7")
 
-[node name="AudioStreamPlayerAmbientBirds" type="AudioStreamPlayer2D" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="9" unique_id=1192742806]
+[node name="AudioStreamPlayerAmbientBirds" type="AudioStreamPlayer2D" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="8" unique_id=1192742806]
 position = Vector2(478, -1441)
 stream = ExtResource("37_nb123")
 autoplay = true
@@ -400,5 +379,8 @@ offset_left = 883.0
 offset_top = -878.0
 offset_right = 923.0
 offset_bottom = -855.0
+
+[node name="TutorialHelper" parent="." index="14" unique_id=274518447 instance=ExtResource("47_x8qjh")]
+position = Vector2(585, -25)
 
 [connection signal="end_scene" from="TriggerAreas/TriggerAreaCutsceneCrystal" to="." method="_on_trigger_area_cutscene_crystal_end_scene"]

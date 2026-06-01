@@ -160,13 +160,12 @@ func _ready() -> void:
 	# Set possession references, if any
 	_deferred_set_possession_vars.call_deferred()
 
-## Populationes [member dialogues] if dialogue path exists for this character.
+## Populates [member dialogues] if dialogue path exists for this [Character].
+## Uses the character scene's file path to determine relative location of dialogue path.
 func init_dialogues():
 	var dialogue_path : String = scene_file_path.rsplit("/", false, 1)[0] + "/dialogue/dialogues/"
-	#print(dialogue_path)
 	var dir := DirAccess.open(dialogue_path)
 	if not dir:
-		#print("ERROR: No path")
 		return
 	
 	dir.list_dir_begin()
@@ -333,7 +332,7 @@ func _physics_process(delta: float) -> void:
 				say_random_message()
 	
 	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
-		$PossessionTargetLabel.global_position = cur_possession_target.global_position
+		$PossessionTargetLabel.global_position = possessable_characters[0].global_position
 		$PossessionTargetLabel.visible = true
 	else:
 		$PossessionTargetLabel.visible = false
