@@ -13,6 +13,8 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 [resource]
 script = ExtResource("2_64tk5")
 dialogue_name = &"greet"
-text = "Hey! Just a tip: try to only take what you need from the ground. You won't always have what you need readily available. Sometimes you will need to alter the environment to find what you are looking for."
+text = "Hey!
+
+Just a tip: try to only take what you need from the ground. You won't always have what you need readily available. Sometimes you will need to alter the environment to find what you are looking for."
 choices = Array[ExtResource("1_eqecg")]([SubResource("Resource_4edsi")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

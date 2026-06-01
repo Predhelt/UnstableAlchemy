@@ -112,13 +112,18 @@ images = Array[Texture2D]([ExtResource("3_igldg"), ExtResource("3_oxed2")])
 cutscene_ids = Array[int]([2, 3])
 auto_play = true
 
-[node name="TutorialHelper" parent="." index="4" unique_id=1948548714 instance=ExtResource("13_i1mdp")]
+[node name="TutorialTim" parent="." index="4" unique_id=1948548714 instance=ExtResource("13_i1mdp")]
 position = Vector2(341, -298)
 
-[node name="TutorialHelper2" parent="." index="5" unique_id=1788924441 instance=ExtResource("36_31b4h")]
+[node name="TutorialTim2" parent="." index="5" unique_id=1788924441 instance=ExtResource("36_31b4h")]
 position = Vector2(118, -1392)
+character_name = "Tutorial Tim"
 
-[node name="Player" parent="." index="6" unique_id=1026458739]
+[node name="TutorialTim3" parent="." index="6" unique_id=1907100877 instance=ExtResource("37_us5lp")]
+position = Vector2(140, -1064)
+character_name = "Tutorial Tim"
+
+[node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(-12, -198)
 attributes = SubResource("Resource_2v5rg")
 known_recipes = Array[ExtResource("7_ogsrs")]([ExtResource("8_5ic14")])
@@ -210,34 +215,7 @@ items = Array[ExtResource("9_1xt33")]([ExtResource("12_v0scf")])
 grab_interaction = SubResource("Resource_hohwf")
 cut_interaction = SubResource("Resource_frygy")
 
-[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=658593362 instance=ExtResource("15_upebu")]
-position = Vector2(22, -466)
-
-[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=531036229 instance=ExtResource("15_upebu")]
-position = Vector2(83, -390)
-
-[node name="GreenHerb3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=457112232 instance=ExtResource("15_upebu")]
-position = Vector2(-44, -381)
-
-[node name="YellowFlowers" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=687975100 instance=ExtResource("16_6n8p7")]
-position = Vector2(541.99994, -160.99997)
-
-[node name="YellowFlowers2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=724382312 instance=ExtResource("16_6n8p7")]
-position = Vector2(442, -111.999985)
-
-[node name="YellowFlowers3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=404953498 instance=ExtResource("16_6n8p7")]
-position = Vector2(464.99997, -222.99997)
-
-[node name="RedBerryBush" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="7" unique_id=1320011023 instance=ExtResource("17_v0bil")]
-position = Vector2(419.00003, -386.99997)
-
-[node name="RedBerryBush2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="8" unique_id=113557140 instance=ExtResource("17_v0bil")]
-position = Vector2(499, -463.99997)
-
-[node name="RedBerryBush3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="9" unique_id=1763521188 instance=ExtResource("17_v0bil")]
-position = Vector2(550, -397.99997)
-
-[node name="RecipeItem2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="10" unique_id=670452311 instance=ExtResource("11_igldg")]
+[node name="RecipeItem2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=670452311 instance=ExtResource("11_igldg")]
 position = Vector2(118, -766)
 display_name = "\"Recipe: Normalize Potion\""
 description = "Likely contains information on how to craft a normalizing potion."
@@ -245,34 +223,7 @@ items = Array[ExtResource("9_1xt33")]([ExtResource("21_oxed2")])
 grab_interaction = SubResource("Resource_2nf3c")
 cut_interaction = SubResource("Resource_ogsrs")
 
-[node name="GreenHerb4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="11" unique_id=14494320 instance=ExtResource("15_upebu")]
-position = Vector2(-6, -1032)
-
-[node name="GreenHerb5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="12" unique_id=1326012465 instance=ExtResource("15_upebu")]
-position = Vector2(48, -940)
-
-[node name="GreenHerb6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="13" unique_id=104479932 instance=ExtResource("15_upebu")]
-position = Vector2(-101, -982)
-
-[node name="YellowFlowers4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="14" unique_id=1493318568 instance=ExtResource("16_6n8p7")]
-position = Vector2(467, -701)
-
-[node name="BlueBerryBush" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="15" unique_id=111235698 instance=ExtResource("22_xy3of")]
-position = Vector2(354.99997, -1066)
-
-[node name="BlueBerryBush2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="16" unique_id=1646053187 instance=ExtResource("22_xy3of")]
-position = Vector2(481.99997, -1021)
-
-[node name="BlueBerryBush3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="17" unique_id=2115294467 instance=ExtResource("22_xy3of")]
-position = Vector2(342, -938.99994)
-
-[node name="YellowFlowers5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="18" unique_id=860606998 instance=ExtResource("16_6n8p7")]
-position = Vector2(304, -796.99994)
-
-[node name="YellowFlowers6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="19" unique_id=1415228720 instance=ExtResource("16_6n8p7")]
-position = Vector2(434.99997, -821.99994)
-
-[node name="RecipeItem3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="20" unique_id=1415242017 instance=ExtResource("11_igldg")]
+[node name="RecipeItem3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="2" unique_id=1415242017 instance=ExtResource("11_igldg")]
 position = Vector2(215, -1483)
 display_name = "\"Recipe: Speed Potion\""
 description = "Likely has recipes for crafting a speed potion."
@@ -280,46 +231,100 @@ items = Array[ExtResource("9_1xt33")]([ExtResource("25_2nf3c")])
 grab_interaction = SubResource("Resource_5ic14")
 cut_interaction = SubResource("Resource_1xt33")
 
-[node name="GreenHerb7" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="21" unique_id=1936519028 instance=ExtResource("15_upebu")]
-position = Vector2(-9, -1561)
-
-[node name="GreenHerb8" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="22" unique_id=1227413823 instance=ExtResource("15_upebu")]
-position = Vector2(131, -1550)
-
-[node name="GreenHerb9" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="23" unique_id=1757883540 instance=ExtResource("15_upebu")]
-position = Vector2(-22, -1424)
-
-[node name="YellowFlowers7" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="24" unique_id=55626368 instance=ExtResource("16_6n8p7")]
-position = Vector2(577, -1583)
-
-[node name="YellowFlowers8" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="25" unique_id=840843091 instance=ExtResource("16_6n8p7")]
-position = Vector2(365, -1465)
-
-[node name="YellowFlowers9" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="26" unique_id=1664778310 instance=ExtResource("16_6n8p7")]
-position = Vector2(449.00003, -1560)
-
-[node name="YellowFlowers10" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="27" unique_id=1348334780 instance=ExtResource("16_6n8p7")]
-position = Vector2(481, -1380.9999)
-
-[node name="YellowFlowers11" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="28" unique_id=1225756527 instance=ExtResource("16_6n8p7")]
-position = Vector2(609, -1449)
-
-[node name="RedBerryBush4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="29" unique_id=1258863507 instance=ExtResource("17_v0bil")]
-position = Vector2(347, -1599)
-
-[node name="RedBerryBush5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="30" unique_id=2024377861 instance=ExtResource("17_v0bil")]
-position = Vector2(545, -1279.9999)
-
-[node name="RedBerryBush6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="31" unique_id=1361869711 instance=ExtResource("17_v0bil")]
-position = Vector2(406.00003, -1252.9999)
-
-[node name="InteractableBook" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="32" unique_id=1234964621 instance=ExtResource("11_igldg")]
+[node name="InteractableBook" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="3" unique_id=1234964621 instance=ExtResource("11_igldg")]
 position = Vector2(-416, -676)
 display_name = "\"Self-Attunement with Potions\""
 description = "Contains a recipe for a self-attunement potion"
 items = Array[ExtResource("9_1xt33")]([ExtResource("28_1xt33")])
 grab_interaction = SubResource("Resource_igldg")
 cut_interaction = SubResource("Resource_v0scf")
+
+[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="4" unique_id=658593362 instance=ExtResource("15_upebu")]
+position = Vector2(22, -466)
+
+[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="5" unique_id=531036229 instance=ExtResource("15_upebu")]
+position = Vector2(83, -390)
+
+[node name="GreenHerb3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="6" unique_id=457112232 instance=ExtResource("15_upebu")]
+position = Vector2(-44, -381)
+
+[node name="YellowFlowers" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="7" unique_id=687975100 instance=ExtResource("16_6n8p7")]
+position = Vector2(541.99994, -160.99997)
+
+[node name="YellowFlowers2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="8" unique_id=724382312 instance=ExtResource("16_6n8p7")]
+position = Vector2(442, -111.999985)
+
+[node name="YellowFlowers3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="9" unique_id=404953498 instance=ExtResource("16_6n8p7")]
+position = Vector2(464.99997, -222.99997)
+
+[node name="RedBerryBush" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="10" unique_id=1320011023 instance=ExtResource("17_v0bil")]
+position = Vector2(419.00003, -386.99997)
+
+[node name="RedBerryBush2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="11" unique_id=113557140 instance=ExtResource("17_v0bil")]
+position = Vector2(499, -463.99997)
+
+[node name="RedBerryBush3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="12" unique_id=1763521188 instance=ExtResource("17_v0bil")]
+position = Vector2(550, -397.99997)
+
+[node name="GreenHerb4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="13" unique_id=14494320 instance=ExtResource("15_upebu")]
+position = Vector2(-6, -1032)
+
+[node name="GreenHerb5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="14" unique_id=1326012465 instance=ExtResource("15_upebu")]
+position = Vector2(48, -940)
+
+[node name="GreenHerb6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="15" unique_id=104479932 instance=ExtResource("15_upebu")]
+position = Vector2(-101, -982)
+
+[node name="YellowFlowers4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="16" unique_id=1493318568 instance=ExtResource("16_6n8p7")]
+position = Vector2(467, -701)
+
+[node name="BlueBerryBush" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="17" unique_id=111235698 instance=ExtResource("22_xy3of")]
+position = Vector2(354.99997, -1066)
+
+[node name="BlueBerryBush2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="18" unique_id=1646053187 instance=ExtResource("22_xy3of")]
+position = Vector2(481.99997, -1021)
+
+[node name="BlueBerryBush3" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="19" unique_id=2115294467 instance=ExtResource("22_xy3of")]
+position = Vector2(342, -938.99994)
+
+[node name="YellowFlowers5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="20" unique_id=860606998 instance=ExtResource("16_6n8p7")]
+position = Vector2(304, -796.99994)
+
+[node name="YellowFlowers6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="21" unique_id=1415228720 instance=ExtResource("16_6n8p7")]
+position = Vector2(434.99997, -821.99994)
+
+[node name="GreenHerb7" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="22" unique_id=1936519028 instance=ExtResource("15_upebu")]
+position = Vector2(-9, -1561)
+
+[node name="GreenHerb8" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="23" unique_id=1227413823 instance=ExtResource("15_upebu")]
+position = Vector2(131, -1550)
+
+[node name="GreenHerb9" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="24" unique_id=1757883540 instance=ExtResource("15_upebu")]
+position = Vector2(-22, -1424)
+
+[node name="YellowFlowers7" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="25" unique_id=55626368 instance=ExtResource("16_6n8p7")]
+position = Vector2(577, -1583)
+
+[node name="YellowFlowers8" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="26" unique_id=840843091 instance=ExtResource("16_6n8p7")]
+position = Vector2(365, -1465)
+
+[node name="YellowFlowers9" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="27" unique_id=1664778310 instance=ExtResource("16_6n8p7")]
+position = Vector2(449.00003, -1560)
+
+[node name="YellowFlowers10" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="28" unique_id=1348334780 instance=ExtResource("16_6n8p7")]
+position = Vector2(481, -1380.9999)
+
+[node name="YellowFlowers11" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="29" unique_id=1225756527 instance=ExtResource("16_6n8p7")]
+position = Vector2(609, -1449)
+
+[node name="RedBerryBush4" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="30" unique_id=1258863507 instance=ExtResource("17_v0bil")]
+position = Vector2(347, -1599)
+
+[node name="RedBerryBush5" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="31" unique_id=2024377861 instance=ExtResource("17_v0bil")]
+position = Vector2(545, -1279.9999)
+
+[node name="RedBerryBush6" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="32" unique_id=1361869711 instance=ExtResource("17_v0bil")]
+position = Vector2(406.00003, -1252.9999)
 
 [node name="Label3" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=1490802375]
 visible = false
@@ -367,14 +372,11 @@ text = "- Learn Attributes (Mass)
 
 Determine how to indicate that the side room is optional."
 
-[node name="DialogueTrigger" parent="." index="14" unique_id=2142945357 instance=ExtResource("34_kcotk")]
+[node name="DialogueTrigger" parent="." index="15" unique_id=2142945357 instance=ExtResource("34_kcotk")]
 position = Vector2(-141, -676.00006)
 scale = Vector2(1, 2)
 message = "I might need to come back later"
 initial_wait_time = 2.5
-
-[node name="TutorialHelper3" parent="." index="15" unique_id=1907100877 instance=ExtResource("37_us5lp")]
-position = Vector2(140, -1064)
 
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
