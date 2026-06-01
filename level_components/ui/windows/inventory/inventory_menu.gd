@@ -80,7 +80,7 @@ func close_window() -> void:
 ## Opens the window and adds it to the active window group.
 ## Inventory reference should be set before the window is opened.
 func open_window() -> bool:
-	if Global.left_window or Global.center_window or visible or Global.is_inventory_disabled:
+	if Global.left_window or Global.center_window or visible or UserVariables.is_inventory_disabled:
 		return false ## Do not open, there is already a window open in the area or inventory is disabled.
 	if not Global.focused_node:
 		print("ERROR: No character reference to display inventory")

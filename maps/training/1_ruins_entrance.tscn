@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://c4v0402ieqqo7" path="res://level_components/objects/triggers/dialogue_trigger.tscn" id="16_vlms1"]
 [ext_resource type="Texture2D" uid="uid://b0fl1olygkaqb" path="res://art/pack/objects/pressure_plates/object-pressure-plate_dark_blue.png" id="17_q28il"]
 [ext_resource type="Script" uid="uid://d312pdlqp2ee0" path="res://level_components/objects/triggers/dialogue_trigger_custom_hint1.gd" id="17_xyxgs"]
+[ext_resource type="Texture2D" uid="uid://dls8br8cftr5t" path="res://art/pack/objects/pressure_plates/object-pressure-plate_orange.png" id="18_xk8ob"]
 [ext_resource type="Texture2D" uid="uid://xk24utvw2yma" path="res://art/pack/objects/doors/slide_door_blue.png" id="19_a1g57"]
 [ext_resource type="PackedScene" uid="uid://dc1cv4w86cxyk" path="res://characters/lex_ruins/lex.tscn" id="25_5p60j"]
 [ext_resource type="PackedScene" uid="uid://cs7l75a5mg1gm" path="res://level_components/objects/triggers/sliding_door_facing_right.tscn" id="25_tldv4"]
@@ -32,7 +33,7 @@
 script = ExtResource("3_v5e0f")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_a1g57"]
+[sub_resource type="Resource" id="Resource_38ue3"]
 resource_local_to_scene = true
 script = ExtResource("5_lyfyp")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -100,7 +101,7 @@ position = Vector2(1211, -1329)
 [node name="Player" parent="." index="6" unique_id=1026458739]
 position = Vector2(768, -857)
 attributes = SubResource("Resource_rv537")
-inventory = SubResource("Resource_a1g57")
+inventory = SubResource("Resource_38ue3")
 
 [node name="HUDHintRemoteTransform" type="RemoteTransform2D" parent="PlayerCamera" parent_id_path=PackedInt32Array(294471714) index="0" unique_id=128844135]
 remote_path = NodePath("../HUDHints")
@@ -182,7 +183,7 @@ close_time = 5.5
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("16_lyfyp")]
 position = Vector2(1661, -2177)
-texture = ExtResource("16_a1g57")
+texture = ExtResource("18_xk8ob")
 door_refs = [NodePath("../SlidingDoor"), NodePath("../SlidingDoor2")]
 
 [node name="PressurePlate2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=134152489 node_paths=PackedStringArray("door_refs") instance=ExtResource("16_lyfyp")]

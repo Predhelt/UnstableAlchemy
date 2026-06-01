@@ -40,6 +40,10 @@ var cutscenes_watched: Array[int]
 var level_highest_cleared_index: int = 0
 ## Whether or not the player has exerienced a "loop".
 var has_looped: bool = false
+## Track whether different UI windows are disabled by user input.
+var is_inventory_disabled: bool = false
+var is_recipe_book_disabled: bool = false
+var is_log_book_disabled: bool = false
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
@@ -60,6 +64,9 @@ func save(_dir: String) -> Dictionary:
 		"cutscenes_watched" : var_to_str(cutscenes_watched),
 		"level_highest_cleared_index" : level_highest_cleared_index,
 		"has_looped" : has_looped,
+		"is_inventory_disabled" : is_inventory_disabled,
+		"is_recipe_book_disabled" : is_recipe_book_disabled,
+		"is_log_book_disabled" : is_log_book_disabled,
 	}
 	return save_dict
 
@@ -79,6 +86,9 @@ func reset_variables():
 	cutscenes_watched.clear()
 	level_highest_cleared_index = 0
 	has_looped = false
+	is_inventory_disabled = false
+	is_recipe_book_disabled = false
+	is_log_book_disabled = false
 
 ## Add a recipe to the list of known recipes and new recipes if not already known.
 func add_recipe(recipe : Recipe) -> bool:

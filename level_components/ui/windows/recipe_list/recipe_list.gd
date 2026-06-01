@@ -67,7 +67,7 @@ func close_window() -> void:
 
 
 func open_window() -> bool:
-	if Global.right_window or Global.center_window or Global.is_inventory_disabled:
+	if Global.right_window or Global.center_window or UserVariables.is_inventory_disabled:
 		return false
 	if Global.mode == &"default" or Global.mode == &"menu":
 		Global.mode = window_mode # Shares mode with inventory, minigame, and help menu
@@ -155,17 +155,6 @@ func add_ingredients(recipe: Recipe):
 		ingredient1.disabled = false
 	else:
 		ingredient1.disabled = true
-	
-	
-	#if num_ingredients > 1:
-		#ingredient_display.get_child(2).text = ","
-		#ingredient_display.get_child(3).texture = recipe.ingredients[1].texture
-		#ingredient_display.get_child(3).tooltip_text = recipe.ingredients[1].display_name
-	#
-	#if num_ingredients > 2:
-		#ingredient_display.get_child(4)
-		#ingredient_display.get_child(5).texture = recipe.ingredients[2].texture
-		#ingredient_display.get_child(5).tooltip_text = recipe.ingredients[2].display_name
 		
 	%ProcedureList.add_child(ingredient_display)
 
@@ -289,10 +278,12 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 				0: 
 					pia_icon.icon = procedure_icon_crush
 					pia_icon.tooltip_text = "Crush: up, down, up, down"
+					pia_icon.connect("pressed", _on_action_tool_icon_pressed)
 					#pia_icon.disabled = true
 				1: 
 					pia_icon.icon = procedure_icon_grind
 					pia_icon.tooltip_text = "Grind: left, right, left, right"
+					pia_icon.connect("pressed", _on_action_tool_icon_pressed)
 					#pia_icon.disabled = true
 		else:
 			var cur_ia = recipe.procedure.input_actions[i]
@@ -301,7 +292,8 @@ func _add_procedure_input_actions(container: HBoxContainer, recipe: Recipe):
 					2:
 						pia_icon.icon = procedure_icon_bellows
 						pia_icon.tooltip_text = "Equipment: Bellows"
-						pia_icon.disabled = true
+						pia_icon.connect("pressed", _on_action_tool_icon_pressed)
+						#pia_icon.disabled = true
 			elif cur_ia.type == "item":
 				for ingredient in recipe.ingredients:
 					if cur_ia.id == ingredient.id:
@@ -454,6 +446,13 @@ func _on_button_list_pressed() -> void:
 	recent_recipe_items.clear()
 	close_window()
 	open_window()
+
+
+func _on_action_tool_icon_pressed() -> void:
+	var effect_instance = text_effect.instantiate()
+	effect_instance.set_text("This is an action")
+	effect_instance.scale = Vector2(1.5, 1.5)
+	add_child(effect_instance)
 
 
 func _on_inventory_menu_item_consumed(_item: Item) -> void:

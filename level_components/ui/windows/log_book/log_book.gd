@@ -89,7 +89,7 @@ func close_window() -> void:
 
 ## Opens the log book to the default "Help: General" page.
 func open_window() -> bool:
-	if  Global.is_log_book_disabled:
+	if  UserVariables.is_log_book_disabled:
 		return false
 	if Global.center_window or Global.left_window or Global.right_window or visible:
 		#print("ERROR: Log Book could not be open, " + Global.center_window.name + " window already open")

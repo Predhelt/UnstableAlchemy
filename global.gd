@@ -27,11 +27,6 @@ var right_window : Control
 ## Keeps track of the window in the center of the screen
 var center_window : Control
 
-## Track whether different UI windows are disabled by user input.
-var is_recipe_book_disabled: bool = false
-var is_log_book_disabled: bool = false
-var is_inventory_disabled: bool = false
-
 ################
 ### Settings ###
 ################
@@ -170,9 +165,6 @@ func save(_dir: String = "") -> Dictionary:
 		"current_level_path" : current_level_path,
 		"cauldron_craft_precision" : cauldron_craft_precision,
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
-		"is_inventory_disabled" : is_inventory_disabled,
-		"is_recipe_book_disabled" : is_recipe_book_disabled,
-		"is_log_book_disabled" : is_log_book_disabled,
 	}
 
 ## Loads the game state based on the name of the save file in the user directory.

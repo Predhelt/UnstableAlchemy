@@ -1794,12 +1794,11 @@ metadata/_tab_index = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "Hello reader,
-Before you venture into the land of Botania (name pending), there are a few things you should know:
+Before you venture into the land of Botania, there are a few things you should know:
 The plants and creatures contain magical properties that can be extracted using specific processes.
-The plants grow back quickly, but gathered materials often decompose quickly.
-You cannot die here. If you get stuck, you can always get back to your camp by [surrendering yourself to the earth]. [You may lose certain items in the process].
+Anything you gather may not stay with you if you move to a new area.
 
-This place is bizarre and mysterious, but as you grow to understand it, you can learn to do utilize it to do extraordinary things. Just try not to lose yourself in the process.
+This place is bizarre and mysterious, but as you grow to understand it, you can learn to do utilize it to do extraordinary things.
 -R"
 
 [node name="PageBookShrinkPotion" type="MarginContainer" parent="VBoxContainer/TabContainer/TabBooks/HBoxContainer/PageContainer" unique_id=1130674966]
