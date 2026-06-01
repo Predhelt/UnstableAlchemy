@@ -50,6 +50,11 @@ func open_window_as_character(character : Character) -> bool:
 		
 		set_dialogue(character_ref.get_initial_dialogue_name(Global.focused_node))
 		
+		if character_ref.transactions.size(): # If the character has shop transactions
+			%TradeButton.disabled = false
+		else:
+			%TradeButton.disabled = true
+		
 		%ButtonBack.visible = false
 		visible = true
 		window_opened.emit()
