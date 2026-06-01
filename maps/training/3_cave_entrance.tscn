@@ -46,11 +46,12 @@
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="36_xmviu"]
 [ext_resource type="PackedScene" uid="uid://bii4ap0xms52m" path="res://level_components/objects/interactable/containers/interactable_note.tscn" id="37_5wcll"]
 [ext_resource type="Resource" uid="uid://b4jutr1xir7s7" path="res://game_systems/items/lore_books/crystal_hint3.tres" id="38_xmviu"]
+[ext_resource type="Texture2D" uid="uid://cmw0f0rpw6ygx" path="res://art/pack/ui/menus/right_arrow.png" id="40_oeqek"]
 [ext_resource type="Resource" uid="uid://fxa0hd1d00qg" path="res://game_systems/items/recipe_books/shrink_potion_book.tres" id="43_eooy1"]
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="44_r1a14"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="45_6vueu"]
 
-[sub_resource type="Resource" id="Resource_v40p3"]
+[sub_resource type="Resource" id="Resource_3bsik"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("13_v40p3")])
@@ -58,7 +59,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_oeqek"]
+[sub_resource type="Resource" id="Resource_wdxed"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("14_npw8n"), ExtResource("15_u3de4")])
@@ -68,7 +69,7 @@ items_buying = Array[ExtResource("3_0ue13")]([ExtResource("13_42qb0")])
 items_buying_amount = Array[int]([2])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_3bsik"]
+[sub_resource type="Resource" id="Resource_or0wd"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("19_oeqek")])
@@ -76,7 +77,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_wdxed"]
+[sub_resource type="Resource" id="Resource_38ufo"]
 resource_local_to_scene = true
 script = ExtResource("11_7v03r")
 items_selling = Array[ExtResource("3_0ue13")]([ExtResource("18_54nbq")])
@@ -88,7 +89,7 @@ metadata/_custom_type_script = "uid://bv286g1xhvijr"
 script = ExtResource("2_a28fu")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_or0wd"]
+[sub_resource type="Resource" id="Resource_wgx8k"]
 resource_local_to_scene = true
 script = ExtResource("4_6s6o1")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -132,7 +133,7 @@ auto_play = true
 position = Vector2(99, -719)
 portrait = ExtResource("11_eooy1")
 has_blade = true
-transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_v40p3"), SubResource("Resource_oeqek")])
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_3bsik"), SubResource("Resource_wdxed")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
 [node name="NPCShelly" parent="." index="5" unique_id=1961644270 instance=ExtResource("16_vu3vs")]
@@ -141,13 +142,13 @@ portrait = ExtResource("18_suusu")
 has_blade = true
 has_dropper = true
 interaction_type = "talk"
-transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_3bsik"), SubResource("Resource_wdxed")])
+transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_or0wd"), SubResource("Resource_38ufo")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 
 [node name="Player" parent="." index="6" unique_id=1026458739]
 position = Vector2(-86, -840)
 attributes = SubResource("Resource_grtol")
-inventory = SubResource("Resource_or0wd")
+inventory = SubResource("Resource_wgx8k")
 
 [node name="PlayerCamera" parent="." index="7" unique_id=294471714]
 position = Vector2(252, -1013)
@@ -186,7 +187,21 @@ position = Vector2(-32, -672.00006)
 position = Vector2(352, -1376)
 display_scene = NodePath("../CraftHint")
 
-[node name="CraftHint" type="Node2D" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=1936404416]
+[node name="BoulderPushablePersistent" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=794065921 instance=ExtResource("25_kk4xh")]
+position = Vector2(-32, -663)
+
+[node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=463050243 instance=ExtResource("28_7v03r")]
+position = Vector2(-32, -322)
+
+[node name="WallSmallHole" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=1390089359 instance=ExtResource("31_3u314")]
+position = Vector2(-32, -1412)
+gap_size = 50.0
+
+[node name="DisplayArea2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="5" unique_id=135261797 node_paths=PackedStringArray("display_scene") instance=ExtResource("18_6vueu")]
+position = Vector2(352, -1184)
+display_scene = NodePath("../CraftHint2")
+
+[node name="CraftHint" type="Node2D" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="6" unique_id=1936404416]
 position = Vector2(481, -1603)
 
 [node name="Label2" type="Label" parent="PuzzleNodes/CraftHint" index="0" unique_id=1729837531]
@@ -214,7 +229,7 @@ texture = ExtResource("20_5wcll")
 
 [node name="Ground2" type="TileMapLayer" parent="PuzzleNodes/CraftHint" index="3" unique_id=669343965]
 z_index = -5
-tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAGAAAAAQACAAAAAAAGAAEAAQACAAAAAAAGAAIAAQACAAAAAAAGAAMAAQACAAAAAAAGAAQAAQACAAAAAAAGAAUAAQACAAAAAAAFAAUAAQACAAAAAAAEAAUAAQACAAAAAAADAAUAAQACAAAAAAACAAUAAQACAAAAAAABAAUAAQACAAAAAAAAAAUAAQACAAAAAAAAAAQAAQACAAAAAAAAAAMAAQACAAAAAAAAAAIAAQACAAAAAAAAAAEAAQACAAAAAAABAAEAAQAAAAEAAAABAAIAAQAAAAEAAAACAAIAAQAAAAEAAAADAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAAFAAIAAQAAAAEAAAAFAAEAAQAAAAEAAAADAAEAAQAAAAEAAAABAAQAAQAAAAEAAAACAAQAAQAAAAEAAAADAAQAAQAAAAEAAAAEAAQAAQAAAAEAAAAFAAQAAQAAAAEAAAADAAMAAQABAAAAAAAEAAEAAQABAAAAAAACAAEAAQADAAAAAAABAAMAAQADAAAAAAACAAMAAQADAAAAAAAEAAMAAQADAAAAAAAFAAMAAQADAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAGAAAAAQACAAAAAAAGAAEAAQACAAAAAAAGAAIAAQACAAAAAAAGAAMAAQACAAAAAAAGAAQAAQACAAAAAAAGAAUAAQACAAAAAAAFAAUAAQACAAAAAAAEAAUAAQACAAAAAAADAAUAAQACAAAAAAACAAUAAQACAAAAAAABAAUAAQACAAAAAAAAAAUAAQACAAAAAAAAAAQAAQACAAAAAAAAAAMAAQACAAAAAAAAAAIAAQACAAAAAAAAAAEAAQACAAAAAAABAAEAAQAAAAEAAAABAAIAAQAAAAEAAAACAAIAAQAAAAEAAAADAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAAFAAIAAQAAAAEAAAAFAAEAAQAAAAEAAAADAAEAAQAAAAEAAAABAAQAAQAAAAEAAAACAAQAAQAAAAEAAAADAAQAAQAAAAEAAAAEAAQAAQAAAAEAAAAFAAQAAQAAAAEAAAADAAMAAwADAAEAAAAEAAEAAwADAAEAAAACAAEAAwADAAAAAAABAAMAAwADAAAAAAACAAMAAwADAAAAAAAEAAMAAwADAAAAAAAFAAMAAwADAAAAAAA=")
 tile_set = ExtResource("21_xmviu")
 metadata/_edit_lock_ = true
 
@@ -240,20 +255,6 @@ offset_bottom = 128.0
 texture = ExtResource("24_dcuki")
 expand_mode = 1
 stretch_mode = 4
-
-[node name="BoulderPushablePersistent" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=794065921 instance=ExtResource("25_kk4xh")]
-position = Vector2(-32, -663)
-
-[node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=463050243 instance=ExtResource("28_7v03r")]
-position = Vector2(-32, -322)
-
-[node name="WallSmallHole" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="5" unique_id=1390089359 instance=ExtResource("31_3u314")]
-position = Vector2(-32, -1412)
-gap_size = 50.0
-
-[node name="DisplayArea2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="6" unique_id=135261797 node_paths=PackedStringArray("display_scene") instance=ExtResource("18_6vueu")]
-position = Vector2(352, -1184)
-display_scene = NodePath("../CraftHint2")
 
 [node name="CraftHint2" type="Node2D" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="7" unique_id=726662051]
 position = Vector2(487, -1336)
@@ -283,7 +284,7 @@ texture = ExtResource("33_6vueu")
 
 [node name="Ground2" type="TileMapLayer" parent="PuzzleNodes/CraftHint2" index="3" unique_id=2120208595]
 z_index = -1
-tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAFAAEAAQACAAAAAAAFAAIAAQACAAAAAAAFAAMAAQACAAAAAAAFAAQAAQACAAAAAAAEAAQAAQACAAAAAAADAAQAAQACAAAAAAACAAQAAQACAAAAAAABAAQAAQACAAAAAAAAAAQAAQACAAAAAAAAAAEAAQACAAAAAAAAAAIAAQACAAAAAAAAAAMAAQACAAAAAAABAAIAAQACAAAAAAACAAIAAQACAAAAAAADAAIAAQACAAAAAAAEAAIAAQACAAAAAAABAAEAAQABAAEAAAACAAEAAQABAAEAAAABAAMAAQABAAEAAAACAAMAAQABAAEAAAADAAMAAQADAAAAAAADAAEAAQADAAAAAAAEAAEAAgAAAAAAAQAEAAMAAgAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAADAAAAAQACAAAAAAAEAAAAAQACAAAAAAAFAAAAAQACAAAAAAAFAAEAAQACAAAAAAAFAAIAAQACAAAAAAAFAAMAAQACAAAAAAAFAAQAAQACAAAAAAAEAAQAAQACAAAAAAADAAQAAQACAAAAAAACAAQAAQACAAAAAAABAAQAAQACAAAAAAAAAAQAAQACAAAAAAAAAAEAAQACAAAAAAAAAAIAAQACAAAAAAAAAAMAAQACAAAAAAABAAIAAQACAAAAAAACAAIAAQACAAAAAAADAAIAAQACAAAAAAAEAAIAAQACAAAAAAABAAEAAwAAAAEAAAACAAEAAwAAAAEAAAABAAMAAwAAAAEAAAACAAMAAwAAAAEAAAADAAMAAwACAAEAAAADAAEAAwACAAEAAAAEAAEAAQAAAAAAAAAEAAMAAQAAAAAAAAA=")
 tile_set = ExtResource("21_xmviu")
 metadata/_edit_lock_ = true
 
@@ -316,6 +317,20 @@ offset_top = 192.0
 offset_right = 192.0
 offset_bottom = 256.0
 texture = ExtResource("34_lq8bo")
+
+[node name="TextureRect7" type="TextureRect" parent="PuzzleNodes/CraftHint2" index="8" unique_id=1793580791]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 128.0
+texture = ExtResource("40_oeqek")
+
+[node name="TextureRect8" type="TextureRect" parent="PuzzleNodes/CraftHint2" index="9" unique_id=767866449]
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 256.0
+offset_bottom = 256.0
+texture = ExtResource("40_oeqek")
 
 [node name="InteractableNote" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="8" unique_id=1856845390 instance=ExtResource("37_5wcll")]
 position = Vector2(84, -440)

@@ -87,7 +87,7 @@ offset_top = 199.0
 offset_right = 785.0
 offset_bottom = 248.0
 text = "This room is placeholder.
-There are currently 3 cutscenes you discover."
+There are currently 3 cutscenes to discover."
 horizontal_alignment = 1
 
 [connection signal="timeout" from="CutsceneDelay" to="." method="_on_cutscene_delay_timeout"]
