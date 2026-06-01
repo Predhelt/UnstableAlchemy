@@ -98,7 +98,6 @@ text = "level name"
 script = ExtResource("7_ak53w")
 
 [node name="LabelResetTip" type="Label" parent="MenuLayer/CenterWindows/OptionsMenu" unique_id=1224796785]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

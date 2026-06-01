@@ -62,8 +62,8 @@ func _input(event: InputEvent) -> void:
 			right_window.close_window()
 		elif left_window:
 			left_window.close_window()
-	#if event.is_action_pressed("reset_level") and mode == &"options":
-		#reset_level()
+	if event.is_action_pressed("reset_level") and mode == &"options":
+		reset_level()
 
 ## Changes the root node of the scene. Used for changing levels.
 func change_scene(scene_path: String) -> void:
