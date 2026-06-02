@@ -1,27 +1,30 @@
 extends Control
 
+## Maximum number of save slots available.
+const MAX_SAVE_SLOTS: int = 3
+
+@export_file_path var default_loaded_level = "res://maps/training/1_ruins_entrance.tscn"
 ## Which page is currently being displayed.
 var current_page_ref: Control
+## Tracks if the current save slot is empty, as in, has no user data.
+var is_slot_empty: bool = true
+
 
 func _ready() -> void:
-	$LabelVersion.text = "Version: %s (Demo)" % ProjectSettings.get_setting("application/config/version")
+	$LabelVersion.text = "Version: %s (Demo, Alpha)" % ProjectSettings.get_setting("application/config/version")
 	UserVariables.reset_variables()
 	$ButtonCredits.visible = true
 	$CreditsPanel.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		if $ButtonBack.visible:
+		if $CreditsPanel.visible:
+			$CreditsPanel.visible = false
+		elif $ButtonBack.visible:
 			_on_button_back_pressed()
-
-## Opens the level that was selected. Returns whether or not the level was opened successfuly.
-func open_level() -> bool:
-	return false
 
 
 func _on_button_settings_pressed() -> void:
-	$AudioStreams/AudioStreamPlayer.play()
-	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	if not $SettingsMenu.visible:
 		$SettingsMenu.popup()
 	else:
@@ -29,75 +32,60 @@ func _on_button_settings_pressed() -> void:
 
 
 func _on_button_exit_pressed() -> void:
-	$AudioStreams/AudioStreamPlayer.play()
-	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$PopupConfirmation.popup()
-
-
-func _on_button_load_pressed() -> void:
-	$AudioStreams/AudioStreamPlayer.play()
-	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	if $PlayTypePage/ButtonLoad/SaveSelectPopup.item_count == 0:
-		Global.emit_notification("No save data found.")
-	else:
-		$PlayTypePage/ButtonLoad/SaveSelectPopup.show()
 
 
 func _on_button_entered() -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "hover"
 
+
+func _on_button_pressed() -> void:
+	$AudioStreams/AudioStreamPlayer.play()
+	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
+
 ## Open the menu buttons for selecting what to play
 func _on_button_play_pressed() -> void:
-	$AudioStreams/AudioStreamPlayer.play()
-	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	$MainPage.visible = false
-	current_page_ref = $PlayTypePage
+	current_page_ref = $SaveSelectPage
 	$ButtonBack.visible = true
-	$PlayTypePage.visible = true
+	
+	Global.current_save_slot = 0
+	configure_save_slot_data()
+	current_page_ref = $SaveSelectPage
+	$SaveSelectPage.visible = true
 
-
-func _on_button_level_select_pressed() -> void:
-	$AudioStreams/AudioStreamPlayer.play()
-	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	if $PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup.item_count == 1:
-		_on_save_select_uv_popup_index_pressed(0)
+## Uses the [member current_save_slot] to get data from UserVariables
+## to configure the save slot page.
+func configure_save_slot_data():
+	if not FileAccess.file_exists("user://saves/slot%s.save" % Global.current_save_slot):
+		$SaveSelectPage/ButtonStart.text = "New Game"
+		is_slot_empty = true
 	else:
-		$PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup.show()
-
-
-func _on_save_select_uv_popup_index_pressed(_index: int) -> void:
-	$AudioStreams/AudioStreamPlayer.play()
-	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	$ButtonCredits.visible = false
-	$PlayTypePage.visible = false
+		Global.load_user_variables()
+		$SaveSelectPage/ButtonStart.text = "Resume"
+		is_slot_empty = false
 	
-	var c: int = UserVariables.level_highest_cleared_index
-	for level_button in %GridContainerButtons.get_children():
-		if c >= 0:
-			level_button.visible = true
-			c -= 1
-		else:
-			level_button.visible = false
-	
-	current_page_ref = $LevelSelectPage
-	$ButtonBack.visible = true
-	$LevelSelectPage.visible = true
+	$SaveSelectPage/VBoxContainer/LabelSlotName.text = "Slot %s" % Global.current_save_slot
+	if not UserVariables.has_looped:
+		$SaveSelectPage/VBoxContainer/LabelLevelsCleared.text = (
+			"Levels Cleared: %s" % UserVariables.level_highest_cleared_index
+		)
+		$SaveSelectPage/ButtonLevelSelect.visible = false
+	else:
+		$SaveSelectPage/VBoxContainer/LabelLevelsCleared.text = "LOOPED"
+		$SaveSelectPage/ButtonLevelSelect.visible = true
 
 
 func _on_button_back_pressed() -> void:
-	$AudioStreams/AudioStreamPlayer.play()
-	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	
 	$LabelSaveDataType.visible = false
-	$ButtonCredits.visible = true
-	if current_page_ref == $PlayTypePage:
+	if current_page_ref == $SaveSelectPage:
 		current_page_ref.visible = false
 		$MainPage.visible = true
 		$ButtonBack.visible = false
 	else: # Assumeed the page is LevelSelectPage
 		current_page_ref.visible = false
-		current_page_ref = $PlayTypePage
+		current_page_ref = $SaveSelectPage
 		current_page_ref.visible = true
 		
 
@@ -108,3 +96,46 @@ func _on_button_credits_pressed() -> void:
 
 func _on_credits_button_close_pressed() -> void:
 	$CreditsPanel.visible = false
+
+# Save Slot Buttons
+
+func _on_button_saves_start_pressed() -> void:
+	if is_slot_empty:
+		Global.change_scene(default_loaded_level)
+	else:
+		Global.load_game()
+
+
+func _on_button_saves_previous_pressed() -> void:
+	if Global.current_save_slot < 1:
+		Global.current_save_slot = MAX_SAVE_SLOTS-1
+	else:
+		Global.current_save_slot -= 1
+	configure_save_slot_data()
+
+
+func _on_button_saves_next_pressed() -> void:
+	if Global.current_save_slot >= MAX_SAVE_SLOTS:
+		Global.current_save_slot = 0
+	else:
+		Global.current_save_slot += 1
+	configure_save_slot_data()
+
+
+func _on_button_saves_level_select_pressed() -> void:
+	$SaveSelectPage.visible = false
+	
+	var c: int = UserVariables.level_highest_cleared_index
+	for level_button in %GridContainerButtons.get_children():
+		if c > 0:
+			level_button.visible = true
+			c -= 1
+		else:
+			level_button.visible = false
+	
+	$LevelSelectPage.visible = true
+
+
+func _on_button_saves_clear_save_pressed() -> void:
+	UserVariables.reset_variables()
+	# TODO: Remove save slot directory. Probably through Global.

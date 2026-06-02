@@ -114,7 +114,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 
 [node name="World" unique_id=1661168125 instance=ExtResource("1_8deul")]
 script = ExtResource("2_oeqek")
-level_index = 2
+level_index = 3
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("6_1umpp")

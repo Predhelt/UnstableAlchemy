@@ -35,50 +35,41 @@ func close_window():
 		visible = false
 		window_closed.emit()
 
-## Close the options menu and return to the game.
-func _on_button_return_pressed() -> void:
+
+func _on_button_entered() -> void:
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"
+
+
+func _on_button_pressed() -> void:
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
+
+## Close the options menu and return to the game.
+func _on_button_return_pressed() -> void:
 	close_window()
 
 ## Close the options menu and open the settings menu.
 func _on_button_settings_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	close_window()
 	$"../SettingsMenu".popup()
 
 ## Close the game.
 func _on_button_exit_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	$PopupConfirmation.popup()
+	$PopupQuitConfirmation.popup()
 
 
 func _on_button_save_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	Global.save_game("save")
+	Global.save_game()
 
 
 func _on_button_load_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	$VBoxContainer/Control/VBoxContainer/ButtonLoad/SaveSelectPopup.show()
+	Global.load_game()
 
 
 func _on_button_cancel_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-	$PopupConfirmation.hide()
+	$PopupQuitConfirmation.hide()
 
 
 func _on_button_quit_pressed() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	get_tree().quit()
-
-
-func _on_button_entered() -> void:
-	$AudioStreamPlayer.play()
-	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"

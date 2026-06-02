@@ -6,7 +6,7 @@ var has_saved : bool = false
 func _on_body_entered(body: Node2D) -> void:
 	if not has_saved and body == Global.focused_node:
 		has_saved = true
-		Global.save_game("autosave")
+		Global.save_game()
 
 func save(_dir: String) -> Dictionary:
 	var save_dict = {

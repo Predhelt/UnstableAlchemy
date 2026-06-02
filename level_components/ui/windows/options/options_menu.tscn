@@ -9,8 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/audio/sounds/menu_hover.mp3" id="4_2ogd0"]
 [ext_resource type="ButtonGroup" uid="uid://bo5q05cajm24g" path="res://level_components/ui/windows/options/options_buttons.tres" id="4_o212l"]
 [ext_resource type="PackedScene" uid="uid://1yiwmvqku557" path="res://level_components/ui/windows/options/button_options_menu.tscn" id="6_qrcwd"]
-[ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_confirmation.tscn" id="7_qrcwd"]
-[ext_resource type="PackedScene" uid="uid://4pbfbvyixdwe" path="res://level_components/ui/windows/popups/save_select_popup.tscn" id="9_2ogd0"]
+[ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_quit_confirmation.tscn" id="7_qrcwd"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_7ekgj"]
 clip_count = 3
@@ -104,10 +103,6 @@ toggle_mode = true
 button_group = ExtResource("4_o212l")
 text = "Load"
 
-[node name="SaveSelectPopup" parent="VBoxContainer/Control/VBoxContainer/ButtonLoad" unique_id=2088896767 instance=ExtResource("9_2ogd0")]
-position = Vector2i(484, 364)
-visible = false
-
 [node name="ButtonSettings" type="Button" parent="VBoxContainer/Control/VBoxContainer" unique_id=713809295]
 unique_name_in_owner = true
 layout_mode = 2
@@ -130,21 +125,26 @@ toggle_mode = true
 button_group = ExtResource("4_o212l")
 text = "Quit Game"
 
-[node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_qrcwd")]
+[node name="PopupQuitConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_qrcwd")]
 visible = false
 
 [connection signal="focus_entered" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_return_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="VBoxContainer/Control/VBoxContainer/ButtonSave" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Control/VBoxContainer/ButtonSave" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSave" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSave" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="VBoxContainer/Control/VBoxContainer/ButtonLoad" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Control/VBoxContainer/ButtonLoad" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonLoad" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonLoad" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="VBoxContainer/Control/VBoxContainer/ButtonSettings" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Control/VBoxContainer/ButtonSettings" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonSettings" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="VBoxContainer/Control/VBoxContainer/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Control/VBoxContainer/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/ButtonExit" to="." method="_on_button_pressed"]

@@ -2,6 +2,8 @@
 extends Node
 #TODO: Remake UI with controller/mobile
 
+## Index of the current save slot being used by UserVariables.
+var current_save_slot : int
 ## Reference to the main camera used for displaying to the user.
 var focused_camera : Camera2D
 ## Reference to the node that has focus of the window's camera.
@@ -96,15 +98,15 @@ func emit_notification(message : String):
 	notification_container.add_child.call_deferred(new_notification)
 
 ## Save the persistent game informaion to file. Uses [Dictionary] to store data in [JSON] format.
-func save_game(save_name : String) -> void:
+func save_game() -> void:
 	if not DirAccess.dir_exists_absolute("user://saves"):
 		DirAccess.make_dir_absolute("user://saves")
-	var dir: String = "user://saves/%s" % save_name
+	var dir: String = "user://saves/slot%s" % current_save_slot
 	# Remove current (outdated) directories in save location
 	remove_directory(dir)
 	
 	#DirAccess.open(dir)
-	var save_file = FileAccess.open("%sgame.save" % dir, FileAccess.WRITE)
+	var save_file = FileAccess.open("%s.save" % dir, FileAccess.WRITE)
 	
 	# Store global data at top of the file.
 	var node_data : Dictionary = save(dir)
@@ -160,20 +162,21 @@ func save(_dir: String = "") -> Dictionary:
 	if current_level_path == "": #FIXME: Level path not always set.
 		print("ERROR: No Level Path Found. Save Failed")
 	return {
+		"current_save_slot" : current_save_slot,
 		"focused_camera" : focused_camera,
 		"focused_node" : focused_node,
 		"current_level_path" : current_level_path,
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}
 
-## Loads the game state based on the name of the save file in the user directory.
-func load_game(save_name : String) -> void:
-	var dir = "user://saves/%s" % save_name
-	if not FileAccess.file_exists("%sgame.save" % dir):
-		print("ERROR: No save file \"%sgame.save\" found!" % dir)
+## Loads the game state based on the [member current_save_slot].
+func load_game() -> void:
+	var dir = "user://saves/slot%s" % current_save_slot
+	if not FileAccess.file_exists("%s.save" % dir):
+		print("ERROR: No save file \"%s.save\" found!" % dir)
 		return
 	
-	var save_file = FileAccess.open("%sgame.save" % dir, FileAccess.READ)
+	var save_file = FileAccess.open("%s.save" % dir, FileAccess.READ)
 	
 	# Initialize variables and change the level scene.
 	var json_string = save_file.get_line()
@@ -306,13 +309,14 @@ func load_game(save_name : String) -> void:
 	mode = &"default"
 
 
-## Loads just the user data to UserVariables based on the savegame.save file in the user directory.
-func load_user_variables(dir: String) -> void:
-	if not FileAccess.file_exists("%sgame.save" % dir):
-		print("ERROR: No save file \"%sgame.save\" found!" % dir)
+## Loads just the user data to UserVariables based on the [member current_save_slot]'s .save file.
+func load_user_variables() -> void:
+	var dir = "user://saves/slot%s" % current_save_slot
+	if not FileAccess.file_exists("%s.save" % dir):
+		print("ERROR: No save file \"%s.save\" found!" % dir)
 		return
 	
-	var save_file = FileAccess.open("%sgame.save" % dir, FileAccess.READ)
+	var save_file = FileAccess.open("%s.save" % dir, FileAccess.READ)
 	
 	# Initialize variables and change the level scene.
 	var json_string = save_file.get_line()

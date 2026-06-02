@@ -11,9 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cbmanjmqg15w4" path="res://art/pack/audio/music/quaint_ambient.mp3" id="2_wue2l"]
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
-[ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_confirmation.tscn" id="7_17jem"]
-[ext_resource type="PackedScene" uid="uid://cqynjrx3pw1gi" path="res://level_components/ui/windows/popups/save_select_uv_popup.tscn" id="11_mh60s"]
-[ext_resource type="PackedScene" uid="uid://4pbfbvyixdwe" path="res://level_components/ui/windows/popups/save_select_popup.tscn" id="12_u5f4f"]
+[ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_quit_confirmation.tscn" id="7_17jem"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_u2ya0"]
 clip_count = 3
@@ -28,6 +26,9 @@ clip_2/name = &"press"
 clip_2/stream = ExtResource("2_8adcj")
 clip_2/auto_advance = 1
 clip_2/next_clip = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20uek"]
+bg_color = Color(0.12051291, 0.36276066, 0.40487552, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5f4f"]
 bg_color = Color(0.14767182, 0.14767182, 0.14767176, 1)
@@ -133,7 +134,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[node name="PlayTypePage" type="VBoxContainer" parent="." unique_id=973106764]
+[node name="SaveSelectPage" type="Panel" parent="." unique_id=695990795]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -141,41 +142,101 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -170.0
-offset_top = -101.0
-offset_right = 170.0
-offset_bottom = 187.0
+offset_left = -278.0
+offset_top = -215.0
+offset_right = 278.0
+offset_bottom = 215.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_3ahgd")
-theme_override_constants/separation = 28
+theme_override_styles/panel = SubResource("StyleBoxFlat_20uek")
 
-[node name="ButtonNewGame" parent="PlayTypePage" unique_id=944362697 instance=ExtResource("2_12dnu")]
-custom_minimum_size = Vector2(250, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveSelectPage" unique_id=748136779]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="LabelSlotName" type="Label" parent="SaveSelectPage/VBoxContainer" unique_id=1334284947]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "New Game"
-level_path = "uid://nkld8tcq4n2y"
+theme_override_font_sizes/font_size = 32
+text = "Slot X"
+horizontal_alignment = 1
 
-[node name="ButtonLoad" type="Button" parent="PlayTypePage" unique_id=1418030786]
-custom_minimum_size = Vector2(250, 0)
+[node name="LabelLevelsCleared" type="Label" parent="SaveSelectPage/VBoxContainer" unique_id=1346048014]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Load"
+theme_override_font_sizes/font_size = 24
+text = "Levels Cleared: X"
+horizontal_alignment = 1
 
-[node name="SaveSelectPopup" parent="PlayTypePage/ButtonLoad" unique_id=2044775981 instance=ExtResource("12_u5f4f")]
-position = Vector2i(486, 440)
+[node name="LabelKnownRecipes" type="Label" parent="SaveSelectPage/VBoxContainer" unique_id=1799709237]
 visible = false
-
-[node name="ButtonLevelSelect" type="Button" parent="PlayTypePage" unique_id=1348568028]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 24
+text = "Recipes known: XXX/XXX"
+horizontal_alignment = 1
+
+[node name="ButtonPrevious" type="Button" parent="SaveSelectPage" unique_id=443323165]
+custom_minimum_size = Vector2(32, 80)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 4.0
+grow_vertical = 2
+text = "<-"
+
+[node name="ButtonNext" type="Button" parent="SaveSelectPage" unique_id=1557534464]
+custom_minimum_size = Vector2(32, 80)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "->"
+
+[node name="ButtonStart" type="Button" parent="SaveSelectPage" unique_id=1759279753]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 178.0
+offset_top = 246.0
+offset_right = 378.0
+offset_bottom = 293.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Start"
+
+[node name="ButtonLevelSelect" type="Button" parent="SaveSelectPage" unique_id=2092367475]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 178.0
+offset_top = 312.0
+offset_right = 378.0
+offset_bottom = 359.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
 text = "Level Select"
 
-[node name="SaveSelectUVPopup" parent="PlayTypePage/ButtonLevelSelect" unique_id=2088896767 instance=ExtResource("11_mh60s")]
-position = Vector2i(484, 545)
-visible = false
+[node name="ButtonClearSave" type="Button" parent="SaveSelectPage" unique_id=1983458295]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 375.0
+offset_right = 538.0
+offset_bottom = 412.0
+disabled = true
+text = "Clear Save Data"
 
 [node name="LevelSelectPage" type="MarginContainer" parent="." unique_id=404084080]
 visible = false
@@ -408,26 +469,47 @@ text = "X"
 [node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_17jem")]
 visible = false
 
+[connection signal="focus_entered" from="ButtonCredits" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="ButtonCredits" to="." method="_on_button_entered"]
+[connection signal="pressed" from="ButtonCredits" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ButtonCredits" to="." method="_on_button_credits_pressed"]
 [connection signal="focus_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainPage/ButtonPlay" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MainPage/ButtonPlay" to="." method="_on_button_play_pressed"]
 [connection signal="focus_entered" from="MainPage/ButtonSettings" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonSettings" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainPage/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="MainPage/ButtonSettings" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonExit" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainPage/ButtonExit" to="." method="_on_button_exit_pressed"]
-[connection signal="focus_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="PlayTypePage/ButtonLoad" to="." method="_on_button_entered"]
-[connection signal="pressed" from="PlayTypePage/ButtonLoad" to="." method="_on_button_load_pressed"]
-[connection signal="about_to_popup" from="PlayTypePage/ButtonLoad/SaveSelectPopup" to="." method="_on_save_select_popup_about_to_popup"]
-[connection signal="focus_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_entered"]
-[connection signal="pressed" from="PlayTypePage/ButtonLevelSelect" to="." method="_on_button_level_select_pressed"]
-[connection signal="index_pressed" from="PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup" to="." method="_on_save_select_uv_popup_index_pressed"]
-[connection signal="visibility_changed" from="PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup" to="PlayTypePage/ButtonLevelSelect/SaveSelectUVPopup" method="_on_visibility_changed"]
+[connection signal="pressed" from="MainPage/ButtonExit" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_entered"]
+[connection signal="pressed" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_saves_previous_pressed"]
+[connection signal="focus_entered" from="SaveSelectPage/ButtonNext" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="SaveSelectPage/ButtonNext" to="." method="_on_button_entered"]
+[connection signal="pressed" from="SaveSelectPage/ButtonNext" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonNext" to="." method="_on_button_saves_next_pressed"]
+[connection signal="focus_entered" from="SaveSelectPage/ButtonStart" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="SaveSelectPage/ButtonStart" to="." method="_on_button_entered"]
+[connection signal="pressed" from="SaveSelectPage/ButtonStart" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonStart" to="." method="_on_button_saves_start_pressed"]
+[connection signal="focus_entered" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_entered"]
+[connection signal="pressed" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_saves_level_select_pressed"]
+[connection signal="focus_entered" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_entered"]
+[connection signal="pressed" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_saves_clear_save_pressed"]
 [connection signal="focus_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="pressed" from="ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="ButtonBack" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="CreditsPanel/ButtonClose" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="CreditsPanel/ButtonClose" to="." method="_on_button_entered"]
+[connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_credits_button_close_pressed"]
