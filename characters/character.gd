@@ -304,6 +304,8 @@ func save(dir : String) -> Dictionary:
 
 ## Update character position and messages every frame
 func _physics_process(delta: float) -> void:
+	_update_status_message(delta)
+	
 	if Global.mode != &"default":
 		if %CharacterAudioStream.playing:
 			update_character_audio("idle")
@@ -316,20 +318,6 @@ func _physics_process(delta: float) -> void:
 		_push_body(rb)
 	
 	_update_status_effect_timers(delta)
-
-	if message_timer > 0:
-		if last_message_delta:
-			last_message_delta = 0
-		message_timer -= delta
-		if message_timer <= 0:
-			%StatusLabel.text = ""
-	else:
-		last_message_delta += delta
-		# Checks if enough time has passed since the last message to say another message
-		if last_message_delta > 15:
-			last_message_delta = 0.0
-			if not passive_messages.is_empty() and not character_possessed_by:
-				say_random_message()
 	
 	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
 		$PossessionTargetLabel.global_position = possessable_characters[0].global_position
@@ -783,6 +771,23 @@ func _update_status_effect_timers(delta : float) -> void:
 			se.cur_duration += delta
 			if se.cur_duration >= se.duration:
 				remove_status_effect(se)
+
+## Checks to see if the next frame will end display of the current message.
+## Then, if the character is not player-controlled, says a random message.
+func _update_status_message(delta: float) -> void:
+	if message_timer > 0:
+		if last_message_delta:
+			last_message_delta = 0
+		message_timer -= delta
+		if message_timer <= 0:
+			%StatusLabel.text = ""
+	else:
+		last_message_delta += delta
+		# Checks if enough time has passed since the last message to say another message
+		if last_message_delta > 15:
+			last_message_delta = 0.0
+			if not passive_messages.is_empty() and not character_possessed_by:
+				say_random_message()
 
 ## Removes a given [StatusEffect] at the given index in [member active_status_effects] 
 ## and reverts the changes to the character.

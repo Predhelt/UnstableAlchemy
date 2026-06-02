@@ -41,6 +41,7 @@ func _ready() -> void:
 	#%MortarPestle.inventory_menu_ref = self
 	minigame_mp_ref.tool_ref = %MortarPestle
 	#%Merger.inventory_menu_ref = self
+	$LabelStatusMessage.visible = false
 
 ## Controls functions executed when input actions are pressed
 func _input(event: InputEvent) -> void:
@@ -271,6 +272,8 @@ func sample_item(item) -> void:
 	if not $CooldownInteract.is_stopped(): #NOTE: No visual indicator that the sampling is disabled
 		return
 	Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	set_status_message_echo(item.on_consume_message)
+	
 	$CooldownInteract.start()
 
 ## Uses the given item and reduces its count in the inventory.
@@ -282,6 +285,7 @@ func consume_item(item : Item, index : int) -> void:
 		#for param in item.on_consume_events[event]:
 		EventHandler.callv(event, item.on_consume_events[event])
 	Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
+	set_status_message_echo(item.on_consume_message)
 	
 	match item.use_sound:
 		"eat":
@@ -305,6 +309,7 @@ func consume_item(item : Item, index : int) -> void:
 				
 		if not item.on_consume_effects: ## If there were no effects, display book message anyways.
 			Global.focused_node.update_status_message(item.on_consume_message)
+			set_status_message_echo(item.on_consume_message)
 	
 	if item.id not in Global.focused_node.items_used.keys():
 		Global.focused_node.items_used[item.id] = 1
@@ -338,6 +343,12 @@ func consume_item(item : Item, index : int) -> void:
 			hotbar_ref.remove_hotbar_item(item)
 	
 	item_consumed.emit(item)
+
+
+func set_status_message_echo(message: String) -> void:
+	$LabelStatusMessage.text = "\"%s\"" % message
+	$LabelStatusMessage.visible = true
+	$LabelStatusMessage/Timer.start()
 
 ## Adds item from the hotbar to the inventory.
 func _on_hotbar_add_inventory_item(item: Item) -> void:
@@ -417,3 +428,7 @@ func _on_minigame_previous_called() -> void:
 
 func _on_ui_layer_call_open_inventory() -> void:
 	open_window()
+
+
+func _on_timer_timeout() -> void:
+	$LabelStatusMessage.visible = false
