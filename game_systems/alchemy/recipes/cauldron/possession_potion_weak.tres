@@ -8,5 +8,5 @@
 script = ExtResource("7_rsqgt")
 id = 509
 product_item = ExtResource("6_rniti")
-product_item_amount = 1
+product_item_amount = 2
 metadata/_custom_type_script = "uid://dmsouatunq2be"

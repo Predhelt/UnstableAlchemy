@@ -12,4 +12,5 @@ description = "A gray potion that provides health recovery (WIP)"
 texture = ExtResource("3_kvw8e")
 primary_color = "cyan"
 use_sound = "drink"
+qty = 3
 on_consume_message = "I feel a bit better"

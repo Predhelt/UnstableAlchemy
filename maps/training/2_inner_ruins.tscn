@@ -113,7 +113,7 @@ cutscene_ids = Array[int]([2, 3])
 auto_play = true
 
 [node name="TutorialTim" parent="." index="4" unique_id=1948548714 instance=ExtResource("13_i1mdp")]
-position = Vector2(341, -298)
+position = Vector2(338, -292)
 
 [node name="TutorialTim2" parent="." index="5" unique_id=1788924441 instance=ExtResource("36_31b4h")]
 position = Vector2(118, -1392)
