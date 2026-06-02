@@ -29,6 +29,9 @@ clip_2/stream = ExtResource("2_8adcj")
 clip_2/auto_advance = 1
 clip_2/next_clip = 0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5f4f"]
+bg_color = Color(0.14767182, 0.14767182, 0.14767176, 1)
+
 [node name="TitleScreen" type="Control" unique_id=2038214120]
 layout_mode = 3
 anchors_preset = 15
@@ -76,6 +79,24 @@ theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
 text = "Unstable Alchemy"
 horizontal_alignment = 1
+
+[node name="ButtonCredits" type="Button" parent="." unique_id=456737151]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -57.0
+offset_right = 20.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 42
+text = "Credits"
 
 [node name="MainPage" type="VBoxContainer" parent="." unique_id=1846484415]
 layout_mode = 1
@@ -232,11 +253,13 @@ anchor_left = 0.02
 anchor_top = 0.97
 anchor_right = 0.02
 anchor_bottom = 0.97
-offset_top = -45.0
-offset_right = 125.00001
+offset_left = 1.4000015
+offset_top = -61.400024
+offset_right = 402.4
+offset_bottom = -11.400024
 grow_vertical = 0
 theme = ExtResource("3_3ahgd")
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 8
 text = "Version: a.b.c-d (Demo)"
 
 [node name="LabelSaveDataType" type="Label" parent="." unique_id=129025740]
@@ -277,9 +300,115 @@ offset_right = 70.0
 offset_bottom = 83.0
 text = "<-"
 
+[node name="CreditsPanel" type="Panel" parent="." unique_id=525448259]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsPanel" unique_id=403306618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollBox" type="ScrollContainer" parent="CreditsPanel/MarginContainer" unique_id=1886818242]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5f4f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPanel/MarginContainer/ScrollBox" unique_id=487585858]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label7" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=520265204]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Liveroot Studio:"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=959415369]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Designer, Programmer, Art, Music, Sound Editing, Writing:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=235017174]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Predhelt (Ethan J)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=1039345226]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=1567929330]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Testers:"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=769180509]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Dradow
+Shahen Melkonian
+Jayrar
+Blox"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=1669857322]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=755542700]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Controls Page:"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=1045985550]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Maaack's Input remapping"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=1664928981]
+layout_mode = 2
+
+[node name="Label8" type="Label" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=1937625963]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "No Generative AI was used."
+horizontal_alignment = 1
+
+[node name="ButtonClose" type="Button" parent="CreditsPanel" unique_id=390839395]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -87.0
+offset_top = 12.0
+offset_right = -23.0
+offset_bottom = 76.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "X"
+
 [node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_17jem")]
 visible = false
 
+[connection signal="pressed" from="ButtonCredits" to="." method="_on_button_credits_pressed"]
 [connection signal="focus_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainPage/ButtonPlay" to="." method="_on_button_play_pressed"]
@@ -301,3 +430,4 @@ visible = false
 [connection signal="focus_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="pressed" from="ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_credits_button_close_pressed"]

@@ -6,6 +6,8 @@ var current_page_ref: Control
 func _ready() -> void:
 	$LabelVersion.text = "Version: %s (Demo)" % ProjectSettings.get_setting("application/config/version")
 	UserVariables.reset_variables()
+	$ButtonCredits.visible = true
+	$CreditsPanel.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -67,6 +69,7 @@ func _on_button_level_select_pressed() -> void:
 func _on_save_select_uv_popup_index_pressed(_index: int) -> void:
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
+	$ButtonCredits.visible = false
 	$PlayTypePage.visible = false
 	
 	var c: int = UserVariables.level_highest_cleared_index
@@ -87,6 +90,7 @@ func _on_button_back_pressed() -> void:
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 	
 	$LabelSaveDataType.visible = false
+	$ButtonCredits.visible = true
 	if current_page_ref == $PlayTypePage:
 		current_page_ref.visible = false
 		$MainPage.visible = true
@@ -96,3 +100,11 @@ func _on_button_back_pressed() -> void:
 		current_page_ref = $PlayTypePage
 		current_page_ref.visible = true
 		
+
+
+func _on_button_credits_pressed() -> void:
+	$CreditsPanel.visible = true
+
+
+func _on_credits_button_close_pressed() -> void:
+	$CreditsPanel.visible = false
