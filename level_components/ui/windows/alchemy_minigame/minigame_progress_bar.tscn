@@ -3,7 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://bxg4gshc8sdro" path="res://art/pack/objects/object_gray.png" id="2_omqdo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbgmv"]
-bg_color = Color(0.1254902, 0.9372549, 0.09803922, 0.5529412)
+bg_color = Color(1, 0.69417953, 0.56889397, 0.5529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i0m7"]
+bg_color = Color(0.6784314, 0.7607843, 0, 0.7607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljtjj"]
+bg_color = Color(0.09266182, 0.6306307, 0.07397606, 0.8980392)
 
 [node name="MinigameProgressBar" type="Control" unique_id=309920239]
 layout_mode = 3
@@ -55,7 +61,29 @@ texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect1" unique_id=1914119338]
+[node name="PrecisionWindows" type="Control" parent="ProgressSlider/ProcedureIcons/TextureRect1" unique_id=903099592]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PrecisionWindowLarge" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect1/PrecisionWindows" unique_id=1914119338]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = 30.0
+offset_right = 38.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="PrecisionWindowMedium" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect1/PrecisionWindows" unique_id=879337331]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -63,12 +91,27 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 15.0
+offset_top = 30.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8i0m7")
+
+[node name="PrecisionWindowSmall" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect1/PrecisionWindows" unique_id=1398217419]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 30.0
+offset_right = 8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ljtjj")
 
 [node name="TextureRect2" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1934302426]
 layout_mode = 2
@@ -76,7 +119,29 @@ texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect2" unique_id=406476449]
+[node name="PrecisionWindows" type="Control" parent="ProgressSlider/ProcedureIcons/TextureRect2" unique_id=1580363368]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PrecisionWindowLarge" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect2/PrecisionWindows" unique_id=1581360499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = 30.0
+offset_right = 38.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="PrecisionWindowMedium" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect2/PrecisionWindows" unique_id=614426993]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -84,12 +149,27 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 15.0
+offset_top = 30.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8i0m7")
+
+[node name="PrecisionWindowSmall" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect2/PrecisionWindows" unique_id=319109044]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 30.0
+offset_right = 8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ljtjj")
 
 [node name="TextureRect3" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1252038197]
 layout_mode = 2
@@ -97,7 +177,29 @@ texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect3" unique_id=1951220449]
+[node name="PrecisionWindows" type="Control" parent="ProgressSlider/ProcedureIcons/TextureRect3" unique_id=798542812]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PrecisionWindowLarge" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect3/PrecisionWindows" unique_id=1571724358]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = 30.0
+offset_right = 38.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="PrecisionWindowMedium" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect3/PrecisionWindows" unique_id=1782653392]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -105,12 +207,27 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 15.0
+offset_top = 30.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8i0m7")
+
+[node name="PrecisionWindowSmall" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect3/PrecisionWindows" unique_id=1941584387]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 30.0
+offset_right = 8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ljtjj")
 
 [node name="TextureRect4" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1774679759]
 layout_mode = 2
@@ -118,7 +235,29 @@ texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect4" unique_id=960052595]
+[node name="PrecisionWindows" type="Control" parent="ProgressSlider/ProcedureIcons/TextureRect4" unique_id=2035795725]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PrecisionWindowLarge" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect4/PrecisionWindows" unique_id=1675189962]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = 30.0
+offset_right = 38.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="PrecisionWindowMedium" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect4/PrecisionWindows" unique_id=143226157]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -126,12 +265,27 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 15.0
+offset_top = 30.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8i0m7")
+
+[node name="PrecisionWindowSmall" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect4/PrecisionWindows" unique_id=1868648758]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 30.0
+offset_right = 8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ljtjj")
 
 [node name="TextureRect5" type="TextureRect" parent="ProgressSlider/ProcedureIcons" unique_id=1064864259]
 layout_mode = 2
@@ -139,7 +293,29 @@ texture = ExtResource("2_omqdo")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="PrecisionWindow" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect5" unique_id=1788987500]
+[node name="PrecisionWindows" type="Control" parent="ProgressSlider/ProcedureIcons/TextureRect5" unique_id=229643143]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PrecisionWindowLarge" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect5/PrecisionWindows" unique_id=25644567]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = 30.0
+offset_right = 38.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+
+[node name="PrecisionWindowMedium" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect5/PrecisionWindows" unique_id=1127079903]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -147,12 +323,27 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 15.0
+offset_top = 30.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sbgmv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8i0m7")
+
+[node name="PrecisionWindowSmall" type="Panel" parent="ProgressSlider/ProcedureIcons/TextureRect5/PrecisionWindows" unique_id=2035500456]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 30.0
+offset_right = 8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ljtjj")
 
 [node name="StartupLabel" type="Label" parent="ProgressSlider" unique_id=1958058739]
 unique_name_in_owner = true

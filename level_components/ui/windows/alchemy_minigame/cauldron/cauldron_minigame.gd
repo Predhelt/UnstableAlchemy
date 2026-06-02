@@ -2,6 +2,16 @@ extends AlchemyMinigame
 
 var empty_slot = preload("res://art/pack/objects/object_gray.png")
 
+var craft_precisions := [
+	0.25,
+	0.5,
+	0.8
+]
+
+## The accuracy of each input as a modifier from 0 to 1.
+## Based on the cauldron precision window hit.
+var input_accuracies: Array[float] = [0,0,0,0,0]
+
 func _ready() -> void:
 	minigame_buttons.append(%Container/GridContainer/ButtonItem1)
 	minigame_buttons.append(%Container/GridContainer/ButtonItem2)
@@ -65,7 +75,9 @@ func open_window():
 	slider.tick_count = 7
 	tick_value = slider.max_value / (slider.tick_count-1)
 	
-	set_progress_slider_precision_window_width((1.0-Global.cauldron_craft_precision)*104)
+	set_progress_slider_precision_window_width(0, (1.0-craft_precisions[0])*104)
+	set_progress_slider_precision_window_width(1, (1.0-craft_precisions[1])*104)
+	set_progress_slider_precision_window_width(2, (1.0-craft_precisions[2])*104)
 	set_progress_slider_precision_window_visibilities(true)
 	
 	%WindowName.text = "Cauldron"
@@ -82,7 +94,9 @@ func open_window():
 ## id is the id of the item being used, if any.
 ## icon is the image of the item / tool being used in the input.
 func set_input_action(type: String, id: int, icon: Texture2D) -> void:
-	var nearest_tick = _get_nearest_tick()
+	var temp: Array[int] = _get_nearest_tick()
+	var nearest_tick : int = temp[0]
+	var precision: int = temp[1]
 	
 	if nearest_tick < 0 or nearest_tick >= cur_craft_procedure.input_actions.size():
 		$EffectsAudioStream["parameters/switch_to_clip"] = &"miss"
@@ -95,6 +109,7 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 	input_action.id = id
 	if not cur_craft_procedure.input_actions[nearest_tick]:
 		cur_craft_procedure.input_actions[nearest_tick] = input_action
+		input_accuracies[nearest_tick] = craft_precisions[precision]
 		%MinigameProgressBar/ProgressSlider/ProcedureIcons.get_children()[nearest_tick].texture = icon
 		if input_action.type == "equipment" and input_action.id == 2: # Bellows
 			$EffectsAudioStream["parameters/switch_to_clip"] = &"bellows"
@@ -102,24 +117,80 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 			$EffectsAudioStream["parameters/switch_to_clip"] = &"drop"
 
 ## Used by the cauldron to determine the segment on the progress bar that the
-## progress is closest to, if any. Modifying the [member Global.cauldron_craft_precision] changes
-## how close the progress bar needs to be from a tick.
-func _get_nearest_tick() -> int:
+## progress is closest. -1 if not close to any.
+## Also returns the precision window, if any, by index. Same index of [member craft_precisions]
+func _get_nearest_tick() -> Array[int]:
 	var nearest_tick := -1
 	
 	var tick_mod : float = fmod(((slider.value) + (tick_value / 2.0)), tick_value)
 	tick_mod = tick_mod / tick_value
-	var lower_bound : float = Global.cauldron_craft_precision/2
-	var upper_bound : float = 0.5+((1-Global.cauldron_craft_precision)/2)
+	var lower_bound : float = craft_precisions[0]/2
+	var upper_bound : float = 0.5+((1-craft_precisions[0])/2)
 	if tick_mod < upper_bound and tick_mod > lower_bound:
 		nearest_tick = int((slider.value + (tick_value / 2.0)) / tick_value) - 1
-	else: # Bad input. TODO: Determine if the input for the tick should be locked on bad input.
-		pass
+	else:
+		return [nearest_tick, -1] # Miss input.
+	lower_bound = craft_precisions[1]/2
+	upper_bound = 0.5+((1-craft_precisions[1])/2)
+	if not tick_mod < upper_bound and tick_mod > lower_bound:
+		return [nearest_tick, 0] # Near Miss.
+	lower_bound = craft_precisions[2]/2
+	upper_bound = 0.5+((1-craft_precisions[2])/2)
+	if tick_mod < upper_bound and tick_mod > lower_bound:
+		return [nearest_tick, 2] # Perfect Hit.
+	else:
+		return [nearest_tick, 1] # Good Hit.
+
+## Overrides parent function.
+## Upon completion of the minigame, check the user inputs and compare them to the
+## list of crafting recipe to determine if the procedure and ingredients match. If not, 
+## produces the failed item. If so, produces the matching item. Produced items
+## are added to the character's inventory.
+func check_results():
+	var product_recipe := matching_recipe()
+	var product_item : Item = null
+	if product_recipe:
+		$EffectsAudioStream.play()
+		$EffectsAudioStream["parameters/switch_to_clip"] = "success"
+		product_item = product_recipe.product_item.duplicate()
+		var product_multiplier: float = get_product_multiplier(product_recipe)
+		product_item.qty = roundi(product_recipe.product_item_amount + (4*product_multiplier))
+	else:
+		$EffectsAudioStream.play()
+		$EffectsAudioStream["parameters/switch_to_clip"] = "fail"
+		for item in cur_craft_ingredients:
+			if item and item.id == 10: # Mysterious Crystal
+				product_item = FAILED_CRYSTAL_CRAFT.product_item.duplicate()
+				break
+		if not product_item:
+			product_item = FAILED_CRAFT.product_item.duplicate()
+
+	var effect_instance = items_gained_effect.instantiate()
+			
+	effect_instance.add_item(product_item)
+	effect_instance.scale = Vector2(1.3, 1.3)
+	tool_ref.add_child(effect_instance)
 	
-	return nearest_tick
+	cur_craft_ingredients = [] ## Consider the ingredients as used, clear the list.
+	craft_completed.emit(product_item, product_recipe)
+	#inventory_menu_ref.add_produced_item(product_item, product_recipe)
+	last_item_produced = product_item
+
+## Gets the multiplier for the minigame product output based on the accuracies of the inputs.
+## This is set up so that it is compatible with different input accuracies at each index.
+func get_product_multiplier(product_recipe: Recipe) -> float:
+	var multiplier: float = 0.0
+	var count: int = 0
+	for i in range(product_recipe.procedure.input_actions.size()):
+		if product_recipe.procedure.input_actions[i]:
+			multiplier += input_accuracies[i]
+			count += 1
+	multiplier /= count
+	return multiplier
 
 
 func _on_button_start_pressed() -> void:
+	input_accuracies = [0,0,0,0,0]
 	begin_minigame()
 
 func _on_button_item_1_pressed() -> void:

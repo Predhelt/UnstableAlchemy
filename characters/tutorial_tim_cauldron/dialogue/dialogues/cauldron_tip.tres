@@ -22,6 +22,6 @@ text = "The first thing you are going to want to do when using the cauldron is t
 
 Once you press start, the cauldron will begin crafting. All you have to do is put the proper ingredient in at the right time. Once you use an ingredient, it can't be used again for the rest of the craft.
 
-Bonus tip: If you want to change the cauldron's craft speed or difficulty to your liking, look in the settings."
+Bonus tip: You can change the cauldron craft speed in the settings."
 choices = Array[ExtResource("1_c3bme")]([SubResource("Resource_7aenp"), SubResource("Resource_ok6bn")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

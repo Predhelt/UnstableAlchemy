@@ -33,7 +33,7 @@ var center_window : Control
 
 ## The window of acceptable input for each tick of the cauldron minigame.
 ## Larger values means tighter timing / harder difficulty
-var cauldron_craft_precision : float = 0.5
+#var cauldron_craft_precision : float = 0.5
 ## Multiplier on the base speed of the cauldron's crafting minigame progress bar.
 var cauldron_craft_speed_mult : float = 1.5
 
@@ -163,7 +163,6 @@ func save(_dir: String = "") -> Dictionary:
 		"focused_camera" : focused_camera,
 		"focused_node" : focused_node,
 		"current_level_path" : current_level_path,
-		"cauldron_craft_precision" : cauldron_craft_precision,
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}
 
