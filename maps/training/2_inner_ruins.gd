@@ -13,9 +13,9 @@ func _ready() -> void:
 		$Cutscene.hide()
 	if UserVariables.has_looped:
 		return
-	if not read_grow_book:
-		inventory_menu_ref.set_merger_visibility(false)
-	if not crafted_green_paste:
+	if not UserVariables.knows_recipe_id(503): # Grow Potion
+			inventory_menu_ref.set_merger_visibility(false)
+	if not UserVariables.has_crafted_recipe_id(503): # Grow Potion
 		inventory_menu_ref.set_cauldron_visibility(false)
 
 
@@ -46,6 +46,8 @@ func _on_cutscene_end_scene() -> void:
 
 
 func _on_ui_layer_minigame_cauldron_window_opened() -> void:
+	if UserVariables.crafted_recipes.keys().size():
+		minigame_opened = true
 	if minigame_opened:
 		return
 	minigame_opened = true

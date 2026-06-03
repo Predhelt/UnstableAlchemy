@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ckhuxt33vqjb3"]
 
 [ext_resource type="PackedScene" uid="uid://bnc0pm7hhnww" path="res://characters/character_base.tscn" id="1_f26hq"]
+[ext_resource type="Script" uid="uid://dfgfbwdubdp8s" path="res://characters/tutorial_tim_poss/tutorial_tim.gd" id="2_385r0"]
 [ext_resource type="Texture2D" uid="uid://btcuenk4g4x8q" path="res://art/pack/characters/portraits/char4.png" id="2_wspv4"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="3_385r0"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_fg1l5"]
@@ -246,7 +247,8 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_kr6xo"]
 radius = 13.0
 
-[node name="TutorialHelper" unique_id=1948548714 instance=ExtResource("1_f26hq")]
+[node name="TutorialTim" unique_id=1948548714 instance=ExtResource("1_f26hq")]
+script = ExtResource("2_385r0")
 character_name = "Tutorial Helper"
 portrait = ExtResource("2_wspv4")
 attributes = SubResource("Resource_oovjt")

@@ -10,59 +10,59 @@ class_name Character extends CharacterBody2D
 signal recipe_learned(recipe: Recipe)
 
 ## Determines the Y-offset of the labels above the character as [float]
-const LABEL_DEFAULT_Y_POS : float = -60.0
+const LABEL_DEFAULT_Y_POS: float = -60.0
 
 ## The [AnimationTree] determing how different animations connect and transition between each other 
-@onready var animation_tree : AnimationTree = $AnimationTree
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 ## Reference to UI shop Window
 #TODO: No need to store these variables here for every character.
-@onready var shop_ui_ref : Control = $"../UILayer/MenuLayer/RightWindows/CharacterShop"
+@onready var shop_ui_ref: Control = $"../UILayer/MenuLayer/RightWindows/CharacterShop"
 ## Reference to UI dialogue Window
-@onready var dialogue_ui_ref : Control = $"../UILayer/MenuLayer/RightWindows/CharacterDialogue"
+@onready var dialogue_ui_ref: Control = $"../UILayer/MenuLayer/RightWindows/CharacterDialogue"
 ## Name of the Character to be dislpayed.
 ## Used by the player and dialogue window to show who this is.
-@export var character_name : String
+@export var character_name: String
 ## The portrait of the character that is displayed during dialogue by default.
 ## Dynamic portraits based on context are not currently supported.
-@export var portrait : Texture2D
+@export var portrait: Texture2D
 
 
 @export_group("Setup")
 ## The character's base [Attributes] that determine interactions with the environment
-@export var attributes : Attributes
+@export var attributes: Attributes
 ## List of [Recipe]s known by the character. This is mainly used internally for keeping
 ## track of the character-specific knowledge, not the player's known recipes.
 ## Player-known recipes are stored in UserVariables.
-@export var known_recipes : Array[Recipe]
+@export var known_recipes: Array[Recipe]
 
 @export_group("Equipment")
 ## Reference to the [Inventory] of the character(s).
-@export var inventory : Inventory
+@export var inventory: Inventory
 ## Tracks whether the character has access to the blade tool or not.
-@export var has_blade : bool = false
+@export var has_blade: bool = false
 ## Tracks whether the character has access to the dropper tool or not.
-@export var has_dropper : bool = false
+@export var has_dropper: bool = false
 
 @export_group("Conditions")
 ## Reference to the [Camera2D] that is being used to follow the character and display the game screen.
-@export var character_camera_ref : Camera2D
+@export var character_camera_ref: Camera2D
 ## The list of [StatusEffect]s that are currently active on the character
-@export var active_status_effects : Array[StatusEffect]
+@export var active_status_effects: Array[StatusEffect]
 ## Tracks whether the character is being controlled by the player
-var is_player_controlled : bool = false
+var is_player_controlled: bool = false
 ## Tracks whether the [Camera2D] is focused on the character
-var is_camera_focused : bool = false
+var is_camera_focused: bool = false
 ## Tracks whether the character is susceptible to being possessed.
-@export var is_possessable : bool = false
+@export var is_possessable: bool = false
 ## Tracks the character that is possessing this body, if any.
-var character_possessed_by : Character = null
+var character_possessed_by: Character = null
 ## Tracks the name of the character that is possessing this body, if any.
-var character_possessed_by_name : StringName = ""
+var character_possessed_by_name: StringName = ""
 ## Tracks the number of times a possession can be started before the status effect runs out.
-var can_possess_others_count : int
+var can_possess_others_count: int
 ## List of characters that are in range of the character and are possessable.
-var possessable_characters : Array[Character]
+var possessable_characters: Array[Character]
 ## Tracks who this character is possessing, if anyone.
 var possessing_character : Character = null
 ## Tracks the name of who this character is possessing, if anyone.
@@ -272,6 +272,7 @@ func save(dir : String) -> Dictionary:
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"name" : name,
+		"portrait" : var_to_str(portrait),
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
 		"pos_y" : position.y,
@@ -295,7 +296,7 @@ func save(dir : String) -> Dictionary:
 		"is_player_controlled" : is_player_controlled,
 		"is_camera_focused" : is_camera_focused,
 		#"selected_tool" : selected_tool,
-		"interaction_type" : interaction_type,
+		"interaction_type" :  var_to_str(interaction_type),
 		"dialogues" : var_to_str(dialogues),
 		"transactions" : var_to_str(transactions),
 		"passive_messages" : var_to_str(passive_messages)
@@ -320,7 +321,8 @@ func _physics_process(delta: float) -> void:
 	_update_status_effect_timers(delta)
 	
 	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
-		$PossessionTargetLabel.global_position = possessable_characters[0].global_position
+		$PossessionTargetLabel.global_position = possessable_characters[
+				possessable_characters.find(cur_possession_target)].global_position
 		$PossessionTargetLabel.visible = true
 	else:
 		$PossessionTargetLabel.visible = false
@@ -346,6 +348,8 @@ func _input(event: InputEvent) -> void:
 					else:
 						#print("No possessable targets found!")
 						pass
+				elif possessing_character.possessable_characters:
+					Global.emit_notification("Already possessing!")
 		if event.is_action_pressed("possession_cancel") and possessing_character:
 			end_possession()
 
@@ -756,6 +760,7 @@ func add_to_active_status_effects(se: StatusEffect):
 	active_status_effects.append(cur_se)
 
 ## Changes the text of the status message and resets the timer for how long the message appears.
+#FIXME: Confusing: Similar name to _update_status_message
 func update_status_message(message: String):
 	if not message:
 		pass
@@ -774,6 +779,7 @@ func _update_status_effect_timers(delta : float) -> void:
 
 ## Checks to see if the next frame will end display of the current message.
 ## Then, if the character is not player-controlled, says a random message.
+#FIXME: Confusing: Similar name to update_status_message
 func _update_status_message(delta: float) -> void:
 	if message_timer > 0:
 		if last_message_delta:

@@ -26,6 +26,6 @@ script = ExtResource("3_veluc")
 dialogue_name = &"greet"
 text = "Hi again!
 
-You should be able to squeeze through this gap if you have your normal size."
+You should be able to squeeze through this gap if your size is normal."
 choices = Array[ExtResource("1_fgp40")]([SubResource("Resource_l18ks"), SubResource("Resource_fgp40"), SubResource("Resource_lm1vo")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

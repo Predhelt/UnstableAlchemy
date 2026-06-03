@@ -141,7 +141,6 @@ position = Vector2(20, -1119)
 portrait = ExtResource("18_suusu")
 has_blade = true
 has_dropper = true
-interaction_type = "talk"
 transactions = Array[ExtResource("11_7v03r")]([SubResource("Resource_wdxed"), SubResource("Resource_or0wd")])
 passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 

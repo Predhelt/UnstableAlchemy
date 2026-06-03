@@ -175,11 +175,10 @@ radius = 13.0
 [node name="Character" unique_id=1948548714 instance=ExtResource("1_hirof")]
 script = ExtResource("2_a36ay")
 character_name = "Shelly"
-interaction_type = "shop"
-transactions = Array[ExtResource("3_3ui5v")]([ExtResource("4_2h5xo")])
-passive_messages = Array[String](["Hey", "Where are we, anyways?"])
 attributes = ExtResource("5_0w0ad")
 inventory = SubResource("Resource_4l658")
+transactions = Array[ExtResource("3_3ui5v")]([ExtResource("4_2h5xo")])
+passive_messages = Array[String](["Hey", "Where are we, anyways?"])
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1455697932]
 position = Vector2(0, -36)

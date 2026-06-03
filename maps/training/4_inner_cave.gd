@@ -32,3 +32,7 @@ func _on_trigger_area_cutscene_crystal_end_scene() -> void:
 	add_crystal_to_gathered_items($Player)
 	add_crystal_to_gathered_items(UserVariables)
 	Global.change_scene("res://maps/main/endings.tscn")
+
+
+func _on_trigger_area_autosave_4_autosaved() -> void:
+	$TutorialTim.has_player_solved = true

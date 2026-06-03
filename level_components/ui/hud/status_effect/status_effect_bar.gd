@@ -21,7 +21,8 @@ func update_status(se : StatusEffect) -> bool:
 
 func remove_status(se : StatusEffect):
 	for si in container.get_children():
-		if si.name == str(se.id): # Names of status icons are the status effect ID
+		if si.effect.id == se.id:
+			si.effect.id = -1 # Ensures the icon does not get used for comparisons in the same frame.
 			si.queue_free()
 			return
 	print("ERROR: No effect with ID " + str(se.id))

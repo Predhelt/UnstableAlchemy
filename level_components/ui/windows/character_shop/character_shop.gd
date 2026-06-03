@@ -77,12 +77,12 @@ func add_shop_transactions() -> void:
 		cur_transaction_scene.connect("attempt_transaction", _on_transaction_attempt) # Connect child signal for when the transaction is pressed to attempt the associated transaction
 		cur_transaction_scene.set_transaction(transaction)
 		
-		if(not Global.focused_node.inventory.has_item_amounts(transaction.items_buying, transaction.items_buying_amount)
-				and not transaction.items_buying.is_empty()): # If requesting any items (not giving away items)
-			cur_transaction_scene.disabled = true
-		elif not has_stock(transaction.items_selling_stock):
+		if not has_stock(transaction.items_selling_stock):
 			cur_transaction_scene.disabled = true
 			cur_transaction_scene.set_out_of_stock(true)
+		elif(not Global.focused_node.inventory.has_item_amounts(transaction.items_buying, transaction.items_buying_amount)
+				and not transaction.items_buying.is_empty()): # If requesting any items (not giving away items)
+			cur_transaction_scene.disabled = true
 			
 		%ShopTransactions.add_child(cur_transaction_scene)
 		cur_transaction_id += 1

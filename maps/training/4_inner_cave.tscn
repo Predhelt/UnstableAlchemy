@@ -17,9 +17,12 @@
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/components/transaction.gd" id="8_ol6vo"]
 [ext_resource type="Texture2D" uid="uid://ib2gm5x453ue" path="res://art/pack/characters/portraits/char5.png" id="9_42850"]
 [ext_resource type="Resource" uid="uid://c8lydq1ur4lw8" path="res://game_systems/items/recipe_books/possession_potion_book.tres" id="9_c7gen"]
+[ext_resource type="Resource" uid="uid://cwjj0rtd50jpg" path="res://game_systems/status_effects/cleanse.tres" id="9_x8qjh"]
 [ext_resource type="Resource" uid="uid://c5bbfoujauvy5" path="res://game_systems/items/tools/blade.tres" id="10_7y012"]
+[ext_resource type="Script" uid="uid://cspp6theghsrh" path="res://game_systems/items/potion.gd" id="10_d8uxn"]
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="10_yqpoj"]
 [ext_resource type="Texture2D" uid="uid://gb8d44m0qtds" path="res://art/pack/characters/portraits/char1.png" id="11_h4eu7"]
+[ext_resource type="Texture2D" uid="uid://dycwpig3a48tr" path="res://art/pack/alchemy/potions/potion_standard_cyan.png" id="11_olp5p"]
 [ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="13_j4d6t"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="14_urb74"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="15_r1ko1"]
@@ -50,12 +53,26 @@ script = ExtResource("6_60y0b")
 base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_dxvh4"]
+[sub_resource type="Resource" id="Resource_ebuod"]
+resource_local_to_scene = true
+script = ExtResource("10_d8uxn")
+id = 501
+display_name = "Cleanse Potion"
+description = "A potion that cleanses all temporary status effects when consumed."
+texture = ExtResource("11_olp5p")
+primary_color = "cyan"
+use_sound = "drink"
+qty = 3
+on_consume_effects = Array[ExtResource("16_f1ifg")]([ExtResource("9_x8qjh")])
+on_consume_message = "That cleared me up"
+
+[sub_resource type="Resource" id="Resource_8d7xh"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
+items = Array[ExtResource("2_cc213")]([SubResource("Resource_ebuod")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_6vuwb"]
+[sub_resource type="Resource" id="Resource_iw3wy"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -73,7 +90,7 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_s78oa"]
+[sub_resource type="Resource" id="Resource_noh5w"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("13_j4d6t")])
@@ -81,7 +98,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_x8qjh"]
+[sub_resource type="Resource" id="Resource_mjkj0"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("10_7y012")])
@@ -107,12 +124,12 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_d8uxn"]
+[sub_resource type="Resource" id="Resource_5lhhj"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_olp5p"]
+[sub_resource type="Resource" id="Resource_rv76h"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -166,10 +183,10 @@ stream = null
 position = Vector2(330, 347)
 portrait = ExtResource("9_42850")
 attributes = SubResource("Resource_mfhge")
-inventory = SubResource("Resource_dxvh4")
+inventory = SubResource("Resource_8d7xh")
 has_blade = true
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_6vuwb")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_iw3wy")])
 
 [node name="Cam" parent="." index="4" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(637.00006, 555)
@@ -177,7 +194,7 @@ portrait = ExtResource("11_h4eu7")
 attributes = SubResource("Resource_nb123")
 inventory = SubResource("Resource_3fmyq")
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_s78oa"), SubResource("Resource_x8qjh")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_noh5w"), SubResource("Resource_mjkj0")])
 
 [node name="Lex" parent="." index="5" unique_id=75307123 instance=ExtResource("7_ix5gr")]
 position = Vector2(650, 219)
@@ -186,12 +203,15 @@ inventory = SubResource("Resource_3nfjk")
 is_possessable = true
 transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_vd4af")])
 
-[node name="Player" parent="." index="6" unique_id=1026458739]
-position = Vector2(515, 387)
-attributes = SubResource("Resource_d8uxn")
-inventory = SubResource("Resource_olp5p")
+[node name="TutorialTim" parent="." index="6" unique_id=274518447 instance=ExtResource("47_x8qjh")]
+position = Vector2(585, -25)
 
-[node name="PlayerCamera" parent="." index="7" unique_id=294471714]
+[node name="Player" parent="." index="7" unique_id=1026458739]
+position = Vector2(398, -25)
+attributes = SubResource("Resource_5lhhj")
+inventory = SubResource("Resource_rv76h")
+
+[node name="PlayerCamera" parent="." index="8" unique_id=294471714]
 position = Vector2(604, 419)
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
@@ -230,7 +250,7 @@ position = Vector2(94, 736)
 position = Vector2(480, -1184)
 
 [node name="TriggerAreaAutosave6" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="7" unique_id=1178482887 instance=ExtResource("20_dxvh4")]
-position = Vector2(511, 385)
+position = Vector2(398, -25)
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=2074439068 node_paths=PackedStringArray("door_refs") instance=ExtResource("4_0jpsc")]
 position = Vector2(1120, 481)
@@ -380,7 +400,5 @@ offset_top = -878.0
 offset_right = 923.0
 offset_bottom = -855.0
 
-[node name="TutorialHelper" parent="." index="14" unique_id=274518447 instance=ExtResource("47_x8qjh")]
-position = Vector2(585, -25)
-
 [connection signal="end_scene" from="TriggerAreas/TriggerAreaCutsceneCrystal" to="." method="_on_trigger_area_cutscene_crystal_end_scene"]
+[connection signal="autosaved" from="TriggerAreas/TriggerAreaAutosave4" to="." method="_on_trigger_area_autosave_4_autosaved"]

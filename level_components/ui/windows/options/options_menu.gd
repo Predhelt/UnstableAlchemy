@@ -39,14 +39,14 @@ func close_window():
 
 
 func _on_button_entered() -> void:
-	if not visible:
+	if not is_inside_tree():
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"
 
 
 func _on_button_pressed() -> void:
-	if not visible:
+	if not is_inside_tree():
 		return
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"

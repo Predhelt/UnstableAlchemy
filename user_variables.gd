@@ -91,7 +91,7 @@ func reset_variables():
 	is_log_book_disabled = false
 
 ## Add a recipe to the list of known recipes and new recipes if not already known.
-func add_recipe(recipe : Recipe) -> bool:
+func add_recipe(recipe: Recipe) -> bool:
 	if recipe in known_recipes:
 		return false
 	known_recipes.append(recipe)
@@ -99,8 +99,22 @@ func add_recipe(recipe : Recipe) -> bool:
 	return true
 
 ## Returns whether or not the character has used the [Item] with the given [member Item.id].
-func has_used_item_id(item_id : int) -> bool:
+func has_used_item_id(item_id: int) -> bool:
 	for id in items_used.keys():
 		if id == item_id:
+			return true
+	return false
+
+
+func knows_recipe_id(recipe_id: int) -> bool:
+	for recipe in known_recipes:
+		if recipe_id == recipe.id:
+			return true
+	return false
+
+## Returns whether the character has crafted the [Recipe] with the given [member Recipe.id].
+func has_crafted_recipe_id(recipe_id: int) -> bool:
+	for id in crafted_recipes.keys():
+		if recipe_id == id:
 			return true
 	return false

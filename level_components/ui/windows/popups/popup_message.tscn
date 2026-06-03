@@ -2,6 +2,23 @@
 
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="1_p2pab"]
 [ext_resource type="Script" uid="uid://caygnc42oatuh" path="res://level_components/ui/windows/popups/popup_message.gd" id="2_hyl2c"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="2_xjsla"]
+[ext_resource type="AudioStream" uid="uid://l1kdi53yja37" path="res://art/pack/audio/sounds/menu_hover.mp3" id="3_e5uqc"]
+[ext_resource type="AudioStream" uid="uid://defdus3v2khkp" path="res://art/pack/audio/sounds/menu_press.mp3" id="4_mh46a"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wpqhy"]
+clip_count = 3
+clip_0/name = &"none"
+clip_0/stream = ExtResource("2_xjsla")
+clip_0/auto_advance = 0
+clip_1/name = &"hover"
+clip_1/stream = ExtResource("3_e5uqc")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"press"
+clip_2/stream = ExtResource("4_mh46a")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyl2c"]
 bg_color = Color(0.28235295, 0.28235295, 0.28235295, 0.95686275)
@@ -11,8 +28,12 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="PopupMessage" type="CanvasLayer" unique_id=1269838355]
-layer = 2
+layer = 5
 script = ExtResource("2_hyl2c")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1724346545]
+stream = SubResource("AudioStreamInteractive_wpqhy")
+bus = &"SFX"
 
 [node name="Panel" type="Panel" parent="." unique_id=1647965410]
 anchors_preset = -1
@@ -56,4 +77,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "OK"
 
+[connection signal="focus_entered" from="Panel/ButtonOK" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="Panel/ButtonOK" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Panel/ButtonOK" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/ButtonOK" to="." method="_on_button_ok_pressed"]

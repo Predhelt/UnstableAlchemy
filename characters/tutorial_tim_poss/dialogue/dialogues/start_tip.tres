@@ -18,9 +18,9 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 [resource]
 script = ExtResource("3_vuu5k")
 dialogue_name = &"start tip"
-text = "You can get started by talking to the others to figure out what their strengths are, and what they can give you.
+text = "You can get started by talking to the others to figure out what their strengths are, and what they can trade with you.
 
-This puzzle can be completed without re-loading, but requires effecient use of resources.
+This puzzle can be completed without re-loading, but requires effecient use of resources to do so.
 
 Pay attention to if a potion is \"Weak\" or not. It may act differently from regular or strong potions.
 

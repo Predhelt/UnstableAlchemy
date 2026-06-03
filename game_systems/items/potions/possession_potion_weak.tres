@@ -9,7 +9,7 @@
 script = ExtResource("3_jpnjd")
 id = 509
 display_name = "Weak Possession Potion"
-description = "Allows the imbiber to possess a nearby target that is susceptible to possession once."
+description = "One-time: Allows the imbiber to possess a nearby target that is susceptible to possession."
 texture = ExtResource("4_ep4n1")
 primary_color = "orange"
 use_sound = "drink"

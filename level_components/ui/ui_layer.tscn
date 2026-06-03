@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_72w8f"]
 
 [node name="UILayer" type="CanvasLayer" unique_id=1075659928]
-layer = 10
+layer = 2
 script = ExtResource("1_d4vx4")
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=116782846]
@@ -63,10 +63,10 @@ end possession"
 horizontal_alignment = 1
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=630284612]
-layer = 3
+layer = 2
 
 [node name="CenterWindows" type="CanvasLayer" parent="MenuLayer" unique_id=429015078]
-layer = 10
+layer = 3
 
 [node name="SettingsMenu" parent="MenuLayer/CenterWindows" unique_id=1369104757 instance=ExtResource("1_ak53w")]
 unique_name_in_owner = true
@@ -118,6 +118,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="LeftWindows" type="CanvasLayer" parent="MenuLayer" unique_id=51387662]
+layer = 2
 
 [node name="InventoryMenu" parent="MenuLayer/LeftWindows" unique_id=361018792 instance=ExtResource("5_topfp")]
 unique_name_in_owner = true

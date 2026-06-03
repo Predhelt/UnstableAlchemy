@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="4_d023l"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="5_ypi76"]
 [ext_resource type="Texture2D" uid="uid://ct22o35nepr0w" path="res://art/pack/characters/character_robe2.png" id="6_3t17k"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/components/transaction.gd" id="6_vs86y"]
 [ext_resource type="Texture2D" uid="uid://b72qc2mwingu2" path="res://art/pack/characters/character2_left.png" id="7_1gs43"]
+[ext_resource type="Resource" uid="uid://de8qgiotrha7s" path="res://characters/brindan_gcsm/transactions/tx_free_speed_potion.tres" id="7_d023l"]
 [ext_resource type="Texture2D" uid="uid://dct1280wfjmo3" path="res://art/pack/characters/character2_right.png" id="8_xjvfb"]
 [ext_resource type="Texture2D" uid="uid://drardrqgvep4e" path="res://art/pack/characters/character2_up.png" id="9_mqxw3"]
 
@@ -175,11 +177,12 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_kr6xo"]
 radius = 13.0
 
-[node name="Character" unique_id=1948548714 instance=ExtResource("1_luwgv")]
+[node name="Lex" unique_id=1948548714 instance=ExtResource("1_luwgv")]
 character_name = "Lex"
 portrait = ExtResource("2_71m0x")
 attributes = SubResource("Resource_fcb51")
 inventory = SubResource("Resource_wub86")
+transactions = Array[ExtResource("6_vs86y")]([ExtResource("7_d023l")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1029169394]
 position = Vector2(0, -36)

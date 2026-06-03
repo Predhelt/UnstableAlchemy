@@ -11,6 +11,15 @@ var saturated_stem_ref := preload("res://game_systems/items/merged_ingredients/s
 var red_berries_ref := preload("res://game_systems/items/gatherable/red_berries.tres")
 var flower_stem_ref := preload("res://game_systems/items/gatherable/flower_stem.tres")
 
+## Sets up and returns a [Dictionary] that represents the persistent information
+## of the character to be saved to file in [JSON]-compatible format.
+func save(dir : String) -> Dictionary:
+	var save_dict = super(dir)
+	save_dict["is_path_cleared"] = is_path_cleared
+	save_dict["has_greeted"] = has_greeted
+	save_dict["has_added_saturated_stem"] = has_added_saturated_stem
+	return save_dict
+
 ## Determines dialogue based on context. Returns the name of the dialogue window.
 func get_initial_dialogue_name(speakee : Character) -> String:
 	## Order of statements matters

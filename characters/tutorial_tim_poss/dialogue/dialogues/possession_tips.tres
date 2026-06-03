@@ -19,8 +19,8 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 script = ExtResource("3_pxshg")
 dialogue_name = &"possession tips"
 text = "Possession can get complicated but try to remember:
-Anything you do is tied to the posessee.
-Anything you know or learn is tied to the possessor.
+Anything you do is tied to the posessee (That's them).
+Anything you know or learn is tied to the possessor (That's you).
 
 Here are some other tips if you get stuck:
 Different characters may have different strengths. Even then, they may still need to craft items or potions to push their limits.

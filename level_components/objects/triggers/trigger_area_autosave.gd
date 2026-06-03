@@ -1,11 +1,14 @@
 extends Area2D
 
+signal autosaved
+
 ## Tracks if this trigger has already called to save the game.
 var has_saved : bool = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if not has_saved and body == Global.focused_node:
 		has_saved = true
+		autosaved.emit()
 		Global.save_game()
 
 func save(_dir: String) -> Dictionary:

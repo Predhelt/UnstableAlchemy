@@ -27,3 +27,13 @@ func _on_button_ok_pressed() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		close()
+
+
+func _on_button_entered() -> void:
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "hover"
+
+
+func _on_button_pressed() -> void:
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
