@@ -552,7 +552,7 @@ When at least one item is in the cauldron, the crafting minigame can begin by pr
 
 The minigame begins by pressing the \"start\" button. there will be a short countdown before the progress bar at the bottom will begin moving. The minigame works by adding an ingredient or using the bellows at a marked time interval until the process is complete. This can be done by either pressing the icons with the ingredients or bellows or pressing the hotkeys.
 
-Once the progress hits the end of the bar, any produced item(s) will be added to the inventory."
+Once the progress hits the end of the bar, any produced item(s) will be added to the inventory.  You can get more items when crafting using the minigame if you consistently time the inputs precisely."
 autowrap_mode = 3
 
 [node name="PageHelpMerger" type="MarginContainer" parent="VBoxContainer/TabContainer/TabHelp/HBoxContainer/TabContainer" unique_id=1963941205]

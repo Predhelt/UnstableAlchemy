@@ -8,9 +8,9 @@ signal call_open_inventory
 
 # Tracks different stages of tutorial messaging
 var watched_cutscene: bool = false
-var grabbed_recipe_book: bool = false
+var grabbed_flakes_book: bool = false
 var grabbed_herb = false
-var used_recipe_book: bool = false
+var used_flakes_book: bool = false
 var can_use_mp: bool = false
 ## Closed log book after using recipe book
 var closed_log_book: bool = false
@@ -55,7 +55,7 @@ func _ready() -> void:
 		$UILayer.set_log_book_tab_hidden(1, false)
 	if plate_pressed:
 		$UILayer.set_log_book_tab_hidden(5, false)
-	if used_recipe_book:
+	if used_flakes_book:
 		$UILayer.set_log_book_tab_hidden(2, false)
 		$UILayer.set_log_book_tab_hidden(6, false)
 	if used_flakes:
@@ -75,9 +75,9 @@ func _ready() -> void:
 func save(_dir: String) -> Dictionary:
 	var save_dict = {
 		"watched_cutscene" : watched_cutscene,
-		"grabbed_recipe_book" : grabbed_recipe_book,
+		"grabbed_flakes_book" : grabbed_flakes_book,
 		"grabbed_herb" : grabbed_herb,
-		"used_recipe_book" : used_recipe_book,
+		"used_flakes_book" : used_flakes_book,
 		"can_use_mp" : can_use_mp,
 		"closed_log_book" : closed_log_book,
 		"opened_recipe_flakes" : opened_recipe_flakes,
@@ -115,7 +115,7 @@ func _on_recipe_item_object_grabbed(_body: Character) -> void:
 		$UILayer.set_menu_bar_button_name_visibility("ButtonInventory", true)
 		UserVariables.is_inventory_disabled = false
 		%LabelInventory.visible = true
-	grabbed_recipe_book = true
+	grabbed_flakes_book = true
 
 
 func _on_ui_layer_item_used(item: Item) -> void:
@@ -127,15 +127,16 @@ func _on_ui_layer_item_used(item: Item) -> void:
 			$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
 			UserVariables.is_log_book_disabled = false
 			EventHandler.open_log_book_page("BookHerbFlakes")
-		used_recipe_book = true
+		used_flakes_book = true
 	elif item.id == 100: # Herb Flakes
 		if not UserVariables.has_looped:
 			$UILayer.set_log_book_tab_hidden(9, false)
 			EventHandler.open_log_book_page("StatusEnergizedBurst")
 			used_flakes = true
 
+
 func _on_ui_layer_log_book_menu_window_closed() -> void:
-	if grabbed_recipe_book and used_recipe_book and not closed_log_book:
+	if used_flakes_book and not closed_log_book:
 		if not UserVariables.has_looped:
 			$UILayer.set_menu_bar_button_name_visibility("ButtonRecipes", true)
 			UserVariables.is_recipe_book_disabled = false
@@ -150,12 +151,6 @@ func _on_cutscene_end_scene() -> void:
 		$TutorialMessages/LabelMovement.visible = false
 		return
 	$TutorialMessages/LabelMovement.visible = true
-
-
-#func _on_tree_exiting() -> void:
-	#UserVariables.is_inventory_disabled = false
-	#UserVariables.is_log_book_disabled = false
-	#UserVariables.is_recipe_book_disabled = false
 
 
 func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:

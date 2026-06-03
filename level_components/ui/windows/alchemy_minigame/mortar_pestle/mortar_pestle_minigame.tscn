@@ -307,7 +307,7 @@ texture = ExtResource("8_wkini")
 [node name="Label" type="Label" parent="VBoxContainer/Container/Instructions/HBoxContainer" unique_id=1261495586]
 layout_mode = 2
 text = "Crush:
-Up, Down, Up, Down"
+^, v, ^, v"
 horizontal_alignment = 1
 
 [node name="TextureGrind" type="TextureRect" parent="VBoxContainer/Container/Instructions/HBoxContainer" unique_id=1387197439]
@@ -317,7 +317,7 @@ texture = ExtResource("9_88828")
 [node name="Label2" type="Label" parent="VBoxContainer/Container/Instructions/HBoxContainer" unique_id=388048763]
 layout_mode = 2
 text = "Grind:
-Left, Right, Left, Right"
+<, >, <, >"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="StartupDelay" to="." method="_on_startup_delay_timeout"]
