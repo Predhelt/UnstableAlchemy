@@ -11,6 +11,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="PopupMessage" type="CanvasLayer" unique_id=1269838355]
+layer = 2
 script = ExtResource("2_hyl2c")
 
 [node name="Panel" type="Panel" parent="." unique_id=1647965410]

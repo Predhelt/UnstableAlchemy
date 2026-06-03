@@ -3,9 +3,9 @@ extends AlchemyMinigame
 var empty_slot = preload("res://art/pack/objects/object_gray.png")
 
 var craft_precisions := [
-	0.25,
-	0.5,
-	0.8
+	0.35,
+	0.65,
+	0.9
 ]
 
 ## The accuracy of each input as a modifier from 0 to 1.
@@ -153,8 +153,12 @@ func check_results():
 		$EffectsAudioStream.play()
 		$EffectsAudioStream["parameters/switch_to_clip"] = "success"
 		product_item = product_recipe.product_item.duplicate()
-		var product_multiplier: float = get_product_multiplier(product_recipe)
-		product_item.qty = roundi(product_recipe.product_item_amount + (4*product_multiplier))
+		var precision_avg: float = get_avg_precision(product_recipe)
+		# Bonus amount should be in the range of 0 to double the default product quantity based on average precision.
+		product_item.qty = roundi(product_recipe.product_item_amount + 
+			(product_recipe.product_item_amount* # The default quantity of items produced
+				((precision_avg-craft_precisions[0])* # Change precision range to start from 0
+					(1/(craft_precisions[2]-craft_precisions[0]))))) # Inverse of difference between highest and lowest precision
 	else:
 		$EffectsAudioStream.play()
 		$EffectsAudioStream["parameters/switch_to_clip"] = "fail"
@@ -176,17 +180,17 @@ func check_results():
 	#inventory_menu_ref.add_produced_item(product_item, product_recipe)
 	last_item_produced = product_item
 
-## Gets the multiplier for the minigame product output based on the accuracies of the inputs.
-## This is set up so that it is compatible with different input accuracies at each index.
-func get_product_multiplier(product_recipe: Recipe) -> float:
-	var multiplier: float = 0.0
+## Gets the average precision of inputs for the minigame product
+## based on the window the inputs were pressed.
+func get_avg_precision(product_recipe: Recipe) -> float:
+	var avg: float = 0.0
 	var count: int = 0
 	for i in range(product_recipe.procedure.input_actions.size()):
 		if product_recipe.procedure.input_actions[i]:
-			multiplier += input_accuracies[i]
+			avg += input_accuracies[i]
 			count += 1
-	multiplier /= count
-	return multiplier
+	avg /= count
+	return avg
 
 
 func _on_button_start_pressed() -> void:

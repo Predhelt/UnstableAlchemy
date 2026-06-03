@@ -24,6 +24,7 @@ func save(_dir: String) -> Dictionary:
 		"watched_cutscene" : watched_cutscene,
 		"read_grow_book" : read_grow_book,
 		"crafted_green_paste" : crafted_green_paste,
+		"minigame_opened" : minigame_opened,
 	}
 	return save_dict
 
@@ -45,8 +46,11 @@ func _on_cutscene_end_scene() -> void:
 
 
 func _on_ui_layer_minigame_cauldron_window_opened() -> void:
+	if minigame_opened:
+		return
 	minigame_opened = true
 	EventHandler.open_popup_message(
-		"put the ingredients in the cauldron at the right time.\n
-		Match up a procedure from the recipe book."
+		"Put the ingredients in the cauldron at the right time.\n
+		Match up a procedure from the recipe book that uses the cauldron to the timings shown.
+		Aim for better accuracy for better results!"
 	)

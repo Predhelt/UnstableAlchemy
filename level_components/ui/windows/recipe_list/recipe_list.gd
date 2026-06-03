@@ -119,8 +119,9 @@ func open_recipe_page(item : Item):
 			add_ingredients(r)
 		add_procedure(r)
 	
-	$AudioStreamPlayer["parameters/switch_to_clip"] = &"flip"
-	$AudioStreamPlayer.play()
+	if visible:
+		$AudioStreamPlayer["parameters/switch_to_clip"] = &"flip"
+		$AudioStreamPlayer.play()
 	%RecipeItems.visible = false
 	%WindowName.text = "Item Details"
 	%ButtonBack.visible = true
@@ -450,7 +451,7 @@ func _on_button_list_pressed() -> void:
 
 func _on_action_tool_icon_pressed() -> void:
 	var effect_instance = text_effect.instantiate()
-	effect_instance.set_text("This is an action")
+	effect_instance.set_text("This is part of the tool")
 	effect_instance.scale = Vector2(1.5, 1.5)
 	add_child(effect_instance)
 
