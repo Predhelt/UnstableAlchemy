@@ -11,8 +11,8 @@ func _on_button_pressed() -> void:
 	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 
 
-func _on_button_quit_pressed() -> void:
-	get_tree().quit()
+func _on_button_confirm_pressed() -> void:
+	Global.reset_level()
 
 
 func _on_button_cancel_pressed() -> void:

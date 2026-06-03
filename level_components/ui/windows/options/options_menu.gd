@@ -10,6 +10,8 @@ func _init() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("options_menu"):
 		toggle_window()
+	if event.is_action_pressed("reset_level"):
+		$PopupResetConfirmation.show()
 
 func toggle_window():
 	if visible:

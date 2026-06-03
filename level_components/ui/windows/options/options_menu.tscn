@@ -10,6 +10,7 @@
 [ext_resource type="ButtonGroup" uid="uid://bo5q05cajm24g" path="res://level_components/ui/windows/options/options_buttons.tres" id="4_o212l"]
 [ext_resource type="PackedScene" uid="uid://1yiwmvqku557" path="res://level_components/ui/windows/options/button_options_menu.tscn" id="6_qrcwd"]
 [ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_quit_confirmation.tscn" id="7_qrcwd"]
+[ext_resource type="PackedScene" uid="uid://c77o7gl7nmgft" path="res://level_components/ui/windows/options/popup_reset_confirmation.tscn" id="11_2ogd0"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_7ekgj"]
 clip_count = 3
@@ -126,6 +127,9 @@ button_group = ExtResource("4_o212l")
 text = "Quit Game"
 
 [node name="PopupQuitConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_qrcwd")]
+visible = false
+
+[node name="PopupResetConfirmation" parent="." unique_id=2034816735 instance=ExtResource("11_2ogd0")]
 visible = false
 
 [connection signal="focus_entered" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_entered"]

@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
 [ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_quit_confirmation.tscn" id="7_17jem"]
+[ext_resource type="PackedScene" uid="uid://du12ohdb5ygs5" path="res://level_components/ui/windows/options/popup_clear_confirmation.tscn" id="13_mh60s"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_u2ya0"]
 clip_count = 3
@@ -29,6 +30,16 @@ clip_2/next_clip = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20uek"]
 bg_color = Color(0.12051291, 0.36276066, 0.40487552, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.5154478, 0.8522366, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5f4f"]
 bg_color = Color(0.14767182, 0.14767182, 0.14767176, 1)
@@ -209,24 +220,38 @@ text = "->"
 
 [node name="ButtonStart" type="Button" parent="SaveSelectPage" unique_id=1759279753]
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 0
-offset_left = 178.0
-offset_top = 246.0
-offset_right = 378.0
-offset_bottom = 293.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 36
 text = "Start"
 
 [node name="ButtonLevelSelect" type="Button" parent="SaveSelectPage" unique_id=2092367475]
 custom_minimum_size = Vector2(200, 0)
-layout_mode = 0
-offset_left = 178.0
-offset_top = 312.0
-offset_right = 378.0
-offset_bottom = 359.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -104.0
+offset_right = 105.5
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 36
 text = "Level Select"
 
 [node name="ButtonClearSave" type="Button" parent="SaveSelectPage" unique_id=1983458295]
@@ -235,7 +260,6 @@ offset_left = 406.0
 offset_top = 375.0
 offset_right = 538.0
 offset_bottom = 412.0
-disabled = true
 text = "Clear Save Data"
 
 [node name="LevelSelectPage" type="MarginContainer" parent="." unique_id=404084080]
@@ -466,7 +490,10 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "X"
 
-[node name="PopupConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_17jem")]
+[node name="PopupQuitConfirmation" parent="." unique_id=1099241573 instance=ExtResource("7_17jem")]
+visible = false
+
+[node name="PopupClearConfirmation" parent="." unique_id=459460872 instance=ExtResource("13_mh60s")]
 visible = false
 
 [connection signal="focus_entered" from="ButtonCredits" to="." method="_on_button_entered"]
@@ -513,3 +540,4 @@ visible = false
 [connection signal="mouse_entered" from="CreditsPanel/ButtonClose" to="." method="_on_button_entered"]
 [connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_credits_button_close_pressed"]
+[connection signal="confirmed" from="PopupClearConfirmation" to="." method="_on_popup_clear_confirmation_confirmed"]

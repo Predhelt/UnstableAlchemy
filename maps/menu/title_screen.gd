@@ -61,10 +61,12 @@ func configure_save_slot_data():
 	if not FileAccess.file_exists("user://saves/slot%s.save" % Global.current_save_slot):
 		$SaveSelectPage/ButtonStart.text = "New Game"
 		is_slot_empty = true
+		$SaveSelectPage/ButtonClearSave.disabled = true
 	else:
 		Global.load_user_variables()
 		$SaveSelectPage/ButtonStart.text = "Resume"
 		is_slot_empty = false
+		$SaveSelectPage/ButtonClearSave.disabled = false
 	
 	$SaveSelectPage/VBoxContainer/LabelSlotName.text = "Slot %s" % Global.current_save_slot
 	if not UserVariables.has_looped:
@@ -115,7 +117,7 @@ func _on_button_saves_previous_pressed() -> void:
 
 
 func _on_button_saves_next_pressed() -> void:
-	if Global.current_save_slot >= MAX_SAVE_SLOTS:
+	if Global.current_save_slot >= MAX_SAVE_SLOTS-1:
 		Global.current_save_slot = 0
 	else:
 		Global.current_save_slot += 1
@@ -137,5 +139,8 @@ func _on_button_saves_level_select_pressed() -> void:
 
 
 func _on_button_saves_clear_save_pressed() -> void:
-	UserVariables.reset_variables()
-	# TODO: Remove save slot directory. Probably through Global.
+	$PopupClearConfirmation.show()
+
+
+func _on_popup_clear_confirmation_confirmed() -> void:
+	configure_save_slot_data()
