@@ -32,7 +32,7 @@ func _on_button_settings_pressed() -> void:
 
 
 func _on_button_exit_pressed() -> void:
-	$PopupConfirmation.popup()
+	$PopupQuitConfirmation.popup()
 
 
 func _on_button_entered() -> void:
@@ -58,25 +58,51 @@ func _on_button_play_pressed() -> void:
 ## Uses the [member current_save_slot] to get data from UserVariables
 ## to configure the save slot page.
 func configure_save_slot_data():
+	$SaveSelectPage/VBoxContainer/LabelSlotName.text = "Slot %s" % Global.current_save_slot
 	if not FileAccess.file_exists("user://saves/slot%s.save" % Global.current_save_slot):
 		$SaveSelectPage/ButtonStart.text = "New Game"
 		is_slot_empty = true
 		$SaveSelectPage/ButtonClearSave.disabled = true
-	else:
-		Global.load_user_variables()
-		$SaveSelectPage/ButtonStart.text = "Resume"
-		is_slot_empty = false
-		$SaveSelectPage/ButtonClearSave.disabled = false
+		$SaveSelectPage/VBoxContainer/LabelLevelsCleared.text = "Levels Cleared: 0"
+		$SaveSelectPage/VBoxContainer/LabelBonusCount.visible = false
+		$SaveSelectPage/VBoxContainer/BonusIconsContainer.visible = false
+		$SaveSelectPage/ButtonLevelSelect.visible = false
+		return
+	Global.load_user_variables()
+	$SaveSelectPage/ButtonStart.text = "Resume"
+	is_slot_empty = false
+	$SaveSelectPage/ButtonClearSave.disabled = false
 	
-	$SaveSelectPage/VBoxContainer/LabelSlotName.text = "Slot %s" % Global.current_save_slot
 	if not UserVariables.has_looped:
 		$SaveSelectPage/VBoxContainer/LabelLevelsCleared.text = (
 			"Levels Cleared: %s" % UserVariables.level_highest_cleared_index
 		)
+		$SaveSelectPage/VBoxContainer/LabelBonusCount.visible = false
+		$SaveSelectPage/VBoxContainer/BonusIconsContainer.visible = false
 		$SaveSelectPage/ButtonLevelSelect.visible = false
-	else:
-		$SaveSelectPage/VBoxContainer/LabelLevelsCleared.text = "LOOPED"
-		$SaveSelectPage/ButtonLevelSelect.visible = true
+		return
+	# User has looped
+	$SaveSelectPage/VBoxContainer/LabelLevelsCleared.text = "LOOPED"
+	
+	var bonus_count := 0
+	if UserVariables.books_read.find(2000) != -1:
+		$SaveSelectPage/VBoxContainer/BonusIconsContainer/TextureLetter.visible = true
+		bonus_count += 1
+	else: $SaveSelectPage/VBoxContainer/BonusIconsContainer/TextureLetter.visible = false
+	if UserVariables.knows_recipe_id(510):
+		$SaveSelectPage/VBoxContainer/BonusIconsContainer/TextureRecipe.visible = true
+		bonus_count += 1
+	else: $SaveSelectPage/VBoxContainer/BonusIconsContainer/TextureRecipe.visible = false
+	if UserVariables.books_read.find(2003) != -1:
+		$SaveSelectPage/VBoxContainer/BonusIconsContainer/TextureCrystalHint.visible = true
+		bonus_count += 1
+	else: $SaveSelectPage/VBoxContainer/BonusIconsContainer/TextureCrystalHint.visible = false
+		
+	$SaveSelectPage/VBoxContainer/LabelBonusCount.text = "Bonus: %s/3" % bonus_count
+	$SaveSelectPage/VBoxContainer/LabelBonusCount.visible = true
+	$SaveSelectPage/VBoxContainer/BonusIconsContainer.visible = true
+	
+	$SaveSelectPage/ButtonLevelSelect.visible = true
 
 
 func _on_button_back_pressed() -> void:
@@ -129,12 +155,13 @@ func _on_button_saves_level_select_pressed() -> void:
 	
 	var c: int = UserVariables.level_highest_cleared_index
 	for level_button in %GridContainerButtons.get_children():
-		if c > 0:
+		if c > 0: #NOTE: Not necessary right now since can only select when looped.
 			level_button.visible = true
 			c -= 1
 		else:
 			level_button.visible = false
 	
+	current_page_ref = $LevelSelectPage
 	$LevelSelectPage.visible = true
 
 

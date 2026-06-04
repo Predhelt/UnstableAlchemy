@@ -41,16 +41,19 @@ one_shot = true
 stream = ExtResource("2_k5i8p")
 
 [node name="CutsceneCrystalConsumed" parent="." index="4" unique_id=322321605 instance=ExtResource("4_eg3ay")]
+layer = 3
 visible = false
 images = Array[Texture2D]([ExtResource("5_n8vsm"), ExtResource("6_noc5j"), ExtResource("7_ohjpk")])
 cutscene_ids = Array[int]([10, 11, 12])
 
 [node name="CutsceneCrystalFailed" parent="." index="5" unique_id=1385112950 instance=ExtResource("4_eg3ay")]
+layer = 3
 visible = false
 images = Array[Texture2D]([ExtResource("8_oqixu"), ExtResource("6_noc5j"), ExtResource("7_ohjpk")])
 cutscene_ids = Array[int]([9, 11, 12])
 
 [node name="CutsceneCrystalSuccess" parent="." index="6" unique_id=780663890 instance=ExtResource("4_eg3ay")]
+layer = 3
 visible = false
 images = Array[Texture2D]([ExtResource("9_kh1g1")])
 cutscene_ids = Array[int]([13])

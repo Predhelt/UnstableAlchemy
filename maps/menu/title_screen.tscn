@@ -12,6 +12,9 @@
 [ext_resource type="Theme" uid="uid://pc5cnebvn7ye" path="res://level_components/ui/windows/options/options_theme.tres" id="3_3ahgd"]
 [ext_resource type="Texture2D" uid="uid://bny8lfkceceyf" path="res://art/pack/LRS_Logo.png" id="4_kcdp0"]
 [ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_quit_confirmation.tscn" id="7_17jem"]
+[ext_resource type="Texture2D" uid="uid://c0bqhjqs8sxd7" path="res://art/pack/objects/page.png" id="10_u71ju"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="11_meu2d"]
+[ext_resource type="Texture2D" uid="uid://rvb8583e166r" path="res://art/pack/ingredients/inventory/mysterious_crystal.png" id="12_0owi1"]
 [ext_resource type="PackedScene" uid="uid://du12ohdb5ygs5" path="res://level_components/ui/windows/options/popup_clear_confirmation.tscn" id="13_mh60s"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_u2ya0"]
@@ -184,12 +187,36 @@ theme_override_font_sizes/font_size = 24
 text = "Levels Cleared: X"
 horizontal_alignment = 1
 
-[node name="LabelKnownRecipes" type="Label" parent="SaveSelectPage/VBoxContainer" unique_id=1799709237]
-visible = false
+[node name="LabelBonusCount" type="Label" parent="SaveSelectPage/VBoxContainer" unique_id=790770081]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Recipes known: XXX/XXX"
+text = "Bonus: 0/3"
 horizontal_alignment = 1
+
+[node name="BonusIconsContainer" type="HBoxContainer" parent="SaveSelectPage/VBoxContainer" unique_id=1568348863]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureLetter" type="TextureRect" parent="SaveSelectPage/VBoxContainer/BonusIconsContainer" unique_id=1162270320]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Letter from R"
+texture = ExtResource("10_u71ju")
+expand_mode = 3
+
+[node name="TextureRecipe" type="TextureRect" parent="SaveSelectPage/VBoxContainer/BonusIconsContainer" unique_id=1478827233]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Self-Attunement Recipe"
+texture = ExtResource("11_meu2d")
+expand_mode = 3
+
+[node name="TextureCrystalHint" type="TextureRect" parent="SaveSelectPage/VBoxContainer/BonusIconsContainer" unique_id=1372605069]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Crystal Craft Hint #3"
+texture = ExtResource("12_0owi1")
+expand_mode = 3
 
 [node name="ButtonPrevious" type="Button" parent="SaveSelectPage" unique_id=443323165]
 custom_minimum_size = Vector2(32, 80)
@@ -227,9 +254,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -100.0
-offset_top = 20.0
+offset_top = 30.0
 offset_right = 100.0
-offset_bottom = 78.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

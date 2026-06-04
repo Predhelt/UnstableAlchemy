@@ -22,6 +22,9 @@ func reset_effect(se: StatusEffect):
 			$TextureRect/ProgressBar.max_value = se.duration
 			$TextureRect/ProgressBar.value = se.cur_duration
 			$TextureRect/ProgressBar.visible = true
+			$TextureRect/ControlTimer/LabelTimeRemaining.text = "%d" % (
+			$TextureRect/ProgressBar.max_value - $TextureRect/ProgressBar.value
+		)
 			$TextureRect/ControlTimer/LabelTimeRemaining.visible = true
 		else:
 			has_duration = false
