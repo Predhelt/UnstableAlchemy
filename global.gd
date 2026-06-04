@@ -291,6 +291,9 @@ func load_game() -> void:
 		if node_data.get("item_quantities"): # Plants initialize
 			new_object.set("item_quantities", str_to_var(node_data["item_quantities"]))
 		
+		if node_data.get("display_name"): # Objects initialize
+			new_object.set("display_name", node_data["display_name"])
+		
 		if node_data.get("contained_item_icon"): # Crates initialize
 			new_object.set("contained_item_icon", str_to_var(node_data["contained_item_icon"]))
 		
