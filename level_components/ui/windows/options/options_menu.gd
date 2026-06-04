@@ -66,7 +66,7 @@ func _on_button_exit_pressed() -> void:
 
 
 func _on_button_save_pressed() -> void:
-	Global.save_game()
+	Global.save_game.call_deferred()
 
 
 func _on_button_load_pressed() -> void:

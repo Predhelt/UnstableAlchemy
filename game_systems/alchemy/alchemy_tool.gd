@@ -153,6 +153,13 @@ func add_item(item: Item) -> bool:
 ## Called from inherited class. closes the inventory then opens the associated 
 ## minigame window using the items from the alchemy tool's container.
 func open_minigame(mg_items: Array[Item]):
+	# Check to see if there are available inventory slots before opening
+	var inventory_menu_ref = $"../../../../../"
+	if(inventory_menu_ref.find_child("ItemList").item_count >=
+			inventory_menu_ref.max_item_count):
+		Global.emit_notification("Not enough inventory slots to craft!")
+		return
+	
 	minigame_ref.init_ingredients(mg_items)
 	#minigame_ref.inventory_menu_ref = inventory_menu_ref
 	#inventory_menu_ref.close_window()
@@ -165,7 +172,7 @@ func open_minigame(mg_items: Array[Item]):
 			mg_qtys.append(1)
 		else: # If no item exists in slot:
 			mg_qtys.append(0)
-	if not $"../../../../../".remove_inventory_items(mg_items,mg_qtys):
+	if not inventory_menu_ref.remove_inventory_items(mg_items,mg_qtys):
 		print("ERROR: Not all items removed from the inventory properly.")
 	minigame_ref.open_window()
 
@@ -173,6 +180,12 @@ func open_minigame(mg_items: Array[Item]):
 func begin_craft(result_recipe: Recipe):
 	if not result_recipe.product_item:
 		print("Error: No product item for recipe!")
+		return
+	# Check to see if there are available inventory slots before crafting.
+	var inventory_menu_ref = $"../../../../../"
+	if(inventory_menu_ref.find_child("ItemList", false).item_count >=
+			inventory_menu_ref.max_item_count):
+		Global.emit_notification("Not enough inventory slots to craft!")
 		return
 	
 	$AudioStreamPlayer.play()

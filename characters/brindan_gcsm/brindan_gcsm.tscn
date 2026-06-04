@@ -183,7 +183,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq5qp"]
 radius = 13.0
 
-[node name="Character" unique_id=1948548714 instance=ExtResource("1_eou54")]
+[node name="Brindan" unique_id=1948548714 instance=ExtResource("1_eou54")]
 script = ExtResource("2_1slxx")
 character_name = "Brindan"
 attributes = ExtResource("9_cfc6b")

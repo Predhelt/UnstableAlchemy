@@ -10,6 +10,10 @@ signal item_mouse_grabbed(item: Item)
 ## Sent when an item is dropped, that was being dragged.
 signal item_mouse_dropped(item: Item)
 
+## Cooldown (in seconds) until you can use another item in the inventory.
+## Prevents accidental double-clicks.
+const COOLDOWN_USE_TIME: float = 0.2
+
 ## Max number of slots in the inventory.
 @export var max_item_count := 24 
 ## Reference to the currently used inventory. Sets the default referenced character as Player.
@@ -274,7 +278,7 @@ func sample_item(item) -> void:
 	Global.focused_node.update_status_effects(item.on_consume_effects, item.on_consume_message)
 	set_status_message_echo(item.on_consume_message)
 	
-	$CooldownInteract.start()
+	$CooldownInteract.start(COOLDOWN_USE_TIME)
 
 ## Uses the given item and reduces its count in the inventory.
 func consume_item(item : Item, index : int) -> void:
@@ -322,7 +326,7 @@ func consume_item(item : Item, index : int) -> void:
 	else:
 		UserVariables.items_used[item.id] += 1
 	
-	$CooldownInteract.start()
+	$CooldownInteract.start(COOLDOWN_USE_TIME)
 	
 	if item.qty <= 1 and item.qty != -1:
 		remove_inventory_slot(index)

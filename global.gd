@@ -142,7 +142,7 @@ func save_game() -> void:
 
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
-		emit_notification("Game Saved")
+	emit_notification("Game Saved")
 
 ## Removes files recursively at given [param directory]. Be careful not to use the wrong directory.
 func remove_directory(directory : String) -> void:
@@ -160,8 +160,8 @@ func save(_dir: String = "") -> Dictionary:
 		print("ERROR: No Level Path Found. Save Failed")
 	return {
 		"current_save_slot" : current_save_slot,
-		"focused_camera" : var_to_str(focused_camera),
-		"focused_node" : var_to_str(focused_node),
+		"focused_camera" : focused_camera,
+		"focused_node" : focused_node,
 		"current_level_path" : current_level_path,
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}

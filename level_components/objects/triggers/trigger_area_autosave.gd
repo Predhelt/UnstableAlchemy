@@ -9,7 +9,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if not has_saved and body == Global.focused_node:
 		has_saved = true
 		autosaved.emit()
-		Global.save_game()
+		Global.save_game.call_deferred()
 
 func save(_dir: String) -> Dictionary:
 	var save_dict = {
