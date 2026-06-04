@@ -62,6 +62,13 @@ func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("reset_level") and mode == &"options":
 		#reset_level()
 
+# Sets the save slot index and loads the user data in the save slot, if any.
+func set_save_slot(slot_index: int):
+	current_save_slot = slot_index
+	if not load_user_variables():
+		UserVariables.reset_variables()
+	
+
 ## Changes the root node of the scene. Used for changing levels.
 func change_scene(scene_path: String) -> void:
 	if scene_path == "":
@@ -316,11 +323,10 @@ func load_game() -> void:
 
 
 ## Loads just the user data to UserVariables based on the [member current_save_slot]'s .save file.
-func load_user_variables() -> void:
+func load_user_variables() -> bool:
 	var dir = "user://saves/slot%s" % current_save_slot
 	if not FileAccess.file_exists("%s.save" % dir):
-		print("ERROR: No save file \"%s.save\" found!" % dir)
-		return
+		return false
 	
 	var save_file = FileAccess.open("%s.save" % dir, FileAccess.READ)
 	
@@ -340,3 +346,4 @@ func load_user_variables() -> void:
 			UserVariables.set(i, str_to_var(node_data[i]))
 		else:
 			UserVariables.set(i, node_data[i])
+	return true

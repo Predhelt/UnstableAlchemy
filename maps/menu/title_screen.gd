@@ -50,7 +50,7 @@ func _on_button_play_pressed() -> void:
 	current_page_ref = $SaveSelectPage
 	$ButtonBack.visible = true
 	
-	Global.current_save_slot = 0
+	Global.set_save_slot(0)
 	configure_save_slot_data()
 	current_page_ref = $SaveSelectPage
 	$SaveSelectPage.visible = true
@@ -68,7 +68,7 @@ func configure_save_slot_data():
 		$SaveSelectPage/VBoxContainer/BonusIconsContainer.visible = false
 		$SaveSelectPage/ButtonLevelSelect.visible = false
 		return
-	Global.load_user_variables()
+	
 	$SaveSelectPage/ButtonStart.text = "Resume"
 	is_slot_empty = false
 	$SaveSelectPage/ButtonClearSave.disabled = false
@@ -136,17 +136,17 @@ func _on_button_saves_start_pressed() -> void:
 
 func _on_button_saves_previous_pressed() -> void:
 	if Global.current_save_slot < 1:
-		Global.current_save_slot = MAX_SAVE_SLOTS-1
+		Global.set_save_slot(MAX_SAVE_SLOTS-1)
 	else:
-		Global.current_save_slot -= 1
+		Global.set_save_slot(Global.current_save_slot - 1)
 	configure_save_slot_data()
 
 
 func _on_button_saves_next_pressed() -> void:
 	if Global.current_save_slot >= MAX_SAVE_SLOTS-1:
-		Global.current_save_slot = 0
+		Global.set_save_slot(0)
 	else:
-		Global.current_save_slot += 1
+		Global.set_save_slot(Global.current_save_slot + 1)
 	configure_save_slot_data()
 
 

@@ -306,7 +306,7 @@ text = "Heavy"
 [node name="SlidingDoor2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="8" unique_id=1732291692 instance=ExtResource("5_bne7j")]
 position = Vector2(96, 638)
 texture = ExtResource("24_60y0b")
-close_time = 6.5
+close_time = 7.2
 
 [node name="SlidingDoor3" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="9" unique_id=990809174 instance=ExtResource("5_bne7j")]
 position = Vector2(480, -66)

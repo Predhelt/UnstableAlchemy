@@ -41,6 +41,8 @@ var buttons : Array
 ## Reference to the scene for the progress bar used in crafting animations without a minigame.
 @onready var progress_bar := $ToolIcon/ProgressBar
 
+@onready var inventory_menu_ref = $"../../../../../"
+
 ## The item produced by the tool
 var product : Item
 ## State of whether a craft is currently active
@@ -154,7 +156,6 @@ func add_item(item: Item) -> bool:
 ## minigame window using the items from the alchemy tool's container.
 func open_minigame(mg_items: Array[Item]):
 	# Check to see if there are available inventory slots before opening
-	var inventory_menu_ref = $"../../../../../"
 	if(inventory_menu_ref.find_child("ItemList").item_count >=
 			inventory_menu_ref.max_item_count):
 		Global.emit_notification("Not enough inventory slots to craft!")
@@ -182,8 +183,7 @@ func begin_craft(result_recipe: Recipe):
 		print("Error: No product item for recipe!")
 		return
 	# Check to see if there are available inventory slots before crafting.
-	var inventory_menu_ref = $"../../../../../"
-	if(inventory_menu_ref.find_child("ItemList", false).item_count >=
+	if(inventory_menu_ref.find_child("ItemList").item_count >=
 			inventory_menu_ref.max_item_count):
 		Global.emit_notification("Not enough inventory slots to craft!")
 		return

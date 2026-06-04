@@ -2,6 +2,8 @@ extends AlchemyMinigame
 
 var empty_slot = preload("res://art/pack/objects/object_gray.png")
 
+var text_effect : PackedScene = preload("res://art/effects/text_effect_ui.tscn")
+
 var craft_precisions := [
 	0.35,
 	0.65,
@@ -115,6 +117,20 @@ func set_input_action(type: String, id: int, icon: Texture2D) -> void:
 			$EffectsAudioStream["parameters/switch_to_clip"] = &"bellows"
 		else:
 			$EffectsAudioStream["parameters/switch_to_clip"] = &"drop"
+		
+		var effect_instance = text_effect.instantiate()
+		match precision:
+			0:
+				effect_instance.set_text("OK")
+			1:
+				effect_instance.set_text("Great")
+			2:
+				effect_instance.set_text("Perfect!")
+		effect_instance.scale = Vector2(1.5, 1.5)
+		var tex = %MinigameProgressBar/ProgressSlider/ProcedureIcons.get_child(nearest_tick)
+		#effect_instance.global_position = tex.global_position
+		add_child(effect_instance)
+		effect_instance.global_position = tex.global_position
 
 ## Used by the cauldron to determine the segment on the progress bar that the
 ## progress is closest. -1 if not close to any.
@@ -132,7 +148,7 @@ func _get_nearest_tick() -> Array[int]:
 		return [nearest_tick, -1] # Miss input.
 	lower_bound = craft_precisions[1]/2
 	upper_bound = 0.5+((1-craft_precisions[1])/2)
-	if not tick_mod < upper_bound and tick_mod > lower_bound:
+	if tick_mod >= upper_bound or tick_mod <= lower_bound:
 		return [nearest_tick, 0] # Near Miss.
 	lower_bound = craft_precisions[2]/2
 	upper_bound = 0.5+((1-craft_precisions[2])/2)
