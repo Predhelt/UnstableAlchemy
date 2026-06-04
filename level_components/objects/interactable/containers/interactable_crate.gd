@@ -12,6 +12,11 @@ func _ready() -> void:
 		update_item_count(item_quantities[0])
 
 
+func save(dir: String) -> Dictionary:
+	var save_dict = super(dir)
+	save_dict["contained_item_icon"] = var_to_str(contained_item_icon)
+	return save_dict
+
 func collect_items(character: Character, interaction: Interaction, sfx_name: StringName) -> bool:
 	var b := super(character, interaction, sfx_name)
 	update_item_count(item_quantities[0])

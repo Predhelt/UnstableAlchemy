@@ -288,6 +288,12 @@ func load_game() -> void:
 		if node_data.get(field) and node_data[field] != "":
 			new_object.attributes = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 		
+		if node_data.get("item_quantities"): # Plants initialize
+			new_object.set("item_quantities", str_to_var(node_data["item_quantities"]))
+		
+		if node_data.get("contained_item_icon"): # Crates initialize
+			new_object.set("contained_item_icon", str_to_var(node_data["contained_item_icon"]))
+		
 		get_node(node_data["parent"]).add_child(new_object)
 		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		
