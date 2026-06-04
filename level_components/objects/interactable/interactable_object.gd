@@ -27,7 +27,7 @@ var item_quantities : Array[int]
 @export var cut_interaction : Interaction
 ## The list of possible combinations that this object can have with items.
 @export var combinations : Array[ObjectCombination]
-var context_menu : Control
+
 var inspection_panel_scene : PackedScene = preload("res://level_components/ui/windows/inspection_panel/inspection_panel.tscn")
 
 @export_group("Effects")
@@ -49,6 +49,31 @@ func _ready() -> void:
 	
 	$EffectAudioStream.stream.set_clip_stream(1, grab_sound)
 	$EffectAudioStream.stream.set_clip_stream(2, cut_sound)
+
+
+## Sets up and returns a [Dictionary] that represents the persistent information
+## of the character to be saved to file in [JSON]-compatible format.
+func save(_dir : String) -> Dictionary:
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"name" : name,
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
+		"pos_y" : position.y,
+		"display_name" : display_name,
+		"description" : description,
+		"items" : var_to_str(items),
+		"item_quantities" : var_to_str(item_quantities),
+		"grab_interaction" : var_to_str(grab_interaction),
+		"cut_interaction" : var_to_str(cut_interaction),
+		"combinations" : var_to_str(combinations),
+		"inspection_panel_scene" : var_to_str(inspection_panel_scene),
+		"interact_effect" : var_to_str(interact_effect),
+		"items_gained_effect" : var_to_str(items_gained_effect),
+		"grab_sound" : var_to_str(grab_sound),
+		"cut_sound" : var_to_str(cut_sound),
+	}
+	return save_dict
 
 ## Get the local file path of the current object.
 func get_cur_folder_path() -> String:

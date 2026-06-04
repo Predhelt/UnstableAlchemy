@@ -499,8 +499,6 @@ func _on_interaction_area_entered(area: Interactable) -> void:
 
 ## Triggers when an object's [Interactable] area leaves the interaction proximity of the player
 func _on_interaction_area_exited(area: Interactable) -> void:
-	if area.is_menu_open:
-		area.close_context_menu()
 	
 	all_interaction_areas.erase(area)
 	if is_camera_focused:
@@ -534,7 +532,6 @@ func execute_interaction():
 		var cur_interaction : Interactable = all_interaction_areas[0] # Simple approach
 		match cur_interaction.interact_type: # NOTE: When a type is added or updated, it also needs to be changed in Interactable
 			&"print_text" : print(cur_interaction.interact_value)
-			#&"context_menu" : cur_interaction.toggle_context_menu(self) # DEPRECATED
 			&"inspect" : cur_interaction.inspect_object()
 			&"talk" : cur_interaction.talk(self)
 			&"shop" : cur_interaction.shop()

@@ -30,7 +30,7 @@ clip_4/stream = ExtResource("6_pongy")
 clip_4/auto_advance = 1
 clip_4/next_clip = 0
 
-[node name="InteractableObject" type="Node2D" unique_id=1856845390]
+[node name="InteractableObject" type="Node2D" unique_id=1856845390 groups=["Persist"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_32it0")
 
