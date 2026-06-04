@@ -378,7 +378,9 @@ scale = Vector2(1, 2)
 message = "I might need to come back later"
 initial_wait_time = 2.5
 
+[connection signal="call_open_inventory" from="." to="UILayer" method="_on_world_call_open_inventory"]
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
 [connection signal="minigame_cauldron_window_opened" from="UILayer" to="." method="_on_ui_layer_minigame_cauldron_window_opened"]
+[connection signal="recipe_list_page_opened" from="UILayer" to="." method="_on_ui_layer_recipe_list_page_opened"]
 [connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]

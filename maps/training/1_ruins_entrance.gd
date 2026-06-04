@@ -15,6 +15,7 @@ var can_use_mp: bool = false
 ## Closed log book after using recipe book
 var closed_log_book: bool = false
 var opened_recipe_flakes: bool = false
+var mp_minigame_opened: bool = false
 var crafted_flakes: bool = false
 var used_flakes: bool = false
 var plate_pressed: bool = false
@@ -81,6 +82,7 @@ func save(_dir: String) -> Dictionary:
 		"can_use_mp" : can_use_mp,
 		"closed_log_book" : closed_log_book,
 		"opened_recipe_flakes" : opened_recipe_flakes,
+		"mp_minigame_opened" : mp_minigame_opened,
 		"crafted_flakes" : crafted_flakes,
 		"used_flakes" : used_flakes,
 		"plate_pressed" : plate_pressed,
@@ -128,7 +130,7 @@ func _on_ui_layer_item_used(item: Item) -> void:
 			UserVariables.is_log_book_disabled = false
 			EventHandler.open_log_book_page("BookHerbFlakes")
 		used_flakes_book = true
-	elif item.id == 100: # Herb Flakes
+	elif not used_flakes and item.id == 100: # Herb Flakes
 		if not UserVariables.has_looped:
 			$UILayer.set_log_book_tab_hidden(9, false)
 			EventHandler.open_log_book_page("StatusEnergizedBurst")
@@ -163,7 +165,8 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Find the missing ingredient to be able to craft."
 			)
-		elif not crafted_flakes and Global.focused_node.inventory.has_item_id(0):
+			opened_recipe_flakes = true
+		elif not can_use_mp and Global.focused_node.inventory.has_item_id(0):
 			call_open_inventory.emit()
 			inventory_menu_ref.set_mortar_pestle_visibility(true)
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
@@ -172,7 +175,6 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 			)
 			$UILayer.set_log_book_button_name_visibility("ButtonHelpMP", true)
 			can_use_mp = true
-		opened_recipe_flakes = true
 
 
 func _on_green_herb_object_grabbed(_body: Character) -> void:
@@ -193,6 +195,16 @@ func _on_pressure_plate_plate_pressed() -> void:
 
 
 func _on_ui_layer_craft_completed(result: Item, _recipe: Recipe) -> void:
-	if result.id == 100: # Green Flakes
+	if not crafted_flakes and result.id == 100: # Green Flakes
 		crafted_flakes = true
-		Global.save_game()
+		Global.save_game.call_deferred()
+
+
+func _on_ui_layer_minigame_mp_window_opened() -> void:
+	EventHandler.open_popup_message(
+			"Use the Mortar & Pestle by moving in the correct sequence.\n
+			Crush by pressing up, down, up, down.\n
+			Grind by pressing left, right, left, right.\n
+			Check the recipe book to see the correct procedures."
+		)
+	mp_minigame_opened = true

@@ -1,10 +1,13 @@
 extends LevelManager
 
+signal call_open_inventory
+
 @onready var inventory_menu_ref = $UILayer/MenuLayer/LeftWindows/InventoryMenu
 
 var watched_cutscene: bool = false
 var read_grow_book: bool = false
 var crafted_green_paste: bool = false
+var seen_cauldron_hint1: bool = false
 var minigame_opened: bool = false
 
 func _ready() -> void:
@@ -15,7 +18,7 @@ func _ready() -> void:
 		return
 	if not UserVariables.knows_recipe_id(503): # Grow Potion
 			inventory_menu_ref.set_merger_visibility(false)
-	if not UserVariables.has_crafted_recipe_id(503): # Grow Potion
+	if not UserVariables.has_crafted_recipe_id(100): # Green Paste
 		inventory_menu_ref.set_cauldron_visibility(false)
 
 
@@ -24,6 +27,7 @@ func save(_dir: String) -> Dictionary:
 		"watched_cutscene" : watched_cutscene,
 		"read_grow_book" : read_grow_book,
 		"crafted_green_paste" : crafted_green_paste,
+		"seen_cauldron_hint1" : seen_cauldron_hint1,
 		"minigame_opened" : minigame_opened,
 	}
 	return save_dict
@@ -46,13 +50,23 @@ func _on_cutscene_end_scene() -> void:
 
 
 func _on_ui_layer_minigame_cauldron_window_opened() -> void:
-	if UserVariables.crafted_recipes.keys().size():
+	if UserVariables.has_looped:
 		minigame_opened = true
 	if minigame_opened:
 		return
 	minigame_opened = true
 	EventHandler.open_popup_message(
 		"Put the ingredients in the cauldron at the right time.\n
-		Match up a procedure from the recipe book that uses the cauldron to the timings shown.
 		Aim for better accuracy for better results!"
 	)
+
+
+func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
+	if UserVariables.has_looped:
+		seen_cauldron_hint1 = true
+	if seen_cauldron_hint1:
+		return
+	if item.id == 503: # Grow Potion
+		seen_cauldron_hint1 = true
+		call_open_inventory.emit()
+		EventHandler.open_popup_message("Drag items in inventory that match the procedure onto the cauldron in the middle.")

@@ -245,10 +245,10 @@ text = "- walk
 - learn how sliding doors work"
 
 [connection signal="call_open_inventory" from="." to="UILayer" method="_on_world_call_open_inventory"]
-[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
 [connection signal="log_book_menu_window_closed" from="UILayer" to="." method="_on_ui_layer_log_book_menu_window_closed"]
+[connection signal="minigame_mp_window_opened" from="UILayer" to="." method="_on_ui_layer_minigame_mp_window_opened"]
 [connection signal="recipe_list_page_opened" from="UILayer" to="." method="_on_ui_layer_recipe_list_page_opened"]
 [connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
 [connection signal="plate_pressed" from="PuzzleNodes/PressurePlate" to="." method="_on_pressure_plate_plate_pressed"]
