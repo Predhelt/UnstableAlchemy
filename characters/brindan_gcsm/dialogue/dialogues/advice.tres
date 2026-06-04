@@ -14,6 +14,6 @@ script = ExtResource("3_vcitj")
 dialogue_name = &"advice"
 text = "Sure! I have a book that contains the recipe for a Strength Potion, as well as a few other related recipes. Help me out first, and I can give you the recipe book.
 
-Get me a couple of bunches of green flakes and I will give you the recipe book and we can go from there."
+Get me some bunches green flakes and I can give you the recipe book and we can go from there."
 choices = Array[ExtResource("1_ahwgl")]([SubResource("Resource_6rgy3")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

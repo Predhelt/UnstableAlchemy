@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://dh4lmouiihra8"
 [resource]
 script = ExtResource("3_bkekc")
 dialogue_name = &"greet"
-text = "Hello! You might have more to ask me after you make some progress.
+text = "Hello! You might have more to ask me after you make some progress.  Feel free to ignore me if you want to figure it out yourself.
 
 Just a tip: After you craft something, you can quickly craft it again from your recipe book if you have all of the necessary ingredients."
 choices = Array[ExtResource("1_plg7s")]([SubResource("Resource_l18ks"), SubResource("Resource_k3x5y"), SubResource("Resource_lm1vo")])
