@@ -476,7 +476,8 @@ theme_override_font_sizes/font_size = 32
 text = "Dradow
 Shahen Melkonian
 Jayrar
-Blox"
+Blox
+Galvanic"
 horizontal_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="CreditsPanel/MarginContainer/ScrollBox/VBoxContainer" unique_id=1669857322]
@@ -525,12 +526,12 @@ visible = false
 
 [connection signal="focus_entered" from="ButtonCredits" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="ButtonCredits" to="." method="_on_button_entered"]
-[connection signal="pressed" from="ButtonCredits" to="." method="_on_button_credits_pressed"]
 [connection signal="pressed" from="ButtonCredits" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ButtonCredits" to="." method="_on_button_credits_pressed"]
 [connection signal="focus_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonPlay" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainPage/ButtonPlay" to="." method="_on_button_play_pressed"]
 [connection signal="pressed" from="MainPage/ButtonPlay" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainPage/ButtonPlay" to="." method="_on_button_play_pressed"]
 [connection signal="focus_entered" from="MainPage/ButtonSettings" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainPage/ButtonSettings" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainPage/ButtonSettings" to="." method="_on_button_settings_pressed"]
@@ -541,30 +542,30 @@ visible = false
 [connection signal="pressed" from="MainPage/ButtonExit" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_entered"]
-[connection signal="pressed" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_saves_previous_pressed"]
 [connection signal="pressed" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonPrevious" to="." method="_on_button_saves_previous_pressed"]
 [connection signal="focus_entered" from="SaveSelectPage/ButtonNext" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="SaveSelectPage/ButtonNext" to="." method="_on_button_entered"]
-[connection signal="pressed" from="SaveSelectPage/ButtonNext" to="." method="_on_button_saves_next_pressed"]
 [connection signal="pressed" from="SaveSelectPage/ButtonNext" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonNext" to="." method="_on_button_saves_next_pressed"]
 [connection signal="focus_entered" from="SaveSelectPage/ButtonStart" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="SaveSelectPage/ButtonStart" to="." method="_on_button_entered"]
-[connection signal="pressed" from="SaveSelectPage/ButtonStart" to="." method="_on_button_saves_start_pressed"]
 [connection signal="pressed" from="SaveSelectPage/ButtonStart" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonStart" to="." method="_on_button_saves_start_pressed"]
 [connection signal="focus_entered" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_entered"]
-[connection signal="pressed" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_saves_level_select_pressed"]
 [connection signal="pressed" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonLevelSelect" to="." method="_on_button_saves_level_select_pressed"]
 [connection signal="focus_entered" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_entered"]
-[connection signal="pressed" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_saves_clear_save_pressed"]
 [connection signal="pressed" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SaveSelectPage/ButtonClearSave" to="." method="_on_button_saves_clear_save_pressed"]
 [connection signal="focus_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="ButtonBack" to="." method="_on_button_entered"]
 [connection signal="pressed" from="ButtonBack" to="." method="_on_button_back_pressed"]
 [connection signal="pressed" from="ButtonBack" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="CreditsPanel/ButtonClose" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="CreditsPanel/ButtonClose" to="." method="_on_button_entered"]
-[connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_credits_button_close_pressed"]
 [connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CreditsPanel/ButtonClose" to="." method="_on_credits_button_close_pressed"]
 [connection signal="confirmed" from="PopupClearConfirmation" to="." method="_on_popup_clear_confirmation_confirmed"]

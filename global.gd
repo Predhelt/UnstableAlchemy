@@ -89,9 +89,9 @@ func reset_level() -> void:
 	var current_player : AudioStreamPlayer = get_tree().current_scene.find_child("MusicAudioStream")
 	MusicManager.current_stream = current_player.stream
 	MusicManager.current_song_position = current_player.get_playback_position()
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene.call_deferred()
 	mode = &"default"
-
+	
 ## Displays notification in current scene with given [param message].
 func emit_notification(message : String):
 	var new_notification : PanelContainer = Global.notification_effect.instantiate()

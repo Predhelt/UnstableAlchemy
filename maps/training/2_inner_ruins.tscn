@@ -28,8 +28,10 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="16_6n8p7"]
 [ext_resource type="Texture2D" uid="uid://bo3l8sjhip6tg" path="res://art/pack/objects/doors/slide_door_red.png" id="16_10a7h"]
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="17_1xt33"]
+[ext_resource type="Resource" uid="uid://bnb8ijfkomhw" path="res://game_systems/items/potions/grow_potion.tres" id="17_rtaeg"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="17_v0bil"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="18_ltyin"]
+[ext_resource type="Resource" uid="uid://cvvarufagkr1h" path="res://game_systems/items/potions/self_attunement_potion.tres" id="18_x55sc"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="19_wike2"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="20_5jsn0"]
 [ext_resource type="Resource" uid="uid://c8iivm16gu105" path="res://game_systems/items/recipe_books/normalize_potion_book.tres" id="21_oxed2"]
@@ -40,13 +42,15 @@
 [ext_resource type="PackedScene" uid="uid://cy5sy4ja5u3t8" path="res://characters/tutorial_tim_misc2/tutorial_tim.tscn" id="36_31b4h"]
 [ext_resource type="PackedScene" uid="uid://de6e7l1aopwdy" path="res://characters/tutorial_tim_misc1/tutorial_tim.tscn" id="37_us5lp"]
 
-[sub_resource type="Resource" id="Resource_2v5rg"]
+[sub_resource type="Resource" id="Resource_k6qqk"]
+resource_local_to_scene = true
 script = ExtResource("6_2nf3c")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_iwyyj"]
+[sub_resource type="Resource" id="Resource_ql0vs"]
 resource_local_to_scene = true
 script = ExtResource("10_fmauf")
+items = Array[ExtResource("9_1xt33")]([ExtResource("17_rtaeg"), ExtResource("18_x55sc")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_hohwf"]
@@ -128,9 +132,9 @@ character_name = "Tutorial Tim"
 
 [node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(-12, -198)
-attributes = SubResource("Resource_2v5rg")
+attributes = SubResource("Resource_k6qqk")
 known_recipes = Array[ExtResource("7_ogsrs")]([ExtResource("8_5ic14")])
-inventory = SubResource("Resource_iwyyj")
+inventory = SubResource("Resource_ql0vs")
 has_blade = true
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
