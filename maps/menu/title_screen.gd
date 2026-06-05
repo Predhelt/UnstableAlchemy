@@ -11,7 +11,7 @@ var is_slot_empty: bool = true
 
 
 func _ready() -> void:
-	$LabelVersion.text = "Version: %s (Demo, Alpha)" % ProjectSettings.get_setting("application/config/version")
+	$LabelVersion.text = "v%s (Demo, Alpha)" % ProjectSettings.get_setting("application/config/version")
 	UserVariables.reset_variables()
 	$ButtonCredits.visible = true
 	$CreditsPanel.visible = false
