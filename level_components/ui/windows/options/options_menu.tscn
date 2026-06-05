@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://1yiwmvqku557" path="res://level_components/ui/windows/options/button_options_menu.tscn" id="6_qrcwd"]
 [ext_resource type="PackedScene" uid="uid://cndwxhk6se8j5" path="res://level_components/ui/windows/options/popup_quit_confirmation.tscn" id="7_qrcwd"]
 [ext_resource type="PackedScene" uid="uid://c77o7gl7nmgft" path="res://level_components/ui/windows/options/popup_reset_confirmation.tscn" id="11_2ogd0"]
+[ext_resource type="Texture2D" uid="uid://c0bqhjqs8sxd7" path="res://art/pack/objects/page.png" id="12_if60a"]
+[ext_resource type="Texture2D" uid="uid://bxjti0ygmxrbm" path="res://art/pack/objects/book.png" id="13_8ob6e"]
+[ext_resource type="Texture2D" uid="uid://rvb8583e166r" path="res://art/pack/ingredients/inventory/mysterious_crystal.png" id="14_wg04x"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_7ekgj"]
 clip_count = 3
@@ -131,6 +134,65 @@ visible = false
 
 [node name="PopupResetConfirmation" parent="." unique_id=2034816735 instance=ExtResource("11_2ogd0")]
 visible = false
+
+[node name="ProgressionPanel" type="Panel" parent="." unique_id=1846598846]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 133.0
+offset_right = 755.0
+offset_bottom = 356.0
+
+[node name="ProgressionContainer" type="VBoxContainer" parent="ProgressionPanel" unique_id=675290776]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="LabelSlotName" type="Label" parent="ProgressionPanel/ProgressionContainer" unique_id=1950072912]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Slot X"
+horizontal_alignment = 1
+
+[node name="LabelLevelsCleared" type="Label" parent="ProgressionPanel/ProgressionContainer" unique_id=2067385141]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Levels Cleared: X"
+horizontal_alignment = 1
+
+[node name="LabelBonusCount" type="Label" parent="ProgressionPanel/ProgressionContainer" unique_id=1013248870]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Bonus: 0/3"
+horizontal_alignment = 1
+
+[node name="BonusIconsContainer" type="HBoxContainer" parent="ProgressionPanel/ProgressionContainer" unique_id=1321942056]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureLetter" type="TextureRect" parent="ProgressionPanel/ProgressionContainer/BonusIconsContainer" unique_id=1201799445]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Letter from R"
+texture = ExtResource("12_if60a")
+expand_mode = 3
+
+[node name="TextureRecipe" type="TextureRect" parent="ProgressionPanel/ProgressionContainer/BonusIconsContainer" unique_id=1756287094]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Self-Attunement Recipe"
+texture = ExtResource("13_8ob6e")
+expand_mode = 3
+
+[node name="TextureCrystalHint" type="TextureRect" parent="ProgressionPanel/ProgressionContainer/BonusIconsContainer" unique_id=642143410]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+tooltip_text = "Crystal Craft Hint #3"
+texture = ExtResource("14_wg04x")
+expand_mode = 3
 
 [connection signal="focus_entered" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Control/VBoxContainer/ButtonReturn" to="." method="_on_button_entered"]

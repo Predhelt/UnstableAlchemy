@@ -21,6 +21,7 @@ func toggle_window():
 
 func open_window():
 	if not Global.center_window and not Global.left_window and not Global.right_window:
+		configure_progression_data()
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 		prev_mode = Global.mode
@@ -36,6 +37,46 @@ func close_window():
 		prev_mode = ""
 		visible = false
 		window_closed.emit()
+
+## Uses the [member current_save_slot] to get data from UserVariables
+## to configure the progression data.
+func configure_progression_data():
+	$ProgressionPanel/ProgressionContainer/LabelSlotName.text = "Slot %s" % Global.current_save_slot
+	if not FileAccess.file_exists("user://saves/slot%s.save" % Global.current_save_slot):
+		$SaveSelectPage/ButtonStart.text = "New Game"
+		$ProgressionPanel/ProgressionContainer/LabelLevelsCleared.text = "Levels Cleared: 0"
+		$ProgressionPanel/ProgressionContainer/LabelBonusCount.visible = false
+		$ProgressionPanel/ProgressionContainer/BonusIconsContainer.visible = false
+		return
+	
+	if not UserVariables.has_looped:
+		$ProgressionPanel/ProgressionContainer/LabelLevelsCleared.text = (
+			"Levels Cleared: %s" % UserVariables.level_highest_cleared_index
+		)
+		$ProgressionPanel/ProgressionContainer/LabelBonusCount.visible = false
+		$ProgressionPanel/ProgressionContainer/BonusIconsContainer.visible = false
+		return
+	# User has looped
+	$ProgressionPanel/ProgressionContainer/LabelLevelsCleared.text = "LOOPED"
+	
+	var bonus_count := 0
+	if UserVariables.books_read.find(2000) != -1:
+		$ProgressionPanel/ProgressionContainer/BonusIconsContainer/TextureLetter.visible = true
+		bonus_count += 1
+	else: $ProgressionPanel/ProgressionContainer/BonusIconsContainer/TextureLetter.visible = false
+	if UserVariables.knows_recipe_id(510):
+		$ProgressionPanel/ProgressionContainer/BonusIconsContainer/TextureRecipe.visible = true
+		bonus_count += 1
+	else: $ProgressionPanel/ProgressionContainer/BonusIconsContainer/TextureRecipe.visible = false
+	if UserVariables.books_read.find(2003) != -1:
+		$ProgressionPanel/ProgressionContainer/BonusIconsContainer/TextureCrystalHint.visible = true
+		bonus_count += 1
+	else: $ProgressionPanel/ProgressionContainer/BonusIconsContainer/TextureCrystalHint.visible = false
+		
+	$ProgressionPanel/ProgressionContainer/LabelBonusCount.text = "Bonus: %s/3" % bonus_count
+	$ProgressionPanel/ProgressionContainer/LabelBonusCount.visible = true
+	$ProgressionPanel/ProgressionContainer/BonusIconsContainer.visible = true
+
 
 
 func _on_button_entered() -> void:

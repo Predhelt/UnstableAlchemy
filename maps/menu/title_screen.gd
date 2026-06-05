@@ -36,11 +36,15 @@ func _on_button_exit_pressed() -> void:
 
 
 func _on_button_entered() -> void:
+	if not is_inside_tree():
+		return
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "hover"
 
 
 func _on_button_pressed() -> void:
+	if not is_inside_tree():
+		return
 	$AudioStreams/AudioStreamPlayer.play()
 	$AudioStreams/AudioStreamPlayer["parameters/switch_to_clip"] = "press"
 
