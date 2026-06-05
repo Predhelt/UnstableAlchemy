@@ -14,6 +14,6 @@ script = ExtResource("3_6hn8i")
 dialogue_name = &"greet"
 text = "Hello! Hopefully I won't exist in the future, but this should work for now.
 
-Here's a tip: You can get certain effects by eating raw ingredients, but brewing potions is usually more efficient or potent."
+I have some Cleanse potions that you can use for if any of the plants here have any harmful defense mechanisms."
 choices = Array[ExtResource("1_3i63p")]([SubResource("Resource_lm1vo")])
 metadata/_custom_type_script = "uid://3qs2s64uenyc"

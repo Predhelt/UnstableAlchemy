@@ -16,8 +16,10 @@ func _ready() -> void:
 		$Cutscene.hide()
 	if UserVariables.has_looped:
 		return
+	$UILayer.set_log_book_tab_hidden(8, true)
 	if not UserVariables.knows_recipe_id(503): # Grow Potion
 			inventory_menu_ref.set_merger_visibility(false)
+			$UILayer.set_log_book_tab_hidden(3, true)
 	if not UserVariables.has_crafted_recipe_id(100): # Green Paste
 		inventory_menu_ref.set_cauldron_visibility(false)
 
@@ -36,6 +38,8 @@ func save(_dir: String) -> Dictionary:
 func _on_ui_layer_item_used(item: Item) -> void:
 	if item.id == 1004: # Grow Potion book
 		inventory_menu_ref.set_merger_visibility(true)
+		$UILayer.set_log_book_tab_hidden(3, false)
+		EventHandler.open_log_book_page("PotionGrow")
 		read_grow_book = true
 
 

@@ -53,14 +53,14 @@ func _ready() -> void:
 		$UILayer.set_log_book_tab_hidden(i)
 	
 	if grabbed_herb:
-		$UILayer.set_log_book_tab_hidden(1, false)
+		$UILayer.set_log_book_tab_hidden(1, false) # Raw Items
 	if plate_pressed:
-		$UILayer.set_log_book_tab_hidden(5, false)
+		$UILayer.set_log_book_tab_hidden(5, false) # Objects
 	if used_flakes_book:
-		$UILayer.set_log_book_tab_hidden(2, false)
-		$UILayer.set_log_book_tab_hidden(6, false)
+		$UILayer.set_log_book_tab_hidden(2, false) # Crafted Items
+		$UILayer.set_log_book_tab_hidden(6, false) # Books
 	if used_flakes:
-		$UILayer.set_log_book_tab_hidden(9, false)
+		$UILayer.set_log_book_tab_hidden(9, false) # Statuses
 	#$UILayer.set_log_book_button_name_visibility("ButtonHelpInteractions", false)
 	$UILayer.set_log_book_button_name_visibility("ButtonHelpTools", false)
 	if not can_use_mp:
@@ -132,8 +132,8 @@ func _on_recipe_item_object_grabbed(_body: Character) -> void:
 func _on_ui_layer_item_used(item: Item) -> void:
 	if item.id == 1000: # Herb Flakes Book
 		if not UserVariables.has_looped:
-			$UILayer.set_log_book_tab_hidden(6, false)
-			$UILayer.set_log_book_tab_hidden(2, false)
+			$UILayer.set_log_book_tab_hidden(6, false) # Books
+			$UILayer.set_log_book_tab_hidden(2, false) # Crafted Items
 			%LabelInventory.visible = false
 			$UILayer.set_menu_bar_button_name_visibility("ButtonLogBook", true)
 			UserVariables.is_log_book_disabled = false
@@ -141,7 +141,7 @@ func _on_ui_layer_item_used(item: Item) -> void:
 		used_flakes_book = true
 	elif not used_flakes and item.id == 100: # Herb Flakes
 		if not UserVariables.has_looped:
-			$UILayer.set_log_book_tab_hidden(9, false)
+			$UILayer.set_log_book_tab_hidden(9, false) # Statuses
 			EventHandler.open_log_book_page("StatusEnergizedBurst")
 			used_flakes = true
 
@@ -170,7 +170,7 @@ func _on_ui_layer_recipe_list_page_opened(item: Item) -> void:
 	%LabelRecipes.visible = false
 	
 	if closed_log_book and not UserVariables.has_looped:
-		if not opened_recipe_flakes and not Global.focused_node.inventory.has_item_id(0):
+		if not opened_recipe_flakes and not can_use_mp and not Global.focused_node.inventory.has_item_id(0):
 			EventHandler.open_popup_message( #FIXME: This is not a good tutorial.
 				"Find the missing ingredient to be able to craft."
 			)
@@ -210,7 +210,8 @@ func _on_ui_layer_craft_completed(result: Item, _recipe: Recipe) -> void:
 
 
 func _on_ui_layer_minigame_mp_window_opened() -> void:
-	EventHandler.open_popup_message(
+	if not mp_minigame_opened:
+		EventHandler.open_popup_message(
 			"Use the Mortar & Pestle by moving in the correct sequence.\n
 			Crush by pressing up, down, up, down.\n
 			Grind by pressing left, right, left, right.\n

@@ -12,6 +12,8 @@
 [ext_resource type="Resource" uid="uid://c03phe4ob10nn" path="res://game_systems/alchemy/recipes/mp/green_herb_flakes.tres" id="8_5ic14"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="9_1xt33"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="10_fmauf"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/components/transaction.gd" id="10_iwyyj"]
+[ext_resource type="Resource" uid="uid://duhpgddfdn671" path="res://characters/tutorial_tim_poss/transactions/tx_free_cleanse_potions.tres" id="11_2ij7d"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="11_igldg"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="12_fmauf"]
 [ext_resource type="Resource" uid="uid://c3c5x8an0plk1" path="res://game_systems/items/recipe_books/grow_potion_book.tres" id="12_v0scf"]
@@ -42,7 +44,7 @@
 script = ExtResource("6_2nf3c")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_us5lp"]
+[sub_resource type="Resource" id="Resource_iwyyj"]
 resource_local_to_scene = true
 script = ExtResource("10_fmauf")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -118,6 +120,7 @@ position = Vector2(338, -292)
 [node name="TutorialTim2" parent="." index="5" unique_id=1788924441 instance=ExtResource("36_31b4h")]
 position = Vector2(118, -1392)
 character_name = "Tutorial Tim"
+transactions = Array[ExtResource("10_iwyyj")]([ExtResource("11_2ij7d")])
 
 [node name="TutorialTim3" parent="." index="6" unique_id=1907100877 instance=ExtResource("37_us5lp")]
 position = Vector2(140, -1064)
@@ -127,7 +130,7 @@ character_name = "Tutorial Tim"
 position = Vector2(-12, -198)
 attributes = SubResource("Resource_2v5rg")
 known_recipes = Array[ExtResource("7_ogsrs")]([ExtResource("8_5ic14")])
-inventory = SubResource("Resource_us5lp")
+inventory = SubResource("Resource_iwyyj")
 has_blade = true
 
 [node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]

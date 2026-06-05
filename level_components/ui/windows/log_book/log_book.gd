@@ -41,8 +41,8 @@ func _ready() -> void:
 	%ButtonHelpGeneral.pressed.emit()
 	%ButtonItemGreenHerbLeaf.button_pressed = true
 	%ButtonItemGreenHerbLeaf.pressed.emit()
-	%ButtonPotionCleanse.button_pressed = true
-	%ButtonPotionCleanse.pressed.emit()
+	%ButtonPotionGrow.button_pressed = true
+	%ButtonPotionGrow.pressed.emit()
 	%ButtonPlantGreenHerbs.button_pressed = true
 	%ButtonPlantGreenHerbs.pressed.emit()
 	%ButtonItemGreenFlakes.button_pressed = true
@@ -55,8 +55,8 @@ func _ready() -> void:
 	%ButtonPlacesBotania.pressed.emit()
 	%ButtonPeoplePerson1.button_pressed = true
 	%ButtonPeoplePerson1.pressed.emit()
-	%ButtonStatusCleanse.button_pressed = true
-	%ButtonStatusCleanse.pressed.emit()
+	%ButtonStatusEnergizedBurst.button_pressed = true
+	%ButtonStatusEnergizedBurst.pressed.emit()
 	%ButtonCutsceneMap1.button_pressed = true
 	%ButtonCutsceneMap1.pressed.emit()
 	$AudioStreamPlayer.stop()
@@ -322,7 +322,7 @@ func hide_dynamic_buttons() -> void:
 		button.visible = false
 	# Hide most Potion Buttons
 	for button in %TabPotions/HBoxContainer/PageButtons/PageButtonList.get_children():
-		if button == %ButtonPotionCleanse:
+		if button == %ButtonPotionGrow:
 			continue
 		button.visible = false
 	# Hide most Plant Buttons
@@ -333,6 +333,10 @@ func hide_dynamic_buttons() -> void:
 	# Hide most Book Buttons
 	for button in %TabBooks/HBoxContainer/PageButtons/PageButtonList.get_children():
 		if button == %ButtonBookRawMaterials:
+			continue
+		button.visible = false
+	for button in %TabStatuses/HBoxContainer/PageButtons/PageButtonList.get_children():
+		if button == %ButtonStatusEnergizedBurst:
 			continue
 		button.visible = false
 	# NOTE: Ideally, status pages should only get shown if they have been triggered or relevant
