@@ -192,9 +192,10 @@ func load_game() -> void:
 	for i in node_data.keys():
 		if i != "current_level_path":
 			set(i, node_data[i])
+	var level_node : Node2D
 	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
-		var level_node : Node2D = load(current_level_path).instantiate()
+		level_node = load(current_level_path).instantiate()
 		get_tree().change_scene_to_node(level_node)
 		
 		# Set level variables
@@ -319,6 +320,8 @@ func load_game() -> void:
 			else:
 				new_object.set(i, node_data[i])
 			new_object.set(i, node_data[i])
+	if level_node.has_method("connect_signals"):
+		level_node.call_deferred("connect_signals")
 	mode = &"default"
 
 
