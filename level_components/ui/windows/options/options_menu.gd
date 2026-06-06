@@ -47,6 +47,7 @@ func configure_progression_data():
 		$ProgressionPanel/ProgressionContainer/LabelLevelsCleared.text = "Levels Cleared: 0"
 		$ProgressionPanel/ProgressionContainer/LabelBonusCount.visible = false
 		$ProgressionPanel/ProgressionContainer/BonusIconsContainer.visible = false
+		$ProgressionPanel/ProgressionContainer/LabelLevelSelect.visible = false
 		return
 	
 	if not UserVariables.has_looped:
@@ -55,9 +56,11 @@ func configure_progression_data():
 		)
 		$ProgressionPanel/ProgressionContainer/LabelBonusCount.visible = false
 		$ProgressionPanel/ProgressionContainer/BonusIconsContainer.visible = false
+		$ProgressionPanel/ProgressionContainer/LabelLevelSelect.visible = false
 		return
 	# User has looped
 	$ProgressionPanel/ProgressionContainer/LabelLevelsCleared.text = "LOOPED"
+	$ProgressionPanel/ProgressionContainer/LabelLevelSelect.visible = true
 	
 	var bonus_count := 0
 	if UserVariables.books_read.find(2000) != -1:

@@ -160,7 +160,9 @@ func _on_cutscene_end_scene() -> void:
 	if UserVariables.has_looped:
 		$Player.update_status_message("What just happened...")
 		$TutorialMessages/LabelMovement.visible = false
+		#$TutorialMessages/LabelLevelSelect.visible = true
 		return
+	#$TutorialMessages/LabelLevelSelect.visible = false
 	$TutorialMessages/LabelMovement.visible = true
 
 

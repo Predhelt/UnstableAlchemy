@@ -143,9 +143,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 22.545013
-offset_top = -111.500015
+offset_top = -152.79999
 offset_right = 277.0
-offset_bottom = 111.5
+offset_bottom = 152.79999
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -168,6 +168,13 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Levels Cleared: X"
+horizontal_alignment = 1
+
+[node name="LabelLevelSelect" type="Label" parent="ProgressionPanel/ProgressionContainer" unique_id=148224181]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Level Select in
+Main Menu Unlocked"
 horizontal_alignment = 1
 
 [node name="LabelBonusCount" type="Label" parent="ProgressionPanel/ProgressionContainer" unique_id=1013248870]
