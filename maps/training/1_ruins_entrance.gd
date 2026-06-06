@@ -194,7 +194,7 @@ func _on_green_herb_object_grabbed(_body: Character) -> void:
 
 
 func _on_pressure_plate_plate_pressed() -> void:
-	if not plate_pressed:
+	if not plate_pressed and not UserVariables.has_looped:
 		$UILayer.set_log_book_tab_hidden(5, false)
 		EventHandler.open_popup_message(
 			"Pressure plates can open doors of the same color.
