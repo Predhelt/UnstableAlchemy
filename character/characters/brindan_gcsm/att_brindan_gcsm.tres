@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Attributes" format=3 uid="uid://d4jm2a2ctvqdo"]
+
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://character/components/attributes.gd" id="1_7xckr"]
+
+[resource]
+script = ExtResource("1_7xckr")
+base_move_speed = 50.0
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"

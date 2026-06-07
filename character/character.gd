@@ -1,0 +1,1193 @@
+## A 2D Character with [Attributes], an [Inventory], animations, movement, known [Recipe]s, etc.
+## [StatusEffect]s can be applied to the character, and the character may be situationally
+## controlled by the player.
+class_name Character extends CharacterBody2D
+# TODO: Types of interactions with Characters:
+# Flavor text / Hint message : does not lock you into a conversation
+# Other Triggers (scared, runs off / opens a passageway / etc.)
+
+## Emits when the character learns a new recipe.
+signal recipe_learned(recipe: Recipe)
+
+## Determines the Y-offset of the labels above the character as [float]
+const LABEL_DEFAULT_Y_POS: float = -60.0
+
+## The [AnimationTree] determing how different animations connect and transition between each other 
+@onready var animation_tree: AnimationTree = $AnimationTree
+
+## Reference to UI shop Window
+#TODO: No need to store these variables here for every character.
+@onready var shop_ui_ref: Control = $"../UILayer/MenuLayer/RightWindows/CharacterShop"
+## Reference to UI dialogue Window
+@onready var dialogue_ui_ref: Control = $"../UILayer/MenuLayer/RightWindows/CharacterDialogue"
+## Name of the Character to be dislpayed.
+## Used by the player and dialogue window to show who this is.
+@export var character_name: String
+## The portrait of the character that is displayed during dialogue by default.
+## Dynamic portraits based on context are not currently supported.
+@export var portrait: Texture2D
+
+
+@export_group("Setup")
+## The character's base [Attributes] that determine interactions with the environment
+@export var attributes: Attributes
+## List of [Recipe]s known by the character. This is mainly used internally for keeping
+## track of the character-specific knowledge, not the player's known recipes.
+## Player-known recipes are stored in UserVariables.
+@export var known_recipes: Array[Recipe]
+
+@export_group("Equipment")
+## Reference to the [Inventory] of the character(s).
+@export var inventory: Inventory
+## Tracks whether the character has access to the blade tool or not.
+@export var has_blade: bool = false
+## Tracks whether the character has access to the dropper tool or not.
+@export var has_dropper: bool = false
+
+@export_group("Conditions")
+## Reference to the [Camera2D] that is being used to follow the character and display the game screen.
+@export var character_camera_ref: Camera2D
+## The list of [StatusEffect]s that are currently active on the character
+@export var active_status_effects: Array[StatusEffect]
+## Tracks whether the character is being controlled by the player
+var is_player_controlled: bool = false
+## Tracks whether the [Camera2D] is focused on the character
+var is_camera_focused: bool = false
+## Tracks whether the character is susceptible to being possessed.
+@export var is_possessable: bool = false
+## Tracks the character that is possessing this body, if any.
+var character_possessed_by: Character = null
+## Tracks the name of the character that is possessing this body, if any.
+var character_possessed_by_name: StringName = ""
+## Tracks the number of times a possession can be started before the status effect runs out.
+var can_possess_others_count: int
+## List of characters that are in range of the character and are possessable.
+var possessable_characters: Array[Character]
+## Tracks who this character is possessing, if anyone.
+var possessing_character : Character = null
+## Tracks the name of who this character is possessing, if anyone.
+var possessing_character_name : StringName = ""
+## Current target for the possession.
+var cur_possession_target : Character = null
+
+## List of books by ID that the character has read
+var books_read : Array[int]
+## Keys: IDs of items that have been gathered from interactable objects like plants.
+## Values: Dictionary containing names of objects that the item was gathered from and the interaction type.
+## Internal dictionary returns the count for number of times the interaction was performed.
+## Ex: {item_id : {[obj1_name, interaction_type1] : 1, [obj1_name, interaction_type2] : 5, [obj2_name, interaction_type1] : 15}
+var gathered_items : Dictionary[int, Dictionary]
+## List of grab interactions that the user has performed.
+## String is the name of the object, Array is the list of grab interactions of the object and their count.
+## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
+var objects_grab_interacted: Dictionary[String, Array]
+## List of cut interactions that the user has performed.
+## String is the name of the object, Array is the list of grab interactions of the object and their count.
+## Ex: {obj1_name : [interaction, count], obj2_name : [interaction, count]}
+var objects_cut_interacted: Dictionary[String, Array]
+## List of combinations that the user has performed.
+## String is the name of the object, Array is the list of [ObjectCombination]s of the object.
+var objects_combined: Dictionary[String, Array]
+## The items (by ID) that have been received during trades, and the amounts.
+var items_trade_received: Dictionary[int, int]
+## The count of each [Item] with a given item ID
+var items_used: Dictionary[int, int]
+
+@export_group("Auto Actions")
+## The type of interaction that occurs upon interacting with the Character
+@export_enum("none", "talk", "shop") var interaction_type : String = "talk" 
+## List of transactions for the Character shop
+@export var transactions : Array[Transaction]
+## List of messages that are displayed above the character
+@export var passive_messages : Array[String]
+## Stores the list of dialogues that the Character uses, as well as the default
+## dialogue window that displays when talked to.
+var dialogues : Array[Dialogue]
+## The time left (in seconds) before the message disappears
+var message_timer := 0.0
+## The time since the last message ended
+var last_message_delta := 0.0
+
+## The direction in 2D space that the character is moving
+var direction := Vector2.ZERO
+## List of [RigidBody2D]s the character is pushing
+var pushing_bodies : Array[RigidBody2D]
+## List of crawlspace [StaticBody2D]s that the character is occupying.
+var crawlspace_bodies : Array[StaticBody2D]
+## The list of [Interactable] areas that overlap with the character's reach
+var all_interaction_areas : Array[Interactable]
+## The currently selected tool that the character is holding
+var selected_tool : StringName = &"hand"
+
+## Set up default properties when the character is ready
+func _ready() -> void:
+	%StatusLabel.text = ""
+	%InteractLabel.text = ""
+	#%HotkeyLabel.text = ""
+	$InteractionArea.interact_type = interaction_type
+	$InteractionArea.interact_label = character_name
+	
+	# Should only be 1 reference to a camera in the scene.
+	if character_camera_ref != null:
+		is_player_controlled = true
+		$CharacterAudioListener.current = true
+		set_camera()
+		for recipe in known_recipes:
+			var has_recipe : bool = false
+			for user_recipe in UserVariables.known_recipes:
+				if recipe.id == user_recipe.id:
+					has_recipe = true
+					break
+			if not has_recipe:
+				UserVariables.known_recipes.append(recipe)
+				UserVariables.new_recipes.append(recipe)
+		
+		var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+		tool_wheel_ref.set_blade_enabled(has_blade)
+		tool_wheel_ref.set_dropper_enabled(has_dropper)
+	
+	# Initialize character statuses based on attributes
+	var cur_se : StatusEffect
+	for i in range(active_status_effects.size()-1, -1, -1):
+		cur_se = active_status_effects[i]
+		active_status_effects.remove_at(i)
+		if apply_status_effect(cur_se):
+			if cur_se.id not in UserVariables.learned_status_effects:
+				UserVariables.learned_status_effects.append(cur_se.id)
+				Global.emit_notification("Log Book Entry Added")
+	
+	init_dialogues()
+	# Set possession references, if any
+	_deferred_set_possession_vars.call_deferred()
+
+## Populates [member dialogues] if dialogue path exists for this [Character].
+## Uses the character scene's file path to determine relative location of dialogue path.
+func init_dialogues():
+	var dialogue_path : String = scene_file_path.rsplit("/", false, 1)[0] + "/dialogues/"
+	var dir := DirAccess.open(dialogue_path)
+	if not dir:
+		return
+	
+	dir.list_dir_begin()
+	var file_name : String = dir.get_next().replace('.remap','')
+	while file_name != "":
+		var split = file_name.rsplit(".", true, 1)
+		if split[1] == "tres":
+			var new_dialogue : Dialogue
+			var file_path : String = dialogue_path+file_name
+			new_dialogue = load(file_path)
+			if new_dialogue:
+				dialogues.append(new_dialogue)
+		file_name = dir.get_next().replace('.remap','')
+	dir.list_dir_end()
+
+## Sets the UI of the tool wheel in relation to this character's tool's statuses.
+func set_tool_wheel_ui() -> bool:
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	if not tool_wheel_ref:
+		return false
+	tool_wheel_ref.set_blade_enabled(has_blade)
+	tool_wheel_ref.set_dropper_enabled(has_dropper)
+	tool_wheel_ref.set_ui()
+	return true
+
+## Set possession references, if any. Gets deferred so that all [Character]s
+## have a chance to be added to the scene.
+func _deferred_set_possession_vars():
+	#for i in get_tree().current_scene.get_children():
+		#print(i.name)
+	#print("")
+	var character : Character
+	if possessing_character_name != "":
+		character = get_tree().current_scene.find_child(possessing_character_name, true, false)
+		if character:
+			possessing_character = character
+		if is_player_controlled:
+			$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+				InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+			$"../UILayer/HUDLayer/LabelEndPossession".visible = true
+	if character_possessed_by_name != "":
+		character = get_tree().current_scene.find_child(character_possessed_by_name)
+		if character:
+			character_possessed_by = character
+
+## Sets this character as the focus by the camera and sets up the camera's [RemoteTransform2D].
+func set_camera() -> void:
+	is_camera_focused = true
+	Global.focused_node = self
+	Global.focused_camera = character_camera_ref
+	# Set up camera transform
+	if find_child("CameraTransform"):
+		return
+	var camera_transform := RemoteTransform2D.new()
+	camera_transform.name = "CameraTransform"
+	camera_transform.remote_path = character_camera_ref.get_path()
+	add_child(camera_transform)
+
+## Transfers the focus of the camera to [param body].
+func transfer_camera(body: Node2D):
+	if not is_camera_focused:
+		print("ERROR: Camera not focused for transfer. Returning.")
+		return
+	# Remove old camera info
+	is_camera_focused = false
+	character_camera_ref = null
+	$CameraTransform.queue_free()
+	# Set new camera info
+	Global.focused_node = body
+	body.character_camera_ref = Global.focused_camera
+	body.is_camera_focused = true
+	# Set up camera transform
+	var camera_transform : RemoteTransform2D = RemoteTransform2D.new()
+	camera_transform.name = "CameraTransform"
+	camera_transform.remote_path = body.character_camera_ref.get_path()
+	body.add_child(camera_transform)
+	# Set up new camera info
+
+## Sets up and returns a [Dictionary] that represents the persistent information
+## of the character to be saved to file in [JSON]-compatible format.
+func save(dir : String) -> Dictionary:
+	var cur_path : String = "%s/characters/%s" % [dir, name]
+	if not DirAccess.dir_exists_absolute(cur_path):
+		DirAccess.make_dir_recursive_absolute(cur_path)
+	
+	var att_path : String = "%s/characters/%s/attributes.tres" % [dir, name]
+	if attributes:
+		ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
+	else:
+		att_path = ""
+	
+	var inv_path : String = "%s/characters/%s/inventory.tres" % [dir, name]
+	if inventory:
+		ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+	else:
+		inv_path =  ""
+	
+	if(not active_status_effects.is_empty() and 
+			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
+		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
+	for se in active_status_effects:
+		ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name])
+	
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"name" : name,
+		"portrait" : var_to_str(portrait),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Avoiding Vector2 for compatibility with JSON
+		"pos_y" : position.y,
+		"attributes_path" : att_path,
+		"inventory_path" : inv_path,
+		"has_blade" : has_blade,
+		"has_dropper" : has_dropper,
+		"known_recipes" : var_to_str(known_recipes),
+		"gathered_items" : var_to_str(gathered_items),
+		"books_read" : var_to_str(books_read),
+		"objects_grab_interacted" : var_to_str(objects_grab_interacted),
+		"objects_cut_interacted" : var_to_str(objects_cut_interacted),
+		"objects_combined" : var_to_str(objects_combined),
+		"items_trade_received" : var_to_str(items_trade_received),
+		"items_used" : var_to_str(items_used),
+		"active_status_effects_path" : "%s/characters/%s/status_effects/" % [dir, name],
+		"is_possessable" : is_possessable,
+		"character_possessed_by_name" : character_possessed_by_name,
+		"can_possess_others_count" : can_possess_others_count,
+		"possessing_character_name" : possessing_character_name,
+		"is_player_controlled" : is_player_controlled,
+		"is_camera_focused" : is_camera_focused,
+		#"selected_tool" : selected_tool,
+		"interaction_type" :  var_to_str(interaction_type),
+		"dialogues" : var_to_str(dialogues),
+		"transactions" : var_to_str(transactions),
+		"passive_messages" : var_to_str(passive_messages)
+	}
+	return save_dict
+
+## Update character position and messages every frame
+func _physics_process(delta: float) -> void:
+	_update_status_message(delta)
+	
+	if Global.mode != &"default":
+		if %CharacterAudioStream.playing:
+			update_character_audio("idle")
+		return
+	
+	if is_player_controlled:
+		move_character(Input.get_vector("move_left", "move_right", "move_up", "move_down"))
+	
+	for rb in pushing_bodies:
+		_push_body(rb)
+	
+	_update_status_effect_timers(delta)
+	
+	if can_possess_others_count != 0 and possessable_characters and not possessing_character:
+		$PossessionTargetLabel.global_position = possessable_characters[
+				possessable_characters.find(cur_possession_target)].global_position
+		$PossessionTargetLabel.visible = true
+	else:
+		$PossessionTargetLabel.visible = false
+
+## Handles input action events. Only accepts inputs when the player is controlling the character.
+func _input(event: InputEvent) -> void:
+	if not is_player_controlled:
+		return
+	if Global.mode == &"default":
+		if event.is_action_pressed("interact"):
+			execute_interaction()
+		if event.is_action_pressed("use_tool"):
+			execute_tool()
+		if event.is_action_pressed("inspect_object"):
+			inspect_object()
+		if can_possess_others_count != 0:
+			if event.is_action_pressed("possession_change_target"):
+				change_possession_target()
+			if event.is_action_pressed("possession_select_target"):
+				if not possessing_character:
+					if possessable_characters:
+						begin_possession(cur_possession_target)
+					else:
+						#print("No possessable targets found!")
+						pass
+				elif possessing_character.possessable_characters:
+					Global.emit_notification("Already possessing!")
+		if event.is_action_pressed("possession_cancel") and possessing_character:
+			end_possession()
+
+## Every time the character updates, upade the character animations
+func _process(_delta: float) -> void:
+	update_animation_parameters()
+
+
+func refresh_input_messages() -> void:
+	if all_interaction_areas.size() > 0 and not possessing_character:
+		var cur_interaction : Interactable = all_interaction_areas[0]
+		if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
+			%InteractLabel.text = "[%s] %s" % [
+				InputMap.action_get_events("interact")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
+		else:
+			%InteractLabel.text = "[%s] %s" % [
+				InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
+	
+	if can_possess_others_count != 0:
+		_change_possession_help_label()
+	
+	if possessing_character:
+		$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+			InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+	
+	if is_player_controlled:
+		$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+			InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+
+## Helper function that takes a direction vector and calculates character motion.
+## Checks [member possessing_character] to determine if move_character needs to get called in the possessed body.
+func move_character(vector : Vector2) -> void:
+	if Global.mode == &"default":
+		if possessing_character:
+			possessing_character.move_character(vector)
+			return
+		direction = vector
+		velocity = direction * attributes.get_attribute("move speed") * 2 # base speed too slow, doubles it.
+		move_and_slide()
+
+# TODO: Change animations when certain criteria are met
+func update_animation_parameters() -> void:
+	if Global.mode != &"default":
+		animation_tree.active = false
+	else:
+		animation_tree.active = true
+	if(velocity == Vector2.ZERO):
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+		update_character_audio("idle")
+	else:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
+		update_character_audio("walking")
+		# TODO: Change sound based on move speed and surface.
+	
+	if(direction != Vector2.ZERO):
+		animation_tree["parameters/Idle/blend_position"] = direction
+		animation_tree["parameters/Walk/blend_position"] = direction
+
+## Changes the character's [AudioStreamPlayer2D] to play the stream with the given name.
+## if [param audio_name] is "none", stops audio stream.
+func update_character_audio(audio_name: String) -> void:
+	var character_audiostream_ref : AudioStreamPlayer2D = %CharacterAudioStream
+	if audio_name == "idle":
+		character_audiostream_ref.stop()
+		character_audiostream_ref["parameters/switch_to_clip"] = &"idle"
+	elif audio_name != character_audiostream_ref["parameters/switch_to_clip"]:
+		character_audiostream_ref.play()
+		character_audiostream_ref["parameters/switch_to_clip"] = audio_name
+
+## Used to call the get_attribute function of [Attributes]
+## without needing to access the attributes variable.
+func get_attribute(att_name : String) -> float:
+	return attributes.get_attribute(att_name)
+
+## Adds the given [Recipe] to the list of [member known_recipes]. Returns false if the recipe is already learned
+## or true if the recipe is successfully added to the list of known recipes.
+## if is_crafted is true, will add to the count of succesful recipe crafts.
+func learn_recipe(r: Recipe, is_crafted:bool = false) -> bool:
+	if is_camera_focused:
+		if is_crafted:
+			if not UserVariables.crafted_recipes.has(r.id):
+				UserVariables.crafted_recipes[r.id] = 1 ## Add key to dictionary
+			else:
+				UserVariables.crafted_recipes[r.id] += 1 ## iterate on key in dictionary
+	if r in known_recipes:
+		return false
+	if is_camera_focused and UserVariables.add_recipe(r):
+		Global.emit_notification("New Recipe(s) Learned")
+	known_recipes.append(r)
+	recipe_learned.emit(r)
+	return true
+
+## Returns whether or not the character has a [Recipe] in [member known_recipes]
+## with the given [Item] as the recipe product.
+func knows_recipe(item: Item) -> bool:
+	for r in known_recipes:
+		if r.product_item.id == item.id:
+			return true
+	return false
+
+## Returns whether or not the character has a [Recipe] in [member known_recipes]
+##  with the given [member Item.id] as the recipe product.
+func knows_recipe_product_id(item_id: int) -> bool:
+	for r in known_recipes:
+		if r.product_item.id == item_id:
+			return true
+	return false
+
+## Returns whether or not the character has a [Recipe] in [member known_recipes]
+##  with the given [member Recipe.id].
+func knows_recipe_id(item_id: int) -> bool:
+	for r in known_recipes:
+		if r.id == item_id:
+			return true
+	return false
+
+## Returns whether or not the character has used the [Item] with the given [member Item.id].
+func has_used_item_id(item_id: int) -> bool:
+	#print(items_used.keys())
+	for id in items_used.keys():
+		if id == item_id:
+			return true
+	return false
+
+## Marks the [Book] as "read" and adds any associated [Recipe]s in the book.
+func read_book(book: Book):
+	for recipe in book.recipes:
+		learn_recipe(recipe)
+	if not book.id in books_read:
+		books_read.append(book.id)
+	if is_camera_focused and book.id not in UserVariables.books_read:
+		
+		UserVariables.books_read.append(book.id)
+		Global.emit_notification("Log Book Entry Added")
+
+## Interaction Methods ##
+
+## Triggers when an object's [Interactable] area enters the interaction proximity of the player.
+func _on_interaction_area_entered(area: Interactable) -> void:
+	all_interaction_areas.insert(0, area)
+	if is_camera_focused:
+		update_interaction_text()
+
+## Triggers when an object's [Interactable] area leaves the interaction proximity of the player
+func _on_interaction_area_exited(area: Interactable) -> void:
+	
+	all_interaction_areas.erase(area)
+	if is_camera_focused:
+		update_interaction_text()
+
+## Checks if there are any overlapping [Interactable] areas with the player and
+## shows information for an overlapping interaction in [member all_interaction_areas]
+func update_interaction_text():
+	if all_interaction_areas:
+		#TODO: Smarter way to choose an interaction near the player.
+		var cur_interaction : Interactable = all_interaction_areas[0]
+		if cur_interaction.interact_type == "talk" or cur_interaction.interact_type == "shop":
+			%InteractLabel.text = "[%s] %s" % [
+				InputMap.action_get_events("interact")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
+		else:
+			%InteractLabel.text = "[%s] %s" % [
+				InputMap.action_get_events("use_tool")[0].as_text().replace(' - Physical',''),
+				cur_interaction.interact_label]
+		# TODO: Add outline/differentiator to the object that will be interacted with.
+	else:
+		%InteractLabel.text = ""
+		#%HotkeyLabel.text = ""
+
+## Executes functions on the selected [Interactable] area given the current interaction type
+func execute_interaction():
+	if possessing_character:
+		possessing_character.execute_interaction()
+		return
+	if all_interaction_areas:
+		var cur_interaction : Interactable = all_interaction_areas[0] # Simple approach
+		match cur_interaction.interact_type: # NOTE: When a type is added or updated, it also needs to be changed in Interactable
+			&"print_text" : print(cur_interaction.interact_value)
+			&"inspect" : cur_interaction.inspect_object()
+			&"talk" : cur_interaction.talk(self)
+			&"shop" : cur_interaction.shop()
+
+## Triggers when the tool type is changed. Sets [member selected_tool] to the [param tool_name].
+func tool_updated(tool_name: String) -> void:
+	selected_tool = tool_name
+
+## Executes functions on the selected interaction area given the current tool selected.
+func execute_tool():
+	if possessing_character:
+		possessing_character.execute_tool()
+		return
+	if all_interaction_areas:
+		match selected_tool: # NOTE: If tool type is not set, check that the ToolWheel signal is properly set up
+			&"hand" : grab_object(all_interaction_areas[0])
+			&"blade" : cut_object(all_interaction_areas[0])
+			&"dropper" : combine_object(all_interaction_areas[0]) #FIXME: Dropper item may transfer to possessee if possession is stopped.
+## Checks to see who should be grabbing, then executes [method interaction_area.grab_object]
+func grab_object(interaction_area : Interactable) -> void:
+	if possessing_character:
+		possessing_character.grab_object(interaction_area)
+		return
+	interaction_area.grab_object(self)
+
+## Checks to see who should be cutting, then executes [method interaction_area.cut_object]
+func cut_object(interaction_area : Interactable) -> void:
+	if possessing_character:
+		possessing_character.cut_object(interaction_area)
+		return
+	interaction_area.cut_object(self)
+
+## Checks to see who should be combining, then executes [method interaction_area.combine_object]
+func combine_object(interaction_area : Interactable) -> void:
+	if possessing_character:
+		possessing_character.combine_object(interaction_area)
+		return
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	if tool_wheel_ref.dropper_item:
+		$EffectAudioStream.play()
+		$EffectAudioStream["parameters/switch_to_clip"] = "use_dropper"
+		interaction_area.combine_object(self, tool_wheel_ref.dropper_item)
+
+## Open the inspection panel for an object in the interaciton area
+func inspect_object():
+	if all_interaction_areas:
+		var cur_interaction : Interactable = all_interaction_areas[0] #TODO: Function to do smart selection of nearby areas.
+		cur_interaction.inspect_object()
+
+
+func add_traded_item(item: Item):
+	inventory.add_item(item)
+	if item.id not in items_trade_received.keys():
+		items_trade_received[item.id] = item.qty
+	else:
+		items_trade_received[item.id] += item.qty
+
+## Changes the target of possession for the currently focused character.
+func change_possession_target() -> void:
+	if not possessable_characters:
+		return
+	var target_index : int = possessable_characters.find(cur_possession_target)
+	if target_index >= possessable_characters.size()-1:
+		target_index = -1
+	cur_possession_target = possessable_characters[target_index + 1]
+	$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
+	_change_possession_help_label()
+
+## User controls the target body. All inputs and behavior transfers.
+func begin_possession(body: Character):
+	body.find_child("EffectAudioStream").play()
+	body.find_child("EffectAudioStream")["parameters/switch_to_clip"] = &"possess"
+	possessing_character_name = body.name
+	possessing_character = body
+	body.character_possessed_by_name = self.name
+	body.character_possessed_by = self
+	# Set up UI
+	if is_camera_focused:
+		var self_active_ses : Array[StatusEffect] = active_status_effects.duplicate()
+		var body_active_ses : Array[StatusEffect] = body.active_status_effects.duplicate()
+		for se in active_status_effects:
+			remove_status_effect(se)
+		for se in body.active_status_effects:
+			body.remove_status_effect(se)
+		$CharacterAudioListener.current = false
+		body.find_child("CharacterAudioListener").current = true
+		transfer_camera(body)
+		update_status_effects(self_active_ses, "") #FIXME: Initial possess sound plays again.
+		body.update_status_effects(body_active_ses, "")
+		%StatusLabel.text = ""
+		%InteractLabel.text = ""
+		$PossessionTargetLabel.text = ""
+		$"../UILayer/HUDLayer/LabelEndPossession".text = ("Press %s to\nend possession" % 
+			InputMap.action_get_events("possession_cancel")[0].as_text().replace(' - Physical',''))
+		$"../UILayer/HUDLayer/LabelEndPossession".visible = true
+	# Set up Tool Wheel UI
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	tool_wheel_ref.set_blade_enabled(body.has_blade)
+	tool_wheel_ref.set_dropper_enabled(body.has_dropper)
+	tool_wheel_ref.set_tool_to_hand()
+
+## Ends the possession on the given [param body].
+func end_possession():
+	%EffectAudioStream.play()
+	%EffectAudioStream["parameters/switch_to_clip"] = &"end_possess"
+	var body : Character = possessing_character
+	# Recursively end possession
+	if body.possessing_character:
+		body.end_possession()
+	# Update [member can_possess_others_count]. Disable possession if no count left.
+	var poss_se : StatusEffect
+	for se in active_status_effects: # Find possession status effect
+		if se.effect == "possess":
+			poss_se = se
+			break
+	if can_possess_others_count > 0:
+		poss_se.count -= 1 # These two variables should be the same value
+		can_possess_others_count = poss_se.count
+	if can_possess_others_count == 0:
+		_set_can_possess(poss_se, true)
+	else:
+		update_status_bar(poss_se)
+	
+	possessing_character_name = ""
+	possessing_character = null
+	# Change focused character
+	body.character_possessed_by_name = ""
+	body.character_possessed_by = null
+	if body.is_camera_focused:
+		var self_active_ses : Array[StatusEffect] = active_status_effects.duplicate()
+		var body_active_ses : Array[StatusEffect] = body.active_status_effects.duplicate()
+		for se in body.active_status_effects:
+			body.remove_status_effect(se)
+		# FIXME: Should maybe find a way that doesn't require removing and re-adding status effects
+		for se in active_status_effects:
+			remove_status_effect(se)
+		body.find_child("CharacterAudioListener").current = false
+		$CharacterAudioListener.current = true
+		body.transfer_camera(self)
+		
+		body.update_status_effects(body_active_ses, "")
+		update_status_effects(self_active_ses, "")
+		
+		body.find_child("InteractLabel").text = ""
+		if can_possess_others_count != 0 and possessable_characters:
+			$PossessionTargetLabel.text = "Possess:\n%s" % possessable_characters[0].name
+		$"../UILayer/HUDLayer/LabelEndPossession".visible = false
+	
+	# Reset Tool Wheel
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	tool_wheel_ref.set_blade_enabled(has_blade)
+	tool_wheel_ref.set_dropper_enabled(has_dropper)
+	tool_wheel_ref.set_tool_to_hand()
+
+## Status Effect Handler Methods ##
+
+## Goes through the list of [param statuses] given and adds or updates the [member active_status_effects].
+## Then, the [param message] is set above the character if any statuses were successfully added.
+func update_status_effects(statuses: Array[StatusEffect], message: String):
+	# Adds and/or updates the given status effects
+	var is_added = false
+	for se in statuses:
+		if apply_status_effect(se):
+			is_added = true
+			if se.id not in UserVariables.learned_status_effects:
+				UserVariables.learned_status_effects.append(se.id)
+				Global.emit_notification("Log Book Entry Added")
+	if is_added or statuses.is_empty():
+		update_status_message(message)
+	else:
+		update_status_message("...")
+
+## Helper function that applies the [StatusEffect] to the player
+## based on the [member StatusEffect.effect].
+func apply_status_effect(se: StatusEffect) -> bool:
+	match se.effect:
+		&"move speed bonus": 
+			if se.value > 0:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "speed"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "slow"
+			return _add_attribute_bonus(se, attributes.add_move_speed_bonus)
+		&"strength bonus": 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "strength"
+			return _add_attribute_bonus(se, attributes.add_strength_bonus)
+		&"cleanse": 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "cleanse"
+			return _cleanse_status_effects()
+		&"normalize": 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "normalize"
+			return _normalize_status_effects()
+		&"grow": 
+			if se.value > 1:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "grow"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "shrink"
+			return _grow_character(se)
+		&"self-attunement": 
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "self-attunement"
+			return _attune_self(se)
+		&"equip tool": 
+			#%StatusAudioStream.play()
+			#%StatusAudioStream["parameters/switch_to_clip"] = "equip"
+			return _equip_tool(se)
+		&"possess": #FIXME: sound plays during begin_possession due to update call.
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "possess"
+			return _set_can_possess(se)
+	return false
+
+## Add the given [param se] to the list of active status effects.
+func add_to_active_status_effects(se: StatusEffect):
+	var cur_se : StatusEffect = se.duplicate()
+	#cur_se.resource_local_to_scene = true
+	active_status_effects.append(cur_se)
+
+## Changes the text of the status message and resets the timer for how long the message appears.
+#FIXME: Confusing: Similar name to _update_status_message
+func update_status_message(message: String):
+	if not message:
+		pass
+		#message = "..."
+	%StatusLabel.text = "[center]%s[/center]" % message
+	message_timer = 5.0
+
+## Updates the duration of an active status effect based on the amount of time that has passed.
+func _update_status_effect_timers(delta : float) -> void:
+	for i in range(active_status_effects.size()-1, -1, -1):
+		var se = active_status_effects[i]
+		if se.duration != -1:
+			se.cur_duration += delta
+			if se.cur_duration >= se.duration:
+				remove_status_effect(se)
+
+## Checks to see if the next frame will end display of the current message.
+## Then, if the character is not player-controlled, says a random message.
+#FIXME: Confusing: Similar name to update_status_message
+func _update_status_message(delta: float) -> void:
+	if message_timer > 0:
+		if last_message_delta:
+			last_message_delta = 0
+		message_timer -= delta
+		if message_timer <= 0:
+			%StatusLabel.text = ""
+	else:
+		last_message_delta += delta
+		# Checks if enough time has passed since the last message to say another message
+		if last_message_delta > 15:
+			last_message_delta = 0.0
+			if not passive_messages.is_empty() and not character_possessed_by:
+				say_random_message()
+
+## Removes a given [StatusEffect] at the given index in [member active_status_effects] 
+## and reverts the changes to the character.
+## Returns true if the status effect was successfully removed
+func remove_status_effect(se : StatusEffect) -> bool:
+	match se.effect:
+		&"move speed bonus": 
+			if se.value <= 0:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "speed"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "slow"
+			return _add_attribute_bonus(se, attributes.add_move_speed_bonus, true)
+		&"grow":
+			if se.value > 1:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "grow"
+			else:
+				%StatusAudioStream.play()
+				%StatusAudioStream["parameters/switch_to_clip"] = "shrink"
+			return _grow_character(se, true)
+		&"strength bonus":
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "weaken"
+			return _add_attribute_bonus(se, attributes.add_strength_bonus, true)
+		&"self-attunement":
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "end_buff"
+			return _attune_self(se, true)
+		&"possess":
+			%StatusAudioStream.play()
+			%StatusAudioStream["parameters/switch_to_clip"] = "end_buff"
+			return _set_can_possess(se, true)
+	return false
+
+## Updates the images and progress bars on the status bar UI of the given [StatusEffect].
+## If [param is_removing_status] is true, the status effect will be removed from the status bar.
+func update_status_bar(se: StatusEffect, index := -1, is_removing_status := false) -> void:
+	if not is_camera_focused:
+		return
+	var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
+	if index != -1:
+		#active_status_effects.remove_at(index)
+		if is_removing_status:
+			se_bar_ref.remove_status(se)
+			return
+		#add_to_active_status_effects(se)
+		se_bar_ref.update_status(se)
+		return
+	
+	#add_to_active_status_effects(se)
+	se_bar_ref.generate_status(se)
+
+## Clears the status bar of all [StatusEffect] icons.
+## Only works on the character where [member is_camera_focused] is true.
+## @experimental
+func clear_status_bar() -> void:
+	if not is_camera_focused:
+		return
+	var se_bar_ref : Control = $"../UILayer/HUDLayer/StatusEffectBar"
+	for se in active_status_effects:
+		se_bar_ref.remove_status(se)
+
+### Status Effect Type Functions ###
+
+## Takes the status effect and adds its value to the given callable Attributes function.
+## For instance, [code]attributes.add_move_speed_bonus(se)[/code]
+## or [code]attributes.add_strength_bonus(se)[/code].
+## If is_removing is true, removes the status effect from the status bar and list of active statuses.
+func _add_attribute_bonus(se : StatusEffect, c : Callable, is_removing : bool = false) -> bool:
+	var se_index := _get_se_index(se)
+	if  se_index == -1:
+		if not is_removing:
+			c.call(se.value)
+			add_to_active_status_effects(se)
+			update_status_bar(se)
+			return true
+		else:
+			print("ERROR: No status effect " + se.name + " Currently active to remomve. Returning false.")
+			return false
+	else:
+		if not is_removing:
+			# Remove and re-add the status effect
+			c.call(-active_status_effects[se_index].value)
+			c.call(se.value)
+			add_to_active_status_effects(se)
+			active_status_effects.remove_at(se_index)
+		else:
+			c.call(-active_status_effects[se_index].value)
+			active_status_effects.remove_at(se_index)
+		update_status_bar(se, se_index, is_removing)
+		return true
+
+## Removes all [member active_status_effects] that have a limited duration
+func _cleanse_status_effects() -> bool:
+	for i in range(len(active_status_effects)-1, -1, -1):
+		if active_status_effects[i].duration != -1:
+			if active_status_effects[i].id == 200: # Possess
+				end_possession()
+			remove_status_effect(active_status_effects[i])
+	return true
+
+## Removes all status effects that last indefinitely.
+func _normalize_status_effects() -> bool:
+	for i in range(len(active_status_effects)-1, -1, -1):
+		if active_status_effects[i].duration == -1:
+			remove_status_effect(active_status_effects[i])
+	return true
+
+## Increases the size of the player, 
+## which also changes other attributes of the character relative to size.
+func _grow_character(se: StatusEffect, is_removing_status := false) -> bool:
+	var se_index : int = _get_se_index(se)
+	if se_index == -1: ## If status effect not already applied:
+		attributes.add_size_mult(se.value)
+		set_character_scale(attributes.get_attribute("size"))
+		add_to_active_status_effects(se)
+		update_status_bar(se)
+		return true
+	
+	if se.value == active_status_effects[se_index].value and not is_removing_status:
+		return false
+	
+	attributes.add_size_mult(1.0/se.value)
+	
+	if is_removing_status:
+		set_character_scale(attributes.get_attribute("size"))
+		active_status_effects.remove_at(se_index)
+		update_status_bar(se, se_index, true)
+		return true
+	
+	attributes.add_size_mult(se.value)
+	set_character_scale(attributes.get_attribute("size"))
+	active_status_effects.remove_at(se_index)
+	add_to_active_status_effects(se)
+	update_status_bar(se, se_index)
+	return true
+
+## Compares the ID of the status effect to the array of active status effects
+## Returns the index of the status effect, -1 if not found.
+func _get_se_index(se : StatusEffect) -> int:
+	for i in range(active_status_effects.size()):
+		if se.id == active_status_effects[i].id:
+			return i
+	return -1
+
+## Sets the scale of this character. Also changes the camera zoom based on player size.
+func set_character_scale(size: float):
+	var base_size := attributes.base_size
+	# The percent difference between the base size and the desired size.
+	var diff_ratio := size/base_size
+	set_scale(Vector2(diff_ratio, diff_ratio))
+	# 
+	if is_camera_focused:
+		character_camera_ref.zoom = Vector2(1.0, 1.0) / diff_ratio#((diff_ratio + 100/base_size) / 2)
+
+## Adds self-attunement to [member active_status_effects].
+## Sets visibility of the attributes panel if [member is_camera_focused] is true.
+func _attune_self(se: StatusEffect, is_removing : bool = false) -> bool:
+	var attribute_display_ref : Control = $"../UILayer/HUDLayer/AttributeDisplay"
+	var se_index : int = _get_se_index(se)
+	
+	if is_removing or se.value == 0.0:
+		if se_index == -1:
+			return false
+		active_status_effects.remove_at(se_index)
+		if is_camera_focused:
+			attribute_display_ref.visible = false
+			update_status_bar(se, se_index, true)
+		return true
+	
+	if se.value == 1.0: ## add = true
+		if se_index == -1: ## If not already set:
+			add_to_active_status_effects(se)
+			if is_camera_focused:
+				attribute_display_ref.visible = true ## Value should be either 1 = true or 0 = false.
+				update_status_bar(se)
+			return true
+		if se.duration > active_status_effects[se_index].duration: ## Keep the longer duration
+			active_status_effects.remove_at(se_index)
+			add_to_active_status_effects(se)
+			if is_camera_focused:
+				update_status_bar(se, se_index)
+		return true
+	return false
+
+## Equips a tool based on the given [param se]'s [member StatusEffect.value].
+## If value is 0, tool is blade. If value is 1, tool is dropper.
+func _equip_tool(se : StatusEffect) -> bool:
+	var tool_wheel_ref : Control = $"../UILayer/HUDLayer/ToolWheel"
+	if se.value == 0:
+		has_blade = true
+		if is_camera_focused:
+			tool_wheel_ref.set_blade_enabled(true)
+			Global.emit_notification("New tool added")
+		return true
+	if se.value == 1:
+		has_dropper = true
+		if is_camera_focused:
+			tool_wheel_ref.set_dropper_enabled(true)
+			Global.emit_notification("New tool added")
+		return true
+	print("ERROR: Invalid tool value: %s." % se.value)
+	return false
+
+## Sets character's state to allow possession of others.
+## [member se.value] Sets the number of times the possession can be executed before expiring.
+## Displays information for possession UI.
+## Disallows possession if [param is_removing] is true.
+func _set_can_possess(se : StatusEffect, is_removing : bool = false) -> bool:
+	if not is_removing and can_possess_others_count == 0: # Enable
+		$PossessionArea.enable_collision()
+		can_possess_others_count = int(se.count)
+		if is_camera_focused:
+			_change_possession_help_label()
+			$LabelGroup/PossessionHelpLabel.visible = true
+			update_status_bar(se)
+		add_to_active_status_effects(se)
+	elif is_removing: # Disable
+		$PossessionArea.disable_collision()
+		if is_camera_focused:
+			$LabelGroup/PossessionHelpLabel.visible = false
+			update_status_bar(se, _get_se_index(se), true)
+		can_possess_others_count = 0
+		var se_index = _get_se_index(se)
+		if se_index == -1:
+			print("Error: Status Effect %s not in character for removal!")
+		else:
+			active_status_effects.remove_at(se_index)
+	else:
+		return false
+	return true
+
+## Changes the label used to give instructions for possession.
+func _change_possession_help_label():
+	$LabelGroup/PossessionHelpLabel.text = ("Possess: %s\nChange Target: %s" %
+		[InputMap.action_get_events("possession_select_target")[0].as_text().replace(' - Physical',''),
+		InputMap.action_get_events("possession_change_target")[0].as_text().replace(' - Physical','')])
+
+### Collision Functions ###
+
+## Checks the rigid body that is near the character to see if it is pushable.
+func _on_rigid_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Pushable"):
+		if attributes.get_attribute("strength") >= body.mass:
+			pushing_bodies.append(body)
+	if body.is_in_group("Crawlspace"):
+		if attributes.get_attribute("size") <= body.gap_size:
+			if crawlspace_bodies.is_empty():
+				## Remove collision from crawlspaces nearby
+				## NOTE: Assumes that all nearby crawlspaces have the same gap size.
+				set_collision_mask_value(6, false)
+			crawlspace_bodies.append(body)
+
+## Checks if the body is in an existing list of overlapping bodies to remove it.
+func _on_rigid_area_2d_body_exited(body: Node2D) -> void:
+	var i := pushing_bodies.find(body)
+	if i != -1:
+		pushing_bodies.remove_at(i)
+		return
+	i = crawlspace_bodies.find(body)
+	if i != -1:
+		crawlspace_bodies.remove_at(i)
+		if crawlspace_bodies.is_empty():
+			set_collision_mask_value(6, true)
+
+## Check the mass of the object and compare to the player's [member Attributes.strength]
+## to determine if the player is strong enough to move the body.
+func _push_body(body: PhysicsBody2D) -> bool:
+	if attributes.get_attribute("strength") < body.mass:
+		return false
+	## Calculate force based on the strength of the character vs the mass of the body.
+	var mult : float
+	## 50 is the extra strength needed over the mass to push at max velocity.
+	mult = (attributes.get_attribute("strength") - body.mass) / 50
+	if mult > 1:
+		mult = 1
+	elif mult < 0.2:
+		mult = 0.2
+		
+	body.linear_velocity = velocity * mult
+	return true
+
+## Checks if the body is possessable, and adds it to the list of [member possessable_characters].
+## Updates the Possession label with the current possession target.
+func _on_possession_area_body_entered(body: Node2D) -> void:
+	if body == self:
+		return
+	if body.is_class("CharacterBody2D") and body.is_possessable:
+		possessable_characters.append(body)
+		if not possessing_character:
+			if not cur_possession_target:
+				cur_possession_target = possessable_characters[0]
+			$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
+			_change_possession_help_label()
+
+## Checks if the body is in the list of [member possessable_characters] and removes it.
+## Updates the Possession label with the current possession target.
+func _on_possession_area_body_exited(body: Node2D) -> void:
+	if not body.is_class("CharacterBody2D"):
+		return # body is likely a rigidbody, like a boulder.
+	if body not in possessable_characters:
+		return
+	possessable_characters.remove_at(possessable_characters.find(body))
+	if not possessable_characters.is_empty():
+		if cur_possession_target not in possessable_characters:
+			cur_possession_target = possessable_characters[0]
+		$PossessionTargetLabel.text = "Possess:\n%s" % cur_possession_target.name
+	else:
+		cur_possession_target = null
+	_change_possession_help_label()
+
+
+#########################
+### Dialogue and Shop ###
+#########################
+
+## Open the dialogue window when talked to the current character is referenced to configure the dialogues.
+func open_dialogue() -> void:
+	if not dialogues:
+		print("ERROR: No dialogues set. Returning...")
+		return
+	dialogue_ui_ref.open_window_as_character(self)
+
+## Opens the character shop window after configuring the transactions on the page
+func open_shop() -> bool:
+	if transactions.size(): # If the character has shop transactions
+		if shop_ui_ref.transactions.size(): # If the shop already has populated the transaction UI
+			shop_ui_ref.clear_transactions()
+		shop_ui_ref.transactions = transactions
+		shop_ui_ref.open_window()
+		return true
+	return false
+
+## Does additional logic if the shop was opened from the dialogue menu
+func open_shop_from_dialogue() -> bool:
+	if not open_shop():
+		return false
+	shop_ui_ref.show_back_button(dialogue_ui_ref)
+	return true
+
+## Adds transaction to character's shop.
+## [param items_buying] is an array of items,
+## [param items_buying_amount] is an array of item quantities,
+## [param items_selling] is an array of items,
+## [param items_selling_amount] is an array of item quantities,
+## [param items_selling_stock] is the number of items available for each item.
+## A value of null or -1 means infinite stock.
+func add_shop_transaction(items_buying : Array[Item], items_buying_amount : Array[int],
+		items_selling : Array[Item], items_selling_amount : Array[int], items_selling_stock : Array[int] = []):
+	var new_transaction = Transaction.new()
+	new_transaction.items_buying = items_buying
+	new_transaction.items_buying_amount =  items_buying_amount
+	new_transaction.items_selling =  items_selling
+	new_transaction.items_selling_amount =  items_selling_amount
+	
+	if items_selling_stock == []: # If empty, set stock to -1 (infinite)
+		for i in range(items_selling.size()):
+			new_transaction.items_selling_stock.append(-1)
+	else:
+		new_transaction.items_selling_stock = items_selling_stock
+		
+	new_transaction.id = transactions.size()
+	transactions.append(new_transaction) #NOTE: This method means that if transactions need to be removed, 
+	# it is not guaranteed to be the same ID depending on the order of events.
+
+## Removes the shop transaction of the character at the given index.
+func remove_shop_transaction(id : int):
+	for i in transactions.size():
+		if transactions[i].id == id:
+			transactions.remove_at(i)
+
+## Displays a random passive message over the head of the character
+func say_random_message():
+	update_message(passive_messages.pick_random())
+
+## Changes the text of the status message and resets the timer for how long the message appears.
+func update_message(message: String):
+	if not message:
+		return
+	%StatusLabel.text = "[center]%s[/center]" % message
+	message_timer = 5.0
+
+## Determines dialogue based on context. Returns the name of the dialogue window
+## based on information about the [param speakee].
+## By default, it is assumed that there is a "greet" dialogue.
+## Override this in child scene to allow for more dynamic dialogue initialization.
+func get_initial_dialogue_name(_speakee : Character) -> String:
+	return "greet"
+
+## Called when the player interacts with the character when the interaction type is "talk".
+## Initiates setting up the character dialogue window.
+func _on_interaction_area_character_talk() -> void:
+	open_dialogue()
+
+## Called when the player interacts with the character when the interaction type is "shop".
+## Initiates setting up the character shop window.
+func _on_interaction_area_character_shop() -> void:
+	open_shop()

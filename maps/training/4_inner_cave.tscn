@@ -8,13 +8,13 @@
 [ext_resource type="Resource" uid="uid://bea6luvjr7ahf" path="res://game_systems/items/potions/possession_potion_weak.tres" id="3_bupt0"]
 [ext_resource type="Texture2D" uid="uid://cvxxbvq0l06th" path="res://art/pack/cutscenes/discovery.png" id="3_mfhge"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="4_0jpsc"]
-[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://characters/components/inventory.gd" id="4_k17fm"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://character/components/inventory.gd" id="4_k17fm"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="5_bne7j"]
-[ext_resource type="PackedScene" uid="uid://bhdc5iq6cr35j" path="res://characters/tess_poss/tess.tscn" id="5_bupt0"]
-[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://characters/components/attributes.gd" id="6_60y0b"]
-[ext_resource type="PackedScene" uid="uid://5j8n6g2gkxqr" path="res://characters/cam_poss/cam.tscn" id="6_k17fm"]
-[ext_resource type="PackedScene" uid="uid://3gcyy5eiv4rx" path="res://characters/lex_poss/lex.tscn" id="7_ix5gr"]
-[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://characters/components/transaction.gd" id="8_ol6vo"]
+[ext_resource type="PackedScene" uid="uid://bhdc5iq6cr35j" path="res://character/characters/tess_poss/tess.tscn" id="5_bupt0"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://character/components/attributes.gd" id="6_60y0b"]
+[ext_resource type="PackedScene" uid="uid://5j8n6g2gkxqr" path="res://character/characters/cam_poss/cam.tscn" id="6_k17fm"]
+[ext_resource type="PackedScene" uid="uid://3gcyy5eiv4rx" path="res://character/characters/lex_poss/lex.tscn" id="7_ix5gr"]
+[ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://character/components/transaction.gd" id="8_ol6vo"]
 [ext_resource type="Texture2D" uid="uid://ib2gm5x453ue" path="res://art/pack/characters/portraits/char5.png" id="9_42850"]
 [ext_resource type="Resource" uid="uid://c8lydq1ur4lw8" path="res://game_systems/items/recipe_books/possession_potion_book.tres" id="9_c7gen"]
 [ext_resource type="Resource" uid="uid://cwjj0rtd50jpg" path="res://game_systems/status_effects/cleanse.tres" id="9_x8qjh"]
@@ -32,7 +32,7 @@
 [ext_resource type="Script" uid="uid://oaa6rf4u4qtq" path="res://level_components/objects/interactable/interaction.gd" id="19_h7yp8"]
 [ext_resource type="Script" uid="uid://dpoucfc05fk2g" path="res://level_components/objects/interactable/containers/interactable_book.gd" id="20_77ox4"]
 [ext_resource type="PackedScene" uid="uid://cxqiv3ih52ard" path="res://level_components/objects/triggers/trigger_area_autosave.tscn" id="20_dxvh4"]
-[ext_resource type="Resource" uid="uid://duhpgddfdn671" path="res://characters/tutorial_tim_poss/transactions/tx_free_cleanse_potions.tres" id="21_d8uxn"]
+[ext_resource type="Resource" uid="uid://duhpgddfdn671" path="res://character/transactions/tx_free_cleanse_potions.tres" id="21_d8uxn"]
 [ext_resource type="PackedScene" uid="uid://ce8wyt8q6nnbr" path="res://level_components/objects/triggers/trigger_area_cutscene.tscn" id="21_d432r"]
 [ext_resource type="Texture2D" uid="uid://dls8br8cftr5t" path="res://art/pack/objects/pressure_plates/object-pressure-plate_orange.png" id="21_jb56y"]
 [ext_resource type="Texture2D" uid="uid://bqmf08giwjseg" path="res://art/pack/objects/doors/slide_door_orange.png" id="23_bsgwj"]
@@ -47,7 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://cex4k0brot70q" path="res://art/pack/objects/doors/slide_door_cyan.png" id="30_d432r"]
 [ext_resource type="AudioStream" uid="uid://e3ldsqr20sw4" path="res://art/pack/audio/environment/birds_and_trees.mp3" id="37_nb123"]
 [ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="38_i678b"]
-[ext_resource type="PackedScene" uid="uid://ckhuxt33vqjb3" path="res://characters/tutorial_tim_poss/tutorial_tim.tscn" id="47_x8qjh"]
+[ext_resource type="PackedScene" uid="uid://ckhuxt33vqjb3" path="res://character/characters/tutorial_tim_poss/tutorial_tim.tscn" id="47_x8qjh"]
 
 [sub_resource type="Resource" id="Resource_mfhge"]
 script = ExtResource("6_60y0b")
@@ -73,7 +73,7 @@ script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([SubResource("Resource_olp5p")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_8d7xh"]
+[sub_resource type="Resource" id="Resource_vd4af"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -91,7 +91,7 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_iw3wy"]
+[sub_resource type="Resource" id="Resource_8d7xh"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("13_j4d6t")])
@@ -99,7 +99,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_noh5w"]
+[sub_resource type="Resource" id="Resource_iw3wy"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("10_7y012")])
@@ -118,12 +118,12 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_mjkj0"]
+[sub_resource type="Resource" id="Resource_noh5w"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_5lhhj"]
+[sub_resource type="Resource" id="Resource_mjkj0"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -186,7 +186,7 @@ attributes = SubResource("Resource_mfhge")
 inventory = SubResource("Resource_ebuod")
 has_blade = true
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_8d7xh")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_vd4af")])
 
 [node name="Cam" parent="." index="4" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(637.00006, 555)
@@ -194,7 +194,7 @@ portrait = ExtResource("11_h4eu7")
 attributes = SubResource("Resource_nb123")
 inventory = SubResource("Resource_3fmyq")
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_iw3wy"), SubResource("Resource_noh5w")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_8d7xh"), SubResource("Resource_iw3wy")])
 
 [node name="Lex" parent="." index="5" unique_id=75307123 instance=ExtResource("7_ix5gr")]
 position = Vector2(650, 219)
@@ -208,8 +208,8 @@ position = Vector2(585, -25)
 
 [node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(398, -25)
-attributes = SubResource("Resource_mjkj0")
-inventory = SubResource("Resource_5lhhj")
+attributes = SubResource("Resource_noh5w")
+inventory = SubResource("Resource_mjkj0")
 
 [node name="PlayerCamera" parent="." index="8" unique_id=294471714]
 position = Vector2(604, 419)

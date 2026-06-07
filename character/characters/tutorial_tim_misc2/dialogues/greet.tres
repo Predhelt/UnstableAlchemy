@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://cs4eqlh32ijde"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://character/components/dialogue_choice.gd" id="1_3i63p"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://character/components/dialogue_condition.gd" id="2_5lr0x"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://character/components/dialogue.gd" id="3_6hn8i"]
+
+[sub_resource type="Resource" id="Resource_lm1vo"]
+script = ExtResource("1_3i63p")
+player_response = "Okay."
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("3_6hn8i")
+dialogue_name = &"greet"
+text = "Hello! Hopefully I won't exist in the future, but this should work for now.
+
+I have some Cleanse potions that you can use for if any of the plants here have any harmful defense mechanisms."
+choices = Array[ExtResource("1_3i63p")]([SubResource("Resource_lm1vo")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

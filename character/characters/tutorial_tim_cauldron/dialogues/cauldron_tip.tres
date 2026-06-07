@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://pgs3rhusmjq0"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://character/components/dialogue_choice.gd" id="1_c3bme"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://character/components/dialogue_condition.gd" id="2_4u3du"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://character/components/dialogue.gd" id="2_ok6bn"]
+
+[sub_resource type="Resource" id="Resource_7aenp"]
+script = ExtResource("1_c3bme")
+player_response = "I also wanted to ask..."
+next_dialogue_name = &"greet"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_ok6bn"]
+script = ExtResource("1_c3bme")
+player_response = "Ok, bye."
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("2_ok6bn")
+dialogue_name = &"cauldron tip"
+text = "The first thing you are going to want to do when using the cauldron is to make sure that you have the right ingredients. If part of the procedure uses fire, that's the bellows. It's part of your cauldron kit, you don't need to add it as an ingredient.
+
+Once you press start, the cauldron will begin crafting. All you have to do is put the proper ingredient in at the right time. Once you use an ingredient, it can't be used again for the rest of the craft.
+
+Bonus tip: You can change the cauldron craft speed in the settings."
+choices = Array[ExtResource("1_c3bme")]([SubResource("Resource_7aenp"), SubResource("Resource_ok6bn")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"

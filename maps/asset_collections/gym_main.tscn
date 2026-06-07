@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://mss7rf2jumho"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_ksfjp"]
-[ext_resource type="PackedScene" uid="uid://c6crxd1b2iewf" path="res://characters/character_default.tscn" id="3_j1mfy"]
-[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://characters/player/player.tscn" id="17_h7t87"]
+[ext_resource type="PackedScene" uid="uid://c6crxd1b2iewf" path="res://character/character_default.tscn" id="3_j1mfy"]
+[ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://character/characters/player/player.tscn" id="17_h7t87"]
 [ext_resource type="Script" uid="uid://dtxedrviwwh0j" path="res://level_components/editor_only_canvas.gd" id="17_vq1tr"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="20_heyse"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="23_hq65m"]

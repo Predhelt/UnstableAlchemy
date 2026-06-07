@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://d1u5ypc5aky7r"]
+
+[ext_resource type="Script" uid="uid://dh4lmouiihra8" path="res://character/components/dialogue_choice.gd" id="1_fgp40"]
+[ext_resource type="Script" uid="uid://bq526lawjvyos" path="res://character/components/dialogue_condition.gd" id="2_ny56q"]
+[ext_resource type="Script" uid="uid://3qs2s64uenyc" path="res://character/components/dialogue.gd" id="3_veluc"]
+
+[sub_resource type="Resource" id="Resource_l18ks"]
+script = ExtResource("1_fgp40")
+player_response = "What's up with the door to the left?"
+next_dialogue_name = &"bonus room"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_fgp40"]
+script = ExtResource("1_fgp40")
+player_response = "Any other advice?"
+next_dialogue_name = &"save tip"
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[sub_resource type="Resource" id="Resource_lm1vo"]
+script = ExtResource("1_fgp40")
+player_response = "Okay."
+metadata/_custom_type_script = "uid://dh4lmouiihra8"
+
+[resource]
+script = ExtResource("3_veluc")
+dialogue_name = &"greet"
+text = "Hi again!
+
+You should be able to squeeze through this gap if your size is normal."
+choices = Array[ExtResource("1_fgp40")]([SubResource("Resource_l18ks"), SubResource("Resource_fgp40"), SubResource("Resource_lm1vo")])
+metadata/_custom_type_script = "uid://3qs2s64uenyc"
