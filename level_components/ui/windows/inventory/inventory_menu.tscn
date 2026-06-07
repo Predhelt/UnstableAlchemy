@@ -126,9 +126,10 @@ size_flags_vertical = 3
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer/Control" unique_id=231199511]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 593.60004
-offset_bottom = 532.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.8
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 allow_reselect = true

@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="2_buk1c"]
 [ext_resource type="PackedScene" uid="uid://2cbj70lip77v" path="res://level_components/ui/windows/character_dialogue/character_portrait.tscn" id="4_xnem4"]
 
-[node name="NPCDialogue" type="Panel" unique_id=864341110]
+[node name="CharacterDialogue" type="Panel" unique_id=864341110]
 clip_contents = true
 anchors_preset = -1
 anchor_left = 0.61
@@ -60,6 +60,7 @@ text = "X"
 
 [node name="ButtonBack" type="Button" parent="VBoxContainer/Panel" unique_id=2058399899]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 6
@@ -126,11 +127,22 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TradeButton" type="Button" parent="VBoxContainer/Container/DialogueBox/VBoxContainer" unique_id=1668775537]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Container/DialogueBox/VBoxContainer" unique_id=1725850934]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonTrade" type="Button" parent="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer2" unique_id=1668775537]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Trade"
+
+[node name="ButtonTransfer" type="Button" parent="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer2" unique_id=854882367]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Transfer Items"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Container/DialogueBox/VBoxContainer" unique_id=1683980493]
 layout_mode = 2
@@ -158,5 +170,6 @@ item_4/text = "Option 5"
 
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
-[connection signal="pressed" from="VBoxContainer/Container/DialogueBox/VBoxContainer/TradeButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer2/ButtonTrade" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer2/ButtonTransfer" to="." method="_on_button_transfer_pressed"]
 [connection signal="item_selected" from="VBoxContainer/Container/DialogueBox/VBoxContainer/HBoxContainer/DialogueOptions" to="." method="_on_dialogue_options_item_selected"]

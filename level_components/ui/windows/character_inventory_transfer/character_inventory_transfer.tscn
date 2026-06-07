@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cpn1snf62qldo"]
+
+[ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_8hhqp"]
+[ext_resource type="Script" uid="uid://cm5ddht305334" path="res://level_components/ui/windows/character_inventory_transfer/character_inventory_transfer.gd" id="2_8hhqp"]
+[ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="3_hmc4x"]
+
+[node name="CharacterInventoryTransfer" type="Panel" unique_id=864341110]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.61
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.9
+theme = ExtResource("1_8hhqp")
+script = ExtResource("2_8hhqp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1786130960]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=1796134286]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="WindowName" type="Label" parent="VBoxContainer/Panel" unique_id=1509411821]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Window Name"
+label_settings = ExtResource("3_hmc4x")
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ButtonClose" type="Button" parent="VBoxContainer/Panel" unique_id=352000716]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -16.0
+offset_right = -4.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "X"
+
+[node name="ButtonBack" type="Button" parent="VBoxContainer/Panel" unique_id=2058399899]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -16.0
+offset_right = -42.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "<-"
+
+[node name="LabelControlsHint" type="Label" parent="VBoxContainer" unique_id=491216768]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Right-click to transfer items"
+
+[node name="ItemListCharacter" type="ItemList" parent="VBoxContainer" unique_id=653100336]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+allow_reselect = true
+allow_rmb_select = true
+allow_search = false
+max_text_lines = 2
+scroll_hint_mode = 2
+fixed_icon_size = Vector2i(32, 32)
+
+[connection signal="pressed" from="VBoxContainer/Panel/ButtonClose" to="." method="_on_button_close_pressed"]
+[connection signal="pressed" from="VBoxContainer/Panel/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="item_clicked" from="VBoxContainer/ItemListCharacter" to="." method="_on_item_list_character_item_clicked"]

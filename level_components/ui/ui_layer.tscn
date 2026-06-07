@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cx7cj5bebv67b" path="res://level_components/ui/hud/hotbar/hotbar.tscn" id="14_a2ryk"]
 [ext_resource type="PackedScene" uid="uid://ds5yiq3dhtl87" path="res://level_components/ui/hud/tool_wheel/tool_wheel.tscn" id="15_vy3bo"]
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="16_72w8f"]
+[ext_resource type="PackedScene" uid="uid://cpn1snf62qldo" path="res://level_components/ui/windows/character_inventory_transfer/character_inventory_transfer.tscn" id="17_drsec"]
 
 [node name="UILayer" type="CanvasLayer" unique_id=1075659928]
 layer = 2
@@ -135,6 +136,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="CharacterDialogue" parent="MenuLayer/RightWindows" unique_id=512445346 instance=ExtResource("9_lnbc2")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CharacterInventoryTransfer" parent="MenuLayer/RightWindows" unique_id=864341110 instance=ExtResource("17_drsec")]
 unique_name_in_owner = true
 visible = false
 

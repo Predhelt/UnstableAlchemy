@@ -32,6 +32,8 @@ var drag_item_scene := preload("./drag_item_scene.tscn")
 @onready var minigame_mp_ref := $"../../../MinigameLayer/MinigameMP"
 ## (UNUSED)Item that is currently selected in the inventory (not dragged)
 #var selected_item : Item 
+## Reference to other character when transferring items.
+var other_character_ref: Character
 
 ## Sets references, initializes variables in references, and connects signals
 func _ready() -> void:
@@ -80,6 +82,7 @@ func close_window() -> void:
 		visible = false
 		window_closed.emit()
 	
+	other_character_ref = null
 	return_alchemy_items()
 
 ## Opens the window and adds it to the active window group.
@@ -93,23 +96,25 @@ func open_window() -> bool:
 	if Global.mode == &"default":
 		Global.mode = window_mode
 	if Global.mode == window_mode:
-		$AudioStreamPlayer.play()
-		$AudioStreamPlayer["parameters/switch_to_clip"] = &"open"
-		update_window()
-		Global.left_window = self
-		%WindowName.text = "Inventory and Crafting"
-		visible = true
-		window_opened.emit()
+		setup_window("Inventory and Crafting")
 		return true
 	elif Global.mode == &"dropper":
-		$AudioStreamPlayer.play()
-		update_window()
-		Global.left_window = self
-		%WindowName.text = "Select an Item for the Dropper"
-		visible = true
-		window_opened.emit()
+		setup_window("Select an Item for the Dropper")
+		return true
+	elif Global.mode == &"transfer":
+		setup_window("Transfer Items")
 		return true
 	return false
+
+
+func setup_window(window_name: String) -> void:
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = &"open"
+	update_window()
+	Global.left_window = self
+	%WindowName.text = window_name
+	visible = true
+	window_opened.emit()
 
 ## Clear the inventory item list, then re-initialize the item list with the items
 ## in the currently referenced character's inventory.
@@ -229,6 +234,7 @@ func _on_inventory_item_clicked(index : int, _pos : Vector2, mouse_button_index 
 		match Global.mode:
 			&"menu": use_item(item, index)
 			&"dropper": pass
+			&"transfer": transfer_item(item, index)
 		
 		#print("you dropped " + str(item.qty) + item.display_name + " out of " + stritems[index].qty))
 	if mouse_button_index == MOUSE_BUTTON_LEFT: # Left mouse pressed
@@ -347,6 +353,19 @@ func consume_item(item : Item, index : int) -> void:
 			hotbar_ref.remove_hotbar_item(item)
 	
 	item_consumed.emit(item)
+
+
+func transfer_item(item : Item, index : int) -> void:
+	var single_item : Item = item.duplicate()
+	single_item.qty = 1
+	other_character_ref.add_traded_item(single_item)
+	%CharacterInventoryTransfer.update_inventory()
+	
+	if item.qty <= 1 and item.qty != -1:
+		remove_inventory_slot(index)
+	elif item.qty != -1:
+		item.qty -= 1
+		%ItemList.set_item_text(index, generate_item_text(item))
 
 
 func set_status_message_echo(message: String) -> void:

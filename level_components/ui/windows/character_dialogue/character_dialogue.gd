@@ -51,11 +51,15 @@ func open_window_as_character(character : Character) -> bool:
 		set_dialogue(character_ref.get_initial_dialogue_name(Global.focused_node))
 		
 		if character_ref.transactions.size(): # If the character has shop transactions
-			%TradeButton.disabled = false
+			%ButtonTrade.disabled = false
 		else:
-			%TradeButton.disabled = true
-		
-		%ButtonBack.visible = false
+			%ButtonTrade.disabled = true
+		%ButtonTransfer.visible = character_ref.is_possessable
+		if character_ref.inventory.items.size():
+			%ButtonTransfer.disabled = false
+		else:
+			%ButtonTransfer.disabled = true
+		#%ButtonBack.visible = false
 		visible = true
 		window_opened.emit()
 		return true
@@ -72,7 +76,7 @@ func open_window() -> bool:
 	if Global.mode == window_mode:
 		Global.right_window = self
 		
-		%ButtonBack.visible = false
+		#%ButtonBack.visible = false
 		visible = true
 		window_opened.emit()
 		return true
@@ -125,15 +129,6 @@ func open_shop() -> void:
 	close_window()
 	if not character_ref.open_shop_from_dialogue():
 		Global.emit_notification("No transactions available")
-
-#DEPRECATED: No longer using a default dialogue field or DialogueTree typed.
-## Set the value for the default dialogue page in the default dialogue tree.
-#func set_default_dialogue(dialogue_name : String) -> void:
-	#var dialogue : Dialogue = find_dialogue(dialogue_name)
-	#if not dialogue:
-		#print("ERROR: No dialogue with name "+dialogue_name+" found")
-		#return
-	#character_ref.dialogue_tree.default_dialogue = dialogue
 
 ## Goes through the list of dialogue conditions to see if they are all met.
 func _are_conditions_met(conditions : Array[DialogueCondition]) -> bool:
@@ -204,3 +199,11 @@ func _on_trade_button_pressed() -> void:
 
 func _on_button_close_pressed() -> void:
 	close_window()
+
+
+func _on_button_transfer_pressed() -> void:
+	%CharacterInventoryTransfer.character_ref = character_ref
+	close_window()
+	%CharacterInventoryTransfer.open_window()
+	%InventoryMenu.other_character_ref = character_ref
+	%InventoryMenu.open_window()
