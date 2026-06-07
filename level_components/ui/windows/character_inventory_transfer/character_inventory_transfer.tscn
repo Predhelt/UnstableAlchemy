@@ -2,7 +2,56 @@
 
 [ext_resource type="Theme" uid="uid://daximm23ww82" path="res://art/styles/ua_default_theme.tres" id="1_8hhqp"]
 [ext_resource type="Script" uid="uid://cm5ddht305334" path="res://level_components/ui/windows/character_inventory_transfer/character_inventory_transfer.gd" id="2_8hhqp"]
+[ext_resource type="AudioStream" uid="uid://cxtts8c1tubev" path="res://art/pack/audio/sounds/blank.mp3" id="3_034e7"]
 [ext_resource type="LabelSettings" uid="uid://dg0l3p0q6pobg" path="res://art/text/window_label.tres" id="3_hmc4x"]
+[ext_resource type="AudioStream" uid="uid://cq0jdj4lnn4nm" path="res://art/pack/audio/sounds/bag_open.mp3" id="4_ix6h8"]
+[ext_resource type="AudioStream" uid="uid://b5fmj3s3anpd7" path="res://art/pack/audio/sounds/drink.mp3" id="5_ltimw"]
+[ext_resource type="AudioStream" uid="uid://bbcgqrgjvi3rt" path="res://art/pack/audio/sounds/eat.mp3" id="6_o4uit"]
+[ext_resource type="AudioStream" uid="uid://b2bfqd6fuvihl" path="res://art/pack/audio/sounds/page_flip.mp3" id="7_gnm0v"]
+[ext_resource type="AudioStream" uid="uid://ds36x66srfd3q" path="res://art/pack/audio/sounds/equip.mp3" id="8_ryxvo"]
+[ext_resource type="AudioStream" uid="uid://c20f8am40l7e8" path="res://art/pack/audio/sounds/pickup_inventory.mp3" id="9_f6ivm"]
+[ext_resource type="AudioStream" uid="uid://k7n6edq21a8q" path="res://art/pack/audio/sounds/drop_inventory.mp3" id="10_48sm2"]
+[ext_resource type="AudioStream" uid="uid://dl8tm67h6dju2" path="res://art/pack/audio/sounds/bag_close.mp3" id="11_03nwn"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_mdr46"]
+clip_count = 10
+clip_0/name = &"none"
+clip_0/stream = ExtResource("3_034e7")
+clip_0/auto_advance = 0
+clip_1/name = &"open"
+clip_1/stream = ExtResource("4_ix6h8")
+clip_1/auto_advance = 1
+clip_1/next_clip = 0
+clip_2/name = &"drink"
+clip_2/stream = ExtResource("5_ltimw")
+clip_2/auto_advance = 1
+clip_2/next_clip = 0
+clip_3/name = &"eat"
+clip_3/stream = ExtResource("6_o4uit")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0
+clip_4/name = &"read"
+clip_4/stream = ExtResource("7_gnm0v")
+clip_4/auto_advance = 1
+clip_4/next_clip = 0
+clip_5/name = &"equip"
+clip_5/stream = ExtResource("8_ryxvo")
+clip_5/auto_advance = 1
+clip_5/next_clip = 0
+clip_6/name = &"pickup"
+clip_6/stream = ExtResource("9_f6ivm")
+clip_6/auto_advance = 1
+clip_6/next_clip = 0
+clip_7/name = &"drop"
+clip_7/stream = ExtResource("10_48sm2")
+clip_7/auto_advance = 1
+clip_7/next_clip = 0
+clip_8/name = &""
+clip_8/auto_advance = 0
+clip_9/name = &"close"
+clip_9/stream = ExtResource("11_03nwn")
+clip_9/auto_advance = 1
+clip_9/next_clip = 0
 
 [node name="CharacterInventoryTransfer" type="Panel" unique_id=864341110]
 clip_contents = true
@@ -13,6 +62,11 @@ anchor_right = 0.98
 anchor_bottom = 0.9
 theme = ExtResource("1_8hhqp")
 script = ExtResource("2_8hhqp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1501538314]
+stream = SubResource("AudioStreamInteractive_mdr46")
+max_polyphony = 2
+bus = &"SFX"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1786130960]
 layout_mode = 1

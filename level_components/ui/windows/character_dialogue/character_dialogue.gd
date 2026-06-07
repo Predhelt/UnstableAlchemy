@@ -54,8 +54,13 @@ func open_window_as_character(character : Character) -> bool:
 			%ButtonTrade.disabled = false
 		else:
 			%ButtonTrade.disabled = true
-		%ButtonTransfer.visible = character_ref.is_possessable
-		if character_ref.inventory.items.size():
+		if (character_ref.is_possessable or (Global.focused_node.character_possessed_by and
+				character_ref.name == 
+					Global.focused_node.character_possessed_by.name)):
+			%ButtonTransfer.visible = true
+		else:
+			%ButtonTransfer.visible = false
+		if character_ref.inventory.items.size() or Global.focused_node.inventory.items.size():
 			%ButtonTransfer.disabled = false
 		else:
 			%ButtonTransfer.disabled = true

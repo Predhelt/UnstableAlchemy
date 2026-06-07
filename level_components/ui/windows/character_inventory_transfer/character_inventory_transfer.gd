@@ -36,6 +36,7 @@ func close_window():
 		Global.mode = &"default"
 	if Global.left_window and not Global.center_window:
 		Global.mode = &"menu"
+		Global.left_window.setup_window("Inventory and Crafting")
 	
 	character_ref = null
 
