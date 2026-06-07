@@ -18,9 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://character/characters/player/player.tscn" id="15_leri6"]
 [ext_resource type="PackedScene" uid="uid://dlx4lptpdvtaj" path="res://level_components/ui/hud/attribute_display/attribute_display.tscn" id="15_vrmy2"]
 [ext_resource type="Script" uid="uid://dmsouatunq2be" path="res://game_systems/alchemy/recipes/recipe.gd" id="16_iwwtm"]
-[ext_resource type="TileSet" path="res://level_components/tile_sets/tileset_GA.tres" id="17_wq3r3"]
 [ext_resource type="Resource" uid="uid://dynh2mra6j665" path="res://game_systems/alchemy/recipes/cauldron/speed_potion.tres" id="18_5j5wj"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="18_7u4j8"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://character/components/attributes.gd" id="18_8oxmj"]
 [ext_resource type="PackedScene" uid="uid://jq2f52igbal7" path="res://level_components/objects/interactable/containers/interactable_book.tscn" id="19_hiqpv"]
 [ext_resource type="Resource" uid="uid://ch8ask17pesg6" path="res://game_systems/alchemy/recipes/cauldron/speed_potion2.tres" id="19_v3o2u"]
 [ext_resource type="Resource" uid="uid://d0jffixwahlrk" path="res://game_systems/alchemy/recipes/merger/saturated_stem.tres" id="20_ew7dj"]
@@ -31,12 +31,24 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="23_nhtey"]
 [ext_resource type="PackedScene" uid="uid://c6f3ydrjmfkch" path="res://level_components/objects/collisions/wall_small_hole.tscn" id="24_5tibu"]
 [ext_resource type="PackedScene" uid="uid://byw18f1rhg2tq" path="res://level_components/objects/triggers/trigger_area_display.tscn" id="25_luu2e"]
+[ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="25_ss2lp"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://character/components/inventory.gd" id="26_ovebi"]
 [ext_resource type="Texture2D" uid="uid://de0du27ruuhaw" path="res://art/pack/objects/planted/plant_blue_berry.png" id="26_vrmy2"]
 [ext_resource type="Texture2D" uid="uid://c0he75p83wb74" path="res://art/pack/objects/planted/plant_red_berry.png" id="27_qyqwu"]
 [ext_resource type="Texture2D" uid="uid://bl0p4mtsax23e" path="res://art/pack/tools/dropper_full_green.png" id="28_5j5wj"]
 [ext_resource type="Texture2D" uid="uid://h0cj27dg7y6l" path="res://art/pack/tools/dropper.png" id="29_v3o2u"]
 [ext_resource type="Texture2D" uid="uid://courpr71jgxuf" path="res://art/pack/ingredients/inventory/yellow_paste.png" id="30_lgrco"]
 [ext_resource type="PackedScene" uid="uid://bc60on56u0yxc" path="res://character/characters/shelly_shrink_puzzle/shelly_sp.tscn" id="31_5dgm1"]
+
+[sub_resource type="Resource" id="Resource_6se7g"]
+resource_local_to_scene = true
+script = ExtResource("18_8oxmj")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_1jg0v"]
+resource_local_to_scene = true
+script = ExtResource("26_ovebi")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [node name="WorldGCSM" type="Node2D" unique_id=1661168125]
 y_sort_enabled = true
@@ -117,8 +129,10 @@ offset_bottom = 154.0
 [node name="Player" parent="." unique_id=1026458739 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_leri6")]
 unique_name_in_owner = true
 position = Vector2(500, 97)
-character_camera_ref = NodePath("../PlayerCamera")
+attributes = SubResource("Resource_6se7g")
 known_recipes = Array[ExtResource("16_iwwtm")]([ExtResource("18_5j5wj"), ExtResource("19_v3o2u"), ExtResource("20_ew7dj"), ExtResource("21_ibin0"), ExtResource("22_8oxmj")])
+inventory = SubResource("Resource_1jg0v")
+character_camera_ref = NodePath("../PlayerCamera")
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=1775353985]
 remote_path = NodePath("../../PlayerCamera")
@@ -135,7 +149,7 @@ metadata/_edit_lock_ = true
 [node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=362631107]
 z_index = -50
 scale = Vector2(2, 2)
-tile_set = ExtResource("17_wq3r3")
+tile_set = ExtResource("18_7u4j8")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=513150705]
 z_index = -20
@@ -283,4 +297,3 @@ passive_messages = Array[String](["Hello!", "I don't like these tight spaces."])
 
 [connection signal="add_inventory_item" from="UILayer/HUDLayer/Hotbar" to="UILayer/MenuLayer/InventoryMenu" method="_on_hotbar_add_inventory_item"]
 [connection signal="set_dropper_item" from="UILayer/HUDLayer/ToolWheel" to="UILayer/MenuLayer/InventoryMenu" method="_on_tool_wheel_set_dropper_item"]
-[connection signal="tool_updated" from="UILayer/HUDLayer/ToolWheel" to="Player" method="_on_tool_updated"]

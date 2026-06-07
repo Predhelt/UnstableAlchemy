@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://co733h0r4vxsd"]
 
 [ext_resource type="PackedScene" uid="uid://dn55t54gicprm" path="res://level_components/ui/ui_layer.tscn" id="1_8c1i5"]
+[ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://character/components/attributes.gd" id="3_fckvd"]
+[ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://character/components/inventory.gd" id="5_sdneh"]
 [ext_resource type="PackedScene" uid="uid://bavldmbvwom6f" path="res://character/characters/player/player.tscn" id="15_vqa7y"]
 [ext_resource type="PackedScene" uid="uid://ch7hosojbd5a3" path="res://character/characters/brindan_gcsm/brindan_gcsm.tscn" id="17_loxta"]
 [ext_resource type="Script" uid="uid://bv286g1xhvijr" path="res://character/components/transaction.gd" id="18_nyvjr"]
@@ -8,7 +10,6 @@
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="20_35d2w"]
 [ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="21_1ohhg"]
 [ext_resource type="Resource" uid="uid://tgm0gfnlbmh8" path="res://game_systems/items/recipe_books/strength_potion_partial_book.tres" id="22_3ijoo"]
-[ext_resource type="TileSet" path="res://level_components/tile_sets/tileset_GA.tres" id="23_70kpq"]
 [ext_resource type="TileSet" uid="uid://xtdamteo67ra" path="res://level_components/tile_sets/tileset_UA.tres" id="24_hiyc0"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="25_5anji"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="26_poe06"]
@@ -22,6 +23,16 @@
 [ext_resource type="Texture2D" uid="uid://bv835ug7l1rii" path="res://art/pack/ui/minigame/grind.png" id="35_thnog"]
 [ext_resource type="Texture2D" uid="uid://ccfmoyh02qm3b" path="res://art/pack/ui/minigame/crush.png" id="36_kf0ri"]
 [ext_resource type="Texture2D" uid="uid://bd3y42lar5hgb" path="res://art/pack/alchemy/tools/alchemy_mortar_pestle.png" id="37_me1xg"]
+
+[sub_resource type="Resource" id="Resource_uegve"]
+resource_local_to_scene = true
+script = ExtResource("3_fckvd")
+metadata/_custom_type_script = "uid://ctfdopu68mcmr"
+
+[sub_resource type="Resource" id="Resource_nxx0o"]
+resource_local_to_scene = true
+script = ExtResource("5_sdneh")
+metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_fa7q6"]
 script = ExtResource("18_nyvjr")
@@ -40,6 +51,8 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." unique_id=1461829794 node_paths=PackedStringArray("character_camera_ref") instance=ExtResource("15_vqa7y")]
 unique_name_in_owner = true
 position = Vector2(529, 298)
+attributes = SubResource("Resource_uegve")
+inventory = SubResource("Resource_nxx0o")
 character_camera_ref = NodePath("../PlayerCamera")
 
 [node name="CameraTransform" type="RemoteTransform2D" parent="Player" unique_id=592775282]
@@ -54,7 +67,6 @@ position_smoothing_enabled = true
 [node name="NPCBrindan" parent="." unique_id=1642300450 instance=ExtResource("17_loxta")]
 unique_name_in_owner = true
 position = Vector2(675, 146)
-collision_mask = 57
 transactions = Array[ExtResource("18_nyvjr")]([ExtResource("19_jj5vo"), SubResource("Resource_fa7q6")])
 passive_messages = Array[String](["Hey", "That could've gone worse.."])
 
@@ -64,7 +76,7 @@ metadata/_edit_lock_ = true
 [node name="Water" type="TileMapLayer" parent="TileMaps" unique_id=1876300507]
 z_index = -50
 scale = Vector2(2, 2)
-tile_set = ExtResource("23_70kpq")
+tile_set = ExtResource("24_hiyc0")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" unique_id=151506991]
 z_index = -20
