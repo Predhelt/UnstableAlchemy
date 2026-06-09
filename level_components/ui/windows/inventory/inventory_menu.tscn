@@ -195,6 +195,7 @@ offset_top = -66.4
 offset_right = 479.2
 offset_bottom = -16.400002
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32

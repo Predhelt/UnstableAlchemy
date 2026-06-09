@@ -166,6 +166,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [connection signal="call_open_inventory" from="." to="MenuLayer/LeftWindows/InventoryMenu" method="_on_ui_layer_call_open_inventory"]
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_add_inventory_item"]
