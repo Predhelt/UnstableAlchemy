@@ -91,12 +91,18 @@ func save(_dir: String) -> Dictionary:
 
 ## Gets called when loading a level
 func connect_signals():
-	$Objects/RecipeItem.object_grabbed.connect(_on_recipe_item_object_grabbed, CONNECT_PERSIST)
-	$Objects/GreenHerb.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
-	$Objects/GreenHerb2.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
-	$Objects/GreenHerb3.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
-	$Objects/GreenHerb4.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
-	$Objects/GreenHerb5.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
+	if get_node("Objects/RecipeItem"):
+		$Objects/RecipeItem.object_grabbed.connect(_on_recipe_item_object_grabbed, CONNECT_PERSIST)
+	if get_node("Objects/GreenHerb"):
+		$Objects/GreenHerb.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
+	if get_node("Objects/GreenHerb2"):
+		$Objects/GreenHerb2.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
+	if get_node("Objects/GreenHerb3"):
+		$Objects/GreenHerb3.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
+	if get_node("Objects/GreenHerb4"):
+		$Objects/GreenHerb4.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
+	if get_node("Objects/GreenHerb5"):
+		$Objects/GreenHerb5.object_grabbed.connect(_on_green_herb_object_grabbed, CONNECT_PERSIST)
 
 
 func refresh_input_messages() -> void:

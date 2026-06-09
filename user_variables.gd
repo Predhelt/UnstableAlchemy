@@ -1,6 +1,9 @@
 ## Variables related to the user that are tracked globally.
 extends Node
-
+## Inventory of the player character when the most recent level was initially loaded.
+var inventory_level_start: Inventory
+## Tracks whether the level has already been started.
+var level_started: bool = false
 ## List of recipes known by the user.
 var known_recipes: Array[Recipe]
 ## Recipes that have not been viewed yet in the recipe page
@@ -47,8 +50,19 @@ var is_log_book_disabled: bool = false
 
 ## Sets up and returns a dictionary that represents the persistent information
 ## of the user to be saved to file.
-func save(_dir: String) -> Dictionary:
+func save(dir: String) -> Dictionary:
+	var cur_path : String = "%s/user_variables/" % dir
+	if not DirAccess.dir_exists_absolute(cur_path):
+		DirAccess.make_dir_recursive_absolute(cur_path)
+	
+	var inv_path : String = "%s/user_variables/inventory.tres" % dir
+	if inventory_level_start:
+		ResourceSaver.save(inventory_level_start, "%s/inventory.tres" % cur_path)
+	else:
+		inv_path =  ""
 	var save_dict = {
+		"inventory_level_start_path" : inv_path,
+		"level_started" : level_started,
 		"known_recipes" : var_to_str(known_recipes),
 		"new_recipes" : var_to_str(new_recipes),
 		"crafted_recipes" : var_to_str(crafted_recipes),
@@ -72,6 +86,8 @@ func save(_dir: String) -> Dictionary:
 
 ## Clears the saved variables.
 func reset_variables():
+	inventory_level_start = null
+	level_started = false
 	known_recipes.clear()
 	new_recipes.clear()
 	crafted_recipes.clear()

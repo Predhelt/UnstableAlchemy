@@ -161,7 +161,7 @@ position = Vector2(256, -1792)
 scale = Vector2(2, 1)
 
 [node name="TriggerAreaAutosave2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="4" unique_id=1244985810 instance=ExtResource("12_fmauf")]
-position = Vector2(-12, -196)
+position = Vector2(-12, -198)
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
 position = Vector2(256, -456)

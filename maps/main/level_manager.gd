@@ -1,9 +1,15 @@
 class_name LevelManager extends Node2D
 
 @export var level_index: int = 0
+@export var reset_inventory_on_start: bool = false
 
 func _ready() -> void:
 	Global.current_level_path = scene_file_path
+	if(not reset_inventory_on_start and
+			not UserVariables.level_started and UserVariables.inventory_level_start):
+		var player: Character = find_child("Player", false)
+		if player: player.inventory = UserVariables.inventory_level_start.duplicate(true)
+	UserVariables.level_started = true
 
 
 func save(_dir: String) -> Dictionary:

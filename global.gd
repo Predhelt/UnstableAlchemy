@@ -78,23 +78,28 @@ func change_scene(scene_path: String) -> void:
 
 ## Defer to pevent errors when signal is called during physics process.
 func _deferred_change_scene(path: String):
-	var current_player : AudioStreamPlayer = get_tree().current_scene.find_child("MusicAudioStream")
+	var current_player: AudioStreamPlayer = get_tree().current_scene.find_child("MusicAudioStream")
 	MusicManager.current_stream = current_player.stream
 	MusicManager.current_song_position = current_player.get_playback_position()
 	current_player.stop()
+	var player_character: Character = get_tree().current_scene.get_node("Player")
+	if player_character:
+		UserVariables.inventory_level_start = player_character.inventory.duplicate()
+	UserVariables.level_started = false
 	get_tree().change_scene_to_file(path)
 
 ## Resets the current level
 func reset_level() -> void:
-	var current_player : AudioStreamPlayer = get_tree().current_scene.find_child("MusicAudioStream")
+	var current_player: AudioStreamPlayer = get_tree().current_scene.find_child("MusicAudioStream")
 	MusicManager.current_stream = current_player.stream
 	MusicManager.current_song_position = current_player.get_playback_position()
+	UserVariables.level_started = false
 	get_tree().reload_current_scene.call_deferred()
 	mode = &"default"
 	
 ## Displays notification in current scene with given [param message].
 func emit_notification(message : String):
-	var new_notification : PanelContainer = Global.notification_effect.instantiate()
+	var new_notification: PanelContainer = Global.notification_effect.instantiate()
 	new_notification.set_text(message)
 	var notification_container = get_tree().current_scene.find_child("UILayer", false)
 	if not notification_container:
@@ -116,8 +121,8 @@ func save_game() -> void:
 	var save_file = FileAccess.open("%s.save" % dir, FileAccess.WRITE)
 	
 	# Store global data at top of the file.
-	var node_data : Dictionary = save(dir)
-	var json_string : String = JSON.stringify(node_data)
+	var node_data: Dictionary = save(dir)
+	var json_string: String = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
 	# Store level data next.
@@ -192,7 +197,7 @@ func load_game() -> void:
 	for i in node_data.keys():
 		if i != "current_level_path":
 			set(i, node_data[i])
-	var level_node : Node2D
+	var level_node: Node2D
 	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
 		level_node = load(current_level_path).instantiate()
@@ -217,6 +222,11 @@ func load_game() -> void:
 		if not parse_result == OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		node_data = json.data
+		
+		var field: String = "inventory_level_start_path"
+		if node_data.get(field) and node_data[field] != "":
+			UserVariables.inventory_level_start = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
+		
 		for i in node_data.keys():
 			if typeof(node_data[i]) == typeof("String"):
 				UserVariables.set(i, str_to_var(node_data[i]))
@@ -247,15 +257,15 @@ func load_game() -> void:
 			continue
 		
 		node_data = json.data
-		var new_object : Node2D = load(node_data["filename"]).instantiate()
+		var new_object: Node2D = load(node_data["filename"]).instantiate()
 		new_object.name = node_data["name"]
 		
 		if node_data.get("has_blade"):
-			var has_blade : bool = node_data["has_blade"]
+			var has_blade: bool = node_data["has_blade"]
 			if has_blade:
 				new_object.set("has_blade", has_blade)
 		if node_data.get("has_dropper"):
-			var has_dropper : bool = node_data["has_dropper"]
+			var has_dropper: bool = node_data["has_dropper"]
 			if has_dropper:
 				new_object.set("has_dropper", has_dropper)
 		
@@ -263,31 +273,31 @@ func load_game() -> void:
 			new_object.set("is_camera_focused", node_data["is_camera_focused"])
 			
 			focused_node = new_object
-			var cam : Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
+			var cam: Camera2D = get_tree().root.get_children()[-1].find_child("PlayerCamera")
 			focused_camera = cam
 			new_object.character_camera_ref = cam
 			new_object.set_camera()
 			cam.reset_smoothing()
 		
 		# Add status effects before connecting to parent, if status effects exist.
-		var field : String = "active_status_effects_path"
+		var field: String = "active_status_effects_path"
 		if node_data.get(field):
 			if DirAccess.dir_exists_absolute(node_data[field]):
 				var se_dir : DirAccess = DirAccess.open(node_data[field])
 				if se_dir != null:
 					# Get each status effect resource from file and add it to object.
-					var se_list : PackedStringArray = se_dir.get_files()
+					var se_list: PackedStringArray = se_dir.get_files()
 					for se_name in se_list:
-						var cur_se : StatusEffect = load(node_data[field] + se_name)
+						var cur_se: StatusEffect = load(node_data[field] + se_name)
 						#new_object.apply_status_effect(cur_se)
 						if cur_se != null:
 							new_object.active_status_effects.append(cur_se)
 		# Set the inventory before setting parent node to scene.
 		field = "inventory_path"
 		if node_data.get(field) and node_data[field] != "":
-				new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
-				#TODO: Check if replacing cached version is making a difference.
-				#FIXME: Replace the existing inventory instead of loading a new instance?
+			new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
+			#TODO: Check if replacing cached version is making a difference.
+			#FIXME: Replace the existing inventory instead of loading a new instance?
 		# Set the attributes before setting parent node to scene.
 		field = "attributes_path"
 		if node_data.get(field) and node_data[field] != "":
