@@ -206,6 +206,7 @@ transactions = Array[ExtResource("8_ol6vo")]([ExtResource("21_d8uxn")])
 
 [node name="TutorialTim" parent="." index="6" unique_id=274518447 instance=ExtResource("47_x8qjh")]
 position = Vector2(585, -25)
+character_name = "Tutorial Tim"
 
 [node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(398, -25)
