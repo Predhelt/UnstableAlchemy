@@ -82,7 +82,11 @@ func _deferred_change_scene(path: String):
 	MusicManager.current_stream = current_player.stream
 	MusicManager.current_song_position = current_player.get_playback_position()
 	current_player.stop()
-	var player_character: Character = get_tree().current_scene.get_node("Player")
+	var player_character: Character
+	if not get_tree().current_scene.has_node("Player"):
+		player_character = null
+	else:
+		player_character = get_tree().current_scene.get_node("Player")
 	if player_character:
 		UserVariables.inventory_level_start = player_character.inventory.duplicate()
 	UserVariables.level_started = false

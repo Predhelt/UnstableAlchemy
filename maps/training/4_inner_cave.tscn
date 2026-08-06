@@ -57,7 +57,7 @@ script = ExtResource("6_60y0b")
 base_move_speed = 150.0
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_olp5p"]
+[sub_resource type="Resource" id="Resource_vd4af"]
 resource_local_to_scene = true
 script = ExtResource("10_d8uxn")
 id = 501
@@ -70,13 +70,13 @@ qty = 3
 on_consume_effects = Array[ExtResource("16_f1ifg")]([ExtResource("9_x8qjh")])
 on_consume_message = "That cleared me up"
 
-[sub_resource type="Resource" id="Resource_ebuod"]
+[sub_resource type="Resource" id="Resource_8d7xh"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
-items = Array[ExtResource("2_cc213")]([SubResource("Resource_olp5p"), ExtResource("12_ebuod"), ExtResource("13_vd4af")])
+items = Array[ExtResource("2_cc213")]([SubResource("Resource_vd4af"), ExtResource("12_ebuod"), ExtResource("13_vd4af")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_vd4af"]
+[sub_resource type="Resource" id="Resource_iw3wy"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("3_bupt0")])
@@ -94,7 +94,7 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_8d7xh"]
+[sub_resource type="Resource" id="Resource_noh5w"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("13_j4d6t")])
@@ -102,7 +102,7 @@ items_selling_amount = Array[int]([1])
 items_selling_stock = Array[int]([5])
 metadata/_custom_type_script = "uid://bv286g1xhvijr"
 
-[sub_resource type="Resource" id="Resource_iw3wy"]
+[sub_resource type="Resource" id="Resource_mjkj0"]
 resource_local_to_scene = true
 script = ExtResource("8_ol6vo")
 items_selling = Array[ExtResource("2_cc213")]([ExtResource("10_7y012")])
@@ -121,12 +121,12 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 script = ExtResource("4_k17fm")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
-[sub_resource type="Resource" id="Resource_noh5w"]
+[sub_resource type="Resource" id="Resource_5lhhj"]
 resource_local_to_scene = true
 script = ExtResource("6_60y0b")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_mjkj0"]
+[sub_resource type="Resource" id="Resource_rv76h"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
 items = Array[ExtResource("2_cc213")]([ExtResource("13_vd4af"), ExtResource("12_ebuod"), ExtResource("25_vd4af")])
@@ -188,10 +188,10 @@ stream = null
 position = Vector2(374, 343)
 portrait = ExtResource("9_42850")
 attributes = SubResource("Resource_mfhge")
-inventory = SubResource("Resource_ebuod")
+inventory = SubResource("Resource_8d7xh")
 has_blade = true
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_vd4af")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_iw3wy")])
 
 [node name="Cam" parent="." index="4" unique_id=1967664427 instance=ExtResource("6_k17fm")]
 position = Vector2(637.00006, 555)
@@ -199,7 +199,7 @@ portrait = ExtResource("11_h4eu7")
 attributes = SubResource("Resource_nb123")
 inventory = SubResource("Resource_3fmyq")
 is_possessable = true
-transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_8d7xh"), SubResource("Resource_iw3wy")])
+transactions = Array[ExtResource("8_ol6vo")]([SubResource("Resource_noh5w"), SubResource("Resource_mjkj0")])
 
 [node name="Lex" parent="." index="5" unique_id=75307123 instance=ExtResource("7_ix5gr")]
 position = Vector2(650, 219)
@@ -214,8 +214,8 @@ character_name = "Tutorial Tim"
 
 [node name="Player" parent="." index="7" unique_id=1026458739]
 position = Vector2(398, -25)
-attributes = SubResource("Resource_noh5w")
-inventory = SubResource("Resource_mjkj0")
+attributes = SubResource("Resource_5lhhj")
+inventory = SubResource("Resource_rv76h")
 
 [node name="PlayerCamera" parent="." index="8" unique_id=294471714]
 position = Vector2(604, 419)
