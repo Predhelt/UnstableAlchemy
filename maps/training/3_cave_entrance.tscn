@@ -441,5 +441,13 @@ and knowledge on how to cut flowers.
 
 order: Herb Grinds -> Str book + Red Seed + Juice -> Craft Str Pot -> move boulder -> win"
 
+[node name="Label" type="Label" parent="." index="14" unique_id=521690680]
+offset_left = -378.0
+offset_top = -1143.0
+offset_right = -136.0
+offset_bottom = -1094.0
+text = "Open the options menu to see how to restart the level"
+autowrap_mode = 3
+
 [connection signal="end_scene" from="Cutscene" to="." method="_on_cutscene_end_scene"]
 [connection signal="pathway_cleared" from="PuzzleNodes/BlockageArea" to="NPCBrindan" method="_on_blockage_area_pathway_cleared"]

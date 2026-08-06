@@ -23,9 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://uq3raot8fskq" path="res://level_components/objects/interactable/plants/yellow_flowers.tscn" id="10_yqpoj"]
 [ext_resource type="Texture2D" uid="uid://gb8d44m0qtds" path="res://art/pack/characters/portraits/char1.png" id="11_h4eu7"]
 [ext_resource type="Texture2D" uid="uid://dycwpig3a48tr" path="res://art/pack/alchemy/potions/potion_standard_cyan.png" id="11_olp5p"]
-[ext_resource type="Resource" uid="uid://8t2gx2tso7i3" path="res://game_systems/items/potions/speed_potion.tres" id="12_ebuod"]
 [ext_resource type="Resource" uid="uid://d2dt3featqr2v" path="res://game_systems/items/potions/normalize_potion.tres" id="13_j4d6t"]
-[ext_resource type="Resource" uid="uid://bduil7kx6jkrw" path="res://game_systems/items/mp_products/green_flakes.tres" id="13_vd4af"]
 [ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="14_urb74"]
 [ext_resource type="PackedScene" uid="uid://6jdasvil2jhh" path="res://level_components/objects/interactable/containers/interactable_crate.tscn" id="15_r1ko1"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="16_f1ifg"]
@@ -44,7 +42,6 @@
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="24_n18o7"]
 [ext_resource type="Resource" uid="uid://di6xri3pfcti8" path="res://game_systems/items/lore_books/crystal_hint5.tres" id="24_olp5p"]
 [ext_resource type="Texture2D" uid="uid://crkop74rurk3d" path="res://art/pack/objects/doors/slide_door_green.png" id="25_ol6vo"]
-[ext_resource type="Resource" uid="uid://vwwc1c2oku6l" path="res://game_systems/items/potions/possession_potion.tres" id="25_vd4af"]
 [ext_resource type="Texture2D" uid="uid://b6ujdk06c8kwk" path="res://art/pack/objects/pressure_plates/object-pressure-plate_cyan.png" id="26_7unxe"]
 [ext_resource type="PackedScene" uid="uid://cs7l75a5mg1gm" path="res://level_components/objects/triggers/sliding_door_facing_right.tscn" id="26_jb56y"]
 [ext_resource type="Texture2D" uid="uid://cex4k0brot70q" path="res://art/pack/objects/doors/slide_door_cyan.png" id="30_d432r"]
@@ -73,7 +70,7 @@ on_consume_message = "That cleared me up"
 [sub_resource type="Resource" id="Resource_8d7xh"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
-items = Array[ExtResource("2_cc213")]([SubResource("Resource_vd4af"), ExtResource("12_ebuod"), ExtResource("13_vd4af")])
+items = Array[ExtResource("2_cc213")]([SubResource("Resource_vd4af")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_iw3wy"]
@@ -129,7 +126,6 @@ metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 [sub_resource type="Resource" id="Resource_rv76h"]
 resource_local_to_scene = true
 script = ExtResource("4_k17fm")
-items = Array[ExtResource("2_cc213")]([ExtResource("13_vd4af"), ExtResource("12_ebuod"), ExtResource("25_vd4af")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_d8uxn"]
