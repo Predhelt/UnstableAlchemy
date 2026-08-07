@@ -257,6 +257,13 @@ text = "- walk
 - learn how pressure plate works
 - learn how sliding doors work"
 
+[node name="Label" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="1" unique_id=948961371]
+offset_left = 899.0
+offset_top = -2285.0
+offset_right = 1214.0
+offset_bottom = -2262.0
+text = "TODO: Add light indicator for door state?"
+
 [connection signal="call_open_inventory" from="." to="UILayer" method="_on_world_call_open_inventory"]
 [connection signal="craft_completed" from="UILayer" to="." method="_on_ui_layer_craft_completed"]
 [connection signal="item_used" from="UILayer" to="." method="_on_ui_layer_item_used"]
