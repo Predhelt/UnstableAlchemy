@@ -143,25 +143,25 @@ tile_map_data = PackedByteArray("AAAMAAcAAgAFAAAAAADx//H/AgACAAAAAADx//L/AgAHAAA
 [node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
 tile_map_data = PackedByteArray("AAD8/+3/AAADAAQAAAD8/+7/AAADAAEAAAD8/+//AAADAAEAAAD8//D/AAADAAEAAAD8//H/AAADAAEAAAD8//P/AAAEAAQAAAD8//f/AAAEAAAAAAD9/+3/AAAEAAAAAAD9//f/AAAEAAMAAAD+/+3/AAAEAAAAAAD+//f/AAAEAAAAAAD//+3/AAAEAAAAAAD///f/AAAEAAAAAAAAAO3/AAAEAAAAAAAAAPf/AAAEAAAAAAABAO3/AAADAAMAAAABAPf/AAAEAAAAAAACAO3/AAAEAAAAAAACAPf/AAAHAAIAAAADAO3/AAAHAAMAAAAEAO3/AAAEAAAAAAAFAO3/AAAEAAAAAAAFAPf/AAAGAAIAAAAGAO3/AAAEAAAAAAAGAPf/AAAEAAAAAAAHAO3/AAAEAAAAAAAHAPf/AAAEAAAAAAAIAO3/AAAEAAAAAAAIAPf/AAAEAAAAAAAJAO3/AAAEAAAAAAAJAPf/AAAEAAAAAAAKAO3/AAAEAAQAAAAKAO7/AAADAAEAAAAKAO//AAADAAEAAAAKAPD/AAADAAEAAAAKAPH/AAADAAEAAAAKAPL/AAADAAEAAAAKAPP/AAADAAEAAAAKAPT/AAADAAEAAAAKAPX/AAADAAEAAAAKAPb/AAADAAEAAAAKAPf/AAAEAAQAAAD9//v/AAADAAEAAAD9//z/AAADAAEAAAD9//3/AAAFAAEAAAD9//7/AAAFAAEAAAD9////AAADAAIAAAAKAPv/AAADAAEAAAAKAPz/AAAFAAEAAAAKAP3/AAADAAEAAAAKAP7/AAAFAAEAAAAKAP//AAAFAAIAAAD9//j/AAADAAEAAAD9//n/AAADAAEAAAD9//r/AAADAAEAAAD+////AAAEAAIAAAD/////AAAEAAIAAAAAAP//AAAEAAAAAAABAP//AAAEAAIAAAACAP//AAAEAAAAAAADAP//AAAEAAAAAAAEAP//AAAEAAAAAAAFAP//AAAEAAAAAAAGAP//AAAEAAIAAAAHAP//AAAEAAAAAAAIAP//AAAEAAIAAAAJAP//AAAEAAIAAAAKAPj/AAAFAAEAAAAKAPn/AAADAAEAAAAKAPr/AAADAAEAAAD8/+r/AAADAAEAAAD8/+v/AAADAAQAAAD8/+z/AAADAAEAAAACAOT/AAAGAAIAAAAKAOT/AAAFAAAAAAAKAOX/AAAFAAEAAAAKAOb/AAADAAEAAAAKAOf/AAAFAAEAAAAKAOj/AAAFAAEAAAAKAOn/AAADAAEAAAAKAOr/AAADAAEAAAAKAOv/AAADAAEAAAAKAOz/AAADAAEAAAD9/+T/AAAEAAAAAAD+/+T/AAAEAAAAAAD//+T/AAAHAAIAAAAFAOT/AAAEAAAAAAAGAOT/AAAEAAAAAAD8/+n/AAADAAEAAAD3//P/AAADAAAAAAD3//T/AAADAAEAAAD3//X/AAADAAEAAAD3//b/AAADAAEAAAD8//X/AAAAAAQAAAD3//f/AAADAAIAAAD4//P/AAAEAAAAAAD4//f/AAAEAAAAAAD5//P/AAAEAAAAAAD5//f/AAAEAAAAAAD6//P/AAAEAAAAAAD6//f/AAAEAAAAAAD7//P/AAAEAAAAAAD7//f/AAAEAAAAAAD8/+T/AAADAAAAAAD8/+X/AAADAAEAAAD8/+b/AAADAAEAAAD8/+f/AAADAAEAAAD8/+j/AAADAAEAAAD8//L/AAADAAEAAAD8//T/AAADAAEAAAD9/+v/AAAEAAAAAAD+/+v/AAAEAAAAAAD//+v/AAAHAAIAAAAJAOT/AAAEAAAAAAADAOT/AAAEAAAAAAAEAOT/AAAEAAAAAAABAOz/AAAAAAMAAAAHAOT/AAAEAAAAAAAIAOT/AAAEAAAAAAA=")
 
-[node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="0" unique_id=1639851176 instance=ExtResource("18_ltyin")]
+[node name="TriggerAreaAutosave3" parent="TriggerAreas/SaveTriggers" parent_id_path=PackedInt32Array(323118583) index="0" unique_id=389169683 instance=ExtResource("12_fmauf")]
+position = Vector2(256, -608)
+scale = Vector2(2.35, 1)
+
+[node name="TriggerAreaAutosave4" parent="TriggerAreas/SaveTriggers" parent_id_path=PackedInt32Array(323118583) index="1" unique_id=366234980 instance=ExtResource("12_fmauf")]
+position = Vector2(224, -1248)
+
+[node name="TriggerAreaAutosave" parent="TriggerAreas/SaveTriggers" parent_id_path=PackedInt32Array(323118583) index="2" unique_id=107033594 instance=ExtResource("12_fmauf")]
+position = Vector2(65, -1792)
+scale = Vector2(2, 1)
+
+[node name="TriggerAreaAutosave2" parent="TriggerAreas/SaveTriggers" parent_id_path=PackedInt32Array(323118583) index="3" unique_id=1244985810 instance=ExtResource("12_fmauf")]
+position = Vector2(-12, -198)
+
+[node name="TriggerAreaLevelChange" parent="TriggerAreas/SceneChangeTriggers" parent_id_path=PackedInt32Array(1511736977) index="0" unique_id=1639851176 instance=ExtResource("18_ltyin")]
 position = Vector2(65, -1824)
 scale = Vector2(2.5, 1)
 level_path = "uid://boi0y4f3ntxrd"
 is_level_cleared = true
-
-[node name="AutosaveAreaTrigger2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=389169683 instance=ExtResource("12_fmauf")]
-position = Vector2(256, -608)
-scale = Vector2(2.35, 1)
-
-[node name="AutosaveAreaTrigger3" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=366234980 instance=ExtResource("12_fmauf")]
-position = Vector2(224, -1248)
-
-[node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=107033594 instance=ExtResource("12_fmauf")]
-position = Vector2(65, -1792)
-scale = Vector2(2, 1)
-
-[node name="TriggerAreaAutosave2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="4" unique_id=1244985810 instance=ExtResource("12_fmauf")]
-position = Vector2(-12, -198)
 
 [node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("19_wike2")]
 position = Vector2(256, -456)

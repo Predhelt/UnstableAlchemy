@@ -177,22 +177,22 @@ items = Array[ExtResource("3_0ue13")]([ExtResource("23_3bsik")])
 grab_interaction = SubResource("Resource_wgx8k")
 cut_interaction = SubResource("Resource_wgx8k")
 
-[node name="TriggerAreaLevelChange" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="0" unique_id=1639851176 instance=ExtResource("16_3u314")]
+[node name="TriggerAreaAutosave3" parent="TriggerAreas/SaveTriggers" parent_id_path=PackedInt32Array(323118583) index="0" unique_id=1244985810 instance=ExtResource("45_6vueu")]
+position = Vector2(-32, -1504)
+
+[node name="TriggerAreaAutosave" parent="TriggerAreas/SaveTriggers" parent_id_path=PackedInt32Array(323118583) index="1" unique_id=1885369948 instance=ExtResource("45_6vueu")]
+position = Vector2(84, -438)
+scale = Vector2(1.5, 1.5)
+
+[node name="TriggerAreaAutosave2" parent="TriggerAreas/SaveTriggers" parent_id_path=PackedInt32Array(323118583) index="2" unique_id=1064681139 instance=ExtResource("45_6vueu")]
+position = Vector2(-85, -841)
+scale = Vector2(1.5, 1.5)
+
+[node name="TriggerAreaLevelChange" parent="TriggerAreas/SceneChangeTriggers" parent_id_path=PackedInt32Array(1511736977) index="0" unique_id=1639851176 instance=ExtResource("16_3u314")]
 position = Vector2(-31.999998, -1696)
 scale = Vector2(3, 1)
 level_path = "uid://vpd53ywg8mcr"
 is_level_cleared = true
-
-[node name="AutosaveAreaTrigger" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="1" unique_id=1244985810 instance=ExtResource("45_6vueu")]
-position = Vector2(-32, -1504)
-
-[node name="TriggerAreaAutosave" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="2" unique_id=1885369948 instance=ExtResource("45_6vueu")]
-position = Vector2(84, -438)
-scale = Vector2(1.5, 1.5)
-
-[node name="TriggerAreaAutosave2" parent="TriggerAreas" parent_id_path=PackedInt32Array(1507198505) index="3" unique_id=1064681139 instance=ExtResource("45_6vueu")]
-position = Vector2(-85, -841)
-scale = Vector2(1.5, 1.5)
 
 [node name="BlockageArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=698375174 instance=ExtResource("17_r1a14")]
 position = Vector2(-32, -672.00006)
