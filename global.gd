@@ -248,7 +248,7 @@ func load_game() -> void:
 		return
 	
 	# EXPERIMENTAL: Set the player's initial inventory on level entered, if relevant inventory is reset when entered.
-	#if level_node.reset_inventory_on_start and player_init_inventory_path != "":
+	#if level_node.use_custom_inventory and player_init_inventory_path != "":
 		#var pii: Inventory = ResourceLoader.load(player_init_inventory_path, "", ResourceLoader.CACHE_MODE_REPLACE)
 		#level_node.player_initial_inventory = pii
 	

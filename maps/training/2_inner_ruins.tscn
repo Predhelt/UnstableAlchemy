@@ -30,7 +30,9 @@
 [ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="17_1xt33"]
 [ext_resource type="PackedScene" uid="uid://ocpfwxtn11ij" path="res://level_components/objects/interactable/plants/red_berry_bush.tscn" id="17_v0bil"]
 [ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="18_ltyin"]
+[ext_resource type="Resource" uid="uid://bug73xhr5bl3w" path="res://game_systems/status_effects/energized_burst.tres" id="18_rtaeg"]
 [ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="19_wike2"]
+[ext_resource type="Texture2D" uid="uid://dylysa3laa3w2" path="res://art/pack/ingredients/inventory/herb_green_leaf_ground.png" id="19_x55sc"]
 [ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="20_5jsn0"]
 [ext_resource type="Resource" uid="uid://c8iivm16gu105" path="res://game_systems/items/recipe_books/normalize_potion_book.tres" id="21_oxed2"]
 [ext_resource type="PackedScene" uid="uid://ckpgxnig808b" path="res://level_components/objects/interactable/plants/blue_berry_bush.tscn" id="22_xy3of"]
@@ -45,9 +47,21 @@ resource_local_to_scene = true
 script = ExtResource("6_2nf3c")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
+[sub_resource type="Resource" id="Resource_udhdr"]
+script = ExtResource("9_1xt33")
+id = 100
+display_name = "Green Flakes"
+description = "Green herb leaves that have been ground up into flakes"
+texture = ExtResource("19_x55sc")
+max_qty = 32
+qty = 2
+on_consume_effects = Array[ExtResource("13_knha0")]([ExtResource("18_rtaeg")])
+on_consume_message = "I feel a burst of energy!"
+
 [sub_resource type="Resource" id="Resource_2ij7d"]
 resource_local_to_scene = true
 script = ExtResource("10_fmauf")
+items = Array[ExtResource("9_1xt33")]([SubResource("Resource_udhdr")])
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
 
 [sub_resource type="Resource" id="Resource_hohwf"]
@@ -377,8 +391,8 @@ text = "- Learn Attributes (Mass)
 Determine how to indicate that the side room is optional."
 
 [node name="DialogueTrigger" parent="." index="15" unique_id=2142945357 instance=ExtResource("34_kcotk")]
-position = Vector2(-141, -676.00006)
-scale = Vector2(1, 2)
+position = Vector2(-105.999985, -678.00006)
+scale = Vector2(1.685, 2)
 message = "I might need to come back later"
 initial_wait_time = 2.5
 

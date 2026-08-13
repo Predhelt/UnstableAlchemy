@@ -263,12 +263,12 @@ func save(dir : String) -> Dictionary:
 	else:
 		inv_path =  ""
 	
-	var ase_path : String = "%s/status_effects" % cur_path
+	var ase_path : String = "%s/status_effects/" % cur_path
 	if(not active_status_effects.is_empty() and 
 			not DirAccess.dir_exists_absolute(ase_path)):
 		DirAccess.make_dir_absolute(ase_path)
 	for se in active_status_effects:
-		ResourceSaver.save(se, "%s/%s.tres" % [ase_path, se.name])
+		ResourceSaver.save(se, "%s%s.tres" % [ase_path, se.name])
 	
 	var save_dict = {
 		"filename" : get_scene_file_path(),
