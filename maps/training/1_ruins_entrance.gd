@@ -73,8 +73,9 @@ func _ready() -> void:
 	refresh_input_messages()
 
 
-func save(_dir: String) -> Dictionary:
-	var save_dict = {
+func save(dir: String) -> Dictionary:
+	var save_dict: Dictionary = super(dir)
+	save_dict.merge({
 		"watched_cutscene" : watched_cutscene,
 		"grabbed_flakes_book" : grabbed_flakes_book,
 		"grabbed_herb" : grabbed_herb,
@@ -86,7 +87,7 @@ func save(_dir: String) -> Dictionary:
 		"crafted_flakes" : crafted_flakes,
 		"used_flakes" : used_flakes,
 		"plate_pressed" : plate_pressed,
-	}
+	})
 	return save_dict
 
 ## Gets called when loading a level

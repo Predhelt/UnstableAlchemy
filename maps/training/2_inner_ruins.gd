@@ -24,14 +24,15 @@ func _ready() -> void:
 		inventory_menu_ref.set_cauldron_visibility(false)
 
 
-func save(_dir: String) -> Dictionary:
-	var save_dict = {
+func save(dir: String) -> Dictionary:
+	var save_dict: Dictionary = super(dir)
+	save_dict.merge({
 		"watched_cutscene" : watched_cutscene,
 		"read_grow_book" : read_grow_book,
 		"crafted_green_paste" : crafted_green_paste,
 		"seen_cauldron_hint1" : seen_cauldron_hint1,
 		"minigame_opened" : minigame_opened,
-	}
+	})
 	return save_dict
 
 

@@ -202,6 +202,7 @@ func load_game() -> void:
 		if i != "current_level_path":
 			set(i, node_data[i])
 	var level_node: Node2D
+	#var player_init_inventory_path: String
 	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
 		level_node = load(current_level_path).instantiate()
@@ -214,7 +215,10 @@ func load_game() -> void:
 		if not parse_result == OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 		node_data = json.data
+		#player_init_inventory_path = node_data["player_init_inv_path"]
 		for i in node_data.keys():
+			#if i == "player_init_inv_path":
+				#continue
 			if typeof(node_data[i]) == typeof("String"):
 				level_node.set(i, str_to_var(node_data[i]))
 			else:
@@ -242,6 +246,11 @@ func load_game() -> void:
 	else:
 		print("ERROR: No level data found. Load Failed.")
 		return
+	
+	# EXPERIMENTAL: Set the player's initial inventory on level entered, if relevant inventory is reset when entered.
+	#if level_node.reset_inventory_on_start and player_init_inventory_path != "":
+		#var pii: Inventory = ResourceLoader.load(player_init_inventory_path, "", ResourceLoader.CACHE_MODE_REPLACE)
+		#level_node.player_initial_inventory = pii
 	
 	# Free the nodes in the persistent group to revert game state without cloning.
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -358,6 +367,7 @@ func load_user_variables() -> bool:
 	if not parse_result == OK:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 	var node_data = json.data
+	
 	for i in node_data.keys():
 		if typeof(node_data[i]) == typeof("String"):
 			UserVariables.set(i, str_to_var(node_data[i]))

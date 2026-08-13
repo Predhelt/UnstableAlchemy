@@ -251,23 +251,24 @@ func save(dir : String) -> Dictionary:
 	if not DirAccess.dir_exists_absolute(cur_path):
 		DirAccess.make_dir_recursive_absolute(cur_path)
 	
-	var att_path : String = "%s/characters/%s/attributes.tres" % [dir, name]
+	var att_path : String = "%s/attributes.tres" % cur_path
 	if attributes:
-		ResourceSaver.save(attributes, "%s/attributes.tres" % cur_path)
+		ResourceSaver.save(attributes, att_path)
 	else:
 		att_path = ""
 	
-	var inv_path : String = "%s/characters/%s/inventory.tres" % [dir, name]
+	var inv_path : String = "%s/inventory.tres" % cur_path
 	if inventory:
-		ResourceSaver.save(inventory, "%s/inventory.tres" % cur_path)
+		ResourceSaver.save(inventory, inv_path)
 	else:
 		inv_path =  ""
 	
+	var ase_path : String = "%s/status_effects" % cur_path
 	if(not active_status_effects.is_empty() and 
-			not DirAccess.dir_exists_absolute("%s/status_effects" % cur_path)):
-		DirAccess.make_dir_absolute("%s/status_effects" % cur_path)
+			not DirAccess.dir_exists_absolute(ase_path)):
+		DirAccess.make_dir_absolute(ase_path)
 	for se in active_status_effects:
-		ResourceSaver.save(se, "%s/status_effects/%s.tres" % [cur_path,se.name])
+		ResourceSaver.save(se, "%s/%s.tres" % [ase_path, se.name])
 	
 	var save_dict = {
 		"filename" : get_scene_file_path(),
@@ -288,7 +289,7 @@ func save(dir : String) -> Dictionary:
 		"objects_combined" : var_to_str(objects_combined),
 		"items_trade_received" : var_to_str(items_trade_received),
 		"items_used" : var_to_str(items_used),
-		"active_status_effects_path" : "%s/characters/%s/status_effects/" % [dir, name],
+		"active_status_effects_path" : ase_path,
 		"is_possessable" : is_possessable,
 		"character_possessed_by_name" : character_possessed_by_name,
 		"can_possess_others_count" : can_possess_others_count,

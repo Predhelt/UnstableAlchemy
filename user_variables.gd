@@ -1,4 +1,4 @@
-## Variables related to the user that are tracked globally.
+## Variables related to the user that are tracked globally. 
 extends Node
 ## Inventory of the player character when the most recent level was initially loaded.
 var inventory_level_start: Inventory

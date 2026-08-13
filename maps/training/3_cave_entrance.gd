@@ -8,10 +8,11 @@ func _ready() -> void:
 		$Cutscene.hide()
 
 
-func save(_dir: String) -> Dictionary:
-	var save_dict = {
+func save(dir: String) -> Dictionary:
+	var save_dict: Dictionary = super(dir)
+	save_dict.merge({
 		"watched_cutscene" : watched_cutscene,
-	}
+	})
 	return save_dict
 
 
