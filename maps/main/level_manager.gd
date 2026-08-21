@@ -16,18 +16,8 @@ func _ready() -> void:
 
 
 func save(_dir: String) -> Dictionary:
-	#var cur_path : String = "%s/%s" % [dir, name]
-	#if not DirAccess.dir_exists_absolute(cur_path):
-		#DirAccess.make_dir_recursive_absolute(cur_path)
-	#
-	#var player_init_inv_path : String = "%s/player_initial_inventory.tres" % [cur_path]
-	#if player_initial_inventory:
-		#ResourceSaver.save(player_initial_inventory, player_init_inv_path)
-	#else:
-		#player_init_inv_path = ""
 	
 	var save_dict = {
-		#"player_init_inv_path" : player_init_inv_path
 	}
 	return save_dict
 

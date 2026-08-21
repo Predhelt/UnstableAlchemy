@@ -1,7 +1,6 @@
 ## Global variables and functions
 extends Node
 #TODO: Remake UI with controller/mobile
-
 ## Index of the current save slot being used by UserVariables.
 var current_save_slot : int
 ## Reference to the main camera used for displaying to the user.
@@ -62,7 +61,7 @@ func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("reset_level") and mode == &"options":
 		#reset_level()
 
-# Sets the save slot index and loads the user data in the save slot, if any.
+## Sets the save slot index and loads the user data in the save slot, if any.
 func set_save_slot(slot_index: int):
 	current_save_slot = slot_index
 	if not load_user_variables():
@@ -118,8 +117,6 @@ func save_game() -> void:
 	if not DirAccess.dir_exists_absolute("user://saves"):
 		DirAccess.make_dir_absolute("user://saves")
 	var dir: String = "user://saves/slot%s" % current_save_slot
-	# Remove current (outdated) directories in save location
-	remove_directory(dir)
 	
 	#DirAccess.open(dir)
 	var save_file = FileAccess.open("%s.save" % dir, FileAccess.WRITE)
@@ -150,6 +147,11 @@ func save_game() -> void:
 		if !node.has_method("save"):
 			print("WARNING: Persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
+		# Remove current character node data if any exists
+		if node.is_class("CharacterBody2D"):
+			if DirAccess.dir_exists_absolute("%s/characters/%s" % [dir, node.name]):
+				remove_directory("%s/characters/%s" % [dir, node.name])
+		
 		# Call the node's save function.
 		node_data = node.call("save", dir)
 		
