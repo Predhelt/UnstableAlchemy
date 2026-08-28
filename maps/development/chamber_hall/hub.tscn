@@ -1,9 +1,14 @@
-[gd_scene format=3 uid="uid://cencmik2hcirm"]
+[gd_scene format=4 uid="uid://cencmik2hcirm"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_fckcg"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://character/components/attributes.gd" id="2_e84oo"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_knq13"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://character/components/inventory.gd" id="4_ubojp"]
+[ext_resource type="PackedScene" uid="uid://co1x243ro1gma" path="res://level_components/objects/triggers/trigger_area_level_change.tscn" id="5_e84oo"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="6_knq13"]
+[ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="7_23t83"]
+[ext_resource type="PackedScene" uid="uid://b1r70jwafbyrr" path="res://level_components/objects/collisions/boulder_pushable.tscn" id="8_pb724"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="9_jtf1f"]
 
 [sub_resource type="Resource" id="Resource_v7kb4"]
 resource_local_to_scene = true
@@ -20,3 +25,62 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 [node name="Player" parent="." index="3" unique_id=1026458739]
 attributes = SubResource("Resource_v7kb4")
 inventory = SubResource("Resource_23t83")
+
+[node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
+tile_map_data = PackedByteArray("AAAFAAMAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAUAAgAAAAAAAQAFAAYAAgAAAAAAAQAFAAcAAgAAAAAAAQAFAAgAAgAAAAAAAQAFAAkAAgAAAAAAAQAGAAMAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAGAAYAAgAAAAAAAQAGAAcAAgAAAAAAAQAGAAgAAgAAAAAAAQAGAAkAAgAAAAAAAQAHAAMAAgAAAAAAAQAHAAQAAgAAAAAAAQAHAAUAAgAAAAAAAQAHAAYAAgAAAAAAAQAHAAcAAgAAAAAAAQAHAAgAAgAAAAAAAQAHAAkAAgAAAAAAAQAIAAMAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAUAAgAAAAAAAQAIAAYAAgAAAAAAAQAIAAcAAgAAAAAAAQAIAAgAAgAAAAAAAQAIAAkAAgAAAAAAAQAJAAMAAgAAAAAAAQAJAAQAAgAAAAAAAQAJAAUAAgAAAAAAAQAJAAYAAgAAAAAAAQAJAAcAAgAAAAAAAQAJAAgAAgAAAAAAAQAJAAkAAgAAAAAAAQAKAAMAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAUAAgAAAAAAAQAKAAYAAgAAAAAAAQAKAAcAAgAAAAAAAQAKAAgAAgAAAAAAAQAKAAkAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQALAAUAAgAAAAAAAQALAAYAAgAAAAAAAQALAAcAAgAAAAAAAQALAAgAAgAAAAAAAQALAAkAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQAMAAYAAgAAAAAAAQAMAAcAAgAAAAAAAQAMAAgAAgAAAAAAAQAMAAkAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQANAAYAAgAAAAAAAQANAAcAAgAAAAAAAQANAAgAAgAAAAAAAQANAAkAAgAAAAAAAQAFAP3/AgAAAAAAAQAFAP7/AgAAAAAAAQAFAP//AgAAAAAAAQAFAAAAAgAAAAAAAQAFAAEAAgAAAAAAAQAFAAIAAgAAAAAAAQAGAP3/AgAAAAAAAQAGAP7/AgAAAAAAAQAGAP//AgAAAAAAAQAGAAAAAgAAAAAAAQAGAAEAAgAAAAAAAQAGAAIAAgAAAAAAAQAHAP3/AgAAAAAAAQAHAP7/AgAAAAAAAQAHAP//AgAAAAAAAQAHAAAAAgAAAAAAAQAHAAEAAgAAAAAAAQAHAAIAAgAAAAAAAQAIAP3/AgAAAAAAAQAIAP7/AgAAAAAAAQAIAP//AgAAAAAAAQAIAAAAAgAAAAAAAQAIAAEAAgAAAAAAAQAIAAIAAgAAAAAAAQAJAP3/AgAAAAAAAQAJAP7/AgAAAAAAAQAJAP//AgAAAAAAAQAJAAAAAgAAAAAAAQAJAAEAAgAAAAAAAQAJAAIAAgAAAAAAAQAKAP3/AgAAAAAAAQAKAP7/AgAAAAAAAQAKAP//AgAAAAAAAQAKAAAAAgAAAAAAAQAKAAEAAgAAAAAAAQAKAAIAAgAAAAAAAQALAP3/AgAAAAAAAQALAP7/AgAAAAAAAQALAP//AgAAAAAAAQALAAAAAgAAAAAAAQALAAEAAgAAAAAAAQALAAIAAgAAAAAAAQAMAP3/AgAAAAAAAQAMAP7/AgAAAAAAAQAMAP//AgAAAAAAAQAMAAAAAgAAAAAAAQAMAAEAAgAAAAAAAQAMAAIAAgAAAAAAAQANAP3/AgAAAAAAAQANAP7/AgAAAAAAAQANAP//AgAAAAAAAQANAAAAAgAAAAAAAQANAAEAAgAAAAAAAQANAAIAAgAAAAAAAQAOAAUAAgAAAAAAAQAOAAYAAgAAAAAAAQAOAAcAAgAAAAAAAQAPAAUAAgAAAAAAAQAPAAYAAgAAAAAAAQAPAAcAAgAAAAAAAQAQAAUAAgAAAAAAAQAQAAYAAgAAAAAAAQAQAAcAAgAAAAAAAQACAAUAAgAAAAAAAQACAAYAAgAAAAAAAQACAAcAAgAAAAAAAQADAAUAAgAAAAAAAQADAAYAAgAAAAAAAQADAAcAAgAAAAAAAQAEAAUAAgAAAAAAAQAEAAYAAgAAAAAAAQAEAAcAAgAAAAAAAQA=")
+
+[node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
+tile_map_data = PackedByteArray("AAAFAAMAAAADAAQAAAAGAAMAAAAEAAAAAAAHAAMAAAAEAAAAAAAIAAMAAAAHAAIAAAAKAAMAAAAGAAIAAAALAAMAAAAEAAAAAAAMAAMAAAAEAAAAAAANAAMAAAAEAAQAAAANAAkAAAAFAAIAAAAMAAkAAAAEAAAAAAALAAkAAAAEAAAAAAAKAAkAAAAEAAAAAAAJAAkAAAAEAAAAAAAIAAkAAAAEAAAAAAAHAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAFAAkAAAADAAIAAAAFAAQAAAADAAEAAAAFAAUAAAAFAAIAAAAFAAcAAAAFAAAAAAAFAAgAAAADAAEAAAANAAQAAAADAAEAAAANAAUAAAADAAIAAAANAAcAAAADAAAAAAANAAgAAAADAAEAAAAEAAUAAAAEAAAAAAADAAUAAAAEAAAAAAACAAUAAAAGAAIAAAAEAAcAAAAEAAAAAAADAAcAAAAEAAAAAAACAAcAAAAGAAIAAAAOAAcAAAAEAAAAAAAPAAcAAAAEAAAAAAAQAAcAAAAHAAIAAAAOAAUAAAAEAAAAAAAPAAUAAAAEAAAAAAAQAAUAAAAHAAIAAAANAAIAAAADAAEAAAANAAEAAAADAAEAAAANAAAAAAADAAEAAAANAP//AAADAAEAAAANAP7/AAADAAEAAAANAP3/AAAFAAAAAAAMAP3/AAAEAAAAAAALAP3/AAAEAAAAAAAKAP3/AAAEAAAAAAAJAP3/AAAEAAAAAAAIAP3/AAAEAAAAAAAHAP3/AAAEAAAAAAAGAP3/AAAEAAAAAAAFAP3/AAADAAAAAAAFAP7/AAADAAEAAAAFAP//AAADAAEAAAAFAAAAAAADAAEAAAAFAAEAAAADAAEAAAAFAAIAAAADAAEAAAA=")
+
+[node name="TriggerAreaLevelChange" parent="TriggerAreas/SceneChangeTriggers" parent_id_path=PackedInt32Array(1511736977) index="0" unique_id=1639851176 instance=ExtResource("5_e84oo")]
+position = Vector2(160, 416)
+
+[node name="TriggerAreaLevelChange2" parent="TriggerAreas/SceneChangeTriggers" parent_id_path=PackedInt32Array(1511736977) index="1" unique_id=1532991165 instance=ExtResource("5_e84oo")]
+position = Vector2(1056, 416)
+
+[node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=463050243 instance=ExtResource("6_knq13")]
+position = Vector2(608, 254)
+
+[node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("7_23t83")]
+position = Vector2(607, 544)
+door_refs = [NodePath("../SlidingDoor")]
+
+[node name="BoulderPushable" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=794065921 instance=ExtResource("8_pb724")]
+visible = false
+position = Vector2(723, 551)
+
+[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=1856845390 instance=ExtResource("9_jtf1f")]
+visible = false
+position = Vector2(481, 544)
+
+[node name="Label" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="0" unique_id=2104224278]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 339.0
+offset_right = 335.0
+offset_bottom = 362.0
+text = "Speed"
+
+[node name="Label2" type="Label" parent="Labels" parent_id_path=PackedInt32Array(957710452) index="1" unique_id=1159316168]
+layout_mode = 0
+offset_left = 857.0
+offset_top = 338.0
+offset_right = 924.0
+offset_bottom = 361.0
+text = "Strength"
+
+[node name="Label2" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="1" unique_id=1041185820]
+offset_left = 813.0
+offset_top = 391.0
+offset_right = 975.0
+offset_bottom = 440.0
+text = "Add Indicator that
+chamber is complete"
+
+[node name="Label" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="2" unique_id=973265304]
+offset_left = 243.0
+offset_top = 389.0
+offset_right = 405.0
+offset_bottom = 438.0
+text = "Add Indicator that
+chamber is complete"
