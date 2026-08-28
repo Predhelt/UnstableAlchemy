@@ -3,6 +3,9 @@ extends Node
 #TODO: Remake UI with controller/mobile
 ## Index of the current save slot being used by UserVariables.
 var current_save_slot : int
+## Tracks whether the player is currently in an instanced chamber to determine
+## how the game is saved.
+var is_in_chamber : bool = false
 ## Reference to the main camera used for displaying to the user.
 var focused_camera : Camera2D
 ## Reference to the node that has focus of the window's camera.
@@ -86,7 +89,7 @@ func _deferred_change_scene(path: String):
 		player_character = null
 	else:
 		player_character = get_tree().current_scene.get_node("Player")
-	if player_character:
+	if player_character and not is_in_chamber:
 		UserVariables.inventory_level_start = player_character.inventory.duplicate()
 	UserVariables.level_started = false
 	get_tree().change_scene_to_file(path)
@@ -101,7 +104,7 @@ func reset_level() -> void:
 	mode = &"default"
 	
 ## Displays notification in current scene with given [param message].
-func emit_notification(message : String):
+func emit_notification(message: String):
 	var new_notification: PanelContainer = Global.notification_effect.instantiate()
 	new_notification.set_text(message)
 	var notification_container = get_tree().current_scene.find_child("UILayer", false)
@@ -112,11 +115,16 @@ func emit_notification(message : String):
 		notification_container = notification_container.find_child("Notifications", false)
 	notification_container.add_child.call_deferred(new_notification)
 
-## Save the persistent game informaion to file. Uses [Dictionary] to store data in [JSON] format.
+## Save the game informaion to file depending on current game state.
+## Uses [Dictionary] to store data in [JSON] format.
 func save_game() -> void:
 	if not DirAccess.dir_exists_absolute("user://saves"):
 		DirAccess.make_dir_absolute("user://saves")
 	var dir: String = "user://saves/slot%s" % current_save_slot
+	#TODO: Set is_in_chamber to true / false on level change
+	if is_in_chamber: # saves file to "chamber" subfolder instead for chambers.
+		dir += "/chamber"
+		remove_directory(dir)
 	
 	#DirAccess.open(dir)
 	var save_file = FileAccess.open("%s.save" % dir, FileAccess.WRITE)
@@ -178,15 +186,18 @@ func save(_dir: String = "") -> Dictionary:
 		print("ERROR: No Level Path Found. Save Failed")
 	return {
 		"current_save_slot" : current_save_slot,
+		"is_in_chamber" : is_in_chamber, # Redundancy
 		"focused_camera" : focused_camera,
 		"focused_node" : focused_node,
 		"current_level_path" : current_level_path,
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}
 
-## Loads the game state based on the [member current_save_slot].
+## Loads the game state based on the game state.
 func load_game() -> void:
 	var dir = "user://saves/slot%s" % current_save_slot
+	if is_in_chamber: # load from "chamber" subfolder if in a chamber.
+		dir += "/chamber"
 	if not FileAccess.file_exists("%s.save" % dir):
 		print("ERROR: No save file \"%s.save\" found!" % dir)
 		return

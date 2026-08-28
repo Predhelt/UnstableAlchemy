@@ -172,7 +172,7 @@ metadata/_custom_type_script = "uid://oaa6rf4u4qtq"
 [node name="World" unique_id=1661168125 instance=ExtResource("1_5i83l")]
 script = ExtResource("2_jd8qc")
 level_index = 4
-reset_inventory_on_start = true
+is_chamber = true
 
 [node name="MusicAudioStream" parent="AudioStreams" parent_id_path=PackedInt32Array(1732733172) index="0" unique_id=678083454]
 stream = ExtResource("2_i678b")

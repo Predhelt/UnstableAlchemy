@@ -1,11 +1,14 @@
 class_name LevelManager extends Node2D
 
+## Index of the level used to track level order.
 @export var level_index: int = 0
-#@export var use_custom_inventory: bool = false
+## Identifies if the level is a chamber, which does not use external persistent node data.
+@export var is_chamber: bool = false
 
 func _ready() -> void:
 	Global.current_level_path = scene_file_path
-	if(#not use_custom_inventory and
+	Global.is_in_chamber = is_chamber
+	if(not is_chamber and
 			not UserVariables.level_started and 
 			UserVariables.inventory_level_start):
 		var player: Character = find_child("Player", false)
