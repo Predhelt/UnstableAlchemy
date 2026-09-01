@@ -1,16 +1,25 @@
-[gd_scene format=3 uid="uid://dg0xqi7jl3jk"]
+[gd_scene format=4 uid="uid://dg0xqi7jl3jk"]
 
 [ext_resource type="PackedScene" uid="uid://cr3i0ndcmeftb" path="res://maps/development/main_scene_template.tscn" id="1_swjlk"]
 [ext_resource type="Script" uid="uid://ctfdopu68mcmr" path="res://character/components/attributes.gd" id="2_8iksr"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="3_qudj1"]
 [ext_resource type="Script" uid="uid://cd5xw28biljd0" path="res://character/components/inventory.gd" id="4_77ds0"]
+[ext_resource type="PackedScene" uid="uid://cjw4k1o1djxtg" path="res://level_components/objects/interactable/plants/green_herb.tscn" id="5_ivx2s"]
+[ext_resource type="PackedScene" uid="uid://dle8dng5mtld0" path="res://level_components/objects/triggers/pressure_plate.tscn" id="6_akrao"]
+[ext_resource type="Texture2D" uid="uid://bsdygcp7ggkgp" path="res://art/pack/objects/pressure_plates/object_pressure_plate_green.png" id="6_p2ec2"]
+[ext_resource type="Texture2D" uid="uid://dls8br8cftr5t" path="res://art/pack/objects/pressure_plates/object-pressure-plate_orange.png" id="7_bus14"]
+[ext_resource type="Texture2D" uid="uid://cjbe03pjayeit" path="res://art/pack/objects/pressure_plates/object-pressure-plate_purple.png" id="8_tk8w6"]
+[ext_resource type="PackedScene" uid="uid://dkqs8bymlk354" path="res://level_components/objects/triggers/sliding_door_horizontal.tscn" id="9_qvd37"]
+[ext_resource type="Texture2D" uid="uid://crkop74rurk3d" path="res://art/pack/objects/doors/slide_door_green.png" id="10_tdbkj"]
+[ext_resource type="Texture2D" uid="uid://bqmf08giwjseg" path="res://art/pack/objects/doors/slide_door_orange.png" id="11_pp3w1"]
+[ext_resource type="Texture2D" uid="uid://b3575tdew1b54" path="res://art/pack/objects/doors/slide_door_purple.png" id="12_bus14"]
 
-[sub_resource type="Resource" id="Resource_63yk1"]
+[sub_resource type="Resource" id="Resource_bus14"]
 resource_local_to_scene = true
 script = ExtResource("2_8iksr")
 metadata/_custom_type_script = "uid://ctfdopu68mcmr"
 
-[sub_resource type="Resource" id="Resource_i1l1b"]
+[sub_resource type="Resource" id="Resource_tk8w6"]
 resource_local_to_scene = true
 script = ExtResource("4_77ds0")
 metadata/_custom_type_script = "uid://cd5xw28biljd0"
@@ -18,5 +27,69 @@ metadata/_custom_type_script = "uid://cd5xw28biljd0"
 [node name="World" unique_id=1661168125 instance=ExtResource("1_swjlk")]
 
 [node name="Player" parent="." index="3" unique_id=1026458739]
-attributes = SubResource("Resource_63yk1")
-inventory = SubResource("Resource_i1l1b")
+position = Vector2(600, 216)
+attributes = SubResource("Resource_bus14")
+inventory = SubResource("Resource_tk8w6")
+
+[node name="Ground" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="0" unique_id=513150705]
+tile_map_data = PackedByteArray("AAAFAAMAAgAAAAAAAQAFAAQAAgAAAAAAAQAFAAUAAgAAAAAAAQAGAAMAAgAAAAAAAQAGAAQAAgAAAAAAAQAGAAUAAgAAAAAAAQAHAAMAAgAAAAAAAQAHAAQAAgAAAAAAAQAHAAUAAgAAAAAAAQAIAAMAAgAAAAAAAQAIAAQAAgAAAAAAAQAIAAUAAgAAAAAAAQAJAAMAAgAAAAAAAQAJAAQAAgAAAAAAAQAJAAUAAgAAAAAAAQAKAAMAAgAAAAAAAQAKAAQAAgAAAAAAAQAKAAUAAgAAAAAAAQALAAMAAgAAAAAAAQALAAQAAgAAAAAAAQALAAUAAgAAAAAAAQAMAAMAAgAAAAAAAQAMAAQAAgAAAAAAAQAMAAUAAgAAAAAAAQANAAMAAgAAAAAAAQANAAQAAgAAAAAAAQANAAUAAgAAAAAAAQAEAPz/AgAAAAAAAQAEAP3/AgAAAAAAAQAEAP7/AgAAAAAAAQAEAP//AgAAAAAAAQAFAPz/AgAAAAAAAQAFAP3/AgAAAAAAAQAFAP7/AgAAAAAAAQAFAP//AgAAAAAAAQAGAPz/AgAAAAAAAQAGAP3/AgAAAAAAAQAGAP7/AgAAAAAAAQAGAP//AgAAAAAAAQAHAPz/AgAAAAAAAQAHAP3/AgAAAAAAAQAHAP7/AgAAAAAAAQAHAP//AgAAAAAAAQAIAPz/AgAAAAAAAQAIAP3/AgAAAAAAAQAIAP7/AgAAAAAAAQAIAP//AgAAAAAAAQAJAPz/AgAAAAAAAQAJAP3/AgAAAAAAAQAJAP7/AgAAAAAAAQAJAP//AgAAAAAAAQAKAPz/AgAAAAAAAQAKAP3/AgAAAAAAAQAKAP7/AgAAAAAAAQAKAP//AgAAAAAAAQALAPz/AgAAAAAAAQALAP3/AgAAAAAAAQALAP7/AgAAAAAAAQALAP//AgAAAAAAAQAMAPz/AgAAAAAAAQAMAP3/AgAAAAAAAQAMAP7/AgAAAAAAAQAMAP//AgAAAAAAAQANAPz/AgAAAAAAAQANAP3/AgAAAAAAAQANAP7/AgAAAAAAAQANAP//AgAAAAAAAQAKAPv/AgAAAAAAAQALAPr/AgAAAAAAAQALAPv/AgAAAAAAAQAMAPr/AgAAAAAAAQAMAPv/AgAAAAAAAQANAPr/AgAAAAAAAQANAPv/AgAAAAAAAQAOAPr/AgAAAAAAAQAHAPv/AgAAAAAAAQAIAPv/AgAAAAAAAQAJAPv/AgAAAAAAAQAFAAAAAgAAAAAAAQAFAAEAAgAAAAAAAQAFAAIAAgAAAAAAAQAGAAAAAgAAAAAAAQAGAAEAAgAAAAAAAQAGAAIAAgAAAAAAAQAHAAAAAgAAAAAAAQAHAAEAAgAAAAAAAQAHAAIAAgAAAAAAAQAIAAAAAgAAAAAAAQAIAAEAAgAAAAAAAQAIAAIAAgAAAAAAAQAJAAAAAgAAAAAAAQAJAAEAAgAAAAAAAQAJAAIAAgAAAAAAAQAKAAAAAgAAAAAAAQAKAAEAAgAAAAAAAQAKAAIAAgAAAAAAAQALAAAAAgAAAAAAAQALAAEAAgAAAAAAAQALAAIAAgAAAAAAAQAMAAAAAgAAAAAAAQAMAAEAAgAAAAAAAQAMAAIAAgAAAAAAAQANAAAAAgAAAAAAAQANAAEAAgAAAAAAAQANAAIAAgAAAAAAAQAEAAAAAgAAAAAAAQAEAAEAAgAAAAAAAQAEAAIAAgAAAAAAAQAEAAMAAgAAAAAAAQAEAAQAAgAAAAAAAQAEAAUAAgAAAAAAAQADAAEAAgAAAAAAAQADAAAAAgAAAAAAAQADAP//AgAAAAAAAQADAP7/AgAAAAAAAQADAP3/AgAAAAAAAQADAPz/AgAAAAAAAQAPAPr/AgAAAAAAAQAPAPv/AgAAAAAAAQAPAPz/AgAAAAAAAQAPAP3/AgAAAAAAAQAPAP7/AgAAAAAAAQAOAP7/AgAAAAAAAQAOAP3/AgAAAAAAAQAOAPz/AgAAAAAAAQAOAPv/AgAAAAAAAQAOAP//AgAAAAAAAQAOAAAAAgAAAAAAAQAOAAEAAgAAAAAAAQAOAAIAAgAAAAAAAQAOAAMAAgAAAAAAAQAOAAQAAgAAAAAAAQAOAAUAAgAAAAAAAQA=")
+
+[node name="Top" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="1" unique_id=562609937]
+tile_map_data = PackedByteArray("AAAFAAMAAgACAAAAAAAGAP7/AgADAAAAAAAHAP//AgAEAAAAAAAMAP//AgAEAAAAAAANAAAAAgAEAAAAAAANAAIAAgACAAAAAAA=")
+
+[node name="Wall" parent="TileMaps" parent_id_path=PackedInt32Array(852621162) index="2" unique_id=1214339347]
+tile_map_data = PackedByteArray("AAAFAAUAAAAEAAAAAAANAAUAAAAEAAAAAAALAP//AAAHAAEAAAALAP7/AAAEAAYAAAAFAPz/AAAEAAAAAAAEAPz/AAAEAAAAAAAGAAUAAAAEAAUAAAAHAAQAAAABAAAAAAAHAAUAAAABAAIAAAAIAAQAAAACAAAAAAAIAAUAAAACAAUAAAAJAAUAAAAEAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAEAAUAAAALAAQAAAABAAAAAAALAAUAAAABAAIAAAAMAAUAAAACAAUAAAAHAPz/AAAEAAQAAAALAP3/AAADAAEAAAAHAP7/AAADAAEAAAAHAP//AAAEAAYAAAAIAAAAAAACAAEAAAAIAAEAAAACAAIAAAAKAAAAAAAAAAEAAAAKAAEAAAAAAAIAAAALAPv/AAAEAAQAAAALAPz/AAADAAEAAAAPAPv/AAADAAEAAAAPAPz/AAADAAEAAAAPAP3/AAADAAEAAAAPAP7/AAAFAAIAAAAHAPv/AAADAAAAAAAIAPv/AAAEAAAAAAAJAPv/AAAEAAAAAAAKAPv/AAAEAAAAAAAIAP//AAACAAAAAAAKAP//AAAAAAAAAAAOAP7/AAADAAAAAAAPAPr/AAAFAAAAAAAOAPr/AAAEAAAAAAANAPr/AAAEAAAAAAAMAPr/AAAEAAAAAAALAPr/AAADAAAAAAADAPz/AAADAAAAAAADAP3/AAADAAEAAAADAP7/AAADAAEAAAADAP//AAADAAEAAAADAAAAAAADAAEAAAAMAP7/AAACAAAAAAAEAAQAAAADAAEAAAAEAAUAAAADAAIAAAAGAAQAAAAAAAAAAAAMAAQAAAACAAAAAAAOAAQAAAADAAEAAAAOAAUAAAAFAAIAAAADAAEAAAADAAIAAAAEAAEAAAAFAAAAAAAGAAEAAAAGAAIAAAAHAAEAAAAEAAUAAAAMAAEAAAACAAIAAAAMAAAAAAACAAEAAAAMAP//AAACAAEAAAAOAP//AAADAAEAAAAOAAAAAAADAAEAAAAOAAEAAAADAAEAAAAOAAIAAAADAAEAAAAOAAMAAAADAAEAAAAEAAIAAAADAAEAAAAEAAMAAAADAAEAAAALAAAAAAABAAEAAAALAAEAAAABAAIAAAAGAPz/AAAEAAAAAAAHAP3/AAADAAEAAAAHAAAAAAAAAAEAAAA=")
+
+[node name="PressurePlate" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=202554750 node_paths=PackedStringArray("door_refs") instance=ExtResource("6_akrao")]
+position = Vector2(352, 288)
+texture = ExtResource("6_p2ec2")
+door_refs = [NodePath("../SlidingDoor")]
+
+[node name="PressurePlate2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="1" unique_id=2056969035 node_paths=PackedStringArray("door_refs") instance=ExtResource("6_akrao")]
+position = Vector2(608, 288)
+texture = ExtResource("7_bus14")
+door_refs = [NodePath("../SlidingDoor2")]
+
+[node name="PressurePlate3" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="2" unique_id=1539692412 node_paths=PackedStringArray("door_refs") instance=ExtResource("6_akrao")]
+position = Vector2(864, 288)
+texture = ExtResource("8_tk8w6")
+door_refs = [NodePath("../SlidingDoor3")]
+
+[node name="SlidingDoor" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="3" unique_id=463050243 instance=ExtResource("9_qvd37")]
+position = Vector2(352, 126)
+texture = ExtResource("10_tdbkj")
+
+[node name="SlidingDoor2" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="4" unique_id=1611633884 instance=ExtResource("9_qvd37")]
+position = Vector2(608, 62)
+texture = ExtResource("11_pp3w1")
+
+[node name="SlidingDoor3" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="5" unique_id=2032991968 instance=ExtResource("9_qvd37")]
+position = Vector2(864, -2)
+texture = ExtResource("12_bus14")
+
+[node name="GreenHerb" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="0" unique_id=1856845390 instance=ExtResource("5_ivx2s")]
+position = Vector2(392, -16)
+
+[node name="GreenHerb2" parent="Objects" parent_id_path=PackedInt32Array(354937822) index="1" unique_id=13387652 instance=ExtResource("5_ivx2s")]
+position = Vector2(672, -160)
+
+[node name="Label" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="1" unique_id=1168266846]
+offset_left = 304.0
+offset_top = 32.0
+offset_right = 414.0
+offset_bottom = 55.0
+text = "Regular speed"
+
+[node name="Label2" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="2" unique_id=299521424]
+offset_left = 536.0
+offset_top = -104.0
+offset_right = 685.0
+offset_bottom = -81.0
+text = "Minor speed bonus"
+
+[node name="Label3" type="Label" parent="CanvasEditorOnly" parent_id_path=PackedInt32Array(682310095) index="3" unique_id=889661204]
+offset_left = 792.0
+offset_top = -168.0
+offset_right = 940.0
+offset_bottom = -145.0
+text = "Major speed bonus"
