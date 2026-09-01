@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cxyr6r0o810gf"]
+
+[ext_resource type="Texture2D" uid="uid://do57esjsyrj2l" path="res://art/pack/characters/green_robe/run_right_frame0000.png" id="1_yrg83"]
+[ext_resource type="Texture2D" uid="uid://blfe4nkggea48" path="res://art/pack/characters/green_robe/run_right_frame0002.png" id="2_utnkl"]
+[ext_resource type="Texture2D" uid="uid://cia0m3byifmk1" path="res://art/pack/characters/green_robe/run_right_frame0004.png" id="3_ltqsy"]
+[ext_resource type="Texture2D" uid="uid://fwta5ximbf4c" path="res://art/pack/characters/green_robe/run_right_frame0006.png" id="4_mm8vm"]
+
+[sub_resource type="Animation" id="Animation_6ywto"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_2m2ob"]
+resource_name = "walk_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_yrg83"), ExtResource("2_utnkl"), ExtResource("3_ltqsy"), ExtResource("4_mm8vm")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7es5r"]
+_data = {
+&"RESET": SubResource("Animation_6ywto"),
+&"walk_right": SubResource("Animation_2m2ob")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yrg83"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_utnkl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cv2ll"]
+states/Start/position = Vector2(537, 100)
+states/walk_right/node = SubResource("AnimationNodeAnimation_yrg83")
+states/walk_right/position = Vector2(728, 100)
+transitions = ["Start", "walk_right", SubResource("AnimationNodeStateMachineTransition_utnkl")]
+
+[node name="LoadingScreen" type="Control" unique_id=921214729]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="ColorRect" parent="." unique_id=1215872709]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.18717614, 0.18717614, 0.18717614, 1)
+
+[node name="Label" type="Label" parent="." unique_id=348123662]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -66.0
+offset_right = 218.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "LOADING"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1953230947]
+position = Vector2(1213, 653)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2059484282]
+libraries/ = SubResource("AnimationLibrary_7es5r")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1129039606]
+tree_root = SubResource("AnimationNodeStateMachine_cv2ll")
+anim_player = NodePath("../AnimationPlayer")
