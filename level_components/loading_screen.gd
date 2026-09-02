@@ -30,7 +30,7 @@ func emit_particles():
 	$HSlider.value = 0
 	var num_particles : float = len(particles)
 	var cur_particle : PackedScene
-	for i in range(particles):
+	for i in range(len(particles)):
 		cur_particle = load(particles[i])
 		cur_particle.instantiate()
 		HSlider.value = (i/num_particles)*100
