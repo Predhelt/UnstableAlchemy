@@ -32,7 +32,6 @@ clip_1/stream = ExtResource("5_go074")
 clip_1/auto_advance = 0
 
 [node name="ObjectDestroyedEffect" type="GPUParticles2D" unique_id=1143452162]
-position = Vector2(0, -1)
 emitting = false
 amount = 20
 lifetime = 0.2

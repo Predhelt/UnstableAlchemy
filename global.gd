@@ -1,6 +1,11 @@
 ## Global variables and functions
 extends Node
 #TODO: Remake UI with controller/mobile
+## The loading screen used to load the next scene.
+var loading_screen = preload("res://level_components/loading_screen.tscn")
+## The scene to be loaded next, if any. Loads the title screen by default.
+var next_scene: String = "res://maps/menu/title_screen.tscn"
+
 ## Index of the current save slot being used by UserVariables.
 var current_save_slot : int
 ## Tracks whether the player is currently in an instanced chamber to determine
@@ -51,6 +56,8 @@ var sfx_volume := 80.0
 ## Ambient Volume
 var ambient_volume := 80.0
 
+#func _ready() -> void:
+
 ## Checks input action events and closes a window.
 ## Closes the center window, or right, or left, respectively.
 func _input(event: InputEvent) -> void:
@@ -92,7 +99,12 @@ func _deferred_change_scene(path: String):
 	if player_character and not is_in_chamber:
 		UserVariables.inventory_level_start = player_character.inventory.duplicate()
 	UserVariables.level_started = false
-	get_tree().change_scene_to_file(path)
+	next_scene = path #TODO: determine if there is a more appropriate time to set this.
+	get_tree().change_scene_to_packed(loading_screen)
+	
+func _on_loading_screen_completed():
+	var packed_scene = ResourceLoader.load_threaded_get(Global.next_scene)
+	get_tree().change_scene_to_packed(packed_scene)
 
 ## Resets the current level
 func reset_level() -> void:

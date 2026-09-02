@@ -190,7 +190,7 @@ scale = Vector2(1.5, 1.5)
 [node name="TriggerAreaLevelChange" parent="TriggerAreas/SceneChangeTriggers" parent_id_path=PackedInt32Array(1511736977) index="0" unique_id=1639851176 instance=ExtResource("16_3u314")]
 position = Vector2(-31.999998, -1696)
 scale = Vector2(3, 1)
-level_path = "uid://vpd53ywg8mcr"
+level_path = "res://maps/training/4_inner_cave.tscn"
 is_level_cleared = true
 
 [node name="BlockageArea" parent="PuzzleNodes" parent_id_path=PackedInt32Array(175330546) index="0" unique_id=698375174 instance=ExtResource("17_r1a14")]

@@ -1,9 +1,9 @@
 extends Area2D
 
 ## File path of the level to be loaded.
-@export_file var level_path
+@export_file_path var level_path : String
 
-@export var is_level_cleared: bool = false
+@export var is_level_cleared : bool = false
 
 #func _ready() -> void:
 	#level_path = level_path.replace('.remap','')

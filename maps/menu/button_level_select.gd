@@ -1,7 +1,7 @@
 class_name LevelSelectButton extends Button
 
 ## File path of the level to be loaded.
-@export_file var level_path
+@export_file_path var level_path
 
 
 func _on_pressed() -> void:
