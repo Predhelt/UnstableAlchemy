@@ -3,8 +3,7 @@ extends LevelManager
 var mysterious_crystal : Item = preload("res://game_systems/items/gatherable/mysterious_crystal.tres")
 
 
-func _ready() -> void:
-	super()
+func setup_level():
 	Global.mode = &"default"
 	EventHandler.open_popup_message(
 		"This is the final puzzle of the demo.

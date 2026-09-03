@@ -80,7 +80,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.18717614, 0.18717614, 0.18717614, 1)
 
-[node name="Label" type="Label" parent="ColorRect" unique_id=348123662]
+[node name="LabelLoading" type="Label" parent="." unique_id=348123662]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -96,13 +96,23 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 96
 text = "LOADING"
 
+[node name="LabelLoadDescription" type="Label" parent="." unique_id=1201708315]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.62
+anchor_right = 0.5
+anchor_bottom = 0.62
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="HSlider" type="HSlider" parent="." unique_id=1977444850]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.333
-anchor_top = 0.6
+anchor_top = 0.7
 anchor_right = 0.66
-anchor_bottom = 0.6
+anchor_bottom = 0.71
 offset_left = -4.0
 offset_top = -8.0
 offset_right = 4.0
@@ -115,7 +125,7 @@ editable = false
 scrollable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1953230947]
-position = Vector2(1213, 653)
+position = Vector2(1213, 638)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2059484282]
 libraries/ = SubResource("AnimationLibrary_7es5r")

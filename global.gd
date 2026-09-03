@@ -4,7 +4,11 @@ extends Node
 ## The loading screen used to load the next scene.
 var loading_screen = preload("res://level_components/loading_screen.tscn")
 ## The scene to be loaded next, if any. Loads the title screen by default.
-var next_scene: String = "res://maps/menu/title_screen.tscn"
+var next_scene_path: String = "res://maps/menu/title_screen.tscn"
+## Tracks whether any loading that is currently being done is from a save file.
+var is_loading_from_save: bool = false
+
+signal scene_loaded
 
 ## Index of the current save slot being used by UserVariables.
 var current_save_slot : int
@@ -99,12 +103,14 @@ func _deferred_change_scene(path: String):
 	if player_character and not is_in_chamber:
 		UserVariables.inventory_level_start = player_character.inventory.duplicate()
 	UserVariables.level_started = false
-	next_scene = path #TODO: determine if there is a more appropriate time to set this.
+	next_scene_path = path #TODO: determine if there is a more appropriate time to set this.
 	get_tree().change_scene_to_packed(loading_screen)
 	
 func _on_loading_screen_completed():
-	var packed_scene = ResourceLoader.load_threaded_get(Global.next_scene)
-	get_tree().change_scene_to_packed(packed_scene)
+	#var scene : Node2D
+	var packed_scene := ResourceLoader.load_threaded_get(next_scene_path)
+	if get_tree().change_scene_to_packed(packed_scene) == OK:
+		scene_loaded.emit()
 
 ## Resets the current level
 func reset_level() -> void:
@@ -133,7 +139,6 @@ func save_game() -> void:
 	if not DirAccess.dir_exists_absolute("user://saves"):
 		DirAccess.make_dir_absolute("user://saves")
 	var dir: String = "user://saves/slot%s" % current_save_slot
-	#TODO: Set is_in_chamber to true / false on level change
 	if is_in_chamber: # saves file to "chamber" subfolder instead for chambers.
 		dir += "/chamber"
 		remove_directory(dir)
@@ -146,13 +151,13 @@ func save_game() -> void:
 	var json_string: String = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
-	# Store level data next.
-	node_data = get_tree().current_scene.call("save", dir)
+	# Store the user data next.
+	node_data = UserVariables.call("save", dir)
 	json_string = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
-	# Store the user data next.
-	node_data = UserVariables.call("save", dir)
+	# Store level data next.
+	node_data = get_tree().current_scene.call("save", dir)
 	json_string = JSON.stringify(node_data)
 	save_file.store_line(json_string)
 	
@@ -205,8 +210,9 @@ func save(_dir: String = "") -> Dictionary:
 		"cauldron_craft_speed_mult" : cauldron_craft_speed_mult,
 	}
 
-## Loads the game state based on the game state.
+## Loads the game state.
 func load_game() -> void:
+	is_loading_from_save = true
 	var dir = "user://saves/slot%s" % current_save_slot
 	if is_in_chamber: # load from "chamber" subfolder if in a chamber.
 		dir += "/chamber"
@@ -226,28 +232,13 @@ func load_game() -> void:
 	for i in node_data.keys():
 		if i != "current_level_path":
 			set(i, node_data[i])
-	var level_node: Node2D
-	#var player_init_inventory_path: String
+	
+	var level_node: LevelManager
 	if node_data.get("current_level_path"):
 		current_level_path = node_data["current_level_path"]
-		level_node = load(current_level_path).instantiate()
-		get_tree().change_scene_to_node(level_node)
-		
-		# Set level variables
-		json_string = save_file.get_line()
-		#json = JSON.new()
-		parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-		node_data = json.data
-		#player_init_inventory_path = node_data["player_init_inv_path"]
-		for i in node_data.keys():
-			#if i == "player_init_inv_path":
-				#continue
-			if typeof(node_data[i]) == typeof("String"):
-				level_node.set(i, str_to_var(node_data[i]))
-			else:
-				level_node.set(i, node_data[i])
+
+		next_scene_path = current_level_path
+		get_tree().change_scene_to_packed(loading_screen)
 		
 		# Set User Variables
 		json_string = save_file.get_line()
@@ -267,15 +258,28 @@ func load_game() -> void:
 				UserVariables.set(i, node_data[i])
 		
 		# Wait for the scene to load before continuing.
-		await level_node.ready
+		await scene_loaded
+		# Then wait for the loaded scene to be added to the tree.
+		await get_tree().scene_changed
+		level_node = get_tree().current_scene
+		
+		# Set level variables
+		json_string = save_file.get_line()
+		parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		node_data = json.data
+		for i in node_data.keys():
+			if typeof(node_data[i]) == typeof("String"):
+				level_node.set(i, str_to_var(node_data[i]))
+			else:
+				level_node.set(i, node_data[i])
+		
+		level_node.setup_level()
+		
 	else:
 		print("ERROR: No level data found. Load Failed.")
 		return
-	
-	# EXPERIMENTAL: Set the player's initial inventory on level entered, if relevant inventory is reset when entered.
-	#if level_node.use_custom_inventory and player_init_inventory_path != "":
-		#var pii: Inventory = ResourceLoader.load(player_init_inventory_path, "", ResourceLoader.CACHE_MODE_REPLACE)
-		#level_node.player_initial_inventory = pii
 	
 	# Free the nodes in the persistent group to revert game state without cloning.
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -335,7 +339,6 @@ func load_game() -> void:
 		if node_data.get(field) and node_data[field] != "":
 			new_object.inventory = ResourceLoader.load(node_data[field], "", ResourceLoader.CACHE_MODE_REPLACE)
 			#TODO: Check if replacing cached version is making a difference.
-			#FIXME: Replace the existing inventory instead of loading a new instance?
 		# Set the attributes before setting parent node to scene.
 		field = "attributes_path"
 		if node_data.get(field) and node_data[field] != "":
@@ -371,10 +374,12 @@ func load_game() -> void:
 	if level_node.has_method("connect_signals"):
 		level_node.call_deferred("connect_signals")
 	mode = &"default"
+	is_loading_from_save = false
 
 
 ## Loads just the user data to UserVariables based on the [member current_save_slot]'s .save file.
 func load_user_variables() -> bool:
+	is_loading_from_save = true
 	var dir = "user://saves/slot%s" % current_save_slot
 	if not FileAccess.file_exists("%s.save" % dir):
 		return false
@@ -398,4 +403,5 @@ func load_user_variables() -> bool:
 			UserVariables.set(i, str_to_var(node_data[i]))
 		else:
 			UserVariables.set(i, node_data[i])
+	is_loading_from_save = false
 	return true

@@ -16,7 +16,11 @@ func _ready() -> void:
 			for item in UserVariables.inventory_level_start.items:
 				player.inventory.add_item(item.duplicate())
 	UserVariables.level_started = true
+	setup_level()
 
+## Configures custom setup for a given level. Separate from _ready() to allow setup to be repeated.
+func setup_level():
+	pass
 
 func save(_dir: String) -> Dictionary:
 	

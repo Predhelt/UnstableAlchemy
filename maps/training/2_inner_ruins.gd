@@ -10,8 +10,8 @@ var crafted_green_paste: bool = false
 var seen_cauldron_hint1: bool = false
 var minigame_opened: bool = false
 
-func _ready() -> void:
-	super()
+
+func setup_level():
 	if watched_cutscene:
 		$Cutscene.hide()
 	if UserVariables.has_looped:

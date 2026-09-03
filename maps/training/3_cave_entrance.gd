@@ -2,8 +2,8 @@ extends LevelManager
 
 var watched_cutscene: bool = false
 
-func _ready() -> void:
-	super()
+
+func setup_level():
 	if watched_cutscene:
 		$Cutscene.hide()
 

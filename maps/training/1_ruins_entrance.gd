@@ -22,14 +22,14 @@ var plate_pressed: bool = false
 
 ## Initialize HUD UI functionality before load potentially overrides this.
 func _init() -> void:
-	UserVariables.is_inventory_disabled = true
-	UserVariables.is_log_book_disabled = true
-	UserVariables.is_recipe_book_disabled = true
+	if not Global.is_loading_from_save:
+		UserVariables.is_inventory_disabled = true
+		UserVariables.is_log_book_disabled = true
+		UserVariables.is_recipe_book_disabled = true
 
 ## Hide UI and disable hotkeys that are not necessary on scene start.
 ## Uses global and level variables from save data to determine state.
-func _ready() -> void:
-	super()
+func setup_level():
 	if watched_cutscene:
 		$Cutscene.hide()
 	if UserVariables.has_looped:
