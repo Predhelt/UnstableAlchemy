@@ -1,11 +1,10 @@
 extends Control
 
+var effect_object_destroyed = preload("res://art/effects/object_destroyed_effect.tscn")
 ## List of particles that should be emitted once to prevent lag during gameplay.
-var particles : Array[String] = [
-	"res://art/effects/object_destroyed_effect.tscn"
+var particles: Array = [
+	effect_object_destroyed
 ]
-## Tracks if particles have been emitted already during a load.
-var particles_emitted : bool = false
 
 var is_complete: bool = false
 
@@ -25,9 +24,9 @@ func _process(_delta: float) -> void:
 	
 	if not is_complete and progress[0] == 1:
 		is_complete = true
-		if not particles_emitted:
+		if not Global.particles_cached:
 			await emit_particles()
-			particles_emitted = true
+			Global.particles_cached = true
 		loading_completed.emit()
 
 ## Emit particles during loading so that any first-time emission lag is removed.
@@ -37,12 +36,14 @@ func emit_particles() -> bool:
 	# Disable SFX audio bus
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), true)
 	var num_particles: float = len(particles)
-	var cur_particle: GPUParticles2D
 	for i in range(num_particles):
-		var packed_particle = load(particles[i])
-		cur_particle = packed_particle.instantiate()
-		add_child(cur_particle)
-		await cur_particle.tree_exited #NOTE: Plays each particle until finished.
+		var particle_instance: GPUParticles2D
+		particle_instance = particles[i].instantiate()
+		particle_instance.set_one_shot(true)
+		particle_instance.set_modulate(Color(1,1,1,0))
+		particle_instance.set_emitting(true)
+		add_child(particle_instance)
+		await particle_instance.tree_exited #NOTE: Plays each particle until finished.
 		$HSlider.value = (i/num_particles)*100
 	# Enable SFX audio bus
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), false)

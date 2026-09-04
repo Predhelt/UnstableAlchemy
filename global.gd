@@ -7,6 +7,8 @@ var loading_screen = preload("res://level_components/loading_screen.tscn")
 var next_scene_path: String = "res://maps/menu/title_screen.tscn"
 ## Tracks whether any loading that is currently being done is from a save file.
 var is_loading_from_save: bool = false
+## Tracks whether the particles have been chached during the current game execution.
+var particles_cached: bool = false
 
 signal scene_loaded
 
