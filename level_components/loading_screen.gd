@@ -40,7 +40,7 @@ func emit_particles() -> bool:
 		var particle_instance: GPUParticles2D
 		particle_instance = particles[i].instantiate()
 		particle_instance.set_one_shot(true)
-		particle_instance.set_modulate(Color(1,1,1,0))
+		particle_instance.set_modulate(Color(1,1,1,0.1))
 		particle_instance.set_emitting(true)
 		add_child(particle_instance)
 		await particle_instance.tree_exited #NOTE: Plays each particle until finished.
