@@ -393,7 +393,7 @@ func move_character(vector : Vector2) -> void:
 		velocity = direction * attributes.get_attribute("move speed") * 2 # base speed too slow, doubles it.
 		move_and_slide()
 
-# TODO: Change animations when certain criteria are met
+## Change animations when certain criteria are met
 func update_animation_parameters() -> void:
 	if Global.mode != &"default":
 		animation_tree.active = false

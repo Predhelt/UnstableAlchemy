@@ -1,9 +1,10 @@
+## Defines global custom events 
 extends Node
 
 var popup_message_ref : PackedScene = preload("res://level_components/ui/windows/popups/popup_message.tscn")
 
 
-## Apply the [param se] to the [param character]. This should not get called currently.
+## Apply the [param se] to the [param character]. WARNING: This should not currently get called.
 func apply_status_effect(character: Character, se: StatusEffect):
 	character.apply_status_effect(se)
 

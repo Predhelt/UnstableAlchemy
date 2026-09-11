@@ -9,7 +9,7 @@ var next_scene_path: String = "res://maps/menu/title_screen.tscn"
 var is_loading_from_save: bool = false
 ## Tracks whether the particles have been chached during the current game execution.
 var particles_cached: bool = false
-
+## Signal emitted when the scene is ready on load.
 signal scene_loaded
 
 ## Index of the current save slot being used by UserVariables.
@@ -68,12 +68,18 @@ var ambient_volume := 80.0
 ## Closes the center window, or right, or left, respectively.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
+		if get_tree().current_scene.find_child("UILayer") == null:
+			return
 		if center_window:
 			center_window.close_window()
 		elif right_window:
 			right_window.close_window()
 		elif left_window:
 			left_window.close_window()
+		else:
+			var options_menu : UIWindow = get_tree().current_scene.find_child("OptionsMenu")
+			if options_menu:
+				options_menu.open_window()
 	#if event.is_action_pressed("reset_level") and mode == &"options":
 		#reset_level()
 

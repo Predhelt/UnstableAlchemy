@@ -20,15 +20,17 @@ func toggle_window():
 		open_window()
 
 func open_window():
-	if not Global.center_window and not Global.left_window and not Global.right_window:
-		configure_progression_data()
-		$AudioStreamPlayer.play()
-		$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
-		prev_mode = Global.mode
-		Global.mode = window_mode
-		Global.center_window = self
-		visible = true
-		window_opened.emit()
+	if Global.center_window or Global.left_window or Global.right_window:
+		Global.emit_notification("Close any open windows before opening!")
+		return
+	configure_progression_data()
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer["parameters/switch_to_clip"] = "press"
+	prev_mode = Global.mode
+	Global.mode = window_mode
+	Global.center_window = self
+	visible = true
+	window_opened.emit()
 
 func close_window():
 	if Global.mode == window_mode:

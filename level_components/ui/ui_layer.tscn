@@ -156,17 +156,21 @@ visible = false
 
 [node name="Notifications" type="VBoxContainer" parent="." unique_id=295845683]
 unique_name_in_owner = true
+custom_maximum_size = Vector2(400, 400)
+clip_contents = true
 anchors_preset = -1
-anchor_left = 0.8
-anchor_top = 0.8
-anchor_right = 0.8
-anchor_bottom = 0.8
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+anchor_left = 0.683
+anchor_top = 0.23600002
+anchor_right = 0.99500006
+anchor_bottom = 0.794
+offset_left = -0.24005127
+offset_top = 2.0799866
+offset_right = 0.39990234
+offset_bottom = 0.32000732
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+alignment = 2
 
 [connection signal="call_open_inventory" from="." to="MenuLayer/LeftWindows/InventoryMenu" method="_on_ui_layer_call_open_inventory"]
 [connection signal="add_inventory_item" from="HUDLayer/Hotbar" to="MenuLayer/LeftWindows/InventoryMenu" method="_on_hotbar_add_inventory_item"]

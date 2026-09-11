@@ -89,8 +89,9 @@ func close_window() -> void:
 func open_window() -> bool:
 	if  UserVariables.is_log_book_disabled:
 		return false
-	if Global.center_window or Global.left_window or Global.right_window or visible:
+	if Global.center_window or Global.left_window or Global.right_window:
 		#print("ERROR: Log Book could not be open, " + Global.center_window.name + " window already open")
+		Global.emit_notification("Close any open windows before opening!")
 		return false ## Do not open, there is already a window open in the area.
 	
 	prev_mode = Global.mode
