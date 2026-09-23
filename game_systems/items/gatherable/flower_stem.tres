@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dtmha6gayo6if"]
 
+[ext_resource type="Script" uid="uid://o0cgln873dc2" path="res://game_systems/items/effect_modifiers.gd" id="1_040uc"]
 [ext_resource type="Script" uid="uid://odkkljfrjpee" path="res://game_systems/status_effects/status_effect.gd" id="1_cf48e"]
 [ext_resource type="Script" uid="uid://b7erjwbd5hmhp" path="res://game_systems/items/item.gd" id="2_yxobe"]
 [ext_resource type="Texture2D" uid="uid://bla8lcdtx1wn7" path="res://art/pack/ingredients/inventory/flower_stem.png" id="3_yxobe"]
@@ -11,7 +12,4 @@ display_name = "Flower Stem"
 description = "Stem of a yellow flower"
 texture = ExtResource("3_yxobe")
 max_qty = 16
-qty = 1
-on_consume_effects = Array[ExtResource("1_cf48e")]([])
-on_consume_message = ""
 metadata/_custom_type_script = "uid://b7erjwbd5hmhp"
