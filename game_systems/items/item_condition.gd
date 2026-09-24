@@ -1,3 +1,4 @@
+##@experimental
 ## An effect that is added or removed form an item when comparisons are satisfied.
 class_name ItemCondition extends Resource
 

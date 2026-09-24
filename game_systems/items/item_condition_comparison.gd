@@ -1,3 +1,4 @@
+##@experimental
 ## The comparision of a condition of an item to its current value.
 class_name ItemConditionComparison extends Resource
 
