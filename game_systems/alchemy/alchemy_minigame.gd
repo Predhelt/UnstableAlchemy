@@ -153,7 +153,9 @@ func check_results():
 
 ## Goes through the list of recipes and returns a recipe that
 ## matches the current procedure, if any.
-func matching_recipe() -> Recipe:
+func matching_recipe() -> Recipe: 
+	#TODO: Update check for matching recipe to allow for a window of error potentially with slightly different results?
+	# Problem with above task: If two recipes have overlap in window of error, there is no clear solution.
 	for recipe in recipes:
 		if len(recipe.ingredients) < 1 or len(recipe.ingredients) > 3:
 			continue

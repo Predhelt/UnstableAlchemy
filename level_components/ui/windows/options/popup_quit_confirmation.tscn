@@ -66,21 +66,21 @@ layout_mode = 2
 theme_override_constants/separation = 38
 alignment = 1
 
-[node name="ButtonCancel" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=300238148]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "Cancel"
-
 [node name="ButtonQuit" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=2015968216]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Quit"
 
-[connection signal="focus_entered" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_entered"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_cancel_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_pressed"]
+[node name="ButtonCancel" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=300238148]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Cancel"
+
 [connection signal="focus_entered" from="Panel/VBoxContainer/HBoxContainer/ButtonQuit" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="Panel/VBoxContainer/HBoxContainer/ButtonQuit" to="." method="_on_button_entered"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ButtonQuit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="focus_entered" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ButtonCancel" to="." method="_on_button_cancel_pressed"]
